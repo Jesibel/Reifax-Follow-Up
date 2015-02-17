@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+</title>
+<!--meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2" /-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes"/> 
+    <title>REIFAX FOLLOW UP</title>
+    <meta charset="utf-8">
+	<link href="resources/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/index.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="jquerymobile/jquery.mobile-1.4.5.min.css" type="text/css" media="screen">
+	<script type="text/javascript" src="jquerymobile/demos/js/jquery.js"></script>
+	<script type="text/javascript" src="jquerymobile/jquery.mobile-1.4.5.min.js"></script>			
+	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
+	
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<style>
+	@media screen and (max-width:420px) {
+		.col-md-4{
+			width:70% !important;
+		}
+	
+	}
+		.ui-tabs{
+			padding: 0em;
+		}
+		ui-page-theme-a .ui-btn:hover.ui-page-theme-a .ui-btn:hover, html .ui-bar-a .ui-btn:hover, html .ui-body-a .ui-btn:hover, html body .ui-group-theme-a .ui-btn:hover, html head+body .ui-btn.ui-btn-a:hover{
+		
+			background-color:#ededed;
+			border-color:#ddd;
+			color: #333;
+			text-shadow:0 1px 0 #f3f3f3;
+		}
+		.ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head+body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on:after, html .ui-bar-a .ui-checkbox-on:after, html .ui-body-a .ui-checkbox-on:after, html body .ui-group-theme-a .ui-checkbox-on:after, .ui-btn.ui-checkbox-on.ui-btn-a:after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active{
+			background-color: transparent;
+			border-color: transparent;
+			color: #333; 
+			text-shadow: none;
+			border-bottom: thick double #38c !important;
+		}
+		
+		.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited{
+			background-color: transparent;
+			border-color: transparent;
+			color: #333;
+			text-shadow: 0 1px 0 #f3f3f3;
+		}
+		.ui-page-theme-a a:visited, html .ui-bar-a a:visited, html .ui-body-a a:visited, html body .ui-group-theme-a a:visited{
+			color:transparent;
+			border-bottom:thick double #38c;
+		}
+		.ui-content{
+			padding: 0em;
+		}
+		.col-md-4{
+			width:15%;
+		}
+		h3, .h3{
+			font-size:18px;
+		}
+	</style>
+</head>
+<body>
+<div data-role="page" id="page1">
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header">
+		<div><img src="Follow_up-white.png" width="120" height="40"></div>
+	</div>
+	<!--div role="main" class="ui-content"-->
+		<div data-role="tabs">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#fragment-1">Following</a></li>
+					<li><a href="#fragment-2">Email</a></li>
+					<li><a href="#fragment-3">Task</a></li>
+					<li><a href="#fragment-4">Contacts</a></li>
+				</ul>
+			</div>
+			<div id="fragment-1">
+				<div data-role="content">
+								
+					<p>This is the content of the tab 'One', with the id fragment-1.</p>
+		
+				</div>
+				
+			</div>
+			<div id="fragment-2">
+				<div data-role="content">
+					<div data-role="navbar">
+						<ul>
+							<li><a href="#fragment-1">Inbox</a></li>
+							<li><a href="#fragment-2">Outbox</a></li>
+						</ul>
+					</div>				
+					<p>This is the content of the tab 'One', with the id fragment-2.</p>
+		
+				</div>
+			</div>
+			<div id="fragment-3">
+				<p>This is the content of the tab 'Three', with the id fragment-3.</p>
+			</div>
+			<div id="fragment-4">
+				<p>This is the content of the tab 'Three', with the id fragment-4.</p>
+			</div>
+		</div>
+	<!--/div-->
+	<!--div data-role="content">
+		<h2>primera app con PhoneGap</h2>
+		<a href="#msj" data-role="button" data-theme="b" data-rel="dialog">Saludar a PhoneGap</a>
+	</div-->
+	
+</div>
+<div data-role="page" id="msj">
+    <div data-theme="a" data-role="header">
+		<h3>Más saludos</h3>
+	</div> 
+	<div data-role="content">
+		<a href="http://desarrolloweb.com">DesarolloWeb.com</a> saludando a PhoneGap
+		<a href="#" data-role="button" data-theme="e" data-rel="back">Aceptar</a>
+	</div>
+</div>
+</body>
+</html>
