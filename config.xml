@@ -10,10 +10,10 @@
   <name>Reifax Follow Up</name>
 
   <description>
-  An example for phonegap build docs. 
+  Opportunity to follow up on the properties. 
   </description> 
 
-  <author href="http://reifaxhelper.booleam.com" email="jesibelaranguren@gmail.com">
+  <author href="http://reifax.com" email="jesibelaranguren@gmail.com">
   Jesibel Aranguren 
   </author>
   
@@ -40,9 +40,9 @@
   
  
   <!-- Define app icon for each platform. -->
-  <icon src="resources/image/ReiFax_Help_logo-120.png"/>
+  <icon src="resources/image/Follow_up-white.png"/>
   
-  <icon src="resources/image/logo-36.png"   gap:platform="android"    gap:density="ldpi" />
+  <!--icon src="resources/image/logo-36.png"   gap:platform="android"    gap:density="ldpi" />
   <icon src="resources/image/logo-48.png"   gap:platform="android"    gap:density="mdpi" />
   <icon src="resources/image/logo-72.png"   gap:platform="android"    gap:density="hdpi" />
   <icon src="resources/image/logo-96.png"   gap:platform="android"    gap:density="xhdpi" />
@@ -74,7 +74,7 @@
   <gap:splash src="resources/image/logoV_480.png"  gap:platform="ios"     width="320"  height="480" />
   <gap:splash src="resources/image/logoV_960.png"  gap:platform="ios"     width="640"  height="960" />
   <gap:splash src="resources/image/logoV_768.png"  gap:platform="ios"     width="768"  height="1024" />
-  <gap:splash src="resources/image/logoH_768.png"  gap:platform="ios"     width="1024" height="768" />
+  <gap:splash src="resources/image/logoH_768.png"  gap:platform="ios"     width="1024" height="768" /-->
 
 
   <gap:plugin name="org.apache.cordova.media" />	
@@ -90,8 +90,8 @@
   <gap:plugin name="org.apache.cordova.splashscreen" />
   
 
-  <access origin="http://reifaxhelper.booleam.com" />       
-  <access origin="http://reifaxhelper.booleam.com" subdomains="true" /> 
+  <access origin="http://reifax.com" />       
+  <access origin="http://reifax.com" subdomains="true" /> 
   <access origin="*"/>
   
   
