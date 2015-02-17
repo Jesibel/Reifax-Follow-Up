@@ -40,7 +40,7 @@
   
  
   <!-- Define app icon for each platform. -->
-  <icon src="resources/image/Follow_up-w120.png"/>
+  <icon src="resources/image/Follow_up-g120.png"/>
   
   <!--icon src="resources/image/logo-36.png"   gap:platform="android"    gap:density="ldpi" />
   <icon src="resources/image/logo-48.png"   gap:platform="android"    gap:density="mdpi" />
