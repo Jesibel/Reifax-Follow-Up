@@ -1561,9 +1561,9 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 	</div>
 	
 	<!--FIN HEADER-->
-	<div data-role="content">
+	
 	<!--TABS-->	
-	<div style="background: #ccc;" data-role="navbar">
+	<div style="background: #ccc;" data-role="navbar" data-position="fixed">
 		<ul>
 			<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
 			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
@@ -1576,7 +1576,7 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 	<!--FIN TABS-->
 	
 	<!--content-->
-	
+	<div data-role="content">
 	<div style="background:#fff;" id="content">
 		<ul style="list-style: none;margin-left:-40px;" class="page_result">
 		
@@ -2324,9 +2324,8 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 	</div>
 	<!--FIN HEADER--> 	
 	
-	<div data-role="content">
 	<!--TABS-->
-	<div style="background: #ccc;" data-role="navbar">
+	<div style="background: #ccc;" data-role="navbar" data-position="fixed">
 		<ul>
 			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
 			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
@@ -2334,7 +2333,7 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 		</ul>
 	</div>
-	<div style="background: #f6f6f6;" data-role="navbar">
+	<div style="background: #f6f6f6;" data-role="navbar" data-position="fixed">
 		<ul>
 			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#inbox">Inbox</a></li>
 			<li><a  style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#outboxEmailHtml">Outbox</a></li>			
@@ -2343,21 +2342,21 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 	<!--FIN TABS-->
 	
 	<!--CONTENT-->
-	
-	<div style="background:#fff;" id="emails">
-		<ul style="list-style: none;margin-left:-40px;" class="page_emailInbox">
+	<div data-role="content">
+		<div style="background:#fff;" id="emails">
+			<ul style="list-style: none;margin-left:-40px;" class="page_emailInbox">
+			
+			</ul>
+		</div>
 		
-		</ul>
-	</div>
-	
-	<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
-    
-	
-	<div style="background:#fff;" id="emailFilter">
-		<ul style="list-style: none;margin-left:-40px;" class="page_emailInbox">
+		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
 		
-		</ul>
-	</div>
+		
+		<div style="background:#fff;" id="emailFilter">
+			<ul style="list-style: none;margin-left:-40px;" class="page_emailInbox">
+			
+			</ul>
+		</div>
 	<!--FIN CONTENT-->	
 	</div>
 	
@@ -2424,9 +2423,8 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 	</div>
 	<!--FIN HEADER--> 	
 	
-	<div data-role="content">
 	<!--TABS-->
-	<div style="background: #ccc;" data-role="navbar">
+	<div style="background: #ccc;" data-role="navbar" data-position="fixed">
 		<ul>
 			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
 			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
@@ -2434,7 +2432,7 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 		</ul>
 	</div>
-	<div style="background: #fff;" data-role="navbar">
+	<div style="background: #fff;" data-role="navbar" data-position="fixed">
 		<ul>
 			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Inbox</a></li>
 			<li style="border-right:1px solid #777;margin-top:3px;height: 30px;" class="active"><a href="#outboxEmailHtml">Outbox</a></li>			
@@ -2443,7 +2441,7 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 	<!--FIN TABS-->
 	
 	<!--CONTENT-->
-	
+	<div data-role="content">
 	<div style="background:#fff;" id="emailsOutbox">
 		<ul style="list-style: none;margin-left:-40px;" class="page_emailOutbox">
 		
@@ -2532,11 +2530,8 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 	
 	</div>
 	<!--FIN HEADER--> 	
-	<div data-role="content">
-
-
 	<!--TABS-->
-	<div style="background: #ccc;" data-role="navbar">
+	<div style="background: #ccc;" data-role="navbar" data-position="fixed">
 		<ul>
 			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
 			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
@@ -2547,6 +2542,8 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 
 	<!--FIN TABS-->
 	
+	<div data-role="content">
+
 	<!--CONTENT-->
 	
 	<div style="background:#fff;" id="contacts">
@@ -2567,7 +2564,7 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 	</div>
 	
 	<!--MENU PRINCIPAL -->
-	<div data-role="panel" data-position="fixed" id="menuCont" data-display="overlay" >
+	<div data-role="panel" id="menuCont" data-display="overlay" data-position="left">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
 			<a class="closeMenu" style="display:none;" href="#" data-rel="close">Close</a>
