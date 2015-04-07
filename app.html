@@ -2,23 +2,27 @@
 <html>
 <head>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-	<meta name="apple-mobile-web-app-capable" content="yes"/> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
 	<link href="resources/css/index.css" rel="stylesheet" type="text/css" />
 	<title>REIFAX FOLLOW UP</title>
     
-	
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script type="text/javascript" src="jquerymobile/demos/js/jquery.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script> 
+		$(document).bind("mobileinit", function () { 
+		  
+			 $.mobile.defaultPageTransition =  'none' ; 
+			 $.mobile.defaultDialogTransition =  'none' ; 
+		   
+		}); 
+	</script> 
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">	
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script-->   
 	<link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet" />
 	<link href="http://reifax.com/FollowupReifax/bootstrap/css/bootstrap-modal.css" rel="stylesheet" />
-	
-	<script type="text/javascript" src="jquerymobile/demos/js/jquery.js"></script>
-   
-    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	
@@ -40,12 +44,9 @@
 	<script src="http://reifax.com/FollowupReifax/resources/js/moment.js"></script>
 	<script type="text/javascript">
 	
-		$(document).on('mobileinit', function(){
-			$.mobile.defaultPageTransition   = 'none';
-			$.mobile.defaultDialogTransition = 'none';
-		});
+		
+	$(document).ready(function(){
 	
-		$(document).ready(function(){
 		
 		document.getElementById('templa').style.display = "none";
 		document.getElementById('templaFAX').style.display = "none";
@@ -297,6 +298,9 @@
 		var start = $settings.start;
 		
 $(function(){
+
+		
+
         /*$("div#contacts").on("tap", function() {
            //this).text("After tap event").css("background-color", "#86BDFF"); 
 		   alert('contacts');
@@ -2627,4 +2631,5 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 </div>
 
 </body>
+
 </html>
