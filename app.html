@@ -40,6 +40,11 @@
 	<script src="http://reifax.com/FollowupReifax/resources/js/moment.js"></script>
 	<script type="text/javascript">
 	
+		$(document).on('mobileinit', function(){
+			$.mobile.defaultPageTransition   = 'none';
+			$.mobile.defaultDialogTransition = 'none';
+		});
+	
 		$(document).ready(function(){
 		
 		document.getElementById('templa').style.display = "none";
