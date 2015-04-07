@@ -1,32 +1,1349 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-</title>
-<!--meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2" /-->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-	<meta name="apple-mobile-web-app-capable" content="yes"/> 
-    <title>REIFAX FOLLOW UP</title>
-    <meta charset="utf-8">
-	<link href="resources/css/style.css" rel="stylesheet" type="text/css" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
 	<link href="resources/css/index.css" rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="jquerymobile/jquery.mobile-1.4.5.min.css" type="text/css" media="screen">
-	<script type="text/javascript" src="jquerymobile/demos/js/jquery.js"></script>
-	<script type="text/javascript" src="jquerymobile/jquery.mobile-1.4.5.min.js"></script>			
-	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
+	<title>REIFAX FOLLOW UP</title>
+    
 	
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">	
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script-->   
+	<link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet" />
+	<link href="http://reifax.com/FollowupReifax/bootstrap/css/bootstrap-modal.css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="jquerymobile/demos/js/jquery.js"></script>
+   
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/datepicker.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/locales/bootstrap-datepicker.pt.js"></script-->
+
+	
+	<script src="http://reifax.com/FollowupReifax/resources/javascript.js"></script>
+	
+	<script src="http://reifax.com/FollowupReifax/resources/funcionesProperties.js"></script>
+	<script src="http://reifax.com/FollowupReifax/resources/funcionesContacts.js"></script>
+	<script src="http://reifax.com/FollowupReifax/resources/funcionesEmails.js"></script>
+	
+	<!--script src="http://reifax.com/FollowupReifax/bootstrap/js/bootstrap-modal.js"></script>
+	<script src="http://reifax.com/FollowupReifax/bootstrap/js/bootstrap-modalmanager.js"></script-->	
+	<!--script src="http://reifax.com/FollowupReifax/resources/js/accounting.js"></script-->
+	<script src="http://reifax.com/FollowupReifax/resources/js/accounting.js"></script>
+	<script src="http://reifax.com/FollowupReifax/resources/js/moment.js"></script>
+	<script type="text/javascript">
+	
+	$(document).ready(function(){
+		
+		document.getElementById('templa').style.display = "none";
+		document.getElementById('templaFAX').style.display = "none";
+		document.getElementById('between').style.display = "none";
+		document.getElementById('telf1').style.display = "none";
+		document.getElementById('telf2').style.display = "none";
+		document.getElementById('telf3').style.display = "none";
+		document.getElementById('telf4').style.display = "none";
+		document.getElementById('telf5').style.display = "none";
+		document.getElementById('telf6').style.display = "none";
+		
+		
+		//document.getElementById('menuContacts').style.display = "block";
+		
+		
+		$("#filtro,#filtro2").on('click', function () {
+				
+				alert('filtro');				
+				getfilterProperty();
+				
+		});
+				
+		//SEARCH FILTER
+		$("#searchFilter").on('click', function () {
+			alert("search del filtro");
+			searchFilterProperty();
+			
+		});
+		
+		//FILTER REMOVE PROPERTIES
+		$("#filtro_remove,#filtro_remove2").on('click', function () {
+			alert('remove filter');
+			removeFilterProperty();
+		});
+		
+		//FILTER REMOVE CONTACTS
+		$("#filtro_removeCont").on('click', function () {
+			alert('remove filter CONTACTS');
+			removeFilterContact();
+					
+		});
+		
+		
+		//INSERT CONTACTS
+		$("#insertCont").on('click', function () {
+			alert('insert');			
+			insertContact();
+		});
+		
+		//SEARCH FILTER EMAIL INBOX
+		$("#searchFilterMailI").on('click', function () {
+			alert("search del filtro mail inbox");
+			searchFilterMailInbox();
+			
+		});
+		
+		//FILTER REMOVE EMAIL INBOX
+		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
+			alert('remove filter email inbox');
+			removeFilterEmailInbox();
+					
+		});
+		
+		//SEARCH FILTER EMAIL OUTBOX
+		$("#searchFilterMailO").on('click', function () {
+			alert("search del filtro mail OUTbox");
+			searchFilterMailOutbox();
+			
+		});
+		
+		//FILTER REMOVE EMAIL OUTBOX
+		$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
+			alert('remove filter email outbox');
+			removeFilterEmailOutbox();
+					
+		});
+		
+		
+		
+		$("#webdetailHtml,#webdetailcontactHtml#webMyaccountHtml").height($(window).height()-$("div.ui-page-active div[data-role='header']").height()-7-63);	
+
+		
+		//RADIO BUTTOM SEND EMAIL
+		$('#template').on('click',function(){
+			alert("radio template");
+			var body = "Dear Mr/Mrs {%Agent Name%} Please find attached a contract with our offer regarding the property with the address: {%Address%} We wait for your prompt response Regards {%User Name%}. {%Phone%} {%Email%}";
+			var out="";
+			var standar="Standar Email";
+				out +='<option value="'+standar+'">'+standar+'</option>';	
+						
+			document.getElementById('templa').style.display = "block";
+			document.getElementById("template").checked = true;
+			document.getElementById("new").checked = false;
+			$("#temp select").append(out);
+				
+			$("#body").append(body);
+		});
+
+		$('#new').on('click',function(){
+				
+			alert("radio new");
+			//$('#2').dialog("close");
+			//$('#1').dialog("open");
+			document.getElementById("template").checked = false;
+			document.getElementById("new").checked = true;
+			document.getElementById('templa').style.display = "none";
+			$("textarea#body").val("");
+			
+		});
+			
+		//RADIO BUTTOM SEND SMS
+		$('#templateSMS').on('click',function(){
+			alert("radio templateSMS");
+			var texto = "Dear Mr/Mrs {%Agent Name%}"+
+
+			"Please find attached a contract with our offer regarding the property with the address: {%Address%}"+
+			"We wait for your prompt response"+
+
+			"Regards {%User Name%}."+
+			"{%Phone%}"+
+			"{%Email%}";
+			var out="";
+							
+			//document.getElementById('templa').style.display = "block";
+			document.getElementById("templateSMS").checked = true;
+			document.getElementById("newSMS").checked = false;
+								
+			$("#text").append(texto);
+		});
+
+		$('#newSMS').on('click',function(){
+				
+			alert("radio new");
+			//$('#2').dialog("close");
+			//$('#1').dialog("open");
+			document.getElementById("templateSMS").checked = false;
+			document.getElementById("newSMS").checked = true;
+			//document.getElementById('templa').style.display = "none";
+			$("textarea#text").val("");
+			
+		});
+			
+		//RADIO BUTTOM SEND FAX
+		$('#templateFax').on('click',function(){
+			alert("radio templateFax");
+			var texto = "Dear Mr/Mrs {%Agent Name%}"+
+
+			"Please find attached a contract with our offer regarding the property with the address: {%Address%}"+
+			"We wait for your prompt response"+
+
+			"Regards {%User Name%}."+
+			"{%Phone%}"+
+			"{%Email%}";
+			var out="";
+			var standar="Standar Fax";
+			out +='<option value="'+standar+'">'+standar+'</option>';	
+							
+			document.getElementById('templaFAX').style.display = "block";
+			document.getElementById("templateFax").checked = true;
+			document.getElementById("newFax").checked = false;
+			$("#temp select").append(out);
+								
+			$("#textFax").append(texto);
+		});
+
+		$('#newFax').on('click',function(){
+				
+			alert("radio newFax");
+			//$('#2').dialog("close");
+			//$('#1').dialog("open");
+			document.getElementById("templateFax").checked = false;
+			document.getElementById("newFax").checked = true;
+			document.getElementById('templaFAX').style.display = "none";
+			$("textarea#textFax").val("");
+			
+		});
+			
+		//UPLOAD FILE
+		document.getElementById("uploadBtn").onchange = function () {
+			document.getElementById("uploadFile").value = this.value;
+		};
+		
+		//UPLOAD FILE COMPOSE
+		document.getElementById("uploadBtnCompose").onchange = function () {
+			document.getElementById("uploadFile").value = this.value;
+		};
+			
+		//DELETE CONTACTS
+		$('#deleteCont').on('click',function(){				
+			//alert("delete");
+			alert("You must previously select(long touch) the contacts to be eliminated.");
+		});
+			
+		//EDIT CONTACTS
+		$('#editCont').on('click',function(){				
+			//alert("editc");
+			alert("You must previously select(long touch) the contacts to be edited.");
+		});
+			
+		//AGREGAR CONTACTS
+		$('#addCont,#addCont2').on('click',function(){				
+			alert("addc");
+			getTypeContacts();						
+				
+		});
+			
+		//FILTER CONTACTS
+		$('#filtrocontact').on('click',function(){				
+			alert("filtro contact");
+			getagenttype();
+		});
+		
+		//FILTER EMAIL INBOX
+		$('#filtromaI,#filtromaIn').on('click',function(){				
+			alert("filtro email inbox");
+			gettypemail();
+		});
+		
+		//FILTER EMAIL OutBOX
+		$('#filtromaO').on('click',function(){				
+			alert("filtro email outbox");
+			gettypemailOutbox();
+		});
+			
+		
+			
+	});
+	
+</script>
+<script type="text/javascript">
+		var checkid = new Array();
+		var i;
+		var pageName = location.pathname.substring(1);
+			
+		//alert(pageName);
+		pageName = pageName.substring(15);
+		//alert(pageName);
+	
+		var settings = { 
+			limit : 25, // The number of posts per scroll to be loaded
+			start : 0, // Initial offset, begins at 0 in this case
+			error   : 'No More!', // When the user reaches the end this is the message that is
+			                           
+		}
+		
+		var busy=false;
+		$this = $(this);
+		$settings = settings;	
+		var start = $settings.start;
+		
+$(function(){
+        /*$("div#contacts").on("tap", function() {
+           //this).text("After tap event").css("background-color", "#86BDFF"); 
+		   alert('contacts');
+        });*/
+        /*$("div.test.taphold").on("taphold", function() {
+            $(this).text("After tap-and-hold event").css("background-color", "#FFBF4C"); 
+        });
+		$("li.item").on("taphold", function() {
+            alert('itemmmmmm');
+			//$(this).text("After tap-and-hold event").css("background-color", "#FFBF4C"); 
+        });*/
+				 
+		$('ul.page_result').on('taphold','li', function () {
+            alert('long Touch properties');
+			
+			var id= $(this).attr('parcelid');
+			alert(id);
+			
+			if(checkid.length==0){
+				var ch= checkid.push(id)				
+				document.getElementById('primero'+id).style.background = '#A9D0F5';
+				document.getElementById('header_two').style.display = "block";
+				
+				var div = document.createElement("div");
+				//div.style.width = "40px";
+				div.style.height = "40px";
+				div.style.background = "gray";
+				div.style.color = "white";
+				div.style.marginTop="-40px";
+				div.style.textAlign = "right";
+				//div.className = "logo";
+				div.id = "logo";
+				
+				
+				var div2 = document.getElementById("header_two"); 
+				// agregamos la imagen
+				div2.appendChild(div);
+			   
+				//crear ancla para Aceptar
+				var ace = document.createElement("a");
+				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+				ace.className ='box3 ui-btn excecute ui-first-child ui-last-child';
+				ace.style.marginRight = "200px";
+				ace.style.marginTop = "2px";
+				ace.style.height = "35px";
+				//ace.setAttribute("href","#menuProperty");
+				ace.onclick = function(){
+					///alert('aceptar');
+					//document.getElementById('header_two').style.display = "none";
+					//location.reload(true);
+					var idaux=0;
+					///alert("entre por else");
+					///alert(checkid.length);
+					for(i=0;i<checkid.length;i++){
+						///alert("test"+id);			 
+						if(checkid[i] == id){ 
+							idaux = id;
+						}			 
+					}
+					if(idaux == id){ 
+						///alert("si lo encontro");
+						for(i=0;i<checkid.length;i++){ 
+							if(checkid[i] == id){ 
+								///alert("encontrado"); 
+								///alert(checkid[i]); 
+								//aki quiero borrar vector[i] 
+								function removeByIndex(checkid, id) {
+									checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
+								}
+					  
+								///alert("Array before removing elements: "+checkid);
+								removeByIndex(checkid, i);
+								document.getElementById('primero'+id).style.backgroundColor = '#fff';
+								
+								///alert("Array after removing elements: "+checkid);
+								
+								document.getElementById('header_two').style.display = "none";
+				   
+								//fin aki				  
+							}
+								//alert(checkid);				
+						}				
+					}else{
+					
+						checkid.push(id)
+								
+						///alert(checkid+'else');
+						document.getElementById('primero'+id).style.background = '#A9D0F5';
+						
+						//document.getElementById('primero'+id).style.height="30px"; 
+						//document.getElementById('primero'+id).style.width="30px"; 
+								
+						  //aki quiero borrar vector[i]  #a7d798 
+						  
+						  //fin aqui
+						  
+					}
+				};
+				var src = document.getElementById("logo");
+				src.appendChild(ace);
+				
+				//crear ancla de menu por propiedad
+				var a = document.createElement("a");
+				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+				a.className ='box2 ui-btn excecute ui-first-child ui-last-child';
+				a.style.marginLeft = "6px";
+				a.style.marginTop = "2px";
+				a.style.height = "35px";
+				//a.setAttribute("href","#");
+				a.onclick = function(){
+					alert('deleteP');
+					deleteProperty(checkid);
+				};
+				var src = document.getElementById("logo");
+				src.appendChild(a);
+				
+				//crear ancla para delete
+				var del = document.createElement("a");
+				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+				del.className ='box ui-btn excecute ui-first-child ui-last-child';
+				del.style.marginLeft = "6px";
+				del.style.marginTop = "2px";
+				del.style.height = "35px";
+				del.setAttribute("href","#menuProperty");
+				del.onclick = function(){
+					//alert('click menu');
+				};
+				var src = document.getElementById("logo");
+				src.appendChild(del);
+				
+				//document.body.appendChild(div);
+				
+			}else{
+				var idaux=0;
+				///alert("entre por else");
+				///alert(checkid.length);
+				for(i=0;i<checkid.length;i++){
+					///alert("test"+id);			 
+					if(checkid[i] == id){ 
+						idaux = id;
+					}			 
+				}
+				if(idaux == id){ 
+					///alert("si lo encontro");
+					for(i=0;i<checkid.length;i++){ 
+						if(checkid[i] == id){ 
+							///alert("encontrado"); 
+							///alert(checkid[i]); 
+							//aki quiero borrar vector[i] 
+							function removeByIndex(checkid, id) {
+								checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
+							}
+				  
+							///alert("Array before removing elements: "+checkid);
+							removeByIndex(checkid, i);
+							document.getElementById('primero'+id).style.backgroundColor = '#fff';
+							
+							///alert("Array after removing elements: "+checkid);
+							
+							document.getElementById('header_two').style.display = "none";
+			   
+							//fin aki				  
+						}
+							//alert(checkid);				
+					}				
+				}else{
+				
+					checkid.push(id)
+							
+					///alert(checkid+'else');
+					document.getElementById('primero'+id).style.background = '#A9D0F5';
+					
+				}
+					//alert(checkid);				
+			
+			}
+			
+			//alert(id);
+			
+			//$(this).text("After tap-and-hold event").css("background-color", "#FFBF4C"); 			
+			
+			
+        });
+		
+		$('ul.page_result').on('click','li', function () {
+            alert('onclick');
+			location.reload(true);
+			/*var url = $("input#detail").val();
+			var object = { 'pid' : url, 'dos' : '2' };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('key', JSON.stringify(object));
+			window.location.href = "#detailProperties";*/
+				
+        });
+		
+		$('ul.page_contact').on('click','li', function () {
+            alert('onclick contacts');
+			location.reload(true);
+			/*var url = $("input#detail").val();
+			var object = { 'pid' : url, 'dos' : '2' };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('key', JSON.stringify(object));
+			window.location.href = "#detailProperties";*/
+				
+        });
+		
+		$('ul.page_contact').on('taphold','li', function () {
+            alert('long Touch contact');
+			
+			var id= $(this).attr('agentid');
+			
+			alert(id);
+			if(checkid.length==0){
+				var ch= checkid.push(id)				
+				document.getElementById('primero'+id).style.background = '#A9D0F5';
+				document.getElementById('header_cont').style.display = "block";
+				
+				var div = document.createElement("div");
+				//div.style.width = "40px";
+				div.style.height = "40px";
+				div.style.background = "gray";
+				div.style.color = "white";
+				div.style.marginTop="-40px";
+				div.style.textAlign = "right";
+				//div.className = "logo";
+				div.id = "logoContacts";
+				
+				
+				var div2 = document.getElementById("header_cont"); 
+				// agregamos la imagen
+				div2.appendChild(div);
+			   
+				//crear ancla para Aceptar
+				var ace = document.createElement("a");
+				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+				ace.className ='box3 ui-btn excecute ui-first-child ui-last-child';
+				ace.style.marginRight = "200px";
+				ace.style.marginTop = "2px";
+				ace.style.height = "35px";
+				//ace.setAttribute("href","#menuProperty");
+				ace.onclick = function(){
+					///alert('aceptar');
+					//document.getElementById('header_two').style.display = "none";
+					//location.reload(true);
+					var idaux=0;
+					///alert("entre por else");
+					///alert(checkid.length);
+					for(i=0;i<checkid.length;i++){
+						///alert("test"+id);			 
+						if(checkid[i] == id){ 
+							idaux = id;
+						}			 
+					}
+					if(idaux == id){ 
+						///alert("si lo encontro");
+						for(i=0;i<checkid.length;i++){ 
+							if(checkid[i] == id){ 
+								///alert("encontrado"); 
+								///alert(checkid[i]); 
+								//aki quiero borrar vector[i] 
+								function removeByIndex(checkid, id) {
+									checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
+								}
+					  
+								///alert("Array before removing elements: "+checkid);
+								removeByIndex(checkid, i);
+								document.getElementById('primero'+id).style.backgroundColor = '#fff';
+								
+								///alert("Array after removing elements: "+checkid);
+								
+								document.getElementById('header_cont').style.display = "none";
+				   
+								//fin aki				  
+							}
+								//alert(checkid);				
+						}				
+					}else{
+					
+						checkid.push(id)
+								
+						///alert(checkid+'else');
+						document.getElementById('primero'+id).style.background = '#A9D0F5';
+						
+						//document.getElementById('primero'+id).style.height="30px"; 
+						//document.getElementById('primero'+id).style.width="30px"; 
+								
+						  //aki quiero borrar vector[i]  #a7d798 
+						  
+						  //fin aqui
+						  
+					}
+				};
+				var src = document.getElementById("logoContacts");
+				src.appendChild(ace);
+				
+				//crear ancla de menu por propiedad
+				var a = document.createElement("a");
+				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+				a.className ='box2 ui-btn excecute ui-first-child ui-last-child';
+				a.style.marginLeft = "6px";
+				a.style.marginTop = "2px";
+				a.style.height = "35px";
+				//a.setAttribute("href","#");
+				a.onclick = function(){
+					alert('deleteC');
+					deleteContacts(checkid);
+				};
+				var src = document.getElementById("logoContacts");
+				src.appendChild(a);
+				
+				//crear ancla para delete
+				/*var del = document.createElement("a");*/
+				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+				/*del.className ='box ui-btn excecute ui-first-child ui-last-child';
+				del.style.marginLeft = "6px";
+				del.style.marginTop = "2px";
+				del.style.height = "35px";
+				del.setAttribute("href","#menuCont");
+				del.onclick = function(){
+					//alert('click menu');
+				};
+				var src = document.getElementById("logoContacts");
+				src.appendChild(del);*/
+				
+				//document.body.appendChild(div);
+				
+			}else{
+				var idaux=0;
+				///alert("entre por else");
+				///alert(checkid.length);
+				for(i=0;i<checkid.length;i++){
+					///alert("test"+id);			 
+					if(checkid[i] == id){ 
+						idaux = id;
+					}			 
+				}
+				if(idaux == id){ 
+					///alert("si lo encontro");
+					for(i=0;i<checkid.length;i++){ 
+						if(checkid[i] == id){ 
+							///alert("encontrado"); 
+							///alert(checkid[i]); 
+							//aki quiero borrar vector[i] 
+							function removeByIndex(checkid, id) {
+								checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
+							}
+				  
+							///alert("Array before removing elements: "+checkid);
+							removeByIndex(checkid, i);
+							document.getElementById('primero'+id).style.backgroundColor = '#fff';
+							
+							///alert("Array after removing elements: "+checkid);
+							
+							document.getElementById('header_cont').style.display = "none";
+			   
+							//fin aki				  
+						}
+							//alert(checkid);				
+					}				
+				}else{
+				
+					checkid.push(id)
+							
+					///alert(checkid+'else');
+					document.getElementById('primero'+id).style.background = '#A9D0F5';
+					
+				}
+					//alert(checkid);				
+			
+			}
+			
+		});
+		
+		//CLICK EMAIL INBOX
+		$('ul.page_emailInbox').on('click','li', function () {
+            alert('onclick  EMAIL INBOX');
+			//location.reload(true);
+		});
+		
+		//LONG TOUCH EMAIL INBOX
+		$('ul.page_emailInbox').on('taphold','li', function () {
+            alert('long Touch email Inbox');
+			
+			var id= $(this).attr('idmail');
+			var idseen= $(this).attr('idseen');
+			alert(id);
+			alert(idseen);
+			
+			$(this).addClass ('mail_marked');
+			
+			
+			//longEmailInbox(id);
+			if(checkid.length==0){
+			var ch= checkid.push(id)				
+			document.getElementById('primero'+id).style.background = '#A9D0F5';
+			document.getElementById('header_emailInbox').style.display = "block";
+				
+			var div = document.createElement("div");
+			//div.style.width = "40px";
+			div.style.height = "40px";
+			div.style.background = "gray";
+			div.style.color = "white";
+			div.style.marginTop="-40px";
+			div.style.textAlign = "right";
+			//div.className = "logo";
+			div.id = "logoEmailInbox";
+			
+			var div2 = document.getElementById("header_emailInbox"); 
+			// agregamos la imagen
+			div2.appendChild(div);
+			   
+			//crear ancla para Aceptar
+			var ace = document.createElement("a");
+			//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+			ace.className ='box3 ui-btn excecute ui-first-child ui-last-child';
+			ace.style.marginRight = "200px";
+			ace.style.marginTop = "2px";
+			ace.style.height = "35px";
+			//ace.setAttribute("href","#menuProperty");
+			ace.onclick = function(){
+				//alert('aceptar');
+				//document.getElementById('header_two').style.display = "none";
+				//location.reload(true);
+				var idaux=0;
+				//alert("entre por else");
+				//alert(checkid.length);
+				for(i=0;i<checkid.length;i++){
+					//alert("test"+id);			 
+					if(checkid[i] == id){ 
+						idaux = id;
+					}			 
+				}
+				if(idaux == id){ 
+					//alert("si lo encontro");
+					for(i=0;i<checkid.length;i++){ 
+						if(checkid[i] == id){ 
+							//alert("encontrado"); 
+							//alert(checkid[i]); 
+							//aki quiero borrar vector[i] 
+							function removeByIndex(checkid, id) {
+								checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
+							}
+							//alert("Array before removing elements: "+checkid);
+							removeByIndex(checkid, i);
+							document.getElementById('primero'+id).style.backgroundColor = '#fff';
+									
+							//alert("Array after removing elements: "+checkid);
+									
+							document.getElementById('header_emailInbox').style.display = "none";
+					   
+							//fin aki				  
+						}
+									//alert(checkid);				
+					}				
+				}else{
+						
+					checkid.push(id)
+									
+					//alert(checkid+'else');
+					document.getElementById('primero'+id).style.background = '#A9D0F5';
+							
+					//document.getElementById('primero'+id).style.height="30px"; 
+					//document.getElementById('primero'+id).style.width="30px"; 
+									
+					//aki quiero borrar vector[i]  #a7d798 
+							  
+					//fin aqui
+							  
+				}
+			};
+				var src = document.getElementById("logoEmailInbox");
+				src.appendChild(ace);
+				
+				//crear ancla  DELETE
+				var a = document.createElement("a");
+				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+				a.className ='box2 ui-btn excecute ui-first-child ui-last-child';
+				a.style.marginLeft = "6px";
+				a.style.marginTop = "2px";
+				a.style.height = "35px";
+				//a.setAttribute("href","#");
+				a.onclick = function(){
+					alert('delete email inbox');
+					deleteEmailInbox(checkid);
+				};
+				var src = document.getElementById("logoEmailInbox");
+				src.appendChild(a);
+				
+				
+				if (idseen==0){
+					//crear ancla para EMAIL LEIDO 
+					var read = document.createElement("a");
+					var leido=1;
+					var noleido=0;
+					//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+					read.className ='box5 ui-btn excecute ui-first-child ui-last-child';
+					read.style.marginLeft = "6px";
+					read.style.marginTop = "2px";
+					read.style.height = "35px";
+					read.setAttribute("href","#");
+					read.onclick = function(){
+						var items_marcados = $('.mail_marked');
+						var items_marcados2 = $('.seenB');
+						
+						if (read.className=='box5 ui-btn excecute ui-first-child ui-last-child'){
+							//alert('The email marked as read');
+							read.className ='box4 ui-btn excecute ui-first-child ui-last-child';
+							
+							items_marcados.removeClass("seenB");
+							
+							readEmail(id,leido);
+							
+						}
+						
+						else if (read.className=='box4 ui-btn excecute ui-first-child ui-last-child'){
+							//alert('The email marked as unread');
+							read.className ='box5 ui-btn excecute ui-first-child ui-last-child';
+							//document.getElementById('primero'+id).style.fontWeight = 'bold';
+							//read.style.fontWeight = "bold";
+							items_marcados.removeClass("seenN");
+							items_marcados.addClass("seenB");
+							unreadEmail(id,noleido);
+						}
+									
+					};
+					
+					var src = document.getElementById("logoEmailInbox");
+					src.appendChild(read);
+				
+				}
+				else if (idseen==1){
+					//crear ancla para EMAIL LEIDO 
+					var read = document.createElement("a");
+					var leido=1;
+					var noleido=0;
+					//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+					read.className ='box4 ui-btn excecute ui-first-child ui-last-child';
+					read.style.marginLeft = "6px";
+					read.style.marginTop = "2px";
+					read.style.height = "35px";
+					read.setAttribute("href","#");
+					read.onclick = function(){
+						var items_marcados = $('.mail_marked');
+						var items_marcados2 = $('.seenB');
+						
+						if (read.className=='box4 ui-btn excecute ui-first-child ui-last-child'){
+							//alert('The email marked as unread');
+							read.className ='box5 ui-btn excecute ui-first-child ui-last-child';
+							//document.getElementById('primero'+id).style.fontWeight = 'bold';
+							//read.style.fontWeight = "bold";
+							items_marcados.removeClass("seenN");
+							items_marcados.addClass("seenB");
+							unreadEmail(id,noleido);
+							
+							
+						}
+						
+						else if (read.className=='box5 ui-btn excecute ui-first-child ui-last-child'){
+							//alert('The email marked as read');
+							read.className ='box4 ui-btn excecute ui-first-child ui-last-child';							
+							items_marcados.removeClass("seenB");							
+							readEmail(id,leido);
+						}
+									
+					};
+					
+					var src = document.getElementById("logoEmailInbox");
+					src.appendChild(read);
+				
+				}
+				
+				
+				//crear ancla para MENU
+				var del = document.createElement("a");
+				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+				del.className ='box ui-btn excecute ui-first-child ui-last-child';
+				del.style.marginLeft = "6px";
+				del.style.marginTop = "2px";
+				del.style.height = "35px";
+				del.setAttribute("href","#menuEmailInboxO");
+				del.onclick = function(){
+					alert('click menu');
+				};
+				var src = document.getElementById("logoEmailInbox");
+				src.appendChild(del);
+				
+				//document.body.appendChild(div);
+				
+			}else{
+				var idaux=0;
+				//alert("entre por else");
+				//alert(checkid.length);
+				for(i=0;i<checkid.length;i++){
+					//alert("test"+id);			 
+					if(checkid[i] == id){ 
+						idaux = id;
+					}			 
+				}
+				if(idaux == id){ 
+					//alert("si lo encontro");
+					for(i=0;i<checkid.length;i++){ 
+						if(checkid[i] == id){ 
+							//alert("encontrado"); 
+							//alert(checkid[i]); 
+							//aki quiero borrar vector[i] 
+							function removeByIndex(checkid, id) {
+								checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
+							}
+				  
+							//alert("Array before removing elements: "+checkid);
+							removeByIndex(checkid, i);
+							document.getElementById('primero'+id).style.backgroundColor = '#fff';
+							
+							///alert("Array after removing elements: "+checkid);
+							
+							document.getElementById('header_emailInbox').style.display = "none";
+			   
+							//fin aki				  
+						}
+							//alert(checkid);				
+					}				
+				}else{
+				
+					checkid.push(id)
+							
+					//alert(checkid+'else');
+					document.getElementById('primero'+id).style.background = '#A9D0F5';
+					
+				}
+					//alert(checkid);				
+			
+			}
+			
+			
+		});
+		
+		//CLICK EMAIL OUTBOX
+		$('ul.page_emailOutbox').on('click','li', function () {
+            alert('onclick  EMAIL OUTBOX');
+			//location.reload(true);
+		});
+		
+		//LONG TOUCH EMAIL OUTBOX
+		$('ul.page_emailOutbox').on('taphold','li', function () {
+            alert('long Touch email OUTbox');
+			
+			var id= $(this).attr('idmail');
+			
+			alert(id);
+			
+			//longEmailInbox(id);
+			if(checkid.length==0){
+			var ch= checkid.push(id)				
+			document.getElementById('primero'+id).style.background = '#A9D0F5';
+			document.getElementById('header_emailOutbox').style.display = "block";
+				
+			var div = document.createElement("div");
+			//div.style.width = "40px";
+			div.style.height = "40px";
+			div.style.background = "gray";
+			div.style.color = "white";
+			div.style.marginTop="-40px";
+			div.style.textAlign = "right";
+			//div.className = "logo";
+			div.id = "logoEmailOutbox";
+			
+			var div2 = document.getElementById("header_emailOutbox"); 
+			// agregamos la imagen
+			div2.appendChild(div);
+			   
+			//crear ancla para Aceptar
+			var ace = document.createElement("a");
+			//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+			ace.className ='box3 ui-btn excecute ui-first-child ui-last-child';
+			ace.style.marginRight = "200px";
+			ace.style.marginTop = "2px";
+			ace.style.height = "35px";
+			//ace.setAttribute("href","#menuProperty");
+			ace.onclick = function(){
+				//alert('aceptar');
+				//document.getElementById('header_two').style.display = "none";
+				//location.reload(true);
+				var idaux=0;
+				//alert("entre por else");
+				//alert(checkid.length);
+				for(i=0;i<checkid.length;i++){
+					//alert("test"+id);			 
+					if(checkid[i] == id){ 
+						idaux = id;
+					}			 
+				}
+				if(idaux == id){ 
+					//alert("si lo encontro");
+					for(i=0;i<checkid.length;i++){ 
+						if(checkid[i] == id){ 
+							//alert("encontrado"); 
+							//alert(checkid[i]); 
+							//aki quiero borrar vector[i] 
+							function removeByIndex(checkid, id) {
+								checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
+							}
+							//alert("Array before removing elements: "+checkid);
+							removeByIndex(checkid, i);
+							document.getElementById('primero'+id).style.backgroundColor = '#fff';
+									
+							//alert("Array after removing elements: "+checkid);
+									
+							document.getElementById('header_emailOutbox').style.display = "none";
+					   
+							//fin aki				  
+						}
+									//alert(checkid);				
+					}				
+				}else{
+						
+					checkid.push(id)
+									
+					//alert(checkid+'else');
+					document.getElementById('primero'+id).style.background = '#A9D0F5';
+							
+					//document.getElementById('primero'+id).style.height="30px"; 
+					//document.getElementById('primero'+id).style.width="30px"; 
+									
+					//aki quiero borrar vector[i]  #a7d798 
+							  
+					//fin aqui
+							  
+				}
+			};
+				var src = document.getElementById("logoEmailOutbox");
+				src.appendChild(ace);
+				
+				//crear ancla  DELETE
+				var a = document.createElement("a");
+				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+				a.className ='box2 ui-btn excecute ui-first-child ui-last-child';
+				a.style.marginLeft = "6px";
+				a.style.marginTop = "2px";
+				a.style.height = "35px";
+				//a.setAttribute("href","#");
+				a.onclick = function(){
+					alert('delete email outbox');
+					deleteEmailOutbox(checkid);
+				};
+				var src = document.getElementById("logoEmailOutbox");
+				src.appendChild(a);
+				
+				
+						
+				
+				//crear ancla para MENU
+				var del = document.createElement("a");
+				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
+				del.className ='box ui-btn excecute ui-first-child ui-last-child';
+				del.style.marginLeft = "6px";
+				del.style.marginTop = "2px";
+				del.style.height = "35px";
+				del.setAttribute("href","#menuEmailOutbox");
+				del.onclick = function(){
+					alert('click menu');
+				};
+				var src = document.getElementById("logoEmailOutbox");
+				src.appendChild(del);
+				
+				//document.body.appendChild(div);
+				
+			}else{
+				var idaux=0;
+				//alert("entre por else");
+				//alert(checkid.length);
+				for(i=0;i<checkid.length;i++){
+					//alert("test"+id);			 
+					if(checkid[i] == id){ 
+						idaux = id;
+					}			 
+				}
+				if(idaux == id){ 
+					//alert("si lo encontro");
+					for(i=0;i<checkid.length;i++){ 
+						if(checkid[i] == id){ 
+							//alert("encontrado"); 
+							//alert(checkid[i]); 
+							//aki quiero borrar vector[i] 
+							function removeByIndex(checkid, id) {
+								checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
+							}
+				  
+							//alert("Array before removing elements: "+checkid);
+							removeByIndex(checkid, i);
+							document.getElementById('primero'+id).style.backgroundColor = '#fff';
+							
+							///alert("Array after removing elements: "+checkid);
+							
+							document.getElementById('header_emailOutbox').style.display = "none";
+			   
+							//fin aki				  
+						}
+							//alert(checkid);				
+					}				
+				}else{
+				
+					checkid.push(id)
+							
+					//alert(checkid+'else');
+					document.getElementById('primero'+id).style.background = '#A9D0F5';
+					
+				}
+					//alert(checkid);				
+			
+			}
+		});
+		
+		//MAKE CALL
+		$('#makeCall').on('click', function () {
+			alert('get');
+			getAgentMakeCall(checkid);
+		});
+		
+		//SEND EMAIL
+		$('#sendE').on('click', function () {
+			alert('sendemail');
+			sendemail();
+			
+		});
+		
+		//CARGAR EDITAR CONTACT
+		$("#editar").on('click', function () {
+			alert('CARGAR FORM');
+			getEditContact();
+			
+		});
+		
+		//BOTON EDITAR CONTACT
+		$("#updateCont").on('click', function () {
+			alert('editar');
+			editContact();
+			
+		});
+		
+		//BOTON FILTRAR CONTACT
+		$("#searchFilterContacts").on('click', function () {
+			alert('FILTRAR');
+			filterContacts();
+			
+		});
+		
+		//OUTBOX EMAIL
+		$("#outboxEmail").on('click', function () {
+			alert('outbox');
+			//filterContacts();
+			
+		});
+		
+		
+		
+		
+});
+
+	
+$(document).scroll(function () {
+	
+	if ($(window).scrollTop() >= $(document).height() - $(window).height() - 100) {
+			//alert("End Of The Page");
+			//alert(start);
+			$(".loading-bar").html('Loading...');
+			
+				if (busy ==false) {
+					busy=true;
+					start = start+$settings.limit; 
+					console.log(start);	
+					listadoContacts(start,settings.limit);	
+					listadoEmailsInbox(start,settings.limit);					
+					listadoEmailsOutbox(start,settings.limit);					
+				}
+
+			if (pageName=='index.html'){
+				if (busy ==false) {
+					busy=true;
+					start = start+$settings.limit; 
+					console.log(start);	
+					listadoProperty(start,settings.limit);	
+				}
+			}
+			
+	}
+});	
+	
+	
+$(document).on("pagecreate","#contactsHtml",function(){	
+			//alert(start);
+			busy=true;
+			listadoContacts(start,settings.limit);
+							
+});
+
+$(document).on("pagecreate","#followingHtml",function(){	
+			//alert('proper');
+			busy=true;
+			listadoProperty(start,settings.limit);
+							
+});
+
+$(document).on("pagecreate","#emailHtml",function(){	
+			//alert('inbox');
+			busy=true;
+			listadoEmailsInbox(start,settings.limit);
+							
+});
+
+$(document).on("pagecreate","#outboxEmailHtml",function(){	
+			//alert('outbox');
+			busy=true;
+			listadoEmailsOutbox(start,settings.limit);
+							
+});
+
+	
+</script>
 	<style>
-	@media screen and (max-width:420px) {
+	@media screen and (min-width:320px) and (max-width:480px) {
 		.col-md-4{
-			width:70% !important;
+			width:25% !important;
+			float:left !important;
+			text-align:center;
+			padding-right: 0px !important;
+			padding-left: 0px !important;
+		}
+		.foll{
+			height:55px !important;
+		}
+		.date{
+			left:250px !important;
+		}
+		.search{
+			margin-left:395px !important;
+			margin-top:-52px !important;
+		}
+		.ifra{
+			/*height:350px !important;*/
+		}
+		.ifra2{
+			height:550px !important;
+		}
+		.mobil{
+			height:50px !important;
+		}
+		.mobil2{
+			height:25 !important;
+		}
+		.ui-panel{
+			min-height: 10% !important;
+		}
+		.contImg{
+			margin-bottom: 20px !Important;
+		}
+		.agent{			
+			text-align: center;
+			margin-bottom: 40px;
 		}
 	
 	}
+	@media screen and (min-width:480px) and (max-width:599px){
+		.foll{
+			height:55px !important;
+		}
+		.date{
+			left:250px !important;
+		}
+		.search{
+			margin-left:385px !important;
+			margin-top:-52px !important;
+		}
+		.ifra{
+			height:350px !important;
+		}
+		.ui-panel{
+			min-height: 10% !important;
+		}
+		.agent{			
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		
+	}
+	@media screen and (min-width:600px) and (max-width:799px){
+		.foll{
+			height:55px !important;
+		}
+		.date{
+			left:250px !important;
+		}
+		.search{
+			margin-left:385px !important;
+			margin-top:-52px !important;
+		}
+		.ui-panel{
+			min-height: 20% !important;
+		}
+		.agent{
+			width: 15%;
+			text-align: center;
+			margin-bottom: 40px;
+		}
+	}
+	@media screen and (min-width: 768px) and ( max-width:1440px){
+	
+		.foll{
+			height:50px ;
+		}
+		.date{
+			left:500px !important;
+		}
+		.search{
+			margin-left:265px !important;
+			margin-top:-52px !important;
+		}
+		.ifra {
+			height:354px !important;
+		}
+		.ui-panel{
+			min-height: 20% !important;
+		}
+		.agent{
+			width: 15%;
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		.ifra2{
+			height:550px;
+		}
+	
+	}
+	@media screen and (min-width:800px) and(max-width: 767px) { 
+		.foll{
+			height:50px ;
+		}
+		.date{
+			left:500px !important;
+		}
+		.search{
+			margin-left:265px !important;
+			margin-top:-52px !important;
+		}
+		.ui-panel{
+			min-height: 20% !important;
+		}
+		.agent{
+			width: 15%;
+			text-align: center;
+			margin-bottom: 40px;
+		}
+	}
+	
 		.ui-tabs{
 			padding: 0em;
 		}
@@ -36,13 +1353,14 @@
 			border-color:#ddd;
 			color: #333;
 			text-shadow:0 1px 0 #f3f3f3;
+			font-size: 14px;
 		}
 		.ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head+body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on:after, html .ui-bar-a .ui-checkbox-on:after, html .ui-body-a .ui-checkbox-on:after, html body .ui-group-theme-a .ui-checkbox-on:after, .ui-btn.ui-checkbox-on.ui-btn-a:after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active{
 			background-color: transparent;
 			border-color: transparent;
 			color: #333; 
 			text-shadow: none;
-			border-bottom: thick double #38c !important;
+			/*border-bottom: 6px solid #38c;*/
 		}
 		
 		.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited{
@@ -50,10 +1368,11 @@
 			border-color: transparent;
 			color: #333;
 			text-shadow: 0 1px 0 #f3f3f3;
+			font-size: 14px;
 		}
 		.ui-page-theme-a a:visited, html .ui-bar-a a:visited, html .ui-body-a a:visited, html body .ui-group-theme-a a:visited{
 			color:transparent;
-			border-bottom:thick double #38c;
+			/*border-bottom:6px solid #38c;*/
 		}
 		.ui-content{
 			padding: 0em;
@@ -64,65 +1383,1236 @@
 		h3, .h3{
 			font-size:18px;
 		}
+		.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper{
+			background-color: #fff;
+		}
+		menu:hover{
+			background:transparent;
+		}
+		.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn:hover{
+			background-color: transparent;
+			border:transparent;
+		}
+		.page_result li{
+			margin-bottom: 5px;
+			padding: 10px;
+			font-size: 15px;
+			list-style: none;
+			border-bottom: 2px solid #ccc;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
+		.page_contact li{
+			margin-bottom: 5px;
+			padding: 10px;
+			font-size: 15px;
+			list-style: none;
+			border-bottom: 2px solid #ccc;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
+		.page_emailInbox li{
+			margin-bottom: 5px;
+			padding: 10px;
+			font-size: 15px;
+			list-style: none;
+			border-bottom: 2px solid #ccc;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
+		.foll{
+			height:50px;
+		}
+		.date{
+			left:1000px;
+		}
+		.search{
+			margin-left:1325px;
+			margin-top:-52px;
+		}
+		.row, .thumbnails{
+			margin-left:-10px;
+		}
+		.ui-mobile .ui-page{
+			min-height: 100px !important;
+		}
+		
+		div.content {			
+			background-color: #fff;
+		}
+		div.content.taphold {
+			background-color: #7ACEF4;
+		}
+		.content.large {
+			-webkit-transform: scale(1.25);
+			transform: scale(1.25);
+		}
+		.box {			
+			background-image: url('http://reifax.com/FollowupReifax/img/menu-w.png');
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: 20px 20px;			
+		} 
+		.box2 {			
+			background-image: url('http://reifax.com/FollowupReifax/img/delete-w.png');
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: 20px 20px;			
+		} 
+		.box3 {			
+			background-image: url('http://reifax.com/FollowupReifax/img/aceptar-w.png');
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: 20px 20px;			
+		} 
+		.box4 {			
+			background-image: url('http://reifax.com/FollowupReifax/img/read_email-48.png');
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: 20px 20px;			
+		} 
+		.box5 {			
+			background-image: url('http://reifax.com/FollowupReifax/img/readed_email-48.png');
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: 20px 20px;			
+		} 
+		
+		.fileUpload {
+			position: relative;
+			overflow: hidden;
+			margin-top: 10px;
+		}
+		.fileUpload input.upload {
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 0;
+			padding: 0;
+			font-size: 20px;
+			cursor: pointer;
+			opacity: 0;
+			filter: alpha(opacity=0);
+		}
+		.fileUpload input.another {
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 0;
+			padding: 0;
+			font-size: 20px;
+			cursor: pointer;
+			opacity: 0;
+			filter: alpha(opacity=0);
+		}
+		.btn{
+			font-size: 13px;
+		}
+		.active{
+			border-bottom: 3px solid #a4a4a4;
+		}
+
+		body{
+			-webkit-user-select: none;
+		}
+		.hidden { 
+			visibility: hidden; display: none;
+		}
+		.unhidden { 
+			visibility: visible; display: block;
+		}
+		.page_emailInbox li {
+			-webkit-transform: translateZ(0);
+		}
+		.seenB{
+			font-weight:bold;
+		}
+		.seenN{
+			font-weight:normal;
+		}
+		.badge{
+			border-radius: 5px 5px 5px 5px;
+			font-family: Lucida Console", Monaco, monospace;
+			background-color: #a4a4a4;
+		}
+		.line{
+			border-right: 1px solid #777;
+			margin-top: 3px;
+		}
+		
 	</style>
-</head>
-<body>
-<div data-role="page" id="page1">
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header">
-		<div><img src="Follow_up-white.png" width="120" height="40"></div>
+  </head>
+ <body>
+<div data-role="page" id="followingHtml">
+	<!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" id="header_one">				
+		<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="menu" data-theme="b" href="#menuPrincFollow"></a>
+		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
+		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">
+		<!--a id="filtro" style="height: 30px;background-image: url('img/filter.jpg');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="filter" data-toggle="modal" role="button"  data-theme="b" href="#filter"></a>
+		<a id="filtro_remove" style="height: 30px;background-image: url('img/filter-remove.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="filter" data-theme="b" href="#"></a-->
+		<a style="height: 30px;background-image: url('img/menu-w-64.png');background-repeat:no-repeat; background-size: 20px 20px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuSecunFollow"></a></div>
+		<!--a style="height: 30px;background-image: url('img/search-36.png');background-repeat:no-repeat; background-size: 30px 30px; background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child search" data-excecute="weekly" data-theme="b" href="javascript:void(0);"></a-->
+		<div id='searchInicio' style='position:absolute; left: -180px; top: -5px; display:none;white-space: nowrap'>
+			<input style="width:120px;" type="search" class="searchInicio" id="searchInicio" name="searchInicio" autofocus>			
+		</div>
 	</div>
-	<!--div role="main" class="ui-content"-->
-		<div data-role="tabs">
-			<div data-role="navbar">
-				<ul>
-					<li><a href="#fragment-1">Following</a></li>
-					<li><a href="#fragment-2">Email</a></li>
-					<li><a href="#fragment-3">Task</a></li>
-					<li><a href="#fragment-4">Contacts</a></li>
-				</ul>
-			</div>
-			<div id="fragment-1">
-				<div data-role="content">
-								
-					<p>This is the content of the tab 'One', with the id fragment-1.</p>
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" id="header_two">				
+	
+	</div>
+	
+	<!--FIN HEADER-->
+	<div data-role="content">
+	<!--TABS-->	
+	<div style="background: #ccc;" data-role="navbar">
+		<ul>
+			<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+		</ul>
+	</div>
+	
+	
+	<!--FIN TABS-->
+	
+	<!--content-->
+	
+	<div style="background:#fff;" id="content">
+		<ul style="list-style: none;margin-left:-40px;" class="page_result">
 		
-				</div>
-				
-			</div>
-			<div id="fragment-2">
-				<div data-role="content">
-					<div data-role="navbar">
-						<ul>
-							<li><a href="#fragment-1">Inbox</a></li>
-							<li><a href="#fragment-2">Outbox</a></li>
-						</ul>
-					</div>				
-					<p>This is the content of the tab 'One', with the id fragment-2.</p>
+		</ul>
+	</div>
+	
+	<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
+	
+	<div style="background:#fff;" id="content_filter">
+		<ul style="list-style: none;margin-left:-40px;" class="page_result">
 		
-				</div>
-			</div>
-			<div id="fragment-3">
-				<p>This is the content of the tab 'Three', with the id fragment-3.</p>
-			</div>
-			<div id="fragment-4">
-				<p>This is the content of the tab 'Three', with the id fragment-4.</p>
+		</ul>
+	</div>
+	<!--content-->
+	</div>
+	<!--MENU PRINCIPAL FOLLOWUP-->
+	<div data-role="panel" id="menuPrincFollow" data-display="overlay" data-position="left">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+			<a class="closeMenu" style="display:none;" href="#" data-rel="close">Close</a>
+			<li><a class="following"  id="following"   href="#followingHtml" >&nbsp;Following</a></li>
+			<li><a class="email"      id="email"       href="#emailHtml" >&nbsp;Email</a></li>	
+			<li><a class="task"       id="task"        href="#taskHtml" >&nbsp;Task</a></li>			 
+			<li><a class="contact"    id="contactmenu" href="#contactsHtml" >&nbsp;Contacts</a></li>
+						 
+			 </ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+	
+	<!--MENU PRINCIPAL PROPERTY-->
+	<div style="margin-top: 40px;" data-role="panel" id="menuProperty" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+			<a class="closeMenu" style="display:none;"   href="#" data-rel="close">Close</a>
+			<li><a class="filter"        id="filtro2"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
+			<li><a class="filterRemove"  id="filtro_remove2" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
+			<li><a class="deleteFollow"  id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
+			<li><a class="sendContract"  id="sendContract"   href="#sendContracts" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
+			<li><a class="sendEmail"     id="sendEmail"      href="#formEmail" role="button" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
+			<li><a class="sendSMS"       id="sendSMS"        href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
+			<li><a class="sendFax"       id="sendFax"        href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
+			<li><a class="makeCall"      id="makeCall"       href="#formCall" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>
+						 
+			 </ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+		
+	<!--MENU SECUNDARIO PROPERTY-->
+	<div style="margin-top: 40px;" data-role="panel" id="menuSecunFollow" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+			<a class="closeMenu" style="display:none;"   href="#" data-rel="close">Close</a>
+			<li><a class="filter"        id="filtro"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
+			<li><a class="filterRemove"  id="filtro_remove" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
+			<!--li><a class="deleteFollow"  id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
+			<li><a class="sendContract"  id="sendContract"   href="#sendContracts" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
+			<li><a class="sendEmail"     id="sendEmail"      href="#formEmail" role="button" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
+			<li><a class="sendSMS"       id="sendSMS"        href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
+			<li><a class="sendFax"       id="sendFax"        href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
+			<li><a class="makeCall"      id="makeCall"       href="#formCall" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li-->
+						 
+			 </ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+
+</div>
+
+<!--FILTER-->
+<div class="modal fade bs-example-modal-sm" id="filter" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Filters</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+				  <div class="span6">
+					<!--h4>Filters</h4-->
+					<p>Address<input id="address" type="text" class="span12" /></p>
+					<p>County<div id="county"><select id="coun" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>
+					<p>City<div id="city"><select id="cit" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>
+					<p>Zip Code<input id="zip" type="text" class="span12" /></p>
+					<p>Property Type<div id="xcode"><select id="xcod" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>					
+					<p>Contact<input id="contact" type="text" class="span12" /></p>
+					<p>Status<!--input type="text" class="span12" /-->
+						<div id="status"><select id="st" class="span12"></select></div>
+					</p>					
+					<p>Alt Status<div id="altstatus"><select id="altst" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>	
+					<p>Follow Date<div id="followdate"><select id="folldate" class="span12"></select><br>
+									 <div class="control-group">
+										<div class="controls">
+											<div style="margin-top:30px;">
+												<input id="date" type="text" class="date-picker form-control" />
+												<label style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
+											</div><br>
+											
+											<div id="between">
+												<input id="datebetween" type="text" class="date-picker form-control" />
+												<label  style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
+											</div>
+										</div>
+									</div>
+								   </div>
+							<!--input type="text" class="span12" /--></p>	
+				  </div>
+				  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="searchFilter" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
 			</div>
 		</div>
-	<!--/div-->
-	<!--div data-role="content">
-		<h2>primera app con PhoneGap</h2>
-		<a href="#msj" data-role="button" data-theme="b" data-rel="dialog">Saludar a PhoneGap</a>
-	</div-->
+  </div>
+</div>
+</div>
+<!--FIN FILTER-->
+
+<!-- FORMULARIO SEND EMAIL-->
+<div id="formEmail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+       <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Email Panel</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal col-sm-12">
+			<div class="form-group">
+				<label style="width: 30%;float: left;" for="file">Email by:</label>
+				<input type='radio'  name='template' id='template' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
+				<input type='radio'  name='new' id='new' value='New' checked>	New</input>			
+			</div>	
+			
+			<div class="form-group">
+				<label>Attach:</label>
+				<input id="uploadFile" class="form-control" placeholder="Select a file" disabled="disabled" />
+				<div class="fileUpload btn btn-primary">
+					<span>Browser</span>
+					<input id="uploadBtn"  type="file" class="upload" />					
+				</div>
+				<br>
+				<div id="browser"></div>
+				<div class="fileUpload btn btn-primary">
+					<span>Another file</span>
+					<input onclick="addInput()" class="another" />					
+				</div>
+			</div>
+			<div id="templa" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
+			<div class="form-group"><label>Subject:</label><input id="subject" class="form-control required" placeholder="Your name" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
+			<div class="form-group"><label>Body:</label><textarea style="height:222px;" id="body" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea></div>
+			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
+			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
+			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		<button id="sendE" type="submit" class="btn btn-success pull-right">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FIN FORMULARIO SEND EMAIL-->
+
+<!-- FORMULARIO SEND SMS-->
+<div id="formSMS" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">SMS Panel</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal col-sm-12">
+			<div class="form-group">
+				<label style="width: 30%;float: left;" for="file">SMS by:</label>
+				<input type='radio'  name='templateSMS' id='templateSMS' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
+				<input type='radio'  name='newSMS' id='newSMS' value='New' checked>	New</input>			
+			</div>	
+			<div class="form-group"><label>Text:</label><textarea style="height:222px;" id="text" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
+			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
+			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
+			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		<button  id="sendS" type="submit" class="btn btn-success pull-right">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FIN FORMULARIO SEND MSM-->
+
+<!-- FORMULARIO SEND FAX-->
+<div id="formFax" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+       <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Fax Panel</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal col-sm-12">
+			<div class="form-group">
+				<label style="width: 30%;float: left;" for="file">Fax by:</label>
+				<input type='radio'  name='templateFax' id='templateFax' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
+				<input type='radio'  name='newFax' id='newFax' value='New' checked>	New</input>			
+			</div>	
+			
+			<div class="form-group">
+				<label>Attach:</label>
+				<input id="uploadFile" class="form-control" placeholder="Select a file" disabled="disabled" />
+				<div class="fileUpload btn btn-primary">
+					<span>Browser</span>
+					<input id="uploadBtn"  type="file" class="upload" />					
+				</div>
+				<br>
+				<div id="browser"></div>
+				<div class="fileUpload btn btn-primary">
+					<span>Another file</span>
+					<input onclick="addInput()" class="another" />					
+				</div>
+			</div>
+			<div id="templaFAX" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
+			<div class="form-group"><label>Text:</label><textarea style="height:222px;" id="textFax" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
+			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
+			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
+			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		<button id="sendF" type="submit" class="btn btn-success pull-right">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FIN FORMULARIO SEND FAX-->
+
+<!--FORMULARIO MAKE CALL-->
+<div class="modal fade bs-example-modal-sm" id="formCall" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Contact</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+					<div class="span12">
+						<!--h4>Filters</h4-->
+						<p>Contact:<div id="agent"><input id="agen" type="text" class="span12"/></div></p>
+						<p>type:<div id="typeagent"><select id="typ" class="span12"></select></div></p>
+						<p>Email1:<div id="email1"><select style="width:30%;float:left;margin-right: 15px;" id="emai1" class="span12"></select></div>
+								<input id ="ema1" style="width:65%;" type="text" class="span12" /></p>
+						<p>Email2:<div id="email2"><select style="width:30%;float:left;margin-right: 15px;" id="emai2" class="span12"></select></div>
+								<input id ="ema2" style="width:65%;" type="text" class="span12" /></p>		
+						<p>Company:<input id="company" type="text" class="span12" /></p>
+						<p>Website1:<div id="website1"><select style="width:30%;float:left;margin-right: 15px;" id="websit1" class="span12"></select></div>
+								<input id ="web1" style="width:65%;" type="text" class="span12" /></p>
+						<p>Website2:<div id="website2"><select style="width:30%;float:left;margin-right: 15px;" id="websit2" class="span12"></select></div>
+								<input id ="web2" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone:<div id="phone1"><select style="width:30%;float:left;margin-right: 15px;" id="phon1" class="span12"></select></div>
+								<input id ="pho1" style="width:65%;" type="text" class="span12" />
+								<input 	name="submit" id="telf1" type="image" class="span12"
+										src="http://www.reifax.com/img/toolbar/gvoice.png" 
+									    alt="Sign Me Up!" 
+										onclick="SignMeUp();"
+										tabindex="8"  /></p>
+						<p>Phone2:<div id="phone2"><select style="width:30%;float:left;margin-right: 15px;" id="phon3" class="span12"></select></div>
+								<input id ="pho2" style="width:65%;" type="text" class="span12" />
+								<input 	name="submit" id="telf2" type="image" class="span12"
+										src="http://www.reifax.com/img/toolbar/gvoice.png" 
+									    alt="Sign Me Up!" 
+										onclick="SignMeUp();"
+										tabindex="8"  /></p>
+						<p>Phone3:<div id="phone3"><select style="width:30%;float:left;margin-right: 15px;" id="phon3" class="span12"></select></div>
+								<input id ="pho3" style="width:65%;" type="text" class="span12" />
+								<input 	name="submit" id="telf3" type="image" class="span12"
+										src="http://www.reifax.com/img/toolbar/gvoice.png" 
+									    alt="Sign Me Up!" 
+										onclick="SignMeUp();"
+										tabindex="8"  /></p>
+						<p>Phone4:<div id="phone4"><select style="width:30%;float:left;margin-right: 15px;" id="phon4" class="span12"></select></div>
+								<input id ="pho4" style="width:65%;" type="text" class="span12" />
+								<input 	name="submit" id="telf4" type="image" class="span12"
+										src="http://www.reifax.com/img/toolbar/gvoice.png" 
+									    alt="Sign Me Up!" 
+										onclick="SignMeUp();"
+										tabindex="8"  /></p>
+						<p>Phone5:<div id="phone5"><select style="width:30%;float:left;margin-right: 15px;" id="phon5" class="span12"></select></div>
+								<input id ="pho5" style="width:65%;" type="text" class="span12" />
+								<input 	name="submit" id="telf5" type="image" class="span12"
+										src="http://www.reifax.com/img/toolbar/gvoice.png" 
+									    alt="Sign Me Up!" 
+										onclick="SignMeUp();"
+										tabindex="8"  /></p>
+						<p>Phone6:<div id="phone6"><select style="width:30%;float:left;margin-right: 15px;" id="phon6" class="span12"></select></div>
+								<input id ="pho6" style="width:65%;" type="text" class="span12" />
+								<input 	name="submit" id="telf6" type="image" class="span12"
+										src="http://www.reifax.com/img/toolbar/gvoice.png" 
+									    alt="Sign Me Up!" 
+										onclick="SignMeUp();"
+										tabindex="8"  /></p>
+						<p>Address1:<div id="address1"><select style="width:30%;float:left;margin-right: 15px;" id="addre1" class="span12"></select></div>
+								<input id="addr1" style="width:65%;" type="text" class="span12" /></p>
+						<p>Address2:<div id="address2"><select style="width:30%;float:left;margin-right: 15px;" id="addre2" class="span12"></select></div>
+								<input id="addr2" style="width:65%;"type="text" class="span12" /></p>
+					</div>				  
+            </div>
+			<button id="add" type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+			<button id="update" type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
+			<button id="remove" type="button" class="btn btn-primary" data-dismiss="modal">Remove</button>
+			<button id="setPrincipal" type="button" class="btn btn-primary" data-dismiss="modal">Set Principal</button>
+            <br>
+			<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN FORMULARIO MAKE CALL-->
+
+<!--FORMULARIO ADD CONTACTS-->
+<div class="modal fade bs-example-modal-sm" id="formAddContacts" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Follow Contact</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+					<div class="span12">
+						<!--h4>Filters</h4-->
+						<p>Contact:<div id="agentCont"><input id="agenC" type="text" class="span12"/></div></p>
+						<p>type:<div id="typeagentCont"><select id="typC" class="span12"></select></div></p>
+						<p>Email1:<div id="email1Cont"><select style="width:30%;float:left;margin-right: 15px;" id="emai1Cont" class="span12"></select></div>
+								<input id ="ema1Cont" style="width:65%;" type="text" class="span12" /></p>
+						<p>Email2:<div id="email2Cont"><select style="width:30%;float:left;margin-right: 15px;" id="emai2Cont" class="span12"></select></div>
+								<input id ="ema2Cont" style="width:65%;" type="text" class="span12" /></p>		
+						<p>Company:<input id="companyCont" type="text" class="span12" /></p>
+						<p>Website1:<div id="website1Cont"><select style="width:30%;float:left;margin-right: 15px;" id="websit1Cont" class="span12"></select></div>
+								<input id ="web1Cont" style="width:65%;" type="text" class="span12" /></p>
+						<p>Website2:<div id="website2Cont"><select style="width:30%;float:left;margin-right: 15px;" id="websit2Cont" class="span12"></select></div>
+								<input id ="web2Cont" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone:<div id="phone1Cont"><select style="width:30%;float:left;margin-right: 15px;" id="phon1Cont" class="span12"></select></div>
+								<input id ="pho1Cont" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone2:<div id="phone2Cont"><select style="width:30%;float:left;margin-right: 15px;" id="phon2Cont" class="span12"></select></div>
+								<input id ="pho2Cont" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone3:<div id="phone3Cont"><select style="width:30%;float:left;margin-right: 15px;" id="phon3Cont" class="span12"></select></div>
+								<input id ="pho3Cont" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone4:<div id="phone4Cont"><select style="width:30%;float:left;margin-right: 15px;" id="phon4Cont" class="span12"></select></div>
+								<input id ="pho4Cont" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone5:<div id="phone5Cont"><select style="width:30%;float:left;margin-right: 15px;" id="phon5Cont" class="span12"></select></div>
+								<input id ="pho5Cont" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone6:<div id="phone6Cont"><select style="width:30%;float:left;margin-right: 15px;" id="phon6Cont" class="span12"></select></div>
+								<input id ="pho6Cont" style="width:65%;" type="text" class="span12" /></p>
+						<p>Address1:<div id="address1Cont"><select style="width:30%;float:left;margin-right: 15px;" id="addre1Cont" class="span12"></select></div>
+								<input id="addr1Cont" style="width:65%;" type="text" class="span12" /></p>
+						<p>Address2:<div id="address2Cont"><select style="width:30%;float:left;margin-right: 15px;" id="addre2Cont" class="span12"></select></div>
+								<input id="addr2Cont" style="width:65%;"type="text" class="span12" /></p>
+					</div>				  
+            </div>
+			<button id="insertCont" type="button" class="btn btn-primary" data-dismiss="modal">Insert</button>
+			<button id="remove" type="button" class="btn btn-primary" data-dismiss="modal">Reset</button>
+			<br>
+			<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN FORMULARIO ADD CONTACTS-->
+
+<!--FORMULARIO EDIT CONTACTS-->
+<div class="modal fade bs-example-modal-sm" id="formEditContacts" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Follow Contact</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+					<div class="span12">
+						<!--h4>Filters</h4-->
+						<p>Contact:<div id="agentContEd"><input id="agenEd" type="text" class="span12"/></div></p>
+						<p>type:<div id="typeagentContEd"><select id="typEd" class="span12"></select></div></p>
+						<p>Email1:<div id="email1ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="emai1ContEd" class="span12"></select></div>
+								<input id ="ema1ContEd" style="width:65%;" type="text" class="span12" /></p>
+						<p>Email2:<div id="email2ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="emai2ContEd" class="span12"></select></div>
+								<input id ="ema2ContEd" style="width:65%;" type="text" class="span12" /></p>		
+						<p>Company:<input id="companyContEd" type="text" class="span12" /></p>
+						<p>Website1:<div id="website1ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="websit1ContEd" class="span12"></select></div>
+								<input id ="web1ContEd" style="width:65%;" type="text" class="span12" /></p>
+						<p>Website2:<div id="website2ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="websit2ContEd" class="span12"></select></div>
+								<input id ="web2ContEd" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone:<div id="phone1ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="phon1ContEd" class="span12"></select></div>
+								<input id ="pho1ContEd" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone2:<div id="phone2ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="phon2ContEd" class="span12"></select></div>
+								<input id ="pho2ContEd" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone3:<div id="phone3ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="phon3ContEd" class="span12"></select></div>
+								<input id ="pho3ContEd" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone4:<div id="phone4ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="phon4ContEd" class="span12"></select></div>
+								<input id ="pho4ContEd" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone5:<div id="phone5ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="phon5ContEd" class="span12"></select></div>
+								<input id ="pho5ContEd" style="width:65%;" type="text" class="span12" /></p>
+						<p>Phone6:<div id="phone6ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="phon6ContEd" class="span12"></select></div>
+								<input id ="pho6ContEd" style="width:65%;" type="text" class="span12" /></p>
+						<p>Address1:<div id="address1ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="addre1ContEd" class="span12"></select></div>
+								<input id="addr1ContEd" style="width:65%;" type="text" class="span12" /></p>
+						<p>Address2:<div id="address2ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="addre2ContEd" class="span12"></select></div>
+								<input id="addr2ContEd" style="width:65%;"type="text" class="span12" /></p>
+					</div>				  
+            </div>
+			<button id="updateCont" type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
+			<button id="removeUpdate" type="button" class="btn btn-primary" data-dismiss="modal">Reset</button>
+			<br>
+			<div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN FORMULARIO ADD CONTACTS-->
+
+<!--FILTER CONTACTS-->
+<div class="modal fade bs-example-modal-sm" id="formfilterContact" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Filters</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+				  <div class="span6">
+					<!--h4>Filters</h4-->
+					<p>Contact<input id="contactcontFil" type="text" class="span12" /></p>
+					<p>Type<div id="typeContFil"><select id="tyContFil" class="span12"></select></div>
+					<p>Email<input id="emailContFil" type="text" class="span12" /></p>
+					<p>webSite<input id="websiteContFil" type="text" class="span12" /></p>
+					<p>Company<input id="companyContFil" type="text" class="span12" /></p>
+					<p>Phone<input id="phoneContFil" type="text" class="span12" /></p>
+					<p>Address<input id="addressContFil" type="text" class="span12" /></p>
+						
+				  </div>
+				  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="searchFilterContacts" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN FILTER CONTACTS-->
+
+<!--FILTER EMAIL INBOX-->
+<div class="modal fade bs-example-modal-sm" id="filterEI" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Filters</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+				  <div class="span6">
+					<!--h4>Filters</h4-->
+					<p>From Mail<input id="frommailI" type="text" class="span12" /></p>
+					<p>From <input id="fromI" type="text" class="span12" /></p>
+					<p>Email Content <input id="emailcontentI" type="text" class="span12" /></p>
+					<p>Email Type<div id="emailtypeI"><select id="ematyI" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>
+					<p>Attachment<div id="attachmentI"><select id="attach" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>					
+					<p>Pending Content<div id="pendingcontI"><select id="pencontI" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>	
+					<p>Pending Property<div id="pendingproI"><select id="penproI" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>	
+					<p>Status<div id="statusI"><select id="staI" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>										
+					<!--p>Email Date<div id="emaildateI"><select id="emadateI" class="span12"></select><br>
+									 <div class="control-group">
+										<div class="controls">
+											<div style="margin-top:30px;">
+												<input id="date" type="text" class="date-picker form-control" />
+												<label style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
+											</div><br>
+											
+											<div id="between">
+												<input id="datebetween" type="text" class="date-picker form-control" />
+												<label  style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
+											</div>
+										</div>
+									</div>
+								   </div>
+					</p-->	
+				  </div>
+				  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="searchFilterMailI" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN FILTER EMAIL INBOX-->
+
+<!--FILTER EMAIL OUTBOX-->
+<div class="modal fade bs-example-modal-sm" id="filterEO" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Filters</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+				  <div class="span6">
+					<!--h4>Filters</h4-->
+					<p>From Mail<input id="frommailO" type="text" class="span12" /></p>
+					<p>From <input id="fromO" type="text" class="span12" /></p>
+					<p>Email Content <input id="emailcontentI" type="text" class="span12" /></p>
+					<p>Email Type<div id="emailtypeO"><select id="ematyO" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>
+					<p>Attachment<div id="attachmentO"><select id="attachO" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>					
+					<p>Pending Content<div id="pendingcontO"><select id="pencontO" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>	
+					<p>Pending Property<div id="pendingproO"><select id="penproO" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>	
+					<p>Status<div id="statusO"><select id="staO" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>										
+					<!--p>Email Date<div id="emaildateI"><select id="emadateI" class="span12"></select><br>
+									 <div class="control-group">
+										<div class="controls">
+											<div style="margin-top:30px;">
+												<input id="date" type="text" class="date-picker form-control" />
+												<label style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
+											</div><br>
+											
+											<div id="between">
+												<input id="datebetween" type="text" class="date-picker form-control" />
+												<label  style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
+											</div>
+										</div>
+									</div>
+								   </div>
+					</p-->	
+				  </div>
+				  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="searchFilterMailO" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN FILTER EMAIL OUTBOX-->
+
+<!--FILTER COMPOSE EMAIL INBOX-->
+<div class="modal fade bs-example-modal-sm" id="composeEmail" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Compose Email</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+				  <div class="span6">
+					<!--h4>Filters</h4-->										
+					<p>To<div id="toEmail"><select id="toEma" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>
+					<p>Subject<input id="subject" type="text" class="span12" /></p>
+					
+					<div class="form-group">
+						<label>Attach:</label>
+						<input id="uploadFile" class="form-control" placeholder="Select a file" disabled="disabled" />
+						<div class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input id="uploadBtnCompose"  type="file" class="upload" />					
+						</div>
+						<br>
+						<div id="browserCompose"></div>
+						<div class="fileUpload btn btn-primary">
+							<span>Another file</span>
+							<input onclick="addInputCompose()" class="another" />					
+						</div>
+					</div>
+					<div class="form-group"><label>Text:</label><textarea style="height:222px;" id="textemailInbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
+				</div>
+						  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="sendMailI" type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN COMPOSE EMAIL-->
+
+<!--FILTER COMPOSE EMAIL OUTBOX-->
+<div class="modal fade bs-example-modal-sm" id="composeEmailO" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Compose Email</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+				  <div class="span6">
+					<!--h4>Filters</h4-->										
+					<p>To<div id="toEmailO"><select id="toEmaO" class="span12"></select></div>
+							<!--input type="text" class="span12" /--></p>
+					<p>Subject<input id="subjectO" type="text" class="span12" /></p>
+					
+					<div class="form-group">
+						<label>Attach:</label>
+						<input id="uploadFileO" class="form-control" placeholder="Select a file" disabled="disabled" />
+						<div class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input id="uploadBtnComposeO"  type="file" class="upload" />					
+						</div>
+						<br>
+						<div id="browserComposeO"></div>
+						<div class="fileUpload btn btn-primary">
+							<span>Another file</span>
+							<input onclick="addInputComposeO()" class="another" />					
+						</div>
+					</div>
+					<div class="form-group"><label>Text:</label><textarea style="height:222px;" id="textemailOutbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
+				</div>
+						  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="sendMailO" type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN COMPOSE EMAIL OUTBOX-->
+
 	
-</div>
-<div data-role="page" id="msj">
-    <div data-theme="a" data-role="header">
-		<h3>Más saludos</h3>
-	</div> 
-	<div data-role="content">
-		<a href="http://desarrolloweb.com">DesarolloWeb.com</a> saludando a PhoneGap
-		<a href="#" data-role="button" data-theme="e" data-rel="back">Aceptar</a>
+<div data-role="page" id="detailProperties">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" onclick="back();" data-rel="back"></a>
+		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
 	</div>
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+			<iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+					class="ifra" id="webdetailHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetails.php">
+				<html>
+					<head></head>
+					<body></body>
+				</html>
+			</iframe>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
+</div><!-- /page --> 
+
+<div data-role="page" id="detailContacts">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" onclick="back();" data-rel="back"></a>
+		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">
+		<a id="editar" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button" data-theme="b" href="#formEditContacts"></a>
+		</div>
+	</div>
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+			<iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+					class="ifra2" id="webdetailContactHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetailsContacts.php">
+				<html>
+					<head></head>
+					<body></body>
+				</html>
+			</iframe>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
+</div><!-- /page --> 	
+
+<div data-role="page" id="emailHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header">				
+		<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a>
+		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
+		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">
+		<a id="addEInbox" style="margin-right: 10px;height: 30px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#composeEmail"></a>
+		<a style="height: 30px;background-image: url('img/menu-w-64.png');background-repeat:no-repeat; background-size: 20px 20px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailInbox"></a>
+		</div>
+	</div>
+	
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" id="header_emailInbox">				
+	
+	</div>
+	<!--FIN HEADER--> 	
+	
+	<div data-role="content">
+	<!--TABS-->
+	<div style="background: #ccc;" data-role="navbar">
+		<ul>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+		</ul>
+	</div>
+	<div style="background: #f6f6f6;" data-role="navbar">
+		<ul>
+			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#inbox">Inbox</a></li>
+			<li><a  style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#outboxEmailHtml">Outbox</a></li>			
+		</ul>
+	</div>
+	<!--FIN TABS-->
+	
+	<!--CONTENT-->
+	
+	<div style="background:#fff;" id="emails">
+		<ul style="list-style: none;margin-left:-40px;" class="page_emailInbox">
+		
+		</ul>
+	</div>
+	
+	<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
+    
+	
+	<div style="background:#fff;" id="emailFilter">
+		<ul style="list-style: none;margin-left:-40px;" class="page_emailInbox">
+		
+		</ul>
+	</div>
+	<!--FIN CONTENT-->	
+	</div>
+	
+	<!--MENU PRINCIPAL -->
+	<div data-role="panel" id="menuEmail" data-display="overlay" data-position="left">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+			<a class="closeMenu" style="display:none;" href="#" data-rel="close">Close</a>
+			<li><a class="following"  id="following"   href="#followingHtml" >&nbsp;Following</a></li>
+			<li><a class="email"      id="email"       href="#emailHtml" >&nbsp;Email</a></li>	
+			<li><a class="task"       id="task"        href="#taskHtml" >&nbsp;Task</a></li>			 
+			<li><a class="contact"    id="contactmenu" href="#contactsHtml" >&nbsp;Contacts</a></li>
+						 
+			 </ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+	
+	<!--MENU EMAIL INBOX -->
+	<div style="margin-top: 40px;" data-role="panel" id="menuEmailInbox" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
+				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
+				<li style="border-bottom: 2px solid #ccc;"><a class="filter"       		  	 id="filtromaIn"      href="#filterEI" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
+				<li style="border-bottom: 2px solid #ccc;"><a class="filterRemove" 		  	 id="RemovefiltroIn"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+				<!--li style="border-bottom: 2px solid #ccc;"><a class="assignContEmailInbox"   id="asscontEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
+				<li style="border-bottom: 2px solid #ccc;"><a class="assignProEmailInbox"    id="assiproEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li-->				
+			</ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+	
+	<!--MENU EMAIL INBOX OCULTO-->
+	<div style="margin-top: 40px;" data-role="panel" id="menuEmailInboxO" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
+				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
+				<li style="border-bottom: 2px solid #ccc;"><a class="filter"       		  	 id="filtromaI"      href="#filterEI" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
+				<li style="border-bottom: 2px solid #ccc;"><a class="filterRemove" 		  	 id="RemovefiltroI"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+				<li style="border-bottom: 2px solid #ccc;"><a class="assignContEmailInbox"   id="asscontEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
+				<li style="border-bottom: 2px solid #ccc;"><a class="assignProEmailInbox"    id="assiproEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li>				
+			</ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
 </div>
+
+<div data-role="page" id="outboxEmailHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header">				
+				<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a>
+				<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
+		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">
+		<a id="addEOutbox" style="margin-right: 10px;height: 30px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#composeEmailO"></a>
+		<a style="height: 30px;background-image: url('img/menu-w-64.png');background-repeat:no-repeat; background-size: 20px 20px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailOutbox"></a>
+		</div>
+	</div>
+	
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" id="header_emailOutbox">				
+	
+	</div>
+	<!--FIN HEADER--> 	
+	
+	<div data-role="content">
+	<!--TABS-->
+	<div style="background: #ccc;" data-role="navbar">
+		<ul>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+		</ul>
+	</div>
+	<div style="background: #fff;" data-role="navbar">
+		<ul>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Inbox</a></li>
+			<li style="border-right:1px solid #777;margin-top:3px;height: 30px;" class="active"><a href="#outboxEmailHtml">Outbox</a></li>			
+		</ul>
+	</div>
+	<!--FIN TABS-->
+	
+	<!--CONTENT-->
+	
+	<div style="background:#fff;" id="emailsOutbox">
+		<ul style="list-style: none;margin-left:-40px;" class="page_emailOutbox">
+		
+		</ul>
+	</div>
+	
+	<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
+    
+	
+	<div style="background:#fff;" id="emailOutboxFilter">
+		<ul style="list-style: none;margin-left:-40px;" class="page_emailOutbox">
+		
+		</ul>
+	</div>
+	<!--FIN CONTENT-->	
+	</div>
+	<!--MENU EMAIL OUTBOX-->
+	<div style="margin-top: 40px;" data-role="panel" id="menuEmailOutbox" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
+				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
+				<li style="border-bottom: 2px solid #ccc;"><a class="filter"       		  id="filtromaO"      href="#filterEO" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
+				<li style="border-bottom: 2px solid #ccc;"><a class="filterRemove" 		  id="RemovefiltroO"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+			</ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+</div>
+
+<div data-role="page" id="taskHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header">				
+		<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTask"></a>
+		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
+		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+	</div>
+	<!--FIN HEADER--> 	
+	<!--TABS-->
+	<div style="background: #ccc;" data-role="navbar">
+		<ul>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+			<li ><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+		</ul>
+	</div>	
+	<!--FIN TABS-->
+	
+	<!--CONTENT-->
+	
+	<div style="text-align: center;"><img style="width: 100%;" src="img/construccion3.jpg" width="760" height="400"></div>
+	<!--FIN CONTENT-->	
+	
+	<!--MENU PRINCIPAL -->
+	<div data-role="panel" id="menuTask" data-display="overlay" data-position="left">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+			<a class="closeMenu" style="display:none;" href="#" data-rel="close">Close</a>
+			<li><a class="following"  id="following"   href="#followingHtml" >&nbsp;Following</a></li>
+			<li><a class="email"      id="email"       href="#emailHtml" >&nbsp;Email</a></li>	
+			<li><a class="task"       id="task"        href="#taskHtml" >&nbsp;Task</a></li>			 
+			<li><a class="contact"    id="contactmenu" href="#contactsHtml" >&nbsp;Contacts</a></li>
+						 
+			 </ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+</div>
+
+<div data-role="page" id="contactsHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" id="header_one">				
+		<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="menu" data-theme="b" href="#menuCont"></a>
+		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
+		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">
+		<a id="addCont2" style="margin-right: 10px;height: 30px;background-image: url('img/add-user-48.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formAddContacts"></a>
+		<a style="height: 30px;background-image: url('img/menu-w.png');background-repeat:no-repeat; background-size: 20px 20px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuContacts"></a>
+		</div>
+		
+		<!--a style="height: 30px;background-image: url('img/search-36.png');background-repeat:no-repeat; background-size: 30px 30px; background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child search" data-excecute="weekly" data-theme="b" href="javascript:void(0);"></a-->
+		
+	</div>
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" id="header_cont">				
+	
+	</div>
+	<!--FIN HEADER--> 	
+	<div data-role="content">
+
+
+	<!--TABS-->
+	<div style="background: #ccc;" data-role="navbar">
+		<ul>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+		</ul>
+	</div>
+
+	<!--FIN TABS-->
+	
+	<!--CONTENT-->
+	
+	<div style="background:#fff;" id="contacts">
+		<ul style="list-style: none;margin-left:-40px;" class="page_contact">
+		
+		</ul>
+	</div>
+	
+	<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
+    
+	
+	<div style="background:#fff;" id="contactsFilter">
+		<ul style="list-style: none;margin-left:-40px;" class="page_contact">
+		
+		</ul>
+	</div>
+	<!--FIN CONTENT-->	
+	</div>
+	
+	<!--MENU PRINCIPAL -->
+	<div data-role="panel" id="menuCont" data-display="overlay" data-position="left">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+			<a class="closeMenu" style="display:none;" href="#" data-rel="close">Close</a>
+			<li><a class="following"  id="following"   href="#followingHtml" >&nbsp;Following</a></li>
+			<li><a class="email"      id="email"       href="#emailHtml" >&nbsp;Email</a></li>	
+			<li><a class="task"       id="task"        href="#taskHtml" >&nbsp;Task</a></li>			 
+			<li><a class="contact"    id="contactmenu" href="#contactsHtml" >&nbsp;Contacts</a></li>
+						 
+			 </ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+	
+	<!--MENU PRINCIPAL CONTACTS-->
+	<div style="margin-top: 40px;" data-role="panel" id="menuContacts" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+				<a class="closeMenu" style="display:none;"          href="#" data-rel="close">Close</a>
+				<!--li><a class="deleteContacts"    id="deleteCont"         href="#deleteContact" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Contacts</a></li-->
+				<li><a class="addContacts"       id="addCont"            href="#formAddContacts"   class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Contacts</a></li>
+				<!--li><a class="editContacts"      id="editCont"           href="#formeditContact"   class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Edit Contacts</a></li-->
+				<li><a class="filter"            id="filtrocontact"      href="#formfilterContact" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Contacts</a></li>
+				<li><a class="filterRemove"      id="filtro_removeCont"  href="#formfilterRemoveContact" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+			</ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+	
+	
+	<!--MENU PRINCIPAL CONTACTS OCULTO-->
+	<!--div style="margin-top: 40px;" data-role="panel" id="menuCont" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+				<a class="closeMenu" style="display:none;"             href="#" data-rel="close">Close</a>
+				<li><a class="deleteContacts"    id="deleteC"       href="#deleteContact" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Contacts</a></li>
+				<li><a class="addContacts"          id="addC"          href="#addContact" >&nbsp;&nbsp;&nbsp;&nbsp;New Contacts</a></li>
+				<li><a class="editContacts"         id="editC"         href="#editContact" >&nbsp;&nbsp;&nbsp;&nbsp;Edit Contacts</a></li>
+				<li><a class="filter"               id="filtroC"       href="#filterContact" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Contacts</a></li>
+				<li><a class="filterRemove"         id="filtroRC"      href="#filterRemoveContact" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+			</ul>
+		</div>	
+	</div-->
+	<!--FIN MENU-->
+	
+
+</div>
+
 </body>
 </html>
