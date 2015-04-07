@@ -40,7 +40,7 @@
 	<script src="http://reifax.com/FollowupReifax/resources/js/moment.js"></script>
 	<script type="text/javascript">
 	
-	$(document).ready(function(){
+		$(document).ready(function(){
 		
 		document.getElementById('templa').style.display = "none";
 		document.getElementById('templaFAX').style.display = "none";
@@ -1544,6 +1544,7 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 <div data-role="page" id="followingHtml">
 	<!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" id="header_one">				
+		
 		<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="menu" data-theme="b" href="#menuPrincFollow"></a>
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
 		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
@@ -1555,43 +1556,43 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 		<div id='searchInicio' style='position:absolute; left: -180px; top: -5px; display:none;white-space: nowrap'>
 			<input style="width:120px;" type="search" class="searchInicio" id="searchInicio" name="searchInicio" autofocus>			
 		</div>
-	</div>
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" id="header_two">				
+		<div style="background: #8ab420;border: #8ab420;margin-top: 40px;" data-theme="a" data-role="header" data-position="fixed" id="header_two">				
 	
+		</div>
+		<!--TABS-->	
+		<div style="background: #ccc;" data-role="navbar" >
+			<ul>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>	
+		<!--FIN TABS-->
 	</div>
+	
 	
 	<!--FIN HEADER-->
 	
-	<!--TABS-->	
-	<div style="background: #ccc;" data-role="navbar" data-position="fixed">
-		<ul>
-			<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
-		</ul>
-	</div>
-
-	<!--FIN TABS-->
+	
 	
 	<!--content-->
 	<div data-role="content">
-		<div style="background:#fff;" id="content">
-			<ul style="list-style: none;margin-left:-40px;" class="page_result">
-			
-			</ul>
-		</div>
+	<div style="background:#fff;" id="content">
+		<ul style="list-style: none;margin-left:-40px;" class="page_result">
 		
-		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
-		
-		<div style="background:#fff;" id="content_filter">
-			<ul style="list-style: none;margin-left:-40px;" class="page_result">
-			
-			</ul>
-		</div>
+		</ul>
 	</div>
-	<!--fin content-->
 	
+	<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
+	
+	<div style="background:#fff;" id="content_filter">
+		<ul style="list-style: none;margin-left:-40px;" class="page_result">
+		
+		</ul>
+	</div>
+	<!--content-->
+	</div>
 	<!--MENU PRINCIPAL FOLLOWUP-->
 	<div data-role="panel" id="menuPrincFollow" data-display="overlay" data-position="left">
 		<div id="menu" >
@@ -2254,7 +2255,7 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 	
 <div data-role="page" id="detailProperties">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-position="fixed" data-role="header" >				
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" onclick="back();" data-rel="back"></a>
 		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
@@ -2280,7 +2281,7 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 
 <div data-role="page" id="detailContacts">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" >				
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" onclick="back();" data-rel="back"></a>
 		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
@@ -2309,7 +2310,7 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 
 <div data-role="page" id="emailHtml">
     <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" >				
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed">				
 		<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a>
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
 		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
@@ -2317,29 +2318,31 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 		<a id="addEInbox" style="margin-right: 10px;height: 30px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#composeEmail"></a>
 		<a style="height: 30px;background-image: url('img/menu-w-64.png');background-repeat:no-repeat; background-size: 20px 20px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailInbox"></a>
 		</div>
+		
+		<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" id="header_emailInbox">				
+	
+	</div>
+		<!--TABS-->
+		<div style="background: #ccc;" data-role="navbar">
+			<ul>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>
+		<div style="background: #f6f6f6;" data-role="navbar">
+			<ul>
+				<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#inbox">Inbox</a></li>
+				<li><a  style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#outboxEmailHtml">Outbox</a></li>			
+			</ul>
+		</div>
+		<!--FIN TABS-->
+		
 	</div>
 	
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" id="header_emailInbox">				
 	
-	</div>
 	<!--FIN HEADER--> 	
-	
-	<!--TABS-->
-	<div style="background: #ccc;" data-role="navbar" data-position="fixed">
-		<ul>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
-		</ul>
-	</div>
-	<div style="background: #f6f6f6;" data-role="navbar" data-position="fixed">
-		<ul>
-			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#inbox">Inbox</a></li>
-			<li><a  style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#outboxEmailHtml">Outbox</a></li>			
-		</ul>
-	</div>
-	<!--FIN TABS-->
 	
 	<!--CONTENT-->
 	<div data-role="content">
@@ -2409,7 +2412,7 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 
 <div data-role="page" id="outboxEmailHtml">
     <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" >				
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed">				
 				<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a>
 				<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
 		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
@@ -2417,48 +2420,51 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 		<a id="addEOutbox" style="margin-right: 10px;height: 30px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#composeEmailO"></a>
 		<a style="height: 30px;background-image: url('img/menu-w-64.png');background-repeat:no-repeat; background-size: 20px 20px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailOutbox"></a>
 		</div>
+		
+		<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" id="header_emailOutbox">				
+	
+		</div>
+		
+		<!--TABS-->
+		<div style="background: #ccc;" data-role="navbar">
+			<ul>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>
+		<div style="background: #fff;" data-role="navbar">
+			<ul>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Inbox</a></li>
+				<li style="border-right:1px solid #777;margin-top:3px;height: 30px;" class="active"><a href="#outboxEmailHtml">Outbox</a></li>			
+			</ul>
+		</div>
+		<!--FIN TABS-->
+		
 	</div>
 	
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_emailOutbox">				
-	
-	</div>
 	<!--FIN HEADER--> 	
-	
-	<!--TABS-->
-	<div style="background: #ccc;" data-role="navbar" data-position="fixed">
-		<ul>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
-		</ul>
-	</div>
-	<div style="background: #fff;" data-role="navbar" data-position="fixed">
-		<ul>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Inbox</a></li>
-			<li style="border-right:1px solid #777;margin-top:3px;height: 30px;" class="active"><a href="#outboxEmailHtml">Outbox</a></li>			
-		</ul>
-	</div>
-	<!--FIN TABS-->
 	
 	<!--CONTENT-->
 	<div data-role="content">
-	<div style="background:#fff;" id="emailsOutbox">
-		<ul style="list-style: none;margin-left:-40px;" class="page_emailOutbox">
+		<div style="background:#fff;" id="emailsOutbox">
+			<ul style="list-style: none;margin-left:-40px;" class="page_emailOutbox">
+			
+			</ul>
+		</div>
 		
-		</ul>
-	</div>
-	
-	<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
-    
-	
-	<div style="background:#fff;" id="emailOutboxFilter">
-		<ul style="list-style: none;margin-left:-40px;" class="page_emailOutbox">
+		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
 		
-		</ul>
+		
+		<div style="background:#fff;" id="emailOutboxFilter">
+			<ul style="list-style: none;margin-left:-40px;" class="page_emailOutbox">
+			
+			</ul>
+		</div>
 	</div>
 	<!--FIN CONTENT-->	
-	</div>
+	
 	<!--MENU EMAIL OUTBOX-->
 	<div style="margin-top: 40px;" data-role="panel" id="menuEmailOutbox" data-display="overlay" data-position="right">
 		<div id="menu" >
@@ -2475,22 +2481,25 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 
 <div data-role="page" id="taskHtml">
     <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" >				
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed">				
 		<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTask"></a>
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
 		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+		
+		
+		<!--TABS-->
+		<div style="background: #ccc;" data-role="navbar">
+			<ul>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li ><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>	
+		<!--FIN TABS-->
+	
 	</div>
 	<!--FIN HEADER--> 	
-	<!--TABS-->
-	<div style="background: #ccc;" data-role="navbar" data-position="fixed">
-		<ul>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-			<li ><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
-			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
-		</ul>
-	</div>	
-	<!--FIN TABS-->
 	
 	<!--CONTENT-->
 	
@@ -2525,26 +2534,25 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 		</div>
 		
 		<!--a style="height: 30px;background-image: url('img/search-36.png');background-repeat:no-repeat; background-size: 30px 30px; background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child search" data-excecute="weekly" data-theme="b" href="javascript:void(0);"></a-->
+		<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" id="header_cont">				
+	
+		</div>
 		
-	</div>
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" id="header_cont">				
+		<!--TABS-->
+		<div style="background: #ccc;" data-role="navbar">
+			<ul>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>
+		<!--FIN TABS-->
 	
 	</div>
+	
 	<!--FIN HEADER--> 	
-	<!--TABS-->
-	<div style="background: #ccc;" data-role="navbar" data-position="fixed">
-		<ul>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
-			<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-			<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
-		</ul>
-	</div>
-
-	<!--FIN TABS-->
 	
-	
-
 	<!--CONTENT-->
 	<div data-role="content">
 		<div style="background:#fff;" id="contacts">
@@ -2563,7 +2571,6 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 		</div>
 	</div>
 	<!--FIN CONTENT-->	
-	
 	
 	<!--MENU PRINCIPAL -->
 	<div data-role="panel" id="menuCont" data-display="overlay" data-position="left">
