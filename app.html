@@ -498,7 +498,10 @@ $(function(){
 		
 		$('ul.page_contact').on('click','li', function () {
             alert('onclick contacts');
-			location.reload(true);
+			//alert(url);
+			var agentid = JSON.parse(localStorage.getItem('key'));
+			//detailContact();
+			//location.reload(true);
 			/*var url = $("input#detail").val();
 			var object = { 'pid' : url, 'dos' : '2' };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
@@ -1189,29 +1192,29 @@ $(document).scroll(function () {
 });	
 	
 	
-$(document).on("pagecreate","#contactsHtml",function(){	
-			//alert(start);
+$(document).on("pagebeforeshow","#contactsHtml",function(){	
+			//alert('page contacts');
 			busy=true;
 			listadoContacts(start,settings.limit);
 							
 });
 
-$(document).on("pagecreate","#followingHtml",function(){	
-			//alert('proper');
+$(document).on("pageshow","#followingHtml",function(){	
+			//alert('page following');
 			busy=true;
 			listadoProperty(start,settings.limit);
 							
 });
 
-$(document).on("pagecreate","#emailHtml",function(){	
-			//alert('inbox');
+$(document).on("pagebeforeshow","#emailHtml",function(){	
+			//alert('page email inbox');
 			busy=true;
 			listadoEmailsInbox(start,settings.limit);
 							
 });
 
-$(document).on("pagecreate","#outboxEmailHtml",function(){	
-			//alert('outbox');
+$(document).on("pagebeforeshow","#outboxEmailHtml",function(){	
+			//alert('page email outbox');
 			busy=true;
 			listadoEmailsOutbox(start,settings.limit);
 							
@@ -1259,6 +1262,23 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 		.agent{			
 			text-align: center;
 			margin-bottom: 40px;
+		}
+		.detalle{
+			margin-left:20px !important;
+			color:#a6a6a6;
+			font-weight:bold;
+			font-size:18px;
+		}
+		.detalle2{
+			color:#a6a6a6;
+			font-weight:normal;
+			font-size:12px;
+		}
+		.detalle3{
+			
+			color:#000;
+			font-weight:bold;
+			font-size:18px;
 		}
 	
 	}
@@ -1330,6 +1350,23 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 		}
 		.ifra2{
 			height:550px;
+		}
+		.detalle{
+			margin-left:160px;
+			color:#a6a6a6;
+			font-weight:bold;
+			font-size:18px;
+		}
+		.detalle2{
+			color:#a6a6a6;
+			font-weight:normal;
+			font-size:12px;
+		}
+		.detalle3{
+			color:#000;
+			font-weight:bold;
+			font-size:18px;
+			margin-left:180px;
 		}
 	
 	}
@@ -1579,29 +1616,26 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 		</div>	
 		<!--FIN TABS-->
 	</div>
-	
-	
 	<!--FIN HEADER-->
-	
-	
 	
 	<!--content-->
 	<div data-role="content">
-	<div style="background:#fff;" id="content">
-		<ul style="list-style: none;margin-left:-40px;" class="page_result">
+		<div style="background:#fff;" id="content">
+			<ul style="list-style: none;margin-left:-40px;" class="page_result">
+			
+			</ul>
+		</div>
 		
-		</ul>
-	</div>
-	
-	<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
-	
-	<div style="background:#fff;" id="content_filter">
-		<ul style="list-style: none;margin-left:-40px;" class="page_result">
+		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
 		
-		</ul>
+		<div style="background:#fff;" id="content_filter">
+			<ul style="list-style: none;margin-left:-40px;" class="page_result" data-role="listview">
+			
+			</ul>
+		</div>
 	</div>
 	<!--content-->
-	</div>
+	
 	<!--MENU PRINCIPAL FOLLOWUP-->
 	<div data-role="panel" id="menuPrincFollow" data-display="overlay" data-position="left">
 		<div id="menu" >
@@ -2264,7 +2298,7 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 	
 <div data-role="page" id="detailProperties">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed">				
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" onclick="back();" data-rel="back"></a>
 		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
@@ -2290,7 +2324,7 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 
 <div data-role="page" id="detailContacts">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed">				
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" onclick="back();" data-rel="back"></a>
 		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
@@ -2574,6 +2608,12 @@ $(document).on("pagecreate","#outboxEmailHtml",function(){
 		
 		
 		<div style="background:#fff;" id="contactsFilter">
+			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
+			
+			</ul>
+		</div>
+		
+		<div style="background:#fff;" id="contactsDetails">
 			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
 			
 			</ul>
