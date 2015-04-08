@@ -485,30 +485,56 @@ $(function(){
 			
         });
 		
+		//CLICK DETALLE DE PROPIEDADES
 		$('ul.page_result').on('click','li', function () {
             alert('onclick');
-			location.reload(true);
-			/*var url = $("input#detail").val();
-			var object = { 'pid' : url, 'dos' : '2' };
+			var id= $(this).attr('parcelid');
+			
+			//alert(id);
+			// Creamos un objeto
+			var object = { 'parcelid' : id };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('key', JSON.stringify(object));
-			window.location.href = "#detailProperties";*/
+			localStorage.setItem('key', JSON.stringify(object));			
+			//$.mobile.changePage( "#detailContacts", {data: {agentid:id} });*/
+			window.location.href = "#detailProperties";
 				
         });
 		
+		$(document).on('pagebeforeshow', '#detailProperties', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('key'));
+			// La alerta mostrará 1 por pantalla
+			alert(valor.parcelid);
+			//alert(valor.agent);
+			detailProperty(valor.parcelid);
+		});
+		
+		//CLICK DETALLE DE CONTACTOS
 		$('ul.page_contact').on('click','li', function () {
             alert('onclick contacts');
 			//alert(url);
-			var agentid = JSON.parse(localStorage.getItem('key'));
-			//detailContact();
-			//location.reload(true);
-			/*var url = $("input#detail").val();
-			var object = { 'pid' : url, 'dos' : '2' };
+			var id= $(this).attr('agentid');
+			
+			//alert(id);
+			// Creamos un objeto
+			var object = { 'agent' : id };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
 			localStorage.setItem('key', JSON.stringify(object));
-			window.location.href = "#detailProperties";*/
-				
+			//window.location.href = "#detailContacts?id=";
+			window.location.href ="#detailContacts";
+			//$.mobile.changePage( "#detailContacts", {data: {agentid:id} });
+			
         });
+		
+		$(document).on('pagebeforeshow', '#detailContacts', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('key'));
+			// La alerta mostrará 1 por pantalla
+			alert(valor.agent);
+			//alert(valor.agent);
+			detailContact(valor.agent);
+		});
+		
 		
 		$('ul.page_contact').on('taphold','li', function () {
             alert('long Touch contact');
@@ -2308,13 +2334,18 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<!--CONTENT-->
 	
 	<div data-role="content" >	
-			<iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
 					class="ifra" id="webdetailHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetails.php">
 				<html>
 					<head></head>
 					<body></body>
 				</html>
-			</iframe>
+			</iframe-->
+		<div style="background:#fff;" id="detallePropiedades">
+			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
+			
+			</ul>
+		</div>
 			
 	</div>
 	
@@ -2337,13 +2368,18 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<!--CONTENT-->
 	
 	<div data-role="content" >	
-			<iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
 					class="ifra2" id="webdetailContactHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetailsContacts.php">
 				<html>
 					<head></head>
 					<body></body>
 				</html>
-			</iframe>
+			</iframe-->
+		<div style="background:#fff;" id="detalleContacto">
+			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
+			
+			</ul>
+		</div>
 			
 	</div>
 	
@@ -2613,11 +2649,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 			</ul>
 		</div>
 		
-		<div style="background:#fff;" id="contactsDetails">
-			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
-			
-			</ul>
-		</div>
+		
 	</div>
 	<!--FIN CONTENT-->	
 	
