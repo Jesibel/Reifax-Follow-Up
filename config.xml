@@ -36,7 +36,7 @@
   
 
   <preference name="SplashScreen" value="splash" />
-  <preference name="SplashScreenDelay" value="100000" /> <!-- ios: if set to false, the spinner won't appear on the splash screen during app loading -->
+  <preference name="SplashScreenDelay" value="1000" /> <!-- ios: if set to false, the spinner won't appear on the splash screen during app loading -->
   
  
   <!-- Define app icon for each platform. -->
