@@ -42,6 +42,9 @@
 	<!--script src="http://reifax.com/FollowupReifax/resources/js/accounting.js"></script-->
 	<script src="http://reifax.com/FollowupReifax/resources/js/accounting.js"></script>
 	<script src="http://reifax.com/FollowupReifax/resources/js/moment.js"></script>
+	
+	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
+	
 	<script type="text/javascript">
 	
 		
@@ -1230,6 +1233,14 @@ $(document).scroll(function () {
 			
 	}
 });	
+
+$(document).on("pagecontainerhide", function (e, ui) {
+	if (WURFL.form_factor != "Tablet") {
+			window.plugins.orientationchanger.lockOrientation('portrait');
+					
+	}
+				
+});
 	
 	
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
