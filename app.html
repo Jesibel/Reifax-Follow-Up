@@ -1334,6 +1334,12 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 			font-size:18px;
 			margin-left: 30px;
 		}
+		.heightMenu.ui-panel{
+			min-height: 1% !important;
+		}
+		.margen{
+			border-bottom: 1px solid #ccc;
+		}
 	
 	}
 	@media screen and (min-width:480px) and (max-width:599px){
@@ -1357,6 +1363,33 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 			text-align: center;
 			margin-bottom: 40px;
 		}
+		.col-md-3.col-md-4.col-md-2.col-md-6{
+			padding-right: 5px !important;
+			padding-left: 5px !important;
+		}
+		.detalle{
+			margin-left:20px !important;
+			color:#a6a6a6;
+			font-weight:bold;
+			font-size:18px;
+		}
+		.detalle2{
+			color:#a6a6a6;
+			font-weight:normal;
+			font-size:12px;
+			margin-left: 30px;
+		}
+		.detalle3{
+			
+			color:#000;
+			font-weight:bold;
+			font-size:18px;
+			margin-left: 30px;
+		}
+		.heightMenu.ui-panel{
+			min-height: 1% !important;
+		}
+
 		
 	}
 	@media screen and (min-width:600px) and (max-width:799px){
@@ -1424,6 +1457,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 			font-weight:bold;
 			font-size:14px;
 			margin-left:180px;
+		}
+		.heightMenu.ui-panel{
+			min-height: 1% !important;
 		}
 		
 	
@@ -1641,6 +1677,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 			border-right: 1px solid #777;
 			margin-top: 3px;
 		}
+		.margen{
+			border-bottom: 1px solid #ccc;
+		}
 		
 	</style>
   </head>
@@ -1651,7 +1690,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="menu" data-theme="b" href="#menuPrincFollow"></a-->
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
-		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+		<div style="text-align:center;"><img src="img/reifax_Followup.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
 		<!--a id="filtro" style="height: 30px;background-image: url('img/filter.jpg');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="filter" data-toggle="modal" role="button"  data-theme="b" href="#filter"></a>
 		<a id="filtro_remove" style="height: 30px;background-image: url('img/filter-remove.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="filter" data-theme="b" href="#"></a-->
@@ -1714,18 +1753,18 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<!--FIN MENU-->
 	
 	<!--MENU PRINCIPAL PROPERTY-->
-	<div style="margin-top: 40px;" data-role="panel" id="menuProperty" data-display="overlay" data-position="right">
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuProperty" data-display="overlay" data-position="right">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
 			<a class="closeMenu" style="display:none;"   href="#" data-rel="close">Close</a>
-			<li><a class="filter"        id="filtro2"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
-			<li><a class="filterRemove"  id="filtro_remove2" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
-			<li><a class="deleteFollow"  id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
-			<li><a class="sendContract"  id="sendContract"   href="#sendContracts" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
-			<li><a class="sendEmail"     id="sendEmail"      href="#formEmail" role="button" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
-			<li><a class="sendSMS"       id="sendSMS"        href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
-			<li><a class="sendFax"       id="sendFax"        href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
-			<li><a class="makeCall"      id="makeCall"       href="#formCall" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>
+			<li class="margen" ><a class="filter"        id="filtro2"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
+			<li class="margen"><a class="filterRemove"  id="filtro_remove2" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
+			<li class="margen"><a class="deleteFollow"  id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
+			<li class="margen"><a class="sendContract"  id="sendContract"   href="#sendContracts" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
+			<li class="margen"><a class="sendEmail"     id="sendEmail"      href="#formEmail" role="button" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
+			<li class="margen"><a class="sendSMS"       id="sendSMS"        href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
+			<li class="margen"><a class="sendFax"       id="sendFax"        href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
+			<li class="margen"><a class="makeCall"      id="makeCall"       href="#formCall" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>
 						 
 			 </ul>
 		</div>	
@@ -1733,12 +1772,12 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<!--FIN MENU-->
 		
 	<!--MENU SECUNDARIO PROPERTY-->
-	<div style="margin-top: 40px;" data-role="panel" id="menuSecunFollow" data-display="overlay" data-position="right">
+	<div style="margin-top:40px;" class="heightMenu" data-role="panel" id="menuSecunFollow" data-display="overlay" data-position="right">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
 			<a class="closeMenu" style="display:none;"   href="#" data-rel="close">Close</a>
-			<li><a class="filter"        id="filtro"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
-			<li><a class="filterRemove"  id="filtro_remove" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
+			<li class="margen"><a class="filter"        id="filtro"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
+			<li class="margen"><a class="filterRemove"  id="filtro_remove" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
 			<!--li><a class="deleteFollow"  id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
 			<li><a class="sendContract"  id="sendContract"   href="#sendContracts" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
 			<li><a class="sendEmail"     id="sendEmail"      href="#formEmail" role="button" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
@@ -2428,9 +2467,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
-		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+		<div style="text-align:center;"><img src="img/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
-		<a id="addEInbox" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#composeEmail"></a>
+		<a id="addEInbox" style="margin-right: 10px;height: 30px;margin-bottom:5px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#composeEmail"></a>
 		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailInbox"></a>
 		</div>
 		
@@ -2495,13 +2534,13 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<!--FIN MENU-->
 	
 	<!--MENU EMAIL INBOX -->
-	<div style="margin-top: 40px;" data-role="panel" id="menuEmailInbox" data-display="overlay" data-position="right">
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuEmailInbox" data-display="overlay" data-position="right">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
 				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
 				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
-				<li style="border-bottom: 2px solid #ccc;"><a class="filter"       		  	 id="filtromaIn"      href="#filterEI" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
-				<li style="border-bottom: 2px solid #ccc;"><a class="filterRemove" 		  	 id="RemovefiltroIn"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+				<li class="margen"><a class="filter"       		  	 id="filtromaIn"      href="#filterEI" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
+				<li class="margen"><a class="filterRemove" 		  	 id="RemovefiltroIn"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
 				<!--li style="border-bottom: 2px solid #ccc;"><a class="assignContEmailInbox"   id="asscontEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
 				<li style="border-bottom: 2px solid #ccc;"><a class="assignProEmailInbox"    id="assiproEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li-->				
 			</ul>
@@ -2510,15 +2549,15 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<!--FIN MENU-->
 	
 	<!--MENU EMAIL INBOX OCULTO-->
-	<div style="margin-top: 40px;" data-role="panel" id="menuEmailInboxO" data-display="overlay" data-position="right">
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuEmailInboxO" data-display="overlay" data-position="right">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
 				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
 				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
-				<li style="border-bottom: 2px solid #ccc;"><a class="filter"       		  	 id="filtromaI"      href="#filterEI" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
-				<li style="border-bottom: 2px solid #ccc;"><a class="filterRemove" 		  	 id="RemovefiltroI"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
-				<li style="border-bottom: 2px solid #ccc;"><a class="assignContEmailInbox"   id="asscontEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
-				<li style="border-bottom: 2px solid #ccc;"><a class="assignProEmailInbox"    id="assiproEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li>				
+				<li class="margen"><a class="filter"       		  	 id="filtromaI"      href="#filterEI" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
+				<li class="margen"><a class="filterRemove" 		  	 id="RemovefiltroI"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+				<li class="margen"><a class="assignContEmailInbox"   id="asscontEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
+				<li class="margen"><a class="assignProEmailInbox"    id="assiproEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li>				
 			</ul>
 		</div>	
 	</div>
@@ -2530,7 +2569,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a>
 		<a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
-		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+		<div style="text-align:center;"><img src="img/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
 		<a id="addEOutbox" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#composeEmailO"></a>
 		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailOutbox"></a>
@@ -2581,13 +2620,13 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<!--FIN CONTENT-->	
 	
 	<!--MENU EMAIL OUTBOX-->
-	<div style="margin-top: 40px;" data-role="panel" id="menuEmailOutbox" data-display="overlay" data-position="right">
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuEmailOutbox" data-display="overlay" data-position="right">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
 				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
 				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
-				<li style="border-bottom: 2px solid #ccc;"><a class="filter"       		  id="filtromaO"      href="#filterEO" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
-				<li style="border-bottom: 2px solid #ccc;"><a class="filterRemove" 		  id="RemovefiltroO"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+				<li class="margen"><a class="filter"       		  id="filtromaO"      href="#filterEO" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
+				<li class="margen"><a class="filterRemove" 		  id="RemovefiltroO"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
 			</ul>
 		</div>	
 	</div>
@@ -2642,7 +2681,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" id="header_one">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="menu" data-theme="b" href="#menuCont"></a>
 		<a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
-		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+		<div style="text-align:center;"><img src="img/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
 		<a id="addCont2" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-user-48.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formAddContacts"></a>
 		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuContacts"></a>
@@ -2705,15 +2744,15 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<!--FIN MENU-->
 	
 	<!--MENU PRINCIPAL CONTACTS-->
-	<div style="margin-top: 40px;" data-role="panel" id="menuContacts" data-display="overlay" data-position="right">
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuContacts" data-display="overlay" data-position="right">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
 				<a class="closeMenu" style="display:none;"          href="#" data-rel="close">Close</a>
 				<!--li><a class="deleteContacts"    id="deleteCont"         href="#deleteContact" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Contacts</a></li-->
-				<li><a class="addContacts"       id="addCont"            href="#formAddContacts"   class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Contacts</a></li>
+				<li class="margen"><a class="addContacts"       id="addCont"            href="#formAddContacts"   class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Contacts</a></li>
 				<!--li><a class="editContacts"      id="editCont"           href="#formeditContact"   class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Edit Contacts</a></li-->
-				<li><a class="filter"            id="filtrocontact"      href="#formfilterContact" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Contacts</a></li>
-				<li><a class="filterRemove"      id="filtro_removeCont"  href="#formfilterRemoveContact" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+				<li class="margen"><a class="filter"            id="filtrocontact"      href="#formfilterContact" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Contacts</a></li>
+				<li class="margen"><a class="filterRemove"      id="filtro_removeCont"  href="#formfilterRemoveContact" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
 			</ul>
 		</div>	
 	</div>
