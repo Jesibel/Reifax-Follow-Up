@@ -60,6 +60,7 @@
 		document.getElementById('telf4').style.display = "none";
 		document.getElementById('telf5').style.display = "none";
 		document.getElementById('telf6').style.display = "none";
+		document.getElementById('regContact').style.display = "none";
 		
 		
 		//document.getElementById('menuContacts').style.display = "block";
@@ -91,7 +92,6 @@
 			removeFilterContact();
 					
 		});
-		
 		
 		//INSERT CONTACTS
 		$("#insertCont").on('click', function () {
@@ -273,7 +273,47 @@
 			alert("filtro email outbox");
 			gettypemailOutbox();
 		});
+		
+		//COMPOSE EMAIL INBOX
+		$('#addEInbox,#addEOutbox').on('click',function(){				
+			alert("COMPOSE");
+			getComposeInbox();
+		});
+		
+		//COMPOSE SEND EMAIL INBOX
+		$('#sendMailI').on('click',function(){				
+			sendemailInbox();
+		});
+		
+		//COMPOSE SEND EMAIL OUTBOX
+		$('#sendMailO').on('click',function(){				
+			sendemailOutbox();
+		});
+		
+		//RADIO BUTTOM ASSIGNMENT CONTACT
+		$('#newCont').on('click',function(){
+			alert("radionew contact");									
+			document.getElementById('infoContact').style.display = "block";
+			document.getElementById('regContact').style.display = "none";
+			document.getElementById("newCont").checked = true;
+			document.getElementById("registerCont").checked = false;
+				
+		});
+
+		$('#registerCont').on('click',function(){
+				
+			alert("radio registerCont");
+			//$('#2').dialog("close");
+			//$('#1').dialog("open");
+			document.getElementById("newCont").checked = false;
+			document.getElementById("registerCont").checked = true;
+			document.getElementById('infoContact').style.display = "none";
+			document.getElementById('regContact').style.display = "block";
 			
+			
+		});
+		
+		
 		
 			
 	});
@@ -285,7 +325,7 @@
 		var pageName = location.pathname.substring(1);
 			
 		//alert(pageName);
-		//pageName = pageName.substring(15);
+		pageName = pageName.substring(15);
 		//alert(pageName);
 	
 		var settings = { 
@@ -498,7 +538,7 @@ $(function(){
 			var object = { 'parcelid' : id };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
 			localStorage.setItem('key', JSON.stringify(object));			
-			$.mobile.changePage("#detailProperties");
+			$.mobile.changePage("#detailProperties","slide");
 			//window.location.href = "index.html#detailProperties";
 			
 				
@@ -515,7 +555,7 @@ $(function(){
 		
 		//CLICK DETALLE DE CONTACTOS
 		$('ul.page_contact').on('click','li', function () {
-            alert('onclick contacts');
+            //alert('onclick contacts');
 			//alert(url);
 			var id= $(this).attr('agentid');
 			
@@ -526,7 +566,7 @@ $(function(){
 			localStorage.setItem('key', JSON.stringify(object));
 			//window.location.href = "#detailContacts?id=";
 			//window.location.href ="index.html#detailContacts";
-			$.mobile.changePage( "#detailContacts");
+			$.mobile.changePage( "#detailContacts","slide");
 			
         });
 		
@@ -534,9 +574,36 @@ $(function(){
 			//var valor = localStorage.getItem("key");
 			var valor = JSON.parse(localStorage.getItem('key'));
 			// La alerta mostrará 1 por pantalla
-			alert(valor.agent);
+			//alert(valor.agent);
 			//alert(valor.agent);
 			detailContact(valor.agent);
+		});
+		
+		//CLICK DETALLE DE EMAIL
+		$('ul.page_emailInbox').on('click','li', function () {
+            alert('onclick email');
+			//alert(url);
+			var id= $(this).attr('idmail');
+			
+			alert(id);
+			// Creamos un objeto
+			var object = { 'email' : id };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('key', JSON.stringify(object));
+			//window.location.href = "#detailContacts?id=";
+			//window.location.href ="index.html#detailContacts";
+			$.mobile.changePage( "#detailEmail","slide");
+			
+        });
+		
+		$(document).on('pagebeforeshow', '#detailEmail', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('key'));
+			// La alerta mostrará 1 por pantalla
+			//alert(valor.agent);
+			//alert(valor.agent);
+			detailEmails(valor.email);
+			//detailEmailsCab(valor.email);
 		});
 		
 		
@@ -707,20 +774,46 @@ $(function(){
 			
 		});
 		
+		
+		
 		//CLICK EMAIL INBOX
-		$('ul.page_emailInbox').on('click','li', function () {
+		/*$('ul.page_emailInbox').on('click','li', function () {
             alert('onclick  EMAIL INBOX');
 			//location.reload(true);
+		});*/
+		
+		//CARGAR DATOS ASSIGNMENT CONTACT
+		$('#assCont').on('click',function(){
+			
+			var mail = JSON.parse(localStorage.getItem('key'));
+			var nam  = JSON.parse(localStorage.getItem('key2'));
+			alert(mail.email);		
+			alert(nam.name);		
+			getAssignContact(mail.email,nam.name);
 		});
+		//CARGAR DATOS ASSIGNMENT PROPERTY
+		$('#assProp').on('click',function(){			
+			getAssignProperty();
+		});
+		
 		
 		//LONG TOUCH EMAIL INBOX
 		$('ul.page_emailInbox').on('taphold','li', function () {
             alert('long Touch email Inbox');
 			
 			var id= $(this).attr('idmail');
-			var idseen= $(this).attr('idseen');
+			var idseen= $(this).attr('idseen');	
+			var email= $(this).attr('idemail');
+			var name= $(this).attr('idname');			
+			
 			alert(id);
 			alert(idseen);
+			
+			var object = { 'email' : email };
+			localStorage.setItem('key', JSON.stringify(object));
+
+			var object2 = { 'name' : name };
+			localStorage.setItem('key2', JSON.stringify(object2));
 			
 			$(this).addClass ('mail_marked');
 			
@@ -1194,9 +1287,15 @@ $(function(){
 		});
 		
 		$("#backContacts").on('click', function () {
-			alert('backContacts');
+			//alert('backContacts');
 			//document.getElementById("detalleContacto").innerHTML="";
 			$('#detalleContacto').empty();
+		});
+		
+		$("#backEmail").on('click', function () {
+			//alert('backContacts');
+			//document.getElementById("detalleContacto").innerHTML="";
+			$('#detalleCorreo').empty();
 		});
 		
 		
@@ -1223,7 +1322,9 @@ $(document).scroll(function () {
 				}
 
 			if (pageName=='index.html'){
+				busy=false;
 				if (busy ==false) {
+					//alert('busy false');
 					busy=true;
 					start = start+$settings.limit; 
 					console.log(start);	
@@ -1234,13 +1335,13 @@ $(document).scroll(function () {
 	}
 });	
 
-$(document).on("pagecontainerhide", function (e, ui) {
+/*$(document).on("pagecontainerhide", function (e, ui) {
 	if (WURFL.form_factor != "Tablet") {
 			window.plugins.orientationchanger.lockOrientation('portrait');
 					
 	}
 				
-});
+});*/
 	
 	
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
@@ -1351,6 +1452,12 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		.margen{
 			border-bottom: 1px solid #ccc;
 		}
+		table{
+			width:100% !important;
+		}
+		/*div#rootDiv{
+			margin-top:-900px!important;
+		}*/
 	
 	}
 	@media screen and (min-width:480px) and (max-width:599px){
@@ -1400,6 +1507,10 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		.heightMenu.ui-panel{
 			min-height: 1% !important;
 		}
+		table{
+			width:100% !important;
+		}
+		
 
 		
 	}
@@ -1691,6 +1802,13 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		.margen{
 			border-bottom: 1px solid #ccc;
 		}
+		.item{
+			height:40px;
+		}
+		table{
+			width:100%;
+		}
+		
 		
 	</style>
   </head>
@@ -1714,12 +1832,12 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	
 		</div>
 		<!--TABS-->	
-		<div style="background: #ccc;" data-role="navbar" >
+		<div style="background: #ccc;height:40px;" data-role="navbar" >
 			<ul>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
 		</div>	
 		<!--FIN TABS-->
@@ -1748,20 +1866,6 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	</div>
 	<!--content-->
 	
-	<!--MENU PRINCIPAL FOLLOWUP-->
-	<div data-role="panel" id="menuPrincFollow" data-display="overlay" data-position="left">
-		<div id="menu" >
-			<ul data-role="listview" data-icon="false">	 
-			<a class="closeMenu" style="display:none;" href="#" data-rel="close">Close</a>
-			<li><a class="following"  id="following"   href="#followingHtml" >&nbsp;Following</a></li>
-			<li><a class="email"      id="email"       href="#emailHtml" >&nbsp;Email</a></li>	
-			<li><a class="task"       id="task"        href="#taskHtml" >&nbsp;Task</a></li>			 
-			<li><a class="contact"    id="contactmenu" href="#contactsHtml" >&nbsp;Contacts</a></li>
-						 
-			 </ul>
-		</div>	
-	</div>
-	<!--FIN MENU-->
 	
 	<!--MENU PRINCIPAL PROPERTY-->
 	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuProperty" data-display="overlay" data-position="right">
@@ -2333,7 +2437,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<!--h4>Filters</h4-->										
 					<p>To<div id="toEmail"><select id="toEma" class="span12"></select></div>
 							<!--input type="text" class="span12" /--></p>
-					<p>Subject<input id="subject" type="text" class="span12" /></p>
+					<p>Subject<input id="subjectI" type="text" class="span12" /></p>
 					
 					<div class="form-group">
 						<label>Attach:</label>
@@ -2349,7 +2453,10 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 							<input onclick="addInputCompose()" class="another" />					
 						</div>
 					</div>
-					<div class="form-group"><label>Text:</label><textarea style="height:222px;" id="textemailInbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
+					<div class="form-group">
+						<label>Text:</label>
+						<textarea style="height:222px;" id="textemailInbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					</div>
 				</div>
 						  
             </div>
@@ -2393,7 +2500,10 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 							<input onclick="addInputComposeO()" class="another" />					
 						</div>
 					</div>
-					<div class="form-group"><label>Text:</label><textarea style="height:222px;" id="textemailOutbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
+					<div class="form-group">
+						<label>Text:</label>
+						<textarea style="height:222px;" id="textemailOutbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					</div>
 				</div>
 						  
             </div>
@@ -2406,6 +2516,119 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 </div>
 </div>
 <!--FIN COMPOSE EMAIL OUTBOX-->
+
+<!--ASSIGN CONTACT-->
+<div class="modal fade bs-example-modal-sm" id="assignContacts" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Assignment Contact</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+						<div class="span6">
+							<!--h4>Filters</h4-->										
+							<label style="width: 30%;float: left;" for="file">Assign To:</label>
+							<input type='radio'  name='new' id='newCont' value='New' checked> New &nbsp;&nbsp;&nbsp;</input>
+							<input type='radio'  name='register' id='registerCont' value='Register' >Register</input>						
+						</div>						  
+				</div>
+								  
+			</div>
+			
+			<div id="infoContact">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">New Contact Information</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row-fluid">
+								<div class="span6">
+									<p>Contact:<div id="contass"><input id="conass" type="text" class="span12"/></div></p>
+									<p>type:<div id="typeass"><select id="typ" class="span12"></select></div></p>
+									<p>Email1:<div id="email1ass"><select style="width:30%;float:left;margin-right: 15px;" id="emai1ass" class="span12"></select></div>
+											<input id ="ema1ass" style="width:65%;" type="text" class="span12" /></p>
+									<p>Email2:<div id="email2ass"><select style="width:30%;float:left;margin-right: 15px;" id="emai2ass" class="span12"></select></div>
+											<input id ="ema2ass" style="width:65%;" type="text" class="span12" /></p>		
+									<p>Company:<input id="companyass" type="text" class="span12" /></p>
+									<p>Website1:<div id="website1ass"><select style="width:30%;float:left;margin-right: 15px;" id="websit1ass" class="span12"></select></div>
+											<input id ="web1ass" style="width:65%;" type="text" class="span12" /></p>
+									<p>Website2:<div id="website2ass"><select style="width:30%;float:left;margin-right: 15px;" id="websit2ass" class="span12"></select></div>
+											<input id ="web2ass" style="width:65%;" type="text" class="span12" /></p>
+									<p>Phone:<div id="phone1ass"><select style="width:30%;float:left;margin-right: 15px;" id="phon1ass" class="span12"></select></div>
+											<input id ="pho1ass" style="width:65%;" type="text" class="span12" />
+											
+									<p>Phone2:<div id="phone2ass"><select style="width:30%;float:left;margin-right: 15px;" id="phon2ass" class="span12"></select></div>
+											<input id ="pho2ass" style="width:65%;" type="text" class="span12" />
+											
+									<p>Phone3:<div id="phone3ass"><select style="width:30%;float:left;margin-right: 15px;" id="phon3ass" class="span12"></select></div>
+											<input id ="pho3ass" style="width:65%;" type="text" class="span12" />
+											
+									<p>Phone4:<div id="phone4ass"><select style="width:30%;float:left;margin-right: 15px;" id="phon4ass" class="span12"></select></div>
+											<input id ="pho4ass" style="width:65%;" type="text" class="span12" />
+											
+									<p>Phone5:<div id="phone5ass"><select style="width:30%;float:left;margin-right: 15px;" id="phon5ass" class="span12"></select></div>
+											<input id ="pho5ass" style="width:65%;" type="text" class="span12" />
+											
+									<p>Phone6:<div id="phone6ass"><select style="width:30%;float:left;margin-right: 15px;" id="phon6ass" class="span12"></select></div>
+											<input id ="pho6ass" style="width:65%;" type="text" class="span12" />
+											
+									<p>Address1:<div id="address1ass"><select style="width:30%;float:left;margin-right: 15px;" id="addre1ass" class="span12"></select></div>
+											<input id="addr1ass" style="width:65%;" type="text" class="span12" /></p>
+									<p>Address2:<div id="address2ass"><select style="width:30%;float:left;margin-right: 15px;" id="addre2ass" class="span12"></select></div>
+											<input id="addr2ass" style="width:65%;"type="text" class="span12" /></p>
+								</div>										  
+						</div>
+					</div>
+			</div>
+			<div id="regContact">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">Select Register Contact</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row-fluid">
+								<div class="span6">
+									<p>Contact:<div id="contreg"><select id="conreg" class="span12"></select></div></p>
+								</div>										  
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button id="assignC" type="button" class="btn btn-primary" data-dismiss="modal">Assign</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--FIN ASSIG CONTACTS-->
+
+<!--ASSIGN PROPERTY-->
+<div class="modal fade bs-example-modal-sm" id="assignProperty" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Assignment Property</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+					<div class="span6">
+						<p>Address<div id="toEmailO"><select id="addressAssignPro" class="span12"></select></div>
+						  
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button id="assignP" type="button" class="btn btn-primary" data-dismiss="modal">Assign</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--FIN ASSIG PROPERTY-->
 
 	
 <div data-role="page" id="detailProperties">         
@@ -2471,6 +2694,46 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	
 	<!--FIN CONTENT-->	
 	
+</div><!-- /page -->
+
+<div data-role="page" id="detailEmail">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
+		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<!--div style="width: 100%;margin-top: -40px;text-align: right;">
+		<a id="editar" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button" data-theme="b" href="#formEditContacts"></a>
+		</div-->
+	</div>
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+					class="ifra2" id="webdetailContactHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetailsContacts.php">
+				<html>
+					<head></head>
+					<body></body>
+				</html>
+			</iframe-->
+		<div class="mailBody" style="background:#fff;" id="detalleEmailCab">
+			<ul style="list-style: none;margin-left:-40px;" class="page_detalle_email">
+			
+			</ul>
+		</div>
+		
+		<div class="mailBody" style="background:#fff;" id="detalleCorreo">
+			<ul style="list-style: none;margin-left:-40px;" class="page_detalle_email">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
 </div><!-- /page --> 	
 
 <div data-role="page" id="emailHtml">
@@ -2488,18 +2751,18 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	
 	</div>
 		<!--TABS-->
-		<div style="background: #ccc;" data-role="navbar">
+		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
 		</div>
-		<div style="background: #f6f6f6;" data-role="navbar">
+		<div style="background: #f6f6f6;height:40px;" data-role="navbar">
 			<ul>
-				<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#inbox">Inbox</a></li>
-				<li><a  style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#outboxEmailHtml">Outbox</a></li>			
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#inbox">Inbox</a></li>
+				<li class="item"><a  style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#outboxEmailHtml">Outbox</a></li>			
 			</ul>
 		</div>
 		<!--FIN TABS-->
@@ -2528,22 +2791,6 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	</div>
 	<!--FIN CONTENT-->	
 	
-	
-	<!--MENU PRINCIPAL -->
-	<div data-role="panel" id="menuEmail" data-display="overlay" data-position="left">
-		<div id="menu" >
-			<ul data-role="listview" data-icon="false">	 
-			<a class="closeMenu" style="display:none;" href="#" data-rel="close">Close</a>
-			<li><a class="following"  id="following"   href="#followingHtml" >&nbsp;Following</a></li>
-			<li><a class="email"      id="email"       href="#emailHtml" >&nbsp;Email</a></li>	
-			<li><a class="task"       id="task"        href="#taskHtml" >&nbsp;Task</a></li>			 
-			<li><a class="contact"    id="contactmenu" href="#contactsHtml" >&nbsp;Contacts</a></li>
-						 
-			 </ul>
-		</div>	
-	</div>
-	<!--FIN MENU-->
-	
 	<!--MENU EMAIL INBOX -->
 	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuEmailInbox" data-display="overlay" data-position="right">
 		<div id="menu" >
@@ -2567,8 +2814,8 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
 				<li class="margen"><a class="filter"       		  	 id="filtromaI"      href="#filterEI" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
 				<li class="margen"><a class="filterRemove" 		  	 id="RemovefiltroI"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
-				<li class="margen"><a class="assignContEmailInbox"   id="asscontEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
-				<li class="margen"><a class="assignProEmailInbox"    id="assiproEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li>				
+				<li class="margen"><a class="assignContEmailInbox"   id="assCont"        href="#assignContacts" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
+				<li class="margen"><a class="assignProEmailInbox"    id="assProp"        href="#assignProperty" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li>				
 			</ul>
 		</div>	
 	</div>
@@ -2591,18 +2838,18 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		</div>
 		
 		<!--TABS-->
-		<div style="background: #ccc;" data-role="navbar">
+		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
 		</div>
-		<div style="background: #fff;" data-role="navbar">
+		<div style="background: #fff;height:40px;" data-role="navbar">
 			<ul>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Inbox</a></li>
-				<li style="border-right:1px solid #777;margin-top:3px;height: 30px;" class="active"><a href="#outboxEmailHtml">Outbox</a></li>			
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Inbox</a></li>
+				<li class="item active"><a href="#outboxEmailHtml">Outbox</a></li>			
 			</ul>
 		</div>
 		<!--FIN TABS-->
@@ -2649,16 +2896,16 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed">				
 		<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTask"></a>
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
-		<div style="text-align:center;"><img src="resources/image/reifax_Foloowup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
 		
 		
 		<!--TABS-->
-		<div style="background: #ccc;" data-role="navbar">
+		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li ><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
-				<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
 		</div>	
 		<!--FIN TABS-->
@@ -2704,12 +2951,12 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		</div>
 		
 		<!--TABS-->
-		<div style="background: #ccc;" data-role="navbar">
+		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
-				<li><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-				<li class="active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
 		</div>
 		<!--FIN TABS-->
