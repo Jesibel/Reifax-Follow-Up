@@ -325,8 +325,8 @@
 		var pageName = location.pathname.substring(1);
 			
 		//alert(pageName);
-		pageName = pageName.substring(15);
-		alert(pageName);
+		//pageName = pageName.substring(15);
+		//alert(pageName);
 	
 		var settings = { 
 			limit : 25, // The number of posts per scroll to be loaded
@@ -1316,6 +1316,7 @@ $(document).scroll(function () {
 					busy=true;
 					start = start+$settings.limit; 
 					console.log(start);	
+					listadoProperty(start,settings.limit);
 					listadoContacts(start,settings.limit);	
 					listadoEmailsInbox(start,settings.limit);					
 					listadoEmailsOutbox(start,settings.limit);					
