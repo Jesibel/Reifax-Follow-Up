@@ -317,7 +317,8 @@
 		});
 		
 		//BOTON ENTER FILTER CONTACT
-		$("#formularioFilterContact").on("keypress", function(e){ 
+		$('#formularioFilterContact').submit(function(e){
+		//$("#formularioFilterContact").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
 				$('#menuContacts').panel("close");
