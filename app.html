@@ -61,68 +61,71 @@
 		document.getElementById('telf5').style.display = "none";
 		document.getElementById('telf6').style.display = "none";
 		document.getElementById('regContact').style.display = "none";
+		document.getElementById('searchFilterContacts2').style.display = "none";
+		document.getElementById('searchFilterMailI2').style.display = "none";
+		document.getElementById('searchFilter2').style.display = "none";
+		document.getElementById('searchFilterMailO2').style.display = "none";
 		
 		
 		//document.getElementById('menuContacts').style.display = "block";
 		
 		
 		$("#filtro,#filtro2").on('click', function () {
-				
-				alert('filtro');				
+				//alert('filtro');				
 				getfilterProperty();
 				
 		});
 				
 		//SEARCH FILTER
 		$("#searchFilter").on('click', function () {
-			alert("search del filtro");
+			//alert("search del filtro");
 			searchFilterProperty();
 			
 		});
 		
 		//FILTER REMOVE PROPERTIES
 		$("#filtro_remove,#filtro_remove2").on('click', function () {
-			alert('remove filter');
+			//alert('remove filter');
 			removeFilterProperty();
 		});
 		
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
-			alert('remove filter CONTACTS');
+			//alert('remove filter CONTACTS');
 			removeFilterContact();
 					
 		});
 		
 		//INSERT CONTACTS
 		$("#insertCont").on('click', function () {
-			alert('insert');			
+			//alert('insert');			
 			insertContact();
 		});
 		
 		//SEARCH FILTER EMAIL INBOX
 		$("#searchFilterMailI").on('click', function () {
-			alert("search del filtro mail inbox");
+			//alert("search del filtro mail inbox");
 			searchFilterMailInbox();
 			
 		});
 		
 		//FILTER REMOVE EMAIL INBOX
 		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
-			alert('remove filter email inbox');
+			//alert('remove filter email inbox');
 			removeFilterEmailInbox();
 					
 		});
 		
 		//SEARCH FILTER EMAIL OUTBOX
 		$("#searchFilterMailO").on('click', function () {
-			alert("search del filtro mail OUTbox");
+			//alert("search del filtro mail OUTbox");
 			searchFilterMailOutbox();
 			
 		});
 		
 		//FILTER REMOVE EMAIL OUTBOX
 		$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
-			alert('remove filter email outbox');
+			//alert('remove filter email outbox');
 			removeFilterEmailOutbox();
 					
 		});
@@ -251,20 +254,20 @@
 			
 		//AGREGAR CONTACTS
 		$('#addCont,#addCont2').on('click',function(){				
-			alert("addc");
+			//alert("addc");
 			getTypeContacts();						
 				
 		});
 			
 		//FILTER CONTACTS
 		$('#filtrocontact').on('click',function(){				
-			alert("filtro contact");
+			//alert("filtro contact");
 			getagenttype();
 		});
 		
 		//FILTER EMAIL INBOX
 		$('#filtromaI,#filtromaIn').on('click',function(){				
-			alert("filtro email inbox");
+			//alert("filtro email inbox");
 			gettypemail();
 		});
 		
@@ -276,7 +279,7 @@
 		
 		//COMPOSE EMAIL INBOX
 		$('#addEInbox,#addEOutbox').on('click',function(){				
-			alert("COMPOSE");
+			//alert("COMPOSE");
 			getComposeInbox();
 		});
 		
@@ -313,6 +316,41 @@
 			
 		});
 		
+		//BOTON ENTER FILTER CONTACT
+		$("#formularioFilterContact").on("keypress", function(e){ 
+			if ((e.keyCode === 13)) {
+				//alert('enter');
+				$('#menuContacts').panel("close");
+				filterContacts();
+			}
+		});
+		
+		//BOTON ENTER FILTER PROPERTY
+		$("#formularioFilterProperty").on("keypress", function(e){ 
+			if ((e.keyCode === 13)) {
+				//alert('enter');
+				$('#menuSecunFollow').panel("close");
+				searchFilterProperty();
+			}
+		});
+		
+		//BOTON ENTER FILTER EMAIL INBOX
+		$("#formularioFilterEmailInbox").on("keypress", function(e){ 
+			if ((e.keyCode === 13)) {
+				//alert('enter');
+				$('#menuEmailInbox,#menuEmailInboxO').panel("close");
+				searchFilterMailInbox();
+			}
+		});
+		
+		//BOTON ENTER FILTER EMAIL OUTBOX
+		$("#formularioFilterEmailOutbox").on("keypress", function(e){ 
+			if ((e.keyCode === 13)) {
+				alert('enter');
+				$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+				searchFilterMailOutbox();
+			}
+		});
 		
 		
 			
@@ -325,7 +363,7 @@
 		var pageName = location.pathname.substring(1);
 			
 		//alert(pageName);
-		//pageName = pageName.substring(15);
+		pageName = pageName.substring(15);
 		//alert(pageName);
 	
 		var settings = { 
@@ -1254,7 +1292,7 @@ $(function(){
 		
 		//CARGAR EDITAR CONTACT
 		$("#editar").on('click', function () {
-			alert('CARGAR FORM');
+			//alert('CARGAR FORM');
 			getEditContact();
 			
 		});
@@ -1917,6 +1955,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <h4 class="modal-title" id="myModalLabel">Filters</h4>
             </div>
             <div class="modal-body">
+			<form id="formularioFilterProperty" class="form-horizontal">
 				<div class="row-fluid">
 				  <div class="span6">
 					<!--h4>Filters</h4-->
@@ -1956,7 +1995,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button id="searchFilter" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+                <button id="searchFilter2" type="submit" class="btn btn-primary" data-dismiss="modal"></button>
 			</div>
+			</form>
 		</div>
   </div>
 </div>
@@ -2286,12 +2327,13 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 <!--FILTER CONTACTS-->
 <div class="modal fade bs-example-modal-sm" id="formfilterContact" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div  class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Filters</h4>
             </div>
             <div class="modal-body">
+			 <form id="formularioFilterContact" class="form-horizontal">
 				<div class="row-fluid">
 				  <div class="span6">
 					<!--h4>Filters</h4-->
@@ -2304,12 +2346,14 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<p>Address<input id="addressContFil" type="text" class="span12" /></p>
 						
 				  </div>
-				  
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="searchFilterContacts" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-			</div>
+			  
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="searchFilterContacts" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+					<button id="searchFilterContacts2" type="submit" class="btn btn-primary" data-dismiss="modal"></button>
+				</div>
+			</form>
 		</div>
   </div>
 </div>
@@ -2325,6 +2369,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <h4 class="modal-title" id="myModalLabel">Filters</h4>
             </div>
             <div class="modal-body">
+			<form id="formularioFilterEmailInbox" class="form-horizontal">
 				<div class="row-fluid">
 				  <div class="span6">
 					<!--h4>Filters</h4-->
@@ -2363,7 +2408,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button id="searchFilterMailI" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+                <button id="searchFilterMailI2" type="submit" class="btn btn-primary" data-dismiss="modal"></button>
 			</div>
+		</form>
 		</div>
   </div>
 </div>
@@ -2379,6 +2426,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <h4 class="modal-title" id="myModalLabel">Filters</h4>
             </div>
             <div class="modal-body">
+			<form id="formularioFilterEmailOutbox" class="form-horizontal">
 				<div class="row-fluid">
 				  <div class="span6">
 					<!--h4>Filters</h4-->
@@ -2417,7 +2465,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button id="searchFilterMailO" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+                <button id="searchFilterMailO2" type="submit" class="btn btn-primary" data-dismiss="modal"></button>
 			</div>
+		</form>
 		</div>
   </div>
 </div>
@@ -3006,7 +3056,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuContacts" data-display="overlay" data-position="right">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
-				<a class="closeMenu" style="display:none;"          href="#" data-rel="close">Close</a>
+				<a class="closeMenu" style="display:none;" href="#" data-rel="close">Close</a>
 				<!--li><a class="deleteContacts"    id="deleteCont"         href="#deleteContact" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Contacts</a></li-->
 				<li class="margen"><a class="addContacts"       id="addCont"            href="#formAddContacts"   class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Contacts</a></li>
 				<!--li><a class="editContacts"      id="editCont"           href="#formeditContact"   class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Edit Contacts</a></li-->
@@ -3016,23 +3066,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		</div>	
 	</div>
 	<!--FIN MENU-->
-	
-	
-	<!--MENU PRINCIPAL CONTACTS OCULTO-->
-	<!--div style="margin-top: 40px;" data-role="panel" id="menuCont" data-display="overlay" data-position="right">
-		<div id="menu" >
-			<ul data-role="listview" data-icon="false">	 
-				<a class="closeMenu" style="display:none;"             href="#" data-rel="close">Close</a>
-				<li><a class="deleteContacts"    id="deleteC"       href="#deleteContact" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Contacts</a></li>
-				<li><a class="addContacts"          id="addC"          href="#addContact" >&nbsp;&nbsp;&nbsp;&nbsp;New Contacts</a></li>
-				<li><a class="editContacts"         id="editC"         href="#editContact" >&nbsp;&nbsp;&nbsp;&nbsp;Edit Contacts</a></li>
-				<li><a class="filter"               id="filtroC"       href="#filterContact" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Contacts</a></li>
-				<li><a class="filterRemove"         id="filtroRC"      href="#filterRemoveContact" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
-			</ul>
-		</div>	
-	</div-->
-	<!--FIN MENU-->
-	
+
 
 </div>
 
