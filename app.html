@@ -86,11 +86,13 @@
 		//FILTER REMOVE PROPERTIES
 		$("#filtro_remove,#filtro_remove2").on('click', function () {
 			//alert('remove filter');
+			$('#menuSecunFollow').panel("close");
 			removeFilterProperty();
 		});
 		
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
+			$('#menuContacts').panel("close");
 			//alert('remove filter CONTACTS');
 			removeFilterContact();
 					
@@ -332,7 +334,7 @@
 		$("#formularioFilterProperty").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
-				$('#filter').modal.close();
+				//$('#filter').modal.close();
 				$('#menuSecunFollow').panel("close");
 				searchFilterProperty();
 			}
