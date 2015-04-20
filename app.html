@@ -86,13 +86,11 @@
 		//FILTER REMOVE PROPERTIES
 		$("#filtro_remove,#filtro_remove2").on('click', function () {
 			//alert('remove filter');
-			$('#menuSecunFollow').panel("close");
 			removeFilterProperty();
 		});
 		
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
-			$('#menuContacts').panel("close");
 			//alert('remove filter CONTACTS');
 			removeFilterContact();
 					
@@ -319,53 +317,38 @@
 		});
 		
 		//BOTON ENTER FILTER CONTACT
-		//$('#formularioFilterContact').submit(function(e){
 		$("#formularioFilterContact").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
-				filterContacts();
-				//$('#formfilterContact').modal.close();
-				$("#formfilterContact").modal('hide');
 				$('#menuContacts').panel("close");
-				
+				filterContacts();
 			}
 		});
 		
 		//BOTON ENTER FILTER PROPERTY
-		//$("#formularioFilterProperty").submit(function(e){
 		$("#formularioFilterProperty").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
-				searchFilterProperty();
-				$("#filter").modal('hide');
 				$('#menuSecunFollow').panel("close");
-				
+				searchFilterProperty();
 			}
 		});
 		
 		//BOTON ENTER FILTER EMAIL INBOX
-		//$("#formularioFilterEmailInbox").submit(function(e){
 		$("#formularioFilterEmailInbox").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
-				searchFilterMailInbox();
-				//$('#filterEI').modal.close();
-				$("#filterEI").modal('hide');
 				$('#menuEmailInbox,#menuEmailInboxO').panel("close");
-				
+				searchFilterMailInbox();
 			}
 		});
 		
 		//BOTON ENTER FILTER EMAIL OUTBOX
-		//$("#formularioFilterEmailOutbox").submit(function(e){
 		$("#formularioFilterEmailOutbox").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
-				//alert('enter');
-				searchFilterMailOutbox();
-				//$('#filterEO').modal.close();
-				$("#filterEO").modal('hide');
+				alert('enter');
 				$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-				
+				searchFilterMailOutbox();
 			}
 		});
 		
