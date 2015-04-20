@@ -86,12 +86,14 @@
 		//FILTER REMOVE PROPERTIES
 		$("#filtro_remove,#filtro_remove2").on('click', function () {
 			//alert('remove filter');
+			$('#menuSecunFollow').panel("close");
 			removeFilterProperty();
 		});
 		
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
 			//alert('remove filter CONTACTS');
+			$('#menuContacts').panel("close");
 			removeFilterContact();
 					
 		});
@@ -112,6 +114,7 @@
 		//FILTER REMOVE EMAIL INBOX
 		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
 			//alert('remove filter email inbox');
+			$('#menuEmailInbox,#menuEmailInboxO').panel("close");
 			removeFilterEmailInbox();
 					
 		});
@@ -126,6 +129,7 @@
 		//FILTER REMOVE EMAIL OUTBOX
 		$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
 			//alert('remove filter email outbox');
+			$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterEmailOutbox();
 					
 		});
