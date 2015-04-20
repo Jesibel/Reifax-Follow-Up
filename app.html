@@ -321,7 +321,7 @@
 		//BOTON ENTER FILTER CONTACT
 		//$('#formularioFilterContact').submit(function(e){
 		$("#formularioFilterContact").on("keypress", function(e){ 
-			if ((e.keyCode == 13)) {
+			if ((e.keyCode === 13)) {
 				//alert('enter');
 				filterContacts();
 				//$('#formfilterContact').modal.close();
@@ -334,7 +334,7 @@
 		//BOTON ENTER FILTER PROPERTY
 		//$("#formularioFilterProperty").submit(function(e){
 		$("#formularioFilterProperty").on("keypress", function(e){ 
-			if ((e.keyCode == 13)) {
+			if ((e.keyCode === 13)) {
 				//alert('enter');
 				searchFilterProperty();
 				$("#filter").modal('hide');
@@ -346,7 +346,7 @@
 		//BOTON ENTER FILTER EMAIL INBOX
 		//$("#formularioFilterEmailInbox").submit(function(e){
 		$("#formularioFilterEmailInbox").on("keypress", function(e){ 
-			if ((e.keyCode == 13)) {
+			if ((e.keyCode === 13)) {
 				//alert('enter');
 				searchFilterMailInbox();
 				//$('#filterEI').modal.close();
