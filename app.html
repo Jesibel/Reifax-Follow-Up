@@ -324,39 +324,42 @@
 			if ((e.keyCode === 13)) {
 				//alert('enter');
 				//$('#formfilterContact').modal.close();
+				$('#formfilterContact').modal("close");
 				$('#menuContacts').panel("close");
 				filterContacts();
 			}
 		});
 		
 		//BOTON ENTER FILTER PROPERTY
-		//$("#formularioFilterProperty")..submit(function(e){
+		//$("#formularioFilterProperty").submit(function(e){
 		$("#formularioFilterProperty").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
-				//$('#filter').modal.close();
+				$('#filter').modal("close");
 				$('#menuSecunFollow').panel("close");
 				searchFilterProperty();
 			}
 		});
 		
 		//BOTON ENTER FILTER EMAIL INBOX
-		//$("#formularioFilterEmailInbox")..submit(function(e){
+		//$("#formularioFilterEmailInbox").submit(function(e){
 		$("#formularioFilterEmailInbox").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
 				//$('#filterEI').modal.close();
+				$('#filterEI').modal("close");
 				$('#menuEmailInbox,#menuEmailInboxO').panel("close");
 				searchFilterMailInbox();
 			}
 		});
 		
 		//BOTON ENTER FILTER EMAIL OUTBOX
-		//$("#formularioFilterEmailOutbox")..submit(function(e){
+		//$("#formularioFilterEmailOutbox").submit(function(e){
 		$("#formularioFilterEmailOutbox").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
 				//$('#filterEO').modal.close();
+				$('#filterEO').modal("close");
 				$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 				searchFilterMailOutbox();
 			}
