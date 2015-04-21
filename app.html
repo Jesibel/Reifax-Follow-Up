@@ -277,7 +277,7 @@
 		
 		//FILTER EMAIL OutBOX
 		$('#filtromaO').on('click',function(){				
-			alert("filtro email outbox");
+			//alert("filtro email outbox");
 			gettypemailOutbox();
 		});
 		
@@ -1293,7 +1293,7 @@ $(function(){
 		
 		//SEND EMAIL
 		$('#sendE').on('click', function () {
-			alert('sendemail');
+			//alert('sendemail');
 			sendemail();
 			
 		});
@@ -1307,21 +1307,21 @@ $(function(){
 		
 		//BOTON EDITAR CONTACT
 		$("#updateCont").on('click', function () {
-			alert('editar');
+			//alert('editar');
 			editContact();
 			
 		});
 		
 		//BOTON FILTRAR CONTACT
 		$("#searchFilterContacts").on('click', function () {
-			alert('FILTRAR');
+			//alert('FILTRAR');
 			filterContacts();
 			
 		});
 		
 		//OUTBOX EMAIL
 		$("#outboxEmail").on('click', function () {
-			alert('outbox');
+			//alert('outbox');
 			//filterContacts();
 			
 		});
@@ -1502,9 +1502,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		table{
 			width:100% !important;
 		}
-		/*div#rootDiv{
-			margin-top:-900px!important;
-		}*/
+		div#rootDiv{
+			margin-top:-100px!important;
+		}
 	
 	}
 	@media screen and (min-width:480px) and (max-width:599px){
@@ -1629,6 +1629,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		}
 		.heightMenu.ui-panel{
 			min-height: 1% !important;
+		}
+		div#rootDiv{
+			margin-top:-100px!important;
 		}
 		
 	
@@ -2760,10 +2763,16 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
-		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
-		<!--div style="width: 100%;margin-top: -40px;text-align: right;">
-		<a id="editar" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button" data-theme="b" href="#formEditContacts"></a>
-		</div-->
+		<div style="text-align:left;margin-left:30px;">
+			<img src="resources/image/reifax_Followup-w.jpg" width="120" height="40">
+		</div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="deleteEmail" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+			<a id="replyEmail" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+			<a id="forwardEmail" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+			<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
+		</div>
+		
 	</div>
 	<!--FIN HEADER--> 
 		
