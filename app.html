@@ -388,20 +388,87 @@
 		
 $(function(){
 
-		
 
-        /*$("div#contacts").on("tap", function() {
-           //this).text("After tap event").css("background-color", "#86BDFF"); 
-		   alert('contacts');
-        });*/
-        /*$("div.test.taphold").on("taphold", function() {
-            $(this).text("After tap-and-hold event").css("background-color", "#FFBF4C"); 
+		//CLICK DETALLE DE PROPIEDADES
+		$('ul.page_result').on('click','li', function () {
+            alert('onclick');
+			var id= $(this).attr('parcelid');
+			
+			//alert(id);
+			// Creamos un objeto
+			var object = { 'parcelid' : id };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('key', JSON.stringify(object));			
+			$.mobile.changePage("#detailProperties","slide");
+			//window.location.href = "index.html#detailProperties";
+			
+				
         });
-		$("li.item").on("taphold", function() {
-            alert('itemmmmmm');
-			//$(this).text("After tap-and-hold event").css("background-color", "#FFBF4C"); 
-        });*/
-				 
+		
+		$(document).on('pagebeforeshow', '#detailProperties', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('key'));
+			// La alerta mostrará 1 por pantalla
+			alert(valor.parcelid);
+			//alert(valor.agent);
+			detailProperty(valor.parcelid);
+		});
+		
+		//CLICK DETALLE DE CONTACTOS
+		$('ul.page_contact').on('click','li', function () {
+            //alert('onclick contacts');
+			//alert(url);
+			var id= $(this).attr('agentid');
+			
+			//alert(id);
+			// Creamos un objeto
+			var object = { 'agent' : id };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('key', JSON.stringify(object));
+			//window.location.href = "#detailContacts?id=";
+			//window.location.href ="index.html#detailContacts";
+			$.mobile.changePage( "#detailContacts","slide");
+			
+        });
+		
+		$(document).on('pagebeforeshow', '#detailContacts', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('key'));
+			// La alerta mostrará 1 por pantalla
+			//alert(valor.agent);
+			//alert(valor.agent);
+			detailContact(valor.agent);
+		});
+		
+		//CLICK DETALLE DE EMAIL
+		$('ul.page_emailInbox').on('click','li', function () {
+            alert('onclick email');
+			//alert(url);
+			var id= $(this).attr('idmail');
+			
+			alert(id);
+			// Creamos un objeto
+			var object = { 'email' : id };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('key', JSON.stringify(object));
+			//window.location.href = "#detailContacts?id=";
+			//window.location.href ="index.html#detailContacts";
+			$.mobile.changePage( "#detailEmail","slide");
+			
+        });
+		
+		$(document).on('pagebeforeshow', '#detailEmail', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('key'));
+			// La alerta mostrará 1 por pantalla
+			//alert(valor.agent);
+			//alert(valor.agent);
+			detailEmails(valor.email);
+			detailEmailsCab(valor.email);
+		});
+		
+		
+		//LONG TOUCH PROPERTIES
 		$('ul.page_result').on('taphold','li', function () {
             alert('long Touch properties');
 			
@@ -574,85 +641,7 @@ $(function(){
 			
         });
 		
-		//CLICK DETALLE DE PROPIEDADES
-		$('ul.page_result').on('click','li', function () {
-            alert('onclick');
-			var id= $(this).attr('parcelid');
-			
-			//alert(id);
-			// Creamos un objeto
-			var object = { 'parcelid' : id };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('key', JSON.stringify(object));			
-			$.mobile.changePage("#detailProperties","slide");
-			//window.location.href = "index.html#detailProperties";
-			
-				
-        });
-		
-		$(document).on('pagebeforeshow', '#detailProperties', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('key'));
-			// La alerta mostrará 1 por pantalla
-			alert(valor.parcelid);
-			//alert(valor.agent);
-			detailProperty(valor.parcelid);
-		});
-		
-		//CLICK DETALLE DE CONTACTOS
-		$('ul.page_contact').on('click','li', function () {
-            //alert('onclick contacts');
-			//alert(url);
-			var id= $(this).attr('agentid');
-			
-			//alert(id);
-			// Creamos un objeto
-			var object = { 'agent' : id };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('key', JSON.stringify(object));
-			//window.location.href = "#detailContacts?id=";
-			//window.location.href ="index.html#detailContacts";
-			$.mobile.changePage( "#detailContacts","slide");
-			
-        });
-		
-		$(document).on('pagebeforeshow', '#detailContacts', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('key'));
-			// La alerta mostrará 1 por pantalla
-			//alert(valor.agent);
-			//alert(valor.agent);
-			detailContact(valor.agent);
-		});
-		
-		//CLICK DETALLE DE EMAIL
-		$('ul.page_emailInbox').on('click','li', function () {
-            alert('onclick email');
-			//alert(url);
-			var id= $(this).attr('idmail');
-			
-			alert(id);
-			// Creamos un objeto
-			var object = { 'email' : id };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('key', JSON.stringify(object));
-			//window.location.href = "#detailContacts?id=";
-			//window.location.href ="index.html#detailContacts";
-			$.mobile.changePage( "#detailEmail","slide");
-			
-        });
-		
-		$(document).on('pagebeforeshow', '#detailEmail', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('key'));
-			// La alerta mostrará 1 por pantalla
-			//alert(valor.agent);
-			//alert(valor.agent);
-			detailEmails(valor.email);
-			detailEmailsCab(valor.email);
-		});
-		
-		
+		//LOGN TOUCH CONTACT		
 		$('ul.page_contact').on('taphold','li', function () {
             alert('long Touch contact');
 			
@@ -818,28 +807,6 @@ $(function(){
 			
 			}
 			
-		});
-		
-		
-		
-		//CLICK EMAIL INBOX
-		/*$('ul.page_emailInbox').on('click','li', function () {
-            alert('onclick  EMAIL INBOX');
-			//location.reload(true);
-		});*/
-		
-		//CARGAR DATOS ASSIGNMENT CONTACT
-		$('#assCont').on('click',function(){
-			
-			var mail = JSON.parse(localStorage.getItem('key'));
-			var nam  = JSON.parse(localStorage.getItem('key2'));
-			alert(mail.email);		
-			alert(nam.name);		
-			getAssignContact(mail.email,nam.name);
-		});
-		//CARGAR DATOS ASSIGNMENT PROPERTY
-		$('#assProp').on('click',function(){			
-			getAssignProperty();
 		});
 		
 		
@@ -1109,12 +1076,7 @@ $(function(){
 			
 		});
 		
-		//CLICK EMAIL OUTBOX
-		$('ul.page_emailOutbox').on('click','li', function () {
-            alert('onclick  EMAIL OUTBOX');
-			//location.reload(true);
-		});
-		
+				
 		//LONG TOUCH EMAIL OUTBOX
 		$('ul.page_emailOutbox').on('taphold','li', function () {
             alert('long Touch email OUTbox');
@@ -1285,6 +1247,24 @@ $(function(){
 			}
 		});
 		
+		
+		//CARGAR DATOS ASSIGNMENT CONTACT
+		$('#assCont').on('click',function(){
+			
+			var mail = JSON.parse(localStorage.getItem('key'));
+			var nam  = JSON.parse(localStorage.getItem('key2'));
+			alert(mail.email);		
+			alert(nam.name);		
+			getAssignContact(mail.email,nam.name);
+		});
+		
+		//CARGAR DATOS ASSIGNMENT PROPERTY
+		$('#assProp').on('click',function(){			
+			getAssignProperty();
+		});
+		
+		
+		
 		//MAKE CALL
 		$('#makeCall').on('click', function () {
 			alert('get');
@@ -1342,6 +1322,7 @@ $(function(){
 			//alert('backContacts');
 			//document.getElementById("detalleContacto").innerHTML="";
 			$('#detalleCorreo').empty();
+			$('#detalleEmailCab ul').html('');
 		});
 		
 		
@@ -1730,6 +1711,14 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 			border-bottom: 2px solid #ccc;
 			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 		}
+		.page_emailOutbox li{
+			margin-bottom: 5px;
+			padding: 10px;
+			font-size: 15px;
+			list-style: none;
+			border-bottom: 2px solid #ccc;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
 		.foll{
 			height:50px;
 		}
@@ -1832,6 +1821,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 			visibility: visible; display: block;
 		}
 		.page_emailInbox li {
+			-webkit-transform: translateZ(0);
+		}
+		.page_emailOutbox li {
 			-webkit-transform: translateZ(0);
 		}
 		.seenB{
