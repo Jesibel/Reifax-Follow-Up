@@ -79,7 +79,7 @@
 		//SEARCH FILTER
 		$("#searchFilter").on('click', function () {
 			//alert("boton search del filtro");
-			$("#content ul").html('');
+			$("#content ul").empty();
 			searchFilterProperty();
 			
 		});
@@ -337,7 +337,7 @@
 				//alert('enter');
 				$("#filter").modal('hide');
 				$('#menuSecunFollow').panel("close");
-				$("#content ul").html('');
+				$("#content ul").empty();
 				searchFilterProperty();
 			}
 		});
