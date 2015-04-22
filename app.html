@@ -467,6 +467,29 @@ $(function(){
 			detailEmailsCab(valor.email);
 		});
 		
+		//CLICK DETALLE DE EMAIL outbox
+		$('ul.page_emailOutbox').on('click','li', function () {
+            alert('onclick email outbox');
+			//alert(url);
+			var id= $(this).attr('idmail');
+			
+			alert(id);
+			// Creamos un objeto
+			var object = { 'email' : id };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('key', JSON.stringify(object));
+			$.mobile.changePage( "#detailEmailOutbox");
+			
+        });
+		
+		
+		$(document).on('pagebeforeshow', '#detailEmailOutbox', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('key'));
+			//detailEmails(valor.email);
+			detailEmailsCabO(valor.email);
+		});
+		
 		
 		//LONG TOUCH PROPERTIES
 		$('ul.page_result').on('taphold','li', function () {
@@ -2795,6 +2818,59 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<!--FIN CONTENT-->	
 	
 </div><!-- /page --> 	
+
+<div data-role="page" id="detailEmailOutbox">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmailO" data-rel="back"></a>
+		<div style="text-align:left;margin-left:30px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<a id="deleteEmailO" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+		<a id="replyEmailO" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+		<a id="forwardEmailO" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a></div>
+		
+	</div>
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+		
+		<div class="mailBody" style="background:#fff;" id="detalleEmailCabO">
+			<ul style="list-style: none;margin-left:-40px;" class="page_detalle_emailO">
+			
+			</ul>
+		</div>
+		
+		<div class="mailBody" style="background:#fff;" id="detalleCorreoO">
+			<ul style="list-style: none;margin-left:-40px;" class="page_detalle_emailO">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	<!--MENU EMAIL DETALLE -->
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuDetailEmailOubox" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
+				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
+				<li class="margen"><a class="reply"      id="replyO"      href="#" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Reply</a></li>
+				<li class="margen"><a class="forward"    id="forwardO"    href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Forward</a></li>					
+				<!--li style="border-bottom: 2px solid #ccc;"><a class="assignContEmailInbox"   id="asscontEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
+				<li style="border-bottom: 2px solid #ccc;"><a class="assignProEmailInbox"    id="assiproEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li-->				
+			</ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+	
+	
+</div><!-- /page --> 
+
 
 <div data-role="page" id="emailHtml">
     <!--HEADER-->
