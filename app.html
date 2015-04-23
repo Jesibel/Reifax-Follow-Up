@@ -1367,21 +1367,21 @@ $(function(){
 $(document).scroll(function () {
 	
 	if ($(window).scrollTop() >= $(document).height() - $(window).height() - 100) {
-			//alert("End Of The Page");
-			//alert(start);
-			$(".loading-bar").html('Loading...');
+		//alert("End Of The Page");
+		//alert(start);
+		$(".loading-bar").html('Loading...');
 			
-				if (busy ==false) {
-					busy=true;
-					start = start+$settings.limit; 
-					console.log(start);	
-					listadoProperty(start,settings.limit);
-					listadoContacts(start,settings.limit);	
-					listadoEmailsInbox(start,settings.limit);					
-					listadoEmailsOutbox(start,settings.limit);					
-				}
+		if (busy ==false) {
+			busy=true;
+			start = start+$settings.limit; 
+			console.log(start);	
+			//listadoProperty(start,settings.limit);
+			listadoContacts(start,settings.limit);	
+			listadoEmailsInbox(start,settings.limit);					
+			listadoEmailsOutbox(start,settings.limit);					
+		}
 
-			if (pageName=='index.html'){
+			/*if (pageName=='index.html'){
 				busy=false;
 				if (busy ==false) {
 					//alert('busy false');
@@ -1390,7 +1390,7 @@ $(document).scroll(function () {
 					console.log(start);	
 					listadoProperty(start,settings.limit);	
 				}
-			}
+			}*/
 			
 	}
 });	
