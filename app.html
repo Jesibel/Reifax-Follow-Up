@@ -76,13 +76,7 @@
 				
 		});
 				
-		//SEARCH FILTER
-		$("#searchFilter").on('click', function () {
-			alert("search del filtro");
-			$("#content ul").empty();
-			searchFilterProperty();
-			
-		});
+		
 		
 		//FILTER REMOVE PROPERTIES
 		$("#filtro_remove,#filtro_remove2").on('click', function () {
@@ -326,13 +320,27 @@
 			}
 		});
 		
+		//SEARCH FILTER
+		$("#searchFilter").on('click', function () {
+			alert("search del filtro");
+			$("#content ul").empty();
+			//searchFilterProperty();
+			var start = 0; 
+			var limit = 25; 
+			listadoProperty(start,limit);
+			
+		});
+		
 		//BOTON ENTER FILTER PROPERTY
 		$("#formularioFilterProperty").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter property');
 				//$('#menuSecunFollow').panel("close");
 				$("#content ul").empty();
-				searchFilterProperty();
+				//searchFilterProperty();
+				var start = 0; 
+				var limit = 25; 
+				listadoProperty(start,limit);
 			}
 		});
 		
