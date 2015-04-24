@@ -97,13 +97,6 @@
 			insertContact();
 		});
 		
-		//SEARCH FILTER EMAIL INBOX
-		$("#searchFilterMailI").on('click', function () {
-			//alert("search del filtro mail inbox");
-			searchFilterMailInbox();
-			
-		});
-		
 		//FILTER REMOVE EMAIL INBOX
 		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
 			//alert('remove filter email inbox');
@@ -111,12 +104,6 @@
 					
 		});
 		
-		//SEARCH FILTER EMAIL OUTBOX
-		$("#searchFilterMailO").on('click', function () {
-			//alert("search del filtro mail OUTbox");
-			searchFilterMailOutbox();
-			
-		});
 		
 		//FILTER REMOVE EMAIL OUTBOX
 		$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
@@ -359,13 +346,39 @@
 			}
 		});
 		
+		//SEARCH FILTER EMAIL INBOX
+		$("#searchFilterMailI").on('click', function () {
+			//alert("search del filtro mail inbox");
+			//searchFilterMailInbox();
+			$("#emails ul").empty();
+			var start = 0; 
+			var limit = 25; 
+			listadoEmailsInbox(start,limit);
+			
+		});
+		
 		//BOTON ENTER FILTER EMAIL INBOX
 		$("#formularioFilterEmailInbox").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
 				$('#menuEmailInbox,#menuEmailInboxO').panel("close");
-				searchFilterMailInbox();
+				//searchFilterMailInbox();
+				$("#emails ul").empty();
+				var start = 0; 
+				var limit = 25; 
+				listadoEmailsInbox(start,limit);
 			}
+		});
+		
+		//SEARCH FILTER EMAIL OUTBOX
+		$("#searchFilterMailO").on('click', function () {
+			//alert("search del filtro mail OUTbox");
+			//searchFilterMailOutbox();
+			$("#emailsOutbox ul").empty();
+			var start = 0; 
+			var limit = 25; 
+			listadoEmailsOutbox(start,limit);
+			
 		});
 		
 		//BOTON ENTER FILTER EMAIL OUTBOX
@@ -373,7 +386,11 @@
 			if ((e.keyCode === 13)) {
 				//alert('enter');
 				$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-				searchFilterMailOutbox();
+				//searchFilterMailOutbox();
+				$("#emailsOutbox ul").empty();
+				var start = 0; 
+				var limit = 25; 
+				listadoEmailsOutbox(start,limit);
 			}
 		});
 		
