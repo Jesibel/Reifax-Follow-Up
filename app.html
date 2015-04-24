@@ -311,16 +311,31 @@
 			
 		});
 		
+		//BOTON FILTRAR CONTACT
+		$("#searchFilterContacts").on('click', function () {
+			//alert('FILTRAR');
+			//filterContacts();
+			$("#contacts ul").empty();
+			var start = 0; 
+			var limit = 25; 
+			listadoContacts(start, limit);
+		});
+		
+		
 		//BOTON ENTER FILTER CONTACT
 		$("#formularioFilterContact").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
-				//alert('enter');
+				alert('enter');
 				$('#menuContacts').panel("close");
-				filterContacts();
+				$("#contacts ul").empty();
+				//filterContacts();
+				var start = 0; 
+				var limit = 25; 
+				listadoContacts(start, limit)
 			}
 		});
 		
-		//SEARCH FILTER
+		//SEARCH FILTER PROPERTY WITH GO
 		$("#searchFilter").on('click', function () {
 			alert("search del filtro");
 			$("#content ul").empty();
@@ -1321,12 +1336,6 @@ $(function(){
 			
 		});
 		
-		//BOTON FILTRAR CONTACT
-		$("#searchFilterContacts").on('click', function () {
-			alert('FILTRAR');
-			filterContacts();
-			
-		});
 		
 			
 		$("#backProperty").on('click', function () {
