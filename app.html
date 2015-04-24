@@ -373,11 +373,7 @@
 		//SEARCH FILTER EMAIL OUTBOX
 		$("#searchFilterMailO").on('click', function () {
 			//alert("search del filtro mail OUTbox");
-			//searchFilterMailOutbox();
-			$("#emailsOutbox ul").empty();
-			var start = 0; 
-			var limit = 25; 
-			listadoEmailsOutbox(start,limit);
+			searchFilterMailOutbox();
 			
 		});
 		
@@ -386,11 +382,7 @@
 			if ((e.keyCode === 13)) {
 				//alert('enter');
 				$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-				//searchFilterMailOutbox();
-				$("#emailsOutbox ul").empty();
-				var start = 0; 
-				var limit = 25; 
-				listadoEmailsOutbox(start,limit);
+				searchFilterMailOutbox();
 			}
 		});
 		
