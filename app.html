@@ -71,14 +71,14 @@
 		
 		
 		$("#filtro,#filtro2").on('click', function () {
-				//alert('filtro');				
-				getfilterProperty();
+			//alert('filtro');				
+			getfilterProperty();
 				
 		});
 				
 		//SEARCH FILTER
 		$("#searchFilter").on('click', function () {
-			//alert("boton search del filtro");
+			alert("search del filtro");
 			$("#content ul").empty();
 			searchFilterProperty();
 			
@@ -87,14 +87,12 @@
 		//FILTER REMOVE PROPERTIES
 		$("#filtro_remove,#filtro_remove2").on('click', function () {
 			//alert('remove filter');
-			$('#menuSecunFollow').panel("close");
 			removeFilterProperty();
 		});
 		
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
 			//alert('remove filter CONTACTS');
-			$('#menuContacts').panel("close");
 			removeFilterContact();
 					
 		});
@@ -115,7 +113,6 @@
 		//FILTER REMOVE EMAIL INBOX
 		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
 			//alert('remove filter email inbox');
-			$('#menuEmailInbox,#menuEmailInboxO').panel("close");
 			removeFilterEmailInbox();
 					
 		});
@@ -130,7 +127,6 @@
 		//FILTER REMOVE EMAIL OUTBOX
 		$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
 			//alert('remove filter email outbox');
-			$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterEmailOutbox();
 					
 		});
@@ -325,7 +321,6 @@
 		$("#formularioFilterContact").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
-				$("#formfilterContact").modal('hide');
 				$('#menuContacts').panel("close");
 				filterContacts();
 			}
@@ -334,8 +329,7 @@
 		//BOTON ENTER FILTER PROPERTY
 		$("#formularioFilterProperty").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
-				//alert('enter');
-				$("#filter").modal('hide');
+				//alert('enter property');
 				$('#menuSecunFollow').panel("close");
 				$("#content ul").empty();
 				searchFilterProperty();
@@ -346,7 +340,6 @@
 		$("#formularioFilterEmailInbox").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
-				$("#filterEI").modal('hide');
 				$('#menuEmailInbox,#menuEmailInboxO').panel("close");
 				searchFilterMailInbox();
 			}
@@ -355,8 +348,7 @@
 		//BOTON ENTER FILTER EMAIL OUTBOX
 		$("#formularioFilterEmailOutbox").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
-				alert('enter');
-				$("#filterEO").modal('hide');
+				//alert('enter');
 				$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 				searchFilterMailOutbox();
 			}
@@ -390,7 +382,6 @@
 		
 $(function(){
 
-
 		//CLICK DETALLE DE PROPIEDADES
 		$('ul.page_result').on('click','li', function () {
             alert('onclick');
@@ -415,6 +406,7 @@ $(function(){
 			//alert(valor.agent);
 			detailProperty(valor.parcelid);
 		});
+		
 		
 		//CLICK DETALLE DE CONTACTOS
 		$('ul.page_contact').on('click','li', function () {
@@ -453,21 +445,18 @@ $(function(){
 			var object = { 'email' : id };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
 			localStorage.setItem('key', JSON.stringify(object));
-			//window.location.href = "#detailContacts?id=";
-			//window.location.href ="index.html#detailContacts";
-			$.mobile.changePage( "#detailEmail","slide");
+			$.mobile.changePage( "#detailEmail");
 			
         });
+		
 		
 		$(document).on('pagebeforeshow', '#detailEmail', function(){  
 			//var valor = localStorage.getItem("key");
 			var valor = JSON.parse(localStorage.getItem('key'));
-			// La alerta mostrará 1 por pantalla
-			//alert(valor.agent);
-			//alert(valor.agent);
 			detailEmails(valor.email);
 			detailEmailsCab(valor.email);
 		});
+		
 		
 		//CLICK DETALLE DE EMAIL outbox
 		$('ul.page_emailOutbox').on('click','li', function () {
@@ -493,7 +482,8 @@ $(function(){
 		});
 		
 		
-		//LONG TOUCH PROPERTIES
+		
+		//LONG TOUCH PROPERTY
 		$('ul.page_result').on('taphold','li', function () {
             alert('long Touch properties');
 			
@@ -666,7 +656,7 @@ $(function(){
 			
         });
 		
-		//LOGN TOUCH CONTACT		
+		//LOGN TOUCH CONTACT
 		$('ul.page_contact').on('taphold','li', function () {
             alert('long Touch contact');
 			
@@ -1100,8 +1090,8 @@ $(function(){
 			
 			
 		});
+								
 		
-				
 		//LONG TOUCH EMAIL OUTBOX
 		$('ul.page_emailOutbox').on('taphold','li', function () {
             alert('long Touch email OUTbox');
@@ -1272,10 +1262,8 @@ $(function(){
 			}
 		});
 		
-		
 		//CARGAR DATOS ASSIGNMENT CONTACT
-		$('#assCont').on('click',function(){
-			
+		$('#assCont').on('click',function(){			
 			var mail = JSON.parse(localStorage.getItem('key'));
 			var nam  = JSON.parse(localStorage.getItem('key2'));
 			alert(mail.email);		
@@ -1283,11 +1271,11 @@ $(function(){
 			getAssignContact(mail.email,nam.name);
 		});
 		
+		
 		//CARGAR DATOS ASSIGNMENT PROPERTY
 		$('#assProp').on('click',function(){			
 			getAssignProperty();
 		});
-		
 		
 		
 		//MAKE CALL
@@ -1298,7 +1286,7 @@ $(function(){
 		
 		//SEND EMAIL
 		$('#sendE').on('click', function () {
-			//alert('sendemail');
+			alert('sendemail');
 			sendemail();
 			
 		});
@@ -1310,27 +1298,29 @@ $(function(){
 			
 		});
 		
+		//CARGAR INFO REPLY EMAIL INBOX
+		$("#replyEmail").on('click', function () {
+			//alert('CARGAR FORM');
+			var val = JSON.parse(localStorage.getItem('key'));
+			getReplyInbox(val.email);
+			
+		});
+		
 		//BOTON EDITAR CONTACT
 		$("#updateCont").on('click', function () {
-			//alert('editar');
+			alert('editar');
 			editContact();
 			
 		});
 		
 		//BOTON FILTRAR CONTACT
 		$("#searchFilterContacts").on('click', function () {
-			//alert('FILTRAR');
+			alert('FILTRAR');
 			filterContacts();
 			
 		});
 		
-		//OUTBOX EMAIL
-		$("#outboxEmail").on('click', function () {
-			//alert('outbox');
-			//filterContacts();
 			
-		});
-		
 		$("#backProperty").on('click', function () {
 			alert('backProperty');
 			//document.getElementById("detalleContacto").innerHTML="";
@@ -1345,9 +1335,10 @@ $(function(){
 		
 		$("#backEmail").on('click', function () {
 			//alert('backContacts');
-			//document.getElementById("detalleContacto").innerHTML="";
+			//document.getElementById("detalleEmailCab").innerHTML="";
 			$('#detalleCorreo').empty();
 			$('#detalleEmailCab ul').html('');
+			
 		});
 		
 		$("#backEmailO").on('click', function () {
@@ -1361,6 +1352,7 @@ $(function(){
 		
 		
 		
+		
 });
 
 	
@@ -1370,7 +1362,7 @@ $(document).scroll(function () {
 		//alert("End Of The Page");
 		//alert(start);
 		$(".loading-bar").html('Loading...');
-			
+		//alert(busy);
 		if (busy ==false) {
 			busy=true;
 			start = start+$settings.limit; 
@@ -1379,6 +1371,8 @@ $(document).scroll(function () {
 			//listadoContacts(start,settings.limit);	
 			//listadoEmailsInbox(start,settings.limit);					
 			//listadoEmailsOutbox(start,settings.limit);					
+		}else if (busy==true){
+		
 		}
 
 			/*if (pageName=='index.html'){
@@ -1388,7 +1382,7 @@ $(document).scroll(function () {
 					busy=true;
 					start = start+$settings.limit; 
 					console.log(start);	
-					listadoProperty(start,settings.limit);	
+					//listadoProperty(start,settings.limit);	
 				}
 			}*/
 			
@@ -1644,7 +1638,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 			min-height: 1% !important;
 		}
 		div#rootDiv{
-			margin-top:-100px!important;
+			margin-top:-100px;
 		}
 		
 	
@@ -2716,6 +2710,100 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 </div>
 <!--FIN ASSIG PROPERTY-->
 
+<!--FORMULARIO REPLY INBOX-->
+<div class="modal fade bs-example-modal-sm" id="formReplyInbox" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Reply Email</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+				  <div class="span6">
+					<!--h4>Filters</h4-->
+					<p>Template<div id="templateReply"><select id="toEma" class="span12"></select></div>					
+					<p>To<div id="toReply"><select id="toRep" class="span12"></select></div></p>
+					<p>Subject<input id="subjectReply" type="text" class="span12" /></p>
+					
+					<div class="form-group">
+						<label>Attach:</label>
+						<input id="uploadFileReply" class="form-control" placeholder="Select a file" disabled="disabled" />
+						<div class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input id="uploadBtnReply"  type="file" class="upload" />					
+						</div>
+						<br>
+						<div id="browserReply"></div>
+						<div class="fileUpload btn btn-primary">
+							<span>Another file</span>
+							<input onclick="addInputReply()" class="another" />					
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Text:</label>
+						<textarea style="height:222px;" id="textReply" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					</div>
+				</div>
+						  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="sendReplyI" type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN REPLY INBOX-->
+
+<!--FORMULARIO REPLY OUTBOX-->
+<div class="modal fade bs-example-modal-sm" id="formReplyOutbox" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Reply Email</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+				  <div class="span6">
+					<!--h4>Filters</h4-->
+					<p>Template<div id="templateReplyO"><select id="toEma" class="span12"></select></div>					
+					<p>To<div id="toReply"><select id="toRepO" class="span12"></select></div></p>
+					<p>Subject<input id="subjectReplyO" type="text" class="span12" /></p>
+					
+					<div class="form-group">
+						<label>Attach:</label>
+						<input id="uploadFileReplyO" class="form-control" placeholder="Select a file" disabled="disabled" />
+						<div class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input id="uploadBtnReplyO"  type="file" class="upload" />					
+						</div>
+						<br>
+						<div id="browserReply"></div>
+						<div class="fileUpload btn btn-primary">
+							<span>Another file</span>
+							<input onclick="addInputReplyO()" class="another" />					
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Text:</label>
+						<textarea style="height:222px;" id="textReplyO" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					</div>
+				</div>
+						  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="sendReplyO" type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN REPLY OUTBOX-->
+
 	
 <div data-role="page" id="detailProperties">         
            <!--HEADER-->
@@ -2787,15 +2875,12 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
-		<div style="text-align:left;margin-left:30px;">
-			<img src="resources/image/reifax_Followup-w.jpg" width="120" height="40">
-		</div>
+		<div style="text-align:left;margin-left:30px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-			<a id="deleteEmail" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
-			<a id="replyEmail" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
-			<a id="forwardEmail" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
-			<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
-		</div>
+		<a id="deleteEmail" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+		<a id="replyEmail" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
+		<a id="forwardEmail" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a></div>
 		
 	</div>
 	<!--FIN HEADER--> 
@@ -2803,13 +2888,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<!--CONTENT-->
 	
 	<div data-role="content" >	
-			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
-					class="ifra2" id="webdetailContactHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetailsContacts.php">
-				<html>
-					<head></head>
-					<body></body>
-				</html>
-			</iframe-->
+		
 		<div class="mailBody" style="background:#fff;" id="detalleEmailCab">
 			<ul style="list-style: none;margin-left:-40px;" class="page_detalle_email">
 			
@@ -2825,8 +2904,24 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	</div>
 	
 	<!--FIN CONTENT-->	
+	<!--MENU EMAIL DETALLE -->
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuDetailEmailInbox" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
+				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
+				<li class="margen"><a class="reply"      id="reply"      href="#" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Reply</a></li>
+				<li class="margen"><a class="forward"    id="forward"    href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Forward</a></li>					
+				<!--li style="border-bottom: 2px solid #ccc;"><a class="assignContEmailInbox"   id="asscontEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
+				<li style="border-bottom: 2px solid #ccc;"><a class="assignProEmailInbox"    id="assiproEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li-->				
+			</ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
 	
-</div><!-- /page --> 	
+	
+</div><!-- /page --> 
+
 
 <div data-role="page" id="detailEmailOutbox">         
            <!--HEADER-->
@@ -2836,7 +2931,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		<div style="text-align:left;margin-left:30px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<a id="deleteEmailO" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
-		<a id="replyEmailO" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+		<a id="replyEmailO" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyOutbox"></a>
 		<a id="forwardEmailO" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a></div>
 		
@@ -2879,7 +2974,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	
 	
 </div><!-- /page --> 
-
+	
 
 <div data-role="page" id="emailHtml">
     <!--HEADER-->
