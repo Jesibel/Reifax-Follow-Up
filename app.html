@@ -395,7 +395,7 @@
 		var checkid = new Array();
 		var i;
 		var pageName = location.pathname.substring(1);
-			
+		var pagina=0;
 		//alert(pageName);
 		pageName = pageName.substring(15);
 		//alert(pageName);
@@ -1389,17 +1389,45 @@ $(document).scroll(function () {
 		//alert(start);
 		$(".loading-bar").html('Loading...');
 		//alert(busy);
-		if (busy ==false) {
-			busy=true;
-			start = start+$settings.limit; 
-			console.log(start);	
-			//listadoProperty(start,settings.limit);
-			//listadoContacts(start,settings.limit);	
-			//listadoEmailsInbox(start,settings.limit);					
-			//listadoEmailsOutbox(start,settings.limit);					
-		}else if (busy==true){
 		
-		}
+		
+	switch (pagina){
+        case(1):
+            //alert('following');
+			start = start+$settings.limit; 
+			listadoProperty(start,settings.limit);
+            break;
+        case(2):
+            //alert('emailI');
+			start = start+$settings.limit; 
+			listadoEmailsInbox(start,settings.limit);
+            break;
+        case(3):
+            //alert('emailO');
+			start = start+$settings.limit; 
+			listadoEmailsOutbox(start,settings.limit);
+            break;
+		 case(4):
+            //alert('contacts');
+			start = start+$settings.limit; 
+			listadoContacts(start,settings.limit);
+            break;
+        default:
+            alert('no coinciden con los anteriores');
+            break;
+    }	
+		
+	/*if (busy ==false) {
+		busy=true;
+		start = start+$settings.limit; 
+		console.log(start);	
+		//listadoProperty(start,settings.limit);
+		//listadoContacts(start,settings.limit);	
+		//listadoEmailsInbox(start,settings.limit);					
+		//listadoEmailsOutbox(start,settings.limit);					
+	}else if (busy==true){
+		
+	}*/
 
 			/*if (pageName=='index.html'){
 				busy=false;
@@ -1427,6 +1455,8 @@ $(document).scroll(function () {
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
 			//alert('page contacts');
 			busy=true;
+			pagina = 4;
+			$("#contacts ul").empty();
 			listadoContacts(start,settings.limit);
 							
 });
@@ -1434,13 +1464,18 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 $(document).on("pageshow","#followingHtml",function(){	
 			//alert('page following');
 			busy=true;
+			pagina = 1;
+			$("#content ul").empty();
 			listadoProperty(start,settings.limit);
+							
 							
 });
 
 $(document).on("pagebeforeshow","#emailHtml",function(){	
 			//alert('page email inbox');
 			busy=true;
+			pagina = 2;
+			$("#emails ul").empty();
 			listadoEmailsInbox(start,settings.limit);
 							
 });
@@ -1448,6 +1483,8 @@ $(document).on("pagebeforeshow","#emailHtml",function(){
 $(document).on("pagebeforeshow","#outboxEmailHtml",function(){	
 			//alert('page email outbox');
 			busy=true;
+			pagina = 3;
+			$("#emailsOutbox ul").empty();
 			listadoEmailsOutbox(start,settings.limit);
 							
 });
