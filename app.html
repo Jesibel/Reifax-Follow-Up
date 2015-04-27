@@ -369,11 +369,11 @@
 				//alert('enter');
 				$("#filterEI").modal('hide');
 				$('#menuEmailInbox,#menuEmailInboxO').panel("close");
-				//searchFilterMailInbox();
+				searchFilterMailInbox();
 				$("#emails ul").empty();
 				var start = 0; 
 				var limit = 25; 
-				listadoEmailsInbox(start,limit);
+				//listadoEmailsInbox(start,limit);
 			}
 		});
 		
@@ -3095,11 +3095,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
 		
 		
-		<div style="background:#fff;" id="emailFilter">
+		<!--div style="background:#fff;" id="emailFilter">
 			<ul style="list-style: none;margin-left:-40px;" class="page_emailInbox">
 			
 			</ul>
-		</div>
+		</div-->
 	</div>
 	<!--FIN CONTENT-->	
 	
@@ -3181,11 +3181,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
 		
 		
-		<div style="background:#fff;" id="emailOutboxFilter">
+		<!--div style="background:#fff;" id="emailOutboxFilter">
 			<ul style="list-style: none;margin-left:-40px;" class="page_emailOutbox">
 			
 			</ul>
-		</div>
+		</div-->
 	</div>
 	<!--FIN CONTENT-->	
 	
