@@ -1377,10 +1377,17 @@ $(function(){
 		
 		$("#backEmailO").on('click', function () {
 			//alert('backContacts');
-			//document.getElementById("detalleEmailCab").innerHTML="";
-			//$('#detalleCorreo').empty();
+			
 			$('#detalleEmailCabO ul').html('');
 			
+		});
+		
+		$("#backEdit").on('click', function () {			
+			$('#detalleContacto').empty();			
+		});
+		
+		$("#backAdd").on('click', function () {			
+			//$('#detalleContacto').empty();			
 		});
 		
 		
@@ -1421,7 +1428,7 @@ $(document).scroll(function () {
 			listadoContacts(start,settings.limit);
             break;
         default:
-            alert('no coinciden con los anteriores');
+            //alert('no coinciden con los anteriores');
             break;
     }	
 		
@@ -1584,6 +1591,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		div#rootDiv{
 			margin-top:-100px!important;
 		}
+		.formT{
+			margin-left:-10px !important;
+		}
 	
 	}
 	@media screen and (min-width:480px) and (max-width:599px){
@@ -1711,6 +1721,15 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		}
 		div#rootDiv{
 			margin-top:-100px;
+		}
+		.formC{
+			background: #eee;
+			border-radius: 5px;
+			border-left: 1px solid #d1d1d1;
+			width: 100%;
+		}
+		.formT{
+			margin-left:200px;
 		}
 		
 	
@@ -2318,7 +2337,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 <!--FIN FORMULARIO MAKE CALL-->
 
 <!--FORMULARIO ADD CONTACTS-->
-<div class="modal fade bs-example-modal-sm" id="formAddContacts" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+<!--div class="modal fade bs-example-modal-sm" id="formAddContacts" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -2328,7 +2347,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <div class="modal-body">
 				<div class="row-fluid">
 					<div class="span12">
-						<!--h4>Filters</h4-->
+						<!--h4>Filters</h4>
 						<p>Contact:<div id="agentCont"><input id="agenC" type="text" class="span12"/></div></p>
 						<p>type:<div id="typeagentCont"><select id="typC" class="span12"></select></div></p>
 						<p>Email1:<div id="email1Cont"><select style="width:30%;float:left;margin-right: 15px;" id="emai1Cont" class="span12"></select></div>
@@ -2368,11 +2387,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		</div>
   </div>
 </div>
-</div>
+</div-->
 <!--FIN FORMULARIO ADD CONTACTS-->
 
 <!--FORMULARIO EDIT CONTACTS-->
-<div class="modal fade bs-example-modal-sm" id="formEditContacts" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+<!--div class="modal fade bs-example-modal-sm" id="formEditContacts" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -2382,7 +2401,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <div class="modal-body">
 				<div class="row-fluid">
 					<div class="span12">
-						<!--h4>Filters</h4-->
+						<!--h4>Filters</h4>
 						<p>Contact:<div id="agentContEd"><input id="agenEd" type="text" class="span12"/></div></p>
 						<p>type:<div id="typeagentContEd"><select id="typEd" class="span12"></select></div></p>
 						<p>Email1:<div id="email1ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="emai1ContEd" class="span12"></select></div>
@@ -2422,7 +2441,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		</div>
   </div>
 </div>
-</div>
+</div-->
 <!--FIN FORMULARIO ADD CONTACTS-->
 
 <!--FILTER CONTACTS-->
@@ -2915,7 +2934,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backContacts" data-rel="back"></a>
 		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
-		<a id="editar" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button" data-theme="b" href="#formEditContacts"></a>
+		<a id="editar" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditContactoHtml"></a>
 		</div>
 	</div>
 	<!--FIN HEADER--> 
@@ -3253,7 +3272,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		<a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
 		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
-		<a id="addCont2" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-user-48.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formAddContacts"></a>
+		<a id="addCont2" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-user-48.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar"  role="button"  data-theme="b" href="#pagAddContactoHtml"></a>
 		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuContacts"></a>
 		</div>
 		
@@ -3329,6 +3348,474 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	<!--FIN MENU-->
 
 
+</div>
+
+<div data-role="page" id="pagAddContactoHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" id="header_one">				
+		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:30px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<a id="SaveContacto" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+		</div>
+	
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>
+		<!--FIN TABS-->
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		
+		<div style="margin-left: 1px;" class="row formC" id="formContacto">
+			<form style="margin-top: 30px;" class="form-inline">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label for="inputEmail3" class="col-sm-12 control-label">Contact</label>
+						<div id="agentCont" class="col-md-10">
+						  <input type="email" id="agenC" placeholder="Contact"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Type</label>
+						<div id="typeagentCont" class="col-md-10">
+						  <select id="typC" class="form-control"></select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Email1</label>
+						<div class="row">
+						  <div id="email1Cont" class="col-xs-6 col-sm-4">
+								<select id="emai1Cont"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="ema1Cont" type="text" class="form-control" placeholder="Email1"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Email2</label>
+						<div class="row">
+						  <div id="email2Cont" class="col-xs-6 col-sm-4">
+								<select id="emai2Cont"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="ema2Cont" type="text" class="form-control" placeholder="Email2"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label  class="col-sm-12 control-label">Company</label>
+						<div id="companyCo" class="col-md-10">
+							<input id="companyCont" type="text" class="form-control" placeholder="Company" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Website1</label>
+						<div class="row">
+						  <div id="website1Cont" class="col-xs-6 col-sm-4">
+								<select id="websit1Cont"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="web1Cont" type="text" class="form-control" placeholder="Website1"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Website2</label>
+						<div class="row">
+						  <div id="website2Cont" class="col-xs-6 col-sm-4">
+								<select id="websit2Cont"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="web2Cont" type="text" class="form-control" placeholder="Website2"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Phone</label>
+						<div class="row">
+						  <div id="phone1Cont" class="col-xs-6 col-sm-4">
+								<select id="phon1Cont"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="pho1Cont" type="text" class="form-control" placeholder="Phone"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Phone2</label>
+						<div class="row">
+						  <div id="phone2Cont" class="col-xs-6 col-sm-4">
+								<select id="phon2Cont"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="pho2Cont" type="text" class="form-control" placeholder="Phone2"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Phone3</label>
+						<div class="row">
+						  <div id="phone3Cont" class="col-xs-6 col-sm-4">
+								<select id="phon3Cont"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="pho3Cont" type="text" class="form-control" placeholder="Phone3"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Phone4</label>
+						<div class="row">
+						  <div id="phone4Cont" class="col-xs-6 col-sm-4">
+								<select id="phon4Cont"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="pho4Cont" type="text" class="form-control" placeholder="Phone4"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Phone5</label>
+						<div class="row">
+						  <div id="phone5Cont" class="col-xs-6 col-sm-4">
+								<select id="phon5Cont"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="pho5Cont" type="text" class="form-control" placeholder="Phone5"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Phone6</label>
+						<div class="row">
+						  <div id="phone6Cont" class="col-xs-6 col-sm-4">
+								<select id="phon6Cont"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="pho6Cont" type="text" class="form-control" placeholder="Phone5"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Address1</label>
+						<div class="row">
+						  <div id="address1Cont" class="col-xs-6 col-sm-4">
+								<select id="addre1Cont"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="addr1Cont" type="text" class="form-control" placeholder="Address1"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Address2</label>
+						<div class="row">
+						  <div id="address2Cont" class="col-xs-6 col-sm-4">
+								<select id="addre2Cont"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="addr2Cont" type="text" class="form-control" placeholder="Address2"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="insertCont" class="btn btn-success" type="button" value="Insert">
+						<input id="resetAdd" class="btn btn-default" type="button" value="Reset">
+					</div>
+				</div>
+			</form>
+		
+		</div>
+		
+		
+	</div>
+	<!--FIN CONTENT-->	
+	
+	
+</div>
+
+<div data-role="page" id="pagEditContactoHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" id="header_one">				
+		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEdit" data-rel="back"></a>
+		<div style="text-align:left;margin-left:30px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<a id="SaveEditContacto" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-as-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+		</div>
+	
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>
+		<!--FIN TABS-->
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		
+		<div style="margin-left: 1px;" class="row formC" id="formEditContacto">
+			<form style="margin-top: 30px;" class="form-inline">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label for="inputEmail3" class="col-sm-12 control-label">Contact</label>
+						<div id="agentContEd" class="col-md-10">
+						  <input type="email" id="agenEd" placeholder="Contact"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Type</label>
+						<div id="typeagentContEd" class="col-md-10">
+						  <select id="typEd" class="form-control"></select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Email1</label>
+						<div class="row">
+						  <div id="email1ContEd" class="col-xs-6 col-sm-4">
+								<select id="emai1ContEd"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="ema1ContEd" type="text" class="form-control" placeholder="Email1"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Email2</label>
+						<div class="row">
+						  <div id="email2ContEd" class="col-xs-6 col-sm-4">
+								<select id="emai2ContEd"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="ema2ContEd" type="text" class="form-control" placeholder="Email2"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label  class="col-sm-12 control-label">Company</label>
+						<div id="companyCoEd" class="col-md-10">
+							<input id="companyContEd" type="text" class="form-control" placeholder="Company" />
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Website1</label>
+						<div class="row">
+						  <div id="website1ContEd" class="col-xs-6 col-sm-4">
+								<select id="websit1ContEd"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="web1ContEd" type="text" class="form-control" placeholder="Website1"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Website2</label>
+						<div class="row">
+						  <div id="website2ContEd" class="col-xs-6 col-sm-4">
+								<select id="websit2ContEd"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="web2ContEd" type="text" class="form-control" placeholder="Website2"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Phone</label>
+						<div class="row">
+						  <div id="phone1ContEd" class="col-xs-6 col-sm-4">
+								<select id="phon1ContEd"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="pho1ContEd" type="text" class="form-control" placeholder="Phone"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Phone2</label>
+						<div class="row">
+						  <div id="phone2ContEd" class="col-xs-6 col-sm-4">
+								<select id="phon2ContEd"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="pho2ContEd" type="text" class="form-control" placeholder="Phone2"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Phone3</label>
+						<div class="row">
+						  <div id="phone3ContEd" class="col-xs-6 col-sm-4">
+								<select id="phon3ContEd"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="pho3ContEd" type="text" class="form-control" placeholder="Phone3"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Phone4</label>
+						<div class="row">
+						  <div id="phone4ContEd" class="col-xs-6 col-sm-4">
+								<select id="phon4ContEd"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="pho4ContEd" type="text" class="form-control" placeholder="Phone4"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Phone5</label>
+						<div class="row">
+						  <div id="phone5ContEd" class="col-xs-6 col-sm-4">
+								<select id="phon5ContEd"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="pho5ContEd" type="text" class="form-control" placeholder="Phone5"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Phone6</label>
+						<div class="row">
+						  <div id="phone6ContEd" class="col-xs-6 col-sm-4">
+								<select id="phon6ContEd"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="pho6ContEd" type="text" class="form-control" placeholder="Phone5"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Address1</label>
+						<div class="row">
+						  <div id="address1ContEd" class="col-xs-6 col-sm-4">
+								<select id="addre1ContEd"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="addr1ContEd" type="text" class="form-control" placeholder="Address1"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Address2</label>
+						<div class="row">
+						  <div id="address2ContEd" class="col-xs-6 col-sm-4">
+								<select id="addre2ContEd"  class="form-control" data-style="btn-success"></select>
+						  </div>
+						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
+								<input id ="addr2ContEd" type="text" class="form-control" placeholder="Address2"/>
+						  </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="updateCont" class="btn btn-success" type="button" value="Insert">
+						<input id="resetEd" class="btn btn-default" type="button" value="Reset">
+					</div>
+				</div>
+			</form>
+		
+		</div>
+		
+		
+	</div>
+	<!--FIN CONTENT-->	
+	
+	
 </div>
 
 </body>
