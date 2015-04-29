@@ -99,6 +99,12 @@
 			insertContact();
 		});
 		
+		//RESET CONTACTS
+		$("#resetAdd").on('click', function () {
+			//alert('insert');			
+			resetformCont();
+		});
+		
 		//FILTER REMOVE EMAIL INBOX
 		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
 			//alert('remove filter email inbox');
@@ -3272,7 +3278,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		<a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
 		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
-		<a id="addCont2" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-user-48.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar"  role="button"  data-theme="b" href="#pagAddContactoHtml"></a>
+		<a id="addCont2" style="margin-right:10px;height:35px;width:35pxmargin-bottom:5px;background-image: url('img/add-user-48.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar"  role="button"  data-theme="b" href="#pagAddContactoHtml"></a>
 		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuContacts"></a>
 		</div>
 		
