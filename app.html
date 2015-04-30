@@ -1365,20 +1365,18 @@ $(function(){
 		$("#backProperty").on('click', function () {
 			//alert('backProperty');
 			//document.getElementById("detalleContacto").innerHTML="";
-			/*$('#detallePropiedades').empty();
-			var start = 0; 
-			var limit = 25; 
-			listadoProperty(start,limit);*/
-			backPro();
+			$('#detallePropiedades').empty();
+			
+			listadoProperty(start,settings.limit);
+			//backPro();
 		});
 		
 		$("#backContacts").on('click', function () {
 			//alert('backContacts');
 			//document.getElementById("detalleContacto").innerHTML="";
 			$('#detalleContacto').empty();
-			var start = 0; 
-			var limit = 25; 
-			listadoContacts(start,limit);
+			
+			listadoContacts(start,settings.limit);
 		});
 		
 		$("#backEmail").on('click', function () {
