@@ -1412,7 +1412,7 @@ $(document).scroll(function () {
 			if (busy==false){
 				alert('following');
 				start = start+$settings.limit; 
-				//listadoProperty(start,settings.limit);
+				listadoProperty(start,settings.limit);
 			}
             break;
         case(2):
@@ -1462,7 +1462,7 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 							
 });
 
-$(document).on("pageshow","#followingHtml",function(){	
+$(document).on("pagebeforeshow","#followingHtml",function(){	
 			alert('page following');
 			busy=true;
 			pagina = 1;
