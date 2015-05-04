@@ -80,14 +80,14 @@
 		//FILTER REMOVE PROPERTIES
 		$("#filtro_remove,#filtro_remove2").on('click', function () {
 			//alert('remove filter');
-			//$('#menuSecunFollow').panel("close");
+			$('#menuSecunFollow').panel("close");
 			removeFilterProperty();
 		});
 		
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
 			//alert('remove filter CONTACTS');
-			//$('#menuContacts').panel("close");
+			$('#menuContacts').panel("close");
 			removeFilterContact();
 					
 		});
@@ -95,7 +95,7 @@
 		//FILTER REMOVE EMAIL INBOX
 		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
 			//alert('remove filter email inbox');
-			//$('#menuEmailInbox,#menuEmailInboxO').panel("close");
+			$('#menuEmailInbox,#menuEmailInboxO').panel("close");
 			removeFilterEmailInbox();
 					
 		});
@@ -104,7 +104,7 @@
 		//FILTER REMOVE EMAIL OUTBOX
 		$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
 			//alert('remove filter email outbox');
-			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterEmailOutbox();
 					
 		});
@@ -394,7 +394,7 @@
 		//BOTON ENTER FILTER EMAIL OUTBOX
 		$("#formularioFilterEmailOutbox").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
-				alert('enter');
+				//alert('enter');
 				$("#filterEO").modal('hide');
 				$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 				//searchFilterMailOutbox();
@@ -1412,7 +1412,7 @@ $(document).scroll(function () {
 			if (busy==false){
 				alert('following');
 				start = start+$settings.limit; 
-				listadoProperty(start,settings.limit);
+				//listadoProperty(start,settings.limit);
 			}
             break;
         case(2):
