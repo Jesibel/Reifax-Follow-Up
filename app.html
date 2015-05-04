@@ -1409,15 +1409,19 @@ $(document).scroll(function () {
 			listadoProperty(start,settings.limit);
 			}
             break;
-        case(2):
+        case(2):	
+			if (busy==false){
             //alert('emailI');
 			start = start+$settings.limit; 
 			listadoEmailsInbox(start,settings.limit);
+			}
             break;
         case(3):
+			if (busy==false){
             //alert('emailO');
 			start = start+$settings.limit; 
 			listadoEmailsOutbox(start,settings.limit);
+			}
             break;
 		 case(4):
 			if (busy==false){
@@ -1503,6 +1507,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 			busy=true;
 			pagina = 3;
 			$("#emailsOutbox ul").empty();
+			start=0;
 			listadoEmailsOutbox(start,settings.limit);
 							
 });
@@ -3340,7 +3345,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 			<ul data-role="listview" data-icon="false">	 
 				<a class="closeMenu" style="display:none;" href="#" data-rel="close">Close</a>
 				<!--li><a class="deleteContacts"    id="deleteCont"         href="#deleteContact" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Contacts</a></li-->
-				<li class="margen"><a class="addContacts"       id="addCont"            href="#formAddContacts"   class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Contacts</a></li>
+				<!--li class="margen"><a class="addContacts"       id="addCont"            href="#formAddContacts"   class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Contacts</a></li-->
 				<!--li><a class="editContacts"      id="editCont"           href="#formeditContact"   class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Edit Contacts</a></li-->
 				<li class="margen"><a class="filter"            id="filtrocontact"      href="#formfilterContact" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Contacts</a></li>
 				<li class="margen"><a class="filterRemove"      id="filtro_removeCont"  href="#formfilterRemoveContact" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
