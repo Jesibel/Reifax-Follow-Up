@@ -1420,9 +1420,11 @@ $(document).scroll(function () {
 			listadoEmailsOutbox(start,settings.limit);
             break;
 		 case(4):
+			if (busy==false){
             //alert('contacts');
 			start = start+$settings.limit; 
 			listadoContacts(start,settings.limit);
+			}
             break;
         default:
             //alert('no coinciden con los anteriores');
