@@ -47,7 +47,7 @@
 	
 	<script type="text/javascript">
 	
-		
+	
 	$(document).ready(function(){
 	
 		
@@ -65,31 +65,47 @@
 		document.getElementById('searchFilterMailI2').style.display = "none";
 		document.getElementById('searchFilter2').style.display = "none";
 		document.getElementById('searchFilterMailO2').style.display = "none";
+		//document.getElementById('formContacto').style.display = "none";
 		
 		
 		//document.getElementById('menuContacts').style.display = "block";
 		
-		
+		//FILTER PROPERTIES
 		$("#filtro,#filtro2").on('click', function () {
 			//alert('filtro');				
 			getfilterProperty();
 				
 		});
-				
-		
 		
 		//FILTER REMOVE PROPERTIES
 		$("#filtro_remove,#filtro_remove2").on('click', function () {
 			//alert('remove filter');
-			$('#menuSecunFollow').panel("close");
+			//$('#menuSecunFollow').panel("close");
 			removeFilterProperty();
 		});
 		
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
 			//alert('remove filter CONTACTS');
-			$('#menuContacts').panel("close");
+			//$('#menuContacts').panel("close");
 			removeFilterContact();
+					
+		});
+		
+		//FILTER REMOVE EMAIL INBOX
+		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
+			//alert('remove filter email inbox');
+			//$('#menuEmailInbox,#menuEmailInboxO').panel("close");
+			removeFilterEmailInbox();
+					
+		});
+		
+		
+		//FILTER REMOVE EMAIL OUTBOX
+		$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
+			//alert('remove filter email outbox');
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			removeFilterEmailOutbox();
 					
 		});
 		
@@ -104,25 +120,6 @@
 			//alert('insert');			
 			resetformCont();
 		});
-		
-		//FILTER REMOVE EMAIL INBOX
-		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
-			//alert('remove filter email inbox');
-			$('#menuEmailInbox,#menuEmailInboxO').panel("close");
-			removeFilterEmailInbox();
-					
-		});
-		
-		
-		//FILTER REMOVE EMAIL OUTBOX
-		$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
-			//alert('remove filter email outbox');
-			$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-			removeFilterEmailOutbox();
-					
-		});
-		
-		
 		
 		$("#webdetailHtml,#webdetailcontactHtml#webMyaccountHtml").height($(window).height()-$("div.ui-page-active div[data-role='header']").height()-7-63);	
 
@@ -246,9 +243,8 @@
 			
 		//AGREGAR CONTACTS
 		$('#addCont,#addCont2').on('click',function(){				
-			//alert("addc");
-			getTypeContacts();						
-				
+			alert("addc");
+			getTypeContacts();	
 		});
 			
 		//FILTER CONTACTS
@@ -333,9 +329,9 @@
 			}
 		});
 		
-		//SEARCH FILTER PROPERTY WITH GO
+		//SEARCH FILTER PROPERTY WITH BOTON SEARCH
 		$("#searchFilter").on('click', function () {
-			//alert("search del filtro");
+			//alert("search del filtro");						
 			$('#menuSecunFollow').panel("close");
 			$("#content ul").empty();
 			//searchFilterProperty();
@@ -348,7 +344,7 @@
 		//BOTON ENTER FILTER PROPERTY
 		$("#formularioFilterProperty").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
-				//alert('enter property');
+				alert('enter property');
 				$("#filter").modal('hide');
 				$('#menuSecunFollow').panel("close");
 				$("#content ul").empty();
@@ -391,14 +387,14 @@
 			$("#emailsOutbox ul").empty();
 			var start = 0; 
 			var limit = 25; 
-			listadoEmailsInbox(start,limit);
+			listadoEmailsOutbox(start,limit);
 			
 		});
 		
 		//BOTON ENTER FILTER EMAIL OUTBOX
 		$("#formularioFilterEmailOutbox").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
-				//alert('enter');
+				alert('enter');
 				$("#filterEO").modal('hide');
 				$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 				//searchFilterMailOutbox();
@@ -439,15 +435,15 @@ $(function(){
 
 		//CLICK DETALLE DE PROPIEDADES
 		$('ul.page_result').on('click','li', function () {
-            //alert('onclick');
+            alert('onclick');
 			var id= $(this).attr('parcelid');
 			
 			//alert(id);
 			// Creamos un objeto
 			var object = { 'parcelid' : id };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('key', JSON.stringify(object));	
-			$('#detallePropiedades').empty();						
+			localStorage.setItem('key', JSON.stringify(object));
+			$('#detallePropiedades').empty();
 			$.mobile.changePage("#detailProperties","slide");
 			//window.location.href = "index.html#detailProperties";
 			
@@ -458,7 +454,7 @@ $(function(){
 			//var valor = localStorage.getItem("key");
 			var valor = JSON.parse(localStorage.getItem('key'));
 			// La alerta mostrará 1 por pantalla
-			//alert(valor.parcelid);
+			alert(valor.parcelid);
 			//alert(valor.agent);
 			detailProperty(valor.parcelid);
 		});
@@ -891,8 +887,8 @@ $(function(){
 			var email= $(this).attr('idemail');
 			var name= $(this).attr('idname');			
 			
-			alert(id);
-			alert(idseen);
+			//alert(id);
+			//alert(idseen);
 			
 			var object = { 'email' : email };
 			localStorage.setItem('key', JSON.stringify(object));
@@ -1155,7 +1151,7 @@ $(function(){
 			
 			var id= $(this).attr('idmail');
 			
-			alert(id);
+			//alert(id);
 			
 			//longEmailInbox(id);
 			if(checkid.length==0){
@@ -1323,8 +1319,8 @@ $(function(){
 		$('#assCont').on('click',function(){			
 			var mail = JSON.parse(localStorage.getItem('key'));
 			var nam  = JSON.parse(localStorage.getItem('key2'));
-			alert(mail.email);		
-			alert(nam.name);		
+			//alert(mail.email);		
+			//alert(nam.name);		
 			getAssignContact(mail.email,nam.name);
 		});
 		
@@ -1337,7 +1333,7 @@ $(function(){
 		
 		//MAKE CALL
 		$('#makeCall').on('click', function () {
-			alert('get');
+			//alert('get');
 			getAgentMakeCall(checkid);
 		});
 		
@@ -1369,7 +1365,7 @@ $(function(){
 			editContact();
 			
 		});
-						
+		
 		$("#backEmail").on('click', function () {
 			//alert('backContacts');
 			//document.getElementById("detalleEmailCab").innerHTML="";
@@ -1380,7 +1376,8 @@ $(function(){
 		
 		$("#backEmailO").on('click', function () {
 			//alert('backContacts');
-			
+			//document.getElementById("detalleEmailCab").innerHTML="";
+			//$('#detalleCorreo').empty();
 			$('#detalleEmailCabO ul').html('');
 			
 		});
@@ -1405,19 +1402,20 @@ $(document).scroll(function () {
 	if ($(window).scrollTop() >= $(document).height() - $(window).height() - 100) {
 		//alert("End Of The Page");
 		//alert(start);
-		//$(".loading-bar").html('Loading...');
+		$(".loading-bar").html('Loading...');
+		
 		//alert(busy);
 		
 		
 	switch (pagina){
         case(1):
 			if (busy==false){
-            //alert('following');
-			start = start+$settings.limit; 
-			listadoProperty(start,settings.limit);
+				alert('following');
+				start = start+$settings.limit; 
+				listadoProperty(start,settings.limit);
 			}
             break;
-        case(2):	
+        case(2):
 			if (busy==false){
             //alert('emailI');
 			start = start+$settings.limit; 
@@ -1425,11 +1423,9 @@ $(document).scroll(function () {
 			}
             break;
         case(3):
-			if (busy==false){
             //alert('emailO');
 			start = start+$settings.limit; 
 			listadoEmailsOutbox(start,settings.limit);
-			}
             break;
 		 case(4):
 			if (busy==false){
@@ -1443,29 +1439,6 @@ $(document).scroll(function () {
             break;
     }	
 		
-	/*if (busy ==false) {
-		busy=true;
-		start = start+$settings.limit; 
-		console.log(start);	
-		//listadoProperty(start,settings.limit);
-		//listadoContacts(start,settings.limit);	
-		//listadoEmailsInbox(start,settings.limit);					
-		//listadoEmailsOutbox(start,settings.limit);					
-	}else if (busy==true){
-		
-	}*/
-
-			/*if (pageName=='index.html'){
-				busy=false;
-				if (busy ==false) {
-					//alert('busy false');
-					busy=true;
-					start = start+$settings.limit; 
-					console.log(start);	
-					//listadoProperty(start,settings.limit);	
-				}
-			}*/
-			
 	}
 });	
 
@@ -1490,7 +1463,7 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 });
 
 $(document).on("pageshow","#followingHtml",function(){	
-			//alert('page following');
+			alert('page following');
 			busy=true;
 			pagina = 1;
 			$("#content ul").empty();
@@ -2362,7 +2335,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <div class="modal-body">
 				<div class="row-fluid">
 					<div class="span12">
-						<!--h4>Filters</h4>
+						<h4>Filters</h4>
 						<p>Contact:<div id="agentCont"><input id="agenC" type="text" class="span12"/></div></p>
 						<p>type:<div id="typeagentCont"><select id="typC" class="span12"></select></div></p>
 						<p>Email1:<div id="email1Cont"><select style="width:30%;float:left;margin-right: 15px;" id="emai1Cont" class="span12"></select></div>
@@ -2416,7 +2389,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <div class="modal-body">
 				<div class="row-fluid">
 					<div class="span12">
-						<!--h4>Filters</h4>
+						<h4>Filters</h4>
 						<p>Contact:<div id="agentContEd"><input id="agenEd" type="text" class="span12"/></div></p>
 						<p>type:<div id="typeagentContEd"><select id="typEd" class="span12"></select></div></p>
 						<p>Email1:<div id="email1ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="emai1ContEd" class="span12"></select></div>
@@ -2911,11 +2884,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 <!--FIN REPLY OUTBOX-->
 
 	
-<div data-role="page" id="detailProperties">         
+<div data-role="page" id="detailProperties" data-add-back-btn="true">         
            <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
-		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
+		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" data-rel="back"></a>
 		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 	</div>
 	<!--FIN HEADER--> 
@@ -3322,12 +3295,12 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
 		
 		
-		<div style="background:#fff;" id="contactsFilter">
+		<!--div style="background:#fff;" id="contactsFilter">
 			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
 			
 			</ul>
-		</div>
-		
+		</div-->
+				
 		
 	</div>
 	<!--FIN CONTENT-->	
@@ -3399,7 +3372,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-xs-12 col-sm-6 col-md-10 formT">
 						<label for="inputEmail3" class="col-sm-12 control-label">Contact</label>
 						<div id="agentCont" class="col-md-10">
-						  <input type="email" id="agenC" placeholder="Contact"/>
+						  <input type="text" id="agenC" placeholder="Contact"/>
 						</div>
 					</div>
 				</div>
@@ -3606,7 +3579,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		<a style="background-image: url('img/back-48.png');background-repeat:no-repeat;top: 10px;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEdit" data-rel="back"></a>
 		<div style="text-align:left;margin-left:30px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-		<a id="updateCont2" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-as-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<a id="updateCont2" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-as-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
 		<!--TABS-->
@@ -3633,7 +3606,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-xs-12 col-sm-6 col-md-10 formT">
 						<label for="inputEmail3" class="col-sm-12 control-label">Contact</label>
 						<div id="agentContEd" class="col-md-10">
-						  <input type="email" id="agenEd" placeholder="Contact"/>
+						  <input type="text" id="agenEd" placeholder="Contact"/>
 						</div>
 					</div>
 				</div>
