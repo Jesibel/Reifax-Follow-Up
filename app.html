@@ -1472,6 +1472,7 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 			busy=true;
 			pagina = 4;
 			$("#contacts ul").empty();
+			start=0;
 			listadoContacts(start,settings.limit);
 							
 });
@@ -1481,6 +1482,7 @@ $(document).on("pageshow","#followingHtml",function(){
 			busy=true;
 			pagina = 1;
 			$("#content ul").empty();
+			start=0;
 			listadoProperty(start,settings.limit);
 							
 							
@@ -1491,6 +1493,7 @@ $(document).on("pagebeforeshow","#emailHtml",function(){
 			busy=true;
 			pagina = 2;
 			$("#emails ul").empty();
+			start=0;
 			listadoEmailsInbox(start,settings.limit);
 							
 });
