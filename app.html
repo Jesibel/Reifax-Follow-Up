@@ -387,7 +387,11 @@
 		//SEARCH FILTER EMAIL OUTBOX
 		$("#searchFilterMailO").on('click', function () {
 			//alert("search del filtro mail OUTbox");
-			searchFilterMailOutbox();
+			//searchFilterMailOutbox();
+			$("#emailsOutbox ul").empty();
+			var start = 0; 
+			var limit = 25; 
+			listadoEmailsInbox(start,limit);
 			
 		});
 		
@@ -397,7 +401,11 @@
 				//alert('enter');
 				$("#filterEO").modal('hide');
 				$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-				searchFilterMailOutbox();
+				//searchFilterMailOutbox();
+				$("#emailsOutbox ul").empty();
+				var start = 0; 
+				var limit = 25; 
+				listadoEmailsOutbox(start,limit);
 			}
 		});
 		
