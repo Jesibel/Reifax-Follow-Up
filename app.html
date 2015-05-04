@@ -1403,9 +1403,11 @@ $(document).scroll(function () {
 		
 	switch (pagina){
         case(1):
+			if (busy==false){
             //alert('following');
 			start = start+$settings.limit; 
 			listadoProperty(start,settings.limit);
+			}
             break;
         case(2):
             //alert('emailI');
