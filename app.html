@@ -66,14 +66,21 @@
 		document.getElementById('searchFilter2').style.display = "none";
 		document.getElementById('searchFilterMailO2').style.display = "none";
 		//document.getElementById('formContacto').style.display = "none";
-
+	
+		//FILTER PROPERTIES
+		$("#filtro,#filtro2").on('click', function () {
+			//alert('filtro');				
+			getfilterProperty();
+				
+		});
 		
-		//FILTER REMOVE CONTACTS
+		//FILTER REMOVE PROPERTIES
+
 		$("#filtro_remove,#filtro_remove2").on('click', function () {
 			//alert('remove filter CONTACTS');
 			$('#menuSecunFollow').panel("close");
 			removeFilterProperty();
-					
+
 		});
 		
 		//FILTER REMOVE CONTACTS
@@ -339,7 +346,7 @@
 		
 		//SEARCH FILTER PROPERTY WITH BOTON SEARCH
 		$("#searchFilter").on('click', function () {
-			//alert("search del filtro");						
+			alert("search del filtro");						
 			$('#menuSecunFollow').panel("close");
 			$("#content ul").empty();
 			//searchFilterProperty();
@@ -349,16 +356,30 @@
 			
 		});
 		
-		
+		//BOTON ENTER FILTER PROPERTY
+		/*$("#formularioFilterProperty").on("keypress", function(e){ 
+			if ((e.keyCode === 13)) {
+				alert('tecla enter property');
+				//$("#filter").modal('hide');
+				$('#menuSecunFollow').panel("close");
+				$("#content ul").empty();
+				searchFilterProperty();
+				var start = 0; 
+				var limit = 25; 
+				//listadoProperty(start,limit);
+			}
+		});*/
+	
 		$('#formularioFilterProperty').submit(function(){
-			//alert('enter property');
+			event.preventDefault();
+			alert('enter property');
 			$("#filter").modal('hide');
 			$('#menuSecunFollow').panel("close");
 			$("#content ul").empty();
 			//searchFilterProperty();
-			//var start = 0; 
-			//var limit = 25; 
-			//listadoProperty(start,limit);
+			var start = 0; 
+			var limit = 25; 
+			listadoProperty(start,limit);
 		 
 		 });
 		
@@ -1470,7 +1491,9 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 });
 
 $(document).on("pagebeforeshow","#followingHtml",function(){	
+
 			//alert('page following');
+
 			busy=true;
 			pagina = 1;
 			$("#content ul").empty();
@@ -1479,45 +1502,6 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 	
 	
 });
-/*$(document).on('click', '#searchFilter2', function() {
-	alert('tecla go');
-	$("#filter").modal('hide');
-	$('#menuSecunFollow').panel("close");
-	$("#content ul").empty();
-				
-	var start = 0; 
-	var limit = 25; 
-	//listadoProperty(start,limit);
-
-});*/
-
-/*$(document).on('click', '#searchFilter', function() {
-	alert('boton search');
-	//alert("search del filtro");						
-	$('#menuSecunFollow').panel("close");
-	$("#content ul").empty();
-	//searchFilterProperty();
-	var start = 0; 
-	var limit = 25; 
-	listadoProperty(start,limit);
-
-});
-
-$(document).on('click', '#filtro_remove,#filtro_remove2', function() {
-
-	//alert('remove filter');
-	//$('#menuSecunFollow').panel("close");
-	removeFilterProperty();
-});
-
-$(document).on('click', '#filtro,#filtro2', function() {
-		
-//alert('filtro');				
-	getfilterProperty();
-				
-});*/
-							
-							
 
 
 $(document).on("pagebeforeshow","#emailHtml",function(){	
