@@ -66,13 +66,7 @@
 		document.getElementById('searchFilter2').style.display = "none";
 		document.getElementById('searchFilterMailO2').style.display = "none";
 		//document.getElementById('formContacto').style.display = "none";
-		
-		
-		//document.getElementById('menuContacts').style.display = "block";
-		
-		
-		
-		
+
 		
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
@@ -342,33 +336,18 @@
 			
 		});*/
 		
-		//BOTON ENTER FILTER PROPERTY
-		/*$("#formularioFilterProperty").on("keypress", function(e){ 
-			if ((e.keyCode === 13)) {
-				//alert('enter property');
-				$("#filter").modal('hide');
-				$('#menuSecunFollow').panel("close");
-				$("#content ul").empty();
-				//searchFilterProperty();
-				var start = 0; 
-				var limit = 25; 
-				//listadoProperty(start,limit);
-			}
-		});*/
 		
-		 /*$('#formularioFilterProperty').submit(function(){
-			
-			var start = 0; 
-			var limit = 25; 
-			listadoProperty(start,limit);
-			alert('enter property');
+		$('#formularioFilterProperty').submit(function(){
+			//alert('enter property');
 			$("#filter").modal('hide');
 			$('#menuSecunFollow').panel("close");
 			$("#content ul").empty();
 			//searchFilterProperty();
-			
+			//var start = 0; 
+			//var limit = 25; 
+			//listadoProperty(start,limit);
 		 
-		 });*/
+		 });
 		
 		//SEARCH FILTER EMAIL INBOX
 		$("#searchFilterMailI").on('click', function () {
@@ -1487,7 +1466,7 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 	
 	
 
-$(document).on('click', '#searchFilter2', function() {
+/*$(document).on('click', '#searchFilter2', function() {
 	alert('tecla go');
 	$("#filter").modal('hide');
 	$('#menuSecunFollow').panel("close");
@@ -1497,7 +1476,7 @@ $(document).on('click', '#searchFilter2', function() {
 	var limit = 25; 
 	//listadoProperty(start,limit);
 
-});
+});*/
 
 $(document).on('click', '#searchFilter', function() {
 	alert('boton search');
@@ -1514,7 +1493,7 @@ $(document).on('click', '#searchFilter', function() {
 $(document).on('click', '#filtro_remove,#filtro_remove2', function() {
 
 	//alert('remove filter');
-	$('#menuSecunFollow').panel("close");
+	//$('#menuSecunFollow').panel("close");
 	removeFilterProperty();
 });
 
