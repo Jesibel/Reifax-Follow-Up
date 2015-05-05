@@ -70,12 +70,7 @@
 		
 		//document.getElementById('menuContacts').style.display = "block";
 		
-		//FILTER PROPERTIES
-		$("#filtro,#filtro2").on('click', function () {
-			//alert('filtro');				
-			getfilterProperty();
-				
-		});
+		
 		
 		
 		
@@ -1519,10 +1514,16 @@ $(document).on('click', '#searchFilter', function() {
 $(document).on('click', '#filtro_remove,#filtro_remove2', function() {
 
 	//alert('remove filter');
-	//$('#menuSecunFollow').panel("close");
+	$('#menuSecunFollow').panel("close");
 	removeFilterProperty();
 });
 
+$(document).on('click', '##filtro,#filtro2', function() {
+		
+//alert('filtro');				
+	getfilterProperty();
+				
+});
 							
 							
 });
