@@ -342,9 +342,9 @@
 		});
 		
 		//BOTON ENTER FILTER PROPERTY
-		$("#formularioFilterProperty").on("keypress", function(e){ 
+		/*$("#formularioFilterProperty").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
-				alert('enter property');
+				//alert('enter property');
 				$("#filter").modal('hide');
 				$('#menuSecunFollow').panel("close");
 				$("#content ul").empty();
@@ -353,7 +353,18 @@
 				var limit = 25; 
 				//listadoProperty(start,limit);
 			}
-		});
+		});*/
+		 $('#formularioFilterProperty').submit(function(){
+			//alert('enter property');
+			$("#filter").modal('hide');
+			$('#menuSecunFollow').panel("close");
+			$("#content ul").empty();
+			//searchFilterProperty();
+			var start = 0; 
+			var limit = 25; 
+			listadoProperty(start,limit);
+		 
+		 });
 		
 		//SEARCH FILTER EMAIL INBOX
 		$("#searchFilterMailI").on('click', function () {
