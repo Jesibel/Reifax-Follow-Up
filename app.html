@@ -1489,15 +1489,15 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 
 $(document).on("pagebeforeshow","#followingHtml",function(){	
 			
-	alert('page following');
+	//alert('page following');
 	busy=true;
 	pagina = 1;
 	$("#content ul").empty();
 	start=0;
 	listadoProperty(start,settings.limit);
 
-	/*$(document).on('click', '#searchFilter2', function() {
-		alert('tecla go');
+	$(document).on('click', '#searchFilter2', function() {
+		//alert('tecla go');
 		$("#filter").modal('hide');
 		$('#menuSecunFollow').panel("close");
 		$("#content ul").empty();		
@@ -1505,10 +1505,10 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 		var limit = 25; 
 		listadoProperty(start,limit);
 
-	});*/
+	});
 
-	$(document).on('click', '#searchFilter,#searchFilter2', function() {
-		alert('boton search');
+	$(document).on('click', '#searchFilter', function() {
+		//alert('boton search');
 		$('#menuSecunFollow').panel("close");
 		$("#content ul").empty();
 		//searchFilterProperty();
