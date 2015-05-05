@@ -460,7 +460,7 @@ $(function(){
 
 		//CLICK DETALLE DE PROPIEDADES
 		$('ul.page_result').on('click','li', function () {
-            alert('onclick');
+            //alert('onclick');
 			var id= $(this).attr('parcelid');
 			
 			//alert(id);
@@ -479,7 +479,7 @@ $(function(){
 			//var valor = localStorage.getItem("key");
 			var valor = JSON.parse(localStorage.getItem('key'));
 			// La alerta mostrará 1 por pantalla
-			alert(valor.parcelid);
+			//alert(valor.parcelid);
 			//alert(valor.agent);
 			detailProperty(valor.parcelid);
 		});
@@ -563,10 +563,10 @@ $(function(){
 		
 		//LONG TOUCH PROPERTY
 		$('ul.page_result').on('taphold','li', function () {
-            alert('long Touch properties');
+           // alert('long Touch properties');
 			
 			var id= $(this).attr('parcelid');
-			alert(id);
+			//alert(id);
 			
 			if(checkid.length==0){
 				var ch= checkid.push(id)				
@@ -736,11 +736,11 @@ $(function(){
 		
 		//LOGN TOUCH CONTACT
 		$('ul.page_contact').on('taphold','li', function () {
-            alert('long Touch contact');
+            //alert('long Touch contact');
 			
 			var id= $(this).attr('agentid');
 			
-			alert(id);
+			//alert(id);
 			if(checkid.length==0){
 				var ch= checkid.push(id)				
 				document.getElementById('primero'+id).style.background = '#A9D0F5';
@@ -1364,7 +1364,7 @@ $(function(){
 		
 		//SEND EMAIL
 		$('#sendE').on('click', function () {
-			alert('sendemail');
+			//alert('sendemail');
 			sendemail();
 			
 		});
@@ -1386,7 +1386,7 @@ $(function(){
 		
 		//BOTON EDITAR CONTACT
 		$("#updateCont,#updateCont2").on('click', function () {
-			alert('editar');
+			//alert('editar');
 			editContact();
 			
 		});
@@ -1435,7 +1435,7 @@ $(document).scroll(function () {
 	switch (pagina){
         case(1):
 			if (busy==false){
-				alert('following');
+				//alert('following');
 				start = start+$settings.limit; 
 				listadoProperty(start,settings.limit);
 			}
@@ -2165,7 +2165,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button id="searchFilter" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-                <input id="searchFilter2" type="submit" class="btn btn-primary" data-dismiss="modal"/>
+                <input id="searchFilter2" type="submit" value="GO" data-role="none" style="position: absolute;left: -10000px;">
 			</div>
 			</form>
 		</div>
