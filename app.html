@@ -316,7 +316,7 @@
 		
 		
 		//BOTON ENTER FILTER CONTACT
-		$("#formularioFilterContact").on("keypress", function(e){ 
+		/*$("#formularioFilterContact").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
 				$("#formfilterContact").modal('hide');
@@ -325,9 +325,20 @@
 				//filterContacts();
 				var start = 0; 
 				var limit = 25; 
-				listadoContacts(start, limit)
+				listadoContacts(start, limit);
 			}
-		});
+		});*/
+		$("#formularioFilterContact").submit(function(){
+			//alert('enter');
+			$("#formfilterContact").modal('hide');
+			$('#menuContacts').panel("close");
+			$("#contacts ul").empty();
+			//filterContacts();
+			var start = 0; 
+			var limit = 25; 
+			listadoContacts(start, limit);
+		
+		}
 		
 		//SEARCH FILTER PROPERTY WITH BOTON SEARCH
 		$("#searchFilter").on('click', function () {
