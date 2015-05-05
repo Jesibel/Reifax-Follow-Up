@@ -318,7 +318,7 @@
 		
 		
 		//BOTON ENTER FILTER CONTACT
-		/*$("#formularioFilterContact").on("keypress", function(e){ 
+		$("#formularioFilterContact").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
 				//$("#formfilterContact").modal('hide');
@@ -329,24 +329,11 @@
 				var limit = 25; 
 				listadoContacts(start, limit)
 			}
-		});*/
-		
-		$('#formularioFilterContact').submit(function(){
-			event.preventDefault();
-			//alert('enter contact');
-			$("#formfilterContact").modal('hide');
-			$('#menuContacts').panel("close");
-			$("#contacts ul").empty();
-			//searchFilterProperty();
-			var start = 0; 
-			var limit = 25; 
-			listadoContacts(start,limit);
-		 
-		 });
+		});
 		
 		//SEARCH FILTER PROPERTY WITH BOTON SEARCH
 		$("#searchFilter").on('click', function () {
-			//alert("search del filtro");						
+								
 			$('#menuSecunFollow').panel("close");
 			$("#content ul").empty();
 			//searchFilterProperty();
@@ -372,7 +359,7 @@
 	
 		$('#formularioFilterProperty').submit(function(){
 			event.preventDefault();
-			//alert('enter property');
+			
 			$("#filter").modal('hide');
 			$('#menuSecunFollow').panel("close");
 			$("#content ul").empty();
@@ -463,7 +450,7 @@ $(function(){
 
 		//CLICK DETALLE DE PROPIEDADES
 		$('ul.page_result').on('click','li', function () {
-            //alert('onclick');
+            alert('onclick');
 			var id= $(this).attr('parcelid');
 			
 			//alert(id);
@@ -482,7 +469,7 @@ $(function(){
 			//var valor = localStorage.getItem("key");
 			var valor = JSON.parse(localStorage.getItem('key'));
 			// La alerta mostrará 1 por pantalla
-			//alert(valor.parcelid);
+			alert(valor.parcelid);
 			//alert(valor.agent);
 			detailProperty(valor.parcelid);
 		});
@@ -566,10 +553,10 @@ $(function(){
 		
 		//LONG TOUCH PROPERTY
 		$('ul.page_result').on('taphold','li', function () {
-           // alert('long Touch properties');
+            alert('long Touch properties');
 			
 			var id= $(this).attr('parcelid');
-			//alert(id);
+			alert(id);
 			
 			if(checkid.length==0){
 				var ch= checkid.push(id)				
@@ -739,11 +726,11 @@ $(function(){
 		
 		//LOGN TOUCH CONTACT
 		$('ul.page_contact').on('taphold','li', function () {
-            //alert('long Touch contact');
+            alert('long Touch contact');
 			
 			var id= $(this).attr('agentid');
 			
-			//alert(id);
+			alert(id);
 			if(checkid.length==0){
 				var ch= checkid.push(id)				
 				document.getElementById('primero'+id).style.background = '#A9D0F5';
@@ -1367,7 +1354,7 @@ $(function(){
 		
 		//SEND EMAIL
 		$('#sendE').on('click', function () {
-			//alert('sendemail');
+			alert('sendemail');
 			sendemail();
 			
 		});
@@ -1389,7 +1376,7 @@ $(function(){
 		
 		//BOTON EDITAR CONTACT
 		$("#updateCont,#updateCont2").on('click', function () {
-			//alert('editar');
+			alert('editar');
 			editContact();
 			
 		});
@@ -2026,7 +2013,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
 		<!--a id="filtro" style="height: 30px;background-image: url('img/filter.jpg');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="filter" data-toggle="modal" role="button"  data-theme="b" href="#filter"></a>
 		<a id="filtro_remove" style="height: 30px;background-image: url('img/filter-remove.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="filter" data-theme="b" href="#"></a-->
-		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuSecunFollow"></a></div>
+		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuSecunFollow"></a></div>
 		<!--a style="height: 30px;background-image: url('img/search-36.png');background-repeat:no-repeat; background-size: 30px 30px; background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child search" data-excecute="weekly" data-theme="b" href="javascript:void(0);"></a-->
 		<div id='searchInicio' style='position:absolute; left: -180px; top: -5px; display:none;white-space: nowrap'>
 			<input style="width:120px;" type="search" class="searchInicio" id="searchInicio" name="searchInicio" autofocus>			
