@@ -71,7 +71,7 @@
 		//document.getElementById('menuContacts').style.display = "block";
 		
 		//FILTER PROPERTIES
-		$("#filtro,#filtro2").on('click', function () {
+		/*$("#filtro,#filtro2").on('click', function () {
 			//alert('filtro');				
 			getfilterProperty();
 				
@@ -82,7 +82,7 @@
 			//alert('remove filter');
 			$('#menuSecunFollow').panel("close");
 			removeFilterProperty();
-		});
+		});*/
 		
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
@@ -1488,12 +1488,14 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 });
 
 $(document).on("pagebeforeshow","#followingHtml",function(){	
-			alert('page following');
-			busy=true;
-			pagina = 1;
-			$("#content ul").empty();
-			start=0;
-			listadoProperty(start,settings.limit);
+			
+	alert('page following');
+	busy=true;
+	pagina = 1;
+	$("#content ul").empty();
+	start=0;
+	listadoProperty(start,settings.limit);
+
 $(document).on('click', '#searchFilter2', function() {
 	alert('tecla go');
 	$("#filter").modal('hide');
@@ -1508,9 +1510,26 @@ $(document).on('click', '#searchFilter2', function() {
 
 $(document).on('click', '#searchFilter', function() {
 	alert('boton search');
+	$('#menuSecunFollow').panel("close");
+	$("#content ul").empty();
+	//searchFilterProperty();
+	var start = 0; 
+	var limit = 25; 
+	listadoProperty(start,limit);
 
 });
 
+$(document).on('click', '#filtro,#filtro2', function() {
+					
+	getfilterProperty();
+				
+});
+		
+$(document).on('click', '#filtro_remove,#filtro_remove2', function() {
+			$('#menuSecunFollow').panel("close");
+			removeFilterProperty();
+});
+		
 
 							
 							
