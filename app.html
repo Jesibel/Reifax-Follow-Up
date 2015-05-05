@@ -1496,42 +1496,38 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 	start=0;
 	listadoProperty(start,settings.limit);
 
-$(document).on('click', '#searchFilter2', function() {
-	alert('tecla go');
-	$("#filter").modal('hide');
-	$('#menuSecunFollow').panel("close");
-	$("#content ul").empty();
-				
-	var start = 0; 
-	var limit = 25; 
-	listadoProperty(start,limit);
+	/*$(document).on('click', '#searchFilter2', function() {
+		alert('tecla go');
+		$("#filter").modal('hide');
+		$('#menuSecunFollow').panel("close");
+		$("#content ul").empty();		
+		var start = 0; 
+		var limit = 25; 
+		listadoProperty(start,limit);
 
-});
+	});*/
 
-$(document).on('click', '#searchFilter', function() {
-	alert('boton search');
-	$('#menuSecunFollow').panel("close");
-	$("#content ul").empty();
-	//searchFilterProperty();
-	var start = 0; 
-	var limit = 25; 
-	listadoProperty(start,limit);
+	$(document).on('click', '#searchFilter,#searchFilter2', function() {
+		alert('boton search');
+		$('#menuSecunFollow').panel("close");
+		$("#content ul").empty();
+		//searchFilterProperty();
+		var start = 0; 
+		var limit = 25; 
+		listadoProperty(start,limit);
 
-});
+	});
 
-$(document).on('click', '#filtro,#filtro2', function() {
+	$(document).on('click', '#filtro,#filtro2', function() {
+						
+		getfilterProperty();
 					
-	getfilterProperty();
-				
-});
+	});
 		
-$(document).on('click', '#filtro_remove,#filtro_remove2', function() {
-			$('#menuSecunFollow').panel("close");
-			removeFilterProperty();
-});
-		
-
-							
+	$(document).on('click', '#filtro_remove,#filtro_remove2', function() {
+				$('#menuSecunFollow').panel("close");
+				removeFilterProperty();
+	});
 							
 });
 
