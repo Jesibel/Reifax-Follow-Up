@@ -341,7 +341,7 @@
 		}
 		
 		//SEARCH FILTER PROPERTY WITH BOTON SEARCH
-		$("#searchFilter").on('click', function () {
+		/*$("#searchFilter").on('click', function () {
 			//alert("search del filtro");						
 			$('#menuSecunFollow').panel("close");
 			$("#content ul").empty();
@@ -350,7 +350,7 @@
 			var limit = 25; 
 			listadoProperty(start,limit);
 			
-		});
+		});*/
 		
 		//BOTON ENTER FILTER PROPERTY
 		/*$("#formularioFilterProperty").on("keypress", function(e){ 
@@ -366,7 +366,7 @@
 			}
 		});*/
 		
-		 $('#formularioFilterProperty').submit(function(){
+		 /*$('#formularioFilterProperty').submit(function(){
 			
 			var start = 0; 
 			var limit = 25; 
@@ -378,7 +378,7 @@
 			//searchFilterProperty();
 			
 		 
-		 });
+		 });*/
 		
 		//SEARCH FILTER EMAIL INBOX
 		$("#searchFilterMailI").on('click', function () {
@@ -1494,6 +1494,24 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 			$("#content ul").empty();
 			start=0;
 			listadoProperty(start,settings.limit);
+$(document).on('click', '#searchFilter2', function() {
+	alert('tecla go');
+	$("#filter").modal('hide');
+	$('#menuSecunFollow').panel("close");
+	$("#content ul").empty();
+				
+	var start = 0; 
+	var limit = 25; 
+	listadoProperty(start,limit);
+
+});
+
+$(document).on('click', '#searchFilter', function() {
+	alert('boton search');
+
+});
+
+
 							
 							
 });
