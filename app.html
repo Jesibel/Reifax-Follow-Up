@@ -69,6 +69,14 @@
 
 		
 		//FILTER REMOVE CONTACTS
+		$("#filtro_remove,#filtro_remove2").on('click', function () {
+			//alert('remove filter CONTACTS');
+			$('#menuSecunFollow').panel("close");
+			removeFilterProperty();
+					
+		});
+		
+		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
 			//alert('remove filter CONTACTS');
 			$('#menuContacts').panel("close");
@@ -232,6 +240,11 @@
 		});
 			
 		//FILTER CONTACTS
+		$('#filtro,#filtro2').on('click',function(){				
+			//alert("filtro contact");
+			getfilterProperty();
+		});
+		
 		$('#filtrocontact').on('click',function(){				
 			//alert("filtro contact");
 			getagenttype();
@@ -325,7 +338,7 @@
 		}
 		
 		//SEARCH FILTER PROPERTY WITH BOTON SEARCH
-		/*$("#searchFilter").on('click', function () {
+		$("#searchFilter").on('click', function () {
 			//alert("search del filtro");						
 			$('#menuSecunFollow').panel("close");
 			$("#content ul").empty();
@@ -334,7 +347,7 @@
 			var limit = 25; 
 			listadoProperty(start,limit);
 			
-		});*/
+		});
 		
 		
 		$('#formularioFilterProperty').submit(function(){
@@ -1465,7 +1478,7 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 			listadoProperty(start,settings.limit);
 	
 	
-
+});
 /*$(document).on('click', '#searchFilter2', function() {
 	alert('tecla go');
 	$("#filter").modal('hide');
@@ -1478,7 +1491,7 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 
 });*/
 
-$(document).on('click', '#searchFilter', function() {
+/*$(document).on('click', '#searchFilter', function() {
 	alert('boton search');
 	//alert("search del filtro");						
 	$('#menuSecunFollow').panel("close");
@@ -1502,10 +1515,10 @@ $(document).on('click', '#filtro,#filtro2', function() {
 //alert('filtro');				
 	getfilterProperty();
 				
-});
+});*/
 							
 							
-});
+
 
 $(document).on("pagebeforeshow","#emailHtml",function(){	
 			//alert('page email inbox');
