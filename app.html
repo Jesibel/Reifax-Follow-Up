@@ -63,7 +63,7 @@
 		document.getElementById('regContact').style.display = "none";
 		document.getElementById('searchFilterContacts2').style.display = "none";
 		document.getElementById('searchFilterMailI2').style.display = "none";
-		document.getElementById('searchFilter2').style.display = "none";
+		//document.getElementById('searchFilter2').style.display = "none";
 		document.getElementById('searchFilterMailO2').style.display = "none";
 		//document.getElementById('formContacto').style.display = "none";
 		
@@ -358,7 +358,7 @@
 		});*/
 	
 		$('#formularioFilterProperty').submit(function(){
-			//event.preventDefault();
+			event.preventDefault();
 			alert('enter property');
 			$("#filter").modal('hide');
 			$('#menuSecunFollow').panel("close");
@@ -2141,7 +2141,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button id="searchFilter" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-                <input id="searchFilter2" type="submit" value="GO" data-dismiss="modal"/>
+                <input type="submit" style="position: absolute;left: -10000px;" value="Enviar" data-role="none" />
 			</div>
 			</form>
 		</div>
