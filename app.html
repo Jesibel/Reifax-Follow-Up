@@ -372,7 +372,7 @@
 	
 		$('#formularioFilterProperty').submit(function(){
 			event.preventDefault();
-			alert('enter property');
+			//alert('enter property');
 			$("#filter").modal('hide');
 			$('#menuSecunFollow').panel("close");
 			$("#content ul").empty();
@@ -463,7 +463,7 @@ $(function(){
 
 		//CLICK DETALLE DE PROPIEDADES
 		$('ul.page_result').on('click','li', function () {
-            alert('onclick');
+            //alert('onclick');
 			var id= $(this).attr('parcelid');
 			
 			//alert(id);
@@ -482,7 +482,7 @@ $(function(){
 			//var valor = localStorage.getItem("key");
 			var valor = JSON.parse(localStorage.getItem('key'));
 			// La alerta mostrará 1 por pantalla
-			alert(valor.parcelid);
+			//alert(valor.parcelid);
 			//alert(valor.agent);
 			detailProperty(valor.parcelid);
 		});
