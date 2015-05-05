@@ -71,7 +71,7 @@
 		//document.getElementById('menuContacts').style.display = "block";
 		
 		//FILTER PROPERTIES
-		/*$("#filtro,#filtro2").on('click', function () {
+		$("#filtro,#filtro2").on('click', function () {
 			//alert('filtro');				
 			getfilterProperty();
 				
@@ -82,7 +82,7 @@
 			//alert('remove filter');
 			$('#menuSecunFollow').panel("close");
 			removeFilterProperty();
-		});*/
+		});
 		
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
@@ -341,7 +341,7 @@
 		}
 		
 		//SEARCH FILTER PROPERTY WITH BOTON SEARCH
-		/*$("#searchFilter").on('click', function () {
+		$("#searchFilter").on('click', function () {
 			//alert("search del filtro");						
 			$('#menuSecunFollow').panel("close");
 			$("#content ul").empty();
@@ -350,7 +350,7 @@
 			var limit = 25; 
 			listadoProperty(start,limit);
 			
-		});*/
+		});
 		
 		//BOTON ENTER FILTER PROPERTY
 		/*$("#formularioFilterProperty").on("keypress", function(e){ 
@@ -366,7 +366,7 @@
 			}
 		});*/
 		
-		 /*$('#formularioFilterProperty').submit(function(){
+		 $('#formularioFilterProperty').submit(function(){
 			
 			var start = 0; 
 			var limit = 25; 
@@ -378,7 +378,7 @@
 			//searchFilterProperty();
 			
 		 
-		 });*/
+		 });
 		
 		//SEARCH FILTER EMAIL INBOX
 		$("#searchFilterMailI").on('click', function () {
@@ -460,7 +460,7 @@ $(function(){
 
 		//CLICK DETALLE DE PROPIEDADES
 		$('ul.page_result').on('click','li', function () {
-            //alert('onclick');
+            alert('onclick');
 			var id= $(this).attr('parcelid');
 			
 			//alert(id);
@@ -479,7 +479,7 @@ $(function(){
 			//var valor = localStorage.getItem("key");
 			var valor = JSON.parse(localStorage.getItem('key'));
 			// La alerta mostrará 1 por pantalla
-			//alert(valor.parcelid);
+			alert(valor.parcelid);
 			//alert(valor.agent);
 			detailProperty(valor.parcelid);
 		});
@@ -563,10 +563,10 @@ $(function(){
 		
 		//LONG TOUCH PROPERTY
 		$('ul.page_result').on('taphold','li', function () {
-           // alert('long Touch properties');
+            alert('long Touch properties');
 			
 			var id= $(this).attr('parcelid');
-			//alert(id);
+			alert(id);
 			
 			if(checkid.length==0){
 				var ch= checkid.push(id)				
@@ -736,11 +736,11 @@ $(function(){
 		
 		//LOGN TOUCH CONTACT
 		$('ul.page_contact').on('taphold','li', function () {
-            //alert('long Touch contact');
+            alert('long Touch contact');
 			
 			var id= $(this).attr('agentid');
 			
-			//alert(id);
+			alert(id);
 			if(checkid.length==0){
 				var ch= checkid.push(id)				
 				document.getElementById('primero'+id).style.background = '#A9D0F5';
@@ -1364,7 +1364,7 @@ $(function(){
 		
 		//SEND EMAIL
 		$('#sendE').on('click', function () {
-			//alert('sendemail');
+			alert('sendemail');
 			sendemail();
 			
 		});
@@ -1386,7 +1386,7 @@ $(function(){
 		
 		//BOTON EDITAR CONTACT
 		$("#updateCont,#updateCont2").on('click', function () {
-			//alert('editar');
+			alert('editar');
 			editContact();
 			
 		});
@@ -1488,46 +1488,13 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 });
 
 $(document).on("pagebeforeshow","#followingHtml",function(){	
-			
-	//alert('page following');
-	busy=true;
-	pagina = 1;
-	$("#content ul").empty();
-	start=0;
-	listadoProperty(start,settings.limit);
-
-	$(document).on('click', '#searchFilter2', function() {
-		//alert('tecla go');
-		$("#filter").modal('hide');
-		$('#menuSecunFollow').panel("close");
-		$("#content ul").empty();		
-		var start = 0; 
-		var limit = 25; 
-		listadoProperty(start,limit);
-
-	});
-
-	$(document).on('click', '#searchFilter', function() {
-		//alert('boton search');
-		$('#menuSecunFollow').panel("close");
-		$("#content ul").empty();
-		//searchFilterProperty();
-		var start = 0; 
-		var limit = 25; 
-		listadoProperty(start,limit);
-
-	});
-
-	$(document).on('click', '#filtro,#filtro2', function() {
-						
-		getfilterProperty();
-					
-	});
-		
-	$(document).on('click', '#filtro_remove,#filtro_remove2', function() {
-				$('#menuSecunFollow').panel("close");
-				removeFilterProperty();
-	});
+			alert('page following');
+			busy=true;
+			pagina = 1;
+			$("#content ul").empty();
+			start=0;
+			listadoProperty(start,settings.limit);
+							
 							
 });
 
