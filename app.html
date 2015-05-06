@@ -62,9 +62,9 @@
 		document.getElementById('telf6').style.display = "none";
 		document.getElementById('regContact').style.display = "none";
 		//document.getElementById('searchFilterContacts2').style.display = "none";
-		document.getElementById('searchFilterMailI2').style.display = "none";
+		//document.getElementById('searchFilterMailI2').style.display = "none";
 		//document.getElementById('searchFilter2').style.display = "none";
-		document.getElementById('searchFilterMailO2').style.display = "none";
+		//document.getElementById('searchFilterMailO2').style.display = "none";
 		//document.getElementById('formContacto').style.display = "none";
 		
 		
@@ -395,7 +395,7 @@
 		});
 		
 		//BOTON ENTER FILTER EMAIL INBOX
-		$("#formularioFilterEmailInbox").on("keypress", function(e){ 
+		/*$("#formularioFilterEmailInbox").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				//alert('enter');
 				//$("#filterEI").modal('hide');
@@ -406,7 +406,18 @@
 				var limit = 25; 
 				listadoEmailsInbox(start,limit);
 			}
-		});
+		});*/
+		$('#formularioFilterEmailInbox').submit(function(){
+			event.preventDefault();
+			
+			$("#filterEI").modal('hide');
+			$('#menuEmailInbox,#menuEmailInboxO').panel("close");
+			$("#emails ul").empty();
+			var start = 0; 
+			var limit = 25; 
+			listadoEmailsInbox(start,limit);
+		 
+		 });
 		
 		//SEARCH FILTER EMAIL OUTBOX
 		$("#searchFilterMailO").on('click', function () {
@@ -420,7 +431,7 @@
 		});
 		
 		//BOTON ENTER FILTER EMAIL OUTBOX
-		$("#formularioFilterEmailOutbox").on("keypress", function(e){ 
+		/*$("#formularioFilterEmailOutbox").on("keypress", function(e){ 
 			if ((e.keyCode === 13)) {
 				alert('enter');
 				//$("#filterEO").modal('hide');
@@ -431,7 +442,18 @@
 				var limit = 25; 
 				listadoEmailsOutbox(start,limit);
 			}
-		});
+		});*/
+		$('#formularioFilterEmailOutbox').submit(function(){
+			event.preventDefault();
+			
+			$("#filterEO").modal('hide');
+			$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			$("#emailsOutbox ul").empty();
+			var start = 0; 
+			var limit = 25; 
+			listadoEmailsOutbox(start,limit);
+		 
+		 });
 		
 		
 			
@@ -2567,7 +2589,8 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button id="searchFilterMailI" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-                <button id="searchFilterMailI2" type="submit" class="btn btn-primary" data-dismiss="modal"></button>
+                <input type="submit" style="position: absolute;left: -10000px;" value="Enviar3" data-role="none" />
+				<!--button id="searchFilterMailI2" type="submit" class="btn btn-primary" data-dismiss="modal"></button-->
 			</div>
 		</form>
 		</div>
@@ -2624,7 +2647,8 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button id="searchFilterMailO" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-                <button id="searchFilterMailO2" type="submit" class="btn btn-primary" data-dismiss="modal"></button>
+                <input type="submit" style="position: absolute;left: -10000px;" value="Enviar4" data-role="none" />
+				<!--button id="searchFilterMailO2" type="submit" class="btn btn-primary" data-dismiss="modal"></button-->
 			</div>
 		</form>
 		</div>
