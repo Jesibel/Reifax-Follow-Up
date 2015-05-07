@@ -3526,8 +3526,22 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-10 formT">
 						<label class="col-sm-12 control-label">Type</label>
-						<div id="typeagentContEd" class="col-md-10">
-						  <select id="typEd" class="form-control"></select>
+						<div class="col-md-10">
+						  <select id="typEd" class="form-control">
+							<option value="Agent" >Agent</option>
+							<option value="Buyer">Buyer</option>
+							<option value="Seller">Seller</option>
+							<option value="Loan Officer" >Loan Officer</option>
+							<option value="Hard Money Lender">Hard Money Lender</option>
+							<option value="Title Company">Title Company</option>
+							<option value="Lawyer">Lawyer</option>
+							<option value="Client">Client</option>
+							<option value="Broker">Broker</option>
+							<option value="General Contractor">General Contractor</option>
+							<option value="Other">Other</option>
+							<option value="Coach">Coach</option>
+							<option value="Short Sale Negotiator">Short Sale Negotiator</option>
+						  </select>
 						</div>
 					</div>
 				</div>
@@ -3548,8 +3562,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-sm-9 formT">
 						<label  class="col-sm-12 control-label">Email2</label>
 						<div class="row">
-						  <div id="email2ContEd" class="col-xs-6 col-sm-4">
-								<select id="emai2ContEd"  class="form-control" data-style="btn-success"></select>
+						  <div class="col-xs-6 col-sm-4">
+								<select id="emai2ContEd"  class="form-control" data-style="btn-success">
+									<option value="Home">Home</option>
+									<option value="Office">Office</option>								
+								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
 								<input id ="ema2ContEd" type="text" class="form-control" placeholder="Email2"/>
@@ -3571,8 +3588,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-sm-9 formT">
 						<label  class="col-sm-12 control-label">Website1</label>
 						<div class="row">
-						  <div id="website1ContEd" class="col-xs-6 col-sm-4">
-								<select id="websit1ContEd"  class="form-control" data-style="btn-success"></select>
+						  <div class="col-xs-6 col-sm-4">
+								<select id="websit1ContEd"  class="form-control" data-style="btn-success">
+									<option value="Personal">Personal</option>
+									<option value="Office">Office</option>
+								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
 								<input id ="web1ContEd" type="text" class="form-control" placeholder="Website1"/>
@@ -3584,8 +3604,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-sm-9 formT">
 						<label  class="col-sm-12 control-label">Website2</label>
 						<div class="row">
-						  <div id="website2ContEd" class="col-xs-6 col-sm-4">
-								<select id="websit2ContEd"  class="form-control" data-style="btn-success"></select>
+						  <div  class="col-xs-6 col-sm-4">
+								<select id="websit2ContEd"  class="form-control" data-style="btn-success">
+									<option value="Personal">Personal</option>
+									<option value="Office">Office</option>
+								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
 								<input id ="web2ContEd" type="text" class="form-control" placeholder="Website2"/>
@@ -3598,8 +3621,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-sm-9 formT">
 						<label  class="col-sm-12 control-label">Phone</label>
 						<div class="row">
-						  <div id="phone1ContEd" class="col-xs-6 col-sm-4">
-								<select id="phon1ContEd"  class="form-control" data-style="btn-success"></select>
+						  <div class="col-xs-6 col-sm-4">
+								<select id="phon1ContEd"  class="form-control" data-style="btn-success">
+									<option value="Home">Home</option>
+									<option value="Office">Office</option>
+								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
 								<input id ="pho1ContEd" type="text" class="form-control" placeholder="Phone"/>
@@ -3611,8 +3637,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-sm-9 formT">
 						<label  class="col-sm-12 control-label">Phone2</label>
 						<div class="row">
-						  <div id="phone2ContEd" class="col-xs-6 col-sm-4">
-								<select id="phon2ContEd"  class="form-control" data-style="btn-success"></select>
+						  <div  class="col-xs-6 col-sm-4">
+								<select id="phon2ContEd"  class="form-control" data-style="btn-success">
+									<option value="Home">Home</option>
+									<option value="Office">Office</option>
+								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
 								<input id ="pho2ContEd" type="text" class="form-control" placeholder="Phone2"/>
@@ -3625,8 +3654,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-sm-9 formT">
 						<label  class="col-sm-12 control-label">Phone3</label>
 						<div class="row">
-						  <div id="phone3ContEd" class="col-xs-6 col-sm-4">
-								<select id="phon3ContEd"  class="form-control" data-style="btn-success"></select>
+						  <div  class="col-xs-6 col-sm-4">
+								<select id="phon3ContEd"  class="form-control" data-style="btn-success">
+									<option value="Home">Home</option>
+									<option value="Office">Office</option>
+								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
 								<input id ="pho3ContEd" type="text" class="form-control" placeholder="Phone3"/>
@@ -3638,8 +3670,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-sm-9 formT">
 						<label  class="col-sm-12 control-label">Phone4</label>
 						<div class="row">
-						  <div id="phone4ContEd" class="col-xs-6 col-sm-4">
-								<select id="phon4ContEd"  class="form-control" data-style="btn-success"></select>
+						  <div  class="col-xs-6 col-sm-4">
+								<select id="phon4ContEd"  class="form-control" data-style="btn-success">
+									<option value="Home">Home</option>
+									<option value="Office">Office</option>
+								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
 								<input id ="pho4ContEd" type="text" class="form-control" placeholder="Phone4"/>
@@ -3652,8 +3687,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-sm-9 formT">
 						<label  class="col-sm-12 control-label">Phone5</label>
 						<div class="row">
-						  <div id="phone5ContEd" class="col-xs-6 col-sm-4">
-								<select id="phon5ContEd"  class="form-control" data-style="btn-success"></select>
+						  <div class="col-xs-6 col-sm-4">
+								<select id="phon5ContEd"  class="form-control" data-style="btn-success">
+									<option value="Home">Home</option>
+									<option value="Office">Office</option>
+								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
 								<input id ="pho5ContEd" type="text" class="form-control" placeholder="Phone5"/>
@@ -3665,8 +3703,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-sm-9 formT">
 						<label  class="col-sm-12 control-label">Phone6</label>
 						<div class="row">
-						  <div id="phone6ContEd" class="col-xs-6 col-sm-4">
-								<select id="phon6ContEd"  class="form-control" data-style="btn-success"></select>
+						  <div class="col-xs-6 col-sm-4">
+								<select id="phon6ContEd"  class="form-control" data-style="btn-success">
+									<option value="Home">Home</option>
+									<option value="Office">Office</option>
+								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
 								<input id ="pho6ContEd" type="text" class="form-control" placeholder="Phone5"/>
@@ -3680,8 +3721,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-sm-9 formT">
 						<label  class="col-sm-12 control-label">Address1</label>
 						<div class="row">
-						  <div id="address1ContEd" class="col-xs-6 col-sm-4">
-								<select id="addre1ContEd"  class="form-control" data-style="btn-success"></select>
+						  <div class="col-xs-6 col-sm-4">
+								<select id="addre1ContEd"  class="form-control" data-style="btn-success">
+									<option value="Home">Home</option>
+									<option value="Office">Office</option>
+								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
 								<input id ="addr1ContEd" type="text" class="form-control" placeholder="Address1"/>
@@ -3693,8 +3737,11 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div class="col-sm-9 formT">
 						<label  class="col-sm-12 control-label">Address2</label>
 						<div class="row">
-						  <div id="address2ContEd" class="col-xs-6 col-sm-4">
-								<select id="addre2ContEd"  class="form-control" data-style="btn-success"></select>
+						  <div class="col-xs-6 col-sm-4">
+								<select id="addre2ContEd"  class="form-control" data-style="btn-success">
+									<option value="Home">Home</option>
+									<option value="Office">Office</option>
+								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
 								<input id ="addr2ContEd" type="text" class="form-control" placeholder="Address2"/>
