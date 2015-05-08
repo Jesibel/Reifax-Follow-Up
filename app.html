@@ -1204,7 +1204,7 @@ $(function(){
 		});
 		
 		//CARGAR DATOS ASSIGNMENT CONTACT
-		$('#assCont').on('click',function(){			
+		$('#assCont,#assContIn').on('click',function(){			
 			var mail = JSON.parse(localStorage.getItem('key'));
 			var nam  = JSON.parse(localStorage.getItem('key2'));
 			//alert(mail.email);		
@@ -1214,7 +1214,7 @@ $(function(){
 		
 		
 		//CARGAR DATOS ASSIGNMENT PROPERTY
-		$('#assProp').on('click',function(){			
+		$('#assProp,#assPropIn').on('click',function(){			
 			getAssignProperty();
 		});
 		
@@ -3031,8 +3031,8 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
 				<li class="margen"><a class="filter"       		  	 id="filtromaIn"      href="#filterEI" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
 				<li class="margen"><a class="filterRemove" 		  	 id="RemovefiltroIn"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
-				<!--li style="border-bottom: 2px solid #ccc;"><a class="assignContEmailInbox"   id="asscontEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
-				<li style="border-bottom: 2px solid #ccc;"><a class="assignProEmailInbox"    id="assiproEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li-->				
+				<li class="margen"><a class="assignContEmailInbox"   id="assContIn"       href="#assignContacts" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
+				<li class="margen"><a class="assignProEmailInbox"    id="assPropIn"       href="#assignProperty" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li>				
 			</ul>
 		</div>	
 	</div>
