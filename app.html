@@ -604,7 +604,10 @@ $(function(){
 			var id= $(this).attr('agentid');
 			
 			//alert(id);
-			if(checkid.length==0){
+			
+			longContact(id);
+			
+			/*if(checkid.length==0){
 				var ch= checkid.push(id)				
 				document.getElementById('primero'+id).style.background = '#A9D0F5';
 				document.getElementById('header_cont').style.display = "block";
@@ -718,7 +721,7 @@ $(function(){
 				
 				//document.body.appendChild(div);
 				
-			}else{
+			/*}else{
 				var idaux=0;
 				///alert("entre por else");
 				///alert(checkid.length);
@@ -761,7 +764,7 @@ $(function(){
 				}
 					//alert(checkid);				
 			
-			}
+			}*/
 			
 		});
 		
@@ -2496,7 +2499,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 <!--FIN FILTER EMAIL OUTBOX-->
 
 <!--FILTER COMPOSE EMAIL INBOX-->
-<div class="modal fade bs-example-modal-sm" id="composeEmail" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+<!--div class="modal fade bs-example-modal-sm" id="composeEmail" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -2506,9 +2509,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
             <div class="modal-body">
 				<div class="row-fluid">
 				  <div class="span6">
-					<!--h4>Filters</h4-->										
+					<h4>Filters</h4>										
 					<p>To<div id="toEmail"><select id="toEma" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>
+							<input type="text" class="span12" /></p>
 					<p>Subject<input id="subjectI" type="text" class="span12" /></p>
 					
 					<div class="form-group">
@@ -2539,7 +2542,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		</div>
   </div>
 </div>
-</div>
+</div-->
 <!--FIN COMPOSE EMAIL-->
 
 <!--FILTER COMPOSE EMAIL OUTBOX-->
@@ -3757,6 +3760,116 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 						<input id="updateCont" class="btn btn-success" type="button" value="Insert">
 						<input id="resetEd" class="btn btn-default" type="button" value="Reset">
+					</div>
+				</div>
+			</form>
+		
+		</div>
+		
+		
+	</div>
+	<!--FIN CONTENT-->	
+	
+	
+</div>
+
+<div data-role="page" id="pagAddComposeEIHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/backk-36.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<!--a id="resetAdd" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a-->
+		<a id="insertComp" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		</div>
+	
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item "><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>
+		
+		<div style="background: #fff;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Inbox</a></li>
+				<li class="item "><a href="#outboxEmailHtml">Outbox</a></li>			
+			</ul>
+		</div>
+		<!--FIN TABS-->
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		
+		<div style="margin-left: 1px;" class="row formC" id="formCompose">
+			<form style="margin-top: 30px;" class="form-inline">
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">To</label>
+						<div id="toEmail" class="col-md-10">
+						  <select id="toEma" class="form-control"></select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Subject</label>
+						<div id="subjectI" class="col-md-10">
+						  <input id="subjectI" type="text" class="form-control" placeholder="Subject" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Attach</label>
+						<div class="row">
+						  <div style="margin-left: 10px;" id="uploadfile" class="col-xs-11 col-sm-4">
+								<input id="uploadFile" class="form-control" placeholder="Select a file" disabled="disabled" />
+						  </div>
+						  
+						</div>
+					</div>
+				</div>
+				<div class="row">
+				<div style="margin-left: 10px;" class="col-sm-9 formT">
+					<div class="fileUpload btn btn-primary">
+						<span>Browser</span>
+						<input id="uploadBtnCompose"  type="file" class="upload" />	
+					 </div>
+				</div>
+				</div>
+				<div class="row">
+					<div style="margin-left: 10px;"class="col-sm-9 formT">
+						<div id="browserComp"></div>
+						<div class="fileUpload btn btn-primary formT">
+							<span>Another file</span>
+							<input onclick="addInputCompose()" class="another" />	
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Text</label>
+						<div class="row">
+						  <div id="email2Cont" class="col-xs-12 col-sm-4">
+								<textarea style="height:222px;" id="textemailInbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+						  </div>						  
+						</div>
+					</div>
+				</div>								
+				
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="sendCompose" class="btn btn-success" type="button" value="Send">
+						<!--input id="resetAdd" class="btn btn-default" type="button" value="Reset"-->
 					</div>
 				</div>
 			</form>
