@@ -1325,6 +1325,13 @@ $(document).scroll(function () {
 			listadoContacts(start,settings.limit);
 			}
             break;
+		 case(9):
+			if (busy==false){
+            //alert('completed');
+			start = start+$settings.limit; 
+			listadoCompleted(start,settings.limit);
+			}
+            break;
         default:
             //alert('no coinciden con los anteriores');
             break;
@@ -3176,10 +3183,10 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 <div data-role="page" id="taskHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
-		<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTask"></a>
+		
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
 		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
-		
+		<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTask"></a>
 		
 		<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
@@ -3190,6 +3197,12 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
 		</div>	
+		<div style="background: #fff;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Pendings Task</a></li>
+				<li class="item"><a href="#taskCompletedHtml">Completed Task</a></li>			
+			</ul>
+		</div>
 		<!--FIN TABS-->
 	
 	</div>
@@ -3197,7 +3210,26 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 	
 	<!--CONTENT-->
 	
-	<div style="text-align: center;"><img style="width: 100%;" src="img/construccion3.jpg" width="760" height="400"></div>
+	<!--CONTENT-->
+		<div data-role="content">
+		<div style="background:#fff;" id="pendientes">
+			<ul style="list-style: none;margin-left:-40px;" class="page_pending">
+			
+			</ul>
+		</div>
+		
+		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
+		
+		
+		<!--div style="background:#fff;" id="contactsFilter">
+			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
+			
+			</ul>
+		</div-->
+				
+		
+	</div>
+	<!--FIN CONTENT-->
 	<!--FIN CONTENT-->	
 	
 	<!--MENU PRINCIPAL -->
