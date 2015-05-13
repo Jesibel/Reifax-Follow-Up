@@ -1370,34 +1370,6 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 			listadoProperty(start,settings.limit);					
 							
 });
-/*$(document).on('click', '#searchFilter2', function() {
-	alert('tecla go');
-	$("#filter").modal('hide');
-	$('#menuSecunFollow').panel("close");
-	$("#content ul").empty();
-				
-	var start = 0; 
-	var limit = 25; 
-	//listadoProperty(start,limit);
-
-});*/
-
-/*$(document).on('click', '#searchFilter', function() {
-	alert('boton search');
-	//alert("search del filtro");						
-	$('#menuSecunFollow').panel("close");
-	$("#content ul").empty();
-	//searchFilterProperty();
-	var start = 0; 
-	var limit = 25; 
-	listadoProperty(start,limit);
-
-});
-
-$(document).on('click', '#filtro_remove,#filtro_remove2', function() {
-	//$('#menuSecunFollow').panel("close");
-	removeFilterProperty();
-});*/
 
 
 $(document).on("pagebeforeshow","#emailHtml",function(){	
@@ -1448,7 +1420,7 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 			alert('page email follow');
 			busy=true;
 			pagina = 7;
-			$("#correo ul").empty();
+			$("#correofollow ul").empty();
 			start=0;
 			var valor = JSON.parse(localStorage.getItem('key'));
 			alert(valor.parcelid);
@@ -3215,6 +3187,74 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 		<div data-role="content">
 		<div style="background:#fff;" id="pendientes">
 			<ul style="list-style: none;margin-left:-40px;" class="page_pending">
+			
+			</ul>
+		</div>
+		
+		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
+		
+		
+		<!--div style="background:#fff;" id="contactsFilter">
+			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
+			
+			</ul>
+		</div-->
+				
+		
+	</div>
+	<!--FIN CONTENT-->
+	<!--FIN CONTENT-->	
+	
+	<!--MENU PRINCIPAL -->
+	<div data-role="panel" id="menuTask" data-display="overlay" data-position="left">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+			<a class="closeMenu" style="display:none;" href="#" data-rel="close">Close</a>
+			<li><a class="following"  id="following"   href="#followingHtml" >&nbsp;Following</a></li>
+			<li><a class="email"      id="email"       href="#emailHtml" >&nbsp;Email</a></li>	
+			<li><a class="task"       id="task"        href="#taskHtml" >&nbsp;Task</a></li>			 
+			<li><a class="contact"    id="contactmenu" href="#contactsHtml" >&nbsp;Contacts</a></li>
+						 
+			 </ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+</div>
+
+<div data-role="page" id="taskCompletedHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		
+		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
+		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+		<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTask"></a>
+		
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>	
+		<div style="background: #fff;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Pendings Task</a></li>
+				<li class="item active"><a href="#taskCompletedHtml">Completed Task</a></li>			
+			</ul>
+		</div>
+		<!--FIN TABS-->
+	
+	</div>
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	
+	<!--CONTENT-->
+		<div data-role="content">
+		<div style="background:#fff;" id="completados">
+			<ul style="list-style: none;margin-left:-40px;" class="page_completed">
 			
 			</ul>
 		</div>
