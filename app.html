@@ -1412,12 +1412,47 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 							
 });
 
+$(document).on("pagebeforeshow","#historyFollow",function(){	
+			alert('page history');
+			busy=true;
+			pagina = 5;
+			$("#historial ul").empty();
+			start=0;
+			var valor = JSON.parse(localStorage.getItem('key'));
+			alert(valor.parcelid);
+			historyDetail(start,settings.limit,valor.parcelid);					
+							
+});
+
+$(document).on("pagebeforeshow","#scheduleFollow",function(){	
+			alert('page shedule');
+			busy=true;
+			pagina = 6;
+			$("#schedule ul").empty();
+			start=0;
+			var valor = JSON.parse(localStorage.getItem('key'));
+			alert(valor.parcelid);
+			scheduleDetail(start,settings.limit,valor.parcelid);					
+							
+});
+
+$(document).on("pagebeforeshow","#emailFollow",function(){	
+			alert('page email follow');
+			busy=true;
+			pagina = 7;
+			$("#correo ul").empty();
+			start=0;
+			var valor = JSON.parse(localStorage.getItem('key'));
+			alert(valor.parcelid);
+			emailDetail(start,settings.limit,valor.parcelid);					
+							
+});
 	
 </script>
 	<style>
 	@media screen and (min-width:320px) and (max-width:480px) {
 		.col-md-4{
-			width:25% !important;
+			width:50% !important;
 			float:left !important;
 			text-align:center;
 			padding-right: 0px !important;
@@ -2807,6 +2842,18 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		<a  style="height:30px;width:30px;background-image: url('img/back-48.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" data-rel="back"></a>
 		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 	</div>
+	
+	<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Detail</a></li>
+				<li class="item "><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">History</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Email</a></li>
+			</ul>
+		</div>
+	
+	<!--FIN TABS-->
 	<!--FIN HEADER--> 
 		
 	<!--CONTENT-->
@@ -3882,6 +3929,138 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	
 	
 </div>
+
+<div data-role="page" id="historyFollow" data-add-back-btn="true">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/backk-36.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+	</div>
+	
+	<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
+				<li class="item active"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+			</ul>
+		</div>
+	
+	<!--FIN TABS-->
+	
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+					class="ifra" id="webdetailHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetails.php">
+				<html>
+					<head></head>
+					<body></body>
+				</html>
+			</iframe-->
+		<div style="background:#fff;" id="historial">
+			<ul style="list-style: none;margin-left:-40px;" class="page_history">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
+</div><!-- /page --> 
+
+<div data-role="page" id="scheduleFollow" data-add-back-btn="true">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/backk-36.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+	</div>
+	
+	<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+			</ul>
+		</div>
+	
+	<!--FIN TABS-->
+	
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+					class="ifra" id="webdetailHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetails.php">
+				<html>
+					<head></head>
+					<body></body>
+				</html>
+			</iframe-->
+		<div style="background:#fff;" id="schedule">
+			<ul style="list-style: none;margin-left:-40px;" class="page_schedule">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
+</div><!-- /page -->
+
+<div data-role="page" id="emailFollow" data-add-back-btn="true">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/backk-36.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+	</div>
+	
+	<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+			</ul>
+		</div>
+	
+	<!--FIN TABS-->
+	
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+					class="ifra" id="webdetailHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetails.php">
+				<html>
+					<head></head>
+					<body></body>
+				</html>
+			</iframe-->
+		<div style="background:#fff;" id="correofollow">
+			<ul style="list-style: none;margin-left:-40px;" class="page_correo">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
+</div><!-- /page -->
 
 </body>
 
