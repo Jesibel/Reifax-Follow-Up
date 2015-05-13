@@ -3025,7 +3025,7 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
 		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
-		<a id="addEInbox" style="margin-right: 10px;height: 30px;margin-bottom:5px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#composeEmail"></a>
+		<a id="addEInbox" style="margin-right: 10px;height: 30px;margin-bottom:5px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddComposeEIHtml"></a>
 		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailInbox"></a>
 		</div>
 		
@@ -3111,7 +3111,7 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 		<a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
 		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
-		<a id="addEOutbox" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#composeEmailO"></a>
+		<a id="addEOutbox" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddComposeEOHtml"></a>
 		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailOutbox"></a>
 		</div>
 		
@@ -3916,6 +3916,116 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 						<input id="sendCompose" class="btn btn-success" type="button" value="Send">
+						<!--input id="resetAdd" class="btn btn-default" type="button" value="Reset"-->
+					</div>
+				</div>
+			</form>
+		
+		</div>
+		
+		
+	</div>
+	<!--FIN CONTENT-->	
+	
+	
+</div>
+
+<div data-role="page" id="pagAddComposeEOHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/backk-36.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<!--a id="resetAdd" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a-->
+		<a id="insertCompO" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		</div>
+	
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item "><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>
+		
+		<div style="background: #fff;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item "><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Inbox</a></li>
+				<li class="item active"><a href="#outboxEmailHtml">Outbox</a></li>			
+			</ul>
+		</div>
+		<!--FIN TABS-->
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		
+		<div style="margin-left: 1px;" class="row formC" id="formCompose">
+			<form style="margin-top: 30px;" class="form-inline">
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">To</label>
+						<div id="toEmailO" class="col-md-10">
+						  <select id="toEmaO" class="form-control"></select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Subject</label>
+						<div id="subjectO" class="col-md-10">
+						  <input id="subjectO" type="text" class="form-control" placeholder="Subject" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Attach</label>
+						<div class="row">
+						  <div style="margin-left: 10px;" id="uploadfileO" class="col-xs-11 col-sm-4">
+								<input id="uploadFileO" class="form-control" placeholder="Select a file" disabled="disabled" />
+						  </div>
+						  
+						</div>
+					</div>
+				</div>
+				<div class="row">
+				<div style="margin-left: 10px;" class="col-sm-9 formT">
+					<div class="fileUpload btn btn-primary">
+						<span>Browser</span>
+						<input id="uploadBtnComposeO"  type="file" class="upload" />	
+					 </div>
+				</div>
+				</div>
+				<div class="row">
+					<div style="margin-left: 10px;"class="col-sm-9 formT">
+						<div id="browserCompO"></div>
+						<div class="fileUpload btn btn-primary formT">
+							<span>Another file</span>
+							<input onclick="addInputComposeO()" class="another" />	
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Text</label>
+						<div class="row">
+						  <div id="email2ContO" class="col-xs-12 col-sm-4">
+								<textarea style="height:222px;" id="textemailOutbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+						  </div>						  
+						</div>
+					</div>
+				</div>								
+				
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="sendComposeO" class="btn btn-success" type="button" value="Send">
 						<!--input id="resetAdd" class="btn btn-default" type="button" value="Reset"-->
 					</div>
 				</div>
