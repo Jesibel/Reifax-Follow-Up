@@ -1428,6 +1428,26 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 			emailDetail(start,settings.limit,valor.parcelid);					
 							
 });
+
+$(document).on("pagebeforeshow","#taskHtml",function(){	
+			alert('page task Pendings');
+			busy=true;
+			pagina = 8;
+			$("#pendientes ul").empty();
+			start=0;
+			listadoPendings(start,settings.limit);
+							
+});
+
+$(document).on("pagebeforeshow","#taskCompletedHtml",function(){	
+			alert('page task completed');
+			busy=true;
+			pagina = 9;
+			$("#completados ul").empty();
+			start=0;
+			listadoCompleted(start,settings.limit);
+							
+});
 	
 </script>
 	<style>
@@ -4119,7 +4139,9 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/backk-36.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" data-rel="back"></a>
-		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:left;margin-left:35px;">
+			<img src="resources/image/reifax_Followup-w.jpg" width="120" height="40">
+		</div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 			<a id="addHist" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-hist-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="refreshHist" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/refresh-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
