@@ -4190,7 +4190,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 			<img src="resources/image/reifax_Followup-w.jpg" width="120" height="40">
 		</div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-			<a id="addHist" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-hist-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+			<a id="addHist" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-hist-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#pagAddHistoryHtml"></a>
 			<a id="refreshHist" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/refresh-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 		</div>
 	</div>
@@ -4322,6 +4322,131 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 	<!--FIN CONTENT-->	
 	
 </div><!-- /page -->
+
+<div data-role="page" id="pagAddHistoryHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/backk-36.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<a id="resetAddHist" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<a id="saveHist" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		</div>
+	
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
+				<li class="item active"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+			</ul>
+		</div>
+	
+	<!--FIN TABS-->
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		
+		<div style="margin-left: 1px;" class="row formC" id="formContacto">
+			<form style="margin-top: 30px;" class="form-inline">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Offer</label>
+						<div id="offerr" class="col-md-10">
+						  <input type="text" id="offer" placeholder="Offer"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">COffer</label>
+						<div id="cofferr" class="col-md-10">
+						  <input type="text" id="coffer" placeholder="COffer"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Task</label>
+						<div id="taskk" class="col-md-10">
+						  <select id="task" class="form-control"></select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Detail</label>
+						<div id="detaill" class="col-xs-12 col-md-10">
+						  <textarea style="height:222px;  width: 100%;" id="detail" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Document</label>
+						<div>
+							 <!--div class="checkbox">
+								<input type="checkbox"> <font>Contract</font>
+								<input type="checkbox"> <font>Proof of Refunds</font>
+								<input type="checkbox"> <font>EMD</font>
+								<input type="checkbox"> <font>Addendums</font>
+								<input type="checkbox"> <font>Offer Received</font>								
+							</div>
+							<div class="checkbox">
+								  <label>
+									<input type="checkbox" value="">
+									Contract
+								  </label>
+							</div>
+							<div class="checkbox">
+								  <label>
+									<input type="checkbox" value="">
+									Proof of Refunds
+								  </label>
+							</div>
+							<div class="checkbox">
+								  <label>
+									<input type="checkbox" value="">
+									EMD
+								  </label>
+							</div-->
+							 
+								<input type="checkbox" name="checkbox-v-2a" id="checkbox-v-2a">
+								<label style="margin-left:35px;">Contract</label>
+								<input type="checkbox" name="checkbox-v-2b" id="checkbox-v-2b">
+								<label style="margin-left:35px;">Proof of Refunds</label>
+								<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
+								<label style="margin-left:35px;">EMD</label>
+								<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
+								<label style="margin-left:35px;">Addendums</label>
+								<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
+								<label style="margin-left:35px;">Offer Received</label>
+							
+						</div>
+					</div>
+				</div>				
+				
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="saveHistory" class="btn btn-success" type="button" value="Add">
+						<input id="resetAddHistory" class="btn btn-default" type="button" value="Reset">
+					</div>
+				</div>
+			</form>
+		
+		</div>
+		
+		
+	</div>
+	<!--FIN CONTENT-->	
+	
+	
+</div>
 
 </body>
 
