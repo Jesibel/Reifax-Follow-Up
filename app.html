@@ -1327,6 +1327,37 @@ $(document).scroll(function () {
 			listadoContacts(start,settings.limit);
 			}
             break;
+		case(5):
+			if (busy==false){
+            //alert('contacts');
+			start = start+$settings.limit; 
+			var valor = JSON.parse(localStorage.getItem('key'));
+			historyDetail(start,settings.limit,valor.parcelid);
+			}
+            break;
+		case(6):
+			if (busy==false){
+            //alert('contacts');
+			start = start+$settings.limit; 
+			var valor = JSON.parse(localStorage.getItem('key'));
+			scheduleDetail(start,settings.limit,valor.parcelid);	
+			}
+            break;
+		case(7):
+			if (busy==false){
+            //alert('contacts');
+			start = start+$settings.limit; 
+			var valor = JSON.parse(localStorage.getItem('key'));
+			emailDetail(start,settings.limit,valor.parcelid);						
+			}
+            break;
+		case(8):
+			if (busy==false){
+            //alert('contacts');
+			start = start+$settings.limit; 
+			listadoPendings(start,settings.limit);						
+			}
+            break;
 		 case(9):
 			if (busy==false){
             //alert('completed');
