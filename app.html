@@ -2602,48 +2602,93 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
             </div>
             <div class="modal-body">
 			<form id="formularioFilterEmailInbox" class="form-horizontal">
-				<div class="row-fluid">
-				  <div class="span6">
-					<!--h4>Filters</h4-->
-					<p>From Mail<input id="frommailI" type="text" class="span12" /></p>
-					<p>From <input id="fromI" type="text" class="span12" /></p>
-					<p>Email Content <input id="emailcontentI" type="text" class="span12" /></p>
-					<p>Email Type<div id="emailtypeI"><select id="ematyI" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>
-					<p>Attachment<div id="attachmentI"><select id="attach" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>					
-					<p>Pending Content<div id="pendingcontI"><select id="pencontI" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>	
-					<p>Pending Property<div id="pendingproI"><select id="penproI" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>	
-					<p>Status<div id="statusI"><select id="staI" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>										
-					<!--p>Email Date<div id="emaildateI"><select id="emadateI" class="span12"></select><br>
-									 <div class="control-group">
-										<div class="controls">
-											<div style="margin-top:30px;">
-												<input id="date" type="text" class="date-picker form-control" />
-												<label style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
-											</div><br>
-											
-											<div id="between">
-												<input id="datebetween" type="text" class="date-picker form-control" />
-												<label  style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
-											</div>
-										</div>
-									</div>
-								   </div>
-					</p-->	
-				  </div>
-				  
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="searchFilterMailI" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-                <input type="submit" style="position: absolute;left: -10000px;" value="Enviar3" data-role="none" />
-				<!--button id="searchFilterMailI2" type="submit" class="btn btn-primary" data-dismiss="modal"></button-->
-			</div>
-		</form>
+				<div class="container-fluid">
+           
+					<div class="row">
+					  
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								From Mail
+							</div>
+							<div class="col-xs-9 col-sm-10">
+								<input id="frommailI" type="text" class="span6" />
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								From
+							</div>
+							<div class="col-xs-9 col-sm-10">
+								<input id="fromI" type="text" class="span6" />
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								Email Content
+							</div>
+							<div class="col-xs-9 col-sm-10">
+								<input id="emailcontentI" type="text" class="span6" />
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								Email Type
+							</div>
+							<div id="emailtypeI" class="col-xs-9 col-sm-10">
+								<select id="ematyI" class="span6"></select>
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								Attachment
+							</div>
+							<div id="attachmentI" class="col-xs-9 col-sm-10">
+								<select id="attach" class="span6"></select>
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								Pending Content
+							</div>
+							<div id="pendingcontI" class="col-xs-9 col-sm-10">
+								<select id="pencontI" class="span6"></select>
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								Pending Property
+							</div>
+							<div id="pendingproI" class="col-xs-9 col-sm-10">
+								<select id="penproI" class="span6"></select>
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								Status
+							</div>
+							<div id="statusI" class="col-xs-9 col-sm-10">
+								<select id="staI" class="span6"></select>
+							</div>
+						</div>
+					
+					
+					</div>
+            
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="searchFilterMailI" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+					<input type="submit" style="position: absolute;left: -10000px;" value="Enviar3" data-role="none" />
+					<!--button id="searchFilterMailI2" type="submit" class="btn btn-primary" data-dismiss="modal"></button-->
+				</div>
+			</form>
 		</div>
   </div>
 </div>
@@ -2660,41 +2705,85 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
             </div>
             <div class="modal-body">
 			<form id="formularioFilterEmailOutbox" class="form-horizontal">
-				<div class="row-fluid">
-				  <div class="span6">
-					<!--h4>Filters</h4-->
-					<p>From Mail<input id="frommailO" type="text" class="span12" /></p>
-					<p>From <input id="fromO" type="text" class="span12" /></p>
-					<p>Email Content <input id="emailcontentO" type="text" class="span12" /></p>
-					<p>Email Type<div id="emailtypeO"><select id="ematyO" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>
-					<p>Attachment<div id="attachmentO"><select id="attachO" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>					
-					<p>Pending Content<div id="pendingcontO"><select id="pencontO" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>	
-					<p>Pending Property<div id="pendingproO"><select id="penproO" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>	
-					<p>Status<div id="statusO"><select id="staO" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>										
-					<!--p>Email Date<div id="emaildateI"><select id="emadateI" class="span12"></select><br>
-									 <div class="control-group">
-										<div class="controls">
-											<div style="margin-top:30px;">
-												<input id="date" type="text" class="date-picker form-control" />
-												<label style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
-											</div><br>
-											
-											<div id="between">
-												<input id="datebetween" type="text" class="date-picker form-control" />
-												<label  style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
-											</div>
-										</div>
-									</div>
-								   </div>
-					</p-->	
-				  </div>
-				  
-            </div>
+				<div class="container-fluid">
+           
+					<div class="row">
+					  
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								From Mail
+							</div>
+							<div class="col-xs-9 col-sm-10">
+								<input id="frommailO" type="text" class="span6" />
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								From
+							</div>
+							<div class="col-xs-9 col-sm-10">
+								<input id="fromO" type="text" class="span6" />
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								Email Content
+							</div>
+							<div class="col-xs-9 col-sm-10">
+								<input id="emailcontentO" type="text" class="span6" />
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								Email Type
+							</div>
+							<div id="emailtypeO" class="col-xs-9 col-sm-10">
+								<select id="ematyO" class="span6"></select>
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								Attachment
+							</div>
+							<div id="attachmentO" class="col-xs-9 col-sm-10">
+								<select id="attachO" class="span6"></select>
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								Pending Content
+							</div>
+							<div id="pendingcontO" class="col-xs-9 col-sm-10">
+								<select id="pencontO" class="span6"></select>
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								Pending Property
+							</div>
+							<div id="pendingproO" class="col-xs-9 col-sm-10">
+								<select id="penproO" class="span6"></select>
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div class="col-xs-2 col-sm-2">
+								Status
+							</div>
+							<div id="statusI" class="col-xs-9 col-sm-10">
+								<select id="staO" class="span6"></select>
+							</div>
+						</div>
+					
+					
+					</div>
+				</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button id="searchFilterMailO" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
