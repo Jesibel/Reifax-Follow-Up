@@ -247,7 +247,7 @@
 			
 		//AGREGAR CONTACTS
 		$('#addCont,#addCont2').on('click',function(){				
-			alert("addc");
+			//alert("addc");
 			getTypeContacts();	
 		});
 			
@@ -541,11 +541,11 @@ $(function(){
 		
 		//CLICK DETALLE DE EMAIL
 		$('ul.page_emailInbox').on('click','li', function () {
-            alert('onclick email');
+            //alert('onclick email');
 			//alert(url);
 			var id= $(this).attr('idmail');
 			
-			alert(id);
+			//alert(id);
 			// Creamos un objeto
 			var object = { 'email' : id };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
@@ -565,11 +565,11 @@ $(function(){
 		
 		//CLICK DETALLE DE EMAIL outbox
 		$('ul.page_emailOutbox').on('click','li', function () {
-            alert('onclick email outbox');
+           // alert('onclick email outbox');
 			//alert(url);
 			var id= $(this).attr('idmail');
 			
-			alert(id);
+			//alert(id);
 			// Creamos un objeto
 			var object = { 'email' : id };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
@@ -773,7 +773,7 @@ $(function(){
 		
 		//LONG TOUCH EMAIL INBOX
 		$('ul.page_emailInbox').on('taphold','li', function () {
-            alert('long Touch email Inbox');
+           // alert('long Touch email Inbox');
 			
 			var id= $(this).attr('idmail');
 			var idseen= $(this).attr('idseen');	
@@ -791,248 +791,7 @@ $(function(){
 			
 			$(this).addClass ('mail_marked');
 			
-			
-			//longEmailInbox(id);
-			if(checkid.length==0){
-			var ch= checkid.push(id)				
-			document.getElementById('primero'+id).style.background = '#A9D0F5';
-			document.getElementById('header_emailInbox').style.display = "block";
-				
-			var div = document.createElement("div");
-			//div.style.width = "40px";
-			div.style.height = "40px";
-			div.style.background = "gray";
-			div.style.color = "white";
-			div.style.marginTop="-40px";
-			div.style.textAlign = "right";
-			//div.className = "logo";
-			div.id = "logoEmailInbox";
-			
-			var div2 = document.getElementById("header_emailInbox"); 
-			// agregamos la imagen
-			div2.appendChild(div);
-			   
-			//crear ancla para Aceptar
-			var ace = document.createElement("a");
-			//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
-			ace.className ='box3 ui-btn excecute ui-first-child ui-last-child';
-			ace.style.marginRight = "200px";
-			ace.style.marginTop = "2px";
-			ace.style.height = "35px";
-			//ace.setAttribute("href","#menuProperty");
-			ace.onclick = function(){
-				//alert('aceptar');
-				//document.getElementById('header_two').style.display = "none";
-				//location.reload(true);
-				var idaux=0;
-				//alert("entre por else");
-				//alert(checkid.length);
-				for(i=0;i<checkid.length;i++){
-					//alert("test"+id);			 
-					if(checkid[i] == id){ 
-						idaux = id;
-					}			 
-				}
-				if(idaux == id){ 
-					//alert("si lo encontro");
-					for(i=0;i<checkid.length;i++){ 
-						if(checkid[i] == id){ 
-							//alert("encontrado"); 
-							//alert(checkid[i]); 
-							//aki quiero borrar vector[i] 
-							function removeByIndex(checkid, id) {
-								checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
-							}
-							//alert("Array before removing elements: "+checkid);
-							removeByIndex(checkid, i);
-							document.getElementById('primero'+id).style.backgroundColor = '#fff';
-									
-							//alert("Array after removing elements: "+checkid);
-									
-							document.getElementById('header_emailInbox').style.display = "none";
-					   
-							//fin aki				  
-						}
-									//alert(checkid);				
-					}				
-				}else{
-						
-					checkid.push(id)
-									
-					//alert(checkid+'else');
-					document.getElementById('primero'+id).style.background = '#A9D0F5';
-							
-					//document.getElementById('primero'+id).style.height="30px"; 
-					//document.getElementById('primero'+id).style.width="30px"; 
-									
-					//aki quiero borrar vector[i]  #a7d798 
-							  
-					//fin aqui
-							  
-				}
-			};
-				var src = document.getElementById("logoEmailInbox");
-				src.appendChild(ace);
-				
-				//crear ancla  DELETE
-				var a = document.createElement("a");
-				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
-				a.className ='box2 ui-btn excecute ui-first-child ui-last-child';
-				a.style.marginLeft = "6px";
-				a.style.marginTop = "2px";
-				a.style.height = "35px";
-				//a.setAttribute("href","#");
-				a.onclick = function(){
-					alert('delete email inbox');
-					deleteEmailInbox(checkid);
-				};
-				var src = document.getElementById("logoEmailInbox");
-				src.appendChild(a);
-				
-				
-				if (idseen==0){
-					//crear ancla para EMAIL LEIDO 
-					var read = document.createElement("a");
-					var leido=1;
-					var noleido=0;
-					//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
-					read.className ='box5 ui-btn excecute ui-first-child ui-last-child';
-					read.style.marginLeft = "6px";
-					read.style.marginTop = "2px";
-					read.style.height = "35px";
-					read.setAttribute("href","#");
-					read.onclick = function(){
-						var items_marcados = $('.mail_marked');
-						var items_marcados2 = $('.seenB');
-						
-						if (read.className=='box5 ui-btn excecute ui-first-child ui-last-child'){
-							//alert('The email marked as read');
-							read.className ='box4 ui-btn excecute ui-first-child ui-last-child';
-							
-							items_marcados.removeClass("seenB");
-							
-							readEmail(id,leido);
-							
-						}
-						
-						else if (read.className=='box4 ui-btn excecute ui-first-child ui-last-child'){
-							//alert('The email marked as unread');
-							read.className ='box5 ui-btn excecute ui-first-child ui-last-child';
-							//document.getElementById('primero'+id).style.fontWeight = 'bold';
-							//read.style.fontWeight = "bold";
-							items_marcados.removeClass("seenN");
-							items_marcados.addClass("seenB");
-							unreadEmail(id,noleido);
-						}
-									
-					};
-					
-					var src = document.getElementById("logoEmailInbox");
-					src.appendChild(read);
-				
-				}
-				else if (idseen==1){
-					//crear ancla para EMAIL LEIDO 
-					var read = document.createElement("a");
-					var leido=1;
-					var noleido=0;
-					//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
-					read.className ='box4 ui-btn excecute ui-first-child ui-last-child';
-					read.style.marginLeft = "6px";
-					read.style.marginTop = "2px";
-					read.style.height = "35px";
-					read.setAttribute("href","#");
-					read.onclick = function(){
-						var items_marcados = $('.mail_marked');
-						var items_marcados2 = $('.seenB');
-						
-						if (read.className=='box4 ui-btn excecute ui-first-child ui-last-child'){
-							//alert('The email marked as unread');
-							read.className ='box5 ui-btn excecute ui-first-child ui-last-child';
-							//document.getElementById('primero'+id).style.fontWeight = 'bold';
-							//read.style.fontWeight = "bold";
-							items_marcados.removeClass("seenN");
-							items_marcados.addClass("seenB");
-							unreadEmail(id,noleido);
-							
-							
-						}
-						
-						else if (read.className=='box5 ui-btn excecute ui-first-child ui-last-child'){
-							//alert('The email marked as read');
-							read.className ='box4 ui-btn excecute ui-first-child ui-last-child';							
-							items_marcados.removeClass("seenB");							
-							readEmail(id,leido);
-						}
-									
-					};
-					
-					var src = document.getElementById("logoEmailInbox");
-					src.appendChild(read);
-				
-				}
-				
-				
-				//crear ancla para MENU
-				var del = document.createElement("a");
-				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
-				del.className ='box ui-btn excecute ui-first-child ui-last-child';
-				del.style.marginLeft = "6px";
-				del.style.marginTop = "2px";
-				del.style.height = "35px";
-				del.setAttribute("href","#menuEmailInboxO");
-				del.onclick = function(){
-					alert('click menu');
-				};
-				var src = document.getElementById("logoEmailInbox");
-				src.appendChild(del);
-				
-				//document.body.appendChild(div);
-				
-			}else{
-				var idaux=0;
-				//alert("entre por else");
-				//alert(checkid.length);
-				for(i=0;i<checkid.length;i++){
-					//alert("test"+id);			 
-					if(checkid[i] == id){ 
-						idaux = id;
-					}			 
-				}
-				if(idaux == id){ 
-					//alert("si lo encontro");
-					for(i=0;i<checkid.length;i++){ 
-						if(checkid[i] == id){ 
-							//alert("encontrado"); 
-							//alert(checkid[i]); 
-							//aki quiero borrar vector[i] 
-							function removeByIndex(checkid, id) {
-								checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
-							}
-				  
-							//alert("Array before removing elements: "+checkid);
-							removeByIndex(checkid, i);
-							document.getElementById('primero'+id).style.backgroundColor = '#fff';
-							
-							///alert("Array after removing elements: "+checkid);
-							
-							document.getElementById('header_emailInbox').style.display = "none";
-			   
-							//fin aki				  
-						}
-							//alert(checkid);				
-					}				
-				}else{
-				
-					checkid.push(id)
-							
-					//alert(checkid+'else');
-					document.getElementById('primero'+id).style.background = '#A9D0F5';
-					
-				}
-					//alert(checkid);				
-			
-			}
+			longEmailInbox(id);
 			
 			
 		});
@@ -1040,172 +799,13 @@ $(function(){
 		
 		//LONG TOUCH EMAIL OUTBOX
 		$('ul.page_emailOutbox').on('taphold','li', function () {
-            alert('long Touch email OUTbox');
+            //alert('long Touch email OUTbox');
 			
 			var id= $(this).attr('idmail');
 			
 			//alert(id);
+			longEmailOutbox(id);
 			
-			//longEmailInbox(id);
-			if(checkid.length==0){
-			var ch= checkid.push(id)				
-			document.getElementById('primero'+id).style.background = '#A9D0F5';
-			document.getElementById('header_emailOutbox').style.display = "block";
-				
-			var div = document.createElement("div");
-			//div.style.width = "40px";
-			div.style.height = "40px";
-			div.style.background = "gray";
-			div.style.color = "white";
-			div.style.marginTop="-40px";
-			div.style.textAlign = "right";
-			//div.className = "logo";
-			div.id = "logoEmailOutbox";
-			
-			var div2 = document.getElementById("header_emailOutbox"); 
-			// agregamos la imagen
-			div2.appendChild(div);
-			   
-			//crear ancla para Aceptar
-			var ace = document.createElement("a");
-			//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
-			ace.className ='box3 ui-btn excecute ui-first-child ui-last-child';
-			ace.style.marginRight = "200px";
-			ace.style.marginTop = "2px";
-			ace.style.height = "35px";
-			//ace.setAttribute("href","#menuProperty");
-			ace.onclick = function(){
-				//alert('aceptar');
-				//document.getElementById('header_two').style.display = "none";
-				//location.reload(true);
-				var idaux=0;
-				//alert("entre por else");
-				//alert(checkid.length);
-				for(i=0;i<checkid.length;i++){
-					//alert("test"+id);			 
-					if(checkid[i] == id){ 
-						idaux = id;
-					}			 
-				}
-				if(idaux == id){ 
-					//alert("si lo encontro");
-					for(i=0;i<checkid.length;i++){ 
-						if(checkid[i] == id){ 
-							//alert("encontrado"); 
-							//alert(checkid[i]); 
-							//aki quiero borrar vector[i] 
-							function removeByIndex(checkid, id) {
-								checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
-							}
-							//alert("Array before removing elements: "+checkid);
-							removeByIndex(checkid, i);
-							document.getElementById('primero'+id).style.backgroundColor = '#fff';
-									
-							//alert("Array after removing elements: "+checkid);
-									
-							document.getElementById('header_emailOutbox').style.display = "none";
-					   
-							//fin aki				  
-						}
-									//alert(checkid);				
-					}				
-				}else{
-						
-					checkid.push(id)
-									
-					//alert(checkid+'else');
-					document.getElementById('primero'+id).style.background = '#A9D0F5';
-							
-					//document.getElementById('primero'+id).style.height="30px"; 
-					//document.getElementById('primero'+id).style.width="30px"; 
-									
-					//aki quiero borrar vector[i]  #a7d798 
-							  
-					//fin aqui
-							  
-				}
-			};
-				var src = document.getElementById("logoEmailOutbox");
-				src.appendChild(ace);
-				
-				//crear ancla  DELETE
-				var a = document.createElement("a");
-				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
-				a.className ='box2 ui-btn excecute ui-first-child ui-last-child';
-				a.style.marginLeft = "6px";
-				a.style.marginTop = "2px";
-				a.style.height = "35px";
-				//a.setAttribute("href","#");
-				a.onclick = function(){
-					alert('delete email outbox');
-					deleteEmailOutbox(checkid);
-				};
-				var src = document.getElementById("logoEmailOutbox");
-				src.appendChild(a);
-				
-				
-						
-				
-				//crear ancla para MENU
-				var del = document.createElement("a");
-				//a.style.backgroundImage = "url('http://reifax.com/FollowupReifax/img/menu-w.png')";
-				del.className ='box ui-btn excecute ui-first-child ui-last-child';
-				del.style.marginLeft = "6px";
-				del.style.marginTop = "2px";
-				del.style.height = "35px";
-				del.setAttribute("href","#menuEmailOutbox");
-				del.onclick = function(){
-					alert('click menu');
-				};
-				var src = document.getElementById("logoEmailOutbox");
-				src.appendChild(del);
-				
-				//document.body.appendChild(div);
-				
-			}else{
-				var idaux=0;
-				//alert("entre por else");
-				//alert(checkid.length);
-				for(i=0;i<checkid.length;i++){
-					//alert("test"+id);			 
-					if(checkid[i] == id){ 
-						idaux = id;
-					}			 
-				}
-				if(idaux == id){ 
-					//alert("si lo encontro");
-					for(i=0;i<checkid.length;i++){ 
-						if(checkid[i] == id){ 
-							//alert("encontrado"); 
-							//alert(checkid[i]); 
-							//aki quiero borrar vector[i] 
-							function removeByIndex(checkid, id) {
-								checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
-							}
-				  
-							//alert("Array before removing elements: "+checkid);
-							removeByIndex(checkid, i);
-							document.getElementById('primero'+id).style.backgroundColor = '#fff';
-							
-							///alert("Array after removing elements: "+checkid);
-							
-							document.getElementById('header_emailOutbox').style.display = "none";
-			   
-							//fin aki				  
-						}
-							//alert(checkid);				
-					}				
-				}else{
-				
-					checkid.push(id)
-							
-					//alert(checkid+'else');
-					document.getElementById('primero'+id).style.background = '#A9D0F5';
-					
-				}
-					//alert(checkid);				
-			
-			}
 		});
 		
 		//CARGAR DATOS ASSIGNMENT CONTACT
@@ -1232,7 +832,7 @@ $(function(){
 		
 		//SEND EMAIL
 		$('#sendE').on('click', function () {
-			alert('sendemail');
+			//alert('sendemail');
 			sendemail();
 			
 		});
@@ -1254,7 +854,7 @@ $(function(){
 		
 		//BOTON EDITAR CONTACT
 		$("#updateCont,#updateCont2").on('click', function () {
-			alert('editar');
+			//alert('editar');
 			editContact();
 			
 		});
@@ -1425,43 +1025,43 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 });
 
 $(document).on("pagebeforeshow","#historyFollow",function(){	
-			alert('page history');
+			//alert('page history');
 			busy=true;
 			pagina = 5;
 			$("#historial ul").empty();
 			start=0;
 			var valor = JSON.parse(localStorage.getItem('key'));
-			alert(valor.parcelid);
+			//alert(valor.parcelid);
 			historyDetail(start,settings.limit,valor.parcelid);					
 							
 });
 
 $(document).on("pagebeforeshow","#scheduleFollow",function(){	
-			alert('page shedule');
+			//alert('page shedule');
 			busy=true;
 			pagina = 6;
 			$("#schedule ul").empty();
 			start=0;
 			var valor = JSON.parse(localStorage.getItem('key'));
-			alert(valor.parcelid);
+			//alert(valor.parcelid);
 			scheduleDetail(start,settings.limit,valor.parcelid);					
 							
 });
 
 $(document).on("pagebeforeshow","#emailFollow",function(){	
-			alert('page email follow');
+			//alert('page email follow');
 			busy=true;
 			pagina = 7;
 			$("#correofollow ul").empty();
 			start=0;
 			var valor = JSON.parse(localStorage.getItem('key'));
-			alert(valor.parcelid);
+			//alert(valor.parcelid);
 			emailDetail(start,settings.limit,valor.parcelid);					
 							
 });
 
 $(document).on("pagebeforeshow","#taskHtml",function(){	
-			alert('page task Pendings');
+			//alert('page task Pendings');
 			busy=true;
 			pagina = 8;
 			$("#pendientes ul").empty();
