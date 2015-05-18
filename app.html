@@ -2061,42 +2061,110 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
             </div>
             <div class="modal-body">
 			<form id="formularioFilterProperty" class="form-horizontal">
-				<div class="row-fluid">
-				  <div class="span6">
-					<!--h4>Filters</h4-->
-					<p>Address<input id="address" type="text" class="span12" /></p>
-					<p>County<div id="county"><select id="coun" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>
-					<p>City<div id="city"><select id="cit" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>
-					<p>Zip Code<input id="zip" type="text" class="span12" /></p>
-					<p>Property Type<div id="xcode"><select id="xcod" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>					
-					<p>Contact<input id="contact" type="text" class="span12" /></p>
-					<p>Status<!--input type="text" class="span12" /-->
-						<div id="status"><select id="st" class="span12"></select></div>
-					</p>					
-					<p>Alt Status<div id="altstatus"><select id="altst" class="span12"></select></div>
-							<!--input type="text" class="span12" /--></p>	
-					<p>Follow Date<div id="followdate"><select id="folldate" class="span12"></select><br>
-									 <div class="control-group">
-										<div class="controls">
-											<div style="margin-top:30px;">
-												<input id="date" type="text" class="date-picker form-control" />
-												<label style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
-											</div><br>
-											
-											<div id="between">
-												<input id="datebetween" type="text" class="date-picker form-control" />
-												<label  style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
-											</div>
-										</div>
-									</div>
-								   </div>
-							<!--input type="text" class="span12" /--></p>	
-				  </div>
+				<div class="container-fluid">
+           
+				<div class="row">
 				  
-            </div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div class="col-xs-2 col-sm-6">
+							Address
+						</div>
+						<div class="col-xs-8 col-sm-6">
+							<input id="address" type="text" class="span12" />
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div class="col-xs-2 col-sm-6">
+							County
+						</div>
+						<div  id="county" class="col-xs-8 col-sm-6">
+							<select id="coun" class="span12"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div class="col-xs-2 col-sm-6">
+							City
+						</div>
+						<div  id="city" class="col-xs-8 col-sm-6">
+							<select id="cit" class="span12"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div class="col-xs-2 col-sm-6">
+							Zip Code
+						</div>
+						<div  class="col-xs-8 col-sm-6">
+							<input id="zip" type="text" class="span12" />
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div class="col-xs-2 col-sm-6">
+							Property Type
+						</div>
+						<div  id="xcode" class="col-xs-8 col-sm-6">
+							<select id="xcod" class="span12"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div class="col-xs-2 col-sm-6">
+							Contact
+						</div>
+						<div class="col-xs-8 col-sm-6">
+							<input id="contact" type="text" class="span12" />
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div class="col-xs-2 col-sm-6">
+							Status
+						</div>
+						<div id="status" class="col-xs-8 col-sm-6">
+							<select id="st" class="span12"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div class="col-xs-2 col-sm-6">
+							Alt Status
+						</div>
+						<div id="altstatus" class="col-xs-8 col-sm-6">
+							<select id="altst" class="span12"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div class="col-xs-2 col-sm-6">
+							Follow Date
+						</div>
+						<div id="followdate" class="col-xs-8 col-sm-6">
+							<select id="folldate" class="span12"></select>
+							
+							<div class="control-group">
+								<div class="controls">
+									<div style="margin-top:30px;">
+										<input id="date" type="text" class="date-picker form-control" />
+										<label style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
+									</div><br>
+											
+									<div id="between">
+										<input id="datebetween" type="text" class="date-picker form-control" />
+										<label  style="width:100%" for="date-picker-2" class="input-group-addon btn"><span class="glyphicon glyphicon-calendar"></span></label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+				</div>
+            
+			</div>	
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button id="searchFilter" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
@@ -3228,7 +3296,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
 		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
-			<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTask"></a>
+			<a style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTask"></a>
 		</div>
 		
 		<!--TABS-->
@@ -3281,8 +3349,8 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 			<ul data-role="listview" data-icon="false">	 
 				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
 				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
-				<li class="margen"><a class="filter"       		  id="filtromaO"      href="#filterEO" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
-				<li class="margen"><a class="filterRemove" 		  id="RemovefiltroO"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+				<li class="margen"><a class="filter"       		  id="filtroTask"      href="#filterEO" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Task</a></li>
+				<li class="margen"><a class="filterRemove" 		  id="RemovefiltroTask"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
 			</ul>
 		</div>	
 	</div>
@@ -3296,7 +3364,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
 		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
-			<a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTaskCompleted"></a>
+			<a style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTaskCompleted"></a>
 		</div>
 		<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
@@ -3348,8 +3416,8 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 			<ul data-role="listview" data-icon="false">	 
 				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
 				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
-				<li class="margen"><a class="filter"       		  id="filtromaO"      href="#filterEO" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
-				<li class="margen"><a class="filterRemove" 		  id="RemovefiltroO"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+				<li class="margen"><a class="filter"       		  id="filtroTaskC"      href="#filterEO" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Completed Task</a></li>
+				<li class="margen"><a class="filterRemove" 		  id="RemovefiltroTaskC"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
 			</ul>
 		</div>	
 	</div>
