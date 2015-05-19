@@ -4069,6 +4069,14 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a>
 		<a style="height:30px;width:30px;background-image: url('img/back.w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" data-rel="back"></a-->
 		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="addSchedule" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-hist-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddScheduleHtml"></a>
+			<a id="refreshSchedule" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/refresh-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		</div>
+	</div>
+	
+	<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_schedule">				
+	
 	</div>
 	
 	<!--TABS-->
@@ -4273,6 +4281,102 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 	</div>
 	<!--FIN CONTENT-->	
 	
+	
+</div>
+
+<div data-role="page" id="pagAddScheduleHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<a id="resetAddSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<a id="saveSchedule" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		</div>
+	
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
+				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+			</ul>
+		</div>
+	
+	<!--FIN TABS-->
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		
+		<div style="margin-left: 1px;" class="row formC" id="formContacto">
+			<form style="margin-top: 30px;" class="form-inline">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Exec. Date</label>
+						<div id="Exdate" class="col-md-10">
+							<input type="date" name="edate" id="edate">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Exec. Hour</label>
+						<div id="Exhour" class="col-md-10">
+							<input type="time" id="ehour" name="hrs" placeholder="hrs:mins" value="" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs duration t1 time hrs" required>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Exec. Type</label>
+						<div id="Extype" class="col-md-10">
+						   <select id="typEd" class="form-control">
+							<option value="automatic">Automatic</option>
+							<option value="manual">Manual</option>							
+						  </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Task</label>
+						<div id="tasksc" class="col-md-10">
+						   <select id="typEd" class="form-control">
+							<option value="1">Send SMS</option>
+							<option value="3">Send FAX</option>
+							<option value="5">Send EMAIL</option>
+							<option value="7" >Send DOC</option>
+						  </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Detail</label>
+						<div id="detailsc" class="col-xs-12 col-md-10">
+						  <textarea style="height:222px;  width: 100%;" id="detailsch" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
+						</div>
+					</div>
+				</div>
+								
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="saveSch" class="btn btn-success" type="button" value="Add">
+						<input id="resetAddSch" class="btn btn-default" type="button" value="Reset">
+					</div>
+				</div>
+			</form>
+		
+		</div>
+		
+		
+	</div>
+	<!--FIN CONTENT-->	
 	
 </div>
 
