@@ -77,6 +77,23 @@
 		
 		//document.getElementById('menuContacts').style.display = "block";
 		
+		$('#folldate').change(function(){
+			//alert($(this).val());
+			if ($(this).val()=='Between'){
+				document.getElementById('between').style.display = "block";
+			}else{
+				document.getElementById('between').style.display = "none";
+			}
+		});
+		
+		$('#demo').mobipick({
+			dateFormat: "MM-dd-yyyy"
+		});
+		
+		$('#demo2').mobipick({
+			dateFormat: "MM-dd-yyyy"
+		});
+		
 		//FILTER PROPERTIES
 		$("#filtro,#filtro2").on('click', function () {
 			//alert('filtro');				
@@ -1753,12 +1770,14 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 						<div id="followdate" class="col-xs-3 col-sm-3">
 							<select id="folldate" class="span4"></select>
 						</div>	
-							<div style="margin-top:1px;padding-left:0px;" class="col-xs-3 col-sm-3">
-								<input style="line-height:25px;width: 100px !important;" type="date" name="beet" id="beet">
-							</div>		
-							<div id="between" class="col-xs-6 col-sm-3">
-								<input style="line-height:25px;width: 100px !important;" type="date" name="beet2" id="beet2">
-							</div>
+						<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
+							<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
+							<input style="line-height:25px;width: 100px !important;" name="demo" id="demo" class="i-txt" />
+						</div>		
+						<div id="between" class="col-xs-6 col-sm-3">
+							<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
+							<input style="line-height:25px;width: 100px !important;margin-left: 115px;" name="demo2" id="demo2" class="i-txt" />
+						</div>
 							
 						
 					</div>
