@@ -86,7 +86,7 @@
 			}
 		});
 		
-		$('#demo').mobipick({
+		/*$('#demo').mobipick({
 			dateFormat: "MM-dd-yyyy"
 		});
 		
@@ -106,7 +106,7 @@
 			onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
 			//preferredCountries: ['cn', 'jp'],
 			utilsScript: "http://reifax.com/FollowupReifax/resources/lib/libphonenumber/build/utils.js"
-		});
+		});*/
 		
 		//FILTER PROPERTIES
 		$("#filtro,#filtro2").on('click', function () {
@@ -867,6 +867,20 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 			$("#contacts ul").empty();
 			start=0;
 			listadoContacts(start,settings.limit);
+		
+		$("#phoneContFil").intlTelInput({
+			//allowExtensions: true,
+			//autoFormat: false,
+			//autoHideDialCode: false,
+			//autoPlaceholder: false,
+			//defaultCountry: "auto",
+			//ipinfoToken: "yolo",
+			//nationalMode: false,
+			//numberType: "MOBILE",
+			onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+			//preferredCountries: ['cn', 'jp'],
+			utilsScript: "http://reifax.com/FollowupReifax/resources/lib/libphonenumber/build/utils.js",
+		});
 							
 });
 
@@ -876,7 +890,15 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 			pagina = 1;
 			$("#content ul").empty();
 			start=0;
-			listadoProperty(start,settings.limit);					
+			listadoProperty(start,settings.limit);	
+
+	$('#demo').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});
+		
+	$('#demo2').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});
 							
 });
 
