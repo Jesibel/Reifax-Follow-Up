@@ -94,6 +94,20 @@
 			dateFormat: "MM-dd-yyyy"
 		});
 		
+		$("#phoneContFil").intlTelInput({
+			//allowExtensions: true,
+			//autoFormat: false,
+			//autoHideDialCode: false,
+			//autoPlaceholder: false,
+			//defaultCountry: "auto",
+			//ipinfoToken: "yolo",
+			//nationalMode: false,
+			//numberType: "MOBILE",
+			onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+			//preferredCountries: ['cn', 'jp'],
+			utilsScript: "http://reifax.com/FollowupReifax/resources/lib/libphonenumber/build/utils.js"
+		});
+		
 		//FILTER PROPERTIES
 		$("#filtro,#filtro2").on('click', function () {
 			//alert('filtro');				
@@ -1788,7 +1802,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
             
 			</div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
                 <button id="searchFilter" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
                 <input type="submit" style="position: absolute;left: -10000px;" value="Enviar" data-role="none" />
 			</div>
@@ -2192,7 +2206,8 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 								Phone
 							</div>
 							<div class="col-xs-9 col-sm-10">
-								<input id="phoneContFil" type="text" class="span6" />
+								<!--input id="phoneContFil" type="text"  /-->
+								<input type="tel" id="phoneContFil" class="span6">
 							</div>
 						</div>
 					
@@ -2200,7 +2215,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
             
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
 					<button id="searchFilterContacts" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
 					<input type="submit" style="position: absolute;left: -10000px;" value="Enviar2" data-role="none" />
 				</div>
@@ -2302,7 +2317,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
             
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
 					<button id="searchFilterMailI" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
 					<input type="submit" style="position: absolute;left: -10000px;" value="Enviar3" data-role="none" />
 					<!--button id="searchFilterMailI2" type="submit" class="btn btn-primary" data-dismiss="modal"></button-->
@@ -2404,7 +2419,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 					</div>
 				</div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
                 <button id="searchFilterMailO" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
                 <input type="submit" style="position: absolute;left: -10000px;" value="Enviar4" data-role="none" />
 				<!--button id="searchFilterMailO2" type="submit" class="btn btn-primary" data-dismiss="modal"></button-->
@@ -4018,8 +4033,8 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 <div data-role="page" id="historyFollow" data-add-back-btn="true">         
            <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
-		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a>
-		<a style="height:30px;width:30px;background-image: url('img/backk-36.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" data-rel="back"></a-->
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();"></a>
 		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 			<a id="addHist" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-hist-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddHistoryHtml"></a>
@@ -4085,8 +4100,8 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 <div data-role="page" id="scheduleFollow" data-add-back-btn="true">         
            <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
-		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a>
-		<a style="height:30px;width:30px;background-image: url('img/back.w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" data-rel="back"></a-->
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();"></a>
 		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 			<a id="addSchedule" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/add-hist-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddScheduleHtml"></a>
@@ -4137,8 +4152,8 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 <div data-role="page" id="emailFollow" data-add-back-btn="true">         
            <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
-		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a>
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" data-rel="back"></a-->
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();"></a>
 		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 	</div>
 	
