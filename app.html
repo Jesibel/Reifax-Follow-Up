@@ -65,8 +65,8 @@
 		document.getElementById('templa').style.display = "none";
 		document.getElementById('templaFAX').style.display = "none";
 		document.getElementById('between').style.display = "none";
-		document.getElementById('betweenExecPtask').style.display = "none";
-		document.getElementById('betweenSchePtask').style.display = "none";
+		document.getElementById('betweenExecPTask').style.display = "none";
+		document.getElementById('betweenSchePTask').style.display = "none";
 		document.getElementById('telf1').style.display = "none";
 		document.getElementById('telf2').style.display = "none";
 		document.getElementById('telf3').style.display = "none";
@@ -170,6 +170,14 @@
 			//alert('remove filter email outbox');
 			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterEmailOutbox();
+					
+		});
+		
+		//FILTER REMOVE PENDING TASK
+		$("#RemovefiltroTask").on('click', function () {
+			//alert('remove filter email outbox');
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			removeFilterPendingTask();
 					
 		});
 		
@@ -335,6 +343,12 @@
 			getComposeInbox();
 		});
 		
+		//GET FILTER PENDING TASK
+		$('#filtroTask').on('click',function(){				
+			//alert("getptask");
+			getfilterPendingTask();
+		});
+		
 		//COMPOSE SEND EMAIL INBOX
 		$('#sendMailI').on('click',function(){				
 			sendemailInbox();
@@ -378,21 +392,6 @@
 			listadoContacts(start, limit);
 		});
 		
-		
-		//BOTON ENTER FILTER CONTACT
-		/*$("#formularioFilterContact").on("keypress", function(e){ 
-			if ((e.keyCode === 13)) {
-				//alert('enter');
-				//$("#formfilterContact").modal('hide');
-				$('#menuContacts').panel("close");
-				$("#contacts ul").empty();
-				//filterContacts();
-				var start = 0; 
-				var limit = 25; 
-				listadoContacts(start, limit)
-			}
-		});*/
-		
 		$('#formularioFilterContact').submit(function(){
 			event.preventDefault();
 			
@@ -418,20 +417,6 @@
 			
 		});
 		
-		//BOTON ENTER FILTER PROPERTY
-		/*$("#formularioFilterProperty").on("keypress", function(e){ 
-			if ((e.keyCode === 13)) {
-				alert('tecla enter property');
-				//$("#filter").modal('hide');
-				$('#menuSecunFollow').panel("close");
-				$("#content ul").empty();
-				searchFilterProperty();
-				var start = 0; 
-				var limit = 25; 
-				//listadoProperty(start,limit);
-			}
-		});*/
-	
 		$('#formularioFilterProperty').submit(function(){
 			event.preventDefault();
 			
@@ -455,20 +440,7 @@
 			listadoEmailsInbox(start,limit);
 			
 		});
-		
-		//BOTON ENTER FILTER EMAIL INBOX
-		/*$("#formularioFilterEmailInbox").on("keypress", function(e){ 
-			if ((e.keyCode === 13)) {
-				//alert('enter');
-				//$("#filterEI").modal('hide');
-				$('#menuEmailInbox,#menuEmailInboxO').panel("close");
-				//searchFilterMailInbox();
-				$("#emails ul").empty();
-				var start = 0; 
-				var limit = 25; 
-				listadoEmailsInbox(start,limit);
-			}
-		});*/
+				
 		$('#formularioFilterEmailInbox').submit(function(){
 			event.preventDefault();
 			
@@ -491,20 +463,7 @@
 			listadoEmailsOutbox(start,limit);
 			
 		});
-		
-		//BOTON ENTER FILTER EMAIL OUTBOX
-		/*$("#formularioFilterEmailOutbox").on("keypress", function(e){ 
-			if ((e.keyCode === 13)) {
-				alert('enter');
-				//$("#filterEO").modal('hide');
-				$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-				//searchFilterMailOutbox();
-				$("#emailsOutbox ul").empty();
-				var start = 0; 
-				var limit = 25; 
-				listadoEmailsOutbox(start,limit);
-			}
-		});*/
+				
 		$('#formularioFilterEmailOutbox').submit(function(){
 			event.preventDefault();
 			
@@ -514,6 +473,29 @@
 			var start = 0; 
 			var limit = 25; 
 			listadoEmailsOutbox(start,limit);
+		 
+		 });
+		 
+		 //BOTON FILTRAR PENDING TASK
+		$("#searchFilterPTask").on('click', function () {
+			//alert('FILTRAR');
+			//filterContacts();
+			$("#pendientes ul").empty();
+			var start = 0; 
+			var limit = 25; 
+			listadoPendings(start, limit);
+		});
+
+		$('#formularioFilterPendingTask').submit(function(){
+			event.preventDefault();
+			
+			$("#filterPendingTask").modal('hide');
+			$('#menuTask').panel("close");
+			$("#pendientes ul").empty();
+			
+			var start = 0; 
+			var limit = 25; 
+			listadoPendings(start, limit);
 		 
 		 });
 		
@@ -2271,6 +2253,15 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 					
 					<div style="margin-bottom: 10px;" class="row">
 						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Property Status
+						</div>
+						<div  id="pstatusPTask" class="col-xs-7 col-sm-10">
+							<select id="prostaPTask" class="span4"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
 							Contact
 						</div>
 						<div class="col-xs-7 col-sm-10">
@@ -2284,23 +2275,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 						</div>
 						<div id="taskkPTask" class="col-xs-7 col-sm-10">
 							<select id="taskPTask" class="span4">
-								<option value="1">Send SMS</option>
-								<option value="2">Receive SMS</option>
-								<option value="3">Send FAX</option>
-								<option value="4">Receive FAX</option>
-								<option value="5">Send EMAIL</option>
-								<option value="6">Receive EMAIL</option>
-								<option value="7" >Send DOC</option>
-								<option value="8" >Receive DOC</option>
-								<option value="9" >Make Call</option>
-								<option value="10" >Receive Call</option>
-								<option value="11" >Send R. Mail</option>
-								<option value="12" >Receive R. Mail</option>
-								<option value="13" >Send Other</option>
-								<option value="14" >Receive Other</option>
-								<option value="15" >Send Voice Mail</option>
-								<option value="16" >Receive Voice Mail</option>
-								<option value="17" >Make Note</option>
+								
 							</select>
 						</div>
 					</div>
@@ -2324,7 +2299,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
 								<input style="line-height:25px;width: 100px !important;" name="execdateP" id="execdateP" class="i-txt" />
 						</div>		
-						<div id="betweenExecPtask" class="col-xs-6 col-sm-3">
+						<div id="betweenExecPTask" class="col-xs-6 col-sm-3">
 								<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
 								<input style="line-height:25px;width: 100px !important;margin-left: 115px;" name="execdateP2" id="execdateP2" class="i-txt" />
 						</div>
@@ -2363,6 +2338,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 						</div>
 						<div id="etypePTask" class="col-xs-7 col-sm-10">
 							<select id="etypPTask" class="span4">
+								<option value="-1">All</option>
 								<option value="1">Manual</option>
 								<option value="2">Automatic</option>
 							</select>
