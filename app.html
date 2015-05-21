@@ -94,19 +94,19 @@
 		
 		$('#edatePTask').change(function(){
 			//alert($(this).val());
-			if ($(this).val()=='BetweenExecPTask'){
-				document.getElementById('BetweenExecPTask').style.display = "block";
+			if ($(this).val()=='Between'){
+				document.getElementById('betweenExecPTask').style.display = "block";
 			}else{
-				document.getElementById('BetweenExecPTask').style.display = "none";
+				document.getElementById('betweenExecPTask').style.display = "none";
 			}
 		});
 		
 		$('#sdatePTask').change(function(){
 			//alert($(this).val());
-			if ($(this).val()=='BetweenSchePTask'){
-				document.getElementById('BetweenSchePTask').style.display = "block";
+			if ($(this).val()=='Between'){
+				document.getElementById('betweenSchePTask').style.display = "block";
 			}else{
-				document.getElementById('BetweenSchePTask').style.display = "none";
+				document.getElementById('betweenSchePTask').style.display = "none";
 			}
 		});
 		
@@ -2311,7 +2311,14 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 						</div>
 						
 						<div style="margin-bottom:10px;" id="edateePTask" class="col-xs-3 col-sm-3">
-							<select id="edatePTask" class="span4"></select>
+							<select id="edatePTask" class="span4">
+								<option value="Equal">Equal</option>
+								<option value="Greater Than">Greater Than</option>
+								<option value="Less Than">Less Than</option>
+								<option value="Equal or Less" >Equal or Less</option>
+								<option value="Equal or Greater">Equal or Greater</option>
+								<option value="Between">Between</option>
+							</select>
 						</div>	
 						<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
 								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
@@ -2330,7 +2337,14 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 						</div>
 						
 						<div style="margin-bottom:10px;" id="sdateePTask" class="col-xs-3 col-sm-3">
-							<select id="sdatePTask" class="span4"></select>
+							<select id="sdatePTask" class="span4">
+								<option value="Equal">Equal</option>
+								<option value="Greater Than">Greater Than</option>
+								<option value="Less Than">Less Than</option>
+								<option value="Equal or Less" >Equal or Less</option>
+								<option value="Equal or Greater">Equal or Greater</option>
+								<option value="Between">Between</option>
+							</select>
 						</div>	
 						<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
 								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
