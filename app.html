@@ -67,6 +67,7 @@
 		document.getElementById('between').style.display = "none";
 		document.getElementById('betweenExecPTask').style.display = "none";
 		document.getElementById('betweenSchePTask').style.display = "none";
+		document.getElementById('betweenCompTask').style.display = "none";
 		document.getElementById('telf1').style.display = "none";
 		document.getElementById('telf2').style.display = "none";
 		document.getElementById('telf3').style.display = "none";
@@ -110,27 +111,15 @@
 			}
 		});
 		
-		/*$('#demo').mobipick({
-			dateFormat: "MM-dd-yyyy"
+		$('#sdatePTask').change(function(){
+			alert($(this).val());
+			if ($(this).val()=='Between'){
+				document.getElementById('betweenSchePTask').style.display = "block";
+			}else{
+				document.getElementById('betweenSchePTask').style.display = "none";
+			}
 		});
 		
-		$('#demo2').mobipick({
-			dateFormat: "MM-dd-yyyy"
-		});
-		
-		$("#phoneContFil").intlTelInput({
-			//allowExtensions: true,
-			//autoFormat: false,
-			//autoHideDialCode: false,
-			//autoPlaceholder: false,
-			//defaultCountry: "auto",
-			//ipinfoToken: "yolo",
-			//nationalMode: false,
-			//numberType: "MOBILE",
-			onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-			//preferredCountries: ['cn', 'jp'],
-			utilsScript: "http://reifax.com/FollowupReifax/resources/lib/libphonenumber/build/utils.js"
-		});*/
 		
 		//FILTER PROPERTIES
 		$("#filtro,#filtro2").on('click', function () {
@@ -178,6 +167,14 @@
 			//alert('remove filter email outbox');
 			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterPendingTask();
+					
+		});
+		
+		//FILTER REMOVE PENDING TASK
+		$("#RemovefiltroTaskC").on('click', function () {
+			//alert('remove filter email outbox');
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			removeFilterCompletedTask();
 					
 		});
 		
@@ -349,6 +346,12 @@
 			getfilterPendingTask();
 		});
 		
+		//GET FILTER COMPLETED TASK
+		$('#filtroTaskC').on('click',function(){				
+			//alert("getptask");
+			getfilterCompletedTask();
+		});
+		
 		//COMPOSE SEND EMAIL INBOX
 		$('#sendMailI').on('click',function(){				
 			sendemailInbox();
@@ -496,6 +499,29 @@
 			var start = 0; 
 			var limit = 25; 
 			listadoPendings(start, limit);
+		 
+		 });
+		 
+		  //BOTON FILTRAR COMPLETED TASK
+		$("#searchFilterCTask").on('click', function () {
+			//alert('FILTRAR');
+			//filterContacts();
+			$("#completados ul").empty();
+			var start = 0; 
+			var limit = 25; 
+			listadoCompleted(start, limit);
+		});
+
+		$('#formularioFilterCompletedTask').submit(function(){
+			event.preventDefault();
+			
+			$("#filterCompletedTask").modal('hide');
+			$('#menuTaskCompleted').panel("close");
+			$("#completados ul").empty();
+			
+			var start = 0; 
+			var limit = 25; 
+			listadoCompleted(start, limit);
 		 
 		 });
 		
