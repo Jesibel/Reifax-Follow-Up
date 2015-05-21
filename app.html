@@ -111,12 +111,12 @@
 			}
 		});
 		
-		$('#sdatePTask').change(function(){
+		$('#cdateCTask').change(function(){
 			alert($(this).val());
 			if ($(this).val()=='Between'){
-				document.getElementById('betweenSchePTask').style.display = "block";
+				document.getElementById('betweenCompTask').style.display = "block";
 			}else{
-				document.getElementById('betweenSchePTask').style.display = "none";
+				document.getElementById('betweenCompTask').style.display = "none";
 			}
 		});
 		
@@ -2385,6 +2385,180 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 </div>
 </div>
 <!--FIN FILTER PENDING TASK-->
+
+<!--FILTER COMPLETED TASK-->
+<div class="modal fade bs-example-modal-sm" id="filterCompletedTask" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Filters</h4>
+            </div>
+            <div class="modal-body">
+			<form id="formularioFilterCompletedTask" class="form-horizontal">
+			<div class="container-fluid">
+           
+				<div class="row">
+				  
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Address
+						</div>
+						<div class="col-xs-7 col-sm-10">
+							<input id="addressCTask" type="text" class="span4" />
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Zip Code
+						</div>
+						<div class="col-xs-7 col-sm-10">
+							<input id="zipcodeCTask" type="text" class="span4" />
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							County
+						</div>
+						<div  id="countyCTask" class="col-xs-7 col-sm-10">
+							<select id="counCTask" class="span4"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							City
+						</div>
+						<div  id="cityCTask" class="col-xs-7 col-sm-10">
+							<select id="citCTask" class="span4"></select>
+						</div>
+					</div>
+										
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Property Type
+						</div>
+						<div  id="xcodeCTask" class="col-xs-7 col-sm-10">
+							<select id="xcodCTask" class="span4"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Contact
+						</div>
+						<div class="col-xs-7 col-sm-10">
+							<input id="contactCTask" type="text" class="span4" />
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Task
+						</div>
+						<div id="taskkCTask" class="col-xs-7 col-sm-10">
+							<select id="taskCTask" class="span4">
+								
+							</select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Status
+						</div>
+						<div  id="pstatusCTask" class="col-xs-7 col-sm-10">
+							<select id="prostaCTask" class="span4"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Contract
+						</div>
+						<div  style="padding-right: 1px;" id="contracttCTask" class="col-xs-3 col-sm-10">
+							<select id="contractCTask" class="span4"></select>
+						</div>
+						<div style="padding-top: 5px;padding-right:1px;padding-left:5px;" class="col-xs-1 col-sm-2">
+							POF
+						</div>
+						<div  id="poffCTask" class="col-xs-3 col-sm-10">
+							<select id="pofCTask" class="span4"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Addendums
+						</div>
+						<div  style="padding-right: 1px;" id="addeeCTask" class="col-xs-3 col-sm-10">
+							<select id="addeCTask" class="span4"></select>
+						</div>
+						<div style="padding-top: 5px;padding-right:1px;padding-left:5px;" class="col-xs-1 col-sm-2">
+							EMD
+						</div>
+						<div  id="emddCTask" class="col-xs-3 col-sm-10">
+							<select id="emdCTask" class="span4"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top:5px;" class="col-xs-4 col-sm-2">
+							Message
+						</div>
+						<div  style="padding-right: 1px;" id="msggCTask" class="col-xs-3 col-sm-10">
+							<select id="msgCTask" class="span4"></select>
+						</div>
+						<div style="padding-top: 5px;padding-right:1px;padding-left:5px;" class="col-xs-1 col-sm-2">
+							Off.R
+						</div>
+						<div  id="offerrCTask" class="col-xs-3 col-sm-10">
+							<select id="offerCTask" class="span4"></select>
+						</div>
+					</div>
+										
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Completed. Date
+						</div>
+						
+						<div style="margin-bottom:10px;" id="cdateCTask" class="col-xs-3 col-sm-3">
+							<select id="compdateCTask" class="span4">
+								<option value="Equal">Equal</option>
+								<option value="Greater Than">Greater Than</option>
+								<option value="Less Than">Less Than</option>
+								<option value="Equal or Less" >Equal or Less</option>
+								<option value="Equal or Greater">Equal or Greater</option>
+								<option value="Between">Between</option>
+							</select>
+						</div>	
+						<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
+								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
+								<input style="line-height:25px;width: 100px !important;" name="compdateC" id="compdateC" class="i-txt" />
+						</div>		
+						<div id="betweenCompTask" class="col-xs-6 col-sm-3">
+								<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
+								<input style="line-height:25px;width: 100px !important;" name="compdateC2" id="compdateC2" class="i-txt" />
+						</div>
+							
+					</div>
+																						
+				</div>
+            
+			</div>	
+            <div class="modal-footer">
+                <!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
+                <button id="searchFilterCTask" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+                <input id="searchFilterCtask2" type="submit" value="GO" data-role="none" style="position: absolute;left: -10000px;">
+			</div>
+			</form>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN FILTER COMPLETED TASK-->
 
 <!--ASSIGN CONTACT-->
 <div class="modal fade bs-example-modal-sm" id="assignContacts" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
