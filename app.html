@@ -44,6 +44,10 @@
     <script src="http://mobipick.sustainablepace.net/external/xdate.i18n.js"></script>        
     <script src="http://mobipick.sustainablepace.net/js/mobipick.js"></script>
 	
+	 <script src="http://reifax.com/FollowupReifax/resources/build/js/intlTelInput.js"></script>
+	 
+	 <script src="http://reifax.com/FollowupReifax/resources/build/css/intlTelInput.css"></script>
+	
 	<!--script src="http://reifax.com/FollowupReifax/bootstrap/js/bootstrap-modal.js"></script>
 	<script src="http://reifax.com/FollowupReifax/bootstrap/js/bootstrap-modalmanager.js"></script-->	
 	<!--script src="http://reifax.com/FollowupReifax/resources/js/accounting.js"></script-->
@@ -61,6 +65,8 @@
 		document.getElementById('templa').style.display = "none";
 		document.getElementById('templaFAX').style.display = "none";
 		document.getElementById('between').style.display = "none";
+		document.getElementById('betweenExecPtask').style.display = "none";
+		document.getElementById('betweenSchePtask').style.display = "none";
 		document.getElementById('telf1').style.display = "none";
 		document.getElementById('telf2').style.display = "none";
 		document.getElementById('telf3').style.display = "none";
@@ -83,6 +89,24 @@
 				document.getElementById('between').style.display = "block";
 			}else{
 				document.getElementById('between').style.display = "none";
+			}
+		});
+		
+		$('#edatePTask').change(function(){
+			//alert($(this).val());
+			if ($(this).val()=='BetweenExecPTask'){
+				document.getElementById('BetweenExecPTask').style.display = "block";
+			}else{
+				document.getElementById('BetweenExecPTask').style.display = "none";
+			}
+		});
+		
+		$('#sdatePTask').change(function(){
+			//alert($(this).val());
+			if ($(this).val()=='BetweenSchePTask'){
+				document.getElementById('BetweenSchePTask').style.display = "block";
+			}else{
+				document.getElementById('BetweenSchePTask').style.display = "none";
 			}
 		});
 		
@@ -1888,114 +1912,6 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 </div>
 <!--FIN FORMULARIO MAKE CALL-->
 
-<!--FORMULARIO ADD CONTACTS-->
-<!--div class="modal fade bs-example-modal-sm" id="formAddContacts" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Follow Contact</h4>
-            </div>
-            <div class="modal-body">
-				<div class="row-fluid">
-					<div class="span12">
-						<h4>Filters</h4>
-						<p>Contact:<div id="agentCont"><input id="agenC" type="text" class="span12"/></div></p>
-						<p>type:<div id="typeagentCont"><select id="typC" class="span12"></select></div></p>
-						<p>Email1:<div id="email1Cont"><select style="width:30%;float:left;margin-right: 15px;" id="emai1Cont" class="span12"></select></div>
-								<input id ="ema1Cont" style="width:65%;" type="text" class="span12" /></p>
-						<p>Email2:<div id="email2Cont"><select style="width:30%;float:left;margin-right: 15px;" id="emai2Cont" class="span12"></select></div>
-								<input id ="ema2Cont" style="width:65%;" type="text" class="span12" /></p>		
-						<p>Company:<input id="companyCont" type="text" class="span12" /></p>
-						<p>Website1:<div id="website1Cont"><select style="width:30%;float:left;margin-right: 15px;" id="websit1Cont" class="span12"></select></div>
-								<input id ="web1Cont" style="width:65%;" type="text" class="span12" /></p>
-						<p>Website2:<div id="website2Cont"><select style="width:30%;float:left;margin-right: 15px;" id="websit2Cont" class="span12"></select></div>
-								<input id ="web2Cont" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone:<div id="phone1Cont"><select style="width:30%;float:left;margin-right: 15px;" id="phon1Cont" class="span12"></select></div>
-								<input id ="pho1Cont" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone2:<div id="phone2Cont"><select style="width:30%;float:left;margin-right: 15px;" id="phon2Cont" class="span12"></select></div>
-								<input id ="pho2Cont" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone3:<div id="phone3Cont"><select style="width:30%;float:left;margin-right: 15px;" id="phon3Cont" class="span12"></select></div>
-								<input id ="pho3Cont" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone4:<div id="phone4Cont"><select style="width:30%;float:left;margin-right: 15px;" id="phon4Cont" class="span12"></select></div>
-								<input id ="pho4Cont" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone5:<div id="phone5Cont"><select style="width:30%;float:left;margin-right: 15px;" id="phon5Cont" class="span12"></select></div>
-								<input id ="pho5Cont" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone6:<div id="phone6Cont"><select style="width:30%;float:left;margin-right: 15px;" id="phon6Cont" class="span12"></select></div>
-								<input id ="pho6Cont" style="width:65%;" type="text" class="span12" /></p>
-						<p>Address1:<div id="address1Cont"><select style="width:30%;float:left;margin-right: 15px;" id="addre1Cont" class="span12"></select></div>
-								<input id="addr1Cont" style="width:65%;" type="text" class="span12" /></p>
-						<p>Address2:<div id="address2Cont"><select style="width:30%;float:left;margin-right: 15px;" id="addre2Cont" class="span12"></select></div>
-								<input id="addr2Cont" style="width:65%;"type="text" class="span12" /></p>
-					</div>				  
-            </div>
-			<button id="insertCont" type="button" class="btn btn-primary" data-dismiss="modal">Insert</button>
-			<button id="remove" type="button" class="btn btn-primary" data-dismiss="modal">Reset</button>
-			<br>
-			<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                
-			</div>
-		</div>
-  </div>
-</div>
-</div-->
-<!--FIN FORMULARIO ADD CONTACTS-->
-
-<!--FORMULARIO EDIT CONTACTS-->
-<!--div class="modal fade bs-example-modal-sm" id="formEditContacts" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Follow Contact</h4>
-            </div>
-            <div class="modal-body">
-				<div class="row-fluid">
-					<div class="span12">
-						<h4>Filters</h4>
-						<p>Contact:<div id="agentContEd"><input id="agenEd" type="text" class="span12"/></div></p>
-						<p>type:<div id="typeagentContEd"><select id="typEd" class="span12"></select></div></p>
-						<p>Email1:<div id="email1ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="emai1ContEd" class="span12"></select></div>
-								<input id ="ema1ContEd" style="width:65%;" type="text" class="span12" /></p>
-						<p>Email2:<div id="email2ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="emai2ContEd" class="span12"></select></div>
-								<input id ="ema2ContEd" style="width:65%;" type="text" class="span12" /></p>		
-						<p>Company:<input id="companyContEd" type="text" class="span12" /></p>
-						<p>Website1:<div id="website1ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="websit1ContEd" class="span12"></select></div>
-								<input id ="web1ContEd" style="width:65%;" type="text" class="span12" /></p>
-						<p>Website2:<div id="website2ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="websit2ContEd" class="span12"></select></div>
-								<input id ="web2ContEd" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone:<div id="phone1ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="phon1ContEd" class="span12"></select></div>
-								<input id ="pho1ContEd" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone2:<div id="phone2ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="phon2ContEd" class="span12"></select></div>
-								<input id ="pho2ContEd" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone3:<div id="phone3ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="phon3ContEd" class="span12"></select></div>
-								<input id ="pho3ContEd" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone4:<div id="phone4ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="phon4ContEd" class="span12"></select></div>
-								<input id ="pho4ContEd" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone5:<div id="phone5ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="phon5ContEd" class="span12"></select></div>
-								<input id ="pho5ContEd" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone6:<div id="phone6ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="phon6ContEd" class="span12"></select></div>
-								<input id ="pho6ContEd" style="width:65%;" type="text" class="span12" /></p>
-						<p>Address1:<div id="address1ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="addre1ContEd" class="span12"></select></div>
-								<input id="addr1ContEd" style="width:65%;" type="text" class="span12" /></p>
-						<p>Address2:<div id="address2ContEd"><select style="width:30%;float:left;margin-right: 15px;" id="addre2ContEd" class="span12"></select></div>
-								<input id="addr2ContEd" style="width:65%;"type="text" class="span12" /></p>
-					</div>				  
-            </div>
-			<button id="updateCont" type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
-			<button id="removeUpdate" type="button" class="btn btn-primary" data-dismiss="modal">Reset</button>
-			<br>
-			<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                
-			</div>
-		</div>
-  </div>
-</div>
-</div-->
-<!--FIN FORMULARIO ADD CONTACTS-->
-
 <!--FILTER CONTACTS-->
 <div class="modal fade bs-example-modal-sm" id="formfilterContact" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -2294,99 +2210,165 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 </div>
 <!--FIN FILTER EMAIL OUTBOX-->
 
-<!--FILTER COMPOSE EMAIL INBOX-->
-<!--div class="modal fade bs-example-modal-sm" id="composeEmail" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+<!--FILTER PENDING TASK-->
+<div class="modal fade bs-example-modal-sm" id="filterPendingTask" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Compose Email</h4>
+            <h4 class="modal-title" id="myModalLabel">Filters</h4>
             </div>
             <div class="modal-body">
-				<div class="row-fluid">
-				  <div class="span6">
-					<h4>Filters</h4>										
-					<p>To<div id="toEmail"><select id="toEma" class="span12"></select></div>
-							<input type="text" class="span12" /></p>
-					<p>Subject<input id="subjectI" type="text" class="span12" /></p>
+			<form id="formularioFilterPendingTask" class="form-horizontal">
+			<div class="container-fluid">
+           
+				<div class="row">
+				  
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Address
+						</div>
+						<div class="col-xs-7 col-sm-10">
+							<input id="addressPTask" type="text" class="span4" />
+						</div>
+					</div>
 					
-					<div class="form-group">
-						<label>Attach:</label>
-						<input id="uploadFile" class="form-control" placeholder="Select a file" disabled="disabled" />
-						<div class="fileUpload btn btn-primary">
-							<span>Browser</span>
-							<input id="uploadBtnCompose"  type="file" class="upload" />					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Zip Code
 						</div>
-						<br>
-						<div id="browserCompose"></div>
-						<div class="fileUpload btn btn-primary">
-							<span>Another file</span>
-							<input onclick="addInputCompose()" class="another" />					
+						<div class="col-xs-7 col-sm-10">
+							<input id="zipcodePTask" type="text" class="span4" />
 						</div>
 					</div>
-					<div class="form-group">
-						<label>Text:</label>
-						<textarea style="height:222px;" id="textemailInbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							County
+						</div>
+						<div  id="countyPTask" class="col-xs-7 col-sm-10">
+							<select id="counPTask" class="span4"></select>
+						</div>
 					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							City
+						</div>
+						<div  id="cityPTask" class="col-xs-7 col-sm-10">
+							<select id="citPTask" class="span4"></select>
+						</div>
+					</div>
+										
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Property Type
+						</div>
+						<div  id="xcode" class="col-xs-7 col-sm-10">
+							<select id="xcod" class="span4"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Contact
+						</div>
+						<div class="col-xs-7 col-sm-10">
+							<input id="contact" type="text" class="span4" />
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Task
+						</div>
+						<div id="taskkPTask" class="col-xs-7 col-sm-10">
+							<select id="taskPTask" class="span4">
+								<option value="1">Send SMS</option>
+								<option value="2">Receive SMS</option>
+								<option value="3">Send FAX</option>
+								<option value="4">Receive FAX</option>
+								<option value="5">Send EMAIL</option>
+								<option value="6">Receive EMAIL</option>
+								<option value="7" >Send DOC</option>
+								<option value="8" >Receive DOC</option>
+								<option value="9" >Make Call</option>
+								<option value="10" >Receive Call</option>
+								<option value="11" >Send R. Mail</option>
+								<option value="12" >Receive R. Mail</option>
+								<option value="13" >Send Other</option>
+								<option value="14" >Receive Other</option>
+								<option value="15" >Send Voice Mail</option>
+								<option value="16" >Receive Voice Mail</option>
+								<option value="17" >Make Note</option>
+							</select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Exec. Date
+						</div>
+						
+						<div style="margin-bottom:10px;" id="edateePTask" class="col-xs-3 col-sm-3">
+							<select id="edatePTask" class="span4"></select>
+						</div>	
+						<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
+								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
+								<input style="line-height:25px;width: 100px !important;" name="execdateP" id="execdateP" class="i-txt" />
+						</div>		
+						<div id="betweenExecPtask" class="col-xs-6 col-sm-3">
+								<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
+								<input style="line-height:25px;width: 100px !important;margin-left: 115px;" name="execdateP2" id="execdateP2" class="i-txt" />
+						</div>
+							
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Sche. Date
+						</div>
+						
+						<div style="margin-bottom:10px;" id="sdateePTask" class="col-xs-3 col-sm-3">
+							<select id="sdatePTask" class="span4"></select>
+						</div>	
+						<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
+								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
+								<input style="line-height:25px;width: 100px !important;" name="schedateP" id="schedateP" class="i-txt" />
+						</div>		
+						<div id="betweenSchePTask" class="col-xs-6 col-sm-3">
+								<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
+								<input style="line-height:25px;width: 100px !important;margin-left: 115px;" name="schedateP2" id="schedateP2" class="i-txt" />
+						</div>
+							
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Exec. Type
+						</div>
+						<div id="etypePTask" class="col-xs-7 col-sm-10">
+							<select id="etypPTask" class="span4">
+								<option value="1">Manual</option>
+								<option value="2">Automatic</option>
+							</select>
+						</div>
+					</div>
+					
 				</div>
-						  
-            </div>
+            
+			</div>	
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="sendMailI" type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+                <!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
+                <button id="searchFilterPTask" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+                <input id="searchFilterPtask2" type="submit" value="GO" data-role="none" style="position: absolute;left: -10000px;">
 			</div>
+			</form>
 		</div>
   </div>
 </div>
-</div-->
-<!--FIN COMPOSE EMAIL-->
-
-<!--FILTER COMPOSE EMAIL OUTBOX-->
-<!--div class="modal fade bs-example-modal-sm" id="composeEmailO" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Compose Email</h4>
-            </div>
-            <div class="modal-body">
-				<div class="row-fluid">
-				  <div class="span6">
-					<!--h4>Filters</h4>										
-					<p>To<div id="toEmailO"><select id="toEmaO" class="span12"></select></div>
-							<!--input type="text" class="span12" /></p>
-					<p>Subject<input id="subjectO" type="text" class="span12" /></p>
-					
-					<div class="form-group">
-						<label>Attach:</label>
-						<input id="uploadFileO" class="form-control" placeholder="Select a file" disabled="disabled" />
-						<div class="fileUpload btn btn-primary">
-							<span>Browser</span>
-							<input id="uploadBtnComposeO"  type="file" class="upload" />					
-						</div>
-						<br>
-						<div id="browserComposeO"></div>
-						<div class="fileUpload btn btn-primary">
-							<span>Another file</span>
-							<input onclick="addInputComposeO()" class="another" />					
-						</div>
-					</div>
-					<div class="form-group">
-						<label>Text:</label>
-						<textarea style="height:222px;" id="textemailOutbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
-					</div>
-				</div>
-						  
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="sendMailO" type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
-			</div>
-		</div>
-  </div>
 </div>
-</div-->
-<!--FIN COMPOSE EMAIL OUTBOX-->
+<!--FIN FILTER PENDING TASK-->
 
 <!--ASSIGN CONTACT-->
 <div class="modal fade bs-example-modal-sm" id="assignContacts" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
@@ -2994,7 +2976,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 			<ul data-role="listview" data-icon="false">	 
 				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
 				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
-				<li class="margen"><a class="filter"       		  id="filtroTask"        href="#" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Task</a></li>
+				<li class="margen"><a class="filter"       		  id="filtroTask"        href="#filterPendingTask" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Task</a></li>
 				<li class="margen"><a class="filterRemove" 		  id="RemovefiltroTask"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
 			</ul>
 		</div>	
@@ -4271,6 +4253,376 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 						<input id="saveSch" class="btn btn-success" type="button" value="Add">
 						<input id="resetAddSch" class="btn btn-default" type="button" value="Reset">
+					</div>
+				</div>
+			</form>
+		
+		</div>
+		
+		
+	</div>
+	<!--FIN CONTENT-->	
+	
+</div>
+
+<div data-role="page" id="pagAddComposeEFHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<!--a id="resetAdd" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a-->
+		<a id="insertCompFollow" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		</div>
+	
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
+				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+			</ul>
+		</div>
+		<!--FIN TABS-->
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		
+		<div style="margin-left: 1px;" class="row formC" id="formCompose">
+			<form style="margin-top: 30px;" class="form-inline">
+				
+				<div class="row">
+					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
+						<label class="col-sm-12 control-label">To</label>
+						<div id="toEmail" class="col-md-10">
+						  <select id="toEma" class="form-control"></select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
+						<label class="col-sm-12 control-label">Subject</label>
+						<div id="subjectI" class="col-md-10">
+						  <input id="subjectI" type="text" class="form-control" placeholder="Subject" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
+						<label  class="col-sm-12 control-label">Attach</label>
+						<div class="row">
+						  <div style="margin-left: 10px;" id="uploadfile" class="col-xs-11 col-sm-4">
+								<input id="uploadFile" class="form-control" placeholder="Select a file" disabled="disabled" />
+						  </div>
+						  
+						</div>
+					</div>
+				</div>
+				<div class="row">
+				<div style="margin-left: 10px;padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
+					<div class="fileUpload btn btn-primary">
+						<span>Browser</span>
+						<input id="uploadBtnCompose"  type="file" class="upload" />	
+					 </div>
+				</div>
+				</div>
+				<div class="row">
+					<div style="margin-left: 10px;padding-left: 5px;"class="col-xs-12 col-sm-6 col-md-10">
+						<div id="browserComp"></div>
+						<div class="fileUpload btn btn-primary">
+							<span>Another file</span>
+							<input onclick="addInputCompose()" class="another" />	
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
+						<label  class="col-sm-12 control-label">Text</label>
+						<div class="row">
+						  <div id="email2Cont" class="col-xs-12 col-sm-4">
+								<textarea style="height:222px;" id="textemailInbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+						  </div>						  
+						</div>
+					</div>
+				</div>								
+				
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10">
+						<input id="sendCompose" class="btn btn-success" type="button" value="Send">
+						<!--input id="resetAdd" class="btn btn-default" type="button" value="Reset"-->
+					</div>
+				</div>
+			</form>
+		
+		</div>
+		
+		
+	</div>
+	<!--FIN CONTENT-->	
+	
+	
+</div>
+
+<div data-role="page" id="pagEditHistoryHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEdit" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<a id="updateHist" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-as-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+		</div>
+	
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
+				<li class="item  active"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+			</ul>
+		</div>
+		<!--FIN TABS-->
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		
+		<div style="margin-left: 1px;" class="row formC" id="formEditHistory">
+			<form style="margin-top: 30px;" class="form-inline">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label for="inputEmail3" class="col-sm-12 control-label">Offer</label>
+						<div id="offerh" class="col-md-10">
+						  <input type="text" id="offerhist" placeholder="Offer"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label for="inputEmail3" class="col-sm-12 control-label">C. Offer</label>
+						<div id="cofferh" class="col-md-10">
+						  <input type="text" id="cofferhist" placeholder="C. Offer"/>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Task</label>
+						<div id="tasksc" class="col-md-10">
+						   <select id="typEd" class="form-control">
+							<option value="1">Send SMS</option>
+							<option value="2">Receive SMS</option>
+							<option value="3">Send FAX</option>
+							<option value="4">Receive FAX</option>
+							<option value="5">Send EMAIL</option>
+							<option value="6">Receive EMAIL</option>
+							<option value="7" >Send DOC</option>
+							<option value="8" >Receive DOC</option>
+							<option value="9" >Make Call</option>
+							<option value="10" >Receive Call</option>
+							<option value="11" >Send R. Mail</option>
+							<option value="12" >Receive R. Mail</option>
+							<option value="13" >Send Other</option>
+							<option value="14" >Receive Other</option>
+							<option value="15" >Send Voice Mail</option>
+							<option value="16" >Receive Voice Mail</option>
+							<option value="17" >Make Note</option>
+						  </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label  class="col-sm-12 control-label">Schedule Detail</label>
+						<div class="row">
+						  <div id="scheduledethis" class="col-xs-12 col-sm-4">
+								<textarea style="height:222px;" id="textschdetailhist" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+						  </div>						  
+						</div>
+					</div>
+				</div>	
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label  class="col-sm-12 control-label">Completed Detail</label>
+						<div class="row">
+						  <div id="completeddethis" class="col-xs-12 col-sm-4">
+								<textarea style="height:222px;" id="textcompdetailhist" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+						  </div>						  
+						</div>
+					</div>
+				</div>	
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-9 formT">
+						<label  class="col-sm-12 control-label">Document</label>
+						 <div class="row">
+								<div class="col-xs-8 col-sm-6">
+									<input type="checkbox" name="checkbox-v-2a" id="checkbox-v-2a">
+									<label style="margin-left:35px;">Contract</label>
+								</div>
+						
+								<div class="col-xs-8 col-sm-6">
+									<input type="checkbox" name="checkbox-v-2b" id="checkbox-v-2b">
+									<label style="margin-left:35px;">Proof of Refunds</label>
+								</div>
+								<div class="col-xs-8 col-sm-6">
+									<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
+									<label style="margin-left:35px;">EMD</label>
+								</div>								
+								<div class="col-xs-8 col-sm-6">
+									<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
+									<label style="margin-left:35px;">Addendums</label>
+								</div>
+								<div class="col-xs-8 col-sm-6">
+									<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
+									<label style="margin-left:35px;">Offer Received</label>
+								</div>
+						
+					 </div>
+					</div>
+				</div>				
+				
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="updateEditHist" class="btn btn-success" type="button" value="Insert">
+						<input id="resetEditHist" class="btn btn-default" type="button" value="Reset">
+					</div>
+				</div>
+			</form>
+		
+		</div>
+		
+		
+	</div>
+	<!--FIN CONTENT-->	
+	
+	
+</div>
+
+<div data-role="page" id="pagEditScheduleHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<a id="resetEditSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<a id="saveEditSchedule" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		</div>
+	
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
+				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+			</ul>
+		</div>
+	
+	<!--FIN TABS-->
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		
+		<div style="margin-left: 1px;" class="row formC" id="formEditSchedule">
+			<form style="margin-top: 30px;" class="form-inline">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Status</label>
+						<div id="statussESche" class="col-md-10">
+							<label type="text" id="statusESche">PENDING</label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Exec. Date</label>
+						<div id="ExdateESche" class="col-md-10">
+							<input type="date" name="edate" id="edateESche">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Exec. Hour</label>
+						<div id="ExhourESche" class="col-md-10">
+							<input type="time" id="ehourESche" name="hrs" placeholder="hrs:mins" value="" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs duration t1 time hrs" required>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Exec. Type</label>
+						<div id="ExtypeESche" class="col-md-10">
+						   <select id="etypeESche" class="form-control">
+							<option value="automatic">Automatic</option>
+							<option value="manual">Manual</option>							
+						  </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Task</label>
+						<div id="taskkESche" class="col-md-10">
+						   <select id="taskESche" class="form-control">
+							<option value="1">Send SMS</option>
+							<option value="2">Receive SMS</option>
+							<option value="3">Send FAX</option>
+							<option value="4">Receive FAX</option>
+							<option value="5">Send EMAIL</option>
+							<option value="6">Receive EMAIL</option>
+							<option value="7" >Send DOC</option>
+							<option value="8" >Receive DOC</option>
+							<option value="9" >Make Call</option>
+							<option value="10" >Receive Call</option>
+							<option value="11" >Send R. Mail</option>
+							<option value="12" >Receive R. Mail</option>
+							<option value="13" >Send Other</option>
+							<option value="14" >Receive Other</option>
+							<option value="15" >Send Voice Mail</option>
+							<option value="16" >Receive Voice Mail</option>
+							<option value="17" >Make Note</option>
+						  </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Schedule Detail</label>
+						<div id="detailESchee" class="col-xs-12 col-md-10">
+						  <textarea style="height:222px;  width: 100%;" id="detailESche" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Completed Detail</label>
+						<div id="detailcompESchee" class="col-xs-12 col-md-10">
+						  <textarea style="height:222px;  width: 100%;" id="compdetailESche" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
+						</div>
+					</div>
+				</div>
+								
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="completedESche" class="btn btn-success" type="button" value="Completed">
+						<input id="updateESche" class="btn btn-success" type="button" value="Update">
+						<input id="resetESche" class="btn btn-default" type="button" value="Reset">
 					</div>
 				</div>
 			</form>
