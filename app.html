@@ -157,7 +157,7 @@
 		//FILTER REMOVE EMAIL OUTBOX
 		$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
 			//alert('remove filter email outbox');
-			$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterEmailOutbox();
 					
 		});
@@ -165,7 +165,7 @@
 		//FILTER REMOVE PENDING TASK
 		$("#RemovefiltroTask").on('click', function () {
 			//alert('remove filter email outbox');
-			$('#menuTask,#menuTaskO').panel("close");
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterPendingTask();
 					
 		});
@@ -173,7 +173,7 @@
 		//FILTER REMOVE PENDING TASK
 		$("#RemovefiltroTaskC").on('click', function () {
 			//alert('remove filter email outbox');
-			$('#menuTaskCompleted).panel("close");
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterCompletedTask();
 					
 		});
@@ -342,7 +342,7 @@
 		
 		//GET FILTER PENDING TASK
 		$('#filtroTask').on('click',function(){				
-			alert("getptask");
+			//alert("getptask");
 			getfilterPendingTask();
 		});
 		
@@ -351,7 +351,6 @@
 			//alert("getptask");
 			getfilterCompletedTask();
 		});
-		
 		
 		//COMPOSE SEND EMAIL INBOX
 		$('#sendMailI').on('click',function(){				
@@ -482,7 +481,7 @@
 		 
 		 //BOTON FILTRAR PENDING TASK
 		$("#searchFilterPTask").on('click', function () {
-			alert('FILTRAR');
+			//alert('FILTRAR');
 			//filterContacts();
 			$("#pendientes ul").empty();
 			var start = 0; 
@@ -715,50 +714,6 @@ $(function(){
 			
 			//alert(id);
 			longEmailOutbox(id);
-			
-		});
-		
-		//LOGN TOUCH HISTORY
-		$('ul.page_history').on('taphold','li', function () {
-           // alert('long Touch history');
-			
-			var id= $(this).attr('idhist');
-			
-			//alert(id);
-			longHistory(id);
-			
-		});
-		
-		//LOGN TOUCH SCHEDULE
-		$('ul.page_schedule').on('taphold','li', function () {
-            alert('long Touch schedule');
-			
-			var id= $(this).attr('idschedule');
-			
-			alert(id);
-			longSchedule(id);
-			
-		});
-		
-		//LOGN TOUCH PENDING TASK
-		$('ul.page_pending').on('taphold','li', function () {
-            alert('long Touch pending task');
-			
-			var id= $(this).attr('idfus');
-			
-			alert(id);
-			longPending(id);
-			
-		});
-		
-		//LOGN TOUCH COMPLETED TASK
-		$('ul.page_completed').on('taphold','li', function () {
-            alert('long Touch completed task');
-			
-			var id= $(this).attr('idfuh');
-			
-			alert(id);
-			longCompleted(id);
 			
 		});
 		
@@ -3180,7 +3135,8 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 	
 	</div>
 	<!--FIN HEADER--> 	
-
+	
+	<!--CONTENT-->
 	
 	<!--CONTENT-->
 		<div data-role="content">
@@ -3191,12 +3147,21 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 		</div>
 		
 		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
-
+		
+		
+		<!--div style="background:#fff;" id="contactsFilter">
+			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
+			
+			</ul>
+		</div-->
+				
+		
 	</div>
 	<!--FIN CONTENT-->
-
+	<!--FIN CONTENT-->	
+	
 	<!--MENU PRINCIPAL -->
-	<div data-role="panel" style="margin-top: 47px;" id="menuTask" data-display="overlay" data-position="right">
+	<div data-role="panel" id="menuTask" data-display="overlay" data-position="left">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
 				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
@@ -3209,7 +3174,6 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 	<!--FIN MENU-->
 </div>
 
-
 <div data-role="page" id="taskCompletedHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
@@ -3218,10 +3182,6 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
 			<a style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTaskCompleted"></a>
-		</div>
-	
-		<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_completed">				
-	
 		</div>
 		<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
@@ -3239,10 +3199,11 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 			</ul>
 		</div>
 		<!--FIN TABS-->
+	
 	</div>
-	
-	
 	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
 	
 	<!--CONTENT-->
 		<div data-role="content">
@@ -3264,28 +3225,16 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 		
 	</div>
 	<!--FIN CONTENT-->
+	<!--FIN CONTENT-->	
 	
 	<!--MENU PRINCIPAL -->
-	<div data-role="panel" style="margin-top: 47px;" id="menuTaskCompleted" data-display="overlay" data-position="right">
+	<div data-role="panel" id="menuTaskCompleted" data-display="overlay" data-position="left">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
 				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
 				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
-				<li class="margen"><a class="filter"       		  id="filtroTaskC"        href="#filterCompletedTask" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Completed Task</a></li>
+				<li class="margen"><a class="filter"       		  id="filtroTaskC"        href="#" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Completed Task</a></li>
 				<li class="margen"><a class="filterRemove" 		  id="RemovefiltroTaskC"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
-			</ul>
-		</div>	
-	</div>
-	<!--FIN MENU-->
-	
-	<!--MENU PRINCIPAL -->
-	<div data-role="panel" style="margin-top: 47px;" id="menuTaskCompletedO" data-display="overlay" data-position="right">
-		<div id="menu" >
-			<ul data-role="listview" data-icon="false">	 
-				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
-				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
-				<li class="margen"><a class="filter"       		  id="filtroTaskCO"        href="#filterCompletedTask" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Completed Task</a></li>
-				<li class="margen"><a class="filterRemove" 		  id="RemovefiltroTaskCO"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
 			</ul>
 		</div>	
 	</div>
