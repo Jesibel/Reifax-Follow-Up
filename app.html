@@ -75,14 +75,7 @@
 		document.getElementById('telf5').style.display = "none";
 		document.getElementById('telf6').style.display = "none";
 		document.getElementById('regContact').style.display = "none";
-		//document.getElementById('searchFilterContacts2').style.display = "none";
-		//document.getElementById('searchFilterMailI2').style.display = "none";
-		//document.getElementById('searchFilter2').style.display = "none";
-		//document.getElementById('searchFilterMailO2').style.display = "none";
-		//document.getElementById('formContacto').style.display = "none";
 		
-		
-		//document.getElementById('menuContacts').style.display = "block";
 		
 		$('#folldate').change(function(){
 			//alert($(this).val());
@@ -165,7 +158,7 @@
 		//FILTER REMOVE PENDING TASK
 		$("#RemovefiltroTask").on('click', function () {
 			//alert('remove filter email outbox');
-			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			$('#menuTask').panel("close");
 			removeFilterPendingTask();
 					
 		});
@@ -173,7 +166,7 @@
 		//FILTER REMOVE PENDING TASK
 		$("#RemovefiltroTaskC").on('click', function () {
 			//alert('remove filter email outbox');
-			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			$('#menuTaskCompleted').panel("close");
 			removeFilterCompletedTask();
 					
 		});
@@ -654,6 +647,60 @@ $(function(){
 			detailEmailsCabO(valor.email);
 		});
 		
+		//CLICK DETALLE PENDING TASK
+		$('ul.page_pending').on('click','li', function () {
+            //alert('onclick');
+			var id= $(this).attr('idfus');
+			
+			//alert(id);
+			// Creamos un objeto
+			var object = { 'idfus' : id };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('key', JSON.stringify(object));
+			$('#detallePendiente ul').empty();
+			//$("#detallePendiente").html('');
+			$.mobile.changePage("#detailPending","slide");
+			//window.location.href = "index.html#detailProperties";
+				
+        });
+		
+		$(document).on('pagebeforeshow', '#detailPending', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('key'));
+			// La alerta mostrará 1 por pantalla
+			//alert(valor.parcelid);
+			//alert(valor.agent);
+			$('#detallePendiente ul').empty();
+			detailPending(valor.idfus);
+		});
+		
+		//CLICK DETALLE COMPLETED TASK
+		$('ul.page_completed').on('click','li', function () {
+            //alert('onclick');
+			var id= $(this).attr('idfuh');
+			
+			//alert(id);
+			// Creamos un objeto
+			var object = { 'idfuh' : id };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('key', JSON.stringify(object));
+			$('#detalleCompletados ul').empty();
+			$.mobile.changePage("#detailCompleted","slide");
+			//window.location.href = "index.html#detailProperties";
+			
+				
+        });
+		
+		$(document).on('pagebeforeshow', '#detailCompleted', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('key'));
+			// La alerta mostrará 1 por pantalla
+			//alert(valor.parcelid);
+			//alert(valor.agent);
+			$('#detalleCompletados ul').empty();
+			detailCompleted(valor.idfuh);
+		});
+		
 		
 		
 		//LONG TOUCH PROPERTY
@@ -714,6 +761,50 @@ $(function(){
 			
 			//alert(id);
 			longEmailOutbox(id);
+			
+		});
+		
+		//LOGN TOUCH HISTORY
+		$('ul.page_history').on('taphold','li', function () {
+           // alert('long Touch history');
+			
+			var id= $(this).attr('idhist');
+			
+			//alert(id);
+			longHistory(id);
+			
+		});
+		
+		//LOGN TOUCH SCHEDULE
+		$('ul.page_schedule').on('taphold','li', function () {
+            alert('long Touch schedule');
+			
+			var id= $(this).attr('idschedule');
+			
+			alert(id);
+			longSchedule(id);
+			
+		});
+		
+		//LOGN TOUCH PENDING TASK
+		$('ul.page_pending').on('taphold','li', function () {
+            alert('long Touch pending task');
+			
+			var id= $(this).attr('idfus');
+			
+			alert(id);
+			longPending(id);
+			
+		});
+		
+		//LOGN TOUCH COMPLETED TASK
+		$('ul.page_completed').on('taphold','li', function () {
+            alert('long Touch completed task');
+			
+			var id= $(this).attr('idfuh');
+			
+			alert(id);
+			longCompleted(id);
 			
 		});
 		
