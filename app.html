@@ -859,6 +859,28 @@ $(function(){
 			
 		});
 		
+		//BOTON EDITAR PENDING TASK
+		$("#editarPend").on('click', function () {
+			alert('click boton editar');
+			var valor = JSON.parse(localStorage.getItem('key'));
+			geteditPending(valor.idfus);
+			
+		});
+		
+		//BOTON EDITAR PENDING TASK
+		$("#editarCompleted").on('click', function () {
+			//alert('editar');
+			editCompleted();
+			
+		});
+		
+		//BOTON COMPLETED TASK
+		$("#taskComp").on('click', function () {
+			//alert('editar');
+			completedTask();
+			
+		});
+		
 		$("#backEmail").on('click', function () {
 			//alert('backContacts');
 			//document.getElementById("detalleEmailCab").innerHTML="";
@@ -1089,6 +1111,22 @@ $(document).on("pagebeforeshow","#taskHtml",function(){
 			$("#pendientes ul").empty();
 			start=0;
 			listadoPendings(start,settings.limit);
+			
+			$('#schedateP').mobipick({
+			dateFormat: "MM-dd-yyyy"
+		});
+		
+		$('#schedateP2').mobipick({
+			dateFormat: "MM-dd-yyyy"
+		});		
+		
+		$('#execdateP').mobipick({
+			dateFormat: "MM-dd-yyyy"
+		});
+		
+		$('#execdateP2').mobipick({
+			dateFormat: "MM-dd-yyyy"
+		});	
 							
 });
 
@@ -1099,6 +1137,18 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 			$("#completados ul").empty();
 			start=0;
 			listadoCompleted(start,settings.limit);
+							
+});
+
+$(document).on("pagebeforeshow","#pagEditPendingHtml",function(){	
+	
+	$('#edateEditPend').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});	
+	
+	//$('#ehourEditPend').timepicker();	
+	//$('#timepicker1').timepicker();	
+	
 							
 });
 	
@@ -1451,6 +1501,30 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 			border-bottom: 2px solid #ccc;
 			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 		}
+		.page_pending li{
+			margin-bottom: 5px;
+			padding: 10px;
+			font-size: 15px;
+			list-style: none;
+			border-bottom: 2px solid #ccc;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
+		.page_completed li{
+			margin-bottom: 5px;
+			padding: 10px;
+			font-size: 15px;
+			list-style: none;
+			border-bottom: 2px solid #ccc;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
+		.page_det_pending li{
+			margin-bottom: 5px;
+			padding: 10px;
+			font-size: 15px;
+			list-style: none;
+			border-bottom: 2px solid #ccc;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
 		.foll{
 			height:50px;
 		}
@@ -1504,6 +1578,18 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 		} 
 		.box5 {			
 			background-image: url('http://reifax.com/FollowupReifax/img/readed_email-48.png');
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: 20px 20px;			
+		} 
+		.box6 {			
+			background-image: url('http://reifax.com/FollowupReifax/img/edit-32.png');
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: 20px 20px;			
+		} 
+		.box7 {			
+			background-image: url('http://reifax.com/FollowupReifax/img/completed-48.png');
 			background-repeat: no-repeat;
 			background-position: center center;
 			background-size: 20px 20px;			
@@ -3040,6 +3126,109 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 	
 	
 </div><!-- /page --> 
+
+<div data-role="page" id="detailCompleted">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">
+		<a id="editarCompleted" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditCompletedHtml"></a>
+		</div>
+	</div>
+	<!--FIN HEADER--> 
+	
+	<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>	
+		<div style="background: #fff;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Pendings Task</a></li>
+				<li class="item active"><a href="#taskCompletedHtml">Completed Task</a></li>			
+			</ul>
+		</div>
+		<!--FIN TABS-->
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+					class="ifra2" id="webdetailContactHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetailsContacts.php">
+				<html>
+					<head></head>
+					<body></body>
+				</html>
+			</iframe-->
+		<div style="background:#fff;" id="detalleCompletados">
+			<ul style="list-style: none;margin-left:-40px;" class="page_completed">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
+</div><!-- /page -->
+
+<div data-role="page" id="detailPending">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">
+		<a id="editarPend" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditPendingHtml"></a>
+		<a id="taskComp" style="margin-right: 10px;height: 30px;background-image: url('img/completed-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#"></a>
+		</div>
+	</div>
+	<!--FIN HEADER--> 
+	<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>	
+		<div style="background: #fff;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Pendings Task</a></li>
+				<li class="item"><a href="#taskCompletedHtml">Completed Task</a></li>			
+			</ul>
+		</div>
+		<!--FIN TABS-->
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+					class="ifra2" id="webdetailContactHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetailsContacts.php">
+				<html>
+					<head></head>
+					<body></body>
+				</html>
+			</iframe-->
+		<div style="background:#fff;" id="detallePendiente">
+			<ul style="list-style: none;margin-left:-40px;" class="page_det_pending">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
+</div><!-- /page -->
+	
 	
 
 <div data-role="page" id="emailHtml">
@@ -4905,6 +5094,153 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 						<input id="completedESche" class="btn btn-success" type="button" value="Completed">
 						<input id="updateESche" class="btn btn-success" type="button" value="Update">
 						<input id="resetESche" class="btn btn-default" type="button" value="Reset">
+					</div>
+				</div>
+			</form>
+		
+		</div>
+		
+		
+	</div>
+	<!--FIN CONTENT-->	
+	
+</div>
+
+<div data-role="page" id="pagEditPendingHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<a id="resetEditPending" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<a id="saveEditPending" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		</div>
+	
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+			</ul>
+		</div>	
+		<div style="background: #fff;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Pendings Task</a></li>
+				<li class="item"><a href="#taskCompletedHtml">Completed Task</a></li>			
+			</ul>
+		</div>
+		<!--FIN TABS-->
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		
+		<div style="margin-left: 1px;" class="row formC" id="formEditSchedule">
+			<form style="margin-top: 30px;" class="form-inline">
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Status</label>
+						<div id="statussEditPend" class="col-md-10">
+							<label type="text" id="statusEditPend">PENDING</label>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Exec. Date</label>
+						<div id="ExdateEditPend" class="col-md-10">
+							<input name="edateEditPend" id="edateEditPend" class="i-txt">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Exec. Hour</label>
+						<div id="ExhourEditPend" class="col-md-10 input-append bootstrap-timepicker">
+							<!--input type="text" id="ehourEditPend" name="hrs" placeholder="hrs:mins" value="" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs duration t1 time hrs" required-->
+							<input id="ehourEditPend" type="text" class="input-small">
+							<span class="add-on">
+								<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+								</i>
+							</span>
+						</div>
+					</div>
+				</div>
+				 <div class="input-append bootstrap-timepicker">
+					<input id="timepicker1" type="text" class="input-small">
+					<span class="add-on"><i class="icon-time"></i></span>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Exec. Type</label>
+						<div id="ExtypeEditPend" class="col-md-10">
+						   <select id="etypeEditPend" class="form-control">
+							<option value="automatic">Automatic</option>
+							<option value="manual">Manual</option>							
+						  </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Task</label>
+						<div id="taskkEditPend" class="col-md-10">
+						   <select id="taskEditPend" class="form-control">
+							<option value="1">Send SMS</option>
+							<option value="2">Receive SMS</option>
+							<option value="3">Send FAX</option>
+							<option value="4">Receive FAX</option>
+							<option value="5">Send EMAIL</option>
+							<option value="6">Receive EMAIL</option>
+							<option value="7" >Send DOC</option>
+							<option value="8" >Receive DOC</option>
+							<option value="9" >Make Call</option>
+							<option value="10" >Receive Call</option>
+							<option value="11" >Send R. Mail</option>
+							<option value="12" >Receive R. Mail</option>
+							<option value="13" >Send Other</option>
+							<option value="14" >Receive Other</option>
+							<option value="15" >Send Voice Mail</option>
+							<option value="16" >Receive Voice Mail</option>
+							<option value="17" >Make Note</option>
+						  </select>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Schedule Detail</label>
+						<div id="detailEditPend" class="col-xs-12 col-md-10">
+						  <textarea style="height:222px;  width: 100%;" id="detailEditPend" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-10 formT">
+						<label class="col-sm-12 control-label">Completed Detail</label>
+						<div id="detailcompEditPend" class="col-xs-12 col-md-10">
+						  <textarea style="height:222px;  width: 100%;" id="compdetailEditPend" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
+						</div>
+					</div>
+				</div>
+				<div id="datetimepicker" class="input-append date">
+				  <input type="text"></input>
+				  <span class="add-on">
+					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+				  </span>
+				</div>
+								
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="completedEditPend" class="btn btn-success" type="button" value="Completed">
+						<input id="updateEditPend" class="btn btn-success" type="button" value="Update">
+						<input id="resetEditPend" class="btn btn-default" type="button" value="Reset">
 					</div>
 				</div>
 			</form>
