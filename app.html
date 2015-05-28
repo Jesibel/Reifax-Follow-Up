@@ -1162,6 +1162,15 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 			$("#completados ul").empty();
 			start=0;
 			listadoCompleted(start,settings.limit);
+			
+			$('#compdateC').mobipick({
+				dateFormat: "MM-dd-yyyy"
+			});
+		
+			$('#compdateC2').mobipick({
+				dateFormat: "MM-dd-yyyy"
+			});	
+			
 							
 });
 
