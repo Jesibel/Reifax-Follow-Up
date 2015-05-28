@@ -1215,7 +1215,7 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 			margin-left: 35px;
 		}
 		.ui-panel{
-			min-height: 10% !important;
+			min-height: 5% !important;
 		}
 		.contImg{
 			margin-bottom: 20px !Important;
@@ -1282,7 +1282,7 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 			height:350px !important;
 		}
 		.ui-panel{
-			min-height: 10% !important;
+			min-height: 5% !important;
 		}
 		.agent{			
 			text-align: center;
@@ -4730,8 +4730,8 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 						<label class="col-sm-12 control-label">Exec. Type</label>
 						<div id="Extype" class="col-md-10">
 						   <select id="typEd" class="form-control">
-							<option value="automatic">Automatic</option>
-							<option value="manual">Manual</option>							
+								<option value="1">Manual</option>	
+								<option value="2">Automatic</option>													
 						  </select>
 						</div>
 					</div>
@@ -4742,9 +4742,22 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 						<div id="tasksc" class="col-md-10">
 						   <select id="typEd" class="form-control">
 							<option value="1">Send SMS</option>
+							<option value="2">Receive SMS</option>
 							<option value="3">Send FAX</option>
+							<option value="4">Receive FAX</option>
 							<option value="5">Send EMAIL</option>
+							<option value="6">Receive EMAIL</option>
 							<option value="7" >Send DOC</option>
+							<option value="8" >Receive DOC</option>
+							<option value="9" >Make Call</option>
+							<option value="10" >Receive Call</option>
+							<option value="11" >Send R. Mail</option>
+							<option value="12" >Receive R. Mail</option>
+							<option value="13" >Send Other</option>
+							<option value="14" >Receive Other</option>
+							<option value="15" >Send Voice Mail</option>
+							<option value="16" >Receive Voice Mail</option>
+							<option value="17" >Make Note</option>
 						  </select>
 						</div>
 					</div>
