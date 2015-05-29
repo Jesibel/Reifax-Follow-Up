@@ -476,6 +476,7 @@
 			//alert('FILTRAR');
 			//filterContacts();
 			$("#pendientes ul").empty();
+			$('#menuTask').panel("close");
 			var start = 0; 
 			var limit = 25; 
 			listadoPendings(start, limit);
@@ -499,6 +500,7 @@
 			//alert('FILTRAR');
 			//filterContacts();
 			$("#completados ul").empty();
+			$('#menuTaskCompleted').panel("close");
 			var start = 0; 
 			var limit = 25; 
 			listadoCompleted(start, limit);
