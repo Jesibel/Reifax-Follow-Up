@@ -182,6 +182,30 @@
 			resetformCont();
 		});
 		
+			//INSERT HISTORY FOLLOW
+		$("#saveHist,#saveHistory").on('click', function () {
+			//alert('insert');			
+			addHistory();
+		});
+		
+		//RESET HISTORY FOLLOW
+		$("#resetHist,#resetHistory").on('click', function () {
+			//alert('insert');			
+			resetHistory();
+		});
+		
+		//INSERT SCHEDULE FOLLOW
+		$("#saveSche,#saveSchedule").on('click', function () {
+			//alert('insert');			
+			addSchedule();
+		});
+		
+		//RESET HISTORY FOLLOW
+		$("#resetSche,#resetSchedule").on('click', function () {
+			//alert('insert');			
+			resetSchedule();
+		});
+		
 		$("#webdetailHtml,#webdetailcontactHtml#webMyaccountHtml").height($(window).height()-$("div.ui-page-active div[data-role='header']").height()-7-63);	
 
 		
@@ -555,8 +579,10 @@ $(function(){
 			//alert(id);
 			// Creamos un objeto
 			var object = { 'parcelid' : id };
+			var object3 = { 'type' : type };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
 			localStorage.setItem('key', JSON.stringify(object));
+			localStorage.setItem('key3', JSON.stringify(object3));
 			$('#detallePropiedades').empty();
 			$.mobile.changePage("#detailProperties","slide");
 			//window.location.href = "index.html#detailProperties";
@@ -570,6 +596,7 @@ $(function(){
 			// La alerta mostrará 1 por pantalla
 			//alert(valor.parcelid);
 			//alert(valor.agent);
+			$('#detallePropiedades').empty();
 			detailProperty(valor.parcelid);
 		});
 		
@@ -1186,6 +1213,14 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 	//$('#timepicker1').timepicker();	
 	
 							
+});
+
+$(document).on("pagebeforeshow","#pagAddScheduleHtml",function(){	
+	var dateNow = new Date();
+	$('#edate').mobipick({
+		dateFormat: "yyyy-MM-dd",
+		minDate: dateNow
+	});		
 });
 	
 </script>
@@ -4567,10 +4602,10 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 <div data-role="page" id="pagAddHistoryHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
-		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-		<a id="resetAddHist" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<a id="resetHist" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		<a id="saveHist" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
@@ -4596,86 +4631,81 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 		<div style="margin-left: 1px;" class="row formC" id="formContacto">
 			<form style="margin-top: 30px;" class="form-inline">
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Offer</label>
-						<div id="offerr" class="col-md-10">
-						  <input type="text" id="offer" placeholder="Offer"/>
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-2 col-sm-2">
+						Offer
+					</div>
+					<div id="offerr" class="col-xs-9 col-sm-10">
+						<input id="offer" placeholder="Offer" type="text" class="span4" />
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">COffer</label>
-						<div id="cofferr" class="col-md-10">
-						  <input type="text" id="coffer" placeholder="COffer"/>
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-2 col-sm-2">
+						COffer
+					</div>
+					<div id="cofferr" class="col-xs-9 col-sm-10">
+						<input id="coffer" placeholder="COffer" type="text" class="span4" />
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Task</label>
-						<div id="taskk" class="col-md-10">
-						  <select id="task" class="form-control"></select>
-						</div>
+					
+					<div style="padding-left: 25px;padding-top: 25px;" class="col-xs-2 col-sm-2">
+						Task
+					</div>
+					<div id="taskk" class="col-xs-9 col-sm-10">
+						<select id="task" class="form-control">
+							<option value="1">Send SMS</option>
+							<option value="2">Receive SMS</option>
+							<option value="3">Send FAX</option>
+							<option value="4">Receive FAX</option>
+							<option value="5">Send EMAIL</option>
+							<option value="6">Receive EMAIL</option>
+							<option value="7" >Send DOC</option>
+							<option value="8" >Receive DOC</option>
+							<option value="9" >Make Call</option>
+							<option value="10" >Receive Call</option>
+							<option value="11" >Send R. Mail</option>
+							<option value="12" >Receive R. Mail</option>
+							<option value="13" >Send Other</option>
+							<option value="14" >Receive Other</option>
+							<option value="15" >Send Voice Mail</option>
+							<option value="16" >Receive Voice Mail</option>
+							<option value="17" >Make Note</option>
+						 </select>
+					</div>
+					
+				</div>
+				<div class="row">
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-2 col-sm-2">
+						Detail
+					</div>
+					<div id="detaill" class="col-xs-9 col-sm-10">
+						<textarea style="height:222px;  width: 100%;" id="detail" class="form-control span4" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Detail</label>
-						<div id="detaill" class="col-xs-12 col-md-10">
-						  <textarea style="height:222px;  width: 100%;" id="detail" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
-						</div>
+					
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-2 col-sm-2">
+						Document
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Document</label>
-						<div>
-							 <!--div class="checkbox">
-								<input type="checkbox"> <font>Contract</font>
-								<input type="checkbox"> <font>Proof of Refunds</font>
-								<input type="checkbox"> <font>EMD</font>
-								<input type="checkbox"> <font>Addendums</font>
-								<input type="checkbox"> <font>Offer Received</font>								
-							</div>
-							<div class="checkbox">
-								  <label>
-									<input type="checkbox" value="">
-									Contract
-								  </label>
-							</div>
-							<div class="checkbox">
-								  <label>
-									<input type="checkbox" value="">
-									Proof of Refunds
-								  </label>
-							</div>
-							<div class="checkbox">
-								  <label>
-									<input type="checkbox" value="">
-									EMD
-								  </label>
-							</div-->
-							 
-								<input type="checkbox" name="checkbox-v-2a" id="checkbox-v-2a">
-								<label style="margin-left:35px;">Contract</label>
-								<input type="checkbox" name="checkbox-v-2b" id="checkbox-v-2b">
-								<label style="margin-left:35px;">Proof of Refunds</label>
-								<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
-								<label style="margin-left:35px;">EMD</label>
-								<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
-								<label style="margin-left:35px;">Addendums</label>
-								<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
-								<label style="margin-left:35px;">Offer Received</label>
-							
-						</div>
+					<div style="margin-left: 10px;" id="detaill" class="col-xs-9 col-sm-10">
+						<input type="checkbox" name="checkbox-h-c" id="checkbox-h-c">
+						<label style="margin-left:45px;">Contract</label>
+						<input type="checkbox" name="checkbox-h-p" id="checkbox-h-p">
+						<label style="margin-left:45px;">Proof of Refunds</label>
+						<input type="checkbox" name="checkbox-h-e" id="checkbox-h-e">
+						<label style="margin-left:45px;">EMD</label>
+						<input type="checkbox" name="checkbox-h-a" id="checkbox-h-a">
+						<label style="margin-left:45px;">Addendums</label>
+						<input type="checkbox" name="checkbox-h-o" id="checkbox-h-o">
+						<label style="margin-left:45px;">Offer Received</label>
 					</div>
 				</div>				
-				
+				<br>
+				<br>
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 						<input id="saveHistory" class="btn btn-success" type="button" value="Add">
-						<input id="resetAddHistory" class="btn btn-default" type="button" value="Reset">
+						<input id="resetHistory" class="btn btn-default" type="button" value="Reset">
 					</div>
 				</div>
 			</form>
@@ -4686,16 +4716,15 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 	</div>
 	<!--FIN CONTENT-->	
 	
-	
 </div>
 
 <div data-role="page" id="pagAddScheduleHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
-		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-		<a id="resetAddSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<a id="resetSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		<a id="saveSchedule" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
@@ -4721,37 +4750,42 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 		<div style="margin-left: 1px;" class="row formC" id="formContacto">
 			<form style="margin-top: 30px;" class="form-inline">
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Exec. Date</label>
-						<div id="Exdate" class="col-md-10">
-							<input type="date" name="edate" id="edate">
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						E. Date
+					</div>
+					<div id="eedate" class="col-xs-8 col-sm-10">
+						<input id="edate" placeholder="E. Date" type="text" value="" class="span4" />
+						<!--a href="#" data-role="button" data-icon="delete" data-iconpos="notext"></a-->
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Exec. Hour</label>
-						<div id="Exhour" class="col-md-10">
-							<input type="time" id="ehour" name="hrs" placeholder="hrs:mins" value="" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs duration t1 time hrs" required>
-						</div>
+				<div class="row">									
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						E. Hour
 					</div>
+					<div id="Exhour" style="height: 20px;margin-top: -1px;" class="input-group date form_datetime col-xs-8 col-sm-10 col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+						<input class="form-control" size="16" id="ehour" type="text" value="" data-date-format="hh:ii:ss" data-link-field="dtp_input3" data-link-format="hh:ii:ss" readonly>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+					</div>
+					<input type="hidden" id="dtp_input3" value="" /><br/>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Exec. Type</label>
-						<div id="Extype" class="col-md-10">
-						   <select id="typEd" class="form-control">
-								<option value="1">Manual</option>	
-								<option value="2">Automatic</option>													
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-3 col-sm-2">
+						E. Type
+					</div>
+					<div id="extype" class="col-xs-8 col-sm-10">
+						<select id="exectype" class="form-control">
+							<option value="2">Automatic</option>
+							<option value="1">Manual</option>							
 						  </select>
-						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Task</label>
-						<div id="tasksc" class="col-md-10">
-						   <select id="typEd" class="form-control">
+				<div class="row">					
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-3 col-sm-2">
+						Task
+					</div>
+					<div id="tasksc" class="col-xs-8 col-sm-10">
+						<select id="taskksc" class="form-control">
 							<option value="1">Send SMS</option>
 							<option value="2">Receive SMS</option>
 							<option value="3">Send FAX</option>
@@ -4770,22 +4804,21 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 							<option value="16" >Receive Voice Mail</option>
 							<option value="17" >Make Note</option>
 						  </select>
-						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Detail</label>
-						<div id="detailsc" class="col-xs-12 col-md-10">
-						  <textarea style="height:222px;  width: 100%;" id="detailsch" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
-						</div>
+				<div class="row">					
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-3 col-sm-2">
+						Detail
+					</div>
+					<div id="detailsc" class="col-xs-8 col-sm-10">
+						<textarea style="height:222px;  width: 100%;" id="detailsch" class="form-control span4" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>
-								
+				<br>				
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
-						<input id="saveSch" class="btn btn-success" type="button" value="Add">
-						<input id="resetAddSch" class="btn btn-default" type="button" value="Reset">
+						<input id="saveSche" class="btn btn-success" type="button" value="Add">
+						<input id="resetSche" class="btn btn-default" type="button" value="Reset">
 					</div>
 				</div>
 			</form>
@@ -5479,7 +5512,7 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 <script type="text/javascript" src="http://reifax.com/FollowupReifax/resources/datetime/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="http://reifax.com/FollowupReifax/resources/datetime/js/locales/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
     <script type="text/javascript">
-      $('#ExhourEditPend').datetimepicker({
+    $('#ExhourEditPend').datetimepicker({
 		 language:  'es',
         weekStart: 1,
         todayBtn:  1,
@@ -5489,7 +5522,19 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 		minView: 0,
 		maxView: 1,
 		forceParse: 0
-      }); 
+    });  
+	  
+	$('#Exhour').datetimepicker({
+		language:  'es',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    }); 
 	  
 	 /* $('#form_time').datetimepicker({
         format: 'dd/MM/yyyy hh:mm:ss',
