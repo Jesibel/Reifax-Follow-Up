@@ -4938,10 +4938,10 @@ $(document).on("pagebeforeshow","#pagAddScheduleHtml",function(){
 <div data-role="page" id="pagEditHistoryHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEdit" data-rel="back"></a>
-		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEditHistory" data-rel="back"></a>
+		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-		<a id="updateHist" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-as-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+		<a id="updateHist" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-as-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
 		<!--TABS-->
@@ -4965,26 +4965,27 @@ $(document).on("pagebeforeshow","#pagAddScheduleHtml",function(){
 		<div style="margin-left: 1px;" class="row formC" id="formEditHistory">
 			<form style="margin-top: 30px;" class="form-inline">
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label for="inputEmail3" class="col-sm-12 control-label">Offer</label>
-						<div id="offerh" class="col-md-10">
-						  <input type="text" id="offerhist" placeholder="Offer"/>
-						</div>
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Offer
+					</div>
+					<div id="offerh" class="col-xs-8 col-sm-10">
+						 <input type="text" id="offerhist" placeholder="Offer"/>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label for="inputEmail3" class="col-sm-12 control-label">C. Offer</label>
-						<div id="cofferh" class="col-md-10">
-						  <input type="text" id="cofferhist" placeholder="C. Offer"/>
-						</div>
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						C. Offer
+					</div>
+					<div id="cofferh" class="col-xs-8 col-sm-10">
+						 <input type="text" id="cofferhist" placeholder="Offer"/>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Task</label>
-						<div id="tasksc" class="col-md-10">
-						   <select id="typEd" class="form-control">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Task
+					</div>
+					<div class="col-xs-8 col-sm-10">
+						<select id="taskEH" class="form-control">
 							<option value="1">Send SMS</option>
 							<option value="2">Receive SMS</option>
 							<option value="3">Send FAX</option>
@@ -5002,66 +5003,49 @@ $(document).on("pagebeforeshow","#pagAddScheduleHtml",function(){
 							<option value="15" >Send Voice Mail</option>
 							<option value="16" >Receive Voice Mail</option>
 							<option value="17" >Make Note</option>
-						  </select>
-						</div>
+						 </select>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label  class="col-sm-12 control-label">Schedule Detail</label>
-						<div class="row">
-						  <div id="scheduledethis" class="col-xs-12 col-sm-4">
-								<textarea style="height:222px;" id="textschdetailhist" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
-						  </div>						  
-						</div>
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Schedule Detail
+					</div>
+					<div id="scheduledethis" class="col-xs-8 col-sm-10">
+						 <textarea style="height:222px;" id="textschdetailhist" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>	
 				
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label  class="col-sm-12 control-label">Completed Detail</label>
-						<div class="row">
-						  <div id="completeddethis" class="col-xs-12 col-sm-4">
-								<textarea style="height:222px;" id="textcompdetailhist" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
-						  </div>						  
-						</div>
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Completed Detail
+					</div>
+					<div id="scheduledethis" class="col-xs-8 col-sm-10">
+						 <textarea style="height:222px;" id="textcompdetailhist" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>	
 				
 				<div class="row">
-					<div class="col-xs-12 col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Document</label>
-						 <div class="row">
-								<div class="col-xs-8 col-sm-6">
-									<input type="checkbox" name="checkbox-v-2a" id="checkbox-v-2a">
-									<label style="margin-left:35px;">Contract</label>
-								</div>
-						
-								<div class="col-xs-8 col-sm-6">
-									<input type="checkbox" name="checkbox-v-2b" id="checkbox-v-2b">
-									<label style="margin-left:35px;">Proof of Refunds</label>
-								</div>
-								<div class="col-xs-8 col-sm-6">
-									<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
-									<label style="margin-left:35px;">EMD</label>
-								</div>								
-								<div class="col-xs-8 col-sm-6">
-									<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
-									<label style="margin-left:35px;">Addendums</label>
-								</div>
-								<div class="col-xs-8 col-sm-6">
-									<input type="checkbox" name="checkbox-v-2c" id="checkbox-v-2c">
-									<label style="margin-left:35px;">Offer Received</label>
-								</div>
-						
-					 </div>
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-2 col-sm-2">
+						Document
+					</div>
+					<div style="margin-left: 25px;" id="detaill" class="col-xs-9 col-sm-10">
+						<input type="checkbox" name="checkbox-eh-c" id="checkbox-eh-c">
+						<label style="margin-left:45px;">Contract</label>
+						<input type="checkbox" name="checkbox-eh-p" id="checkbox-eh-p">
+						<label style="margin-left:45px;">Proof of Refunds</label>
+						<input type="checkbox" name="checkbox-eh-e" id="checkbox-eh-e">
+						<label style="margin-left:45px;">EMD</label>
+						<input type="checkbox" name="checkbox-eh-a" id="checkbox-eh-a">
+						<label style="margin-left:45px;">Addendums</label>
+						<input type="checkbox" name="checkbox-eh-o" id="checkbox-eh-o">
+						<label style="margin-left:45px;">Offer Received</label>
 					</div>
 				</div>				
-				
+				<br>
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
-						<input id="updateEditHist" class="btn btn-success" type="button" value="Insert">
-						<input id="resetEditHist" class="btn btn-default" type="button" value="Reset">
+						<input id="updateEditHistory" class="btn btn-success" type="button" value="Update">
+						<input id="cancelEditHistory" class="btn btn-default" type="button" value="Cancel">
 					</div>
 				</div>
 			</form>
@@ -5074,6 +5058,7 @@ $(document).on("pagebeforeshow","#pagAddScheduleHtml",function(){
 	
 	
 </div>
+
 
 <div data-role="page" id="pagEditScheduleHtml">
     <!--HEADER-->
@@ -5106,46 +5091,50 @@ $(document).on("pagebeforeshow","#pagAddScheduleHtml",function(){
 		
 		<div style="margin-left: 1px;" class="row formC" id="formEditSchedule">
 			<form style="margin-top: 30px;" class="form-inline">
+				<div class="row">					
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Status
+					</div>
+					<div id="statussESche" class="col-xs-8 col-sm-10">
+						<label type="text" id="statusESche">PENDING</label>
+					</div>
+				</div>
+				<div class="row">				
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						E. Date
+					</div>
+					<div id="ExdateESche" class="col-xs-8 col-sm-10">
+						<input name="edateESche" id="edateESche" class="i-txt">					
+					</div>
+				</div>
+				<div class="row">			
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						E. Hour
+					</div>
+					<div id="ExhourESche" style="height: 20px;margin-top: -1px;" class="input-group date form_datetime col-xs-8 col-sm-10 col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+						<input class="form-control" size="16" id="ehourESche" type="text" value="" data-date-format="hh:ii:ss" data-link-field="dtp_input3" data-link-format="hh:ii:ss" readonly>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+					</div>
+					<input type="hidden" id="dtp_input3" value="" /><br/>	
+				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Status</label>
-						<div id="statussESche" class="col-md-10">
-							<label type="text" id="statusESche">PENDING</label>
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						E. Type
+					</div>
+					<div id="ExtypeESche" class="col-xs-8 col-sm-10">
+						 <select id="etypeESche" class="form-control">
+							<option value="1">Manual</option>	
+							<option value="2">Automatic</option>												
+						  </select>				
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Exec. Date</label>
-						<div id="ExdateESche" class="col-md-10">
-							<input type="date" name="edate" id="edateESche">
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						Task
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Exec. Hour</label>
-						<div id="ExhourESche" class="col-md-10">
-							<input type="time" id="ehourESche" name="hrs" placeholder="hrs:mins" value="" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs duration t1 time hrs" required>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Exec. Type</label>
-						<div id="ExtypeESche" class="col-md-10">
-						   <select id="etypeESche" class="form-control">
-							<option value="automatic">Automatic</option>
-							<option value="manual">Manual</option>							
-						  </select>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Task</label>
-						<div id="taskkESche" class="col-md-10">
-						   <select id="taskESche" class="form-control">
+					<div id="taskkESche" class="col-xs-8 col-sm-10">
+						  <select id="taskESche" class="form-control">
 							<option value="1">Send SMS</option>
 							<option value="2">Receive SMS</option>
 							<option value="3">Send FAX</option>
@@ -5163,28 +5152,27 @@ $(document).on("pagebeforeshow","#pagAddScheduleHtml",function(){
 							<option value="15" >Send Voice Mail</option>
 							<option value="16" >Receive Voice Mail</option>
 							<option value="17" >Make Note</option>
-						  </select>
-						</div>
+						  </select>		
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Schedule Detail</label>
-						<div id="detailESchee" class="col-xs-12 col-md-10">
-						  <textarea style="height:222px;  width: 100%;" id="detailESche" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						S. Detail
+					</div>
+					<div id="detailESchee" class="col-xs-8 col-sm-10">
+						 <textarea style="height:222px;  width: 100%;" id="detailESche" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>		
 					</div>
 				</div>
 				
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Completed Detail</label>
-						<div id="detailcompESchee" class="col-xs-12 col-md-10">
-						  <textarea style="height:222px;  width: 100%;" id="compdetailESche" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						C. Detail
+					</div>
+					<div id="detailcompESchee" class="col-xs-8 col-sm-10">
+						 <textarea style="height:222px;  width: 100%;" id="compdetailESche" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>
-								
+				<br>				
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 						<input id="completedESche" class="btn btn-success" type="button" value="Completed">
