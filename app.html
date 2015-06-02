@@ -992,6 +992,24 @@ $(function(){
 			
 		});
 		
+		//BOTON CARGAR EDITAR HISTORY FOLLOW
+		$("#detailEditHist").on('click', function () {
+			//alert('click boton editar');
+			var valor = JSON.parse(localStorage.getItem('key4'));
+			var valor2 = JSON.parse(localStorage.getItem('key'));
+			geteditHistory(valor.idfuh,valor2.parcelid);
+			
+		});
+		
+		//BOTON CARGAR EDITAR HISTORY FOLLOW
+		$("#detailEditSche").on('click', function () {
+			//alert('click boton editar');
+			var valor = JSON.parse(localStorage.getItem('key4'));
+			var valor2 = JSON.parse(localStorage.getItem('key'));
+			geteditSchedule(valor.idfuh,valor2.parcelid);
+			
+		});
+		
 		//BOTON COMPLETED TASK PENDING
 		$("#taskComp").on('click', function () {
 			//alert('editar');
