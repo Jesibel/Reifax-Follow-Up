@@ -741,6 +741,62 @@ $(function(){
 		});
 		
 		
+				//CLICK DETALLE HISTORY FOLLOW
+		$('ul.page_history').on('click','li', function () {
+            //alert('onclick');
+			var id= $(this).attr('idhist');
+			var parcelid= $(this).attr('parcelid');
+
+			// Creamos un objeto
+			var object = { 'idfuh' : id };
+			var object2 = { 'parcelid' : parcelid };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('key4', JSON.stringify(object));
+			localStorage.setItem('key2', JSON.stringify(object2));
+			$('#detallehistorial ul').empty();
+			$.mobile.changePage("#detailHistory","slide");
+			
+        });
+		
+		$(document).on('pagebeforeshow', '#detailHistory', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('key4'));
+			var valor2 = JSON.parse(localStorage.getItem('key2'));
+			// La alerta mostrará 1 por pantalla
+			//alert(valor.parcelid);
+			//alert(valor.idfuh);
+			$('#detallehistorial ul').empty();
+			detailHistory(valor.idfuh,valor2.parcelid);
+		});
+		
+		//CLICK DETALLE SCHEDULE FOLLOW
+		$('ul.page_schedule').on('click','li', function () {
+            //alert('onclick');
+			var id= $(this).attr('idschedule');
+			var parcelid= $(this).attr('parcelid');
+
+			// Creamos un objeto
+			var object = { 'idfus' : id };
+			var object2 = { 'parcelid' : parcelid };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('key4', JSON.stringify(object));
+			localStorage.setItem('key2', JSON.stringify(object2));
+			$('#detalleschedule ul').empty();
+			$.mobile.changePage("#detailSchedule","slide");
+			
+        });
+		
+		$(document).on('pagebeforeshow', '#detailSchedule', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('key4'));
+			var valor2 = JSON.parse(localStorage.getItem('key2'));
+			// La alerta mostrará 1 por pantalla
+			//alert(valor.parcelid);
+			//alert(valor.idfuh);
+			$('#detalleschedule ul').empty();
+			detailSchedule(valor.idfuh,valor2.parcelid);
+		});
+		
 		
 		//LONG TOUCH PROPERTY
 		$('ul.page_result').on('taphold','li', function () {
@@ -917,6 +973,13 @@ $(function(){
 			//alert('click boton editar');
 			var valor = JSON.parse(localStorage.getItem('key'));
 			geteditPending(valor.idfus);
+			
+		});
+		
+		//BOTON EDITAR HISTORY FOLLOW
+		$("#updateHist,#updateEditHistory").on('click', function () {
+			//alert('editar');
+			editHistory();
 			
 		});
 		
@@ -1219,6 +1282,14 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 $(document).on("pagebeforeshow","#pagAddScheduleHtml",function(){	
 	var dateNow = new Date();
 	$('#edate').mobipick({
+		dateFormat: "yyyy-MM-dd",
+		minDate: dateNow
+	});		
+});
+
+$(document).on("pagebeforeshow","#pagEditScheduleHtml",function(){	
+	var dateNow = new Date();
+	$('#edateESche').mobipick({
 		dateFormat: "yyyy-MM-dd",
 		minDate: dateNow
 	});		
@@ -3304,7 +3375,104 @@ $(document).on("pagebeforeshow","#pagAddScheduleHtml",function(){
 	<!--FIN CONTENT-->	
 	
 </div><!-- /page -->
+
+<div data-role="page" id="detailHistory" data-add-back-btn="true">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="/" id="backEditH" data-rel="back"></a>
+		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="detailEditHist" style="margin-right:10px;height:35px;width:35px;margin-top: 3px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagEditHistoryHtml"></a>
+			<a id="detailDelHist" style="margin-right:10px;height:35px;width:35px;margin-top: 3px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		</div>
 	
+			
+	<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
+				<li class="item active"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+			</ul>
+		</div>
+	
+	<!--FIN TABS-->
+	</div>
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+					class="ifra" id="webdetailHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetails.php">
+				<html>
+					<head></head>
+					<body></body>
+				</html>
+			</iframe-->
+		<div style="background:#fff;" id="detallehistorial">
+			<ul style="list-style: none;margin-left:-40px;" class="page_history">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->
+	
+	
+</div><!-- /page --> 
+
+<div data-role="page" id="detailSchedule" data-add-back-btn="true">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="/" id="backEditH" data-rel="back"></a>
+		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="detailEditSche" style="margin-right:10px;height:35px;width:35px;margin-top: 3px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagEditScheduleHtml"></a>
+			<a id="detailDelSche" style="margin-right:10px;height:35px;width:35px;margin-top: 3px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		</div>
+	
+			
+	<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
+				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+			</ul>
+		</div>
+	
+	<!--FIN TABS-->
+	</div>
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+					class="ifra" id="webdetailHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetails.php">
+				<html>
+					<head></head>
+					<body></body>
+				</html>
+			</iframe-->
+		<div style="background:#fff;" id="detalleschedule">
+			<ul style="list-style: none;margin-left:-40px;" class="page_schedule">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->
+	
+	
+</div><!-- /page --> 
 	
 
 <div data-role="page" id="emailHtml">
