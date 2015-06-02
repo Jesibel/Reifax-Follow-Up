@@ -983,6 +983,13 @@ $(function(){
 			
 		});
 		
+		//BOTON EDITAR SCHEDULE FOLLOW
+		$("#updateEditSche,#updateEditSchedule").on('click', function () {
+			//alert('editar');
+			editSchedule();
+			
+		});
+		
 		//BOTON CARGAR EDITAR PENDING TASK
 		$("#editarCompleted").on('click', function () {
 			//alert('click boton editar');
@@ -5361,9 +5368,9 @@ $(document).on("pagebeforeshow","#pagEditScheduleHtml",function(){
 				<br>				
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
-						<input id="completedESche" class="btn btn-success" type="button" value="Completed">
-						<input id="updateESche" class="btn btn-success" type="button" value="Update">
-						<input id="resetESche" class="btn btn-default" type="button" value="Reset">
+						<input id="completedEditSche" class="btn btn-success" type="button" value="Completed">
+						<input id="updateEditSche" class="btn btn-success" type="button" value="Update">
+						<input id="cancelEditSche" class="btn btn-default" type="button" value="Cancel">
 					</div>
 				</div>
 			</form>
