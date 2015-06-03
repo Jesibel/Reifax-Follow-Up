@@ -794,7 +794,7 @@ $(function(){
 			//alert(valor.parcelid);
 			//alert(valor.idfuh);
 			$('#detalleschedule ul').empty();
-			detailSchedule(valor.idfuh,valor2.parcelid);
+			detailSchedule(valor.idfus,valor2.parcelid);
 		});
 		
 		
@@ -989,6 +989,21 @@ $(function(){
 			editSchedule();
 			
 		});
+		
+		//BOTON DELETE HISTORY FOLLOW
+		$("#detailDelHist").on('click', function () {
+			var valor = JSON.parse(localStorage.getItem('key4'));
+			deleteHistory(valor.idfuh);
+			
+		});
+		
+		//BOTON DELETE SCHEDULE FOLLOW
+		$("#detailDelSche").on('click', function () {
+			var valor = JSON.parse(localStorage.getItem('key4'));
+			deleteSchedule(valor.idfus);
+			
+		});
+		
 		
 		//BOTON CARGAR EDITAR PENDING TASK
 		$("#editarCompleted").on('click', function () {
