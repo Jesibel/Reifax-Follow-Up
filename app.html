@@ -206,6 +206,38 @@
 			resetSchedule();
 		});
 		
+		//REFRESH HISTORY FOLLOW
+		$("#refreshHist").on('click', function () {
+			//alert('REFRESH');		
+			//location.reload(true);			
+			//$.mobile.changePage('index.html#historyFollow');
+			$.mobile.changePage(
+          '#historyFollow',
+			{
+             allowSamePageTransition : true,
+             transition              : 'none',
+             showLoadMsg             : false,
+             reloadPage              : false
+			}
+			);
+		});
+		
+		//REFRESH HISTORY FOLLOW
+		$("#refreshSchedule").on('click', function () {
+			//alert('REFRESH');		
+			//location.reload(true);			
+			//$.mobile.changePage('index.html#historyFollow');
+			$.mobile.changePage(
+          '#scheduleFollow',
+			{
+             allowSamePageTransition : true,
+             transition              : 'none',
+             showLoadMsg             : false,
+             reloadPage              : false
+			}
+			);
+		});
+		
 		$("#webdetailHtml,#webdetailcontactHtml#webMyaccountHtml").height($(window).height()-$("div.ui-page-active div[data-role='header']").height()-7-63);	
 
 		
