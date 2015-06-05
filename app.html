@@ -1396,44 +1396,6 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 							
 });
 
-$(document).on("pagebeforeshow","#pagAddHistoryHtml",function(){	
-	var contr= JSON.parse(localStorage.getItem('key6'));
-	if(contr.contr==0){
-		document.getElementById('ckAVc').style.display = "block";
-	}else{
-		document.getElementById('ckAFc').style.display = "block";
-	}	
-		
-	var pof= JSON.parse(localStorage.getItem('key7'));
-	if(pof.pof==0){
-		document.getElementById('ckAVp').style.display = "block";
-	}else{
-		document.getElementById('ckAFp').style.display = "block";
-	}
-	
-	var emd= JSON.parse(localStorage.getItem('key8'));
-	if(emd.emd==0){
-		document.getElementById('ckAVe').style.display = "block";
-	}else{
-		document.getElementById('ckAFe').style.display = "block";
-	}	
-	
-	var adde= JSON.parse(localStorage.getItem('key9'));
-	if(adde.adde==0){
-		document.getElementById('ckAVa').style.display = "block";
-	}else{
-		document.getElementById('ckAFa').style.display = "block";
-	}	
-	
-	var offre= JSON.parse(localStorage.getItem('key10'));
-	if(offre.offre==0){
-		document.getElementById('ckAVo').style.display = "block";
-	}else{
-		document.getElementById('ckAFo').style.display = "block";
-	}	
-
-		
-});
 
 $(document).on("pagebeforeshow","#pagAddScheduleHtml",function(){	
 	var dateNow = new Date();
@@ -5055,31 +5017,31 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 						<label style="margin-left:45px;">Offer Received</label-->
 						
 					<span onclick="changeCheckA(this)">
-					<img style="display:none;float: left;margin-right: 10px;" id="ckAVc" src="http://reifax.com/FollowupReifax/resources/image/letras/check_c-40.png" width=30px height=30px>
+					<img style="float: left;margin-right: 10px;" id="ckAVc" src="http://reifax.com/FollowupReifax/resources/image/letras/check_c-40.png" width=30px height=30px>
 					<img style="display:none;float: left;margin-right: 10px;" id="ckAFc" src="http://reifax.com/FollowupReifax/resources/image/letras/check_c-No-40.png" width=30px height=30px>
 					<input style="display:none;" type="checkbox" name="chkA" id="chkA">
 					</span>
 
 					<span onclick="changeCheckA2(this)">
-					<img style="display:none;float: left;margin-right: 10px;" id="ckAVp" src="http://reifax.com/FollowupReifax/resources/image/letras/check_p-40.png" width=30px height=30px>
+					<img style="float: left;margin-right: 10px;" id="ckAVp" src="http://reifax.com/FollowupReifax/resources/image/letras/check_p-40.png" width=30px height=30px>
 					<img style="display:none;float: left;margin-right: 10px;" id="ckAFp" src="http://reifax.com/FollowupReifax/resources/image/letras/check_p-No-40.png" width=30px height=30px>
 					<input style="display:none;" type="checkbox" name="chkA2" id="chkA2">
 					</span>
 
 					<span onclick="changeCheckA3(this)">
-					<img style="display:none;float: left;margin-right: 10px;" id="ckAVe" src="http://reifax.com/FollowupReifax/resources/image/letras/check_e-40.png" width=30px height=30px>
+					<img style="float: left;margin-right: 10px;" id="ckAVe" src="http://reifax.com/FollowupReifax/resources/image/letras/check_e-40.png" width=30px height=30px>
 					<img style="display:none;float: left;margin-right: 10px;" id="ckAFe" src="http://reifax.com/FollowupReifax/resources/image/letras/check_e-No-40.png" width=30px height=30px>
 					<input style="display:none;" type="checkbox" name="chkA3" id="chkA3">
 					</span>
 					
 					<span onclick="changeCheckA4(this)">
-					<img style="display:none;float: left;margin-right: 10px;" id="ckAVa" src="http://reifax.com/FollowupReifax/resources/image/letras/check_a-40.png" width=30px height=30px>
+					<img style="float: left;margin-right: 10px;" id="ckAVa" src="http://reifax.com/FollowupReifax/resources/image/letras/check_a-40.png" width=30px height=30px>
 					<img style="display:none;float: left;margin-right: 10px;" id="ckAFa" src="http://reifax.com/FollowupReifax/resources/image/letras/check_a-No-40.png" width=30px height=30px>
 					<input style="display:none;" type="checkbox" name="chkA4" id="chkA4">
 					</span>
 					
 					<span onclick="changeCheckA5(this)">
-					<img style="display:none;float: left;margin-right: 10px;" id="ckAVo" src="http://reifax.com/FollowupReifax/resources/image/letras/check_o-40.png" width=30px height=30px>
+					<img style="float: left;margin-right: 10px;" id="ckAVo" src="http://reifax.com/FollowupReifax/resources/image/letras/check_o-40.png" width=30px height=30px>
 					<img style="display:none;float: left;margin-right: 10px;" id="ckAFo" src="http://reifax.com/FollowupReifax/resources/image/letras/check_o-No-40.png" width=30px height=30px>
 					<input style="display:none;" type="checkbox" name="chkA5" id="chkA5">
 					</span>
