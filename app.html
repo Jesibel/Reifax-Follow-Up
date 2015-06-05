@@ -779,6 +779,26 @@ $(function(){
             //alert('onclick');
 			var id= $(this).attr('idhist');
 			var parcelid= $(this).attr('parcelid');
+			
+			var contr= $(this).attr('contr');
+			var object6 = { 'contr' : contr };
+			localStorage.setItem('key6', JSON.stringify(object6));
+			
+			var pof= $(this).attr('pof');
+			var object7 = { 'pof' : pof };
+			localStorage.setItem('key7', JSON.stringify(object7));	
+			
+			var emd= $(this).attr('emd');
+			var object8 = { 'emd' : emd };
+			localStorage.setItem('key8', JSON.stringify(object8));	
+			
+			var adde= $(this).attr('adde');
+			var object9 = { 'adde' : adde };
+			localStorage.setItem('key9', JSON.stringify(object9));
+			
+			var offre= $(this).attr('offre');
+			var object10 = { 'offre' : offre };
+			localStorage.setItem('key10', JSON.stringify(object10));	
 
 			// Creamos un objeto
 			var object = { 'idfuh' : id };
@@ -1391,6 +1411,36 @@ $(document).on("pagebeforeshow","#pagEditScheduleHtml",function(){
 		minDate: dateNow
 	});		
 });
+
+$(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){	
+	var contr= JSON.parse(localStorage.getItem('key6'));
+	if(contr.contr==1){
+		document.getElementById('ckVc').style.display = "block";
+	}	
+		
+	var pof= JSON.parse(localStorage.getItem('key7'));
+	if(pof.pof==1){
+		document.getElementById('ckVp').style.display = "block";
+	}
+	
+	var emd= JSON.parse(localStorage.getItem('key8'));
+	if(emd.emd==1){
+		document.getElementById('ckVe').style.display = "block";
+	}	
+	
+	var adde= JSON.parse(localStorage.getItem('key9'));
+	if(adde.adde==1){
+		document.getElementById('ckVa').style.display = "block";
+	}	
+	
+	var offre= JSON.parse(localStorage.getItem('key10'));
+	if(offre.offre==1){
+		document.getElementById('ckVo').style.display = "block";
+	}	
+
+		
+});
+
 	
 </script>
 	<style>
@@ -5274,25 +5324,50 @@ $(document).on("pagebeforeshow","#pagEditScheduleHtml",function(){
 	<div data-role="content">
 		
 		<div style="margin-left: 1px;" class="row formC" id="formEditHistory">
-			<form style="margin-top: 30px;" class="form-inline">
-				<div class="row">
-					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
-						Offer
-					</div>
-					<div id="offerh" class="col-xs-8 col-sm-10">
-						 <input type="text" id="offerhist" placeholder="Offer"/>
-					</div>
+			<form style="margin-top: 10px;" class="form-inline">
+				
+				<div style="height:20px;margin-bottom:5px;padding-left:10px;padding-right:5px;margin-top: -5px;" class="col-xs-12 col-sm-6">
+				
+					<!--input type="checkbox" name="checkbox-eh-c" id="checkbox-eh-c"/>
+					<input type="checkbox" name="checkbox-eh-p" id="checkbox-eh-p"/>
+					<input type="checkbox" name="checkbox-eh-e" id="checkbox-eh-e"/>
+					<input type="checkbox" name="checkbox-eh-a" id="checkbox-eh-a"/>
+					<input type="checkbox" name="checkbox-eh-o" id="checkbox-eh-o"/>
+					<script type="text/javascript">replaceChecks();</script-->
+					<span onclick="changeCheck(this)">
+					<img style="display:none;float: left;margin-right: 10px;" id="ckVc" src="http://reifax.com/FollowupReifax/resources/image/letras/check_c-40.png" width=30px height=30px>
+					<img style="display:none;float: left;margin-right: 10px;" id="ckFc" src="http://reifax.com/FollowupReifax/resources/image/letras/check_c-No-40.png" width=30px height=30px>
+					<input style="display:none;" type="checkbox" name="chk" id="chk">
+					</span>
+
+					<span onclick="changeCheck2(this)">
+					<img style="display:none;float: left;margin-right: 10px;" id="ckVp" src="http://reifax.com/FollowupReifax/resources/image/letras/check_p-40.png" width=30px height=30px>
+					<img style="display:none;float: left;margin-right: 10px;" id="ckFp" src="http://reifax.com/FollowupReifax/resources/image/letras/check_p-No-40.png" width=30px height=30px>
+					<input style="display:none;" type="checkbox" name="chk2" id="chk2">
+					</span>
+
+					<span onclick="changeCheck3(this)">
+					<img style="display:none;float: left;margin-right: 10px;" id="ckVe" src="http://reifax.com/FollowupReifax/resources/image/letras/check_e-40.png" width=30px height=30px>
+					<img style="display:none;float: left;margin-right: 10px;" id="ckFe" src="http://reifax.com/FollowupReifax/resources/image/letras/check_e-No-40.png" width=30px height=30px>
+					<input style="display:none;" type="checkbox" name="chk3" id="chk3">
+					</span>
+					
+					<span onclick="changeCheck4(this)">
+					<img style="display:none;float: left;margin-right: 10px;" id="ckVa" src="http://reifax.com/FollowupReifax/resources/image/letras/check_a-40.png" width=30px height=30px>
+					<img style="display:none;float: left;margin-right: 10px;" id="ckFa" src="http://reifax.com/FollowupReifax/resources/image/letras/check_a-No-40.png" width=30px height=30px>
+					<input style="display:none;" type="checkbox" name="chk4" id="chk4">
+					</span>
+					
+					<span onclick="changeCheck5(this)">
+					<img style="display:none;float: left;margin-right: 10px;" id="ckVo" src="http://reifax.com/FollowupReifax/resources/image/letras/check_o-40.png" width=30px height=30px>
+					<img style="display:none;float: left;margin-right: 10px;" id="ckFo" src="http://reifax.com/FollowupReifax/resources/image/letras/check_o-No-40.png" width=30px height=30px>
+					<input style="display:none;" type="checkbox" name="chk5" id="chk5">
+					</span>
+				
 				</div>
+				<br>
 				<div class="row">
-					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
-						C. Offer
-					</div>
-					<div id="cofferh" class="col-xs-8 col-sm-10">
-						 <input type="text" id="cofferhist" placeholder="Offer"/>
-					</div>
-				</div>
-				<div class="row">
-					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-3 col-sm-2">
 						Task
 					</div>
 					<div class="col-xs-8 col-sm-10">
@@ -5318,8 +5393,24 @@ $(document).on("pagebeforeshow","#pagEditScheduleHtml",function(){
 					</div>
 				</div>
 				<div class="row">
-					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
-						Schedule Detail
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-3 col-sm-2">
+						Offer
+					</div>
+					<div id="offerh" class="col-xs-8 col-sm-10">
+						 <input type="text" id="offerhist" placeholder="Offer"/>
+					</div>
+				</div>
+				<div class="row">
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-3 col-sm-2">
+						C. Offer
+					</div>
+					<div id="cofferh" class="col-xs-8 col-sm-10">
+						 <input type="text" id="cofferhist" placeholder="Offer"/>
+					</div>
+				</div>				
+				<div class="row">
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-3 col-sm-2">
+						Sch. Detail
 					</div>
 					<div id="scheduledethis" class="col-xs-8 col-sm-10">
 						 <textarea style="height:222px;" id="textschdetailhist" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
@@ -5327,15 +5418,15 @@ $(document).on("pagebeforeshow","#pagEditScheduleHtml",function(){
 				</div>	
 				
 				<div class="row">
-					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
-						Completed Detail
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-3 col-sm-2">
+						Comp. Detail
 					</div>
 					<div id="scheduledethis" class="col-xs-8 col-sm-10">
 						 <textarea style="height:222px;" id="textcompdetailhist" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>	
 				
-				<div class="row">
+				<!--div class="row">
 					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-2 col-sm-2">
 						Document
 					</div>
@@ -5351,12 +5442,12 @@ $(document).on("pagebeforeshow","#pagEditScheduleHtml",function(){
 						<input type="checkbox" name="checkbox-eh-o" id="checkbox-eh-o">
 						<label style="margin-left:45px;">Offer Received</label>
 					</div>
-				</div>				
+				</div-->				
 				<br>
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
-						<input id="updateEditHistory" class="btn btn-success" type="button" value="Update">
 						<input id="cancelEditHistory" class="btn btn-default" type="button" value="Cancel">
+						<input id="updateEditHistory" class="btn btn-success" type="button" value="Update">
 					</div>
 				</div>
 			</form>
