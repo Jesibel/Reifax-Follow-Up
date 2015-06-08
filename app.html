@@ -5590,26 +5590,26 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="margin-left: 1px;" class="row formC" id="formEditSchedule">
 			<form style="margin-top: 30px;" class="form-inline">
 				<div class="row">					
-					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+					<div style="padding-left: 25px;" class="col-xs-5 col-sm-2">
 						Status
 					</div>
-					<div id="statussESche" class="col-xs-8 col-sm-10">
+					<div id="statussESche" class="col-xs-6 col-sm-10">
 						<label type="text" id="statusESche"></label>
 					</div>
 				</div>
 				<div class="row">				
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
-						E. Date
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+						Execute Date
 					</div>
-					<div id="ExdateESche" class="col-xs-8 col-sm-10">
+					<div id="ExdateESche" class="col-xs-6 col-sm-10">
 						<input name="edateESche" id="edateESche" class="i-txt">					
 					</div>
 				</div>
 				<div class="row">			
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
-						E. Hour
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+						Execute Hour
 					</div>
-					<div id="ExhourESche" style="height: 20px;margin-top: -1px;" class="input-group date form_datetime col-xs-8 col-sm-10 col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+					<div id="ExhourESche" style="height: 20px;margin-top: -1px;" class="input-group date form_datetime col-xs-6 col-sm-10 col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
 						<input class="form-control" size="16" id="ehourESche" type="text" value="" data-date-format="hh:ii:ss" data-link-field="dtp_input3" data-link-format="hh:ii:ss">
 						<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 						<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
@@ -5617,10 +5617,10 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<input type="hidden" id="dtp_input3" value="" /><br/>	
 				</div>
 				<div class="row">
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
-						E. Type
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+						Execute Type
 					</div>
-					<div class="col-xs-8 col-sm-10">
+					<div class="col-xs-6 col-sm-10">
 						 <select onchange="test2();" id="etypeESche" class="form-control">
 							<option value="1">Manual</option>	
 							<option value="2">Automatic</option>												
@@ -5628,10 +5628,10 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					</div>
 				</div>
 				<div class="row">
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
 						Task
 					</div>
-					<div id="taskkESche" class="col-xs-8 col-sm-10">
+					<div id="taskkESche" class="col-xs-6 col-sm-10">
 						 <select id="taskESche" class="form-control">
 							<option value="1">Send SMS</option>
 							<option value="2">Receive SMS</option>
@@ -5652,7 +5652,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 							<option value="17" >Make Note</option>
 						</select>		
 					</div>
-					<div style="display:none;" id="taskkESche2" class="col-xs-8 col-sm-10">
+					<div style="display:none;" id="taskkESche2" class="col-xs-6 col-sm-10">
 						 <select id="taskESch2e" class="form-control">
 							<option value="1">Send SMS</option>							
 							<option value="3">Send FAX</option>							
@@ -5662,19 +5662,19 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					</div>
 				</div>
 				<div class="row">
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
-						S. Detail
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+						Schedule Detail
 					</div>
-					<div id="detailESchee" class="col-xs-8 col-sm-10">
+					<div id="detailESchee" class="col-xs-6 col-sm-10">
 						 <textarea style="height:222px;  width: 100%;" id="detailESche" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>		
 					</div>
 				</div>
 				
 				<div class="row">
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
-						C. Detail
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+						Detail
 					</div>
-					<div id="detailcompESchee" class="col-xs-8 col-sm-10">
+					<div id="detailcompESchee" class="col-xs-6 col-sm-10">
 						 <textarea style="height:222px;  width: 100%;" id="compdetailESche" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>
