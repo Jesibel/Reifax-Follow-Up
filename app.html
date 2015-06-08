@@ -207,6 +207,21 @@
 			resetSchedule();
 		});
 		
+		//CANCEL EDIT HISTORY FOLLOW
+		$("#cancelEditHistory").on('click', function () {
+			//alert('insert');			
+			//cancelSchedule();
+			$.mobile.changePage(
+			'#detailHistory',
+			{
+             allowSamePageTransition : true,
+             transition              : 'none',
+             showLoadMsg             : false,
+             reloadPage              : false
+			}
+			);
+		});
+		
 		//CANCEL ADD SCHEDULE FOLLOW
 		$("#cancelSche,#cancelEditSche").on('click', function () {
 			//alert('insert');			
@@ -805,7 +820,7 @@ $(function(){
 		
 		
 				//CLICK DETALLE HISTORY FOLLOW
-		$('ul.page_history').on('click','li', function () {
+		$('ul.page_history2').on('click','li', function () {
             //alert('onclick');
 			var id= $(this).attr('idhist');
 			var parcelid= $(this).attr('parcelid');
@@ -4873,7 +4888,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 				</html>
 			</iframe-->
 		<div style="background:#fff;" id="historial">
-			<ul style="list-style: none;margin-left:-40px;" class="page_history">
+			<ul style="list-style: none;margin-left:-40px;" class="page_history2">
 			
 			</ul>
 		</div>
