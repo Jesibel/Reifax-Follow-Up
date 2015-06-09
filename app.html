@@ -252,6 +252,21 @@
 			);
 		});
 		
+		//CANCEL EMAIL COMPOSE FOLLOW
+		$("#cancelComposeEF").on('click', function () {
+			//alert('insert');			
+			//cancelSchedule();
+			$.mobile.changePage(
+			'#emailFollow',
+			{
+             allowSamePageTransition : true,
+             transition              : 'none',
+             showLoadMsg             : false,
+             reloadPage              : false
+			}
+			);
+		});
+		
 		//REFRESH HISTORY FOLLOW
 		$("#refreshHist").on('click', function () {
 			//alert('REFRESH');		
@@ -1049,6 +1064,15 @@ $(function(){
 		$('#sendE').on('click', function () {
 			//alert('sendemail');
 			sendemail();
+			
+		});
+		
+		//SEND COMPOSE EMAIL FOLLOW
+		$('#sendComposeEmailFollow,#sendComposeEF').on('click', function () {
+			//alert('sendemail');
+			var val = JSON.parse(localStorage.getItem('key5'));
+			var val2 = JSON.parse(localStorage.getItem('key'));
+			sendEmailFollow(val.mail,val2.parcelid);
 			
 		});
 		
@@ -3209,36 +3233,72 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
             <h4 class="modal-title" id="myModalLabel">Reply Email</h4>
             </div>
             <div class="modal-body">
-				<div class="row-fluid">
-				  <div class="span6">
-					<!--h4>Filters</h4-->
-					<p>Template<div id="templateReply"><select id="toEma" class="span12"></select></div>					
-					<p>To<div id="toReply"><select id="toRep" class="span12"></select></div></p>
-					<p>Subject<input id="subjectReply" type="text" class="span12" /></p>
-					
-					<div class="form-group">
-						<label>Attach:</label>
-						<input id="uploadFileReply" class="form-control" placeholder="Select a file" disabled="disabled" />
-						<div class="fileUpload btn btn-primary">
-							<span>Browser</span>
-							<input id="uploadBtnReply"  type="file" class="upload" />					
+				<div class="row-fluid">				
+				<div class="row">				  
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Template
 						</div>
-						<br>
-						<div id="browserReply"></div>
-						<div class="fileUpload btn btn-primary">
-							<span>Another file</span>
-							<input onclick="addInputReply()" class="another" />					
+						<div id="templateReply" class="col-xs-7 col-sm-10">			
+							<select  id="templatereplyEmail" class="span4"></select>
 						</div>
 					</div>
-					<div class="form-group">
-						<label>Text:</label>
-						<textarea style="height:222px;" id="textReply" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							To
+						</div>
+						<div id="toReply" class="col-xs-7 col-sm-10">
+							<select  id="toreplyEmail" class="span4"></select>
+						</div>
+					</div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Subject
+						</div>
+						<div id="subjReply" class="col-xs-7 col-sm-10">
+							<input id="subjectReply" type="text" class="span4" />							
+						</div>
+					</div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div id="subjReply" class="col-xs-12 col-sm-10">							
+							<textarea style="height:122px;" id="textReply" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+						</div>
+					</div>
+					<div class="row">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						Attach
+					</div>
+					<div class="row">
+					<div id="uuploadfileEF" class="col-xs-8 col-sm-10">
+						 <input type="text" id="uploadFileReply" placeholder="Select a file"/>
+					</div>
 					</div>
 				</div>
-						  
+				<div class="row">
+					<div style="margin-left:25px;text-align:center;" class=" col-xs-8 col-sm-10">
+						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input type="file" class="upload" id="uploadBtnReply" />
+						</div>
+					</div>
+				</div>
+				<br>
+				<div id="browserReply"></div>
+		
+				<div class="row">		
+					<div style="text-align:center;margin-left:65px;" class="col-xs-8 col-sm-10">
+						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+							<span>Another file</span>
+							<input onclick="addInputReply()" class="another" />	
+						</div>
+					</div>
+				</div>
+				<br>
+					
+				</div>	  
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button id="sendReplyI" type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
 			</div>
 		</div>
@@ -4973,9 +5033,9 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" ata-rel="back" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
-		<div style="width: 100%;margin-top: -40px;text-align: right;">
+		<div style="width: 100%;text-align: right;">
 			<a id="addEfollow" style="margin-right: 10px;margin-top:2px;height:35px;width:35px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddComposeEFHtml"></a>
-			<a style="height:30px;width:30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailInbox"></a>
+			<a style="height:35px;width:35px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailInbox"></a>
 		</div>
 	
 	<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_emailfollow">				
@@ -5307,11 +5367,11 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 <div data-role="page" id="pagAddComposeEFHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
-		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<!--a id="resetAdd" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a-->
-		<a id="insertCompFollow" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<a id="sendComposeEmailFollow" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
 		<!--TABS-->
@@ -5335,65 +5395,66 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="margin-left: 1px;" class="row formC" id="formCompose">
 			<form style="margin-top: 30px;" class="form-inline">
 				
-				<div class="row">
-					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-						<label class="col-sm-12 control-label">To</label>
-						<div id="toEmail" class="col-md-10">
-						  <select id="toEma" class="form-control"></select>
-						</div>
+				<div class="row">				
+					<div style="padding-left: 25px; padding-top: 10px;" class="col-xs-3 col-sm-2">
+						To
+					</div>
+					<div id="toEmailEF" class="col-xs-8 col-sm-10">
+						  <select id="toEmaEF" class="form-control"></select>
 					</div>
 				</div>
 				<div class="row">
-					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-						<label class="col-sm-12 control-label">Subject</label>
-						<div id="subjectI" class="col-md-10">
-						  <input id="subjectI" type="text" class="form-control" placeholder="Subject" />
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						Subject
+					</div>
+					<div id="ssubjectEF" class="col-xs-8 col-sm-10">
+						 <input type="text" id="subjectEF" placeholder="Subject"/>
+						 <textarea style="height:322px;  width: 100%;" id="detailsEF" class="form-control span4" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>
 				<div class="row">
-					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-						<label  class="col-sm-12 control-label">Attach</label>
-						<div class="row">
-						  <div style="margin-left: 10px;" id="uploadfile" class="col-xs-11 col-sm-4">
-								<input id="uploadFile" class="form-control" placeholder="Select a file" disabled="disabled" />
-						  </div>
-						  
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						Attach
+					</div>
+					<div class="row">
+					<div id="uuploadfileEF" class="col-xs-8 col-sm-10">
+						 <input type="text" id="uploadFileEF" placeholder="Select a file"/>
+					</div>
 					</div>
 				</div>
 				<div class="row">
-				<div style="margin-left: 10px;padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-					<div class="fileUpload btn btn-primary">
-						<span>Browser</span>
-						<input id="uploadBtnCompose"  type="file" class="upload" />	
-					 </div>
+					<div style="margin-left:25px;text-align:center;" class=" col-xs-8 col-sm-10">
+						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input type="file" class="upload" id="uploadBtnComposeEF" />
+						</div>
+					</div>
 				</div>
-				</div>
-				<div class="row">
-					<div style="margin-left: 10px;padding-left: 5px;"class="col-xs-12 col-sm-6 col-md-10">
-						<div id="browserComp"></div>
-						<div class="fileUpload btn btn-primary">
+				<br>
+				<div id="browserCompEF"></div>
+				<br>
+				<div class="row">		
+					<div style="text-align:center;margin-left:65px;" class="col-xs-8 col-sm-10">
+						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
 							<span>Another file</span>
-							<input onclick="addInputCompose()" class="another" />	
+							<input onclick="addInputComposeEF()" class="another" />	
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-						<label  class="col-sm-12 control-label">Text</label>
-						<div class="row">
-						  <div id="email2Cont" class="col-xs-12 col-sm-4">
-								<textarea style="height:222px;" id="textemailInbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
-						  </div>						  
-						</div>
+				<br>
+				<!--div class="row">
+					<div style="padding-left: 25px; padding-top: 10px;" class="col-xs-3 col-sm-2">
+						Text
 					</div>
-				</div>								
+					<div id="email2Cont" class="col-xs-8 col-sm-10">
+						<textarea style="height:222px;" id="textemailEF" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					</div>
+				</div-->								
 				
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10">
-						<input id="sendCompose" class="btn btn-success" type="button" value="Send">
-						<!--input id="resetAdd" class="btn btn-default" type="button" value="Reset"-->
+						<input id="cancelComposeEF" class="btn btn-default" type="button" value="Cancel">
+						<input id="sendComposeEF" class="btn btn-success" type="button" value="Send">
 					</div>
 				</div>
 			</form>
