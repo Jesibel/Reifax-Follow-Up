@@ -406,6 +406,16 @@
 		document.getElementById("uploadBtnCompose").onchange = function () {
 			document.getElementById("uploadFile").value = this.value;
 		};
+		
+		//UPLOAD REPLY EMAIL FOLLOW
+		document.getElementById("uploadBtnReply").onchange = function () {
+			document.getElementById("uploadFileReply").value = this.value;
+		};
+		
+		//UPLOAD FORWARD EMAIL FOLLOW
+		document.getElementById("uploadBtnForward").onchange = function () {
+			document.getElementById("uploadFileForward").value = this.value;
+		};
 			
 		//DELETE CONTACTS
 		$('#deleteCont').on('click',function(){				
@@ -1177,6 +1187,25 @@ $(function(){
 			geteditSchedule(valor.idfus,valor2.parcelid);
 			
 		});
+		
+		//BOTON CARGAR EDITAR EMAIL FOLLOW
+		$("#addEfollow").on('click', function () {
+			//alert('click boton editar');
+			//var valor = JSON.parse(localStorage.getItem('key4'));
+			//var valor2 = JSON.parse(localStorage.getItem('key'));
+			getComposeEmailFollow();
+			
+		});
+		
+		//BOTON CARGAR FORWARD EMAIL FOLLOW
+		$("#forwardEmailFollow").on('click', function () {
+			//alert('click boton editar');
+			//var valor = JSON.parse(localStorage.getItem('key4'));
+			//var valor2 = JSON.parse(localStorage.getItem('key'));
+			getComposeEmailFollow();
+			
+		});
+		
 		
 		//BOTON COMPLETED TASK PENDING
 		$("#taskComp").on('click', function () {
@@ -3299,7 +3328,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button id="sendReplyI" type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+                <button id="sendReplyI" type="button" class="btn btn-success" data-dismiss="modal">Send</button>
 			</div>
 		</div>
   </div>
