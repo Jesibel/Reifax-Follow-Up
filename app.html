@@ -1515,36 +1515,46 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	var contr= JSON.parse(localStorage.getItem('key6'));
 	if(contr.contr==0){
 		document.getElementById('ckVc').style.display = "block";
+		document.getElementById('ckFc').style.display = "none";
 	}else{
 		document.getElementById('ckFc').style.display = "block";
+		document.getElementById('ckVc').style.display = "none";
 	}	
 		
 	var pof= JSON.parse(localStorage.getItem('key7'));
 	if(pof.pof==0){
 		document.getElementById('ckVp').style.display = "block";
+		document.getElementById('ckFp').style.display = "none";
 	}else{
 		document.getElementById('ckFp').style.display = "block";
+		document.getElementById('ckVp').style.display = "none";
 	}
 	
 	var emd= JSON.parse(localStorage.getItem('key8'));
 	if(emd.emd==0){
 		document.getElementById('ckVe').style.display = "block";
+		document.getElementById('ckFe').style.display = "none";
 	}else{
 		document.getElementById('ckFe').style.display = "block";
+		document.getElementById('ckVe').style.display = "none";
 	}	
 	
 	var adde= JSON.parse(localStorage.getItem('key9'));
 	if(adde.adde==0){
 		document.getElementById('ckVa').style.display = "block";
+		document.getElementById('ckFa').style.display = "none";
 	}else{
 		document.getElementById('ckFa').style.display = "block";
+		document.getElementById('ckVa').style.display = "none";
 	}	
 	
 	var offre= JSON.parse(localStorage.getItem('key10'));
 	if(offre.offre==0){
 		document.getElementById('ckVo').style.display = "block";
+		document.getElementById('ckFo').style.display = "none";
 	}else{
 		document.getElementById('ckFo').style.display = "block";
+		document.getElementById('ckVo').style.display = "none";
 	}	
 
 		
