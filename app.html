@@ -2353,7 +2353,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			</div>
 			<div id="templa" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
 			<div class="form-group"><label>Subject:</label><input id="subject" class="form-control required" placeholder="Your name" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
-			<div class="form-group"><label>Body:</label><textarea style="height:222px;" id="body" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea></div>
+			<div class="form-group"><label>Body:</label><textarea style="height:112px;" id="body" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea></div>
 			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
 			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
 			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
@@ -2384,7 +2384,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 				<input type='radio'  name='templateSMS' id='templateSMS' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
 				<input type='radio'  name='newSMS' id='newSMS' value='New' checked>	New</input>			
 			</div>	
-			<div class="form-group"><label>Text:</label><textarea style="height:222px;" id="text" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
+			<div class="form-group"><label>Text:</label><textarea style="height:112px;" id="text" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
 			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
 			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
 			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
@@ -2431,7 +2431,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 				</div>
 			</div>
 			<div id="templaFAX" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
-			<div class="form-group"><label>Text:</label><textarea style="height:222px;" id="textFax" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
+			<div class="form-group"><label>Text:</label><textarea style="height:112px;" id="textFax" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
 			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
 			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
 			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
@@ -2457,65 +2457,171 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
             </div>
             <div class="modal-body">
 				<div class="row-fluid">
-					<div class="span12">
-						<!--h4>Filters</h4-->
-						<p>Contact:<div id="agent"><input id="agen" type="text" class="span12"/></div></p>
-						<p>type:<div id="typeagent"><select id="typ" class="span12"></select></div></p>
-						<p>Email1:<div id="email1"><select style="width:30%;float:left;margin-right: 15px;" id="emai1" class="span12"></select></div>
-								<input id ="ema1" style="width:65%;" type="text" class="span12" /></p>
-						<p>Email2:<div id="email2"><select style="width:30%;float:left;margin-right: 15px;" id="emai2" class="span12"></select></div>
-								<input id ="ema2" style="width:65%;" type="text" class="span12" /></p>		
-						<p>Company:<input id="company" type="text" class="span12" /></p>
-						<p>Website1:<div id="website1"><select style="width:30%;float:left;margin-right: 15px;" id="websit1" class="span12"></select></div>
-								<input id ="web1" style="width:65%;" type="text" class="span12" /></p>
-						<p>Website2:<div id="website2"><select style="width:30%;float:left;margin-right: 15px;" id="websit2" class="span12"></select></div>
-								<input id ="web2" style="width:65%;" type="text" class="span12" /></p>
-						<p>Phone:<div id="phone1"><select style="width:30%;float:left;margin-right: 15px;" id="phon1" class="span12"></select></div>
-								<input id ="pho1" style="width:65%;" type="text" class="span12" />
+					<div class="row">
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Contact
+							</div>
+							<div id="agent" class="col-xs-7 col-sm-10">
+								<input id="agen" type="text" class="span4" />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Type
+							</div>
+							<div id="typeagent" class="col-xs-7 col-sm-10">
+								<select id="typ" class="span4"></select>
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Email1
+							</div>
+							<div id="email1" class="col-xs-7 col-sm-10">
+								<select style="width:32%;float:left;margin-right:5px;" id="emai1" class="span4"></select>
+								<input id ="ema1" style="width:65%;" type="text" class="span4" />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Email2
+							</div>
+							<div id="email2" class="col-xs-7 col-sm-10">
+								<select style="width:32%;float:left;margin-right:5px;" id="emai2" class="span4"></select>
+								<input id ="ema2" style="width:65%;" type="text" class="span4" />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Company
+							</div>
+							<div id="companyy" class="col-xs-7 col-sm-10">								
+								<input id ="company" type="text" class="span4" />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Website1
+							</div>
+							<div id="website1" class="col-xs-7 col-sm-10">
+								<select style="width:32%;float:left;margin-right:5px;" id="websit1" class="span4"></select>
+								<input id ="web1" style="width:65%;" type="text" class="span4" />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Website2
+							</div>
+							<div id="website2" class="col-xs-7 col-sm-10">
+								<select style="width:32%;float:left;margin-right:5px;" id="websit2" class="span4"></select>
+								<input id ="web2" style="width:65%;" type="text" class="span4" />
+							</div>
+						</div>	
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Phone
+							</div>
+							<div id="phone1" class="col-xs-7 col-sm-10">
+								<select style="width:32%;float:left;margin-right:5px;" id="phon1" class="span4"></select>
+								<input id ="pho1" style="width:65%;" type="text" class="span4" />
 								<input 	name="submit" id="telf1" type="image" class="span12"
 										src="http://www.reifax.com/img/toolbar/gvoice.png" 
 									    alt="Sign Me Up!" 
 										onclick="SignMeUp();"
-										tabindex="8"  /></p>
-						<p>Phone2:<div id="phone2"><select style="width:30%;float:left;margin-right: 15px;" id="phon3" class="span12"></select></div>
-								<input id ="pho2" style="width:65%;" type="text" class="span12" />
-								<input 	name="submit" id="telf2" type="image" class="span12"
+										tabindex="8"  />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Phone2
+							</div>
+							<div id="phone2" class="col-xs-7 col-sm-10">
+								<select style="width:32%;float:left;margin-right:5px;" id="phon2" class="span4"></select>
+								<input id ="pho2" style="width:65%;" type="text" class="span4" />
+								<input 	name="submit" id="telf2" type="image" class="span4"
 										src="http://www.reifax.com/img/toolbar/gvoice.png" 
 									    alt="Sign Me Up!" 
 										onclick="SignMeUp();"
-										tabindex="8"  /></p>
-						<p>Phone3:<div id="phone3"><select style="width:30%;float:left;margin-right: 15px;" id="phon3" class="span12"></select></div>
-								<input id ="pho3" style="width:65%;" type="text" class="span12" />
-								<input 	name="submit" id="telf3" type="image" class="span12"
+										tabindex="8"  />
+							</div>
+						</div>	
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Phone3
+							</div>
+							<div id="phone3" class="col-xs-7 col-sm-10">
+								<select style="width:32%;float:left;margin-right:5px;" id="phon3" class="span4"></select>
+								<input id ="pho3" style="width:65%;" type="text" class="span4" />
+								<input 	name="submit" id="telf3" type="image" class="span4"
 										src="http://www.reifax.com/img/toolbar/gvoice.png" 
 									    alt="Sign Me Up!" 
 										onclick="SignMeUp();"
-										tabindex="8"  /></p>
-						<p>Phone4:<div id="phone4"><select style="width:30%;float:left;margin-right: 15px;" id="phon4" class="span12"></select></div>
-								<input id ="pho4" style="width:65%;" type="text" class="span12" />
-								<input 	name="submit" id="telf4" type="image" class="span12"
+										tabindex="8"  />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Phone4
+							</div>
+							<div id="phone4" class="col-xs-7 col-sm-10">
+								<select style="width:32%;float:left;margin-right:5px;" id="phon4" class="span4"></select>
+								<input id ="pho4" style="width:65%;" type="text" class="span4" />
+								<input 	name="submit" id="telf4" type="image" class="span4"
 										src="http://www.reifax.com/img/toolbar/gvoice.png" 
 									    alt="Sign Me Up!" 
 										onclick="SignMeUp();"
-										tabindex="8"  /></p>
-						<p>Phone5:<div id="phone5"><select style="width:30%;float:left;margin-right: 15px;" id="phon5" class="span12"></select></div>
-								<input id ="pho5" style="width:65%;" type="text" class="span12" />
-								<input 	name="submit" id="telf5" type="image" class="span12"
+										tabindex="8"  />
+							</div>
+						</div>	
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Phone5
+							</div>
+							<div id="phone5" class="col-xs-7 col-sm-10">
+								<select style="width:32%;float:left;margin-right:5px;" id="phon5" class="span4"></select>
+								<input id ="pho5" style="width:65%;" type="text" class="span4" />
+								<input 	name="submit" id="telf5" type="image" class="span4"
 										src="http://www.reifax.com/img/toolbar/gvoice.png" 
 									    alt="Sign Me Up!" 
 										onclick="SignMeUp();"
-										tabindex="8"  /></p>
-						<p>Phone6:<div id="phone6"><select style="width:30%;float:left;margin-right: 15px;" id="phon6" class="span12"></select></div>
-								<input id ="pho6" style="width:65%;" type="text" class="span12" />
-								<input 	name="submit" id="telf6" type="image" class="span12"
+										tabindex="8"  />
+							</div>
+						</div>	
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Phone6
+							</div>
+							<div id="phone6" class="col-xs-7 col-sm-10">
+								<select style="width:32%;float:left;margin-right:5px;" id="phon6" class="span4"></select>
+								<input id ="pho6" style="width:65%;" type="text" class="span4" />
+								<input 	name="submit" id="telf6" type="image" class="span4"
 										src="http://www.reifax.com/img/toolbar/gvoice.png" 
 									    alt="Sign Me Up!" 
 										onclick="SignMeUp();"
-										tabindex="8"  /></p>
-						<p>Address1:<div id="address1"><select style="width:30%;float:left;margin-right: 15px;" id="addre1" class="span12"></select></div>
-								<input id="addr1" style="width:65%;" type="text" class="span12" /></p>
-						<p>Address2:<div id="address2"><select style="width:30%;float:left;margin-right: 15px;" id="addre2" class="span12"></select></div>
-								<input id="addr2" style="width:65%;"type="text" class="span12" /></p>
+										tabindex="8"  />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address1
+							</div>
+							<div id="address1" class="col-xs-7 col-sm-10">
+								<select style="width:32%;float:left;margin-right:5px;" id="addre1" class="span4"></select>
+								<input id ="addr1" style="width:65%;" type="text" class="span4" />								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address2
+							</div>
+							<div id="address2" class="col-xs-7 col-sm-10">
+								<select style="width:32%;float:left;margin-right:5px;" id="addre2" class="span4"></select>
+								<input id ="addr2" style="width:65%;" type="text" class="span4" />								
+							</div>
+						</div>						
+																																																						
+						
 					</div>				  
             </div>
 			<button id="add" type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
