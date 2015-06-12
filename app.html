@@ -645,6 +645,30 @@
 			listadoCompleted(start, limit);
 		 
 		 });
+		 
+		  //BOTON FILTRAR EMAIL FOLLOW
+		$("#searchFilterEmailFollow").on('click', function () {
+			//alert('FILTRAR');
+			//filterContacts();
+			$("#correofollow ul").empty();
+			var id = JSON.parse(localStorage.getItem('key'));
+			var start = 0; 
+			var limit = 25; 
+			emailDetail(start, limit,id.parcelid);
+		});
+
+		$('#formularioFilterEmailFollow').submit(function(){
+			event.preventDefault();
+			
+			$("#filterEmailFollow").modal('hide');
+			$('#menuEmailFollow').panel("close");
+			$("#correofollow ul").empty();
+			var id = JSON.parse(localStorage.getItem('key'));
+			var start = 0; 
+			var limit = 25; 
+			emailDetail(start, limit,id.parcelid);
+		 
+		 });
 		
 		
 			
@@ -3148,6 +3172,105 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 </div>
 </div>
 <!--FIN FILTER COMPLETED TASK-->
+
+<!--FILTER EMAIL FOLLOW-->
+<div class="modal fade bs-example-modal-sm" id="filterEmailFollow" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Filters</h4>
+            </div>
+            <div class="modal-body">
+			<form id="formularioFilterEmailFollow" class="form-horizontal">
+			<div class="container-fluid">           
+				<div class="row">
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+							From Mail
+						</div>
+						<div class="col-xs-7 col-sm-10">
+							<input id="fromMail" type="text" class="span4" />
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+							To Mail
+						</div>
+						<div class="col-xs-7 col-sm-10">
+							<input id="toMail" type="text" class="span4" />
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+							From
+						</div>
+						<div  id="fromm" class="col-xs-7 col-sm-10">
+							<input id="from" type="text" class="span4" />							
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+							Email Content
+						</div>
+						<div  id="eemailContent" class="col-xs-7 col-sm-10">
+							<input id="emailContent" type="text" class="span4" />									
+						</div>
+					</div>
+										
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+							Email Type
+						</div>
+						<div  id="emailTyp" class="col-xs-7 col-sm-10">
+							<select id="emailType" class="span4">
+								<option value="-1">All</option>
+								<option value="1">SMS</option>
+								<option value="3">FAX</option>
+								<option value="5">EMAIL</option>
+								<option value="7">VOICE MAIL</option>
+								
+							</select>
+						</div>
+					</div>
+										
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+							Date Between
+						</div>												
+						<div style="margin-top:1px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
+								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
+								<input style="line-height:25px;width: 100px !important;" name="dateBetween" id="dateBetween" class="i-txt" />
+						</div>								
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+							To
+						</div>												
+						<div style="margin-top:1px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
+								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
+								<input style="line-height:25px;width: 100px !important;" name="dateTo" id="dateTo" class="i-txt" />
+						</div>								
+					</div>
+																						
+				</div>
+            
+			</div>	
+            <div class="modal-footer">
+                <!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
+                <button id="searchFilterEmailFollow" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+                <input  id="searchFilterEmailFollow2" type="submit" value="GO" data-role="none" style="position: absolute;left: -10000px;">
+			</div>
+			</form>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN FILTER EMAIL FOLLOW-->
 
 <!--ASSIGN CONTACT-->
 <div class="modal fade bs-example-modal-sm" id="assignContacts" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
