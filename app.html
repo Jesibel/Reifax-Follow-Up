@@ -664,6 +664,7 @@
 			//alert('FILTRAR');
 			//filterContacts();
 			$("#completados ul").empty();
+			$('#menuTaskCompleted').panel("close");
 			var start = 0; 
 			var limit = 25; 
 			listadoCompleted(start, limit);
@@ -687,6 +688,7 @@
 			//alert('FILTRAR');
 			//filterContacts();
 			$("#correofollow ul").empty();
+			$('#menuEmailFollow').panel("close");
 			var id = JSON.parse(localStorage.getItem('key'));
 			var start = 0; 
 			var limit = 25; 
