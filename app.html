@@ -949,13 +949,13 @@ $(function(){
 		$('ul.page_correo').on('click','li', function () {
            
 			var id= $(this).attr('idmail');
-			var idseen= $(this).attr('idseen');
+			//var idseen= $(this).attr('idseen');
 			// Creamos un objeto
 			var object = { 'email' : id };
-			var seen = { 'seen' : idseen };
+			//var seen = { 'seen' : idseen };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
 			localStorage.setItem('key5', JSON.stringify(object));
-			localStorage.setItem('seen', JSON.stringify(seen));
+			//localStorage.setItem('seen', JSON.stringify(seen));
 			$('#detalleEmailFollow ul').empty();
 			$.mobile.changePage( "#detailEmailFollow");
 			
