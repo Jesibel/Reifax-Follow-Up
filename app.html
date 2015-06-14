@@ -152,7 +152,7 @@
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
 			//alert('remove filter CONTACTS');
-			//$('#menuContacts').panel("close");
+			$('#menuContacts').panel("close");
 			removeFilterContact();
 					
 		});
@@ -160,7 +160,7 @@
 		//FILTER REMOVE EMAIL INBOX
 		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
 			//alert('remove filter email inbox');
-			//$('#menuEmailInbox,#menuEmailInboxO').panel("close");
+			$('#menuEmailInbox,#menuEmailInboxO').panel("close");
 			removeFilterEmailInbox();
 					
 		});
@@ -177,7 +177,7 @@
 		//FILTER REMOVE PENDING TASK
 		$("#RemovefiltroTask").on('click', function () {
 			//alert('remove filter email outbox');
-			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			$('#menuTask').panel("close");
 			removeFilterPendingTask();
 					
 		});
@@ -185,7 +185,7 @@
 		//FILTER REMOVE COMPLETED TASK
 		$("#RemovefiltroTaskC").on('click', function () {
 			//alert('remove filter email outbox');
-			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			$('#menuTaskCompleted').panel("close");
 			removeFilterCompletedTask();
 					
 		});
@@ -193,7 +193,7 @@
 		//FILTER REMOVE EMAIL FOLLOW
 		$("#filtro_removeEmailFollow").on('click', function () {
 			//alert('remove filter email outbox');
-			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			$('#menuEmailFollow').panel("close");
 			removeFilterEmailFollow();
 		});
 		
