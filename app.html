@@ -88,20 +88,11 @@
 		});
 		
 		$('#edatePTask').change(function(){
-			//alert($(this).val());
+			alert($(this).val());
 			if ($(this).val()=='Between'){
 				document.getElementById('betweenExecPTask').style.display = "block";
 			}else{
 				document.getElementById('betweenExecPTask').style.display = "none";
-			}
-		});
-		
-		$('#sdatePTask').change(function(){
-			//alert($(this).val());
-			if ($(this).val()=='Between'){
-				document.getElementById('betweenSchePTask').style.display = "block";
-			}else{
-				document.getElementById('betweenSchePTask').style.display = "none";
 			}
 		});
 		
@@ -114,6 +105,26 @@
 			}
 		});
 		
+		$('#sdatePTask').change(function(){
+			alert($(this).val());
+			if ($(this).val()=='Between'){
+				document.getElementById('betweenSchePTask').style.display = "block";
+			}else{
+				document.getElementById('betweenSchePTask').style.display = "none";
+			}
+		});
+		
+		
+		//$("#phoneContFil").intlTelInput();
+				
+		//FILTER PROPERTIES
+		/*$(".close").on('click', function () {
+			//alert('close');				
+			//$('#menuSecunFollow').panel("close");
+			//$('#menuContacts').panel("close");
+			//$('#menuEmailInbox,#menuEmailInboxO').panel("close");
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+		});*/
 		
 		//FILTER PROPERTIES
 		$("#filtro,#filtro2").on('click', function () {
@@ -122,9 +133,16 @@
 				
 		});
 		
+		//FILTER EMAIL FOLLOW
+		$("#filtroemailFollow").on('click', function () {
+			//alert('filtro');				
+			//getfilterEmailFollow();
+				
+		});
+		
 		//FILTER REMOVE PROPERTY
 		$("#filtro_remove,#filtro_remove2").on('click', function () {
-			//alert('remove filter CONTACTS');
+			alert('remove filter CONTACTS');
 			$('#menuSecunFollow').panel("close");
 			removeFilterProperty();
 					
@@ -134,7 +152,7 @@
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
 			//alert('remove filter CONTACTS');
-			$('#menuContacts').panel("close");
+			//$('#menuContacts').panel("close");
 			removeFilterContact();
 					
 		});
@@ -142,7 +160,7 @@
 		//FILTER REMOVE EMAIL INBOX
 		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
 			//alert('remove filter email inbox');
-			$('#menuEmailInbox,#menuEmailInboxO').panel("close");
+			//$('#menuEmailInbox,#menuEmailInboxO').panel("close");
 			removeFilterEmailInbox();
 					
 		});
@@ -151,7 +169,7 @@
 		//FILTER REMOVE EMAIL OUTBOX
 		$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
 			//alert('remove filter email outbox');
-			$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterEmailOutbox();
 					
 		});
@@ -159,17 +177,24 @@
 		//FILTER REMOVE PENDING TASK
 		$("#RemovefiltroTask").on('click', function () {
 			//alert('remove filter email outbox');
-			$('#menuTask').panel("close");
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterPendingTask();
 					
 		});
 		
-		//FILTER REMOVE PENDING TASK
+		//FILTER REMOVE COMPLETED TASK
 		$("#RemovefiltroTaskC").on('click', function () {
 			//alert('remove filter email outbox');
-			$('#menuTaskCompleted').panel("close");
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterCompletedTask();
 					
+		});
+		
+		//FILTER REMOVE EMAIL FOLLOW
+		$("#filtro_removeEmailFollow").on('click', function () {
+			//alert('remove filter email outbox');
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+			removeFilterEmailFollow();
 		});
 		
 		//INSERT CONTACTS
@@ -184,7 +209,7 @@
 			resetformCont();
 		});
 		
-			//INSERT HISTORY FOLLOW
+		//INSERT HISTORY FOLLOW
 		$("#saveHist,#saveHistory").on('click', function () {
 			//alert('insert');			
 			addHistory();
@@ -203,24 +228,9 @@
 		});
 		
 		//RESET HISTORY FOLLOW
-		$("#resetSche,#resetSchedule").on('click', function () {
+		$("#resetSche").on('click', function () {
 			//alert('insert');			
 			resetSchedule();
-		});
-		
-		//CANCEL EDIT HISTORY FOLLOW
-		$("#cancelEditHistory").on('click', function () {
-			//alert('insert');			
-			//cancelSchedule();
-			$.mobile.changePage(
-			'#detailHistory',
-			{
-             allowSamePageTransition : true,
-             transition              : 'none',
-             showLoadMsg             : false,
-             reloadPage              : false
-			}
-			);
 		});
 		
 		//CANCEL ADD SCHEDULE FOLLOW
@@ -253,6 +263,21 @@
 			);
 		});
 		
+		//CANCEL EDIT HISTORY FOLLOW
+		$("#cancelEditHistory").on('click', function () {
+			//alert('insert');			
+			//cancelSchedule();
+			$.mobile.changePage(
+			'#detailHistory',
+			{
+             allowSamePageTransition : true,
+             transition              : 'none',
+             showLoadMsg             : false,
+             reloadPage              : false
+			}
+			);
+		});
+		
 		//CANCEL EMAIL COMPOSE FOLLOW
 		$("#cancelComposeEF").on('click', function () {
 			//alert('insert');			
@@ -267,6 +292,8 @@
 			}
 			);
 		});
+		
+		
 		
 		//REFRESH HISTORY FOLLOW
 		$("#refreshHist").on('click', function () {
@@ -408,6 +435,11 @@
 			document.getElementById("uploadFile").value = this.value;
 		};
 		
+		//UPLOAD FILE COMPOSE EMAIL FOLLOW
+		document.getElementById("uploadBtnComposeEF").onchange = function () {
+			document.getElementById("uploadFileEF").value = this.value;
+		};
+		
 		//UPLOAD REPLY EMAIL FOLLOW
 		document.getElementById("uploadBtnReply").onchange = function () {
 			document.getElementById("uploadFileReply").value = this.value;
@@ -417,7 +449,8 @@
 		document.getElementById("uploadBtnForward").onchange = function () {
 			document.getElementById("uploadFileForward").value = this.value;
 		};
-			
+		
+					
 		//DELETE CONTACTS
 		$('#deleteCont').on('click',function(){				
 			//alert("delete");
@@ -432,7 +465,7 @@
 			
 		//AGREGAR CONTACTS
 		$('#addCont,#addCont2').on('click',function(){				
-			//alert("addc");
+			alert("addc");
 			getTypeContacts();	
 		});
 			
@@ -514,7 +547,7 @@
 			var limit = 25; 
 			listadoContacts(start, limit);
 		});
-		
+
 		$('#formularioFilterContact').submit(function(){
 			event.preventDefault();
 			
@@ -530,7 +563,7 @@
 		
 		//SEARCH FILTER PROPERTY WITH BOTON SEARCH
 		$("#searchFilter").on('click', function () {
-								
+			//alert("search del filtro");						
 			$('#menuSecunFollow').panel("close");
 			$("#content ul").empty();
 			//searchFilterProperty();
@@ -539,10 +572,11 @@
 			listadoProperty(start,limit);
 			
 		});
-		
+
+	
 		$('#formularioFilterProperty').submit(function(){
 			event.preventDefault();
-			
+			//alert('enter property');
 			$("#filter").modal('hide');
 			$('#menuSecunFollow').panel("close");
 			$("#content ul").empty();
@@ -563,7 +597,7 @@
 			listadoEmailsInbox(start,limit);
 			
 		});
-				
+
 		$('#formularioFilterEmailInbox').submit(function(){
 			event.preventDefault();
 			
@@ -586,7 +620,8 @@
 			listadoEmailsOutbox(start,limit);
 			
 		});
-				
+	
+		
 		$('#formularioFilterEmailOutbox').submit(function(){
 			event.preventDefault();
 			
@@ -598,8 +633,9 @@
 			listadoEmailsOutbox(start,limit);
 		 
 		 });
-		 
-		 //BOTON FILTRAR PENDING TASK
+		
+		
+		//BOTON FILTRAR PENDING TASK
 		$("#searchFilterPTask").on('click', function () {
 			//alert('FILTRAR');
 			//filterContacts();
@@ -623,12 +659,11 @@
 		 
 		 });
 		 
-		  //BOTON FILTRAR COMPLETED TASK
+		 //BOTON FILTRAR COMPLETED TASK
 		$("#searchFilterCTask").on('click', function () {
 			//alert('FILTRAR');
 			//filterContacts();
 			$("#completados ul").empty();
-			$('#menuTaskCompleted').panel("close");
 			var start = 0; 
 			var limit = 25; 
 			listadoCompleted(start, limit);
@@ -645,9 +680,9 @@
 			var limit = 25; 
 			listadoCompleted(start, limit);
 		 
-		 });
+		 }); 
 		 
-		  //BOTON FILTRAR EMAIL FOLLOW
+		 //BOTON FILTRAR EMAIL FOLLOW
 		$("#searchFilterEmailFollow").on('click', function () {
 			//alert('FILTRAR');
 			//filterContacts();
@@ -671,11 +706,11 @@
 		 
 		 });
 		
-		
 			
 	});
 	
 </script>
+
 <script type="text/javascript">
 		var checkid = new Array();
 		var i;
@@ -697,8 +732,11 @@
 		$settings = settings;	
 		var start = $settings.start;
 		
+		
+		
 $(function(){
-
+		
+				
 		//CLICK DETALLE DE PROPIEDADES
 		$('ul.page_result').on('click','li', function () {
             //alert('onclick');
@@ -723,25 +761,22 @@ $(function(){
 			//var valor = localStorage.getItem("key");
 			var valor = JSON.parse(localStorage.getItem('key'));
 			// La alerta mostrará 1 por pantalla
-			alert(valor.parcelid);			
+			//alert(valor.parcelid);
+			//alert(valor.agent);
 			$('#detallePropiedades').empty();
 			detailProperty(valor.parcelid);
 		});
 		
-		
 		//CLICK DETALLE DE CONTACTOS
 		$('ul.page_contact').on('click','li', function () {
-            //alert('onclick contacts');
-			//alert(url);
+           
 			var id= $(this).attr('agentid');
 			
-			//alert(id);
 			// Creamos un objeto
 			var object = { 'agent' : id };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
 			localStorage.setItem('key', JSON.stringify(object));
-			//window.location.href = "#detailContacts?id=";
-			//window.location.href ="index.html#detailContacts";
+			
 			$('#detalleContacto').empty();
 			$.mobile.changePage( "#detailContacts","slide");
 			
@@ -751,18 +786,13 @@ $(function(){
 			//var valor = localStorage.getItem("key");
 			var valor = JSON.parse(localStorage.getItem('key'));
 			// La alerta mostrará 1 por pantalla
-			//alert(valor.agent);
-			//alert(valor.agent);
 			detailContact(valor.agent);
 		});
 		
 		//CLICK DETALLE DE EMAIL
 		$('ul.page_emailInbox').on('click','li', function () {
-            //alert('onclick email');
-			//alert(url);
+           
 			var id= $(this).attr('idmail');
-			
-			//alert(id);
 			// Creamos un objeto
 			var object = { 'email' : id };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
@@ -782,7 +812,7 @@ $(function(){
 		
 		//CLICK DETALLE DE EMAIL outbox
 		$('ul.page_emailOutbox').on('click','li', function () {
-           // alert('onclick email outbox');
+            //alert('onclick email outbox');
 			//alert(url);
 			var id= $(this).attr('idmail');
 			
@@ -867,8 +897,7 @@ $(function(){
 			detailCompleted(valor.idfuh);
 		});
 		
-		
-				//CLICK DETALLE HISTORY FOLLOW
+		//CLICK DETALLE HISTORY FOLLOW
 		$('ul.page_history2').on('click','li', function () {
             //alert('onclick');
 			var id= $(this).attr('idhist');
@@ -892,14 +921,17 @@ $(function(){
 			
 			var offre= $(this).attr('offre');
 			var object10 = { 'offre' : offre };
-			localStorage.setItem('key10', JSON.stringify(object10));	
-
+			localStorage.setItem('key10', JSON.stringify(object10));					
+			
+			
 			// Creamos un objeto
 			var object = { 'idfuh' : id };
 			var object2 = { 'parcelid' : parcelid };
+			
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
 			localStorage.setItem('key4', JSON.stringify(object));
 			localStorage.setItem('key2', JSON.stringify(object2));
+			
 			$('#detallehistorial ul').empty();
 			$.mobile.changePage("#detailHistory","slide");
 			
@@ -939,22 +971,23 @@ $(function(){
 			var valor2 = JSON.parse(localStorage.getItem('key2'));
 			// La alerta mostrará 1 por pantalla
 			//alert(valor.parcelid);
-			//alert(valor.idfuh);
+			//alert(valor.idfus);
 			$('#detalleschedule ul').empty();
 			detailSchedule(valor.idfus,valor2.parcelid);
 		});
+		
 		
 		//CLICK DETALLE DE EMAIL FOLLOW
 		$('ul.page_correo').on('click','li', function () {
            
 			var id= $(this).attr('idmail');
-			//var idseen= $(this).attr('idseen');
+			var idseen= $(this).attr('idseen');
 			// Creamos un objeto
 			var object = { 'email' : id };
-			//var seen = { 'seen' : idseen };
+			var seen = { 'seen' : idseen };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
 			localStorage.setItem('key5', JSON.stringify(object));
-			//localStorage.setItem('seen', JSON.stringify(seen));
+			localStorage.setItem('seen', JSON.stringify(seen));
 			$('#detalleEmailFollow ul').empty();
 			$.mobile.changePage( "#detailEmailFollow");
 			
@@ -964,10 +997,15 @@ $(function(){
 		$(document).on('pagebeforeshow', '#detailEmailFollow', function(){  
 			//var valor = localStorage.getItem("key");
 			var valor = JSON.parse(localStorage.getItem('key5'));
+			var valor2 = JSON.parse(localStorage.getItem('seen'));
 			$('#detalleEmailFollow ul').empty();
 			detailEmailFollow(valor.email);
+			
+			//readEmail(valor.email,valor2.seen);
 
 		});
+		
+
 		
 		
 		//LONG TOUCH PROPERTY
@@ -978,8 +1016,8 @@ $(function(){
 			//alert(id);
 			longProperties(id);
 			
-			
         });
+		
 		
 		//LOGN TOUCH CONTACT
 		$('ul.page_contact').on('taphold','li', function () {
@@ -988,15 +1026,14 @@ $(function(){
 			var id= $(this).attr('agentid');
 			
 			//alert(id);
-			
 			longContact(id);
-						
+				
 		});
 		
 		
 		//LONG TOUCH EMAIL INBOX
 		$('ul.page_emailInbox').on('taphold','li', function () {
-           // alert('long Touch email Inbox');
+            //alert('long Touch email Inbox');
 			
 			var id= $(this).attr('idmail');
 			var idseen= $(this).attr('idseen');	
@@ -1014,25 +1051,23 @@ $(function(){
 			
 			$(this).addClass ('mail_marked');
 			
-			longEmailInbox(id);
-			
-			
+			longEmailInbox(id,idseen);
+				
 		});
 								
 		
 		//LONG TOUCH EMAIL OUTBOX
 		$('ul.page_emailOutbox').on('taphold','li', function () {
-            //alert('long Touch email OUTbox');
+           // alert('long Touch email OUTbox');
 			
 			var id= $(this).attr('idmail');
-			
-			//alert(id);
+
 			longEmailOutbox(id);
-			
+		
 		});
 		
 		//LOGN TOUCH HISTORY
-		$('ul.page_history').on('taphold','li', function () {
+		/*$('ul.page_history').on('taphold','li', function () {
            // alert('long Touch history');
 			
 			var id= $(this).attr('idhist');
@@ -1040,10 +1075,10 @@ $(function(){
 			//alert(id);
 			longHistory(id);
 			
-		});
+		});*/
 		
 		//LOGN TOUCH SCHEDULE
-		$('ul.page_schedule').on('taphold','li', function () {
+		/*$('ul.page_schedule').on('taphold','li', function () {
             alert('long Touch schedule');
 			
 			var id= $(this).attr('idschedule');
@@ -1051,26 +1086,26 @@ $(function(){
 			alert(id);
 			longSchedule(id);
 			
-		});
+		});*/
 		
 		//LOGN TOUCH PENDING TASK
 		$('ul.page_pending').on('taphold','li', function () {
-            //alert('long Touch pending task');
+            alert('long Touch pending task');
 			
 			var id= $(this).attr('idfus');
 			
-			//alert(id);
+			alert(id);
 			longPending(id);
 			
 		});
 		
 		//LOGN TOUCH COMPLETED TASK
 		$('ul.page_completed').on('taphold','li', function () {
-            //alert('long Touch completed task');
+            alert('long Touch completed task');
 			
 			var id= $(this).attr('idfuh');
 			
-			//alert(id);
+			alert(id);
 			longCompleted(id);
 			
 		});
@@ -1149,14 +1184,6 @@ $(function(){
 			
 		});
 		
-		//BOTON CARGAR EDITAR PENDING TASK
-		$("#editarPend").on('click', function () {
-			//alert('click boton editar');
-			var valor = JSON.parse(localStorage.getItem('key'));
-			geteditPending(valor.idfus);
-			
-		});
-		
 		//BOTON EDITAR HISTORY FOLLOW
 		$("#updateHist,#updateEditHistory").on('click', function () {
 			//alert('editar');
@@ -1187,6 +1214,19 @@ $(function(){
 			
 		});
 		
+		//BOTON DELETE EMAIL FOLLOW
+		$("#deleteEmailFollow").on('click', function () {
+			var valor = JSON.parse(localStorage.getItem('key5'));
+			deleteEmailFollow(valor.mail);
+		});
+		
+		//BOTON CARGAR EDITAR PENDING TASK
+		$("#editarPend").on('click', function () {
+			//alert('click boton editar');
+			var valor = JSON.parse(localStorage.getItem('key'));
+			geteditPending(valor.idfus);
+			
+		});
 		
 		//BOTON CARGAR EDITAR PENDING TASK
 		$("#editarCompleted").on('click', function () {
@@ -1197,21 +1237,21 @@ $(function(){
 			
 		});
 		
+		//BOTON CARGAR EDITAR SCHEDULE FOLLOW
+		$("#detailEditSche").on('click', function () {
+			//alert('click boton editar');
+			var valor = JSON.parse(localStorage.getItem('key4'));
+			var valor2 = JSON.parse(localStorage.getItem('key'));
+			geteditSchedule(valor.idfus,valor2.parcelid);
+			
+		});
+		
 		//BOTON CARGAR EDITAR HISTORY FOLLOW
 		$("#detailEditHist").on('click', function () {
 			//alert('click boton editar');
 			var valor = JSON.parse(localStorage.getItem('key4'));
 			var valor2 = JSON.parse(localStorage.getItem('key'));
 			geteditHistory(valor.idfuh,valor2.parcelid);
-			
-		});
-		
-		//BOTON CARGAR EDITAR HISTORY FOLLOW
-		$("#detailEditSche").on('click', function () {
-			//alert('click boton editar');
-			var valor = JSON.parse(localStorage.getItem('key4'));
-			var valor2 = JSON.parse(localStorage.getItem('key'));
-			geteditSchedule(valor.idfus,valor2.parcelid);
 			
 		});
 		
@@ -1232,7 +1272,6 @@ $(function(){
 			getComposeEmailFollow();
 			
 		});
-		
 		
 		//BOTON COMPLETED TASK PENDING
 		$("#taskComp").on('click', function () {
@@ -1261,12 +1300,14 @@ $(function(){
 			$('#detalleContacto').empty();			
 		});
 		
+		$("#backEditHistory").on('click', function () {
+			//alert('edit');
+			$('#detallehistorial ul').empty();			
+		});
+		
 		$("#backAdd").on('click', function () {			
 			//$('#detalleContacto').empty();			
 		});
-		
-		
-		
 		
 		
 });
@@ -1298,11 +1339,13 @@ $(document).scroll(function () {
 			}
             break;
         case(3):
+			if (busy==false){
             //alert('emailO');
 			start = start+$settings.limit; 
 			listadoEmailsOutbox(start,settings.limit);
+			}
             break;
-		 case(4):
+		case(4):
 			if (busy==false){
             //alert('contacts');
 			start = start+$settings.limit; 
@@ -1311,7 +1354,7 @@ $(document).scroll(function () {
             break;
 		case(5):
 			if (busy==false){
-            //alert('contacts');
+            //alert('hist');
 			start = start+$settings.limit; 
 			var valor = JSON.parse(localStorage.getItem('key'));
 			historyDetail(start,settings.limit,valor.parcelid);
@@ -1319,7 +1362,7 @@ $(document).scroll(function () {
             break;
 		case(6):
 			if (busy==false){
-            //alert('contacts');
+            //alert('schedule');
 			start = start+$settings.limit; 
 			var valor = JSON.parse(localStorage.getItem('key'));
 			scheduleDetail(start,settings.limit,valor.parcelid);	
@@ -1340,13 +1383,13 @@ $(document).scroll(function () {
 			listadoPendings(start,settings.limit);						
 			}
             break;
-		 case(9):
+		case(9):
 			if (busy==false){
-            //alert('completed');
+            //alert('contacts');
 			start = start+$settings.limit; 
 			listadoCompleted(start,settings.limit);
 			}
-            break;
+            break;		
         default:
             //alert('no coinciden con los anteriores');
             break;
@@ -1366,47 +1409,46 @@ $(document).scroll(function () {
 	
 	
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
-			//alert('page contacts');
-			busy=true;
-			pagina = 4;
-			$("#contacts ul").empty();
-			start=0;
-			listadoContacts(start,settings.limit);
-		
+		//alert('page contacts');
+		busy=true;
+		pagina = 4;
+		$("#contacts ul").empty();
+		start=0;
+		listadoContacts(start,settings.limit);
+			
 		$("#phoneContFil").intlTelInput({
-			//allowExtensions: true,
-			//autoFormat: false,
-			//autoHideDialCode: false,
-			//autoPlaceholder: false,
-			//defaultCountry: "auto",
-			//ipinfoToken: "yolo",
-			//nationalMode: false,
-			//numberType: "MOBILE",
-			onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-			//preferredCountries: ['cn', 'jp'],
-			utilsScript: "http://reifax.com/FollowupReifax/resources/lib/libphonenumber/build/utils.js",
+				//allowExtensions: true,
+				//autoFormat: false,
+				//autoHideDialCode: false,
+				//autoPlaceholder: false,
+				//defaultCountry: "auto",
+				//ipinfoToken: "yolo",
+				//nationalMode: false,
+				//numberType: "MOBILE",
+				onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+				//preferredCountries: ['cn', 'jp'],
+				utilsScript: "http://reifax.com/FollowupReifax/resources/lib/libphonenumber/build/utils.js",
 		});
 							
 });
 
 $(document).on("pagebeforeshow","#followingHtml",function(){	
-			//alert('page following');
-			busy=true;
-			pagina = 1;
-			$("#content ul").empty();
-			start=0;
-			listadoProperty(start,settings.limit);	
+		//alert('page following');
+		busy=true;
+		pagina = 1;
+		$("#content ul").empty();
+		start=0;
+		listadoProperty(start,settings.limit);		
 
-	$('#demo').mobipick({
-		dateFormat: "MM-dd-yyyy"
-	});
+		$('#demo').mobipick({
+			dateFormat: "MM-dd-yyyy"
+		});
 		
-	$('#demo2').mobipick({
-		dateFormat: "MM-dd-yyyy"
-	});
+		$('#demo2').mobipick({
+			dateFormat: "MM-dd-yyyy"
+		});			
 							
 });
-
 
 $(document).on("pagebeforeshow","#emailHtml",function(){	
 			//alert('page email inbox');
@@ -1433,10 +1475,13 @@ $(document).on("pagebeforeshow","#historyFollow",function(){
 			busy=true;
 			pagina = 5;
 			$("#historial ul").empty();
+			
 			start=0;
 			var valor = JSON.parse(localStorage.getItem('key'));
-			//alert(valor.parcelid);
-			historyDetail(start,settings.limit,valor.parcelid);					
+			
+			historyDetail(start,settings.limit,valor.parcelid);		
+
+			
 							
 });
 
@@ -1448,7 +1493,9 @@ $(document).on("pagebeforeshow","#scheduleFollow",function(){
 			start=0;
 			var valor = JSON.parse(localStorage.getItem('key'));
 			//alert(valor.parcelid);
-			scheduleDetail(start,settings.limit,valor.parcelid);					
+			scheduleDetail(start,settings.limit,valor.parcelid);	
+				
+			
 							
 });
 
@@ -1460,7 +1507,19 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 			start=0;
 			var valor = JSON.parse(localStorage.getItem('key'));
 			//alert(valor.parcelid);
-			emailDetail(start,settings.limit,valor.parcelid);					
+			emailDetail(start,settings.limit,valor.parcelid);
+
+			$('#dateBetween').mobipick({
+				dateFormat: "MM-dd-yyyy"
+			});
+		
+			$('#dateTo').mobipick({
+				dateFormat: "MM-dd-yyyy"
+			});	
+			
+			$('#edateAddScheduleEmailFollow').mobipick({
+				dateFormat: "MM-dd-yyyy"
+			});	
 							
 });
 
@@ -1472,7 +1531,7 @@ $(document).on("pagebeforeshow","#taskHtml",function(){
 			start=0;
 			listadoPendings(start,settings.limit);
 			
-			$('#schedateP').mobipick({
+		$('#schedateP').mobipick({
 			dateFormat: "MM-dd-yyyy"
 		});
 		
@@ -1487,11 +1546,12 @@ $(document).on("pagebeforeshow","#taskHtml",function(){
 		$('#execdateP2').mobipick({
 			dateFormat: "MM-dd-yyyy"
 		});	
+				
 							
 });
 
 $(document).on("pagebeforeshow","#taskCompletedHtml",function(){	
-			//alert('page task completed');
+			//alert('page task complete');
 			busy=true;
 			pagina = 9;
 			$("#completados ul").empty();
@@ -1540,6 +1600,7 @@ $(document).on("pagebeforeshow","#pagEditScheduleHtml",function(){
 
 $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){	
 	var contr= JSON.parse(localStorage.getItem('key6'));
+	//alert(contr.contr);
 	if(contr.contr==0){
 		document.getElementById('ckVc').style.display = "block";
 		document.getElementById('ckFc').style.display = "none";
@@ -1583,12 +1644,18 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		document.getElementById('ckFo').style.display = "block";
 		document.getElementById('ckVo').style.display = "none";
 	}	
+
 		
 });
 
+
 	
 </script>
-	<style>
+<script type="text/javascript">
+
+
+</script>
+<style>
 	@media screen and (min-width:320px) and (max-width:480px) {
 		.col-md-4{
 			width:50% !important;
@@ -1669,11 +1736,23 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		table{
 			width:100% !important;
 		}
+		
 		div#rootDiv{
 			margin-top:-100px!important;
 		}
 		.formT{
 			margin-left:-10px !important;
+		}
+		.dosMf{
+			font-weight: normal;
+			margin-left: -15px;
+		}
+		.dosMp{
+			font-weight: bold;
+			margin-left: -5px;
+		}
+		select{
+			width: 100%;
 		}
 	
 	}
@@ -1692,7 +1771,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			height:350px !important;
 		}
 		.ui-panel{
-			min-height: 5% !important;
+			min-height: 10% !important;
 		}
 		.agent{			
 			text-align: center;
@@ -1767,7 +1846,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			height:354px !important;
 		}
 		.ui-panel{
-			min-height: 20% !important;
+			min-height: 5% !important;
 		}
 		.agent{
 			width: 15%;
@@ -1812,8 +1891,17 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		.formT{
 			margin-left:200px;
 		}
-		table{
-			width:100% !important;
+		
+		.dosMf{
+			font-weight: normal;
+			
+		}
+		.dosMp{
+			font-weight: bold;
+			
+		}
+		.tablet{
+			margin-left:-300px;
 		}
 		
 	
@@ -1823,7 +1911,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			height:50px ;
 		}
 		.date{
-			/*left:500px !important;*/
+			left:500px !important;
 		}
 		.search{
 			margin-left:265px !important;
@@ -2103,11 +2191,13 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		table{
 			width:100%;
 		}
+		.mobipick-groups input {
+			height:30px;
+		}
 		.input-group-addon {
 			background-color:#fff;
 			border:1px solid #fff; 
 		}
-		
 		
 	</style>
   </head>
@@ -2166,7 +2256,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
 			<a class="closeMenu" style="display:none;"   href="#" data-rel="close">Close</a>
-			<li class="margen" ><a class="filter"        id="filtro2"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
+			<li class="margen"><a class="filter"        id="filtro2"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
 			<li class="margen"><a class="filterRemove"  id="filtro_remove2" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
 			<li class="margen"><a class="deleteFollow"  id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
 			<li class="margen"><a class="sendContract"  id="sendContract"   href="#sendContracts" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
@@ -2211,7 +2301,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
             </div>
             <div class="modal-body">
 			<form id="formularioFilterProperty" class="form-horizontal">
-				<div class="container-fluid">
+			<div class="container-fluid">
            
 				<div class="row">
 				  
@@ -2292,17 +2382,17 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 							Follow Date
 						</div>
 						
-						<div id="followdate" class="col-xs-3 col-sm-3">
+						<div style="margin-bottom:10px;" id="followdate" class="col-xs-3 col-sm-3">
 							<select id="folldate" class="span4"></select>
 						</div>	
-						<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
-							<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
-							<input style="line-height:25px;width: 100px !important;" name="demo" id="demo" class="i-txt" />
-						</div>		
-						<div id="between" class="col-xs-6 col-sm-3">
-							<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
-							<input style="line-height:25px;width: 100px !important;margin-left: 115px;" name="demo2" id="demo2" class="i-txt" />
-						</div>
+							<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
+								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
+								<input style="line-height:25px;width: 100px !important;" name="demo" id="demo" class="i-txt" />
+							</div>		
+							<div id="between" class="col-xs-6 col-sm-3">
+								<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
+								<input style="line-height:25px;width: 100px !important;margin-left: 115px;" name="demo2" id="demo2" class="i-txt" />
+							</div>
 							
 						
 					</div>
@@ -2311,11 +2401,11 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					
 				</div>
             
-			</div>
+			</div>	
             <div class="modal-footer">
                 <!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
                 <button id="searchFilter" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-                <input type="submit" style="position: absolute;left: -10000px;" value="Enviar" data-role="none" />
+                <input id="searchFilter2" type="submit" value="GO" data-role="none" style="position: absolute;left: -10000px;">
 			</div>
 			</form>
 		</div>
@@ -2387,7 +2477,8 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 				<input type='radio'  name='templateSMS' id='templateSMS' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
 				<input type='radio'  name='newSMS' id='newSMS' value='New' checked>	New</input>			
 			</div>	
-			<div class="form-group"><label>Text:</label><textarea style="height:112px;" id="text" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
+			<div id="templaSms" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
+			<div class="form-group"><label>Text:</label><textarea style="height:62px;" id="text" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
 			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
 			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
 			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
@@ -2717,12 +2808,14 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 							<div class="col-xs-9 col-sm-10">
 								<!--input id="phoneContFil" type="text"  /-->
 								<input type="tel" id="phoneContFil" class="span6">
+							
 							</div>
 						</div>
-					
+						
 					</div>
-            
+					
 				</div>
+				
 				<div class="modal-footer">
 					<!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
 					<button id="searchFilterContacts" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
@@ -2747,91 +2840,90 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			<form id="formularioFilterEmailInbox" class="form-horizontal">
 				<div class="container-fluid">
            
-					<div class="row">
-					  
-						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-2 col-sm-2">
-								From Mail
-							</div>
-							<div class="col-xs-9 col-sm-10">
-								<input id="frommailI" type="text" class="span6" />
-							</div>
-						</div>
-						
-						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-2 col-sm-2">
-								From
-							</div>
-							<div class="col-xs-9 col-sm-10">
-								<input id="fromI" type="text" class="span6" />
-							</div>
-						</div>
-						
-						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-2 col-sm-2">
-								Email Content
-							</div>
-							<div class="col-xs-9 col-sm-10">
-								<input id="emailcontentI" type="text" class="span6" />
-							</div>
-						</div>
-						
-						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-2 col-sm-2">
-								Email Type
-							</div>
-							<div id="emailtypeI" class="col-xs-9 col-sm-10">
-								<select id="ematyI" class="span6"></select>
-							</div>
-						</div>
-						
-						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-2 col-sm-2">
-								Attachment
-							</div>
-							<div id="attachmentI" class="col-xs-9 col-sm-10">
-								<select id="attach" class="span6"></select>
-							</div>
-						</div>
-						
-						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-2 col-sm-2">
-								Pending Content
-							</div>
-							<div id="pendingcontI" class="col-xs-9 col-sm-10">
-								<select id="pencontI" class="span6"></select>
-							</div>
-						</div>
-						
-						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-2 col-sm-2">
-								Pending Property
-							</div>
-							<div id="pendingproI" class="col-xs-9 col-sm-10">
-								<select id="penproI" class="span6"></select>
-							</div>
-						</div>
-						
-						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-2 col-sm-2">
-								Status
-							</div>
-							<div id="statusI" class="col-xs-9 col-sm-10">
-								<select id="staI" class="span6"></select>
-							</div>
-						</div>
-					
-					
+            <div class="row">
+              
+				<div style="margin-bottom: 10px;" class="row">
+					<div class="col-xs-2 col-sm-2">
+						From Mail
 					</div>
+					<div class="col-xs-9 col-sm-10">
+						<input id="frommailI" type="text" class="span6" />
+					</div>
+				</div>
+				
+				<div style="margin-bottom: 10px;" class="row">
+					<div class="col-xs-2 col-sm-2">
+						From
+					</div>
+					<div class="col-xs-9 col-sm-10">
+						<input id="fromI" type="text" class="span6" />
+					</div>
+				</div>
+				
+				<div style="margin-bottom: 10px;" class="row">
+					<div class="col-xs-2 col-sm-2">
+						Email Content
+					</div>
+					<div class="col-xs-9 col-sm-10">
+						<input id="emailcontentI" type="text" class="span6" />
+					</div>
+				</div>
+				
+				<div style="margin-bottom: 10px;" class="row">
+					<div class="col-xs-2 col-sm-2">
+						Email Type
+					</div>
+					<div id="emailtypeI" class="col-xs-9 col-sm-10">
+						<select id="ematyI" class="span6"></select>
+					</div>
+				</div>
+				
+				<div style="margin-bottom: 10px;" class="row">
+					<div class="col-xs-2 col-sm-2">
+						Attachment
+					</div>
+					<div id="attachmentI" class="col-xs-9 col-sm-10">
+						<select id="attach" class="span6"></select>
+					</div>
+				</div>
+				
+				<div style="margin-bottom: 10px;" class="row">
+					<div class="col-xs-2 col-sm-2">
+						Pending Content
+					</div>
+					<div id="pendingcontI" class="col-xs-9 col-sm-10">
+						<select id="pencontI" class="span6"></select>
+					</div>
+				</div>
+				
+				<div style="margin-bottom: 10px;" class="row">
+					<div class="col-xs-2 col-sm-2">
+						Pending Property
+					</div>
+					<div id="pendingproI" class="col-xs-9 col-sm-10">
+						<select id="penproI" class="span6"></select>
+					</div>
+				</div>
+				
+				<div style="margin-bottom: 10px;" class="row">
+					<div class="col-xs-2 col-sm-2">
+						Status
+					</div>
+					<div id="statusI" class="col-xs-9 col-sm-10">
+						<select id="staI" class="span6"></select>
+					</div>
+				</div>
             
-				</div>
-				<div class="modal-footer">
-					<!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
-					<button id="searchFilterMailI" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-					<input type="submit" style="position: absolute;left: -10000px;" value="Enviar3" data-role="none" />
-					<!--button id="searchFilterMailI2" type="submit" class="btn btn-primary" data-dismiss="modal"></button-->
-				</div>
-			</form>
+			
+			</div>
+            
+</div>
+            <div class="modal-footer">
+                <!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
+                <button id="searchFilterMailI" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+                <input type="submit" style="position: absolute;left: -10000px;" value="Enviar3" data-role="none" />
+			</div>
+		</form>
 		</div>
   </div>
 </div>
@@ -2926,13 +3018,13 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					
 					
 					</div>
+            
 				</div>
-            <div class="modal-footer">
-                <!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
-                <button id="searchFilterMailO" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
-                <input type="submit" style="position: absolute;left: -10000px;" value="Enviar4" data-role="none" />
-				<!--button id="searchFilterMailO2" type="submit" class="btn btn-primary" data-dismiss="modal"></button-->
-			</div>
+				<div class="modal-footer">
+					<!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
+					<button id="searchFilterMailO" type="button" class="btn btn-primary" data-dismiss="modal">Search</button>
+					<input type="submit" style="position: absolute;left: -10000px;" value="Enviar4" data-role="none" />
+				</div>
 		</form>
 		</div>
   </div>
@@ -3243,7 +3335,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 										
 					<div style="margin-bottom: 10px;" class="row">
 						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
-							Completed. Date
+							Comp. Date
 						</div>
 						
 						<div style="margin-bottom:10px;" id="cdateCTask" class="col-xs-3 col-sm-3">
@@ -3690,7 +3782,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 				</div>	  
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="cancelForward" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 <button id="sendForward" type="button" class="btn btn-success" data-dismiss="modal">Send</button>
 			</div>
 		</div>
@@ -3765,15 +3857,14 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 </div>
 <!--FIN ADD SCHEDULE EMAIL FOLLOW-->
 
-
 	
 <div data-role="page" id="detailProperties" data-add-back-btn="true">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-rel="back" data-theme="b" href="#menuEmail"></a-->
-		<a  style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();" ></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
-	
+	</div>
 	
 	<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
@@ -3786,8 +3877,9 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		</div>
 	
 	<!--FIN TABS-->
+	
 	<!--FIN HEADER--> 
-	</div>	
+		
 	<!--CONTENT-->
 	
 	<div data-role="content" >	
@@ -3815,7 +3907,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:1px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
-		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:left;margin-left:35px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
 		<a id="editar" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditContactoHtml"></a>
 		</div>
@@ -4051,6 +4143,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	
 </div><!-- /page -->
 
+
 <div data-role="page" id="detailHistory" data-add-back-btn="true">         
            <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
@@ -4151,15 +4244,15 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 
 <div data-role="page" id="detailEmailFollow">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
-		<div style="text-align:left;margin-left:30px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
-		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
+		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width:100%;margin-top:-40px;text-align:right;">		
 		<a id="deleteEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 		<a id="readEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
-		<a id="replyEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
-		<a id="forwardEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+		<a id="replyEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
+		<a id="forwardEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formForwardEmail"></a>
 		<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a></div>
 		
 	</div>
@@ -4214,7 +4307,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		
 		<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_emailInbox">				
 	
-		</div>
+	</div>
 		<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
@@ -4361,7 +4454,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
-		<div style="text-align:center;"><img src="img/Follow_up-white.png" width="120" height="40"></div>
+		<div style="text-align:center;"><img src="img/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
 			<a style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTask"></a>
 		</div>
@@ -4389,8 +4482,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	
 	</div>
 	<!--FIN HEADER--> 	
-	
-	<!--CONTENT-->
+
 	
 	<!--CONTENT-->
 		<div data-role="content">
@@ -4401,20 +4493,11 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		</div>
 		
 		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
-		
-		
-		<!--div style="background:#fff;" id="contactsFilter">
-			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
-			
-			</ul>
-		</div-->
-				
-		
+
 	</div>
 	<!--FIN CONTENT-->
-	<!--FIN CONTENT-->	
-	
-		<!--MENU PRINCIPAL -->
+
+	<!--MENU PRINCIPAL -->
 	<div data-role="panel" style="margin-top: 47px;" id="menuTask" data-display="overlay" data-position="right">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
@@ -4429,6 +4512,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	
 </div>
 
+
 <div data-role="page" id="taskCompletedHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
@@ -4438,11 +4522,10 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
 			<a style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuTaskCompleted"></a>
 		</div>
-		
+	
 		<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_completed">				
 	
 		</div>
-		
 		<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
@@ -4459,11 +4542,10 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			</ul>
 		</div>
 		<!--FIN TABS-->
-	
 	</div>
-	<!--FIN HEADER--> 	
 	
-	<!--CONTENT-->
+	
+	<!--FIN HEADER--> 	
 	
 	<!--CONTENT-->
 		<div data-role="content">
@@ -4485,7 +4567,6 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		
 	</div>
 	<!--FIN CONTENT-->
-	<!--FIN CONTENT-->	
 	
 	<!--MENU PRINCIPAL -->
 	<div data-role="panel" style="margin-top: 47px;" id="menuTaskCompleted" data-display="overlay" data-position="right">
@@ -4495,6 +4576,19 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
 				<li class="margen"><a class="filter"       		  id="filtroTaskC"        href="#filterCompletedTask" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Completed Task</a></li>
 				<li class="margen"><a class="filterRemove" 		  id="RemovefiltroTaskC"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+			</ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+	
+	<!--MENU PRINCIPAL -->
+	<div data-role="panel" style="margin-top: 47px;" id="menuTaskCompletedO" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
+				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
+				<li class="margen"><a class="filter"       		  id="filtroTaskCO"        href="#filterCompletedTask" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Completed Task</a></li>
+				<li class="margen"><a class="filterRemove" 		  id="RemovefiltroTaskCO"  href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
 			</ul>
 		</div>	
 	</div>
@@ -4887,8 +4981,11 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<div class="col-sm-9 formT">
 						<label  class="col-sm-12 control-label">Email1</label>
 						<div class="row">
-						  <div id="email1ContEd" class="col-xs-6 col-sm-4">
-								<select id="emai1ContEd"  class="form-control" data-style="btn-success"></select>
+						  <div class="col-xs-6 col-sm-4">
+								<select id="emai1ContEd"  class="form-control" data-style="btn-success">
+									<option value="Home">Home</option>
+									<option value="Office">Office</option>		
+								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
 								<input id ="ema1ContEd" type="text" class="form-control" placeholder="Email1"/>
@@ -5351,9 +5448,9 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		</div>
 	
 	<!--FIN TABS-->
-	
-	<!--FIN HEADER--> 
 	</div>
+	<!--FIN HEADER--> 
+		
 	<!--CONTENT-->
 	
 	<div data-role="content" >	
@@ -5399,8 +5496,8 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-			<a id="addSchedule" style="margin-right:10px;height:35px;width:35px;background-image: url('img/add-hist-48.png');margin-top:2px;background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddScheduleHtml"></a>
-			<a id="refreshSchedule" style="margin-right:10px;height:30px;background-image: url('img/refresh-48.png');margin-top:3px;background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+			<a id="addSchedule" style="margin-right:10px;height:35px;width:35px;background-image: url('img/add-hist-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddScheduleHtml"></a>
+			<a id="refreshSchedule" style="margin-right:10px;height:30px;background-image: url('img/refresh-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
 	
@@ -5419,9 +5516,9 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		</div>
 	
 	<!--FIN TABS-->
-	</div>
+	
 	<!--FIN HEADER--> 
-		
+	</div>
 	<!--CONTENT-->
 	
 	<div data-role="content" >	
@@ -5455,10 +5552,11 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			<a style="height:30px;width:30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailFollow"></a>
 		</div>
 	
-	<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_emailfollow">				
+		<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_emailfollow">				
 	
-	</div>
-	<!--TABS-->
+		</div>
+	
+		<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
@@ -5469,9 +5567,9 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		</div>
 	
 	<!--FIN TABS-->
-	</div>
+	
 	<!--FIN HEADER--> 
-		
+	</div>	
 	<!--CONTENT-->
 	
 	<div data-role="content" >	
@@ -5491,6 +5589,18 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	</div>
 	
 	<!--FIN CONTENT-->	
+	
+	<!--MENU-->
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuEmailFollow" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+				<a class="closeMenu" style="display:none;" href="#" data-rel="close">Close</a>
+				<li class="margen"><a class="filter"            id="filtroemailFollow"      href="#filterEmailFollow" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
+				<li class="margen"><a class="filterRemove"      id="filtro_removeEmailFollow"        href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+			</ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
 	
 </div><!-- /page -->
 
@@ -5524,7 +5634,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	<div data-role="content">
 		
 		<div style="margin-left: 1px;" class="row formC" id="formContacto">
-			<form style="margin-top: 30px;" class="form-inline">
+			<form style="margin-top: 10px;" class="form-inline">
 				<div style="height:20px;margin-bottom:5px;padding-left:10px;padding-right:5px;margin-top: -5px;" class="col-xs-12 col-sm-6">
 				
 					<!--input type="checkbox" name="checkbox-h-c" id="checkbox-h-c">
@@ -5538,7 +5648,6 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 						<input type="checkbox" name="checkbox-h-o" id="checkbox-h-o">
 						<label style="margin-left:45px;">Offer Received</label-->
 						
-					<!--span onclick="changeCheckA(this)"-->
 					<span onclick="changeCheckA(this)">
 					<img style="display:none;float: left;margin-right: 10px;" id="ckAVc" src="http://reifax.com/FollowupReifax/resources/image/letras/check_c-40.png" width=30px height=30px>
 					<img style="float: left;margin-right: 10px;" id="ckAFc" src="http://reifax.com/FollowupReifax/resources/image/letras/check_c-No-40.png" width=30px height=30px>
@@ -5658,7 +5767,6 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	<!--FIN CONTENT-->	
 	
 </div>
-
 
 <div data-role="page" id="pagAddScheduleHtml">
     <!--HEADER-->
@@ -5925,7 +6033,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<script type="text/javascript">replaceChecks();</script-->
 					<span onclick="changeCheck(this)">
 					<img style="display:none;float: left;margin-right: 10px;" id="ckVc" src="http://reifax.com/FollowupReifax/resources/image/letras/check_c-40.png" width=30px height=30px>
-					<img style="display:none;float: left;margin-right: 10px;" id="ckFc" src="http://reifax.com/FollowupReifax/resources/image/letras/check_c-No-40.png" width=30px height=30px>
+					<img style="display:none;float: left;margin-right: 10px;" id="ckFc" src="http://reifax.com/FollowupReifax/resources/image/letras/check_c-No-40.png" width=30px height=30px >
 					<input style="display:none;" type="checkbox" name="chk" id="chk">
 					</span>
 
@@ -6189,6 +6297,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	
 </div>
 
+
 <div data-role="page" id="pagEditPendingHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
@@ -6254,14 +6363,16 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 						</div-->
 						
 							<label for="dtp_input3" class="col-md-2 control-label">Exec. Hour</label>
-							<div id="ExhourEditPend" style="height: 20px;margin-top: -1px;" class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+							<div id="ExhourEditPend" style="height: 20px;margin-top: -1px;" class="input-group date form_datetime col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
 								<input class="form-control" size="16" id="ehourEditPend" type="text" value="" readonly>
 								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 								<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
 							</div>
 							<input type="hidden" id="dtp_input3" value="" /><br/>
-						
+							
+					
 					</div>
+					
 					<!--div id="ExhourEditPend" style="margin-left:10px;" class="col-md-10 input-append date">
 							<input id="ehourEditPend" type="text"></input>
 							<span style="margin-top: -30px;margin-left: 180px;width: 50px;height: 30px;" class="add-on">
@@ -6281,8 +6392,8 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 						<label class="col-sm-12 control-label">Exec. Type</label>
 						<div  class="col-md-10">
 						   <select id="etypeEditPend" class="form-control">
-							<option value="0">Automatic</option>
-							<option value="1">Manual</option>							
+							<option value="1">Manual</option>		
+							<option value="2">Automatic</option>									
 						  </select>
 						</div>
 					</div>
@@ -6336,7 +6447,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 						<input id="completedEditPend" class="btn btn-success" type="button" value="Completed">
 						<input id="updateEditPend" class="btn btn-success" type="button" value="Update">
-						<input id="cancelEditPend" class="btn btn-default" type="button" value="Cancel">
+						<input id="cancelEditPend" class="btn btn-default" type="button" value="cancel">
 					</div>
 				</div>
 			</form>
@@ -6513,6 +6624,18 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
     });  
 	  
 	$('#Exhour').datetimepicker({
+		language:  'es',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    }); 
+	
+	$('#ExhourESche').datetimepicker({
 		language:  'es',
         weekStart: 1,
         todayBtn:  1,
