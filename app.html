@@ -76,6 +76,8 @@
 		document.getElementById('telf5').style.display = "none";
 		document.getElementById('telf6').style.display = "none";
 		document.getElementById('regContact').style.display = "none";
+		document.getElementById("menuDE").style.display = "none";
+		document.getElementById("menuDE2").style.display = "none";	
 		
 		
 		$('#folldate').change(function(){
@@ -3982,13 +3984,23 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
            <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
-		<div style="text-align:left;margin-left:30px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
-		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-		<a id="deleteEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
-		<a id="replyEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
-		<a id="forwardEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
-		<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a></div>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
+		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div  id="menuDE" style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="deleteEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+			<a id="readEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
+			<a id="replyEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
+			<a id="forwardEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+			<a id="menuDetailEmail" style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
+			
+		</div>
+		<div id="menuDE2" style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="deleteEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+			<a id="readEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
+			<a id="replyEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
+			<a id="forwardEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+			<a id="menuDetailEmail2" style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox2"></a>
+		</div>
 		
 	</div>
 	<!--FIN HEADER--> 
@@ -4011,17 +4023,36 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			
 	</div>
 	
-	<!--FIN CONTENT-->	
-	<!--MENU EMAIL DETALLE -->
+	<!--FIN CONTENT-->
+	
+	<!--MENU EMAIL DETALLE 1-->
 	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuDetailEmailInbox" data-display="overlay" data-position="right">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
-				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
-				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
-				<li class="margen"><a class="reply"      id="reply"      href="#" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Reply</a></li>
-				<li class="margen"><a class="forward"    id="forward"    href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Forward</a></li>					
-				<!--li style="border-bottom: 2px solid #ccc;"><a class="assignContEmailInbox"   id="asscontEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
-				<li style="border-bottom: 2px solid #ccc;"><a class="assignProEmailInbox"    id="assiproEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li-->				
+				<a class="closeMenu" style="display:none;"                          href="#" data-rel="close">Close</a>
+				<!--li><a class="deleteEmailInbox"       id="deleteEI"              href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
+				<!--li class="margen"><a class="reply"         id="replyEF"         href="#" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Reply</a></li>
+				<li class="margen"><a class="forward"       id="forwardEF"          href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Forward</a></li-->					
+				<li class="margen"><a class="assignContEmailInbox"   id="assContIn"       href="#assignContacts" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
+				<li class="margen"><a class="assignProEmailInbox"    id="assPropIn"       href="#assignProperty" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li>							
+				<li class="margen"><a class="newschedule"   id="newscheduleEF"      href="#addscheduleEmailFollow" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>
+				<li class="margen"><a class="sendContract"  id="sendContractEF"     href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contract</a></li>				
+				<li class="margen"><a class="sendEmail"     id="sendEmailEF"        href="#formEmail" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>				
+				<li class="margen"><a class="sendFax"       id="sendFaxEF"          href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>				
+				<li class="margen"><a class="sendSMS"       id="sendSmsEF"          href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>				
+				<li class="margen"><a class="makeCall"      id="sendMakeCallEF"     href="#formCall" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>				
+			</ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+	
+	<!--MENU EMAIL DETALLE 2-->
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuDetailEmailInbox2" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+				<a class="closeMenu" style="display:none;"                          href="#" data-rel="close">Close</a>
+				<li class="margen"><a class="assignContEmailInbox"   id="assContIn"       href="#assignContacts" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
+				<li class="margen"><a class="assignProEmailInbox"    id="assPropIn"       href="#assignProperty" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li>							
 			</ul>
 		</div>	
 	</div>
@@ -5247,7 +5278,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 <div data-role="page" id="pagAddComposeEIHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3pxbackground-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<!--a id="resetAdd" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a-->
@@ -5281,23 +5312,24 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		
 		<div style="margin-left: 1px;" class="row formC" id="formCompose">
 			<form style="margin-top: 30px;" class="form-inline">
+								
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						To
+					</div>
+					<div id="toEmail" class="col-xs-8 col-sm-10">
+						<select id="toEma" class="span4"></select>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Subject
+					</div>
+					<div id="ssubjectI" class="col-xs-8 col-sm-10">
+						<input id="subjectI"  type="text" class="span4" placeholder="Subject"/>
+					</div>
+				</div>
 				
-				<div class="row">
-					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-						<label class="col-sm-12 control-label">To</label>
-						<div id="toEmail" class="col-md-10">
-						  <select id="toEma" class="form-control"></select>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-						<label class="col-sm-12 control-label">Subject</label>
-						<div id="subjectI" class="col-md-10">
-						  <input id="subjectI" type="text" class="form-control" placeholder="Subject" />
-						</div>
-					</div>
-				</div>
 				<div class="row">
 					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
 						<label  class="col-sm-12 control-label">Attach</label>
@@ -5391,21 +5423,21 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		
 		<div style="margin-left: 1px;" class="row formC" id="formComposeO">
 			<form style="margin-top: 30px;" class="form-inline">
-				
-				<div class="row">
-					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-						<label class="col-sm-12 control-label">To</label>
-						<div id="toEmailO" class="col-md-10">
-						  <select id="toEmaO" class="form-control"></select>
-						</div>
+			
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						To
 					</div>
-				</div>
-				<div class="row">
-					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-						<label class="col-sm-12 control-label">Subject</label>
-						<div id="subjectO" class="col-md-10">
-						  <input id="subjectO" type="text" class="form-control" placeholder="Subject" />
-						</div>
+					<div id="toEmailO" class="col-xs-8 col-sm-10">
+						<select id="toEmaO" class="span4"></select>
+					</div>
+				</div>	
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Subject
+					</div>
+					<div id="ssubjectO" class="col-xs-8 col-sm-10">
+						<input id="subjectO"  type="text" class="span4" placeholder="Subject"/>
 					</div>
 				</div>
 				<div class="row">
