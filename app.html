@@ -6436,115 +6436,95 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		
 		<div style="margin-left: 1px;" class="row formC" id="formEditSchedule">
 			<form style="margin-top: 30px;" class="form-inline">
+				<div class="row">					
+					<div style="padding-left: 25px;" class="col-xs-5 col-sm-2">
+						Status
+					</div>
+					<div id="statussEditPend" class="col-xs-6 col-sm-10">
+						<label type="text" id="statusEditPend"></label>
+					</div>
+				</div>
+				<div class="row">				
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+						Execute Date
+					</div>
+					<div id="ExdateEditPend" class="col-xs-6 col-sm-10">
+						<input name="edateEditPend" id="edateEditPend" class="i-txt">		
+					</div>
+				</div>
+				<div class="row">			
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+						Execute Hour
+					</div>
+					<div id="ExhourEditPend" style="height: 20px;margin-top: -1px;" class="input-group date form_datetime col-xs-6 col-sm-10 col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+						<input class="form-control" size="16" id="ehourEditPend" type="text" value="" data-date-format="hh:ii:ss" data-link-field="dtp_input3" data-link-format="hh:ii:ss">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+						<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+					</div>
+					<input type="hidden" id="dtp_input3" value="" /><br/>	
+				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Status</label>
-						<div id="statussEditPend" class="col-md-10">
-							<label type="text" id="statusEditPend">PENDING</label>
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+						Execute Type
+					</div>
+					<div class="col-xs-6 col-sm-10">
+						 <select onchange="test3();" id="etypeEditPend" class="form-control">
+							<option value="1">Manual</option>	
+							<option value="2">Automatic</option>												
+						  </select>				
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Exec. Date</label>
-						<div id="ExdateEditPend" class="col-md-10">
-							<input name="edateEditPend" id="edateEditPend" class="i-txt">
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+						Task
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<!--label class="col-sm-12 control-label"></label>
-						<!--div id="ExhourEditPend" class="input-append date">
-							<!--input type="text" id="ehourEditPend" name="hrs" placeholder="hrs:mins" value="" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" class="inputs duration t1 time hrs" required-->
-							<!--input id="ehourEditPend" type="text" class="input-small">
-							<span class="add-on">
-								<i data-time-icon="icon-time" data-date-icon="icon-calendar">
-								</i>
-							</span>
-						</div-->
-						
-							<label for="dtp_input3" class="col-md-2 control-label">Exec. Hour</label>
-							<div id="ExhourEditPend" style="height: 20px;margin-top: -1px;" class="input-group date form_datetime col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-								<input class="form-control" size="16" id="ehourEditPend" type="text" value="" readonly>
-								<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-								<span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-							</div>
-							<input type="hidden" id="dtp_input3" value="" /><br/>
-							
-					
-					</div>
-					
-					<!--div id="ExhourEditPend" style="margin-left:10px;" class="col-md-10 input-append date">
-							<input id="ehourEditPend" type="text"></input>
-							<span style="margin-top: -30px;margin-left: 180px;width: 50px;height: 30px;" class="add-on">
-								<i style="margin-left: 10px;" class="icon-time"></i>
-							</span>
-					</div-->
-					
-				</div>
-				
-				 <!--div class="input-append bootstrap-timepicker">
-					<input id="timepicker1" type="text" class="input-small">
-					<span class="add-on"><i class="icon-time"></i></span>
-				</div-->
-				
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Exec. Type</label>
-						<div  class="col-md-10">
-						   <select id="etypeEditPend" class="form-control">
-							<option value="1">Manual</option>		
-							<option value="2">Automatic</option>									
-						  </select>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Task</label>
-						<div  class="col-md-10">
-						   <select id="taskEditPend" class="form-control">
+					<div id="taskkEditPend" class="col-xs-6 col-sm-10">
+						 <select id="taskEditPend" class="form-control">
 							<option value="1">Send SMS</option>
 							<option value="2">Receive SMS</option>
 							<option value="3">Send FAX</option>
 							<option value="4">Receive FAX</option>
 							<option value="5">Send EMAIL</option>
 							<option value="6">Receive EMAIL</option>
-							<option value="7">Send DOC</option>
-							<option value="8">Receive DOC</option>
-							<option value="9">Make Call</option>
-							<option value="10">Receive Call</option>
-							<option value="11">Send R. Mail</option>
-							<option value="12">Receive R. Mail</option>
-							<option value="13">Send Other</option>
-							<option value="14">Receive Other</option>
-							<option value="15">Send Voice Mail</option>
-							<option value="16">Receive Voice Mail</option>
-							<option value="17">Make Note</option>
-						  </select>
-						</div>
+							<option value="7" >Send DOC</option>
+							<option value="8" >Receive DOC</option>
+							<option value="9" >Make Call</option>
+							<option value="10" >Receive Call</option>
+							<option value="11" >Send R. Mail</option>
+							<option value="12" >Receive R. Mail</option>
+							<option value="13" >Send Other</option>
+							<option value="14" >Receive Other</option>
+							<option value="15" >Send Voice Mail</option>
+							<option value="16" >Receive Voice Mail</option>
+							<option value="17" >Make Note</option>
+						</select>		
+					</div>
+					<div style="display:none;" id="taskkEditPend2" class="col-xs-6 col-sm-10">
+						 <select id="taskEditPend2" class="form-control">
+							<option value="1">Send SMS</option>							
+							<option value="3">Send FAX</option>							
+							<option value="5">Send EMAIL</option>							
+							<option value="7" >Send DOC</option>							
+						</select>		
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Schedule Detail</label>
-						<div id="detailEditPend" class="col-xs-12 col-md-10">
-						  <textarea style="height:222px;  width: 100%;" id="detailEditPend" class="form-control"  data-placement="top" data-trigger="manual"></textarea>
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+						Schedule Detail
+					</div>
+					<div id="detailEditPend" class="col-xs-6 col-sm-10">
+						 <textarea style="height:222px;  width: 100%;" id="detailEditPend" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>		
 					</div>
 				</div>
-				
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Completed Detail</label>
-						<div id="detailcompEditPend" class="col-xs-12 col-md-10">
-						  <textarea style="height:222px;  width: 100%;" id="compdetailEditPend" class="form-control"  data-placement="top" data-trigger="manual"></textarea>
-						</div>
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+						Completed Detail
+					</div>
+					<div id="detailcompEditPend" class="col-xs-6 col-sm-10">
+						 <textarea style="height:222px;  width: 100%;" id="compdetailEditPend" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>
-				
-								
+							
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 						<input id="completedEditPend" class="btn btn-success" type="button" value="Completed">
@@ -6598,27 +6578,62 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		
 		<div style="margin-left: 1px;" class="row formC" id="formEditCompleted">
 			<form style="margin-top: 30px;" class="form-inline">
+			
+				<div style="height:20px;margin-bottom:5px;padding-left:10px;padding-right:5px;margin-top: -5px;" class="col-xs-12 col-sm-6">				
+					<span onclick="changeCheckEC(this)">
+					<img style="display:none;float: left;margin-right: 10px;" id="ckVECc" src="http://reifax.com/FollowupReifax/resources/image/letras/check_c-40.png" width=30px height=30px>
+					<img style="display:none;float: left;margin-right: 10px;" id="ckFECc" src="http://reifax.com/FollowupReifax/resources/image/letras/check_c-No-40.png" width=30px height=30px >
+					<input style="display:none;" type="checkbox" name="chkEC" id="chkEC">
+					</span>
+
+					<span onclick="changeCheckEC2(this)">
+					<img style="display:none;float: left;margin-right: 10px;" id="ckVECp" src="http://reifax.com/FollowupReifax/resources/image/letras/check_p-40.png" width=30px height=30px>
+					<img style="display:none;float: left;margin-right: 10px;" id="ckFECp" src="http://reifax.com/FollowupReifax/resources/image/letras/check_p-No-40.png" width=30px height=30px>
+					<input style="display:none;" type="checkbox" name="chkEC2" id="chkEC2">
+					</span>
+
+					<span onclick="changeCheckEC3(this)">
+					<img style="display:none;float: left;margin-right: 10px;" id="ckVECe" src="http://reifax.com/FollowupReifax/resources/image/letras/check_e-40.png" width=30px height=30px>
+					<img style="display:none;float: left;margin-right: 10px;" id="ckFECe" src="http://reifax.com/FollowupReifax/resources/image/letras/check_e-No-40.png" width=30px height=30px>
+					<input style="display:none;" type="checkbox" name="chkEC3" id="chkEC3">
+					</span>
+					
+					<span onclick="changeCheckEC4(this)">
+					<img style="display:none;float: left;margin-right: 10px;" id="ckVECa" src="http://reifax.com/FollowupReifax/resources/image/letras/check_a-40.png" width=30px height=30px>
+					<img style="display:none;float: left;margin-right: 10px;" id="ckFECa" src="http://reifax.com/FollowupReifax/resources/image/letras/check_a-No-40.png" width=30px height=30px>
+					<input style="display:none;" type="checkbox" name="chkEC4" id="chkEC4">
+					</span>
+					
+					<span onclick="changeCheckEC5(this)">
+					<img style="display:none;float: left;margin-right: 10px;" id="ckVECo" src="http://reifax.com/FollowupReifax/resources/image/letras/check_o-40.png" width=30px height=30px>
+					<img style="display:none;float: left;margin-right: 10px;" id="ckFECo" src="http://reifax.com/FollowupReifax/resources/image/letras/check_o-No-40.png" width=30px height=30px>
+					<input style="display:none;" type="checkbox" name="chkEC5" id="chkEC5">
+					</span>
+				
+				</div>
+				<br>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label for="inputEmail3" class="col-sm-12 control-label">Offer</label>
-						<div id="offerrEditCompleted" class="col-md-10">
-						  <input type="text" id="offerEditCompleted" placeholder="Offer"/>
-						</div>
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-3 col-sm-2">
+						Offer
+					</div>
+					<div id="offerrEditCompleted" class="col-xs-8 col-sm-10">
+						 <input type="text" id="offerEditCompleted" placeholder="Offer"/>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label for="inputEmail3" class="col-sm-12 control-label">C. Offer</label>
-						<div id="cofferrEditCompleted" class="col-md-10">
-						  <input type="text" id="cofferEditCompleted" placeholder="C. Offer"/>
-						</div>
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-3 col-sm-2">
+						C. Offer
 					</div>
-				</div>
+					<div id="cofferrEditCompleted" class="col-xs-8 col-sm-10">
+						 <input type="text" id="cofferEditCompleted" placeholder="Offer"/>
+					</div>
+				</div>	
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Task</label>
-						<div class="col-md-10">
-						   <select id="taskEditCompleted" class="form-control">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						Task
+					</div>
+					<div class="col-xs-8 col-sm-10">
+						 <select id="taskEditCompleted" class="form-control">
 							<option value="1">Send SMS</option>
 							<option value="2">Receive SMS</option>
 							<option value="3">Send FAX</option>
@@ -6636,62 +6651,26 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 							<option value="15" >Send Voice Mail</option>
 							<option value="16" >Receive Voice Mail</option>
 							<option value="17" >Make Note</option>
-						  </select>
-						</div>
+						</select>		
 					</div>
-				</div>
+				</div>	
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label  class="col-sm-12 control-label">Schedule Detail</label>
-						<div class="row">
-						  <div id="scheduledetEditCompleted" class="col-xs-12 col-sm-4">
-								<textarea style="height:222px;" id="textschdetailEditCompleted" class="form-control" data-placement="top" data-trigger="manual"></textarea>
-						  </div>						  
-						</div>
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-3 col-sm-2">
+						Schedule Detail
+					</div>
+					<div id="scheduledetEditCompleted" class="col-xs-8 col-sm-10">
+						 <textarea style="height:222px;" id="textschdetailEditCompleted" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>	
 				
 				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label  class="col-sm-12 control-label">Completed Detail</label>
-						<div class="row">
-						  <div id="completeddetEditCompleted" class="col-xs-12 col-sm-4">
-								<textarea style="height:222px;" id="textcompdetailEditCompleted" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
-						  </div>						  
-						</div>
+					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-3 col-sm-2">
+						Completed Detail
 					</div>
-				</div>	
-				
-				<div class="row">
-					<div class="col-xs-12 col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Document</label>
-						 <div class="row">
-								<div class="col-xs-8 col-sm-6">
-									<input type="checkbox" name="checkbox-v-2a" id="checkbox-ec-c" value="1" data-unchecked="0">
-									<label style="margin-left:35px;">Contract</label>
-								</div>
-						
-								<div class="col-xs-8 col-sm-6">
-									<input type="checkbox" name="checkbox-v-2b" id="checkbox-ec-p">
-									<label style="margin-left:35px;">Proof of Refunds</label>
-								</div>
-								<div class="col-xs-8 col-sm-6">
-									<input type="checkbox" name="checkbox-v-2c" id="checkbox-ec-e">
-									<label style="margin-left:35px;">EMD</label>
-								</div>								
-								<div class="col-xs-8 col-sm-6">
-									<input type="checkbox" name="checkbox-v-2d" id="checkbox-ec-a">
-									<label style="margin-left:35px;">Addendums</label>
-								</div>
-								<div class="col-xs-8 col-sm-6">
-									<input type="checkbox" name="checkbox-v-2e" id="checkbox-ec-o">
-									<label style="margin-left:35px;">Offer Received</label>
-								</div>
-						
-					 </div>
+					<div id="completeddetEditCompleted" class="col-xs-8 col-sm-10">
+						 <textarea style="height:222px;" id="textcompdetailEditCompleted" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
-				</div>
-				
+				</div>									
 								
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
@@ -6709,6 +6688,8 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	<!--FIN CONTENT-->	
 	
 </div>
+
+
 <script type="text/javascript" src="http://reifax.com/FollowupReifax/resources/datetime/timedate1/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="http://reifax.com/FollowupReifax/resources/datetime/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="http://reifax.com/FollowupReifax/resources/datetime/js/locales/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
