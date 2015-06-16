@@ -295,6 +295,36 @@
 			);
 		});
 		
+		//CANCEL EDIT PENDING TASK
+		$("#cancelEditPend").on('click', function () {
+			//alert('insert');			
+			//cancelSchedule();
+			$.mobile.changePage(
+			'#detailPending',
+			{
+             allowSamePageTransition : true,
+             transition              : 'none',
+             showLoadMsg             : false,
+             reloadPage              : false
+			}
+			);
+		});
+		
+		//CANCEL EDIT COMPLETED TASK
+		$("#cancelEditCompleted").on('click', function () {
+			//alert('insert');			
+			//cancelSchedule();
+			$.mobile.changePage(
+			'#detailCompleted',
+			{
+             allowSamePageTransition : true,
+             transition              : 'none',
+             showLoadMsg             : false,
+             reloadPage              : false
+			}
+			);
+		});
+		
 		
 		
 		//REFRESH HISTORY FOLLOW
