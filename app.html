@@ -795,10 +795,13 @@ $(function(){
 		$('ul.page_emailInbox').on('click','li', function () {
            
 			var id= $(this).attr('idmail');
+			var idseen= $(this).attr('idseen');
 			// Creamos un objeto
 			var object = { 'email' : id };
+			var seen = { 'seen' : idseen };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
 			localStorage.setItem('key', JSON.stringify(object));
+			localStorage.setItem('seen', JSON.stringify(seen));
 			$.mobile.changePage( "#detailEmail");
 			
         });
@@ -807,8 +810,12 @@ $(function(){
 		$(document).on('pagebeforeshow', '#detailEmail', function(){  
 			//var valor = localStorage.getItem("key");
 			var valor = JSON.parse(localStorage.getItem('key'));
+			var valor2 = JSON.parse(localStorage.getItem('seen'));
 			detailEmails(valor.email);
 			detailEmailsCab(valor.email);
+			
+			leerCorreos(valor.email,valor2.seen);
+			
 		});
 		
 		
@@ -1004,10 +1011,26 @@ $(function(){
 			detailEmailFollow(valor.email);
 			
 			//readEmail(valor.email,valor2.seen);
+			leerCorreos(valor.email,valor2.seen);
 
 		});
 		
-
+		
+		$('#readEmailFollow').on('click',function(){			
+			var valor = JSON.parse(localStorage.getItem('key5'));
+			var valor2 = JSON.parse(localStorage.getItem('seen'));
+			
+			noleidoCorreo(valor.email,valor2.seen);
+		});
+		
+		$('#readEmail').on('click',function(){			
+			var valor = JSON.parse(localStorage.getItem('key5'));
+			var valor2 = JSON.parse(localStorage.getItem('seen'));
+			
+			noleidoCorreo(valor.email,valor2.seen);
+		});
+		
+		
 		
 		
 		//LONG TOUCH PROPERTY
@@ -1117,15 +1140,24 @@ $(function(){
 			var mail = JSON.parse(localStorage.getItem('key'));
 			var nam  = JSON.parse(localStorage.getItem('key2'));
 			//alert(mail.email);		
-			//alert(nam.name);		
+			//alert(nam.name);	
+			getComposeInbox();
 			getAssignContact(mail.email,nam.name);
 		});
 		
 		
 		//CARGAR DATOS ASSIGNMENT PROPERTY
 		$('#assProp,#assPropIn').on('click',function(){			
-			getAssignProperty();
+			//getAssignProperty();
+			getassignProperty();
 		});
+		
+		//ASSIGNMENT PROPERTY
+		$('#assignP').on('click',function(){			
+			//getAssignProperty();
+			assignProperty();
+		});
+		
 		
 		
 		//MAKE CALL
@@ -1162,6 +1194,14 @@ $(function(){
 			//alert('CARGAR FORM');
 			var val = JSON.parse(localStorage.getItem('key'));
 			getReplyInbox(val.email);
+			
+		});
+		
+		//CARGAR INFO REPLY EMAIL FOLLOW
+		$("#replyEmailFollow").on('click', function () {
+			//alert('reply ef');
+			//var val = JSON.parse(localStorage.getItem('key'));
+			getReplyEmailFollow();
 			
 		});
 		
