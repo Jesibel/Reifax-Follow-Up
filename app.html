@@ -907,6 +907,26 @@ $(function(){
 			var id= $(this).attr('idfuh');
 			
 			var parcelid= $(this).attr('parcelid');
+			
+			var contr= $(this).attr('contr');
+			var object6 = { 'contr' : contr };
+			localStorage.setItem('key6', JSON.stringify(object6));
+			
+			var pof= $(this).attr('pof');
+			var object7 = { 'pof' : pof };
+			localStorage.setItem('key7', JSON.stringify(object7));	
+			
+			var emd= $(this).attr('emd');
+			var object8 = { 'emd' : emd };
+			localStorage.setItem('key8', JSON.stringify(object8));	
+			
+			var adde= $(this).attr('adde');
+			var object9 = { 'adde' : adde };
+			localStorage.setItem('key9', JSON.stringify(object9));
+			
+			var offre= $(this).attr('offre');
+			var object10 = { 'offre' : offre };
+			localStorage.setItem('key10', JSON.stringify(object10));	
 			//alert(parcelid);
 			//alert(id);
 			// Creamos un objeto
