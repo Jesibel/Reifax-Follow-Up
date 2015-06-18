@@ -1508,9 +1508,11 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 		pagina = 4;
 		$("#contacts ul").empty();
 		start=0;
-		cantidadEmail();
+		
 		listadoContacts(start,settings.limit);
-			
+		
+		cantidadEmail();
+		
 		$("#phoneContFil").intlTelInput({
 				//allowExtensions: true,
 				//autoFormat: false,
@@ -1533,8 +1535,10 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 		pagina = 1;
 		$("#content ul").empty();
 		start=0;
+		
+		listadoProperty(start,settings.limit);	
+		
 		cantidadEmail();
-		listadoProperty(start,settings.limit);		
 
 		$('#demo').mobipick({
 			dateFormat: "MM-dd-yyyy"
@@ -1552,8 +1556,9 @@ $(document).on("pagebeforeshow","#emailHtml",function(){
 			pagina = 2;
 			$("#emails ul").empty();
 			start=0;
-			cantidadEmail();
+			
 			listadoEmailsInbox(start,settings.limit);
+			cantidadEmail();
 							
 });
 
@@ -1563,8 +1568,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 			pagina = 3;
 			$("#emailsOutbox ul").empty();
 			start=0;
-			cantidadEmail();
+			
 			listadoEmailsOutbox(start,settings.limit);
+			cantidadEmail();
 							
 });
 
@@ -1627,9 +1633,9 @@ $(document).on("pagebeforeshow","#taskHtml",function(){
 			pagina = 8;
 			$("#pendientes ul").empty();
 			start=0;
-			cantidadEmail();
-			listadoPendings(start,settings.limit);
 			
+			listadoPendings(start,settings.limit);
+			cantidadEmail();
 		$('#schedateP').mobipick({
 			dateFormat: "MM-dd-yyyy"
 		});
@@ -1656,7 +1662,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 			$("#completados ul").empty();
 			start=0;
 			listadoCompleted(start,settings.limit);
-			
+			cantidadEmail();
 			$('#compdateC').mobipick({
 				dateFormat: "MM-dd-yyyy"
 			});
@@ -2332,7 +2338,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar" >
 			<ul>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -4194,7 +4200,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -4245,7 +4251,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -4449,7 +4455,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -4534,7 +4540,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -4602,7 +4608,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -4665,7 +4671,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -4750,7 +4756,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -5058,7 +5064,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -5343,7 +5349,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item "><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -5454,7 +5460,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item "><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -6440,7 +6446,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -6582,7 +6588,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
