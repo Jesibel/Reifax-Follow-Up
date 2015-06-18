@@ -1068,7 +1068,7 @@ $(function(){
 		});
 		
 		
-		$('#readEmailFollow').on('click',function(){			
+		$('#readEmailFollow,#readEmailFollow2').on('click',function(){			
 			var valor = JSON.parse(localStorage.getItem('key5'));
 			var valor2 = JSON.parse(localStorage.getItem('seen'));
 			
@@ -1089,7 +1089,12 @@ $(function(){
 			leerCorreos(valor.email,valor2.seen);
 		});		
 		
-		
+		$('#unreadEmailFollow,#unreadEmailFollow2').on('click',function(){			
+			var valor = JSON.parse(localStorage.getItem('email'));
+			var valor2 = JSON.parse(localStorage.getItem('seen'));
+			//alert('no leido');
+			leerCorreos(valor.email,valor2.seen);
+		});		
 		
 		
 		//LONG TOUCH PROPERTY
@@ -1257,7 +1262,7 @@ $(function(){
 		});
 		
 		//CARGAR INFO REPLY EMAIL FOLLOW
-		$("#replyEmailFollow").on('click', function () {
+		$("#replyEmailFollow,#replyEmailFollow2").on('click', function () {
 			//alert('reply ef');
 			//var val = JSON.parse(localStorage.getItem('key'));
 			getReplyEmailFollow();
@@ -1316,7 +1321,7 @@ $(function(){
 		});
 		
 		//BOTON DELETE EMAIL FOLLOW
-		$("#deleteEmailFollow").on('click', function () {
+		$("#deleteEmailFollow,#deleteEmailFollow2").on('click', function () {
 			var valor = JSON.parse(localStorage.getItem('key5'));
 			deleteEmailFollow(valor.mail);
 		});
@@ -1366,7 +1371,7 @@ $(function(){
 		});
 		
 		//BOTON CARGAR FORWARD EMAIL FOLLOW
-		$("#forwardEmailFollow").on('click', function () {
+		$("#forwardEmailFollow,#forwardEmailFollow2").on('click', function () {
 			//alert('click boton editar');
 			//var valor = JSON.parse(localStorage.getItem('key4'));
 			//var valor2 = JSON.parse(localStorage.getItem('key'));
@@ -4400,12 +4405,22 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
-		<div style="width:100%;margin-top:-40px;text-align:right;">		
-		<a id="deleteEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
-		<a id="readEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
-		<a id="replyEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
-		<a id="forwardEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formForwardEmail"></a>
-		<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a></div>
+		<div id="menuDEFollow" style="width:100%;margin-top:-40px;text-align:right;">		
+			<a id="deleteEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+			<a id="readEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
+			<a id="unreadEmailFollow" style="display:none;margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/read_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
+			<a id="replyEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
+			<a id="forwardEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formForwardEmail"></a>
+			<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
+		</div>
+		<div id="menuDEFollow2" style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="deleteEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+			<a id="readEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
+			<a id="unreadEmailFollow2" style="display:none;margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/read_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
+			<a id="replyEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
+			<a id="forwardEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formForwardEmail"></a>
+			<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
+		</div>
 		
 	</div>
 	<!--FIN HEADER--> 
@@ -6058,7 +6073,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<div style="padding-left: 25px; padding-top: 10px;" class="col-xs-3 col-sm-2">
 						To
 					</div>
-					<div id="toEmailEF" class="col-xs-8 col-sm-10">
+					<div style="margin-top:-10px;" id="toEmailEF" class="col-xs-8 col-sm-10">
 						  <select id="toEmaEF" class="form-control"></select>
 					</div>
 				</div>
