@@ -1076,11 +1076,18 @@ $(function(){
 		});
 		
 		$('#readEmail,#readEmail2').on('click',function(){			
-			var valor = JSON.parse(localStorage.getItem('key5'));
+			var valor = JSON.parse(localStorage.getItem('email'));
 			var valor2 = JSON.parse(localStorage.getItem('seen'));
-			
+			//alert('no leido');
 			noleidoCorreo(valor.email,valor2.seen);
 		});
+		
+		$('#unreadEmail,#unreadEmail2').on('click',function(){			
+			var valor = JSON.parse(localStorage.getItem('email'));
+			var valor2 = JSON.parse(localStorage.getItem('seen'));
+			//alert('leido');
+			leerCorreos(valor.email,valor2.seen);
+		});		
 		
 		
 		
@@ -4059,6 +4066,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div  id="menuDE" style="width: 100%;margin-top: -40px;text-align: right;">		
 			<a id="deleteEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="readEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
+			<a id="unreadEmail" style="display:none;margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/read_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
 			<a id="replyEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
 			<a id="forwardEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="menuDetailEmail" style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
@@ -4067,6 +4075,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div id="menuDE2" style="width: 100%;margin-top: -40px;text-align: right;">		
 			<a id="deleteEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="readEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
+			<a id="unreadEmail2" style="display:none;margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/read_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
 			<a id="replyEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
 			<a id="forwardEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="menuDetailEmail2" style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox2"></a>
@@ -5389,26 +5398,31 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 						<input id="subjectI"  type="text" class="span4" placeholder="Subject"/>
 					</div>
 				</div>
-				
-				<div class="row">
-					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-						<label  class="col-sm-12 control-label">Attach</label>
-						<div class="row">
-						  <div style="margin-left: 10px;" id="uploadfile" class="col-xs-11 col-sm-4">
-								<input id="uploadFile" class="form-control" placeholder="Select a file" disabled="disabled" />
-						  </div>
-						  
-						</div>
+					<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Text
+					</div>
+					<div style="margin-top:-10px;" id="email2Cont" class="col-xs-8 col-sm-10">
+						<textarea style="height:222px;" id="textemailInbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Attach
+					</div>
+					<div style="margin-top:-10px;" id="uploadfile" class="col-xs-8 col-sm-10">
+						<input id="uploadFile"  type="text" class="span4" placeholder="Select a file"/>
 					</div>
 				</div>
 				<div class="row">
-				<div style="margin-left: 10px;padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-					<div class="fileUpload btn btn-primary">
-						<span>Browser</span>
-						<input id="uploadBtnCompose"  type="file" class="upload" />	
-					 </div>
+					<div style="margin-left: 10px;padding-left: 5px;text-align: center;" class="col-xs-12 col-sm-6 col-md-10">
+						<div class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input id="uploadBtnCompose"  type="file" class="upload" />	
+						 </div>
+					</div>
 				</div>
-				</div>
+				<br>
 				<div class="row">
 					<div style="margin-left: 10px;padding-left: 5px;"class="col-xs-12 col-sm-6 col-md-10">
 						<div id="browserComp"></div>
@@ -5418,16 +5432,6 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-						<label  class="col-sm-12 control-label">Text</label>
-						<div class="row">
-						  <div id="email2Cont" class="col-xs-12 col-sm-4">
-								<textarea style="height:222px;" id="textemailInbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
-						  </div>						  
-						</div>
-					</div>
-				</div>								
 				
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10">
@@ -5488,7 +5492,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
 						To
 					</div>
-					<div id="toEmailO" class="col-xs-8 col-sm-10">
+					<div style="margin-top:-20px;" id="toEmailO" class="col-xs-8 col-sm-10">
 						<select id="toEmaO" class="span4"></select>
 					</div>
 				</div>	
@@ -5496,23 +5500,28 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
 						Subject
 					</div>
-					<div id="ssubjectO" class="col-xs-8 col-sm-10">
+					<div style="margin-top:-10px;" id="ssubjectO" class="col-xs-8 col-sm-10">
 						<input id="subjectO"  type="text" class="span4" placeholder="Subject"/>
 					</div>
 				</div>
-				<div class="row">
-					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-						<label  class="col-sm-12 control-label">Attach</label>
-						<div class="row">
-						  <div style="margin-left: 10px;" id="uploadfileO" class="col-xs-11 col-sm-4">
-								<input id="uploadFileO" class="form-control" placeholder="Select a file" disabled="disabled" />
-						  </div>
-						  
-						</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Text
 					</div>
-				</div>
+					<div style="margin-top:-10px;" id="email2ContO" class="col-xs-8 col-sm-10">
+						<textarea style="height:222px;" id="textemailOutbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					</div>
+				</div>	
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Attach
+					</div>
+					<div style="margin-top:-10px;" id="uploadfileO" class="col-xs-8 col-sm-10">
+						<input id="uploadFileO"  type="text" class="span4" placeholder="Select a file"/>
+					</div>
+				</div>				
 				<div class="row">
-				<div style="margin-left: 10px;padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
+				<div style="margin-left: 10px;padding-left: 5px;text-align:center;" class="col-xs-12 col-sm-6 col-md-10">
 					<div class="fileUpload btn btn-primary">
 						<span>Browser</span>
 						<input id="uploadBtnComposeO"  type="file" class="upload" />	
@@ -5527,17 +5536,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 							<input onclick="addInputComposeO()" class="another" />	
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div style="padding-left: 5px;" class="col-xs-12 col-sm-6 col-md-10">
-						<label  class="col-sm-12 control-label">Text</label>
-						<div class="row">
-						  <div id="email2Cont" class="col-xs-12 col-sm-4">
-								<textarea style="height:222px;" id="textemailOutbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
-						  </div>						  
-						</div>
-					</div>
-				</div>								
+				</div>											
 				
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10">
