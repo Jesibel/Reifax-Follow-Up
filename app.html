@@ -77,9 +77,10 @@
 		document.getElementById('telf6').style.display = "none";
 		document.getElementById('regContact').style.display = "none";
 		document.getElementById("menuDE").style.display = "none";
-		document.getElementById("menuDE2").style.display = "none";	
+		document.getElementById("menuDE2").style.display = "none";
 		
-		
+
+			
 		$('#folldate').change(function(){
 			//alert($(this).val());
 			if ($(this).val()=='Between'){
@@ -154,7 +155,7 @@
 		//FILTER REMOVE CONTACTS
 		$("#filtro_removeCont").on('click', function () {
 			//alert('remove filter CONTACTS');
-			$('#menuContacts').panel("close");
+			//$('#menuContacts').panel("close");
 			removeFilterContact();
 					
 		});
@@ -162,7 +163,7 @@
 		//FILTER REMOVE EMAIL INBOX
 		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
 			//alert('remove filter email inbox');
-			$('#menuEmailInbox,#menuEmailInboxO').panel("close");
+			//$('#menuEmailInbox,#menuEmailInboxO').panel("close");
 			removeFilterEmailInbox();
 					
 		});
@@ -179,7 +180,7 @@
 		//FILTER REMOVE PENDING TASK
 		$("#RemovefiltroTask").on('click', function () {
 			//alert('remove filter email outbox');
-			$('#menuTask').panel("close");
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterPendingTask();
 					
 		});
@@ -187,7 +188,7 @@
 		//FILTER REMOVE COMPLETED TASK
 		$("#RemovefiltroTaskC").on('click', function () {
 			//alert('remove filter email outbox');
-			$('#menuTaskCompleted').panel("close");
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterCompletedTask();
 					
 		});
@@ -195,7 +196,7 @@
 		//FILTER REMOVE EMAIL FOLLOW
 		$("#filtro_removeEmailFollow").on('click', function () {
 			//alert('remove filter email outbox');
-			$('#menuEmailFollow').panel("close");
+			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
 			removeFilterEmailFollow();
 		});
 		
@@ -365,7 +366,11 @@
 		//RADIO BUTTOM SEND EMAIL
 		$('#template').on('click',function(){
 			alert("radio template");
-			var body = "Dear Mr/Mrs {%Agent Name%} Please find attached a contract with our offer regarding the property with the address: {%Address%} We wait for your prompt response Regards {%User Name%}. {%Phone%} {%Email%}";
+			document.getElementById("template").checked = true;
+			document.getElementById("new").checked = false;
+			getTemplateEmail();
+			//getContenido();
+			/*var body = "Dear Mr/Mrs {%Agent Name%} Please find attached a contract with our offer regarding the property with the address: {%Address%} We wait for your prompt response Regards {%User Name%}. {%Phone%} {%Email%}";
 			var out="";
 			var standar="Standar Email";
 				out +='<option value="'+standar+'">'+standar+'</option>';	
@@ -375,7 +380,7 @@
 			document.getElementById("new").checked = false;
 			$("#temp select").append(out);
 				
-			$("#body").append(body);
+			$("#body").append(body);*/
 		});
 
 		$('#new').on('click',function(){
@@ -696,7 +701,6 @@
 			//alert('FILTRAR');
 			//filterContacts();
 			$("#completados ul").empty();
-			$('#menuTaskCompleted').panel("close");
 			var start = 0; 
 			var limit = 25; 
 			listadoCompleted(start, limit);
@@ -720,7 +724,6 @@
 			//alert('FILTRAR');
 			//filterContacts();
 			$("#correofollow ul").empty();
-			$('#menuEmailFollow').panel("close");
 			var id = JSON.parse(localStorage.getItem('key'));
 			var start = 0; 
 			var limit = 25; 
@@ -828,20 +831,23 @@ $(function(){
            
 			var id= $(this).attr('idmail');
 			var idseen= $(this).attr('idseen');
+			
 			// Creamos un objeto
 			var object = { 'email' : id };
 			var seen = { 'seen' : idseen };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('key', JSON.stringify(object));
-			localStorage.setItem('seen', JSON.stringify(seen));
-			$.mobile.changePage( "#detailEmail");
 			
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('email', JSON.stringify(object));
+			localStorage.setItem('seen', JSON.stringify(seen));
+			
+			$.mobile.changePage( "#detailEmail");
+			    
         });
-		
+	
 		
 		$(document).on('pagebeforeshow', '#detailEmail', function(){  
 			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('key'));
+			var valor = JSON.parse(localStorage.getItem('email'));
 			var valor2 = JSON.parse(localStorage.getItem('seen'));
 			detailEmails(valor.email);
 			detailEmailsCab(valor.email);
@@ -856,12 +862,15 @@ $(function(){
             //alert('onclick email outbox');
 			//alert(url);
 			var id= $(this).attr('idmail');
-			
-			//alert(id);
+			var idseen= $(this).attr('idseen');
 			// Creamos un objeto
+			
 			var object = { 'email' : id };
+			var seen = { 'seen' : idseen };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('key', JSON.stringify(object));
+			localStorage.setItem('email', JSON.stringify(object));
+			localStorage.setItem('seen', JSON.stringify(seen));
+			
 			$.mobile.changePage( "#detailEmailOutbox");
 			
         });
@@ -869,8 +878,13 @@ $(function(){
 		
 		$(document).on('pagebeforeshow', '#detailEmailOutbox', function(){  
 			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('key'));
+			var valor = JSON.parse(localStorage.getItem('email'));
 			//detailEmails(valor.email);
+			
+			var valor2 = JSON.parse(localStorage.getItem('seen'));
+			
+			//alert('no leido');
+			leerCorreos(valor.email,valor2.seen);
 			detailEmailsCabO(valor.email);
 		});
 		
@@ -952,6 +966,7 @@ $(function(){
 			//var valor = localStorage.getItem("key");
 			var valor = JSON.parse(localStorage.getItem('key'));
 			// La alerta mostrará 1 por pantalla
+			
 			//alert(valor.parcelid);
 			//alert(valor.agent);
 			$('#detalleCompletados ul').empty();
@@ -1057,7 +1072,7 @@ $(function(){
 		
 		$(document).on('pagebeforeshow', '#detailEmailFollow', function(){  
 			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('key5'));
+			var valor = JSON.parse(localStorage.getItem('email'));
 			var valor2 = JSON.parse(localStorage.getItem('seen'));
 			$('#detalleEmailFollow ul').empty();
 			detailEmailFollow(valor.email);
@@ -1085,17 +1100,16 @@ $(function(){
 		$('#unreadEmail,#unreadEmail2').on('click',function(){			
 			var valor = JSON.parse(localStorage.getItem('email'));
 			var valor2 = JSON.parse(localStorage.getItem('seen'));
-			//alert('leido');
+			//alert('no leido');
 			leerCorreos(valor.email,valor2.seen);
-		});		
+		});	
 		
 		$('#unreadEmailFollow,#unreadEmailFollow2').on('click',function(){			
 			var valor = JSON.parse(localStorage.getItem('email'));
 			var valor2 = JSON.parse(localStorage.getItem('seen'));
 			//alert('no leido');
 			leerCorreos(valor.email,valor2.seen);
-		});		
-		
+		});									
 		
 		//LONG TOUCH PROPERTY
 		$('ul.page_result').on('taphold','li', function () {
@@ -1254,19 +1268,31 @@ $(function(){
 		});
 		
 		//CARGAR INFO REPLY EMAIL INBOX
-		$("#replyEmail").on('click', function () {
+		$("#replyEmail,#replyEmail2").on('click', function () {
 			//alert('CARGAR FORM');
-			var val = JSON.parse(localStorage.getItem('key'));
+			var val = JSON.parse(localStorage.getItem('email'));
+			getReplyEmail(val.email);
 			//getReplyInbox(val.email);
-			getReplyEmailFollow();
+			//getReplyEmailFollow();
+			
+		});
+		
+		//CARGAR INFO REPLY EMAIL OutBOX
+		$("#replyEmailO").on('click', function () {
+			//alert('CARGAR FORM');
+			var val = JSON.parse(localStorage.getItem('email'));
+			getReplyEmailOutbox(val.email);
+			//getReplyInbox(val.email);
+			//getReplyEmailFollow();
+			
 		});
 		
 		//CARGAR INFO REPLY EMAIL FOLLOW
 		$("#replyEmailFollow,#replyEmailFollow2").on('click', function () {
 			//alert('reply ef');
-			//var val = JSON.parse(localStorage.getItem('key'));
-			getReplyEmailFollow();
-			
+			var val = JSON.parse(localStorage.getItem('email'));
+			//getReplyEmailFollow();
+			getReplyEmail(val.email);
 		});
 		
 		//BOTON EDITAR CONTACT
@@ -1405,15 +1431,6 @@ $(function(){
 			
 		});
 		
-		$("#backEmailO").on('click', function () {
-			//alert('backContacts');
-			//document.getElementById("detalleEmailCab").innerHTML="";
-			$('#detalleCorreoO').empty();
-			
-			$('#detalleEmailCabO ul').html('');
-			
-		});
-		
 		$("#backReplyEmail,#backForwardEmail").on('click', function () {
 			//alert('backContacts');
 			//document.getElementById("detalleEmailCab").innerHTML="";
@@ -1422,6 +1439,15 @@ $(function(){
 			$('#detalleEmailCab ul').html('');
 			
 			$('#detalleCorreoO').empty();
+			$('#detalleEmailCabO ul').html('');
+			
+		});
+		
+		$("#backEmailO").on('click', function () {
+			//alert('backContacts');
+			//document.getElementById("detalleEmailCab").innerHTML="";
+			$('#detalleCorreoO').empty();
+			
 			$('#detalleEmailCabO ul').html('');
 			
 		});
@@ -1544,11 +1570,8 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 		pagina = 4;
 		$("#contacts ul").empty();
 		start=0;
-		
 		listadoContacts(start,settings.limit);
-		
 		cantidadEmail();
-		
 		$("#phoneContFil").intlTelInput({
 				//allowExtensions: true,
 				//autoFormat: false,
@@ -1571,8 +1594,7 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 		pagina = 1;
 		$("#content ul").empty();
 		start=0;
-		
-		listadoProperty(start,settings.limit);	
+		listadoProperty(start,settings.limit);
 		
 		cantidadEmail();
 
@@ -1592,9 +1614,8 @@ $(document).on("pagebeforeshow","#emailHtml",function(){
 			pagina = 2;
 			$("#emails ul").empty();
 			start=0;
-			
-			listadoEmailsInbox(start,settings.limit);
 			cantidadEmail();
+			listadoEmailsInbox(start,settings.limit);
 							
 });
 
@@ -1604,9 +1625,8 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 			pagina = 3;
 			$("#emailsOutbox ul").empty();
 			start=0;
-			
-			listadoEmailsOutbox(start,settings.limit);
 			cantidadEmail();
+			listadoEmailsOutbox(start,settings.limit);
 							
 });
 
@@ -1669,9 +1689,8 @@ $(document).on("pagebeforeshow","#taskHtml",function(){
 			pagina = 8;
 			$("#pendientes ul").empty();
 			start=0;
-			
 			listadoPendings(start,settings.limit);
-			cantidadEmail();
+			
 		$('#schedateP').mobipick({
 			dateFormat: "MM-dd-yyyy"
 		});
@@ -1698,7 +1717,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 			$("#completados ul").empty();
 			start=0;
 			listadoCompleted(start,settings.limit);
-			cantidadEmail();
+			
 			$('#compdateC').mobipick({
 				dateFormat: "MM-dd-yyyy"
 			});
@@ -1713,6 +1732,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 $(document).on("pagebeforeshow","#pagAddContactoHtml",function(){	
 	
 	cantidadEmail();
+
 
 });
 
@@ -1790,6 +1810,56 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	}else{
 		document.getElementById('ckFo').style.display = "block";
 		document.getElementById('ckVo').style.display = "none";
+	}	
+
+		
+});
+
+$(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){	
+	var contr= JSON.parse(localStorage.getItem('key6'));
+	//alert(contr.contr);
+	if(contr.contr==0){
+		document.getElementById('ckVECc').style.display = "block";
+		document.getElementById('ckFECc').style.display = "none";
+	}else{
+		document.getElementById('ckFECc').style.display = "block";
+		document.getElementById('ckVECc').style.display = "none";
+	}	
+		
+	var pof= JSON.parse(localStorage.getItem('key7'));
+	if(pof.pof==0){
+		document.getElementById('ckVECp').style.display = "block";
+		document.getElementById('ckFECp').style.display = "none";
+	}else{
+		document.getElementById('ckFECp').style.display = "block";
+		document.getElementById('ckVECp').style.display = "none";
+	}
+	
+	var emd= JSON.parse(localStorage.getItem('key8'));
+	if(emd.emd==0){
+		document.getElementById('ckVECe').style.display = "block";
+		document.getElementById('ckFECe').style.display = "none";
+	}else{
+		document.getElementById('ckFECe').style.display = "block";
+		document.getElementById('ckVECe').style.display = "none";
+	}	
+	
+	var adde= JSON.parse(localStorage.getItem('key9'));
+	if(adde.adde==0){
+		document.getElementById('ckVECa').style.display = "block";
+		document.getElementById('ckFECa').style.display = "none";
+	}else{
+		document.getElementById('ckFECa').style.display = "block";
+		document.getElementById('ckVECa').style.display = "none";
+	}	
+	
+	var offre= JSON.parse(localStorage.getItem('key10'));
+	if(offre.offre==0){
+		document.getElementById('ckVECo').style.display = "block";
+		document.getElementById('ckFECo').style.display = "none";
+	}else{
+		document.getElementById('ckFECo').style.display = "block";
+		document.getElementById('ckVECo').style.display = "none";
 	}	
 
 		
@@ -2050,6 +2120,13 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		.tablet{
 			margin-left:-300px;
 		}
+		.tv{
+			left:-345px;
+		}
+		.tvt{
+			top:-20px;
+			left:695px;
+		}
 		
 	
 	}
@@ -2188,6 +2265,14 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 		}
 		.page_det_pending li{
+			margin-bottom: 5px;
+			padding: 10px;
+			font-size: 15px;
+			list-style: none;
+			border-bottom: 2px solid #ccc;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
+		.page_infoCorreo li{
 			margin-bottom: 5px;
 			padding: 10px;
 			font-size: 15px;
@@ -2348,7 +2433,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			background-color:#fff;
 			border:1px solid #fff; 
 		}
-		
+	
 	</style>
   </head>
  <body>
@@ -2580,7 +2665,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 				<input type='radio'  name='new' id='new' value='New' checked>	New</input>			
 			</div>	
 			
-			<div class="form-group">
+			<!--div class="form-group">
 				<label>Attach:</label>
 				<input id="uploadFile" class="form-control" placeholder="Select a file" disabled="disabled" />
 				<div class="fileUpload btn btn-primary">
@@ -2593,8 +2678,63 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<span>Another file</span>
 					<input onclick="addInput()" class="another" />					
 				</div>
+			</div-->
+			<div class="row">
+				<div style="padding-left: 25px;padding-top: 10px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+					Attach
+				</div>
+				<div class="row">
+					<div id="uuploadfileEF" class="col-xs-10 col-sm-10">
+						<input type="text" id="uploadFileReply" placeholder="Select a file"/>
+					</div>
+				</div>
 			</div>
-			<div id="templa" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
+			<div class="row">
+				<div style="margin-left:25px;text-align:center;" class=" col-xs-10 col-sm-10">
+					<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+						<span>Browser</span>
+						<input type="file" class="upload" id="uploadBtnReply" />
+					</div>
+				</div>
+			</div>
+			<br>
+			<div id="browser"></div>
+			<div class="row">		
+				<div style="text-align: left;margin-left:-20px;" class="col-xs-10 col-sm-10">
+					<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+						<span>Another file</span>
+						<input onclick="addInput()" class="another" />	
+					</div>
+				</div>
+			</div>
+			<br>
+			
+			
+			<div  id="templa" style="margin-bottom: 10px;" class="row">
+				<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+					Template
+				</div>
+				<div id="temp" class="col-xs-10 col-sm-10">
+					<select id="tem" class="span4"></select>
+				</div>
+			</div>
+			<div style="margin-bottom: 10px;" class="row">
+				<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+					Subject
+				</div>
+				<div class="col-xs-10 col-sm-10">
+					<input id="subjectEmail" type="text" class="span4" />
+				</div>
+			</div>
+			<div style="margin-bottom: 10px;" class="row">
+				<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+					Body
+				</div>
+				<div class="col-xs-10 col-sm-10">
+					<textarea style="height:112px;" id="bodyEmail" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+				</div>
+			</div>
+			<!--div id="templa" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
 			<div class="form-group"><label>Subject:</label><input id="subject" class="form-control required" placeholder="Your name" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
 			<div class="form-group"><label>Body:</label><textarea style="height:112px;" id="body" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea></div>
 			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
@@ -2602,9 +2742,9 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
         </form>
       </div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <div class="modal-footer">       
 		<button id="sendE" type="submit" class="btn btn-success pull-right">Send</button>
+		 <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
       </div>
     </div>
   </div>
@@ -2627,12 +2767,29 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 				<input type='radio'  name='templateSMS' id='templateSMS' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
 				<input type='radio'  name='newSMS' id='newSMS' value='New' checked>	New</input>			
 			</div>	
-			<div id="templaSms" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
-			<div class="form-group"><label>Text:</label><textarea style="height:62px;" id="text" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
+			<div id="templaSms" style="margin-bottom: 10px;" class="row">
+				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+					Template
+				</div>
+				<div id="tempSms" class="col-xs-7 col-sm-10">
+					<input id="temSms" type="text" class="span4" />
+				</div>
+			</div>
+			<div style="margin-bottom: 10px;" class="row">
+				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+					Text
+				</div>
+				<div class="col-xs-7 col-sm-10">
+					<textarea style="height:112px;" id="textSms" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+				</div>
+			</div>
+			<!--div id="templaSms" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
+			<div class="form-group"><label>Text:</label><textarea style="height:102px;" id="text" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
 			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
 			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
 			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
         </form>
+		
       </div>
       <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
@@ -2674,7 +2831,23 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<input onclick="addInput()" class="another" />					
 				</div>
 			</div>
-			<div id="templaFAX" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
+			<div id="templaFAX" style="margin-bottom: 10px;" class="row">
+				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+					Template
+				</div>
+				<div id="tempFax" class="col-xs-7 col-sm-10">
+					<input id="temFax" type="text" class="span4" />
+				</div>
+			</div>
+			<div style="margin-bottom: 10px;" class="row">
+				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+					Text
+				</div>
+				<div class="col-xs-7 col-sm-10">
+					<textarea style="height:112px;" id="textSms" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+				</div>
+			</div>
+			<!--div id="templaFAX" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
 			<div class="form-group"><label>Text:</label><textarea style="height:112px;" id="textFax" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
 			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
 			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
@@ -3650,40 +3823,139 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					</div>
 					<div class="modal-body">
 						<div class="row-fluid">
-								<div class="span6">
-									<p>Contact:<div id="contass"><input id="conass" type="text" class="span12"/></div></p>
-									<p>type:<div id="typeass"><select id="typ" class="span12"></select></div></p>
-									<p>Email1:<div id="email1ass"><select style="width:30%;float:left;margin-right: 15px;" id="emai1ass" class="span12"></select></div>
-											<input id ="ema1ass" style="width:65%;" type="text" class="span12" /></p>
-									<p>Email2:<div id="email2ass"><select style="width:30%;float:left;margin-right: 15px;" id="emai2ass" class="span12"></select></div>
-											<input id ="ema2ass" style="width:65%;" type="text" class="span12" /></p>		
-									<p>Company:<input id="companyass" type="text" class="span12" /></p>
-									<p>Website1:<div id="website1ass"><select style="width:30%;float:left;margin-right: 15px;" id="websit1ass" class="span12"></select></div>
-											<input id ="web1ass" style="width:65%;" type="text" class="span12" /></p>
-									<p>Website2:<div id="website2ass"><select style="width:30%;float:left;margin-right: 15px;" id="websit2ass" class="span12"></select></div>
-											<input id ="web2ass" style="width:65%;" type="text" class="span12" /></p>
-									<p>Phone:<div id="phone1ass"><select style="width:30%;float:left;margin-right: 15px;" id="phon1ass" class="span12"></select></div>
-											<input id ="pho1ass" style="width:65%;" type="text" class="span12" />
-											
-									<p>Phone2:<div id="phone2ass"><select style="width:30%;float:left;margin-right: 15px;" id="phon2ass" class="span12"></select></div>
-											<input id ="pho2ass" style="width:65%;" type="text" class="span12" />
-											
-									<p>Phone3:<div id="phone3ass"><select style="width:30%;float:left;margin-right: 15px;" id="phon3ass" class="span12"></select></div>
-											<input id ="pho3ass" style="width:65%;" type="text" class="span12" />
-											
-									<p>Phone4:<div id="phone4ass"><select style="width:30%;float:left;margin-right: 15px;" id="phon4ass" class="span12"></select></div>
-											<input id ="pho4ass" style="width:65%;" type="text" class="span12" />
-											
-									<p>Phone5:<div id="phone5ass"><select style="width:30%;float:left;margin-right: 15px;" id="phon5ass" class="span12"></select></div>
-											<input id ="pho5ass" style="width:65%;" type="text" class="span12" />
-											
-									<p>Phone6:<div id="phone6ass"><select style="width:30%;float:left;margin-right: 15px;" id="phon6ass" class="span12"></select></div>
-											<input id ="pho6ass" style="width:65%;" type="text" class="span12" />
-											
-									<p>Address1:<div id="address1ass"><select style="width:30%;float:left;margin-right: 15px;" id="addre1ass" class="span12"></select></div>
-											<input id="addr1ass" style="width:65%;" type="text" class="span12" /></p>
-									<p>Address2:<div id="address2ass"><select style="width:30%;float:left;margin-right: 15px;" id="addre2ass" class="span12"></select></div>
-											<input id="addr2ass" style="width:65%;"type="text" class="span12" /></p>
+								<div class="row">
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Contact
+										</div>
+										<div id="contass" class="col-xs-7 col-sm-10">											
+											<input id ="conass" type="text" class="span4" />								
+										</div>
+									</div>	
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											type
+										</div>
+										<div id="typeass" class="col-xs-7 col-sm-10">											
+											<select id="typ" class="span4"></select>								
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Email1
+										</div>
+										<div id="email1ass" class="col-xs-7 col-sm-10">											
+											<select style="width:30%;float:left;margin-right: 15px;" id="emai1ass" class="span4"></select>
+											<input id ="ema1ass" style="width:60%;" type="text" class="span4" />
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Email2
+										</div>
+										<div id="email2ass" class="col-xs-7 col-sm-10">											
+											<select style="width:30%;float:left;margin-right: 15px;" id="emai2ass" class="span4"></select>
+											<input id ="ema2ass" style="width:60%;" type="text" class="span4" />
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Company
+										</div>
+										<div id="email2ass" class="col-xs-7 col-sm-10">																						
+											<input id ="companyass" type="text" class="span4" />
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Website1
+										</div>
+										<div id="website1ass" class="col-xs-7 col-sm-10">
+											<select style="width:30%;float:left;margin-right: 15px;" id="websit1ass" class="span4"></select>										
+											<input id ="web1ass" style="width:60%;" type="text" class="span4" />
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Website2
+										</div>
+										<div id="website2ass" class="col-xs-7 col-sm-10">
+											<select style="width:30%;float:left;margin-right: 15px;" id="websit2ass" class="span4"></select>										
+											<input id ="web2ass" style="width:60%;" type="text" class="span4" />
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Phone
+										</div>
+										<div id="phone1ass" class="col-xs-7 col-sm-10">
+											<select style="width:30%;float:left;margin-right: 15px;" id="phon1ass" class="span4"></select>										
+											<input id ="pho1ass" style="width:60%;" type="text" class="span4" />
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Phone2
+										</div>
+										<div id="phone2ass" class="col-xs-7 col-sm-10">
+											<select style="width:30%;float:left;margin-right: 15px;" id="phon2ass" class="span4"></select>										
+											<input id ="pho2ass" style="width:60%;" type="text" class="span4" />
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Phone3
+										</div>
+										<div id="phone3ass" class="col-xs-7 col-sm-10">
+											<select style="width:30%;float:left;margin-right: 15px;" id="phon3ass" class="span4"></select>										
+											<input id ="pho3ass" style="width:60%;" type="text" class="span4" />
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Phone4
+										</div>
+										<div id="phone4ass" class="col-xs-7 col-sm-10">
+											<select style="width:30%;float:left;margin-right: 15px;" id="phon4ass" class="span4"></select>										
+											<input id ="pho4ass" style="width:60%;" type="text" class="span4" />
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Phone5
+										</div>
+										<div id="phone5ass" class="col-xs-7 col-sm-10">
+											<select style="width:30%;float:left;margin-right: 15px;" id="phon5ass" class="span4"></select>										
+											<input id ="pho5ass" style="width:60%;" type="text" class="span4" />
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Phone6
+										</div>
+										<div id="phone6ass" class="col-xs-7 col-sm-10">
+											<select style="width:30%;float:left;margin-right: 15px;" id="phon6ass" class="span4"></select>										
+											<input id ="pho6ass" style="width:60%;" type="text" class="span4" />
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Address1
+										</div>
+										<div id="address1ass" class="col-xs-7 col-sm-10">
+											<select style="width:30%;float:left;margin-right: 15px;" id="addre1ass" class="span4"></select>										
+											<input id ="addr1ass" style="width:60%;" type="text" class="span4" />
+										</div>
+									</div>
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Address2
+										</div>
+										<div id="address2ass" class="col-xs-7 col-sm-10">
+											<select style="width:30%;float:left;margin-right: 15px;" id="addre2ass" class="span4"></select>										
+											<input id ="addr2ass" style="width:60%;" type="text" class="span4" />
+										</div>
+									</div>																		
 								</div>										  
 						</div>
 					</div>
@@ -3695,8 +3967,15 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					</div>
 					<div class="modal-body">
 						<div class="row-fluid">
-								<div class="span6">
-									<p>Contact:<div id="contreg"><select id="conreg" class="span12"></select></div></p>
+								<div class="row">
+									<div style="margin-bottom: 10px;" class="row">
+										<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+											Contact
+										</div>
+										<div id="contreg" class="col-xs-7 col-sm-10">
+											<select  id="conreg" type="text" class="span4"></select>										
+										</div>
+									</div>									
 								</div>										  
 						</div>
 					</div>
@@ -3736,6 +4015,210 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 </div>
 <!--FIN ASSIG PROPERTY-->
 
+<!--FORMULARIO REPLY INBOX-->
+<!--div class="modal fade bs-example-modal-sm" id="formReplyInbox" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Reply Email</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">				
+				<div class="row">				  
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Template
+						</div>
+						<div id="templateReply" class="col-xs-7 col-sm-10">			
+							<select  id="templatereplyEmail" class="span4"></select>
+						</div>
+					</div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							To
+						</div>
+						<div id="toReply" class="col-xs-7 col-sm-10">
+							<select  id="toreplyEmail" class="span4"></select>
+						</div>
+					</div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Subject
+						</div>
+						<div id="subjReply" class="col-xs-7 col-sm-10">
+							<input id="subjectReply" type="text" class="span4" />							
+						</div>
+					</div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div id="texttReply" class="col-xs-12 col-sm-10">							
+							<textarea style="height:122px;" id="textReply" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+							Attach
+						</div>
+						<div class="row">
+						<div id="uuploadfileEF" class="col-xs-8 col-sm-10">
+							 <input type="text" id="uploadFileReply" placeholder="Select a file"/>
+						</div>
+						</div>
+					</div>
+				<div class="row">
+					<div style="margin-left:25px;text-align:center;" class=" col-xs-8 col-sm-10">
+						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input type="file" class="upload" id="uploadBtnReply" />
+						</div>
+					</div>
+				</div>
+				<br>
+				<div id="browserReply"></div>
+		
+				<div class="row">		
+					<div style="text-align:center;margin-left:65px;" class="col-xs-8 col-sm-10">
+						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+							<span>Another file</span>
+							<input onclick="addInputReply()" class="another" />	
+						</div>
+					</div>
+				</div>
+				<br>
+					
+				</div>	  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="sendReplyI" type="button" class="btn btn-success" data-dismiss="modal">Send</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div-->
+<!--FIN REPLY INBOX-->
+
+<!--FORMULARIO REPLY OUTBOX-->
+<div class="modal fade bs-example-modal-sm" id="formReplyOutbox" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Reply Email</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+				  <div class="span6">
+					<!--h4>Filters</h4-->
+					<p>Template<div id="templateReplyO"><select id="toEma" class="span12"></select></div>					
+					<p>To<div id="toReply"><select id="toRepO" class="span12"></select></div></p>
+					<p>Subject<input id="subjectReplyO" type="text" class="span12" /></p>
+					
+					<div class="form-group">
+						<label>Attach:</label>
+						<input id="uploadFileReplyO" class="form-control" placeholder="Select a file" disabled="disabled" />
+						<div class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input id="uploadBtnReplyO"  type="file" class="upload" />					
+						</div>
+						<br>
+						<div id="browserReply"></div>
+						<div class="fileUpload btn btn-primary">
+							<span>Another file</span>
+							<input onclick="addInputReplyO()" class="another" />					
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Text:</label>
+						<textarea style="height:222px;" id="textReplyO" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					</div>
+				</div>
+						  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="sendReplyO" type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN REPLY OUTBOX-->
+
+<!--FORMULARIO FORWARD EMAIL FOLLOW -->
+<div class="modal fade bs-example-modal-sm" id="formForwardEmail" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Forward Email</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">				
+				<div class="row">				  
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							To
+						</div>
+						<div id="toForward" class="col-xs-7 col-sm-10">
+							<select  id="toforwardEmail" class="span4"></select>
+						</div>
+					</div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Subject
+						</div>
+						<div id="subjForward" class="col-xs-7 col-sm-10">
+							<input id="subjectForward" type="text" class="span4" />							
+						</div>
+					</div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div id="textForward" class="col-xs-12 col-sm-10">							
+							<textarea style="height:122px;" id="textForward" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+						</div>
+					</div>
+					<div class="row">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						Attach
+					</div>
+					<div class="row">
+					<div style="padding-top:10px;" id="uuploadfileEForw" class="col-xs-8 col-sm-10">
+						 <input type="text" id="uploadFileForward" placeholder="Select a file"/>
+					</div>
+					</div>
+				</div>
+				<div class="row">
+					<div style="margin-left:25px;text-align:center;" class=" col-xs-8 col-sm-10">
+						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input type="file" class="upload" id="uploadBtnForward" />
+						</div>
+					</div>
+				</div>
+				<br>
+				<div id="browserForward"></div>
+		
+				<div class="row">		
+					<div style="text-align:center;margin-left:65px;" class="col-xs-8 col-sm-10">
+						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+							<span>Another file</span>
+							<input onclick="addInputForward()" class="another" />	
+						</div>
+					</div>
+				</div>
+				<br>
+					
+				</div>	  
+            </div>
+            <div class="modal-footer">
+                <button id="cancelForward" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="sendForward" type="button" class="btn btn-success" data-dismiss="modal">Send</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN FORWARD EMAIL FOLLOW-->
 
 <!--FORMULARIO ADD SCHEDULE EMAIL FOLLOW-->
 <div class="modal fade bs-example-modal-sm" id="addscheduleEmailFollow" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
@@ -3902,7 +4385,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			<a id="readEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
 			<a id="unreadEmail2" style="display:none;margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/read_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
 			<a id="replyEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagReplyEmail"></a>
-			<a id="forwardEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagForwardEmail"></a>
+			<a id="forwardEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar"  role="button"  data-theme="b" href="#pagForwardEmail"></a>
 			<a id="menuDetailEmail2" style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox2"></a>
 		</div>
 		
@@ -3973,10 +4456,11 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmailO" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-		<a id="deleteEmailO" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
-		<a id="replyEmailO" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagReplyEmail"></a>
-		<a id="forwardEmailO" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagForwardEmail"></a>
-		<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a></div>
+			<a id="deleteEmailO" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+			<a id="replyEmailO" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagReplyEmail"></a>
+			<a id="forwardEmailO" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagForwardEmail"></a>
+			<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
+		</div>
 		
 	</div>
 	<!--FIN HEADER--> 
@@ -4034,7 +4518,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -4085,7 +4569,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -4229,18 +4713,11 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			<a id="deleteEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="readEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
 			<a id="unreadEmailFollow" style="display:none;margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/read_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
-			<a id="replyEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagReplyEmail"></a>
-			<a id="forwardEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagForwardEmail"></a>
+			<a id="replyEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
+			<a id="forwardEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formForwardEmail"></a>
 			<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
 		</div>
-		<div id="menuDEFollow2" style="width: 100%;margin-top: -40px;text-align: right;">		
-			<a id="deleteEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
-			<a id="readEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
-			<a id="unreadEmailFollow2" style="display:none;margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/read_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
-			<a id="replyEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagReplyEmail"></a>
-			<a id="forwardEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagForwardEmail"></a>
-			<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
-		</div>
+
 		
 	</div>
 	<!--FIN HEADER--> 
@@ -4908,7 +5385,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -5193,7 +5670,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item "><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -5221,7 +5698,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
 						To
 					</div>
-					<div id="toEmail" class="col-xs-8 col-sm-10">
+					<div style="margin-top:-20px;" id="toEmail" class="col-xs-8 col-sm-10">
 						<select id="toEma" class="span4"></select>
 					</div>
 				</div>
@@ -5229,18 +5706,18 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
 						Subject
 					</div>
-					<div id="ssubjectI" class="col-xs-8 col-sm-10">
+					<div style="margin-top:-10px;" id="ssubjectI" class="col-xs-8 col-sm-10">
 						<input id="subjectI"  type="text" class="span4" placeholder="Subject"/>
 					</div>
 				</div>
-					<div style="margin-bottom: 10px;" class="row">
+				<div style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
 						Text
 					</div>
 					<div style="margin-top:-10px;" id="email2Cont" class="col-xs-8 col-sm-10">
 						<textarea style="height:222px;" id="textemailInbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
-				</div>
+				</div>	
 				<div style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
 						Attach
@@ -5249,6 +5726,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 						<input id="uploadFile"  type="text" class="span4" placeholder="Select a file"/>
 					</div>
 				</div>
+
 				<div class="row">
 					<div style="margin-left: 10px;padding-left: 5px;text-align: center;" class="col-xs-12 col-sm-6 col-md-10">
 						<div class="fileUpload btn btn-primary">
@@ -5267,6 +5745,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 						</div>
 					</div>
 				</div>
+													
 				
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10">
@@ -5299,7 +5778,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item "><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -5924,7 +6403,6 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 						</div>
 					</div>
 				</div>
-				<br>
 				<div id="browserCompEF"></div>
 				<br>
 				<div class="row">		
@@ -6281,7 +6759,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -6416,14 +6894,14 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<a id="resetEditCompleted" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
-		<a id="saveEditCompleted" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<a id="saveEditCompleted" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
 		<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -6560,7 +7038,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
            <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backReplyEmail" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div  style="width: 100%;margin-top: -40px;text-align: right;">		
 			<a id="sendE" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
@@ -6573,7 +7051,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	<!--CONTENT-->
 	
 	<div data-role="content" >	
-		<div style="margin-left:1px;padding-left: 10px;padding-top: 20px;" class="row formC" id="formEditCompleted">	
+		<div style="margin-left:1px;padding-left: 10px;padding-top: 20px;" class="row formC" id="formReplyE">	
 			<div class="row">				  
 					<!--div style="margin-bottom: 10px;" class="row">
 						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
@@ -6618,7 +7096,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<div style="margin-bottom: 10px;" class="row">
 					
 						<div  class="col-xs-12 col-sm-10">
-							<textarea id="composeReply" type="text" class="span4" placeholder="Compose Email"></textarea>							
+							<textarea autofocus id="composeReply" type="text" class="span4" placeholder="Compose Email"></textarea>							
 						</div>
 					</div>
 					
@@ -6642,7 +7120,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
            <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backForwardEmail" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div  style="width: 100%;margin-top: -40px;text-align: right;">		
 			<a id="sendF" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
@@ -6672,8 +7150,10 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 							To
 						</div>
 						<div id="toForward" class="col-xs-7 col-sm-10">
-							<!--select  id="toreplyEmail" class="span4"></select-->
-							<select id="toForwardEmail" type="text" class="span4" ></select>	
+							<input  data-role="autocomplete" id="input_toreplyEmail" class="span4"/>
+							<input id="typeahead" type="text" data-provide="typeahead" />
+
+							<!--select id="toForwardEmail" type="text" class="span4" ></select-->	
 						</div>
 					</div>
 					<div style="margin-bottom: 10px;" class="row">
@@ -6729,6 +7209,8 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 	<!--FIN CONTENT-->
 	
 </div><!-- /page --> 
+
+ 
 
 
 <script type="text/javascript" src="http://reifax.com/FollowupReifax/resources/datetime/timedate1/bootstrap/js/bootstrap.min.js"></script>
@@ -6790,5 +7272,5 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
     </script>
 
 </body>
-
+  
 </html>
