@@ -1408,8 +1408,7 @@ $(function(){
 		$("#backEmailO").on('click', function () {
 			//alert('backContacts');
 			//document.getElementById("detalleEmailCab").innerHTML="";
-			$('#detalleCorreoO').empty();
-			
+			//$('#detalleCorreo').empty();
 			$('#detalleEmailCabO ul').html('');
 			
 		});
@@ -3736,6 +3735,211 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 </div>
 <!--FIN ASSIG PROPERTY-->
 
+<!--FORMULARIO REPLY INBOX-->
+<div class="modal fade bs-example-modal-sm" id="formReplyInbox" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Reply Email</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">				
+				<div class="row">				  
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Template
+						</div>
+						<div id="templateReply" class="col-xs-7 col-sm-10">			
+							<select  id="templatereplyEmail" class="span4"></select>
+						</div>
+					</div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							To
+						</div>
+						<div id="toReply" class="col-xs-7 col-sm-10">
+							<select  id="toreplyEmail" class="span4"></select>
+						</div>
+					</div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Subject
+						</div>
+						<div id="subjReply" class="col-xs-7 col-sm-10">
+							<input id="subjectReply" type="text" class="span4" />							
+						</div>
+					</div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div id="subjReply" class="col-xs-12 col-sm-10">							
+							<textarea style="height:122px;" id="textReply" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+						</div>
+					</div>
+					<div class="row">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						Attach
+					</div>
+					<div class="row">
+					<div id="uuploadfileEF" class="col-xs-8 col-sm-10">
+						 <input type="text" id="uploadFileReply" placeholder="Select a file"/>
+					</div>
+					</div>
+				</div>
+				<div class="row">
+					<div style="margin-left:25px;text-align:center;" class=" col-xs-8 col-sm-10">
+						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input type="file" class="upload" id="uploadBtnReply" />
+						</div>
+					</div>
+				</div>
+				<br>
+				<div id="browserReply"></div>
+		
+				<div class="row">		
+					<div style="text-align:center;margin-left:65px;" class="col-xs-8 col-sm-10">
+						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+							<span>Another file</span>
+							<input onclick="addInputReply()" class="another" />	
+						</div>
+					</div>
+				</div>
+				<br>
+					
+				</div>	  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="sendReplyI" type="button" class="btn btn-success" data-dismiss="modal">Send</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN REPLY INBOX-->
+
+<!--FORMULARIO REPLY OUTBOX-->
+<div class="modal fade bs-example-modal-sm" id="formReplyOutbox" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Reply Email</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+				  <div class="span6">
+					<!--h4>Filters</h4-->
+					<p>Template<div id="templateReplyO"><select id="toEma" class="span12"></select></div>					
+					<p>To<div id="toReply"><select id="toRepO" class="span12"></select></div></p>
+					<p>Subject<input id="subjectReplyO" type="text" class="span12" /></p>
+					
+					<div class="form-group">
+						<label>Attach:</label>
+						<input id="uploadFileReplyO" class="form-control" placeholder="Select a file" disabled="disabled" />
+						<div class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input id="uploadBtnReplyO"  type="file" class="upload" />					
+						</div>
+						<br>
+						<div id="browserReply"></div>
+						<div class="fileUpload btn btn-primary">
+							<span>Another file</span>
+							<input onclick="addInputReplyO()" class="another" />					
+						</div>
+					</div>
+					<div class="form-group">
+						<label>Text:</label>
+						<textarea style="height:222px;" id="textReplyO" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					</div>
+				</div>
+						  
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="sendReplyO" type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN REPLY OUTBOX-->
+
+<!--FORMULARIO FORWARD EMAIL FOLLOW -->
+<div class="modal fade bs-example-modal-sm" id="formForwardEmail" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Forward Email</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">				
+				<div class="row">				  
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							To
+						</div>
+						<div id="toForward" class="col-xs-7 col-sm-10">
+							<select  id="toforwardEmail" class="span4"></select>
+						</div>
+					</div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							Subject
+						</div>
+						<div id="subjForward" class="col-xs-7 col-sm-10">
+							<input id="subjectForward" type="text" class="span4" />							
+						</div>
+					</div>
+					<div style="margin-bottom: 10px;" class="row">
+						<div id="textForward" class="col-xs-12 col-sm-10">							
+							<textarea style="height:122px;" id="textForward" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+						</div>
+					</div>
+					<div class="row">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
+						Attach
+					</div>
+					<div class="row">
+					<div style="padding-top:10px;" id="uuploadfileEForw" class="col-xs-8 col-sm-10">
+						 <input type="text" id="uploadFileForward" placeholder="Select a file"/>
+					</div>
+					</div>
+				</div>
+				<div class="row">
+					<div style="margin-left:25px;text-align:center;" class=" col-xs-8 col-sm-10">
+						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+							<span>Browser</span>
+							<input type="file" class="upload" id="uploadBtnForward" />
+						</div>
+					</div>
+				</div>
+				<br>
+				<div id="browserForward"></div>
+		
+				<div class="row">		
+					<div style="text-align:center;margin-left:65px;" class="col-xs-8 col-sm-10">
+						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
+							<span>Another file</span>
+							<input onclick="addInputForward()" class="another" />	
+						</div>
+					</div>
+				</div>
+				<br>
+					
+				</div>	  
+            </div>
+            <div class="modal-footer">
+                <button id="cancelForward" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button id="sendForward" type="button" class="btn btn-success" data-dismiss="modal">Send</button>
+			</div>
+		</div>
+  </div>
+</div>
+</div>
+<!--FIN FORWARD EMAIL FOLLOW-->
+
 <!--FORMULARIO ADD SCHEDULE EMAIL FOLLOW-->
 <div class="modal fade bs-example-modal-sm" id="addscheduleEmailFollow" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -3891,8 +4095,8 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			<a id="deleteEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="readEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
 			<a id="unreadEmail" style="display:none;margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/read_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
-			<a id="replyEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagReplyEmail"></a>
-			<a id="forwardEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagForwardEmail"></a>
+			<a id="replyEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
+			<a id="forwardEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="menuDetailEmail" style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
 			
 		</div>
@@ -3900,8 +4104,8 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			<a id="deleteEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="readEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
 			<a id="unreadEmail2" style="display:none;margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/read_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
-			<a id="replyEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagReplyEmail"></a>
-			<a id="forwardEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagForwardEmail"></a>
+			<a id="replyEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
+			<a id="forwardEmail2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="menuDetailEmail2" style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox2"></a>
 		</div>
 		
@@ -4228,16 +4432,16 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 			<a id="deleteEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="readEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
 			<a id="unreadEmailFollow" style="display:none;margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/read_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
-			<a id="replyEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagReplyEmail"></a>
-			<a id="forwardEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagForwardEmail"></a>
+			<a id="replyEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
+			<a id="forwardEmailFollow" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formForwardEmail"></a>
 			<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
 		</div>
 		<div id="menuDEFollow2" style="width: 100%;margin-top: -40px;text-align: right;">		
 			<a id="deleteEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="readEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
 			<a id="unreadEmailFollow2" style="display:none;margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/read_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
-			<a id="replyEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagReplyEmail"></a>
-			<a id="forwardEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagForwardEmail"></a>
+			<a id="replyEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formReplyInbox"></a>
+			<a id="forwardEmailFollow2" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#formForwardEmail"></a>
 			<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
 		</div>
 		
@@ -6617,7 +6821,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 					<div style="margin-bottom: 10px;" class="row">
 					
 						<div  class="col-xs-12 col-sm-10">
-							<textarea autofocus id="composeReply" type="text" class="span4" placeholder="Compose Email"></textarea>							
+							<textarea id="composeReply" type="text" class="span4" placeholder="Compose Email"></textarea>							
 						</div>
 					</div>
 					
