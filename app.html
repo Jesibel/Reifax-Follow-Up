@@ -772,8 +772,8 @@
 		
 		
 $(function(){
-
-	$('#input_toreplyEmail').autoComplete({
+		
+		$('#input_toreplyEmail').autoComplete({
 			minChars: 1,
 			source: function(term, suggest){
 				term = term.toLowerCase();
@@ -815,8 +815,7 @@ $(function(){
 					suggest(suggestions);
 			}
 	});
-		
-				
+	
 		//CLICK DETALLE DE PROPIEDADES
 		$('ul.page_result').on('click','li', function () {
             //alert('onclick');
@@ -7194,29 +7193,10 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 						</div>
 						<div id="toForward" class="col-xs-7 col-sm-10">
 							<input  id="input_toreplyEmail" class="span4"/>
-							<!--input id="typeahead" type="text" data-provide="typeahead" /-->
-
 							<!--select id="toForwardEmail" type="text" class="span4" ></select-->	
 						</div>
 					</div>
-					<!--div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
-							CC
-						</div>
-						<div id="ccForward" class="col-xs-7 col-sm-10">
-							
-							<select id="ccForwardEmail" type="text" class="span4" ></select>	
-						</div>
-					</div>
-					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
-							BCC
-						</div>
-						<div id="bccForward" class="col-xs-7 col-sm-10">
-							
-							<select id="bccForwardEmail" type="text" class="span4"></select>	
-						</div>
-					</div-->
+					
 					<div style="margin-bottom: 10px;" class="row">
 						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
 							Subject
