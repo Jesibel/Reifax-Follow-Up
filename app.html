@@ -772,6 +772,49 @@
 		
 		
 $(function(){
+
+	$('#input_toreplyEmail').autoComplete({
+			minChars: 1,
+			source: function(term, suggest){
+				term = term.toLowerCase();
+				
+				var data  = {
+					'userid': 3213,
+					'type': 'ContactEmailsList'
+				};
+				 
+				$.post("http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followagent.php", data, function(cont) {
+					
+					valor     = cont;
+					var obj = JSON.parse(valor);
+					//alert(obj);	
+					$.each(obj.records, function( key, value ) {
+						var datos = new Array();
+						var valores = new Array();
+						var i=0;
+						
+						$.each( value, function ( userkey, uservalue) {
+							if(userkey=='agent' || userkey=='email'){
+								datos[userkey]=uservalue;
+								valores[i++]=userkey;
+								//console.debug(userkey);
+							}
+										
+						});
+						
+						output +='<option value="'+datos['email']+'">'+datos['agent']+'</option>';
+						
+					});
+					
+				});
+				//var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
+				var choices=output;
+				var suggestions = [];
+				for (i=0;i<choices.length;i++)
+					if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+					suggest(suggestions);
+			}
+	});
 		
 				
 		//CLICK DETALLE DE PROPIEDADES
@@ -7150,18 +7193,18 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							To
 						</div>
 						<div id="toForward" class="col-xs-7 col-sm-10">
-							<input  data-role="autocomplete" id="input_toreplyEmail" class="span4"/>
-							<input id="typeahead" type="text" data-provide="typeahead" />
+							<input  id="input_toreplyEmail" class="span4"/>
+							<!--input id="typeahead" type="text" data-provide="typeahead" /-->
 
 							<!--select id="toForwardEmail" type="text" class="span4" ></select-->	
 						</div>
 					</div>
-					<div style="margin-bottom: 10px;" class="row">
+					<!--div style="margin-bottom: 10px;" class="row">
 						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
 							CC
 						</div>
 						<div id="ccForward" class="col-xs-7 col-sm-10">
-							<!--select  id="toreplyEmail" class="span4"></select-->
+							
 							<select id="ccForwardEmail" type="text" class="span4" ></select>	
 						</div>
 					</div>
@@ -7170,10 +7213,10 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							BCC
 						</div>
 						<div id="bccForward" class="col-xs-7 col-sm-10">
-							<!--select  id="toreplyEmail" class="span4"></select-->
+							
 							<select id="bccForwardEmail" type="text" class="span4"></select>	
 						</div>
-					</div>
+					</div-->
 					<div style="margin-bottom: 10px;" class="row">
 						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
 							Subject
