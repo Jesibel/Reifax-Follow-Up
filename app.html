@@ -792,34 +792,29 @@ $(function(){
 					valor     = cont;
 					var obj = JSON.parse(valor);
 					var output ="";
-					//alert(obj);	
+					var res ="";
+					var choice1=[];
+					var i=0;
+					
 					$.each(obj.records, function( key, value ) {
 						var datos = new Array();
 						var valores = new Array();
-						var i=0;
-						
-						$.each( value, function ( userkey, uservalue) {
-							if(userkey=='agent' || userkey=='email'){
-								datos[userkey]=uservalue;
-								valores[i++]=userkey;
-								//console.debug(userkey);
-							}
-										
-						});
-						
-						output +='<option value="'+datos['email']+'">'+datos['agent']+'</option>';
+											
+						choice1[i++]=value.email;				
 						
 					});
-					
-					
+					//console.log(choice1);
+										
+					var choices=choice1;
+					//var choices=['jesi@gmail.com', 'angelaluna@gmail.com', 'luisdevies@gmail.com'];
+					//var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
+					var suggestions = [];
+					for (i=0;i<choices.length;i++)
+						if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+						suggest(suggestions);	
 				
 				});
-				//var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
-				var choices=output;
-				var suggestions = [];
-				for (i=0;i<choices.length;i++)
-					if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
-					suggest(suggestions);
+				
 			}
 		});
 				
