@@ -547,13 +547,23 @@
 		});
 		
 		//COMPOSE SEND EMAIL INBOX
-		$('#sendMailI').on('click',function(){				
+		$('#sendCompose,#insertComp').on('click',function(){				
 			sendemailInbox();
 		});
 		
 		//COMPOSE SEND EMAIL OUTBOX
 		$('#sendMailO').on('click',function(){				
 			sendemailOutbox();
+		});
+		
+		//SEND REPLY EMAIL INBOX
+		$('#sendReplyEmail').on('click',function(){				
+			sendemailReply();
+		});
+		
+		//SEND REPLY EMAIL INBOX
+		$('#sendForwardEmail').on('click',function(){				
+			sendemailReply();
 		});
 		
 		//RADIO BUTTOM ASSIGNMENT CONTACT
@@ -7085,7 +7095,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backReplyEmail" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div  style="width: 100%;margin-top: -40px;text-align: right;">		
-			<a id="sendE" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+			<a id="sendReplyEmail" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 		
 		
@@ -7167,7 +7177,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backForwardEmail" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div  style="width: 100%;margin-top: -40px;text-align: right;">		
-			<a id="sendF" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+			<a id="sendForwardEmail" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 		
 		
