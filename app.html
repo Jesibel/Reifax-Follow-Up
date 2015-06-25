@@ -373,19 +373,7 @@
 			alert("radio template");
 			document.getElementById("template").checked = true;
 			document.getElementById("new").checked = false;
-			getTemplateEmail();
-			//getContenido();
-			/*var body = "Dear Mr/Mrs {%Agent Name%} Please find attached a contract with our offer regarding the property with the address: {%Address%} We wait for your prompt response Regards {%User Name%}. {%Phone%} {%Email%}";
-			var out="";
-			var standar="Standar Email";
-				out +='<option value="'+standar+'">'+standar+'</option>';	
-						
-			document.getElementById('templa').style.display = "block";
-			document.getElementById("template").checked = true;
-			document.getElementById("new").checked = false;
-			$("#temp select").append(out);
-				
-			$("#body").append(body);*/
+			
 		});
 
 		$('#new').on('click',function(){
@@ -396,74 +384,50 @@
 			document.getElementById("template").checked = false;
 			document.getElementById("new").checked = true;
 			document.getElementById('templa').style.display = "none";
-			$("textarea#body").val("");
+			$("textarea#bodyEmail").val("");
 			
 		});
 			
 		//RADIO BUTTOM SEND SMS
 		$('#templateSMS').on('click',function(){
 			alert("radio templateSMS");
-			var texto = "Dear Mr/Mrs {%Agent Name%}"+
-
-			"Please find attached a contract with our offer regarding the property with the address: {%Address%}"+
-			"We wait for your prompt response"+
-
-			"Regards {%User Name%}."+
-			"{%Phone%}"+
-			"{%Email%}";
-			var out="";
-							
-			document.getElementById('templaSms').style.display = "block";
+			
 			document.getElementById("templateSMS").checked = true;
 			document.getElementById("newSMS").checked = false;
-								
-			$("#text").append(texto);
+			
+			getTemplateSMS();
+			
 		});
 
 		$('#newSMS').on('click',function(){
 				
 			alert("radio new");
-			//$('#2').dialog("close");
-			//$('#1').dialog("open");
+			
 			document.getElementById("templateSMS").checked = false;
 			document.getElementById("newSMS").checked = true;
 			document.getElementById('templaSms').style.display = "none";
-			$("textarea#text").val("");
+			$("textarea#bodySMS").val("");
 			
 		});
 			
 		//RADIO BUTTOM SEND FAX
 		$('#templateFax').on('click',function(){
 			alert("radio templateFax");
-			var texto = "Dear Mr/Mrs {%Agent Name%}"+
-
-			"Please find attached a contract with our offer regarding the property with the address: {%Address%}"+
-			"We wait for your prompt response"+
-
-			"Regards {%User Name%}."+
-			"{%Phone%}"+
-			"{%Email%}";
-			var out="";
-			var standar="Standar Fax";
-			out +='<option value="'+standar+'">'+standar+'</option>';	
-							
-			document.getElementById('templaFAX').style.display = "block";
+			
 			document.getElementById("templateFax").checked = true;
 			document.getElementById("newFax").checked = false;
-			$("#temp select").append(out);
-								
-			$("#textFax").append(texto);
+			
+			getTemplateFAX();
 		});
 
 		$('#newFax').on('click',function(){
 				
 			alert("radio newFax");
-			//$('#2').dialog("close");
-			//$('#1').dialog("open");
+
 			document.getElementById("templateFax").checked = false;
 			document.getElementById("newFax").checked = true;
 			document.getElementById('templaFAX').style.display = "none";
-			$("textarea#textFax").val("");
+			$("textarea#bodyFax").val("");
 			
 		});
 			
@@ -2763,22 +2727,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 				<label style="width: 30%;float: left;" for="file">Email by:</label>
 				<input type='radio'  name='template' id='template' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
 				<input type='radio'  name='new' id='new' value='New' checked>	New</input>			
-			</div>	
-			
-			<!--div class="form-group">
-				<label>Attach:</label>
-				<input id="uploadFile" class="form-control" placeholder="Select a file" disabled="disabled" />
-				<div class="fileUpload btn btn-primary">
-					<span>Browser</span>
-					<input id="uploadBtn"  type="file" class="upload" />					
-				</div>
-				<br>
-				<div id="browser"></div>
-				<div class="fileUpload btn btn-primary">
-					<span>Another file</span>
-					<input onclick="addInput()" class="another" />					
-				</div>
-			</div-->
+			</div>				
 			<div class="row">
 				<div style="padding-left: 25px;padding-top: 10px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 					Attach
@@ -2868,19 +2817,19 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 				<input type='radio'  name='newSMS' id='newSMS' value='New' checked>	New</input>			
 			</div>	
 			<div id="templaSms" style="margin-bottom: 10px;" class="row">
-				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+				<div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 					Template
 				</div>
-				<div id="tempSms" class="col-xs-7 col-sm-10">
-					<input id="temSms" type="text" class="span4" />
+				<div id="tempSms" class="col-xs-8 col-sm-10">
+					<select id="temSms" class="span4"></select>
 				</div>
 			</div>
 			<div style="margin-bottom: 10px;" class="row">
-				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+				<div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 					Text
 				</div>
-				<div class="col-xs-7 col-sm-10">
-					<textarea style="height:112px;" id="textSms" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+				<div class="col-xs-8 col-sm-10">
+					<textarea style="height:112px;" id="bodySms" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
 				</div>
 			</div>
 			<!--div id="templaSms" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
@@ -2899,7 +2848,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
   </div>
 </div>
 
-<!-- FIN FORMULARIO SEND MSM-->
+<!-- FIN FORMULARIO SEND SMS-->
 
 <!-- FORMULARIO SEND FAX-->
 <div id="formFax" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -2936,7 +2885,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 					Template
 				</div>
 				<div id="tempFax" class="col-xs-7 col-sm-10">
-					<input id="temFax" type="text" class="span4" />
+					<select id="temFax" type="text" class="span4"></select>
 				</div>
 			</div>
 			<div style="margin-bottom: 10px;" class="row">
@@ -2944,7 +2893,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 					Text
 				</div>
 				<div class="col-xs-7 col-sm-10">
-					<textarea style="height:112px;" id="textSms" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+					<textarea style="height:112px;" id="bodyFax" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
 				</div>
 			</div>
 			<!--div id="templaFAX" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
