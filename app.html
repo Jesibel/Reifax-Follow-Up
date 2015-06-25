@@ -58,7 +58,8 @@
 	
 	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
 	
-	
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	
 	<script type="text/javascript">
 	
@@ -552,7 +553,7 @@
 		});
 		
 		//COMPOSE SEND EMAIL OUTBOX
-		$('#sendMailO').on('click',function(){				
+		$('#sendComposeO,#insertCompO').on('click',function(){				
 			sendemailOutbox();
 		});
 		
@@ -813,8 +814,9 @@ $(function(){
 						choice1[i++]=value.email;				
 						
 					});
-					//console.log(choice1);
-										
+					console.log(choice1);
+					
+					
 					var choices=choice1;
 					//var choices=['jesi@gmail.com', 'angelaluna@gmail.com', 'luisdevies@gmail.com'];
 					//var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
@@ -827,7 +829,50 @@ $(function(){
 				
 			}
 		});
+		
+		$('#input_toforwardEmail').autoComplete({
+			minChars: 1,
+			source: function(term, suggest){
+				term = term.toLowerCase();
 				
+				var data  = {
+					'userid': 3213,
+					'type': 'ContactEmailsList'
+				};
+				 
+				$.post("http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followagent.php", data, function(cont) {
+					
+					valor     = cont;
+					var obj = JSON.parse(valor);
+					var output ="";
+					var res ="";
+					var choice1=[];
+					var i=0;
+					
+					$.each(obj.records, function( key, value ) {
+						var datos = new Array();
+						var valores = new Array();
+											
+						choice1[i++]=value.email;				
+						
+					});
+					console.log(choice1);
+					
+					
+					var choices=choice1;
+					//var choices=['jesi@gmail.com', 'angelaluna@gmail.com', 'luisdevies@gmail.com'];
+					//var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
+					var suggestions = [];
+					for (i=0;i<choices.length;i++)
+						if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+						suggest(suggestions);	
+				
+				});
+				
+			}
+		});
+		
+		
 		//CLICK DETALLE DE PROPIEDADES
 		$('ul.page_result').on('click','li', function () {
             //alert('onclick');
@@ -1116,7 +1161,7 @@ $(function(){
 			var object = { 'email' : id };
 			var seen = { 'seen' : idseen };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('enail', JSON.stringify(object));
+			localStorage.setItem('email', JSON.stringify(object));
 			localStorage.setItem('seen', JSON.stringify(seen));
 			$('#detalleEmailFollow ul').empty();
 			$.mobile.changePage( "#detailEmailFollow");
@@ -1466,6 +1511,7 @@ $(function(){
 			//alert('click boton editar');
 			//var valor = JSON.parse(localStorage.getItem('key4'));
 			//var valor2 = JSON.parse(localStorage.getItem('key'));
+			//getComposeEmailFollow();
 			forwardEmailInbox();
 			
 		});
@@ -2930,7 +2976,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 				<div class="row-fluid">
 					<div class="row">
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Contact
 							</div>
 							<div id="agent" class="col-xs-7 col-sm-10">
@@ -2938,7 +2984,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Type
 							</div>
 							<div id="typeagent" class="col-xs-7 col-sm-10">
@@ -2946,7 +2992,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Email1
 							</div>
 							<div id="email1" class="col-xs-7 col-sm-10">
@@ -2955,7 +3001,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Email2
 							</div>
 							<div id="email2" class="col-xs-7 col-sm-10">
@@ -2964,7 +3010,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Company
 							</div>
 							<div id="companyy" class="col-xs-7 col-sm-10">								
@@ -2972,7 +3018,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Website1
 							</div>
 							<div id="website1" class="col-xs-7 col-sm-10">
@@ -2981,7 +3027,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Website2
 							</div>
 							<div id="website2" class="col-xs-7 col-sm-10">
@@ -2990,7 +3036,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>	
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Phone
 							</div>
 							<div id="phone1" class="col-xs-7 col-sm-10">
@@ -3004,7 +3050,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Phone2
 							</div>
 							<div id="phone2" class="col-xs-7 col-sm-10">
@@ -3018,7 +3064,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>	
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Phone3
 							</div>
 							<div id="phone3" class="col-xs-7 col-sm-10">
@@ -3032,7 +3078,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Phone4
 							</div>
 							<div id="phone4" class="col-xs-7 col-sm-10">
@@ -3046,7 +3092,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>	
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Phone5
 							</div>
 							<div id="phone5" class="col-xs-7 col-sm-10">
@@ -3060,7 +3106,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>	
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Phone6
 							</div>
 							<div id="phone6" class="col-xs-7 col-sm-10">
@@ -3074,7 +3120,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Address1
 							</div>
 							<div id="address1" class="col-xs-7 col-sm-10">
@@ -3083,7 +3129,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 								Address2
 							</div>
 							<div id="address2" class="col-xs-7 col-sm-10">
@@ -7205,8 +7251,6 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 						</div>
 						<div id="toForward" class="col-xs-7 col-sm-10">
 							<input  id="input_toforwardEmail" class="span4"/>
-							
-
 							<!--select id="toForwardEmail" type="text" class="span4" ></select-->	
 						</div>
 					</div>
@@ -7215,7 +7259,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							CC
 						</div>
 						<div id="ccForward" class="col-xs-7 col-sm-10">
-						
+							
 							<select id="ccForwardEmail" type="text" class="span4" ></select>	
 						</div>
 					</div>
@@ -7224,6 +7268,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							BCC
 						</div>
 						<div id="bccForward" class="col-xs-7 col-sm-10">
+							
 							<select id="bccForwardEmail" type="text" class="span4"></select>	
 						</div>
 					</div-->
