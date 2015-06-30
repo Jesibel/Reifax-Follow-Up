@@ -239,7 +239,7 @@
 		$("#resetSche").on('click', function () {
 			//alert('insert');			
 			resetSchedule();
-		});
+		});								
 		
 		//CANCEL ADD SCHEDULE FOLLOW
 		$("#cancelSche,#cancelEditSche").on('click', function () {
@@ -370,7 +370,7 @@
 		
 		//RADIO BUTTOM SEND EMAIL
 		$('#template').on('click',function(){
-			//alert("radio template");
+			alert("radio template");
 			document.getElementById("template").checked = true;
 			document.getElementById("new").checked = false;
 			getTemplateEmail();
@@ -379,7 +379,7 @@
 
 		$('#new').on('click',function(){
 				
-			//alert("radio new");
+			alert("radio new");
 			//$('#2').dialog("close");
 			//$('#1').dialog("open");
 			document.getElementById("template").checked = false;
@@ -392,7 +392,7 @@
 			
 		//RADIO BUTTOM SEND SMS
 		$('#templateSMS').on('click',function(){
-			//alert("radio templateSMS");
+			alert("radio templateSMS");
 			
 			document.getElementById("templateSMS").checked = true;
 			document.getElementById("newSMS").checked = false;
@@ -403,7 +403,7 @@
 
 		$('#newSMS').on('click',function(){
 				
-			//alert("radio new");
+			alert("radio new");
 			
 			document.getElementById("templateSMS").checked = false;
 			document.getElementById("newSMS").checked = true;
@@ -414,7 +414,7 @@
 			
 		//RADIO BUTTOM SEND FAX
 		$('#templateFax').on('click',function(){
-			//alert("radio templateFax");
+			alert("radio templateFax");
 			
 			document.getElementById("templateFax").checked = true;
 			document.getElementById("newFax").checked = false;
@@ -424,7 +424,7 @@
 
 		$('#newFax').on('click',function(){
 				
-			//alert("radio newFax");
+			alert("radio newFax");
 
 			document.getElementById("templateFax").checked = false;
 			document.getElementById("newFax").checked = true;
@@ -433,7 +433,7 @@
 			
 		});
 		
-		//UPLOAD SEND EMAIL FOLLOW
+		//UPLOAD SEND EMAIL
 		document.getElementById("fileToUploadEmail").onchange = function () {
 			document.getElementById("uploadFileEmail").value = this.value;
 		};
@@ -1186,7 +1186,15 @@ $(function(){
            // alert('long Touch properties');
 			
 			var id= $(this).attr('parcelid');
+			var typefollow= $(this).attr('type');
 			//alert(id);
+			
+			var pid = { 'pid' : id };
+			var typefollow = { 'typefollow' : typefollow };
+			
+			localStorage.setItem('pid', JSON.stringify(pid));
+			localStorage.setItem('typefollow', JSON.stringify(typefollow));
+			
 			longProperties(id);
 			
         });
@@ -1491,6 +1499,28 @@ $(function(){
 		$("#taskComp").on('click', function () {
 			//alert('editar');
 			completedMultiTask();
+			
+		});
+		
+		//BOTON SEND EMAIL 
+		$("#btnSendEMAIL").on('click', function () {
+			//alert('editar');
+			sendEMAIL();
+			
+		});
+		
+		
+		//BOTON SEND SMS 
+		$("#btnSendSMS").on('click', function () {
+			//alert('editar');
+			sendSMS();
+			
+		});
+		
+		//BOTON SEND FAX
+		$("#btnSendFAX").on('click', function () {
+			//alert('editar');
+			sendFAX();
 			
 		});
 		
@@ -2816,7 +2846,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
         </form>
       </div>
       <div class="modal-footer">       
-		<button id="sendE" type="submit" class="btn btn-success pull-right">Send</button>
+		<button id="btnSendEMAIL" type="submit" class="btn btn-success pull-right">Send</button>
 		 <!--button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button-->
       </div>
     </div>
@@ -2852,7 +2882,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 				<!--div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 					Text
 				</div-->
-				<div class="col-xs-8 col-sm-10">
+				<div style="width:100%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
 					<textarea style="height:112px;" id="bodySms" class="form-control" placeholder="Text" data-placement="top" data-trigger="manual"></textarea>
 				</div>
 			</div>
@@ -2865,8 +2895,8 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 		
       </div>
       <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		<button  id="sendS" type="submit" class="btn btn-success pull-right">Send</button>
+        <!--button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button-->
+		<button  id="btnSendSMS" type="submit" class="btn btn-success pull-right">Send</button>
       </div>
     </div>
   </div>
@@ -2951,8 +2981,8 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
         </form>
       </div>
       <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		<button id="sendF" type="submit" class="btn btn-success pull-right">Send</button>
+        <!--button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button-->
+		<button id="btnSendFAX" type="submit" class="btn btn-success pull-right">Send</button>
       </div>
     </div>
   </div>
