@@ -59,7 +59,7 @@
 	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
 	
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	
 	<script type="text/javascript">
 	
@@ -1524,6 +1524,34 @@ $(function(){
 			
 		});
 		
+		//BOTON SEND CONTRACT
+		$("#btnSendContr").on('click', function () {
+			//alert('editar');
+			sendContract();
+			
+		});
+		
+		//BOTON GET SEND CONTRACT
+		$("#sendContractDP").on('click', function () {
+			alert('contract');
+			getDocAdd();
+			
+		});
+		
+		//BOTON GET SEND CONTRACT
+		$("#btnLogin").on('click', function () {
+			alert('login');
+			processLogin();
+			
+		});
+		
+		//CHEQUEA ALL Document
+		$('#all').click(function() {
+			alert('alll');
+			//$('.checkbox').find('span').addClass('checked');
+			$(".check").prop('checked', $(this).prop('checked'));
+		});
+		
 		$("#backEmail").on('click', function () {
 			//alert('backContacts');
 			//document.getElementById("detalleEmailCab").innerHTML="";
@@ -2534,10 +2562,144 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 			background-color:#fff;
 			border:1px solid #fff; 
 		}
+		input.transparent-input{
+			background-color:transparent !important;
+			border:none !important;
+		}
+		.ui-selectmenu-button{
+			width:100% !important;
+		}
 	
+	<!--login-->
+	.form-signin
+{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox
+{
+    margin-bottom: 10px;
+}
+.form-signin .checkbox
+{
+    font-weight: normal;
+}
+.form-signin .form-control
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus
+{
+    z-index: 2;
+}
+.form-signin input[type="text"]
+{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.account-wall
+{
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.login-title
+{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+.profile-img
+{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.need-help
+{
+    margin-top: 10px;
+}
+.new-account
+{
+    display: block;
+    margin-top: 10px;
+}
 	</style>
   </head>
  <body>
+ 
+ <div data-role="page" id="loginHtml">
+        <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="menu" data-theme="b" href="#menuPrincFollow"></a-->
+		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
+		<div style="text-align:center;"><img src="resources/image/reifax_Followup.jpg" width="120" height="40"></div>
+
+	</div>
+	<!--FIN HEADER--><!-- /header -->
+        <div class="container">
+				<div class="account-wall">
+					<img class="profile-img" src="http://reifax.com/FollowupReifax/resources/image/reifax_FOLLOW_UP_logo-152.png" alt="">
+					<form class="form-signin">
+						<input id="userLogin" type="email" class="form-control" placeholder="Email" required autofocus>
+						<input id="passLogin" type="password" class="form-control" placeholder="Password" required>
+						<button id="btnLogin" class="btn btn-success" type="submit">Sign in</button>						
+							<!--input  type="checkbox" value="remember-me">
+							<label style="margin-left: 15px;margin-top:10px;" class="checkbox">Remember me</label-->
+						<a href="#forgotHtml" class="pull-right need-help">Forgot Password</a><span class="clearfix"></span>
+					</form>
+				</div>
+				<a href="http://reifax.com/login/pdf/REIFAX_TermAndConditions.pdf" class="text-center new-account">Subscriber Terms and Conditions</a>
+			
+		</div><!-- /content -->
+ </div><!-- /page -->
+
+<div data-role="page" id="forgotHtml">
+        <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="menu" data-theme="b" href="#menuPrincFollow"></a-->
+		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
+		<div style="text-align:center;"><img src="resources/image/reifax_Followup.jpg" width="120" height="40"></div>
+
+	</div>
+	<!--FIN HEADER--><!-- /header -->
+        <div class="container">
+				<div class="account-wall">
+					<img class="profile-img" src="http://reifax.com/FollowupReifax/resources/image/reifax_FOLLOW_UP_logo-152.png" alt="">
+					<form class="form-signin">
+						<input id="forgot" type="email" class="form-control" placeholder="Email" required autofocus>
+						<button id="btnGo" class="btn btn-success" type="submit">Go</button>												
+					</form>
+				</div>				
+		</div><!-- /content -->
+ </div><!-- /page --> 
+ 
+ 
+ 
 <div data-role="page" id="followingHtml">
 	<!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
@@ -2595,7 +2757,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 			<li class="margen"><a class="filter"        id="filtro2"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
 			<li class="margen"><a class="filterRemove"  id="filtro_remove2" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
 			<li class="margen"><a class="deleteFollow"  id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
-			<li class="margen"><a class="sendContract"  id="sendContract"   href="#sendContracts" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
+			<li class="margen"><a class="sendContract"  id="sendContract"   href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
 			<li class="margen"><a class="sendEmail"     id="sendEmail"      href="#formEmail" role="button" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
 			<li class="margen"><a class="sendSMS"       id="sendSMS"        href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
 			<li class="margen"><a class="sendFax"       id="sendFax"        href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
@@ -4412,13 +4574,18 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 </div>
 <!--FIN ADD SCHEDULE EMAIL FOLLOW-->
 
-	
+
 <div data-role="page" id="detailProperties" data-add-back-btn="true">         
            <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-rel="back" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();" ></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/detail-property.png" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailProperty"></a>
+		</div>
+	
 	</div>
 	
 	<!--TABS-->
@@ -4454,6 +4621,26 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 	</div>
 	
 	<!--FIN CONTENT-->	
+	
+	<!--MENU PRINCIPAL DETAIL PROPERTY-->
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuDetailProperty" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+			<a class="closeMenu" style="display:none;"   href="#" data-rel="close">Close</a>
+			<li class="margen"><a class="filter"        id="filtro3"          href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
+			<li class="margen"><a class="filterRemove"  id="filtro_remove3"   href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
+			<li class="margen"><a class="deleteFollow"  id="deleteDP"         href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
+			<li class="margen"><a class="sendContract"  id="sendContractDP"   href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
+			<li class="margen"><a class="sendEmail"     id="sendEmailDP"      href="#formEmail" role="button" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
+			<li class="margen"><a class="sendSMS"       id="sendSMSDP"        href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
+			<li class="margen"><a class="sendFax"       id="sendFaxDP"        href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
+			<li class="margen"><a class="makeCall"      id="makeCallDP"       href="#formCall" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>
+						 
+			 </ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+	
 	
 </div><!-- /page --> 
 
@@ -4496,8 +4683,8 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
-		<div  id="menuDE" style="width: 100%;margin-top: -40px;text-align: right;">		
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div  id="menuDE" style="width: 100%;margin-top: -33px;text-align: right;">		
 			<a id="deleteEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="readEmail" style="margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/readed_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
 			<a id="unreadEmail" style="display:none;margin-right:5px;height:30px;margin-bottom:5px;background-image: url('img/read_email-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>		
@@ -4736,7 +4923,8 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="/" id="backEditH" data-rel="back"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:left;margin-left:20px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<!--div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/history-followup.png" width="120" height="40"></div-->
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 			<a id="detailEditHist" style="margin-right:10px;height:35px;width:35px;margin-top: 3px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagEditHistoryHtml"></a>
 			<a id="detailDelHist" style="margin-right:10px;height:35px;width:35px;margin-top: 3px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
@@ -5998,19 +6186,20 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 
 <div data-role="page" id="historyFollow" data-add-back-btn="true">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
-		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-			<a id="addHist" style="margin-right:10px;height:35px;width:35px;background-image: url('img/add-hist-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddHistoryHtml"></a>
-			<a id="refreshHist" style="margin-right:10px;height:30px;background-image: url('img/refresh-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/history-followup.png" width="120" height="40"></div>		
+		<div style="width: 100%;margin-top: -37px;text-align: right;">		
+			<a id="addHist" style="margin-top:-2px;margin-right:10px;height:35px;width:35px;background-image: url('img/add-hist-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddHistoryHtml"></a>
+			<a id="refreshHist" style="margin-top:-2px;margin-right:10px;height:30px;background-image: url('img/refresh-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
 		<div style="background: #8ab420;border: #8ab420;margin-top: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_hist">				
 	
 		</div>
-	
+	 
 	<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
@@ -6065,13 +6254,15 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 
 <div data-role="page" id="scheduleFollow" data-add-back-btn="true">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
-		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-			<a id="addSchedule" style="margin-right:10px;height:35px;width:35px;background-image: url('img/add-hist-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddScheduleHtml"></a>
-			<a id="refreshSchedule" style="margin-right:10px;height:30px;background-image: url('img/refresh-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/schedule-followup.png" width="120" height="40"></div>		
+		
+		<div style="width: 100%;margin-top: -39px;text-align: right;">		
+			<a id="addSchedule" style="margin-top:-2px;margin-right:10px;height:35px;width:35px;background-image: url('img/add-hist-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddScheduleHtml"></a>
+			<a id="refreshSchedule" style="margin-top:-2px;margin-right:10px;height:30px;background-image: url('img/refresh-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
 	
@@ -6117,13 +6308,15 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 
 <div data-role="page" id="emailFollow" data-add-back-btn="true">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" ata-rel="back" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
-		<div style="width: 100%;margin-top:-40px;text-align: right;">
-			<a id="addEfollow" style="margin-right: 10px;height:35px;width:35px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddComposeEFHtml"></a>
-			<a style="height:30px;width:30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailFollow"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/email-followup.png" width="120" height="40"></div>		
+		
+		<div style="width: 100%;margin-top:-39px;text-align: right;">
+			<a id="addEfollow" style="margin-top:-2px;margin-right: 10px;height:35px;width:35px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddComposeEFHtml"></a>
+			<a style="margin-top:-2px;height:30px;width:30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailFollow"></a>
 		</div>
 	
 		<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_emailfollow">				
@@ -6563,7 +6756,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 	</div>
 	<!--FIN CONTENT-->	
 	
-	
+
 </div>
 
 <div data-role="page" id="pagEditHistoryHtml">
@@ -7165,8 +7358,10 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backReplyEmail" data-rel="back"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-32px;"><img src="resources/image/reply.png" width="120" height="40"></div>
 		<div  style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="attachReplyEmail" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/clip-2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 			<a id="sendReplyEmail" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 		
@@ -7188,7 +7383,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 						</div>
 					</div-->
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 							From
 						</div>
 						<div class="col-xs-7 col-sm-10">
@@ -7197,7 +7392,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 						</div>
 					</div>
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 							To
 						</div>
 						<div class="col-xs-7 col-sm-10">
@@ -7206,7 +7401,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 						</div>
 					</div>
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 							Subject
 						</div>
 						<div  class="col-xs-7 col-sm-10">
@@ -7247,8 +7442,10 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backForwardEmail" data-rel="back"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-32px;"><img src="resources/image/forward.png" width="120" height="40"></div>
 		<div  style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="attachForwardEmail" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/clip-2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 			<a id="sendForwardEmail" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 		
@@ -7263,7 +7460,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 			<div class="row">				  
 			
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 							From
 						</div>
 						<div class="col-xs-7 col-sm-10">
@@ -7272,11 +7469,11 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 						</div>
 					</div>
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 							To
 						</div>
 						<div id="toForward" class="col-xs-7 col-sm-10">
-							<input  id="input_toforwardEmail" class="span4"/>
+							<input  id="input_toforwardEmail" class="transparent-input span4"/>
 							<!--select id="toForwardEmail" type="text" class="span4" ></select-->	
 						</div>
 					</div>
@@ -7299,7 +7496,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 						</div>
 					</div-->
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 							Subject
 						</div>
 						<div  class="col-xs-7 col-sm-10">
@@ -7334,6 +7531,377 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 	
 </div><!-- /page --> 
 
+<div data-role="page" id="formContract">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:center;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<!--a id="resetEditSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<a id="updateEditSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a-->
+		</div>
+	
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;margin-top: 40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;font-size:12px;" href="#detailProperties">Document</a></li>
+				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;font-size:12px;" href="#historyFollow">Buyer Info</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;font-size:12px;" href="#scheduleFollow">Seller Info</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;font-size:12px;" href="#emailFollow">Add Info</a></li>
+			</ul>
+		</div>
+	
+	<!--FIN TABS-->
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+	
+			
+			<div style="margin-left: 1px;" class="row formC" id="formContr">
+			<form style="margin-top: 30px;" class="form-inline">
+			
+				<div style="padding-left:10px;" class="form-group">
+					<input type='checkbox'  name='docum' id='docum' value='Document'/>
+					<label style="margin-left: 40px;padding-top: 5px;">Document:</label>
+								
+				</div>	
+				
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left:25px;padding-top:5px;" class="col-xs-9 col-sm-2">
+						<select  id="contra">
+							<option value="1">MP HOMEOWNER 2014</option>
+							<option value="2">MP INVESTOR AS SELLER 2014</option>
+							<option value="3">MP REO 2014</option>
+							<option value="4">MP REO FANNIE MAE 2014</option>
+							<option value="5">MP SELLER DIRECT - NO AGENT 2014</option>
+							<option value="6">MP SHORT SALE 2014</option>
+						</select>
+					</div>
+					<div  class="col-xs-2 col-sm-10">
+						<img src="http://reifax.com/FollowupReifax/img/edit-2-48.png" width="40px" height="40px"/>							
+					</div>
+				</div>
+				
+				<div class="row">
+					<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-12 col-sm-2">
+						Additional Document
+					</div>
+				</div>
+				
+				<div style="padding-left:25px;" class="row">
+					
+					<div class="checkbox">
+						<input type="checkbox" value=""/>
+						<label style="margin-left: 40px;padding-top: 5px;">Name:</label>
+					</div>
+					<div class="checkbox">
+						<input type="checkbox" value=""/>
+						<label style="margin-left: 40px;padding-top: 5px;">MP LBPD:</label>
+					</div>
+					<div class="checkbox">
+					  <input type="checkbox" value=""/>
+					  <label style="margin-left: 40px;padding-top: 5px;">MP POF HERITAGE 2015:</label>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-12 col-sm-2">
+						Email Delivery
+					</div>
+				</div>
+				
+				<div style="padding-left:25px;" class="row">
+					<div class="checkbox">
+						<input type="checkbox" value=""/>
+						<label style="margin-left: 40px;padding-top: 5px;">Send Document by Email:</label>
+						<input type="checkbox" value=""/>
+						<label style="margin-left: 40px;padding-top: 5px;">Send Document by Fax:</label>
+					</div>	
+				</div>
+				
+				
+			</form>
+			
+			</div>
+			
+	
+	</div>
+	
+
+</div><!--FIN FORM SEND CONTRACT-->
+
+<div data-role="page" id="formContract2">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/send contract.png" width="120" height="40"></div>
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		
+		<div  class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		  <div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingOne">
+			  <h4 class="panel-title">
+				<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				  Documents
+				</a>
+			  </h4>
+			</div>
+			<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+			  <div class="panel-body">
+				<div style="margin-left:-20px;margin-top:-15px;" class="row formC" id="formContr">
+					<form class="form-inline">
+					
+						<div class="row">
+							<div class="col-xs-5 col-sm-10">
+								<input type='checkbox' checked name='docum' id='docum' value='Document' />
+								<label style="margin-left: 40px;padding-top: 5px;">Document:</label>
+							</div>	
+							<div id="docContract" class="col-xs-7 col-sm-10">
+								 <select id="documentContract" class="form-control"></select>				
+							</div>			
+						</div>	
+						
+						<div class="row">
+							<div style="padding-left: 25px;padding-top: 5px;font-size: 16px;font-weight: bold;" class="col-xs-12 col-sm-2">
+								Additional Document
+							</div>
+						</div>
+						
+						<div style="padding-left:25px;" class="row">
+							<div id="che">
+								<div style="background-color: #ddd;height:30px;" class="checkbox">
+									<input type="checkbox" id="all" class="check" value=""/>
+									<label style="margin-left: 40px;padding-top: 5px;">Name:</label>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div style="padding-left: 25px;padding-top: 5px;font-size: 16px;font-weight: bold;" class="col-xs-12 col-sm-2">
+								Email Delivery
+							</div>
+						</div>
+						
+						<div style="padding-left:25px;" class="row">
+							<div class="checkbox">
+								<input checked type="checkbox" value=""/>
+								<label style="margin-left: 40px;padding-top: 5px;">Send Document by Email:</label>
+								<!--input type="checkbox" value=""/>
+								<label style="margin-left: 40px;padding-top: 5px;">Send Document by Fax:</label-->
+							</div>	
+						</div>
+						<div class="row">
+							<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+								Template Email
+							</div>
+							<div id="tempContract" class="col-xs-6 col-sm-10">
+								 <select id="templateContract" class="form-control"></select>				
+							</div>
+						</div>
+						
+					</form>
+			
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingTwo">
+			  <h4 class="panel-title">
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				  Buyer Info
+				</a>
+			  </h4>
+			</div>
+			<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+			  <div class="panel-body">
+				
+				<div style="margin-left:1px;padding-left: 10px;padding-top: 20px;" class="row formC" id="formforward">	
+					<div class="row">				  
+			
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top:5px;padding-right:0px;" class="col-xs-4 col-sm-2">
+								Buyer Name
+							</div>
+							<div style="margin-left:-20px;" class="col-xs-6 col-sm-10">
+								<input type="text" id="buyername" class="span4"/>
+							</div>
+							<div  style="padding-left:0px;" class="col-xs-2 col-sm-10">
+								<img src="http://reifax.com/FollowupReifax/img/contacts-48.png" width="40px" height="40px"/>							
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address Line 1
+							</div>
+							<div style="margin-left:-20px;" id="addrline1" class="col-xs-7 col-sm-10">
+								<input  id="addressline1" class="span4"/>								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address Line 2
+							</div>
+							<div style="margin-left:-20px;" id="addrline2" class="col-xs-7 col-sm-10">
+								<input  id="addressline2" class="span4"/>								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address Line 3
+							</div>
+							<div style="margin-left:-20px;" id="addrline3" class="col-xs-7 col-sm-10">
+								<input  id="addressline3" class="span4"/>								
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			  </div>
+			</div>
+		  </div>
+		  <div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingThree">
+			  <h4 class="panel-title">
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+				  Seller Info
+				</a>
+			  </h4>
+			</div>
+			<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+			  <div class="panel-body">
+				
+				<div style="margin-left:1px;padding-left: 10px;padding-top: 20px;" class="row formC" id="formforward">	
+					<div class="row">				  
+			
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Seller Name
+							</div>
+							<div style="margin-left:-20px;" class="col-xs-6 col-sm-10">
+								<input type="text" id="buyername" class="span4"/>
+							</div>
+							<div  style="padding-left:0px;" class="col-xs-2 col-sm-10">
+								<img src="http://reifax.com/FollowupReifax/img/contacts-48.png" width="40px" height="40px"/>							
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address Line 1
+							</div>
+							<div style="margin-left:-20px;" id="selleraddrline1" class="col-xs-7 col-sm-10">
+								<input  id="selleraddressline1" class="span4"/>								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address Line 2
+							</div>
+							<div style="margin-left:-20px;" id="selleraddrline2" class="col-xs-7 col-sm-10">
+								<input  id="selleraddressline2" class="span4"/>								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address Line 3
+							</div>
+							<div style="margin-left:-20px;" id="selleraddrline3" class="col-xs-7 col-sm-10">
+								<input  id="selleraddressline3" class="span4"/>								
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			  </div>
+			</div>
+		  </div>
+		  
+		  <div class="panel panel-default">
+			<div class="panel-heading" role="tab" id="headingFour">
+			  <h4 class="panel-title">
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+				  Additional Info
+				</a>
+			  </h4>
+			</div>
+			<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+			  <div class="panel-body">
+				
+				<div style="margin-left:1px;padding-left: 10px;padding-top: 20px;" class="row formC" id="formforward">	
+					<div class="row">				  
+			
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Initial Deposit
+							</div>
+							<div class="col-xs-7 col-sm-10">
+								<input type="text" id="initialDep" class="span4"/>
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Additional Deposit
+							</div>
+							<div id="addDep" class="col-xs-7 col-sm-10">
+								<input  id="additDep" class="span4"/>								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Inspection Day
+							</div>
+							<div id="inspDay" class="col-xs-7 col-sm-10">
+								<input  id="inspecDay" class="span4"/>								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Accetance Date
+							</div>
+							<div id="acceDate" class="col-xs-7 col-sm-10">
+								<input  id="accepDate" class="span4"/>								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								closing Date
+							</div>
+							<div id="closeDate" class="col-xs-7 col-sm-10">
+								<input  id="closingDate" class="span4"/>								
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			  </div>
+			</div>
+		  </div>
+		  
+			<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="btnSendContr" class="btn btn-success" type="button" value="Send">
+						<input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel">
+					</div>
+			</div>
+		  
+		</div>
+	
+	
+	</div>
+	
+
+</div><!--FIN FORM SEND CONTRACT-->
  
  <script src="http://reifax.com/FollowupReifax/resources/js/jquery.auto-complete.js"></script>
 
