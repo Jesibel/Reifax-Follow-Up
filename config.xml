@@ -89,6 +89,8 @@
   
   <gap:plugin name="org.apache.cordova.splashscreen" />
   
+  <gap:plugin name="com.phonegap.plugin.mobile-accessibility" version="0.1.1" />
+  
 
   <access origin="http://reifax.com" />       
   <access origin="http://reifax.com" subdomains="true" /> 
