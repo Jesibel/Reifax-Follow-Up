@@ -66,6 +66,12 @@
 	
 	$(document).ready(function(){
 	
+		<!--forgot guille-->
+			/*$('#next').bind('click',funciones.proccess)
+			$('#go').bind('click',funciones.findUser);
+			$('input[name=txtEmail]').bind('focus',funciones.initAll);
+			correcto=true;*/
+		<!--fin forgot guille-->
 		
 		document.getElementById('templa').style.display = "none";
 		document.getElementById('templaSms').style.display = "none";
@@ -1542,14 +1548,14 @@ $(function(){
 		
 		//BOTON GET SEND CONTRACT
 		$("#sendContractDP").on('click', function () {
-			alert('contract');
+			//alert('contract');
 			//getDocAdd();
 			
 		});
 		
 		//BOTON GET SEND CONTRACT
 		$("#btnLogin").on('click', function () {
-			alert('login');
+			//alert('login');
 			processLogin();
 			
 		});
@@ -1737,14 +1743,15 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 		cantidadEmail();
 		
 		gettypecontract();
-
+		
 		$('#demo').mobipick({
 			dateFormat: "MM-dd-yyyy"
 		});
 		
 		$('#demo2').mobipick({
 			dateFormat: "MM-dd-yyyy"
-		});			
+		});		
+		
 							
 });
 
@@ -1881,6 +1888,13 @@ $(document).on("pagebeforeshow","#formContract2",function(){
 	var id = JSON.parse(localStorage.getItem('idtypec'));
 	getDocAdd(id.idtypec);
 	
+	$('#closingDate').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});	
+	
+	$('#accepDate').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});	
 
 });
 
@@ -1893,7 +1907,7 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 	//$('#ehourEditPend').timepicker();	
 	//$('#timepicker1').timepicker();	
 	
-							
+		 					
 });
 
 
@@ -2013,13 +2027,112 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 		
 });
 
+$("#loginHtml").on("pageinit", function(e) {
+	checkPreAuth();
+});
+
+function checkPreAuth() {
+	var form = $("#loginForm");
+	if(window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
+		alert('existe user');
+		$("#username", form).val(window.localStorage["username"]);
+		$("#password", form).val(window.localStorage["password"]);
+		//handleLogin();
+		$.mobile.changePage("#followingHtml","slide");
+	}else{
+		alert('no existe user');
+		$.mobile.changePage("#loginHtml","slide");
+	
+	}
+}
+
+<!--forgot guille-->
+var funciones={
+	initAll:function (){
+		$('#go').fadeIn(200);
+		$('#trPassword,#trquestion,#transwer,#trsupport').hide();
+		$("input").attr("required", false);
+	},
+	findUser:function (e)
+	{
+		e.preventDefault();
+		e.stopPropagation();
+		
+		if($('input[name=txtEmail]').val()=='')
+			return false;
+			
+		$('#go').fadeOut(200);
+		$.ajax({
+			type	:'GET',
+			data 	: {
+				option: 'findData',
+				email: $('input[name=txtEmail]').val()
+			},
+			url		:'http://www.reifax.com/resources/php/funcionesForgotPassword.php',
+			dataType:"jsonp",
+			
+			success	: function (respuesta)
+			{
+				//console.log(respuesta);
+				if(respuesta.success)
+				{
+					switch(respuesta.estado){
+						case (1):
+							$('#questionuser').html(respuesta.questionuser);
+							$('#trPassword,#trquestion,#transwer').show();
+							$("input").attr("required", true);
+						break;
+						case (8):
+							$('#trsupport').show();
+						break;
+						default:
+							$('#trPassword').show();
+							$("#trPassword input").attr("required", true);
+							
+						}
+				}
+			}
+	
+		})
+		//return false;
+	},
+	proccess:function (e)
+	{
+		e.preventDefault();
+		e.stopPropagation();
+
+		$('.MsglockScreen').fadeIn();
+		$.ajax({
+			type	:'GET',
+			data 	:'option=proccess&amp;email='+$('input[name=txtEmail]').val()+'&amp;answeruser='+$('input[name=answeruser]').val()+'&amp;pass='+$('input[name=txtPassword]').val(),
+			dataType:'jsonp',
+			url		:'http://www.reifax.com/resources/php/funcionesForgotPassword.php',
+			
+			success	: function (respuesta)
+						{
+							if(respuesta.success)
+							{
+								if(respuesta.estado==4){
+									$('.MsglockScreen').html('successfully processed request');
+								}
+								else{
+									$('.MsglockScreen').html('Email or password is incorrect..!!');
+								}
+								$('.MsglockScreen').delay(3000).fadeOut(250,function (){document.location = 'index.html'});
+								
+							}
+						}
+				})
+		}
+	}
+
 
 	
 </script>
 <script type="text/javascript">
  function pdf(){
  
-	window.open('http://www.reifax.com/login/pdf/REIFAX_TermsAndConditions.pdf', '_blank', 'location=no');
+	window.open('http://www.reifax.com/login/pdf/REIFAX_TermsAndConditions.pdf', '_system', 'location=yes');
 	
  }
 
@@ -2689,7 +2802,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 					<div style="text-align:center;">
 					<img  style="width:250px;" src="http://reifax.com/FollowupReifax/resources/image/logo_login.jpg" alt="">
 					</div>
-					<form class="form-signin">
+					<form id="loginForm" class="form-signin">
 						<input id="userLogin" type="email" class="form-control" placeholder="Email" required autofocus>
 						<input id="passLogin" type="password" class="form-control" placeholder="Password" required>
 						<button id="btnLogin" style="color: #fff;background-color: #5cb85c;border-color: #4cae4c;" class="btn btn-success" type="submit">Sign in</button>						
@@ -2709,18 +2822,52 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="menu" data-theme="b" href="#menuPrincFollow"></a-->
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
-		<div style="text-align:center;"><img src="resources/image/reifax_Followup.jpg" width="120" height="40"></div>
+		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 
 	</div>
 	<!--FIN HEADER--><!-- /header -->
         <div class="container">
 				<div class="account-wall">
-					<img class="profile-img" src="http://reifax.com/FollowupReifax/resources/image/reifax_FOLLOW_UP_logo-152.png" alt="">
-					<form class="form-signin">
-						<input id="forgot" type="email" class="form-control" placeholder="Email" required autofocus>
-						<button id="btnGo" class="btn btn-success" type="submit">Go</button>												
+					<div style="text-align:center;">
+						<img  style="width:250px;" style="color: #fff;background-color: #337ab7;border-color: #337ab7;" src="http://reifax.com/FollowupReifax/resources/image/logo_login.jpg" alt="">
+					</div>	
+					<form class="form-signin" action="" method="post">
+						<input id="txtEmail" name="txtEmail" type="email" class="form-control" placeholder="Email address" required autofocus>
+						<input id="option" type="hidden" name="version" value="tablet">
+						<button style="background-color:#337ab7;color:#fff;text-shadow:none;" id="go" class="btn btn-lg btn-primary btn-block">Go</button>	
+						
+						<div id="trquestion" style="display:none;">
+							<label style="font-weight: bold;" for="inputEmail" id="questionuser">For your enhanced security and privacy</label>
+						</div>
+						
+						<div id="transwer" style="display:none;">
+							<input type="text" id="txtEmail" name="answeruser" class="form-control fieldRequired" placeholder="Your answer">
+						</div>
+						
+						<div id="trsupport" style="display:none;">
+							<label style="font-weight: bold;" for="inputEmail">For your enhanced security and privacy, we have created a secret security question. Please call our customer service for help. Thank you</label>
+						</div>
+						
+						<div id="trPassword" style="display:none;">
+							<label style="font-weight: bold;" for="inputEmail">New Password</label>
+							<input type="password" id="password" name="txtPassword" class="form-control fieldRequired" placeholder="New Password" autofocus>
+							<span id="passwordNote" class="noteRegister">Must be at least 8 characters and contain a letter and a number</span>
+							<span id="passwordNoteError" class="errorRegister"></span>
+						
+							<label style="font-weight: bold;" for="inputEmail">Re-type Password</label>
+							<input type="password" id="re-password" name="txtPassword2" class="form-control fieldRequired" placeholder="Re-type Password" autofocus>
+							<span id="Re-passwordNoteError" class="errorRegister"></span>
+							
+							<button style="background-color:#337ab7;color:#fff;text-shadow:none;" id="next" class="btn btn-lg btn-primary btn-block">Next</button>
+						</div>
 					</form>
-				</div>				
+				</div>	
+					
+			<div class="MsglockScreen bold">
+				<!--img src="img/ac.gif"> 
+				Processing...-->
+			</div>
+			
 		</div><!-- /content -->
  </div><!-- /page --> 
  
@@ -7759,28 +7906,27 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 	
 	<!--CONTENT-->
 	<div data-role="content">
-		
-		<div  style="margin-top: 5px;" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-		  <div style="border-color:#8ab420;" class="panel panel-default">
-			<div class="panel-heading" role="tab" id="headingOne">
-			  <h4 class="panel-title">
-				<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-				  Documents
+		<div  style="margin-top: 5px;" class="accordion panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
+			<div class="accordion-heading panel-heading" role="tab" id="headingOne">
+			  
+				<!--a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"--> 
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+				  <h4 class="panel-title"> Documents</h4>
 				</a>
-			  </h4>
+			  
 			</div>
-			<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+			<div id="collapseOne" class="accordion-body panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 			  <div class="panel-body">
-				<div style="margin-left:-20px;margin-top:-15px;" class="row formC" id="formContr">
+				<div style="margin-left:-20px;margin-top:-20px;" class="row formC" id="formContr">
 					<form class="form-inline">
-					
 						<div class="row">
 							<div style="margin-top:15px;" class="col-xs-4 col-sm-10">
-								<input type='checkbox' checked id='docum' value='Document' />
-								<label style="margin-left: 40px;padding-top: 5px;">Document:</label>
+								<input type='checkbox' checked id='docum' value='Document'/>
+								<label style="margin-left: 40px;padding-top:10px;">Document:</label>
 							</div>	
 							<div style="margin-top:5px;padding-left:0px;padding-right:0px;" id="docContract" class="col-xs-7 col-sm-10">
-								 <select onchange="contra();" id="documentContract" class="form-control"></select>				
+								<select onchange="contra();" id="documentContract" ></select>				
 							</div>			
 						</div>	
 						
@@ -7805,20 +7951,20 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							</div>
 						</div>
 						
-						<div style="padding-left:25px;" class="row">
+						<!--div style="padding-left:25px;" class="row">
 							<div class="checkbox">
 								<input style="margin-left:-30px;margin-top:-1px;" checked type="checkbox" value=""/>
 								<label style="margin-left:10px;padding-top: 5px;">Send Document by Email:</label>
-								<!--input type="checkbox" value=""/>
-								<label style="margin-left: 40px;padding-top: 5px;">Send Document by Fax:</label-->
+								<input type="checkbox" value=""/>
+								<label style="margin-left: 40px;padding-top: 5px;">Send Document by Fax:</label>
 							</div>	
-						</div>
+						</div-->
 						<div class="row">
-							<div style="padding-left: 25px;padding-top:10px;margin-top:15px;" class="col-xs-4 col-sm-2">
+							<div style="padding-left:25px;padding-top:10px;margin-top:15px;" class="col-xs-4 col-sm-2">
 								Template
 							</div>
-							<div style="padding-left:0px;margin-left:-25px;" id="tempContract" class="col-xs-8 col-sm-10">
-								 <select id="templateContract" class="form-control"></select>				
+							<div style="padding-left:0px;margin-left:-25px;margin-top:10px;" id="tempContract" class="col-xs-8 col-sm-10">
+								 <select id="templateContract" ></select>				
 							</div>
 						</div>
 						
@@ -7828,18 +7974,18 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 			  </div>
 			</div>
 		  </div>
-		  <div style="border-color:#8ab420;" class="panel panel-default">
-			<div class="panel-heading" role="tab" id="headingTwo">
-			  <h4 class="panel-title">
+		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
+			<div class="accordion-heading panel-heading" role="tab" id="headingTwo">
+			  
 				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				  Buyer Info
+				 <h4 class="panel-title"> Buyer Info</h4>
 				</a>
-			  </h4>
+			  
 			</div>
 			<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
 			  <div class="panel-body">
 				
-				<div style="margin-left:1px;padding-left: 10px;padding-top: 20px;" class="row formC" id="formforward">	
+				<div style="margin-left:1px;padding-left:10px;" class="row formC" id="formforward">	
 					<div class="row">				  
 			
 						<div style="margin-bottom: 10px;" class="row">
@@ -7884,18 +8030,18 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 			  </div>
 			</div>
 		  </div>
-		  <div style="border-color:#8ab420;" class="panel panel-default">
-			<div class="panel-heading" role="tab" id="headingThree">
-			  <h4 class="panel-title">
+		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
+			<div class="accordion-heading panel-heading" role="tab" id="headingThree">
+			  
 				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-				  Seller Info
+				  <h4 class="panel-title">Seller Info</h4>
 				</a>
-			  </h4>
+			  
 			</div>
 			<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
 			  <div class="panel-body">
 				
-				<div style="margin-left:1px;padding-left: 10px;padding-top: 20px;" class="row formC" id="formforward">	
+				<div style="margin-left:1px;padding-left: 10px;" class="row formC" id="formforward">	
 					<div class="row">				  
 			
 						<div style="margin-bottom: 10px;" class="row">
@@ -7941,25 +8087,25 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 			</div>
 		  </div>
 		  
-		  <div style="border-color:#8ab420;" class="panel panel-default">
-			<div class="panel-heading" role="tab" id="headingFour">
-			  <h4 class="panel-title">
+		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
+			<div class="accordion-heading panel-heading" role="tab" id="headingFour">
+			  
 				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-				  Additional Info
+				  <h4 class="panel-title">Additional Info</h4>
 				</a>
-			  </h4>
+			  
 			</div>
 			<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
 			  <div class="panel-body">
 				
-				<div style="margin-left:1px;padding-left: 10px;padding-top: 20px;" class="row formC" id="formforward">	
+				<div style="margin-left:1px;padding-left:10px;" class="row formC" id="formforward">	
 					<div class="row">				  
 			
 						<div style="margin-bottom: 10px;" class="row">
 							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
 								Initial Deposit
 							</div>
-							<div style="padding-left:0px;margin-left:-25px;" class="col-xs-7 col-sm-10">
+							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" class="col-xs-7 col-sm-10">
 								<input type="text" id="initialDep" class="span4"/>
 							</div>
 						</div>
@@ -7967,7 +8113,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
 								Additional Deposit
 							</div>
-							<div style="padding-left:0px;margin-left:-25px;" id="addDep" class="col-xs-7 col-sm-10">
+							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="addDep" class="col-xs-7 col-sm-10">
 								<input  id="additDep" class="span4"/>								
 							</div>
 						</div>
@@ -7975,7 +8121,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
 								Inspection Day
 							</div>
-							<div style="padding-left:0px;margin-left:-25px;" id="inspDay" class="col-xs-7 col-sm-10">
+							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="inspDay" class="col-xs-7 col-sm-10">
 								<input  id="inspecDay" class="span4"/>								
 							</div>
 						</div>
@@ -7983,16 +8129,16 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
 								Accetance Date
 							</div>
-							<div style="padding-left:0px;margin-left:-25px;" id="acceDate" class="col-xs-7 col-sm-10">
-								<input  id="accepDate" class="span4"/>								
+							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="acceDate" class="col-xs-7 col-sm-10">
+								<input  id="accepDate" class="i-txt"/>								
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
 							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
-								closing Date
+								Closing Date
 							</div>
-							<div style="padding-left:0px;margin-left:-25px;" id="closeDate" class="col-xs-7 col-sm-10">
-								<input  id="closingDate" class="span4"/>								
+							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="closeDate" class="col-xs-7 col-sm-10">
+								<input  id="closingDate" class="i-txt"/>								
 							</div>
 						</div>
 					</div>
