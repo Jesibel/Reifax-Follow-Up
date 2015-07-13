@@ -2027,16 +2027,21 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 		
 });
 
-$("#loginHtml").on("pageinit", function(e) {
+//$("#loginHtml").on("pageinit", function(e) {
+$( document ).on( "pageinit", "#loginHtml", function( event ) {
 	checkPreAuth();
 });
 
 function checkPreAuth() {
 	var form = $("#loginForm");
-	if(window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
+	
+	var user = JSON.parse(localStorage.getItem('username'));
+	var pass = JSON.parse(localStorage.getItem('password'));
+	
+	if(user.username != undefined && pass.password != undefined) {
 		alert('existe user');
-		$("#username", form).val(window.localStorage["username"]);
-		$("#password", form).val(window.localStorage["password"]);
+		//$("#username", form).val(window.localStorage["username"]);
+		//$("#password", form).val(window.localStorage["password"]);
 		//handleLogin();
 		$.mobile.changePage("#followingHtml","slide");
 	}else{
@@ -8233,3 +8238,4 @@ var funciones={
 </body>
   
 </html>
+
