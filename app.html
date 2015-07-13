@@ -5340,7 +5340,7 @@ var funciones={
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
-		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:center;"><img src="resources/image/email-followup.png" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
 		<a id="addEInbox" style="margin-right: 10px;height: 35px;width:35px;margin-bottom:5px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddComposeEIHtml"></a>
 		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailInbox"></a>
@@ -7920,7 +7920,7 @@ var funciones={
 	<div data-role="content">
 		<div  style="margin-top: 5px;" class="accordion panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
-			<div class="accordion-heading panel-heading" role="tab" id="headingOne">
+			<div style="padding:5px 10px;" class="accordion-heading panel-heading" role="tab" id="headingOne">
 			  
 				<!--a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"--> 
 				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
@@ -7957,11 +7957,33 @@ var funciones={
 							</div>
 						</div>
 						
-						<div class="row">
+						
+						
+					</form>
+			
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
+			<div style="padding:5px 10px;" class="accordion-heading panel-heading" role="tab" id="headingTwo">
+			  
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseD" aria-expanded="false" aria-controls="collapseTwo">
+				 <h4 class="panel-title">Delivery</h4>
+				</a>
+			  
+			</div>
+			<div id="collapseD" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingD">
+			  <div class="panel-body">
+				
+				<div style="margin-left:1px;padding-left:10px;" class="row formC" id="formforward">	
+					<div class="row">				  
+			
+						<!--div class="row">
 							<div style="padding-left: 25px;padding-top: 5px;font-size: 16px;font-weight: bold;" class="col-xs-12 col-sm-2">
 								Email Delivery
 							</div>
-						</div>
+						</div-->
 						
 						<!--div style="padding-left:25px;" class="row">
 							<div class="checkbox">
@@ -7973,21 +7995,20 @@ var funciones={
 						</div-->
 						<div class="row">
 							<div style="padding-left:25px;padding-top:10px;margin-top:15px;" class="col-xs-4 col-sm-2">
-								Template
+								Template Email
 							</div>
 							<div style="padding-left:0px;margin-left:-25px;margin-top:10px;" id="tempContract" class="col-xs-8 col-sm-10">
 								 <select id="templateContract" ></select>				
 							</div>
 						</div>
-						
-					</form>
-			
+					</div>
 				</div>
+				
 			  </div>
 			</div>
 		  </div>
 		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
-			<div class="accordion-heading panel-heading" role="tab" id="headingTwo">
+			<div style="padding:5px 10px;" class="accordion-heading panel-heading" role="tab" id="headingTwo">
 			  
 				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 				 <h4 class="panel-title"> Buyer Info</h4>
@@ -8043,7 +8064,7 @@ var funciones={
 			</div>
 		  </div>
 		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
-			<div class="accordion-heading panel-heading" role="tab" id="headingThree">
+			<div style="padding:5px 10px;" class="accordion-heading panel-heading" role="tab" id="headingThree">
 			  
 				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
 				  <h4 class="panel-title">Seller Info</h4>
@@ -8100,7 +8121,7 @@ var funciones={
 		  </div>
 		  
 		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
-			<div class="accordion-heading panel-heading" role="tab" id="headingFour">
+			<div style="padding:5px 10px;" class="accordion-heading panel-heading" role="tab" id="headingFour">
 			  
 				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
 				  <h4 class="panel-title">Additional Info</h4>
