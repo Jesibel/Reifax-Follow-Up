@@ -1323,7 +1323,7 @@ $(function(){
 		
 		
 		//MAKE CALL
-		$('#makeCall').on('click', function () {
+		$('#makeCall,#makeCallDP').on('click', function () {
 			//alert('get');
 			getAgentMakeCall(checkid);
 		});
@@ -1557,6 +1557,13 @@ $(function(){
 		$("#btnLogin").on('click', function () {
 			//alert('login');
 			processLogin();
+			
+		});
+		
+		//BOTON USED CONTACT
+		$("#btnUsesThis").on('click', function () {
+			//alert('login');
+			usedContact();
 			
 		});
 		
@@ -2040,13 +2047,13 @@ function checkPreAuth() {
 	
 	//if(user.username != undefined && pass.password != undefined) {
 	if(window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
-		//alert('existe user');
+		alert('existe user');
 		//$("#username", form).val(window.localStorage["username"]);
 		//$("#password", form).val(window.localStorage["password"]);
 		//handleLogin();
 		$.mobile.changePage("#followingHtml","slide");
 	}else{
-		//alert('no existe user');
+		alert('no existe user');
 		$.mobile.changePage("#loginHtml","slide");
 	
 	}
@@ -2652,7 +2659,7 @@ var funciones={
 			font-size: 13px;
 		}
 		.active{
-			border-bottom: 3px solid #a4a4a4;
+			border-bottom: 4px solid #8ab420;
 		}
 
 		body{
@@ -4769,7 +4776,7 @@ var funciones={
 								Contact
 							</div>
 							<div id="searchCont" class="col-xs-7 col-sm-10">
-								<select id="searchContact" class="span4"></select>
+								<select onchange="selectContact();" id="searchContact" class="span4"></select>
 							</div>
 						</div>
 						
@@ -7995,11 +8002,11 @@ var funciones={
 							</div>	
 						</div-->
 						<div class="row">
-							<div style="padding-left:25px;padding-top:10px;margin-top:15px;" class="col-xs-4 col-sm-2">
+							<div style="padding-top:10px;margin-top:15px;" class="col-xs-5 col-sm-2">
 								Template Email
 							</div>
-							<div style="padding-left:0px;margin-left:-25px;margin-top:10px;" id="tempContract" class="col-xs-8 col-sm-10">
-								 <select id="templateContract" ></select>				
+							<div style="padding-left:0px;margin-left:-25px;margin-top:10px;" id="tempContract" class="col-xs-7 col-sm-10">
+								 <select id="templateContract" class="span4" ></select>				
 							</div>
 						</div>
 					</div>
