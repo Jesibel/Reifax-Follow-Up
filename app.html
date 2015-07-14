@@ -1567,6 +1567,13 @@ $(function(){
 			
 		});
 		
+		//BOTON USED CONTACT
+		$("#btnUsesThisS").on('click', function () {
+			//alert('login');
+			usedContactS();
+			
+		});
+		
 		//CHEQUEA ALL Document
 		$('#all').click(function() {
 			alert('alll');
@@ -4840,7 +4847,89 @@ var funciones={
 		</div>
 	</div>
 </div>
-<!--FIN ASSIG PROPERTY-->
+<!--FIN SEARCH CONTACT BUYER-->
+
+<!--SEARCH CONTACT CONTRACT-->
+<div class="modal fade bs-example-modal-sm" id="searchContactoS" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="scont">Search Contact</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+					<div class="row"> 
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:-5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Contact
+							</div>
+							<div id="searchCont" class="col-xs-7 col-sm-10">
+								<select onchange="selectContactS();" id="searchContactS" class="span4"></select>
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:-5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Type
+							</div>
+							<div id="searchtypeS" class="col-xs-7 col-sm-10">
+								<input id ="searchtyS" type="text" class="span4" />
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:-5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Email
+							</div>
+							<div id="searchemail1S" class="col-xs-7 col-sm-10">
+								<input style="width:35%;float:left;margin-right:5px;" id="searchemai1S" class="span4"/>
+								<input id ="searchema1S" style="width:60%;" type="text" class="span4" />	
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:-5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Email 2
+							</div>
+							<div id="searchemail2S" class="col-xs-7 col-sm-10">
+								<input style="width:35%;float:left;margin-right:5px;" id="searchemai2S" class="span4"/>
+								<input id ="searchema2S" style="width:60%;" type="text" class="span4" />	
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address
+							</div>
+							<div id="searchaddress1S" class="col-xs-7 col-sm-10">
+								<input style="width:35%;float:left;margin-right:5px;" id="searchaddre1S" class="span4"/>
+								<input id ="searchaddr1S" style="width:60%;" type="text" class="span4" />	
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address 2
+							</div>
+							<div id="searchaddress2S" class="col-xs-7 col-sm-10">
+								<input style="width:35%;float:left;margin-right:5px;" id="searchaddre2S" class="span4"/>
+								<input id ="searchaddr2S" style="width:60%;" type="text" class="span4" />
+							</div>
+						</div>
+						
+						
+						<div class="modal-footer">
+							<!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
+							<button id="btnUsesThisS" type="button" class="btn btn-success" data-dismiss="modal">Uses This</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--FIN SEARCH CONTACT-->
 
 
 <div data-role="page" id="detailProperties" data-add-back-btn="true">         
@@ -8094,7 +8183,7 @@ var funciones={
 							</div>
 							<div  style="padding-left:0px;" class="col-xs-2 col-sm-10">
 								<!--img class="btn btn-lg" data-toggle="modal" src="http://reifax.com/FollowupReifax/img/contacts-48.png" width="40px" height="40px"/-->							
-								<a id="imgseller" style="height:40px;width:40px;background-size:30px;background-image: url('http://reifax.com/FollowupReifax/img/contacts-48.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu btn-lg" data-toggle="modal"data-excecute="main-Menu" data-theme="b" href="#searchContacto" ></a>
+								<a id="imgseller" style="height:40px;width:40px;background-size:30px;background-image: url('http://reifax.com/FollowupReifax/img/contacts-48.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu btn-lg" data-toggle="modal"data-excecute="main-Menu" data-theme="b" href="#searchContactoS" ></a>
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
@@ -8274,3 +8363,4 @@ var funciones={
 </body>
   
 </html>
+
