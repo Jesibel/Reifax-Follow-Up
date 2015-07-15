@@ -741,6 +741,22 @@
 </script>
 
 <script type="text/javascript">
+
+		function _onDeviceReady (){	
+		
+			MobileAccessibility.usePreferredTextZoom(false);
+			
+			//alert(WURFL.form_factor);
+			if (WURFL.form_factor == "Tablet") {
+				//alert('es una tablet');
+				window.plugins.orientationchanger.lockOrientation('landscape');
+				 //setTimeout(function () {navigator.splashscreen.show()},1000);
+			}else{
+				window.plugins.orientationchanger.lockOrientation('portrait');
+			}
+		
+		}
+		
 		var checkid = new Array();
 		var i;
 		var pageName = location.pathname.substring(1);
@@ -8354,13 +8370,23 @@ var funciones={
 	
 </script>
 
-<script type="text/javascript">
+<!--script type="text/javascript">
 	document.addEventListener("deviceready", function(){
 		//mycode
 		 MobileAccessibility.usePreferredTextZoom(false);
 	});
+</script-->
+<script type="text/javascript">
+    document.addEventListener("deviceReady",_onDeviceReady, false);
+	
+	document.addEventListener("backbutton", function(){
+			
+		if(activePage=='followingHtml'){
+			navigator.app.exitApp();//se sale de la aplicacion
+		}
+				
+	}, false);
 </script>
 </body>
   
 </html>
-
