@@ -1,51 +1,58 @@
 .filter {
-	 background-image: url('http://www.reifax.com/img/toolbar/filter.png');
+	 background-image: url('http://www.reifax.com/img/menu/contact.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
-	 
+	 margin-top: 5px !important;
 	 }
 	 
 .filter:hover{
-	 background-image: url('http://www.reifax.com/img/toolbar/filter.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/filter.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 	 
 .filterRemove {
-	 background-image: url('http://www.reifax.com/img/toolbar/filter-delete.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/filter-delete.png');
 	 background-repeat:no-repeat;
-	 background-size: 25px 25px;
-	 padding: 0.7em 1em;
+	 background-size: 30px 30px;
+	/* padding: 0.7em 1em;*/
+	margin-top: 5px !important;
 	 }
 	 
 .filterRemove:hover{
-	 background-image: url('http://www.reifax.com/img/toolbar/filter-delete.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/filter-delete.png');
 	 background-repeat:no-repeat;
-	 background-size: 25px 25px;
+	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 	 
 .deleteFollow {
-	 background-image: url('http://www.reifax.com/img/myemail/deleteEmail.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/basura.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 	 
 .deleteFollow:hover{
-	 background-image: url('http://www.reifax.com/img/myemail/deleteEmail.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/basura.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 	 
 .removeFilter {
-	 background-image: url('http://www.reifax.com/img/toolbar/filter-delete.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/filter-delete.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 	 
 .removeFilter:hover{
-	 background-image: url('http://www.reifax.com/img/toolbar/filter-delete.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/filter-delete.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 	 
 .getContacts {
@@ -58,65 +65,75 @@
 	 background-image: url('http://www.reifax.com/img/ximaicon/user_green.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }	 
 	
 	
 .sendContract {
-	 background-image: url('http://www.reifax.com/img/toolbar/guarantee.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/send-contract.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 	 
 .sendContract:hover{
-	 background-image: url('http://www.reifax.com/img/toolbar/guarantee.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/send-contract.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }	 
 
 .sendEmail {
-	 background-image: url('http://www.reifax.com/img/toolbar/email.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/send-mail.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 	 
 .sendEmail:hover{
-	 background-image: url('http://www.reifax.com/img/toolbar/email.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/send-mail.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 	 
 .sendSMS {
-	 background-image: url('http://www.reifax.com/img/toolbar/phone.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/send-sms.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 	 
 .sendSMS:hover{
-	 background-image: url('http://www.reifax.com/img/toolbar/phone.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/send-sms.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }	 
 
 .sendFax {
-	 background-image: url('http://www.reifax.com/img/toolbar/fax.png');
+	 background-image: url('http://reifax.com/FollowupReifax/img/menu/send-fax.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 	 
 .sendFax:hover{
-	 background-image: url('http://www.reifax.com/img/toolbar/fax.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/send-fax.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 
 .makeCall {
-	 background-image: url('http://www.reifax.com/img/toolbar/gvoicemult.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/call.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 margin-top: 5px !important;
 	 }
 	 
 .makeCall:hover{
-	 background-image: url('http://www.reifax.com/img/toolbar/gvoicemult.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/call.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 }
@@ -187,48 +204,59 @@
 	 background-size: 30px 30px;
 	 }
 	 
-.legal {
-	 background-image: url('../../resources/image/iconos/legal.png');
+.reply {
+	 background-image: url('http://www.reifax.com/img/myemail/responder.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 }
 	 
-.legal:hover{
-	 background-image: url('../../resources/image/iconos/g-legal.png');
+.reply:hover{
+	 background-image: url('http://www.reifax.com/img/myemail/responder.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 }
-.facebook {
-	 background-image: url('../../resources/image/iconos/facebook.png');
-	 background-repeat:no-repeat;
-	 background-size: 30px 30px;
-	 }
-	 
-.facebook:hover{
-	 background-image: url('../../resources/image/iconos/g-facebook.png');
-	 background-repeat:no-repeat;
-	 background-size: 30px 30px;
-	 }
-.twitter {
-	 background-image: url('../../resources/image/iconos/twitter.png');
+.forward {
+	 background-image: url('http://www.reifax.com/img/myemail/reenviar.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 }
 	 
-.twitter:hover{
-	 background-image: url('../../resources/image/iconos/g-twitter.png');
+.forward:hover{
+	 background-image: url('http://www.reifax.com/img/myemail/reenviar.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 }
-.linkedin {
-	 background-image: url('../../resources/image/iconos/linkedin.png');
+.newschedule {
+	 background-image: url('http://www.reifax.com/img/toolbar/scheduled_tasks.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 }
 	 
-.linkedin:hover{
-	 background-image: url('../../resources/image/iconos/g-linkedin.png');
+.newschedule:hover{
+	 background-image: url('http://www.reifax.com/img/toolbar/scheduled_tasks.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
+	 }
+.upload-icon {
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/upload-48.png');
+	 background-repeat:no-repeat;
+	 background-size: 10px 10px;
+	 }
+	 
+.upload-icon:hover{
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/upload-48.png');
+	 background-repeat:no-repeat;
+	 background-size: 10px 10px;
+	 }
+.file-icon {
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/add-file-48.png');
+	 background-repeat:no-repeat;
+	 background-size: 10px 10px;
+	 }
+	 
+.file-icon:hover{
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/add.file-48.png');
+	 background-repeat:no-repeat;
+	 background-size: 10px 10px;
 	 }
 	 
