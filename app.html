@@ -871,14 +871,23 @@ $(function(){
             //alert('onclick');
 			var id= $(this).attr('parcelid');
 			var type= $(this).attr('type');
+			var offer= $(this).attr('offer');
+			var owner= $(this).attr('owner');
+			var county= $(this).attr('county');
 			
 			//alert(id);
 			// Creamos un objeto
 			var object = { 'parcelid' : id };
 			var object3 = { 'type' : type };
+			var object4 = { 'offer' : offer };
+			var object5 = { 'owner' : owner };
+			var object6 = { 'county' : county };
 			// Lo guardamos en localStorage pasandolo a cadena con JSON
 			localStorage.setItem('key', JSON.stringify(object));
 			localStorage.setItem('key3', JSON.stringify(object3));
+			localStorage.setItem('offer', JSON.stringify(object4));
+			localStorage.setItem('owner', JSON.stringify(object5));
+			localStorage.setItem('county', JSON.stringify(object6));
 			$('#detallePropiedades').empty();
 			$.mobile.changePage("#detailProperties","slide");
 			//window.location.href = "index.html#detailProperties";
@@ -1336,8 +1345,6 @@ $(function(){
 			assignProperty();
 		});
 		
-		
-		
 		//MAKE CALL
 		$('#makeCall,#makeCallDP').on('click', function () {
 			//alert('get');
@@ -1590,6 +1597,20 @@ $(function(){
 			
 		});
 		
+		//BOTON INVESTOR OFFER
+		$("#getValue").on('click', function () {
+			//alert('login');
+			getInvestor();
+			
+		});
+		
+		//BOTON INVESTOR OFFER
+		$("#getValue2").on('click', function () {
+			//alert('login');
+			getInvestor2();
+			
+		});
+		
 		//CHEQUEA ALL Document
 		$('#all').click(function() {
 			alert('alll');
@@ -1635,8 +1656,9 @@ $(function(){
 			$('#detallehistorial ul').empty();			
 		});
 		
-		$("#backAdd").on('click', function () {			
-			//$('#detalleContacto').empty();			
+		$("#backAdd,#backContract,#backSendE,#backSendS,#backSendF").on('click', function () {			
+			//$('#detalleContacto').empty();
+			document.getElementById('header_two').style.display = "none";			
 		});
 		
 		
@@ -1917,6 +1939,7 @@ $(document).on("pagebeforeshow","#formContract2",function(){
 	
 	var id = JSON.parse(localStorage.getItem('idtypec'));
 	getDocAdd(id.idtypec);
+	getCombo();
 	
 	$('#closingDate').mobipick({
 		dateFormat: "MM-dd-yyyy"
@@ -2963,14 +2986,15 @@ var funciones={
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
 			<a class="closeMenu" style="display:none;"   href="#" data-rel="close">Close</a>
-			<li class="margen"><a class="filter"        id="filtro2"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
-			<li class="margen"><a class="filterRemove"  id="filtro_remove2" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
-			<li class="margen"><a class="deleteFollow"  id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
-			<li class="margen"><a class="sendContract"  id="sendContract"   href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
-			<li class="margen"><a class="sendEmail"     id="sendEmail"      href="#formEmail" role="button" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
-			<li class="margen"><a class="sendSMS"       id="sendSMS"        href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
-			<li class="margen"><a class="sendFax"       id="sendFax"        href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
-			<li class="margen"><a class="makeCall"      id="makeCall"       href="#formCall" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>
+			<li class="margen"><a class="filter"           id="filtro2"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
+			<li class="margen"><a class="filterRemove"     id="filtro_remove2" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
+			<li class="margen"><a class="deleteFollow"     id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
+			<li class="margen"><a class="investor-factor"  id="investorFa"     href="#investor" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Investor Factor</a></li>			 
+			<li class="margen"><a class="sendContract"     id="sendContract"   href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
+			<li class="margen"><a class="sendEmail"        id="sendEmail"      href="#formEmail" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
+			<li class="margen"><a class="sendSMS"          id="sendSMS"        href="#formSMS" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
+			<li class="margen"><a class="sendFax"          id="sendFax"        href="#formFax" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
+			<li class="margen"><a class="makeCall"         id="makeCall"       href="#formCall" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>
 						 
 			 </ul>
 		</div>	
@@ -3122,7 +3146,7 @@ var funciones={
 <!--FIN FILTER-->
 
 <!-- FORMULARIO SEND EMAIL-->
-<div id="formEmail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!--div id="formEmail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
        <div class="modal-header">
@@ -3154,7 +3178,7 @@ var funciones={
 					</div>
 				</div>
 			</div-->
-			<div class="row">
+			<!--div class="row">
 				<div style="margin-left:25px;text-align:center;" class=" col-xs-10 col-sm-10">
 					<div>						
 						<label for="fileToUploadEmail">
@@ -3163,7 +3187,7 @@ var funciones={
 						<input style="display:none;" type="File" name="fileToUploadEmail" id="fileToUploadEmail">
 						<input style="display:none;" type="submit" value="Upload Image" name="submit">
 						<!--input type="file" class="upload" id="uploadBtnFax" /-->
-						<label>
+						<!--label>
 							<img style="margin-top:-65px;margin-left:235px;" onclick="addInput()" class="another" src="http://reifax.com/FollowupReifax/img/add-file-48.png" width="20px" height="20px" />
 						</label>
 						
@@ -3184,7 +3208,7 @@ var funciones={
 			<br-->
 			
 			
-			<div  id="templa" style="margin-bottom: 10px;" class="row">
+			<!--div  id="templa" style="margin-bottom: 10px;" class="row">
 				<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 					Template
 				</div>
@@ -3204,7 +3228,7 @@ var funciones={
 				<!--div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 					Body
 				</div-->
-				<div style="width:100%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
+				<!--div style="width:100%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
 					<textarea style="height:112px;" id="bodyEmail" class="form-control" placeholder="Body" data-placement="top" data-trigger="manual"></textarea>
 				</div>
 			</div>
@@ -3214,20 +3238,20 @@ var funciones={
 			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
 			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
 			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
-        </form>
+        <!--/form>
       </div>
       <div class="modal-footer">       
 		<button id="btnSendEMAIL" type="submit" class="btn btn-success pull-right">Send</button>
 		 <!--button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button-->
-      </div>
+      <!--/div>
     </div>
   </div>
-</div>
+</div-->
 
 <!-- FIN FORMULARIO SEND EMAIL-->
 
 <!-- FORMULARIO SEND SMS-->
-<div id="formSMS" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!--div id="formSMS" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -3253,7 +3277,7 @@ var funciones={
 				<!--div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 					Text
 				</div-->
-				<div style="width:100%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
+				<!--div style="width:100%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
 					<textarea style="height:112px;" id="bodySms" class="form-control" placeholder="Text" data-placement="top" data-trigger="manual"></textarea>
 				</div>
 			</div>
@@ -3262,21 +3286,21 @@ var funciones={
 			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
 			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
 			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
-        </form>
+        <!--/form>
 		
       </div>
       <div class="modal-footer">
         <!--button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button-->
-		<button  id="btnSendSMS" type="submit" class="btn btn-success pull-right">Send</button>
+		<!--button  id="btnSendSMS" type="submit" class="btn btn-success pull-right">Send</button>
       </div>
     </div>
   </div>
-</div>
+</div-->
 
 <!-- FIN FORMULARIO SEND SMS-->
 
 <!-- FORMULARIO SEND FAX-->
-<div id="formFax" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!--div id="formFax" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
        <div class="modal-header">
@@ -3310,7 +3334,7 @@ var funciones={
 						<input style="display:none;" type="File" name="fileToUpload" id="fileToUpload">
 						<input style="display:none;" type="submit" value="Upload Image" name="submit">
 						<!--input type="file" class="upload" id="uploadBtnFax" /-->
-						<label>
+						<!--label>
 							<img style="margin-top:-65px;margin-left:235px;" onclick="addInputFax()" class="another" src="http://reifax.com/FollowupReifax/img/add-file-48.png" width="20px" height="20px" />
 						</label>
 						
@@ -3328,7 +3352,7 @@ var funciones={
 				</div>
 			</div-->
 			
-			<div id="templaFAX" style="margin-bottom: 10px;" class="row">
+			<!--div id="templaFAX" style="margin-bottom: 10px;" class="row">
 				<div style="padding-left: 25px;padding-top: 5px;margin-left:-30px;" class="col-xs-4 col-sm-2">
 					Template
 				</div>
@@ -3340,7 +3364,7 @@ var funciones={
 				<!--div style="padding-left: 25px;padding-top: 5px;margin-left:-30px;" class="col-xs-4 col-sm-2">
 					Text
 				</div-->
-				<div style="width:100%;padding-right:0px;padding-left: 0px;margin-left: -5px;" class="col-xs-12 col-sm-10">
+				<!--div style="width:100%;padding-right:0px;padding-left: 0px;margin-left: -5px;" class="col-xs-12 col-sm-10">
 					<textarea style="height:112px;" id="bodyFax" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
 				</div>
 			</div>
@@ -3349,20 +3373,20 @@ var funciones={
 			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
 			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
 			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
-        </form>
+        <!--/form>
       </div>
       <div class="modal-footer">
         <!--button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button-->
-		<button id="btnSendFAX" type="submit" class="btn btn-success pull-right">Send</button>
+		<!--button id="btnSendFAX" type="submit" class="btn btn-success pull-right">Send</button>
       </div>
     </div>
   </div>
-</div>
+</div-->
 
 <!-- FIN FORMULARIO SEND FAX-->
 
 <!--FORMULARIO MAKE CALL-->
-<div class="modal fade bs-example-modal-sm" id="formCall" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+<!--div class="modal fade bs-example-modal-sm" id="formCall" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -3550,7 +3574,7 @@ var funciones={
 		</div>
   </div>
 </div>
-</div>
+</div-->
 <!--FIN FORMULARIO MAKE CALL-->
 
 <!--FILTER CONTACTS-->
@@ -4880,7 +4904,7 @@ var funciones={
 							<div style="padding-left:-5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
 								Contact
 							</div>
-							<div id="searchCont" class="col-xs-7 col-sm-10">
+							<div id="searchContS" class="col-xs-7 col-sm-10">
 								<select onchange="selectContactS();" id="searchContactS" class="span4"></select>
 							</div>
 						</div>
@@ -4947,6 +4971,71 @@ var funciones={
 </div>
 <!--FIN SEARCH CONTACT-->
 
+<!--SEARCH INVESTOR OFFER-->
+<div class="modal fade bs-example-modal-sm" id="investor" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="ioffer2">Investor Offer</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+					
+					<div class="row"> 
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:-5px;padding-top:5px;text-align:center;" class="col-xs-12 col-sm-2">
+								Warning: Investor Offer should not be run on multifamily properties
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:-5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Offer Factor
+							</div>
+							<div id="factoroff2" class="col-xs-7 col-sm-10">
+								<input id ="factoroffer2" type="text" class="span4" value="75" />
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:-5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Round to
+							</div>
+							<div id="round2" class="col-xs-7 col-sm-10">
+								<select id="roundto2" class="span4">
+									<option value="10">10`s</option>
+									<option value="100">100`s</option>
+									<option value="500">500`s</option>
+									<option value="1000">1000`s</option>
+								</select>								
+							</div>
+						</div>
+						
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:-5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Type
+							</div>
+							<div id="typefac2" class="col-xs-7 col-sm-10">
+								<select id="typefactor2" class="span4">
+									<option value="1">Low</option>
+									<option value="2">Median</option>
+								</select>	
+							</div>
+						</div>						
+						
+						<div class="modal-footer">
+							<!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
+							<button id="getValue2" type="button" class="btn btn-success" data-dismiss="modal">Get Value</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--FIN INVESTOR FACTOR-->
+
 
 <div data-role="page" id="detailProperties" data-add-back-btn="true">         
            <!--HEADER-->
@@ -4999,15 +5088,16 @@ var funciones={
 	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuDetailProperty" data-display="overlay" data-position="right">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
-			<a class="closeMenu" style="display:none;"   href="#" data-rel="close">Close</a>
-			<li class="margen"><a class="filter"        id="filtro3"          href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
-			<li class="margen"><a class="filterRemove"  id="filtro_remove3"   href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
-			<li class="margen"><a class="deleteFollow"  id="deleteDP"         href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
-			<li class="margen"><a class="sendContract"  id="sendContractDP"   href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
-			<li class="margen"><a class="sendEmail"     id="sendEmailDP"      href="#formEmail" role="button" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
-			<li class="margen"><a class="sendSMS"       id="sendSMSDP"        href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
-			<li class="margen"><a class="sendFax"       id="sendFaxDP"        href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
-			<li class="margen"><a class="makeCall"      id="makeCallDP"       href="#formCall" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>
+			<a class="closeMenu" style="display:none;"     href="#" data-rel="close">Close</a>
+			<li class="margen"><a class="filter"           id="filtro3"          href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
+			<li class="margen"><a class="filterRemove"     id="filtro_remove3"   href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
+			<li class="margen"><a class="deleteFollow"     id="deleteDP"         href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
+			<li class="margen"><a class="investor-factor"  id="investorFa"       href="#investor" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Investor Factor</a></li>			 
+			<li class="margen"><a class="sendContract"     id="sendContractDP"   href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
+			<li class="margen"><a class="sendEmail"        id="sendEmailDP"      href="#formEmail" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
+			<li class="margen"><a class="sendSMS"          id="sendSMSDP"        href="#formSMS" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
+			<li class="margen"><a class="sendFax"          id="sendFaxDP"        href="#formFax" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
+			<li class="margen"><a class="makeCall"         id="makeCallDP"       href="#formCall" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>
 						 
 			 </ul>
 		</div>	
@@ -6353,7 +6443,7 @@ var funciones={
 <div data-role="page" id="pagAddComposeEIHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3pxbackground-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3pxbackground-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAddC" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-35px;"><img src="resources/image/compose-email.png" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
@@ -6462,7 +6552,7 @@ var funciones={
 <div data-role="page" id="pagAddComposeEOHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAddCEO" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-35px;"><img src="resources/image/compose-email.png" width="120" height="40"></div>
 		
@@ -6757,7 +6847,7 @@ var funciones={
 <div data-role="page" id="pagAddHistoryHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAddHist" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<a id="resetHist" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
@@ -6921,7 +7011,7 @@ var funciones={
 <div data-role="page" id="pagAddScheduleHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAddSch" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<!--a id="resetSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a-->
@@ -7042,7 +7132,7 @@ var funciones={
 <div data-role="page" id="pagAddComposeEFHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAddCEF" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/compose-email.png" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
@@ -7312,7 +7402,7 @@ var funciones={
 <div data-role="page" id="pagEditScheduleHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEditSch" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<!--a id="resetEditSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a-->
@@ -7451,7 +7541,7 @@ var funciones={
 <div data-role="page" id="pagEditPendingHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEditPen" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<a id="resetEditPending" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
@@ -7593,7 +7683,7 @@ var funciones={
 <div data-role="page" id="pagEditCompletedHtml">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEditComp" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<a id="resetEditCompleted" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
@@ -7915,27 +8005,12 @@ var funciones={
 	
 </div><!-- /page --> 
 
-<div data-role="page" id="formContract">
+<div data-role="page" id="formEmail">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
-		<div style="text-align:center;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
-		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-		<!--a id="resetEditSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
-		<a id="updateEditSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a-->
-		</div>
-	
-		<!--TABS-->
-		<div style="background: #ccc;height:40px;margin-top: 40px;" data-role="navbar">
-			<ul>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;font-size:12px;" href="#detailProperties">Document</a></li>
-				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;font-size:12px;" href="#historyFollow">Buyer Info</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;font-size:12px;" href="#scheduleFollow">Seller Info</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;font-size:12px;" href="#emailFollow">Add Info</a></li>
-			</ul>
-		</div>
-	
-	<!--FIN TABS-->
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backSendE" data-rel="back"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/send-email.png" width="120" height="40"></div>
 	
 	</div>
 	
@@ -7945,83 +8020,590 @@ var funciones={
 	<div data-role="content">
 	
 			
-			<div style="margin-left: 1px;" class="row formC" id="formContr">
+		<div style="margin-left:30px;" class="row formC" id="formContr">
 			<form style="margin-top: 30px;" class="form-inline">
-			
-				<div style="padding-left:10px;" class="form-group">
-					<input type='checkbox'  name='docum' id='docum' value='Document'/>
-					<label style="margin-left: 40px;padding-top: 5px;">Document:</label>
-								
-				</div>	
-				
-				<div style="margin-bottom: 10px;" class="row">
-					<div style="padding-left:25px;padding-top:5px;" class="col-xs-9 col-sm-2">
-						<select  id="contra">
-							<option value="1">MP HOMEOWNER 2014</option>
-							<option value="2">MP INVESTOR AS SELLER 2014</option>
-							<option value="3">MP REO 2014</option>
-							<option value="4">MP REO FANNIE MAE 2014</option>
-							<option value="5">MP SELLER DIRECT - NO AGENT 2014</option>
-							<option value="6">MP SHORT SALE 2014</option>
-						</select>
-					</div>
-					<div  class="col-xs-2 col-sm-10">
-						<img src="http://reifax.com/FollowupReifax/img/edit-2-48.png" width="40px" height="40px"/>							
-					</div>
-				</div>
-				
 				<div class="row">
-					<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-12 col-sm-2">
-						Additional Document
+					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-4 col-sm-2">
+						<label style="float:left;" for="file">Email by:</label>						
 					</div>
-				</div>
-				
-				<div style="padding-left:25px;" class="row">
-					
-					<div class="checkbox">
-						<input type="checkbox" value=""/>
-						<label style="margin-left: 40px;padding-top: 5px;">Name:</label>
-					</div>
-					<div class="checkbox">
-						<input type="checkbox" value=""/>
-						<label style="margin-left: 40px;padding-top: 5px;">MP LBPD:</label>
-					</div>
-					<div class="checkbox">
-					  <input type="checkbox" value=""/>
-					  <label style="margin-left: 40px;padding-top: 5px;">MP POF HERITAGE 2015:</label>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-12 col-sm-2">
-						Email Delivery
-					</div>
-				</div>
-				
-				<div style="padding-left:25px;" class="row">
-					<div class="checkbox">
-						<input type="checkbox" value=""/>
-						<label style="margin-left: 40px;padding-top: 5px;">Send Document by Email:</label>
-						<input type="checkbox" value=""/>
-						<label style="margin-left: 40px;padding-top: 5px;">Send Document by Fax:</label>
+					<div style="padding-left: 25px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						<input type='radio'  name='template' id='template' value='Template'> </input>
+						<div style="margin-left:35px;margin-top: 12px;">Template</div>
 					</div>	
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						
+						<input type='radio'  name='new' id='new' value='New' checked></input>	
+						<div style="margin-left:35px;margin-top: 12px;">New</div>
+					</div>					
+				</div>	
+				<br>
+				<div style="margin-top:20px;" class="row">
+					<div style="padding-left: 25px;margin-left:-30px;" class="col-xs-3 col-sm-2">
+						Attach
+					</div>
+					<div style="margin-left:-20px;" id="uuploadfileEmail" class="col-xs-6 col-sm-10">
+						<input type="text" style="width:75%;" id="uploadFileEmail" placeholder="Select a file"/>
+					</div>
+					
 				</div>
-				
-				
+			
+				<div class="row">
+					<div style="margin-left:25px;text-align:center;" class=" col-xs-10 col-sm-10">											
+							<label for="fileToUploadEmail">
+								<img style="float:left;margin-top:-32px;margin-left:200px;" src="http://reifax.com/FollowupReifax/img/upload-48.png" width="20px" height="20px"/>
+							</label>
+							<input style="display:none;" type="File" name="fileToUploadEmail" id="fileToUploadEmail">
+							<input style="display:none;" type="submit" value="Upload Image" name="submit">
+							<!--input type="file" class="upload" id="uploadBtnFax" /-->
+							<label>
+								<img style="margin-top:-97px;margin-left:235px;" onclick="addInput()" class="another" src="http://reifax.com/FollowupReifax/img/add-file-48.png" width="20px" height="20px" />
+							</label>							
+					</div>
+				</div>
+		
+				<div id="browser"></div>
+			
+				<div  id="templa" style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						Template
+					</div>
+					<div id="temp" class="col-xs-9 col-sm-10">
+						<select id="tem" class="span4"></select>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						Subject
+					</div>
+					<div style="margin-left:-20px;" class="col-xs-9 col-sm-10">
+						<textarea id="subjectEmail" type="text" placeholder="Subject" class="span4" ></textarea>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<!--div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						Body
+					</div-->
+					<div style="width:95%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
+						<textarea style="height:112px;" id="bodyEmail" class="form-control" placeholder="Body" data-placement="top" data-trigger="manual"></textarea>
+					</div>
+				</div>
 			</form>
 			
+			<div class="row">
+				<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+					<input id="btnSendEMAIL" class="btn btn-success" type="button" value="Send">
+					<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
+				</div>
 			</div>
+			
+		</div>
 			
 	
 	</div>
 	
 
-</div><!--FIN FORM SEND CONTRACT-->
+</div><!--FIN FORM SEND EMAIL-->
+
+<div data-role="page" id="formSMS">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backSendS" data-rel="back"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/send-sms.png" width="120" height="40"></div>
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+	
+		<div style="margin-left:30px;" class="row formC" id="formContr">
+			<form style="margin-top: 30px;" class="form-inline">
+				
+				<!--div class="form-group">
+					<label style="width: 30%;float: left;" for="file">SMS by:</label>
+					<input type='radio'  name='templateSMS' id='templateSMS' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
+					<input type='radio'  name='newSMS' id='newSMS' value='New' checked>	New</input>			
+				</div-->	
+				<div class="row">
+					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-4 col-sm-2">
+						<label style="float:left;" for="file">SMS by:</label>						
+					</div>
+					<div style="padding-left: 25px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						<input type='radio'  name='templateSMS' id='templateSMS' value='Template'> </input>
+						<div style="margin-left:35px;margin-top: 12px;">Template</div>
+					</div>	
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						
+						<input type='radio'  name='newSMS' id='newSMS' value='New' checked></input>	
+						<div style="margin-left:35px;margin-top: 12px;">New</div>
+					</div>					
+				</div>	
+				<br>
+				<div id="templaSms" style="margin-bottom: 10px;" class="row">
+					<div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
+						Template
+					</div>
+					<div style="margin-left:-25px;" id="tempSms" class="col-xs-9 col-sm-10">
+						<select id="temSms" class="span4"></select>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<!--div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
+						Text
+					</div-->
+					<div style="width:90%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-10 col-sm-10">
+						<textarea style="height:112px;" id="bodySms" class="form-control" placeholder="Text" data-placement="top" data-trigger="manual"></textarea>
+					</div>
+				</div>
+			
+			</form>
+			
+			<div class="row">
+				<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+					<input id="btnSendSMS" class="btn btn-success" type="button" value="Send">
+					<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
+				</div>
+			</div>
+			
+		</div>
+			
+	
+	</div>
+	
+
+</div><!--FIN FORM SEND SMS-->
+
+<div data-role="page" id="formFax">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backSendF" data-rel="back"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/send-fax.png" width="120" height="40"></div>
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+	
+		<div style="margin-left:30px;" class="row formC" id="formContr">
+			<form style="margin-top: 30px;" class="form-inline">
+				<!--div class="form-group">
+					<label style="width: 30%;float: left;" for="file">Fax by:</label>
+					<input type='radio'  name='templateFax' id='templateFax' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
+					<input type='radio'  name='newFax' id='newFax' value='New' checked>	New</input>			
+				</div-->	
+				<div class="row">
+					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-4 col-sm-2">
+						<label style="float:left;" for="file">Fax by:</label>						
+					</div>
+					<div style="padding-left: 25px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						<input type='radio'  name='templateFax' id='templateFax' value='Template'> </input>
+						<div style="margin-left:35px;margin-top: 12px;">Template</div>
+					</div>	
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						
+						<input type='radio'  name='newFax' id='newFax' value='New' checked></input>	
+						<div style="margin-left:35px;margin-top: 12px;">New</div>
+					</div>					
+				</div>	
+				<br>
+				<div style="margin-top:20px;" class="row">
+					<div style="padding-left: 25px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						Attach
+					</div>					
+					<div style="margin-top:-10px;" id="uuploadfileEF" class="col-xs-6 col-sm-10">
+						<input style="width:75%;" type="text" id="uploadFileFax" placeholder="Select a file"/>						
+					</div>
+				</div>
+				<div class="row">
+					<div style="margin-left:25px;text-align:center;" class=" col-xs-10 col-sm-10">
+						<div>						
+							<label for="fileToUpload">
+								<img style="float:left;margin-top:-39px;margin-left:200px;" src="http://reifax.com/FollowupReifax/img/upload-48.png" width="20px" height="20px"/>
+							</label>
+							<input style="display:none;" type="File" name="fileToUpload" id="fileToUpload">
+							<input style="display:none;" type="submit" value="Upload Image" name="submit">
+							<!--input type="file" class="upload" id="uploadBtnFax" /-->
+							<label>
+								<img style="margin-top:-97px;margin-left:235px;" onclick="addInputFax()" class="another" src="http://reifax.com/FollowupReifax/img/add-file-48.png" width="20px" height="20px" />
+							</label>
+							
+						</div>
+					</div>
+				</div>
+				
+				<div id="browserFax"></div>
+			
+				<div id="templaFAX" style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;padding-top: 5px;margin-left:-30px;" class="col-xs-4 col-sm-2">
+						Template
+					</div>
+					<div style="margin-left:-30px;" id="tempFax" class="col-xs-9 col-sm-10">
+						<select id="temFax" class="span4"></select>
+					</div>
+				</div>
+								
+				<div style="margin-bottom: 10px;" class="row">
+					<!--div style="padding-left: 25px;padding-top: 5px;margin-left:-30px;" class="col-xs-4 col-sm-2">
+						Text
+					</div-->
+					<div style="width:90%;padding-right:0px;padding-left: 0px;margin-left: -5px;" class="col-xs-10 col-sm-10">
+						<textarea style="height:112px;" id="bodyFax" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+					</div>
+				</div>
+			
+			</form>
+			
+			<div class="row">
+				<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+					<input id="btnSendFAX" class="btn btn-success" type="button" value="Send">
+					<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
+				</div>
+			</div>
+			
+		</div>
+	
+	</div>
+
+</div><!--FIN FORM SEND FAX-->
+
+
+<div data-role="page" id="formCall">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backSendF" data-rel="back"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/make-call.png" width="120" height="40"></div>
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+	
+		<div style="margin-left:30px;" class="row formC" id="formContr">
+			<form style="margin-top: 30px;" class="form-inline">
+				<div class="row">
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:-5px;padding-top:5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Contact
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="agent" class="col-xs-8 col-sm-10">
+								<input id="agen" class="span4" />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Type
+							</div>
+							<div  style="padding-left:0px;margin-left:-10px;" id="typeagent" class="col-xs-8 col-sm-10">
+								<select id="typ" class="span4">
+									<option value="agent">agent</option>
+									<option value="buyer">buyer</option>
+									<option value="seller">seller</option>
+									<option value="loan">loan</option>
+									<option value="hard">hard</option>
+									<option value="title">title</option>
+									<option value="lawyer">lawyer</option>
+									<option value="client">client</option>
+									<option value="broker">broker</option>
+									<option value="general">general</option>
+									<option value="other">other</option>
+									<option value="coach">coach</option>
+									<option value="shortsale">shortsale</option>
+								</select>
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Email1
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="email1" class="col-xs-4 col-sm-10">
+								<select style="float:left;margin-right:5px;margin-left:-10px;" id="emai1" class="span4">
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+								</select>								
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="email1i" class="col-xs-5 col-sm-10">
+								<input id ="ema1" type="text" class="span4" />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Email2
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="email2" class="col-xs-4 col-sm-10">
+								<select style="float:left;margin-right:5px;margin-left:-10px;" id="emai2" class="span4">
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+								</select>								
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="email2i" class="col-xs-5 col-sm-10">
+								<input id ="ema2" type="text" class="span4" />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Company
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" style="margin-left:-10px;" id="companyy" class="col-xs-8 col-sm-10">								
+								<input id ="company" class="span4" />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Website1
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="website1" class="col-xs-4 col-sm-10">
+								<select style="float:left;margin-right:5px;margin-left:-10px;" id="websit1" class="span4">
+									<option value="0">Personal</option>
+									<option value="1">Office</option>
+								</select>								
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="website1i" class="col-xs-5 col-sm-10">								
+								<input id ="web1" type="text" class="span4" />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Website2
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="website2" class="col-xs-4 col-sm-10">
+								<select style="float:left;margin-right:5px;margin-left:-10px;" id="websit2" class="span4">
+									<option value="0">Personal</option>
+									<option value="1">Office</option>
+								</select>								
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="website2i" class="col-xs-5 col-sm-10">
+								<input id ="web2" type="text" class="span4" />
+							</div>
+						</div>	
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Phone
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone1" class="col-xs-4 col-sm-10">
+								<select style="float:left;margin-right:5px;margin-left:-10px;" id="phon1" class="span4">
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+									<option value="2">Cell</option>
+									<option value="3">Homefax</option>
+									<option value="4">Officefax</option>
+									<option value="5">Tollfree</option>
+									<option value="6">Otollfree</option>
+									<option value="7">Skype</option>
+								</select>
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone1i" class="col-xs-4 col-sm-10">
+								<input id ="pho1" type="text" class="span4" />
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone1ii" class="col-xs-4 col-sm-10">
+								<input 	style="margin-left:120px;margin-top:-40px;"  id="telf1" type="image" class="span4"
+										src="http://www.reifax.com/FollowupReifax/img/phone-68-48.png" 
+									    alt="Sign Me Up!" 
+										onclick="SignMeUp();"
+										tabindex="8"  />
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Phone2
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone2" class="col-xs-4 col-sm-10">
+								<select style="float:left;margin-right:5px;margin-left:-10px;" id="phon2" class="span4">
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+									<option value="2">Cell</option>
+									<option value="3">Homefax</option>
+									<option value="4">Officefax</option>
+									<option value="5">Tollfree</option>
+									<option value="6">Otollfree</option>
+									<option value="7">Skype</option>
+								</select>																
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone2i" class="col-xs-4 col-sm-10">
+								<input id ="pho2" type="text" class="span4" />
+							</div>							
+							<div style="padding-left:0px;margin-left:-10px;" id="phone2ii" class="col-xs-4 col-sm-10">
+								<input 	style="margin-left:120px;margin-top:-40px;" id="telf2" type="image" class="span4"
+										src="http://www.reifax.com/FollowupReifax/img/phone-68-48.png" 
+									    alt="Sign Me Up!" 
+										onclick="SignMeUp();"
+										tabindex="8"  />
+							</div>
+						</div>	
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Phone3
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone3" class="col-xs-4 col-sm-10">
+								<select style="float:left;margin-right:5px;margin-left:-10px;" id="phon3" class="span4">
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+									<option value="2">Cell</option>
+									<option value="3">Homefax</option>
+									<option value="4">Officefax</option>
+									<option value="5">Tollfree</option>
+									<option value="6">Otollfree</option>
+									<option value="7">Skype</option>
+								</select>
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone3i" class="col-xs-4 col-sm-10">
+								<input id ="pho3" type="text" class="span4" />
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone3ii" class="col-xs-4 col-sm-10">
+								<input 	style="margin-left:120px;margin-top:-40px;"  id="telf3" type="image" class="span4"
+										src="http://www.reifax.com/FollowupReifax/img/phone-68-48.png" 
+									    alt="Sign Me Up!" 
+										onclick="SignMeUp();"
+										tabindex="8"  />
+							</div>
+							
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Phone4
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone4" class="col-xs-4 col-sm-10">
+								<select style="float:left;margin-right:5px;margin-left:-10px;" id="phon4" class="span4">
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+									<option value="2">Cell</option>
+									<option value="3">Homefax</option>
+									<option value="4">Officefax</option>
+									<option value="5">Tollfree</option>
+									<option value="6">Otollfree</option>
+									<option value="7">Skype</option>
+								</select>								
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone4i" class="col-xs-4 col-sm-10">
+								<input id ="pho4" type="text" class="span4" />
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone4ii" class="col-xs-4 col-sm-10">
+								<input 	style="margin-left:120px;margin-top:-40px;"  id="telf4" type="image" class="span4"
+										src="http://www.reifax.com/FollowupReifax/img/phone-68-48.png" 
+									    alt="Sign Me Up!" 
+										onclick="SignMeUp();"
+										tabindex="8"  />
+							</div>
+						</div>	
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Phone5
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone5" class="col-xs-4 col-sm-10">
+								<select style="float:left;margin-right:5px;margin-left:-10px;" id="phon5" class="span4">
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+									<option value="2">Cell</option>
+									<option value="3">Homefax</option>
+									<option value="4">Officefax</option>
+									<option value="5">Tollfree</option>
+									<option value="6">Otollfree</option>
+									<option value="7">Skype</option>
+								</select>								
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone5i" class="col-xs-4 col-sm-10">
+								<input id ="pho5" type="text" class="span4" />
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone5ii" class="col-xs-4 col-sm-10">
+								<input 	style="margin-left:120px;margin-top:-40px;"  id="telf5" type="image" class="span4"
+										src="http://www.reifax.com/FollowupReifax/img/phone-68-48.png" 
+									    alt="Sign Me Up!" 
+										onclick="SignMeUp();"
+										tabindex="8"  />
+							</div>
+						</div>	
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-top: 5px;margin-left:-15px;" class="col-xs-3 col-sm-2">
+								Phone6
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone6" class="col-xs-4 col-sm-10">
+								<select style="float:left;margin-right:5px;" id="phon6" class="span4">
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+									<option value="2">Cell</option>
+									<option value="3">Homefax</option>
+									<option value="4">Officefax</option>
+									<option value="5">Tollfree</option>
+									<option value="6">Otollfree</option>
+									<option value="7">Skype</option>
+								</select>																
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone6i" class="col-xs-4 col-sm-10">
+								<input id ="pho6" type="text" class="span4" />
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="phone6ii" class="col-xs-4 col-sm-10">
+								<input 	style="margin-left:120px;margin-top:-40px;"  id="telf6" type="image" class="span4"
+										src="http://www.reifax.com/FollowupReifax/img/phone-68-48.png" 
+									    alt="Sign Me Up!" 
+										onclick="SignMeUp();"
+										tabindex="8"  />
+							</div>
+							
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Address1
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="address1" class="col-xs-4 col-sm-10">
+								<select style="float:left;margin-right:5px;margin-left:-10px;" id="addre1" class="span4">
+									<option value="0">Home</option>
+									<option value="1">Office</option>									
+								</select>
+														
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="address1i" class="col-xs-5 col-sm-10">								
+								<input id ="addr1" type="text" class="span4" />								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+								Address2
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="address2" class="col-xs-4 col-sm-10">
+								<select style="float:left;margin-right:5px;margin-left:-10px;" id="addre2" class="span4">
+									<option value="0">Home</option>
+									<option value="1">Office</option>	
+								</select>															
+							</div>
+							<div style="padding-left:0px;margin-left:-10px;" id="address2i" class="col-xs-5 col-sm-10">								
+								<input id ="addr2" type="text" class="span4" />								
+							</div>
+						</div>																																																											
+					</div>
+			
+			</form>
+			
+			<div class="row">
+				<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+					<input id="add" class="btn btn-primary" type="button" value="Add">
+					<input id="update" class="btn btn-primary" type="button" value="Update">
+					<input id="remove" class="btn btn-primary" type="button" value="Remove">
+					<input id="setPrincipal" class="btn btn-primary" type="button" value="setPrincipal">
+					<!--button id="add" type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+					<button id="update" type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
+					<button id="remove" type="button" class="btn btn-primary" data-dismiss="modal">Remove</button>
+					<button id="setPrincipal" type="button" class="btn btn-primary" data-dismiss="modal">Set Principal</button-->
+					<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
+				</div>
+			</div>
+			
+		</div>
+	
+	</div>
+
+</div><!--FIN FORM CALL MAKE-->
 
 <div data-role="page" id="formContract2">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backContract" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/send-contract.png" width="120" height="40"></div>
 	
@@ -8246,7 +8828,18 @@ var funciones={
 				
 				<div style="margin-left:1px;padding-left:10px;" class="row formC" id="formforward">	
 					<div class="row">				  
-			
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+								Offer Price
+							</div>
+							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="oprice" class="col-xs-5 col-sm-10">
+								<input  id="offprice" class="span4"/>								
+							</div>
+							<div  style="padding-left:0px;" class="col-xs-2 col-sm-10">
+								<!--img src="http://reifax.com/FollowupReifax/img/contacts-48.png" width="40px" height="40px"/-->
+								<a id="imgfreddy" style="height:40px;width:40px;background-size:30px;background-image: url('http://reifax.com/FollowupReifax/img/administrator-48.png');background-repeat:no-repeat;margin-left:-10px;margin-top:1px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu btn-lg" data-toggle="modal"data-excecute="main-Menu" data-theme="b" href="#investorOffer" ></a>
+							</div>
+						</div>
 						<div style="margin-bottom: 10px;" class="row">
 							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
 								Initial Deposit
@@ -8262,7 +8855,7 @@ var funciones={
 							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="addDep" class="col-xs-7 col-sm-10">
 								<input  id="additDep" class="span4"/>								
 							</div>
-						</div>
+						</div>						
 						<div style="margin-bottom: 10px;" class="row">
 							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
 								Inspection Day
