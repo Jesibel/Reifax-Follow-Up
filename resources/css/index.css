@@ -1,5 +1,5 @@
 .filter {
-	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/filter.png);
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/filter.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 margin-top: 5px !important;
@@ -50,6 +50,20 @@
 	 
 .removeFilter:hover{
 	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/filter-delete.png');
+	 background-repeat:no-repeat;
+	 background-size: 30px 30px;
+	 margin-top: 5px !important;
+	 }
+	 
+.investor-factor {
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/administrator-48.png');
+	 background-repeat:no-repeat;
+	 background-size: 30px 30px;
+	 margin-top: 5px !important;
+	 }
+	 
+.investor-factor:hover{
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/administrator-48.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 margin-top: 5px !important;
