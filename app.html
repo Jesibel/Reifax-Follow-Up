@@ -1348,7 +1348,8 @@ $(function(){
 		//MAKE CALL
 		$('#makeCall,#makeCallDP').on('click', function () {
 			//alert('get');
-			getAgentMakeCall(checkid);
+			//getAgentMakeCall(checkid);
+			getAgentCall(checkid);
 		});
 		
 		//SEND EMAIL
@@ -2990,7 +2991,7 @@ var funciones={
 			<li class="margen"><a class="filterRemove"     id="filtro_remove2" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
 			<li class="margen"><a class="deleteFollow"     id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
 			<li class="margen"><a class="investor-factor"  id="investorFa"     href="#investor" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Investor Factor</a></li>			 
-			<li class="margen"><a class="sendContract"     id="sendContract"   href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
+			<li class="margen"><a class="sendContract"     id="sendContract"   href="#formContract1" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
 			<li class="margen"><a class="sendEmail"        id="sendEmail"      href="#formEmail" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
 			<li class="margen"><a class="sendSMS"          id="sendSMS"        href="#formSMS" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
 			<li class="margen"><a class="sendFax"          id="sendFax"        href="#formFax" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
@@ -8608,6 +8609,238 @@ var funciones={
 
 </div><!--FIN FORM CALL MAKE-->
 
+<div data-role="page" id="formContract1">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backContract" data-rel="back"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/send-contract.png" width="120" height="40"></div>
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		<div  style="margin-top: 5px;" class="accordion panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
+			<div style="padding:5px 10px;" class="accordion-heading panel-heading" role="tab" id="headingOne">
+			  
+				<!--a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"--> 
+				<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+				  <h4 class="panel-title"> Documents</h4>
+				</a>
+			  
+			</div>
+			<div id="collapseOne" class="accordion-body panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+			  <div class="panel-body">
+				<div style="margin-left:-20px;margin-top:-20px;" class="row formC" id="formContr">
+					<form class="form-inline">
+						<div class="row">
+							<div style="margin-top:15px;" class="col-xs-4 col-sm-10">
+								<input type='checkbox' checked id='docum' value='Document'/>
+								<label style="margin-left: 40px;padding-top:10px;">Document:</label>
+							</div>	
+							<div style="margin-top:15px;padding-left:0px;padding-right:0px;" id="docContract1" class="col-xs-7 col-sm-10">
+								<select onchange="contra();" id="documentContract1" ></select>				
+							</div>			
+						</div>	
+						
+						<div class="row">
+							<div style="padding-left: 25px;padding-top: 5px;font-size: 16px;font-weight: bold;" class="col-xs-12 col-sm-2">
+								Additional Document
+							</div>
+						</div>
+						
+						<div style="padding-left:25px;" class="row">
+							<div id="che1">
+								<div style="background-color: #ddd;height:30px;" class="checkbox">
+									<input style="margin-left:-30px;margin-top:-1px;" type="checkbox" id="all1" class="check" value=""/>
+									<label style="margin-left:10px;padding-top: 5px;">Name:</label>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+					</form>
+			
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
+			<div style="padding:5px 10px;" class="accordion-heading panel-heading" role="tab" id="headingTwo">
+			  
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseD1" aria-expanded="false" aria-controls="collapseTwo">
+				 <h4 class="panel-title">Delivery</h4>
+				</a>
+			  
+			</div>
+			<div id="collapseD1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingD">
+			  <div class="panel-body">
+				
+				<div style="margin-left:1px;padding-left:10px;" class="row formC" id="formContrac1">	
+					<div class="row">				  			
+						<div class="row">
+							<div style="padding-top:10px;margin-top:15px;" class="col-xs-5 col-sm-2">
+								Template Email
+							</div>
+							<div style="padding-left:0px;margin-left:-25px;margin-top:10px;" id="tempContract1" class="col-xs-7 col-sm-10">
+								 <select id="templateContract1" class="span4" ></select>				
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			  </div>
+			</div>
+		  </div>		  
+		  
+		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
+			<div style="padding:5px 10px;" class="accordion-heading panel-heading" role="tab" id="headingTwo1">
+			  
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo1" aria-expanded="false" aria-controls="collapseTwo">
+				 <h4 class="panel-title"> Buyer Info</h4>
+				</a>
+			  
+			</div>
+			<div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo1">
+			  <div class="panel-body">
+				
+				<div style="margin-left:1px;padding-left:10px;" class="row formC" id="formforward11">	
+					<div class="row">				  
+			
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top:5px;padding-right:0px;" class="col-xs-4 col-sm-2">
+								Buyer Name
+							</div>
+							<div style="margin-left:-20px;" class="col-xs-6 col-sm-10">
+								<input type="text" id="buyername1" class="span4"/>
+							</div>
+							<div  style="padding-left:0px;" class="col-xs-2 col-sm-10">
+								<!--img src="http://reifax.com/FollowupReifax/img/contacts-48.png" width="40px" height="40px"/-->
+								<a id="imgbuyer1" style="height:40px;width:40px;background-size:30px;background-image: url('http://reifax.com/FollowupReifax/img/contacts-48.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu btn-lg" data-toggle="modal"data-excecute="main-Menu" data-theme="b" href="#searchContacto" ></a>
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address Line 1
+							</div>
+							<div style="margin-left:-20px;" id="1addrline1" class="col-xs-7 col-sm-10">
+								<input  id="1addressline1" class="span4"/>								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address Line 2
+							</div>
+							<div style="margin-left:-20px;" id="1addrline2" class="col-xs-7 col-sm-10">
+								<input  id="1addressline2" class="span4"/>								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+								Address Line 3
+							</div>
+							<div style="margin-left:-20px;" id="1addrline3" class="col-xs-7 col-sm-10">
+								<input  id="1addressline3" class="span4"/>								
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			  </div>
+			</div>
+		  </div>
+		 
+		  
+		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
+			<div style="padding:5px 10px;" class="accordion-heading panel-heading" role="tab" id="headingFour1">
+			  
+				<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour1" aria-expanded="false" aria-controls="collapseFour">
+				  <h4 class="panel-title">Additional Info</h4>
+				</a>
+			  
+			</div>
+			<div id="collapseFour1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour1">
+			  <div class="panel-body">
+				
+				<div style="margin-left:1px;padding-left:10px;" class="row formC" id="formforward">	
+					<div class="row">				  
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+								Offer Price
+							</div>
+							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="oprice" class="col-xs-5 col-sm-10">
+								<input  id="offprice1" class="span4"/>								
+							</div>
+							<div  style="padding-left:0px;" class="col-xs-2 col-sm-10">
+								<!--img src="http://reifax.com/FollowupReifax/img/contacts-48.png" width="40px" height="40px"/-->
+								<a id="imgfreddy1" style="height:40px;width:40px;background-size:30px;background-image: url('http://reifax.com/FollowupReifax/img/administrator-48.png');background-repeat:no-repeat;margin-left:-10px;margin-top:1px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu btn-lg" data-toggle="modal"data-excecute="main-Menu" data-theme="b" href="#investorOffer" ></a>
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+								Initial Deposit
+							</div>
+							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" class="col-xs-7 col-sm-10">
+								<input type="text" id="initialDep1" class="span4"/>
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+								Additional Deposit
+							</div>
+							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="addDep1" class="col-xs-7 col-sm-10">
+								<input  id="additDep1" class="span4"/>								
+							</div>
+						</div>						
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+								Inspection Day
+							</div>
+							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="inspDay1" class="col-xs-7 col-sm-10">
+								<input  id="inspecDay1" class="span4"/>								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+								Accetance Date
+							</div>
+							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="acceDate1" class="col-xs-7 col-sm-10">
+								<input  id="accepDate1" class="i-txt"/>								
+							</div>
+						</div>
+						<div style="margin-bottom: 10px;" class="row">
+							<div style="padding-left:5px;padding-top: 5px;" class="col-xs-5 col-sm-2">
+								Closing Date
+							</div>
+							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="closeDate1" class="col-xs-7 col-sm-10">
+								<input  id="closingDate1" class="i-txt"/>								
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			  </div>
+			</div>
+		  </div>
+		  <br>
+			<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="btnSendContr1" class="btn btn-success" type="button" value="Send">
+						<input id="btnCancelContr1" class="btn btn-default" type="button" value="Cancel">
+					</div>
+			</div>
+		  
+		</div>
+	
+	</div>
+	
+
+</div><!--FIN FORM SEND CONTRACT-->
+
 <div data-role="page" id="formContract2">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
@@ -8710,6 +8943,7 @@ var funciones={
 			  </div>
 			</div>
 		  </div>
+		  
 		  <div style="border-color:#8ab420;" class="accordion-group panel panel-default">
 			<div style="padding:5px 10px;" class="accordion-heading panel-heading" role="tab" id="headingTwo">
 			  
