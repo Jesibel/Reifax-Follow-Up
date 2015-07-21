@@ -1612,6 +1612,27 @@ $(function(){
 			
 		});
 		
+		//BOTON SET PRINCIPAL
+		$("#btnSetPrincipal").on('click', function () {
+			//alert('login');
+			setAgentPrincipal();
+			
+		});
+		
+		//BOTON UPDATE MAKE CALL CONTACT
+		$("#btnUpdate").on('click', function () {
+			//alert('login');
+			updateContact();
+			
+		});
+		
+		//BOTON ADD MAKE CALL CONTACT
+		$("#btnAdd").on('click', function () {
+			//alert('login');
+			addContact();
+			
+		});
+		
 		//CHEQUEA ALL Document
 		$('#all').click(function() {
 			alert('alll');
@@ -8287,7 +8308,7 @@ var funciones={
 	<!--CONTENT-->
 	<div data-role="content">
 	
-		<div style="margin-left:30px;" class="row formC" id="formContr">
+		<div style="margin-left:30px;" class="row formC" id="formCal">
 			<form style="margin-top: 30px;" class="form-inline">
 				<div class="row">
 						<div style="margin-bottom: 10px;" class="row">
@@ -8303,20 +8324,20 @@ var funciones={
 								Type
 							</div>
 							<div  style="padding-left:0px;margin-left:-10px;margin-top: -5px;" id="typeagent" class="col-xs-8 col-sm-10">
-								<select id="typ" class="span4">
-									<option value="agent">agent</option>
-									<option value="buyer">buyer</option>
-									<option value="seller">seller</option>
-									<option value="loan">loan</option>
-									<option value="hard">hard</option>
-									<option value="title">title</option>
-									<option value="lawyer">lawyer</option>
-									<option value="client">client</option>
-									<option value="broker">broker</option>
-									<option value="general">general</option>
-									<option value="other">other</option>
-									<option value="coach">coach</option>
-									<option value="shortsale">shortsale</option>
+								<select id="typ" class="form-control">
+									<option value="1">agent</option>
+									<option value="2">buyer</option>
+									<option value="3">seller</option>
+									<option value="4">loan</option>
+									<option value="5">hard</option>
+									<option value="6">title</option>
+									<option value="7">lawyer</option>
+									<option value="8">client</option>
+									<option value="9">broker</option>
+									<option value="10">general</option>
+									<option value="11">other</option>
+									<option value="12">coach</option>
+									<option value="13">shortsale</option>
 								</select>
 							</div>
 						</div>
@@ -8586,22 +8607,24 @@ var funciones={
 							</div>
 						</div>																																																											
 					</div>
+					
+					
+			</div>
 			
 			</form>
-			
 			<div class="row">
 				<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
-					<input id="add" class="btn btn-primary" type="button" value="Add">
-					<input id="update" class="btn btn-primary" type="button" value="Update">
-					<input id="remove" class="btn btn-primary" type="button" value="Remove">
-					<input id="setPrincipal" class="btn btn-primary" type="button" value="setPrincipal">
-					<!--button id="add" type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
-					<button id="update" type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
-					<button id="remove" type="button" class="btn btn-primary" data-dismiss="modal">Remove</button>
-					<button id="setPrincipal" type="button" class="btn btn-primary" data-dismiss="modal">Set Principal</button-->
-					<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
-				</div>
+				<input id="btnAdd" class="btn btn-primary" type="button" value="Add">
+				<input id="btnUpdate" class="btn btn-primary" type="button" value="Update">
+				<input id="btnRemove" class="btn btn-primary" type="button" value="Remove">
+				<input id="btnSetPrincipal" class="btn btn-primary" type="button" value="setPrincipal">
+						<!--button id="add" type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
+						<button id="update" type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
+						<button id="remove" type="button" class="btn btn-primary" data-dismiss="modal">Remove</button>
+						<button id="setPrincipal" type="button" class="btn btn-primary" data-dismiss="modal">Set Principal</button-->
+						<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
 			</div>
+			
 			
 		</div>
 	
