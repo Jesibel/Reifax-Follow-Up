@@ -757,6 +757,11 @@
 		
 		}
 		
+		var position=0;
+		var posi=0;
+		var pos=0;
+		
+		var arr = new Array();
 		var checkid = new Array();
 		var i;
 		var pageName = location.pathname.substring(1);
@@ -1622,6 +1627,7 @@ $(function(){
 		//BOTON UPDATE MAKE CALL CONTACT
 		$("#btnUpdate").on('click', function () {
 			//alert('login');
+			var id = JSON.parse(localStorage.getItem('agentid'));
 			updateContact();
 			
 		});
@@ -1629,8 +1635,58 @@ $(function(){
 		//BOTON ADD MAKE CALL CONTACT
 		$("#btnAdd").on('click', function () {
 			//alert('login');
+			getAgent();
 			addContact();
+	
+		});
+		
+		//BOTON SAVE NEW AGENT CONTACT
+		$("#saveCont,#saveCont2").on('click', function () {
+			//alert('login');
+			addAgente();		
+		});
+		
+		//BOTON REMOVE NEW AGENT CONTACT
+		$("#btnRemove").on('click', function () {
+			//alert('login');
+			removeAgente();		
+		});
+		
+		//BOTON ULTIMO AGENT CONTACT
+		$("#imgleft2").on('click', function () {
+			//alert('login');
+			position=-1; //ultima posicion
+			//alert(position);
+			getAgentCall(checkid);
 			
+			//proxAgent();		
+		});
+		
+		//BOTON AFTER POSICION AGENT CONTACT
+		$("#imgleft").on('click', function () {
+			//alert('login');
+			position++;
+			//alert(position);
+			getAgentCall(checkid);
+			//proxAgent();		
+		});
+		
+		//BOTON PRIMERA POSICION AGENT CONTACT
+		$("#imgright").on('click', function () {
+			//alert('login');
+			position=-2; //primera posicion
+			//alert(position);
+			getAgentCall(checkid);
+			//proxAgent();		
+		});
+		
+		//BUTTON BEFORE AGENT CONTACT
+		$("#imgright2").on('click', function () {
+			//alert('decrementa');
+			position--; //primera posicion
+			//alert(position);
+			getAgentCall(checkid);
+			//proxAgent();		
 		});
 		
 		//CHEQUEA ALL Document
@@ -1681,6 +1737,10 @@ $(function(){
 		$("#backAdd,#backContract,#backSendE,#backSendS,#backSendF").on('click', function () {			
 			//$('#detalleContacto').empty();
 			document.getElementById('header_two').style.display = "none";			
+		});
+		
+		$("#backFCall").on('click', function () {			
+			backMakeCall();		
 		});
 		
 		
@@ -8296,11 +8356,16 @@ var funciones={
 
 <div data-role="page" id="formCall">
     <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backSendF" data-rel="back"></a>
+	<div style="background: #8ab420;border:#8ab420;height:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b"  id="backFCall" ></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/make-call.png" width="120" height="40"></div>
-	
+		<div  style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="imgright" style="height:30px;width:25px;margin-right: 10px;background-size:15px;background-image: url('http://reifax.com/FollowupReifax/img/arrow-ri2-48.png');background-repeat:no-repeat;margin-left:-10px;top:-2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu btn-lg" data-toggle="modal"data-excecute="main-Menu" data-theme="b" href="#" ></a>
+			<a id="imgright2" style="height:30px;width:25px;margin-right: 10px;background-size:15px;background-image: url('http://reifax.com/FollowupReifax/img/arrow-ri-48.jpg');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu btn-lg" data-toggle="modal"data-excecute="main-Menu" data-theme="b" href="#" ></a>
+			<a id="imgleft" style="height:30px;width:25px;margin-right: 10px;background-size:15px;background-image: url('http://reifax.com/FollowupReifax/img/arrow-le-48.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu btn-lg" data-toggle="modal"data-excecute="main-Menu" data-theme="b" href="#" ></a>
+			<a id="imgleft2" style="height:30px;width:25px;margin-right: 10px;background-size:15px;background-image: url('http://reifax.com/FollowupReifax/img/arrow-le2-48.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child menu btn-lg" data-toggle="modal"data-excecute="main-Menu" data-theme="b" href="#" ></a>
+		</div>			
 	</div>
 	
 	<!--FIN HEADER--> 	
@@ -8608,29 +8673,307 @@ var funciones={
 						</div>																																																											
 					</div>
 					
+				</form>	
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="btnAdd" class="btn btn-primary" type="button" value="Add"/>
+						<input id="btnUpdate" class="btn btn-primary" type="button" value="Update"/>
+						<input id="btnRemove" class="btn btn-primary" type="button" value="Remove"/>
+						<input id="btnSetPrincipal" class="btn btn-primary" type="button" value="setPrincipal"/>
+					</div>
 					
+					
+					
+				</div>
+			
 			</div>
-			
-			</form>
-			<div class="row">
-				<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
-				<input id="btnAdd" class="btn btn-primary" type="button" value="Add">
-				<input id="btnUpdate" class="btn btn-primary" type="button" value="Update">
-				<input id="btnRemove" class="btn btn-primary" type="button" value="Remove">
-				<input id="btnSetPrincipal" class="btn btn-primary" type="button" value="setPrincipal">
-						<!--button id="add" type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
-						<button id="update" type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
-						<button id="remove" type="button" class="btn btn-primary" data-dismiss="modal">Remove</button>
-						<button id="setPrincipal" type="button" class="btn btn-primary" data-dismiss="modal">Set Principal</button-->
-						<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
-			</div>
-			
-			
-		</div>
-	
+		
 	</div>
 
 </div><!--FIN FORM CALL MAKE-->
+
+<div data-role="page" id="addContactoHtml">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAdd" data-rel="back"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-32px"><img src="resources/image/new-contacts.png" width="120" height="40"></div>
+		
+		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<!--a id="resetCont" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a-->
+		<a id="saveCont" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		</div>
+	
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		
+		<div style="margin-left: 1px;" class="row formC" id="formNewContacto">
+			<form style="margin-top: 30px;" class="form-inline">				
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Contact
+					</div>
+					<div style="margin-top:-10px;" id="newagentCont" class="col-xs-8 col-sm-10">
+						<!--input type="text" id="newagenC" placeholder="Contact" class="span4"/-->	
+						<select id="newagenC" onchange="agente();" class="span4"></select>						
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Type
+					</div>
+					<div style="margin-top:-10px;" id="newtypeagentCont" class="col-xs-8 col-sm-10">
+						 <select id="newtypC" class="span4">
+							<option value="1">agent</option>
+							<option value="2">buyer</option>
+							<option value="3">seller</option>
+							<option value="4">loan</option>
+							<option value="5">hard</option>
+							<option value="6">title</option>
+							<option value="7">lawyer</option>
+							<option value="8">client</option>
+							<option value="9">broker</option>
+							<option value="10">general</option>
+							<option value="11">other</option>
+							<option value="12">coach</option>
+							<option value="13">shortsale</option>
+						 </select>											
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Email1
+					</div>
+					<div style="margin-top:-10px;" id="newemail1Cont" class="col-xs-4 col-sm-10">
+						 <select id="newemai1Cont" class="span4">
+							<option value="1">Home</option>
+							<option value="2">Office</option>
+						 </select>											
+					</div>
+					<div style="margin-top:-10px;margin-left: -20px;" class="col-xs-5 col-sm-7">
+						<input id ="newema1Cont" type="text" class="form-control" placeholder="Email1"/>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Email2
+					</div>
+					<div style="margin-top:-10px;" id="newemail2Cont" class="col-xs-4 col-sm-10">
+						 <select id="newemai2Cont" class="span4">
+							<option value="1">Home</option>
+							<option value="2">Office</option>
+						 </select>											
+					</div>
+					<div style="margin-top:-10px;margin-left: -20px;" class="col-xs-5 col-sm-7">
+						<input id ="newema2Cont" type="text" class="form-control" placeholder="Email2"/>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Company
+					</div>
+					<div style="margin-top:-10px;" id="companyCo" class="col-xs-8 col-sm-10">
+						<input type="text" id="newcompanyCont" placeholder="Company" class="span4"/>						
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Website1
+					</div>
+					<div id="website1Cont" style="margin-top:-10px;" class="col-xs-4 col-sm-10">
+						 <select id="newwebsit1Cont" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+						 </select>											
+					</div>
+					<div style="margin-top:-10px;margin-left: -20px;" class="col-xs-5 col-sm-7">
+						<input id ="newweb1Cont" type="text" class="form-control" placeholder="Website1"/>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Website2
+					</div>
+					<div id="website2Cont" style="margin-top:-10px;" class="col-xs-4 col-sm-10">
+						 <select id="newwebsit2Cont" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+						 </select>											
+					</div>
+					<div style="margin-top:-10px;margin-left: -20px;" class="col-xs-5 col-sm-7">
+						<input id ="newweb2Cont" type="text" class="form-control" placeholder="Website2"/>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Phone
+					</div>
+					<div id="newphone1Cont" style="margin-top:-10px;" class="col-xs-4 col-sm-10">
+						 <select id="newphon1Cont" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+							<option value="2">Cell</option>
+							<option value="3">Homefax</option>
+							<option value="4">Officefax</option>
+							<option value="5">Tollfree</option>
+							<option value="6">Otollfree</option>
+							<option value="7">Skype</option>
+						 </select>											
+					</div>
+					<div style="margin-top:-10px;margin-left: -20px;" class="col-xs-5 col-sm-7">
+						<input id ="newpho1Cont" type="text" class="form-control" placeholder="Phone"/>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Phone2
+					</div>
+					<div id="newphone2Cont" style="margin-top:-10px;" class="col-xs-4 col-sm-10">
+						 <select id="newphon2Cont" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+							<option value="2">Cell</option>
+							<option value="3">Homefax</option>
+							<option value="4">Officefax</option>
+							<option value="5">Tollfree</option>
+							<option value="6">Otollfree</option>
+							<option value="7">Skype</option>
+						 </select>											
+					</div>
+					<div style="margin-top:-10px;margin-left: -20px;" class="col-xs-5 col-sm-7">
+						<input id ="newpho2Cont" type="text" class="form-control" placeholder="Phone2"/>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Phone3
+					</div>
+					<div id="newphone3Cont" style="margin-top:-10px;" class="col-xs-4 col-sm-10">
+						 <select id="newphon3Cont" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+							<option value="2">Cell</option>
+							<option value="3">Homefax</option>
+							<option value="4">Officefax</option>
+							<option value="5">Tollfree</option>
+							<option value="6">Otollfree</option>
+							<option value="7">Skype</option>
+						 </select>											
+					</div>
+					<div style="margin-top:-10px;margin-left: -20px;" class="col-xs-5 col-sm-7">
+						<input id ="newpho3Cont" type="text" class="form-control" placeholder="Phone3"/>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Phone4
+					</div>
+					<div id="newphone4Cont" style="margin-top:-10px;" class="col-xs-4 col-sm-10">
+						 <select id="newphon4Cont" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+							<option value="2">Cell</option>
+							<option value="3">Homefax</option>
+							<option value="4">Officefax</option>
+							<option value="5">Tollfree</option>
+							<option value="6">Otollfree</option>
+							<option value="7">Skype</option>
+						 </select>											
+					</div>
+					<div style="margin-top:-10px;margin-left: -20px;" class="col-xs-5 col-sm-7">
+						<input id ="newpho4Cont" type="text" class="form-control" placeholder="Phone4"/>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Phone5
+					</div>
+					<div id="newphone5Cont" style="margin-top:-10px;" class="col-xs-4 col-sm-10">
+						 <select id="newphon5Cont" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+							<option value="2">Cell</option>
+							<option value="3">Homefax</option>
+							<option value="4">Officefax</option>
+							<option value="5">Tollfree</option>
+							<option value="6">Otollfree</option>
+							<option value="7">Skype</option>
+						 </select>											
+					</div>
+					<div style="margin-top:-10px;margin-left: -20px;" class="col-xs-5 col-sm-7">
+						<input id ="newpho5Cont" type="text" class="form-control" placeholder="Phone5"/>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Phone6
+					</div>
+					<div id="newphone6Cont" style="margin-top:-10px;" class="col-xs-4 col-sm-10">
+						 <select id="newphon6Cont" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+							<option value="2">Cell</option>
+							<option value="3">Homefax</option>
+							<option value="4">Officefax</option>
+							<option value="5">Tollfree</option>
+							<option value="6">Otollfree</option>
+							<option value="7">Skype</option>
+						 </select>											
+					</div>
+					<div style="margin-top:-10px;margin-left: -20px;" class="col-xs-5 col-sm-7">
+						<input id ="newpho6Cont" type="text" class="form-control" placeholder="Phone6"/>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Address1
+					</div>
+					<div id="newaddress1Cont" style="margin-top:-10px;" class="col-xs-4 col-sm-10">
+						 <select id="newaddre1Cont" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+						 </select>											
+					</div>
+					<div style="margin-top:-10px;margin-left: -20px;" class="col-xs-5 col-sm-7">
+						<input id ="newaddr1Cont" type="text" class="form-control" placeholder="Address1"/>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Address2
+					</div>
+					<div id="newaddress2Cont" style="margin-top:-10px;" class="col-xs-4 col-sm-10">
+						 <select id="newaddre2Cont" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+						 </select>											
+					</div>
+					<div style="margin-top:-10px;margin-left: -20px;" class="col-xs-5 col-sm-7">
+						<input id ="newaddr2Cont" type="text" class="form-control" placeholder="Address2"/>
+					</div>
+				</div>
+							
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="saveCont2" class="btn btn-success" type="button" value="Save">
+						<input id="resetCont2" class="btn btn-default" type="button" value="Cancel">
+					</div>
+				</div>
+			</form>
+		
+		</div>
+		
+		
+	</div>
+	<!--FIN CONTENT-->	
+	
+	
+</div>
+
 
 <div data-role="page" id="formContract1">
     <!--HEADER-->
