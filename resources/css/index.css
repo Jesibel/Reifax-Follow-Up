@@ -195,25 +195,25 @@
 	 background-size: 30px 30px;
 	 }	 
 .assignContEmailInbox {
-	 background-image: url('http://www.reifax.com/img/toolbar/contactAssign.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/person-plus.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 }
 	 
 .assignContEmailInbox:hover{
-	 background-image: url('http://www.reifax.com/img/toolbar/contactAssign.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/person-plus.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 }
 	 
 .assignProEmailInbox {
-	 background-image: url('http://www.reifax.com/img/toolbar/propertyAssign.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/casa-plus.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 }
 	 
 .assignProEmailInbox:hover{
-	 background-image: url('http://www.reifax.com/img/toolbar/propertyAssign.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/casa-plus.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 }
@@ -241,13 +241,24 @@
 	 background-size: 30px 30px;
 	 }
 .newschedule {
-	 background-image: url('http://www.reifax.com/img/toolbar/scheduled_tasks.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/new_schedule.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 }
 	 
 .newschedule:hover{
-	 background-image: url('http://www.reifax.com/img/toolbar/scheduled_tasks.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/new_schedule.png');
+	 background-repeat:no-repeat;
+	 background-size: 30px 30px;
+	 }
+
+.get-contact {
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/get_contact2.png');
+	 background-repeat:no-repeat;
+	 background-size: 30px 30px;
+	 }
+.get-contact:hover{
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/menu/get_contact2.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 }
