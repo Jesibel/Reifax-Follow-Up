@@ -61,1813 +61,1510 @@
 	<!--script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"-->
 	
-	<script type="text/javascript">
+<script type="text/javascript">
 	
 	
-	$(document).ready(function(){
+$(document).ready(function(){
 	
-		<!--forgot guille-->
-			/*$('#next').bind('click',funciones.proccess)
-			$('#go').bind('click',funciones.findUser);
-			$('input[name=txtEmail]').bind('focus',funciones.initAll);
-			correcto=true;*/
-		<!--fin forgot guille-->
+	<!--forgot guille-->
+		/*$('#next').bind('click',funciones.proccess)
+		$('#go').bind('click',funciones.findUser);
+		$('input[name=txtEmail]').bind('focus',funciones.initAll);
+		correcto=true;*/
+	<!--fin forgot guille-->
 		
-		document.getElementById('templa').style.display = "none";
-		document.getElementById('templaSms').style.display = "none";
-		document.getElementById('templaFAX').style.display = "none";
-		document.getElementById('between').style.display = "none";
-		document.getElementById('betweenExecPTask').style.display = "none";
-		document.getElementById('betweenSchePTask').style.display = "none";
-		document.getElementById('betweenCompTask').style.display = "none";
-		//document.getElementById('telf1').style.display = "none";
-		//document.getElementById('telf2').style.display = "none";
-		//document.getElementById('telf3').style.display = "none";
-		//document.getElementById('telf4').style.display = "none";
-		//document.getElementById('telf5').style.display = "none";
-		//document.getElementById('telf6').style.display = "none";
-		document.getElementById('regContact').style.display = "none";
-		document.getElementById("menuDE").style.display = "none";
-		document.getElementById("menuDE2").style.display = "none";
-		
-
-			
-		$('#folldate').change(function(){
-			//alert($(this).val());
-			if ($(this).val()=='Between'){
-				document.getElementById('between').style.display = "block";
-			}else{
-				document.getElementById('between').style.display = "none";
-			}
-		});
-		
-		$('#edatePTask').change(function(){
-			alert($(this).val());
-			if ($(this).val()=='Between'){
-				document.getElementById('betweenExecPTask').style.display = "block";
-			}else{
-				document.getElementById('betweenExecPTask').style.display = "none";
-			}
-		});
-		
-		$('#cdateCTask').change(function(){
-			alert($(this).val());
-			if ($(this).val()=='Between'){
-				document.getElementById('betweenCompTask').style.display = "block";
-			}else{
-				document.getElementById('betweenCompTask').style.display = "none";
-			}
-		});
-		
-		$('#sdatePTask').change(function(){
-			alert($(this).val());
-			if ($(this).val()=='Between'){
-				document.getElementById('betweenSchePTask').style.display = "block";
-			}else{
-				document.getElementById('betweenSchePTask').style.display = "none";
-			}
-		});
-		
-		
-		//$("#phoneContFil").intlTelInput();
-				
-		//FILTER PROPERTIES
-		/*$(".close").on('click', function () {
-			//alert('close');				
-			//$('#menuSecunFollow').panel("close");
-			//$('#menuContacts').panel("close");
-			//$('#menuEmailInbox,#menuEmailInboxO').panel("close");
-			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-		});*/
-		
-		//FILTER PROPERTIES
-		$("#filtro,#filtro2").on('click', function () {
-			//alert('filtro');				
-			getfilterProperty();
-				
-		});
-		
-		//FILTER EMAIL FOLLOW
-		$("#filtroemailFollow").on('click', function () {
-			//alert('filtro');				
-			//getfilterEmailFollow();
-				
-		});
-		
-		//FILTER REMOVE PROPERTY
-		$("#filtro_remove,#filtro_remove2").on('click', function () {
-			alert('remove filter CONTACTS');
-			$('#menuSecunFollow').panel("close");
-			removeFilterProperty();
-					
-		});
-		
-		
-		//FILTER REMOVE CONTACTS
-		$("#filtro_removeCont").on('click', function () {
-			//alert('remove filter CONTACTS');
-			//$('#menuContacts').panel("close");
-			removeFilterContact();
-					
-		});
-		
-		//FILTER REMOVE EMAIL INBOX
-		$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
-			//alert('remove filter email inbox');
-			//$('#menuEmailInbox,#menuEmailInboxO').panel("close");
-			removeFilterEmailInbox();
-					
-		});
-		
-		
-		//FILTER REMOVE EMAIL OUTBOX
-		$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
-			//alert('remove filter email outbox');
-			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-			removeFilterEmailOutbox();
-					
-		});
-		
-		//FILTER REMOVE PENDING TASK
-		$("#RemovefiltroTask").on('click', function () {
-			//alert('remove filter email outbox');
-			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-			removeFilterPendingTask();
-					
-		});
-		
-		//FILTER REMOVE COMPLETED TASK
-		$("#RemovefiltroTaskC").on('click', function () {
-			//alert('remove filter email outbox');
-			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-			removeFilterCompletedTask();
-					
-		});
-		
-		//FILTER REMOVE EMAIL FOLLOW
-		$("#filtro_removeEmailFollow").on('click', function () {
-			//alert('remove filter email outbox');
-			//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-			removeFilterEmailFollow();
-		});
-		
-		//INSERT CONTACTS
-		$("#insertCont,#insertCont2").on('click', function () {
-			//alert('insert');			
-			insertContact();
-		});
-		
-		//RESET CONTACTS
-		$("#resetAdd,#resetAdd2").on('click', function () {
-			//alert('insert');			
-			resetformCont();
-		});
-		
-		//INSERT HISTORY FOLLOW
-		$("#saveHist,#saveHistory").on('click', function () {
-			//alert('insert');			
-			addHistory();
-		});
-		
-		//RESET HISTORY FOLLOW
-		$("#resetHist,#resetHistory").on('click', function () {
-			//alert('insert');			
-			resetHistory();
-		});
-		
-		//INSERT SCHEDULE FOLLOW
-		$("#saveSche,#saveSchedule").on('click', function () {
-			//alert('insert');			
-			addSchedule();
-		});
-		
-		//RESET HISTORY FOLLOW
-		$("#resetSche").on('click', function () {
-			//alert('insert');			
-			resetSchedule();
-		});								
-		
-		//CANCEL ADD SCHEDULE FOLLOW
-		$("#cancelSche,#cancelEditSche").on('click', function () {
-			//alert('insert');			
-			//cancelSchedule();
-			$.mobile.changePage(
-			'#scheduleFollow',
-			{
-             allowSamePageTransition : true,
-             transition              : 'none',
-             showLoadMsg             : false,
-             reloadPage              : false
-			}
-			);
-		});	
-
-		//CANCEL EDIT SCHEDULE FOLLOW
-		$("#cancelEditSche").on('click', function () {
-			//alert('insert');			
-			//cancelSchedule();
-			$.mobile.changePage(
-			'#detailSchedule',
-			{
-             allowSamePageTransition : true,
-             transition              : 'none',
-             showLoadMsg             : false,
-             reloadPage              : false
-			}
-			);
-		});
-		
-		//CANCEL EDIT HISTORY FOLLOW
-		$("#cancelEditHistory").on('click', function () {
-			//alert('insert');			
-			//cancelSchedule();
-			$.mobile.changePage(
-			'#detailHistory',
-			{
-             allowSamePageTransition : true,
-             transition              : 'none',
-             showLoadMsg             : false,
-             reloadPage              : false
-			}
-			);
-		});
-		
-		//CANCEL EMAIL COMPOSE FOLLOW
-		$("#cancelComposeEF").on('click', function () {
-			//alert('insert');			
-			//cancelSchedule();
-			$.mobile.changePage(
-			'#emailFollow',
-			{
-             allowSamePageTransition : true,
-             transition              : 'none',
-             showLoadMsg             : false,
-             reloadPage              : false
-			}
-			);
-		});
-		
-		//CANCEL EDIT PENDING TASK
-		$("#cancelEditPend").on('click', function () {
-			//alert('insert');			
-			//cancelSchedule();
-			$.mobile.changePage(
-			'#detailPending',
-			{
-             allowSamePageTransition : true,
-             transition              : 'none',
-             showLoadMsg             : false,
-             reloadPage              : false
-			}
-			);
-		});
-		
-		//CANCEL EDIT COMPLETED TASK
-		$("#cancelEditCompleted").on('click', function () {
-			//alert('insert');			
-			//cancelSchedule();
-			$.mobile.changePage(
-			'#detailCompleted',
-			{
-             allowSamePageTransition : true,
-             transition              : 'none',
-             showLoadMsg             : false,
-             reloadPage              : false
-			}
-			);
-		});
-		
-		
-		
-		//REFRESH HISTORY FOLLOW
-		$("#refreshHist").on('click', function () {
-			//alert('REFRESH');		
-			//location.reload(true);			
-			//$.mobile.changePage('index.html#historyFollow');
-			$.mobile.changePage(
-          '#historyFollow',
-			{
-             allowSamePageTransition : true,
-             transition              : 'none',
-             showLoadMsg             : false,
-             reloadPage              : false
-			}
-			);
-		});
-		
-		//REFRESH HISTORY FOLLOW
-		$("#refreshSchedule").on('click', function () {
-			//alert('REFRESH');		
-			//location.reload(true);			
-			//$.mobile.changePage('index.html#historyFollow');
-			$.mobile.changePage(
-          '#scheduleFollow',
-			{
-             allowSamePageTransition : true,
-             transition              : 'none',
-             showLoadMsg             : false,
-             reloadPage              : false
-			}
-			);
-		});
-		
-		$("#webdetailHtml,#webdetailcontactHtml#webMyaccountHtml").height($(window).height()-$("div.ui-page-active div[data-role='header']").height()-7-63);	
-
-		
-		//RADIO BUTTOM SEND EMAIL
-		$('#template').on('click',function(){
-			alert("radio template");
-			document.getElementById("template").checked = true;
-			document.getElementById("new").checked = false;
-			getTemplateEmail();
-			
-		});
-
-		$('#new').on('click',function(){
-				
-			alert("radio new");
-			//$('#2').dialog("close");
-			//$('#1').dialog("open");
-			document.getElementById("template").checked = false;
-			document.getElementById("new").checked = true;
-			document.getElementById('templa').style.display = "none";
-			$("textarea#bodyEmail").val("");
-			$("textarea#subjectEmail").val("");
-			
-		});
-			
-		//RADIO BUTTOM SEND SMS
-		$('#templateSMS').on('click',function(){
-			alert("radio templateSMS");
-			
-			document.getElementById("templateSMS").checked = true;
-			document.getElementById("newSMS").checked = false;
-			
-			getTemplateSMS();
-			
-		});
-
-		$('#newSMS').on('click',function(){
-				
-			alert("radio new");
-			
-			document.getElementById("templateSMS").checked = false;
-			document.getElementById("newSMS").checked = true;
-			document.getElementById('templaSms').style.display = "none";
-			$("textarea#bodySMS").val("");
-			
-		});
-			
-		//RADIO BUTTOM SEND FAX
-		$('#templateFax').on('click',function(){
-			alert("radio templateFax");
-			
-			document.getElementById("templateFax").checked = true;
-			document.getElementById("newFax").checked = false;
-			
-			getTemplateFAX();
-		});
-
-		$('#newFax').on('click',function(){
-				
-			alert("radio newFax");
-
-			document.getElementById("templateFax").checked = false;
-			document.getElementById("newFax").checked = true;
-			document.getElementById('templaFAX').style.display = "none";
-			$("textarea#bodyFax").val("");
-			
-		});
-		
-		//UPLOAD SEND EMAIL
-		document.getElementById("fileToUploadEmail").onchange = function () {
-			document.getElementById("uploadFileEmail").value = this.value;
-		};
-		
-		//UPLOAD SEND FAX 
-		document.getElementById("fileToUpload").onchange = function () {
-			document.getElementById("uploadFileFax").value = this.value;
-		};
-		
-		//UPLOAD FILE COMPOSE
-		document.getElementById("uploadBtnCompose").onchange = function () {
-			document.getElementById("uploadFile").value = this.value;
-		};
-		
-		//UPLOAD FILE COMPOSE EMAIL FOLLOW
-		document.getElementById("uploadBtnComposeEF").onchange = function () {
-			document.getElementById("uploadFileEF").value = this.value;
-		};
-		
-		//UPLOAD REPLY EMAIL FOLLOW
-		/*document.getElementById("uploadBtnReply").onchange = function () {
-			document.getElementById("uploadFileReply").value = this.value;
-		};	*/	
-		
-		//UPLOAD FORWARD EMAIL FOLLOW
-		document.getElementById("uploadBtnForward").onchange = function () {
-			document.getElementById("uploadFileForward").value = this.value;
-		};
-		
-					
-		//DELETE CONTACTS
-		$('#deleteCont').on('click',function(){				
-			//alert("delete");
-			alert("You must previously select(long touch) the contacts to be eliminated.");
-		});
-			
-		//EDIT CONTACTS
-		$('#editCont').on('click',function(){				
-			//alert("editc");
-			alert("You must previously select(long touch) the contacts to be edited.");
-		});
-			
-		//AGREGAR CONTACTS
-		$('#addCont,#addCont2').on('click',function(){				
-			//alert("addc");
-			getTypeContacts();	
-		});
-			
-		//FILTER CONTACTS
-		$('#filtrocontact').on('click',function(){				
-			//alert("filtro contact");
-			getagenttype();
-		});
-		
-		//FILTER EMAIL INBOX
-		$('#filtromaI,#filtromaIn').on('click',function(){				
-			//alert("filtro email inbox");
-			gettypemail();
-		});
-		
-		//FILTER EMAIL OutBOX
-		$('#filtromaO').on('click',function(){				
-			//alert("filtro email outbox");
-			gettypemailOutbox();
-		});
-		
-		//COMPOSE EMAIL INBOX
-		$('#addEInbox,#addEOutbox').on('click',function(){				
-			//alert("COMPOSE");
-			getComposeInbox();
-		});
-		
-		//GET FILTER PENDING TASK
-		$('#filtroTask').on('click',function(){				
-			//alert("getptask");
-			getfilterPendingTask();
-		});
-		
-		//GET FILTER COMPLETED TASK
-		$('#filtroTaskC').on('click',function(){				
-			//alert("getptask");
-			getfilterCompletedTask();
-		});
-		
-		//COMPOSE SEND EMAIL INBOX
-		$('#sendCompose,#insertComp').on('click',function(){				
-			sendemailInbox();
-		});
-		
-		//COMPOSE SEND EMAIL OUTBOX
-		$('#sendComposeO,#insertCompO').on('click',function(){				
-			sendemailOutbox();
-		});
-		
-		//SEND REPLY EMAIL INBOX
-		$('#sendReplyEmail').on('click',function(){				
-			sendemailReply();
-		});
-		
-		//SEND REPLY EMAIL INBOX
-		$('#sendForwardEmail').on('click',function(){				
-			sendemailForward();
-		});
-		
-		//RADIO BUTTOM ASSIGNMENT CONTACT
-		$('#newCont').on('click',function(){
-			alert("radionew contact");									
-			document.getElementById('infoContact').style.display = "block";
-			document.getElementById('regContact').style.display = "none";
-			document.getElementById("newCont").checked = true;
-			document.getElementById("registerCont").checked = false;
-				
-		});
-
-		$('#registerCont').on('click',function(){
-				
-			alert("radio registerCont");
-			//$('#2').dialog("close");
-			//$('#1').dialog("open");
-			document.getElementById("newCont").checked = false;
-			document.getElementById("registerCont").checked = true;
-			document.getElementById('infoContact').style.display = "none";
-			document.getElementById('regContact').style.display = "block";
-			
-			
-		});
-		
-		//BOTON FILTRAR CONTACT
-		$("#searchFilterContacts").on('click', function () {
-			//alert('FILTRAR');
-			//filterContacts();
-			$("#contacts ul").empty();
-			var start = 0; 
-			var limit = 25; 
-			listadoContacts(start, limit);
-		});
-
-		$('#formularioFilterContact').submit(function(){
-			event.preventDefault();
-			
-			$("#formfilterContact").modal('hide');
-			$('#menuContacts').panel("close");
-			$("#contacts ul").empty();
-			
-			var start = 0; 
-			var limit = 25; 
-			listadoContacts(start, limit);
-		 
-		 });
-		
-		//SEARCH FILTER PROPERTY WITH BOTON SEARCH
-		$("#searchFilter").on('click', function () {
-			//alert("search del filtro");						
-			$('#menuSecunFollow').panel("close");
-			$("#content ul").empty();
-			//searchFilterProperty();
-			var start = 0; 
-			var limit = 25; 
-			listadoProperty(start,limit);
-			
-		});
-
+	document.getElementById('templa').style.display = "none";
+	document.getElementById('templaSms').style.display = "none";
+	document.getElementById('templaFAX').style.display = "none";
+	document.getElementById('between').style.display = "none";
+	document.getElementById('betweenExecPTask').style.display = "none";
+	document.getElementById('betweenSchePTask').style.display = "none";
+	document.getElementById('betweenCompTask').style.display = "none";
+	document.getElementById('regContact').style.display = "none";
+	document.getElementById("menuDE").style.display = "none";
+	document.getElementById("menuDE2").style.display = "none";
 	
-		$('#formularioFilterProperty').submit(function(){
-			event.preventDefault();
-			//alert('enter property');
-			$("#filter").modal('hide');
-			$('#menuSecunFollow').panel("close");
-			$("#content ul").empty();
-			//searchFilterProperty();
-			var start = 0; 
-			var limit = 25; 
-			listadoProperty(start,limit);
-		 
-		 });
-		
-		//SEARCH FILTER EMAIL INBOX
-		$("#searchFilterMailI").on('click', function () {
-			//alert("search del filtro mail inbox");
-			//searchFilterMailInbox();
-			$("#emails ul").empty();
-			var start = 0; 
-			var limit = 25; 
-			listadoEmailsInbox(start,limit);
-			
-		});
-
-		$('#formularioFilterEmailInbox').submit(function(){
-			event.preventDefault();
-			
-			$("#filterEI").modal('hide');
-			$('#menuEmailInbox,#menuEmailInboxO').panel("close");
-			$("#emails ul").empty();
-			var start = 0; 
-			var limit = 25; 
-			listadoEmailsInbox(start,limit);
-		 
-		 });
-		
-		//SEARCH FILTER EMAIL OUTBOX
-		$("#searchFilterMailO").on('click', function () {
-			//alert("search del filtro mail OUTbox");
-			//searchFilterMailOutbox();
-			$("#emailsOutbox ul").empty();
-			var start = 0; 
-			var limit = 25; 
-			listadoEmailsOutbox(start,limit);
-			
-		});
-	
-		
-		$('#formularioFilterEmailOutbox').submit(function(){
-			event.preventDefault();
-			
-			$("#filterEO").modal('hide');
-			$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-			$("#emailsOutbox ul").empty();
-			var start = 0; 
-			var limit = 25; 
-			listadoEmailsOutbox(start,limit);
-		 
-		 });
-		
-		
-		//BOTON FILTRAR PENDING TASK
-		$("#searchFilterPTask").on('click', function () {
-			//alert('FILTRAR');
-			//filterContacts();
-			$("#pendientes ul").empty();
-			$('#menuTask').panel("close");
-			var start = 0; 
-			var limit = 25; 
-			listadoPendings(start, limit);
-		});
-
-		$('#formularioFilterPendingTask').submit(function(){
-			event.preventDefault();
-			
-			$("#filterPendingTask").modal('hide');
-			$('#menuTask').panel("close");
-			$("#pendientes ul").empty();
-			
-			var start = 0; 
-			var limit = 25; 
-			listadoPendings(start, limit);
-		 
-		 });
-		 
-		 //BOTON FILTRAR COMPLETED TASK
-		$("#searchFilterCTask").on('click', function () {
-			//alert('FILTRAR');
-			//filterContacts();
-			$("#completados ul").empty();
-			var start = 0; 
-			var limit = 25; 
-			listadoCompleted(start, limit);
-		});
-
-		$('#formularioFilterCompletedTask').submit(function(){
-			event.preventDefault();
-			
-			$("#filterCompletedTask").modal('hide');
-			$('#menuTaskCompleted').panel("close");
-			$("#completados ul").empty();
-			
-			var start = 0; 
-			var limit = 25; 
-			listadoCompleted(start, limit);
-		 
-		 }); 
-		 
-		 //BOTON FILTRAR EMAIL FOLLOW
-		$("#searchFilterEmailFollow").on('click', function () {
-			//alert('FILTRAR');
-			//filterContacts();
-			$("#correofollow ul").empty();
-			var id = JSON.parse(localStorage.getItem('key'));
-			var start = 0; 
-			var limit = 25; 
-			emailDetail(start, limit,id.parcelid);
-		});
-
-		$('#formularioFilterEmailFollow').submit(function(){
-			event.preventDefault();
-			
-			$("#filterEmailFollow").modal('hide');
-			$('#menuEmailFollow').panel("close");
-			$("#correofollow ul").empty();
-			var id = JSON.parse(localStorage.getItem('key'));
-			var start = 0; 
-			var limit = 25; 
-			emailDetail(start, limit,id.parcelid);
-		 
-		 });
-		 
-		 $("#searchLisContact").on("keypress", function(e){       
-			//alert("The enter key was pressed");
-			if ($(".searchLisContact:focus")&& (e.keyCode === 13)) {
-				var start = 0; 
-				var limit = 25; 
-				listadoSearchContacts(start,limit);
-				
-			}
-		});
-		
-			
+	$('#folldate').change(function(){
+		//alert($(this).val());
+		if ($(this).val()=='Between'){
+			document.getElementById('between').style.display = "block";
+		}else{
+			document.getElementById('between').style.display = "none";
+		}
 	});
+		
+	$('#edatePTask').change(function(){
+		alert($(this).val());
+		if ($(this).val()=='Between'){
+			document.getElementById('betweenExecPTask').style.display = "block";
+		}else{
+			document.getElementById('betweenExecPTask').style.display = "none";
+		}
+	});
+		
+	$('#cdateCTask').change(function(){
+		alert($(this).val());
+		if ($(this).val()=='Between'){
+			document.getElementById('betweenCompTask').style.display = "block";
+		}else{
+			document.getElementById('betweenCompTask').style.display = "none";
+		}
+	});
+		
+	$('#sdatePTask').change(function(){
+		alert($(this).val());
+		if ($(this).val()=='Between'){
+			document.getElementById('betweenSchePTask').style.display = "block";
+		}else{
+			document.getElementById('betweenSchePTask').style.display = "none";
+		}
+	});
+	
+	//FILTER PROPERTIES
+	$("#filtro,#filtro2").on('click', function () {
+		//alert('filtro');				
+		getfilterProperty();		
+	});
+		
+	//FILTER EMAIL FOLLOW
+	$("#filtroemailFollow").on('click', function () {
+		//alert('filtro');				
+		//getfilterEmailFollow();		
+	});
+		
+	//FILTER REMOVE PROPERTY
+	$("#filtro_remove,#filtro_remove2").on('click', function () {
+		//alert('remove filter CONTACTS');
+		$('#menuSecunFollow').panel("close");
+		removeFilterProperty();		
+	});
+		
+	//FILTER REMOVE CONTACTS
+	$("#filtro_removeCont").on('click', function () {
+		//alert('remove filter CONTACTS');
+		//$('#menuContacts').panel("close");
+		removeFilterContact();			
+	});
+		
+	//FILTER REMOVE EMAIL INBOX
+	$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
+		//alert('remove filter email inbox');
+		//$('#menuEmailInbox,#menuEmailInboxO').panel("close");
+		removeFilterEmailInbox();			
+	});
+		
+	//FILTER REMOVE EMAIL OUTBOX
+	$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
+		//alert('remove filter email outbox');
+		//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+		removeFilterEmailOutbox();			
+	});
+		
+	//FILTER REMOVE PENDING TASK
+	$("#RemovefiltroTask").on('click', function () {
+		//alert('remove filter email outbox');
+		//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+		removeFilterPendingTask();		
+	});
+		
+	//FILTER REMOVE COMPLETED TASK
+	$("#RemovefiltroTaskC").on('click', function () {
+		//alert('remove filter email outbox');
+		//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+		removeFilterCompletedTask();		
+	});
+		
+	//FILTER REMOVE EMAIL FOLLOW
+	$("#filtro_removeEmailFollow").on('click', function () {
+		//alert('remove filter email outbox');
+		//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+		removeFilterEmailFollow();
+	});
+		
+	//INSERT CONTACTS
+	$("#insertCont,#insertCont2").on('click', function () {
+		//alert('insert');			
+		insertContact();
+	});
+		
+	//RESET CONTACTS
+	$("#resetAdd,#resetAdd2").on('click', function () {
+		//alert('insert');			
+		resetformCont();
+	});
+		
+	//INSERT HISTORY FOLLOW
+	$("#saveHist,#saveHistory").on('click', function () {
+		//alert('insert');			
+		addHistory();
+	});
+		
+	//RESET HISTORY FOLLOW
+	$("#resetHist,#resetHistory").on('click', function () {
+		//alert('insert');			
+		resetHistory();
+	});
+		
+	//INSERT SCHEDULE FOLLOW
+	$("#saveSche,#saveSchedule").on('click', function () {
+		//alert('insert');			
+		addSchedule();
+	});
+		
+	//RESET HISTORY FOLLOW
+	$("#resetSche").on('click', function () {
+		//alert('insert');			
+		resetSchedule();
+	});								
+		
+	//CANCEL ADD SCHEDULE FOLLOW
+	$("#cancelSche,#cancelEditSche").on('click', function () {
+		//alert('insert');			
+		//cancelSchedule();
+		$.mobile.changePage(
+		'#scheduleFollow',
+		{
+        allowSamePageTransition : true,
+        transition              : 'none',
+        showLoadMsg             : false,
+        reloadPage              : false
+		}
+		);
+	});	
+
+	//CANCEL EDIT SCHEDULE FOLLOW
+	$("#cancelEditSche").on('click', function () {
+		//alert('insert');			
+		//cancelSchedule();
+		$.mobile.changePage(
+		'#detailSchedule',
+		{
+			allowSamePageTransition : true,
+             transition              : 'none',
+             showLoadMsg             : false,
+             reloadPage              : false
+		}
+		);
+	});
+		
+	//CANCEL EDIT HISTORY FOLLOW
+	$("#cancelEditHistory").on('click', function () {
+		//alert('insert');			
+		//cancelSchedule();
+		$.mobile.changePage(
+		'#detailHistory',
+		{
+            allowSamePageTransition : true,
+            transition              : 'none',
+            showLoadMsg             : false,
+            reloadPage              : false
+		}
+		);
+	});
+		
+	//CANCEL EMAIL COMPOSE FOLLOW
+	$("#cancelComposeEF").on('click', function () {
+		//alert('insert');			
+		//cancelSchedule();
+		$.mobile.changePage(
+		'#emailFollow',
+		{
+            allowSamePageTransition : true,
+            transition              : 'none',
+            showLoadMsg             : false,
+            reloadPage              : false
+		}
+		);
+	});
+		
+	//CANCEL EDIT PENDING TASK
+	$("#cancelEditPend").on('click', function () {
+		//alert('insert');			
+		//cancelSchedule();
+		$.mobile.changePage(
+		'#detailPending',
+		{
+            allowSamePageTransition : true,
+            transition              : 'none',
+            showLoadMsg             : false,
+            reloadPage              : false
+		}
+		);
+	});
+		
+	//CANCEL EDIT COMPLETED TASK
+	$("#cancelEditCompleted").on('click', function () {
+		//alert('insert');			
+		//cancelSchedule();
+		$.mobile.changePage(
+		'#detailCompleted',
+		{
+            allowSamePageTransition : true,
+            transition              : 'none',
+            showLoadMsg             : false,
+            reloadPage              : false
+		}
+		);
+	});
+		
+	//REFRESH HISTORY FOLLOW
+	$("#refreshHist").on('click', function () {
+		//alert('REFRESH');		
+		//location.reload(true);			
+		//$.mobile.changePage('index.html#historyFollow');
+		$.mobile.changePage(
+        '#historyFollow',
+		{
+            allowSamePageTransition : true,
+            transition              : 'none',
+            showLoadMsg             : false,
+            reloadPage              : false
+		}
+		);
+	});
+		
+	//REFRESH HISTORY FOLLOW
+	$("#refreshSchedule").on('click', function () {
+		//alert('REFRESH');		
+		//location.reload(true);			
+		//$.mobile.changePage('index.html#historyFollow');
+		$.mobile.changePage(
+        '#scheduleFollow',
+		{
+            allowSamePageTransition : true,
+            transition              : 'none',
+            showLoadMsg             : false,
+            reloadPage              : false
+		}
+		);
+	});
+		
+	$("#webdetailHtml,#webdetailcontactHtml#webMyaccountHtml").height($(window).height()-$("div.ui-page-active div[data-role='header']").height()-7-63);	
+
+	//RADIO BUTTOM SEND EMAIL
+	$('#template').on('click',function(){
+		//alert("radio template");
+		document.getElementById("template").checked = true;
+		document.getElementById("new").checked = false;
+		getTemplateEmail();
+	});
+
+	$('#new').on('click',function(){	
+		alert("radio new");
+		//$('#2').dialog("close");
+		//$('#1').dialog("open");
+		document.getElementById("template").checked = false;
+		document.getElementById("new").checked = true;
+		document.getElementById('templa').style.display = "none";
+		$("textarea#bodyEmail").val("");
+		$("textarea#subjectEmail").val("");	
+	});
+			
+	//RADIO BUTTOM SEND SMS
+	$('#templateSMS').on('click',function(){
+		//alert("radio templateSMS");
+		document.getElementById("templateSMS").checked = true;
+		document.getElementById("newSMS").checked = false;
+		getTemplateSMS();
+	});
+
+	$('#newSMS').on('click',function(){	
+		//alert("radio new")
+		document.getElementById("templateSMS").checked = false;
+		document.getElementById("newSMS").checked = true;
+		document.getElementById('templaSms').style.display = "none";
+		$("textarea#bodySMS").val("");
+	});
+			
+	//RADIO BUTTOM SEND FAX
+	$('#templateFax').on('click',function(){
+		//alert("radio templateFax");
+		document.getElementById("templateFax").checked = true;
+		document.getElementById("newFax").checked = false;
+		getTemplateFAX();
+	});
+
+	$('#newFax').on('click',function(){
+		//alert("radio newFax");
+		document.getElementById("templateFax").checked = false;
+		document.getElementById("newFax").checked = true;
+		document.getElementById('templaFAX').style.display = "none";
+		$("textarea#bodyFax").val("");
+	});
+		
+	//UPLOAD SEND EMAIL
+	document.getElementById("fileToUploadEmail").onchange = function () {
+		document.getElementById("uploadFileEmail").value = this.value;
+	};
+		
+	//UPLOAD SEND FAX 
+	document.getElementById("fileToUpload").onchange = function () {
+		document.getElementById("uploadFileFax").value = this.value;
+	};
+		
+	//UPLOAD FILE COMPOSE
+	document.getElementById("uploadBtnCompose").onchange = function () {
+		document.getElementById("uploadFile").value = this.value;
+	};
+		
+	//UPLOAD FILE COMPOSE EMAIL FOLLOW
+	document.getElementById("uploadBtnComposeEF").onchange = function () {
+		document.getElementById("uploadFileEF").value = this.value;
+	};
+		
+	//UPLOAD FORWARD EMAIL FOLLOW
+	document.getElementById("uploadBtnForward").onchange = function () {
+		document.getElementById("uploadFileForward").value = this.value;
+	};
+						
+	//DELETE CONTACTS
+	$('#deleteCont').on('click',function(){				
+		//alert("delete");
+		alert("You must previously select(long touch) the contacts to be eliminated.");
+	});
+			
+	//EDIT CONTACTS
+	$('#editCont').on('click',function(){				
+		//alert("editc");
+		alert("You must previously select(long touch) the contacts to be edited.");
+	});
+			
+	//AGREGAR CONTACTS
+	$('#addCont,#addCont2').on('click',function(){				
+		//alert("addc");
+		getTypeContacts();	
+	});
+			
+	//FILTER CONTACTS
+	$('#filtrocontact').on('click',function(){				
+		//alert("filtro contact");
+		getagenttype();
+	});
+		
+	//FILTER EMAIL INBOX
+	$('#filtromaI,#filtromaIn').on('click',function(){				
+		//alert("filtro email inbox");
+		gettypemail();
+	});
+		
+	//FILTER EMAIL OutBOX
+	$('#filtromaO').on('click',function(){				
+		//alert("filtro email outbox");
+		gettypemailOutbox();
+	});
+		
+	//COMPOSE EMAIL INBOX
+	$('#addEInbox,#addEOutbox').on('click',function(){				
+		//alert("COMPOSE");
+		getComposeInbox();
+	});
+		
+	//GET FILTER PENDING TASK
+	$('#filtroTask').on('click',function(){				
+		//alert("getptask");
+		getfilterPendingTask();
+	});
+		
+	//GET FILTER COMPLETED TASK
+	$('#filtroTaskC').on('click',function(){				
+		//alert("getptask");
+		getfilterCompletedTask();
+	});
+		
+	//COMPOSE SEND EMAIL INBOX
+	$('#sendCompose,#insertComp').on('click',function(){				
+		sendemailInbox();
+	});
+		
+	//COMPOSE SEND EMAIL OUTBOX
+	$('#sendComposeO,#insertCompO').on('click',function(){				
+		sendemailOutbox();
+	});
+		
+	//SEND REPLY EMAIL INBOX
+	$('#sendReplyEmail').on('click',function(){				
+		sendemailReply();
+	});
+		
+	//SEND REPLY EMAIL INBOX
+	$('#sendForwardEmail').on('click',function(){				
+		sendemailForward();
+	});
+		
+	//RADIO BUTTOM ASSIGNMENT CONTACT
+	$('#newCont').on('click',function(){
+		//alert("radionew contact");									
+		document.getElementById('infoContact').style.display = "block";
+		document.getElementById('regContact').style.display = "none";
+		document.getElementById("newCont").checked = true;
+		document.getElementById("registerCont").checked = false;		
+	});
+
+	$('#registerCont').on('click',function(){
+		//alert("radio registerCont");
+		//$('#2').dialog("close");
+		//$('#1').dialog("open");
+		document.getElementById("newCont").checked = false;
+		document.getElementById("registerCont").checked = true;
+		document.getElementById('infoContact').style.display = "none";
+		document.getElementById('regContact').style.display = "block";
+	});
+		
+	//BOTON FILTRAR CONTACT
+	$("#searchFilterContacts").on('click', function () {
+		//alert('FILTRAR');
+		//filterContacts();
+		$("#contacts ul").empty();
+		var start = 0; 
+		var limit = 25; 
+		listadoContacts(start, limit);
+	});
+
+	$('#formularioFilterContact').submit(function(){
+		event.preventDefault();
+		$("#formfilterContact").modal('hide');
+		$('#menuContacts').panel("close");
+		$("#contacts ul").empty();
+		var start = 0; 
+		var limit = 25; 
+		listadoContacts(start, limit);
+	});
+		
+	//SEARCH FILTER PROPERTY WITH BOTON SEARCH
+	$("#searchFilter").on('click', function () {
+		//alert("search del filtro");						
+		$('#menuSecunFollow').panel("close");
+		$("#content ul").empty();
+		//searchFilterProperty();
+		var start = 0; 
+		var limit = 25; 
+		listadoProperty(start,limit);
+	});
+
+	
+	$('#formularioFilterProperty').submit(function(){
+		event.preventDefault();
+		//alert('enter property');
+		$("#filter").modal('hide');
+		$('#menuSecunFollow').panel("close");
+		$("#content ul").empty();
+		//searchFilterProperty();
+		var start = 0; 
+		var limit = 25; 
+		listadoProperty(start,limit);
+	});
+	
+	//SEARCH FILTER EMAIL INBOX
+	$("#searchFilterMailI").on('click', function () {
+		//alert("search del filtro mail inbox");
+		//searchFilterMailInbox();
+		$("#emails ul").empty();
+		var start = 0; 
+		var limit = 25; 
+		listadoEmailsInbox(start,limit);
+	});
+
+	$('#formularioFilterEmailInbox').submit(function(){
+		event.preventDefault();
+		$("#filterEI").modal('hide');
+		$('#menuEmailInbox,#menuEmailInboxO').panel("close");
+		$("#emails ul").empty();
+		var start = 0; 
+		var limit = 25; 
+		listadoEmailsInbox(start,limit);
+	});
+		
+	//SEARCH FILTER EMAIL OUTBOX
+	$("#searchFilterMailO").on('click', function () {
+		//alert("search del filtro mail OUTbox");
+		//searchFilterMailOutbox();
+		$("#emailsOutbox ul").empty();
+		var start = 0; 
+		var limit = 25; 
+		listadoEmailsOutbox(start,limit);
+	});
+		
+	$('#formularioFilterEmailOutbox').submit(function(){
+		event.preventDefault();
+		$("#filterEO").modal('hide');
+		$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+		$("#emailsOutbox ul").empty();
+		var start = 0; 
+		var limit = 25; 
+		listadoEmailsOutbox(start,limit);
+	});
+		
+	//BOTON FILTRAR PENDING TASK
+	$("#searchFilterPTask").on('click', function () {
+		//alert('FILTRAR');
+		//filterContacts();
+		$("#pendientes ul").empty();
+		$('#menuTask').panel("close");
+		var start = 0; 
+		var limit = 25; 
+		listadoPendings(start, limit);
+	});
+
+	$('#formularioFilterPendingTask').submit(function(){
+		event.preventDefault();
+		$("#filterPendingTask").modal('hide');
+		$('#menuTask').panel("close");
+		$("#pendientes ul").empty();
+		var start = 0; 
+		var limit = 25; 
+		listadoPendings(start, limit);
+	});
+		 
+	//BOTON FILTRAR COMPLETED TASK
+	$("#searchFilterCTask").on('click', function () {
+		//alert('FILTRAR');
+		//filterContacts();
+		$("#completados ul").empty();
+		var start = 0; 
+		var limit = 25; 
+		listadoCompleted(start, limit);
+	});
+
+	$('#formularioFilterCompletedTask').submit(function(){
+		event.preventDefault();
+		$("#filterCompletedTask").modal('hide');
+		$('#menuTaskCompleted').panel("close");
+		$("#completados ul").empty();
+		var start = 0; 
+		var limit = 25; 
+		listadoCompleted(start, limit);
+	}); 
+		 
+	//BOTON FILTRAR EMAIL FOLLOW
+	$("#searchFilterEmailFollow").on('click', function () {
+		//alert('FILTRAR');
+		//filterContacts();
+		$("#correofollow ul").empty();
+		var id = JSON.parse(localStorage.getItem('key'));
+		var start = 0; 
+		var limit = 25; 
+		emailDetail(start, limit,id.parcelid);
+	});
+
+	$('#formularioFilterEmailFollow').submit(function(){
+		event.preventDefault();
+		$("#filterEmailFollow").modal('hide');
+		$('#menuEmailFollow').panel("close");
+		$("#correofollow ul").empty();
+		var id = JSON.parse(localStorage.getItem('key'));
+		var start = 0; 
+		var limit = 25; 
+		emailDetail(start, limit,id.parcelid);
+	});
+		 
+	 $("#searchLisContact").on("keypress", function(e){       
+		//alert("The enter key was pressed");
+		if ($(".searchLisContact:focus")&& (e.keyCode === 13)) {
+			var start = 0; 
+			var limit = 25; 
+			listadoSearchContacts(start,limit);
+		}
+	});
+		
+			
+});
 	
 </script>
 
 <script type="text/javascript">
 
-		function _onDeviceReady (){	
+	function _onDeviceReady (){	
 		
-			MobileAccessibility.usePreferredTextZoom(false);
-			
-			//alert(WURFL.form_factor);
-			if (WURFL.form_factor == "Tablet") {
-				//alert('es una tablet');
-				window.plugins.orientationchanger.lockOrientation('landscape');
-				 //setTimeout(function () {navigator.splashscreen.show()},1000);
-			}else{
-				window.plugins.orientationchanger.lockOrientation('portrait');
-			}
-		
+		MobileAccessibility.usePreferredTextZoom(false);
+		//alert(WURFL.form_factor);
+		if (WURFL.form_factor == "Tablet") {
+			//alert('es una tablet');
+			window.plugins.orientationchanger.lockOrientation('landscape');
+			 //setTimeout(function () {navigator.splashscreen.show()},1000);
+		}else{
+			window.plugins.orientationchanger.lockOrientation('portrait');
 		}
 		
-		var position=0;
-		var posi=0;
-		var pos=0;
+	}
 		
-		var arr = new Array();
-		var checkid = new Array();
-		var i;
-		var pageName = location.pathname.substring(1);
-		var pagina=0;
-		//alert(pageName);
-		pageName = pageName.substring(15);
-		//alert(pageName);
+	var position=0;
+	var posi=0;
+	var pos=0;
+		
+	var arr = new Array();
+	var checkid = new Array();
+	var i;
+	var pageName = location.pathname.substring(1);
+	var pagina=0;
+	//alert(pageName);
+	pageName = pageName.substring(15);
+	//alert(pageName);
 	
-		var settings = { 
-			limit : 25, // The number of posts per scroll to be loaded
-			start : 0, // Initial offset, begins at 0 in this case
-			error   : 'No More!', // When the user reaches the end this is the message that is
-			                           
-		}
+	var settings = { 
+		limit : 25, // The number of posts per scroll to be loaded
+		start : 0, // Initial offset, begins at 0 in this case
+		error   : 'No More!', // When the user reaches the end this is the message that is	                           
+	}
 		
-		var busy=false;
-		$this = $(this);
-		$settings = settings;	
-		var start = $settings.start;
-		
-		
+	var busy=false;
+	$this = $(this);
+	$settings = settings;	
+	var start = $settings.start;
 		
 $(function(){
 		
-		$('#input_toreplyEmail').autoComplete({
-			minChars: 1,
-			source: function(term, suggest){
-				term = term.toLowerCase();
+	$('#input_toreplyEmail').autoComplete({
+		minChars: 1,
+		source: function(term, suggest){
+		term = term.toLowerCase();
 				
-				var data  = {
-					'userid': 3213,
-					'type': 'ContactEmailsList'
-				};
+		var data  = {
+			'userid': 3213,
+			'type': 'ContactEmailsList'
+		};
 				 
-				$.post("http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followagent.php", data, function(cont) {
+		$.post("http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followagent.php", data, function(cont) {
 					
-					valor     = cont;
-					var obj = JSON.parse(valor);
-					var output ="";
-					var res ="";
-					var choice1=[];
-					var i=0;
+			valor     = cont;
+			var obj = JSON.parse(valor);
+			var output ="";
+			var res ="";
+			var choice1=[];
+			var i=0;
 					
-					$.each(obj.records, function( key, value ) {
-						var datos = new Array();
-						var valores = new Array();
+			$.each(obj.records, function( key, value ) {
+				var datos = new Array();
+				var valores = new Array();
 											
-						choice1[i++]=value.email;				
-						
-					});
-					console.log(choice1);
-					
-					
-					var choices=choice1;
-					//var choices=['jesi@gmail.com', 'angelaluna@gmail.com', 'luisdevies@gmail.com'];
-					//var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
-					var suggestions = [];
-					for (i=0;i<choices.length;i++)
-						if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
-						suggest(suggestions);	
+				choice1[i++]=value.email;						
+			});
+			console.log(choice1);		
+			var choices=choice1;
+			//var choices=['jesi@gmail.com', 'angelaluna@gmail.com', 'luisdevies@gmail.com'];
+			//var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
+			var suggestions = [];
+			for (i=0;i<choices.length;i++)
+			if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+			suggest(suggestions);	
 				
-				});
-				
-			}
-		});
-		
-		$('#input_toforwardEmail').autoComplete({
-			minChars: 1,
-			source: function(term, suggest){
-				term = term.toLowerCase();
-				
-				var data  = {
-					'userid': 3213,
-					'type': 'ContactEmailsList'
-				};
-				 
-				$.post("http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followagent.php", data, function(cont) {
-					
-					valor     = cont;
-					var obj = JSON.parse(valor);
-					var output ="";
-					var res ="";
-					var choice1=[];
-					var i=0;
-					
-					$.each(obj.records, function( key, value ) {
-						var datos = new Array();
-						var valores = new Array();
-											
-						choice1[i++]=value.email;				
-						
-					});
-					console.log(choice1);
-					
-					
-					var choices=choice1;
-					//var choices=['jesi@gmail.com', 'angelaluna@gmail.com', 'luisdevies@gmail.com'];
-					//var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
-					var suggestions = [];
-					for (i=0;i<choices.length;i++)
-						if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
-						suggest(suggestions);	
-				
-				});
-				
-			}
-		});
-		
-		/*$('#searchListadoContact').autoComplete({
-			minChars: 1,			
-			source: function(term, suggest){
-				term = term.toLowerCase();
-				alert('dentro source');
-				var data  = {
-					'userid': 3213,
-					'agent': $("input#searchListadoContact").val()
-				};
-				 
-				$.post("http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followagent.php", data, function(cont) {
-					
-					valor     = cont;
-					var obj = JSON.parse(valor);
-					var output ="";
-					var res ="";
-					var choice2=[];
-					var i=0;
-					
-					$.each(obj.records, function( key, value ) {
-						var datos = new Array();
-						var valores = new Array();
-											
-						choice1[i++]=value.agent;				
-						
-					});
-					console.log(choice2);
-					
-					
-					var choices=choice2;
-					//var choices=['jesi@gmail.com', 'angelaluna@gmail.com', 'luisdevies@gmail.com'];
-					//var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
-					var suggestions = [];
-					for (i=0;i<choices.length;i++)
-						if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
-						suggest(suggestions);	
-				
-				});
-				
-			}
-		});*/
-		
-		
-		//CLICK DETALLE DE PROPIEDADES
-		$('ul.page_result').on('click','li', function () {
-            //alert('onclick');
-			var id= $(this).attr('parcelid');
-			var type= $(this).attr('type');
-			var offer= $(this).attr('offer');
-			var owner= $(this).attr('owner');
-			var county= $(this).attr('county');
-			
-			//alert(id);
-			// Creamos un objeto
-			var object = { 'parcelid' : id };
-			var object3 = { 'type' : type };
-			var object4 = { 'offer' : offer };
-			var object5 = { 'owner' : owner };
-			var object6 = { 'county' : county };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('key', JSON.stringify(object));
-			localStorage.setItem('key3', JSON.stringify(object3));
-			localStorage.setItem('offer', JSON.stringify(object4));
-			localStorage.setItem('owner', JSON.stringify(object5));
-			localStorage.setItem('county', JSON.stringify(object6));
-			$('#detallePropiedades').empty();
-			$.mobile.changePage("#detailProperties","slide");
-			//window.location.href = "index.html#detailProperties";
-			
-				
-        });
-		
-		$(document).on('pagebeforeshow', '#detailProperties', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('key'));
-			// La alerta mostrará 1 por pantalla
-			//alert(valor.parcelid);
-			//alert(valor.agent);
-			$('#detallePropiedades').empty();
-			detailProperty(valor.parcelid);
-		});
-		
-		//CLICK DETALLE DE CONTACTOS
-		$('ul.page_contact').on('click','li', function () {
-           
-			var id= $(this).attr('agentid');
-			
-			// Creamos un objeto
-			var object = { 'agent' : id };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('key', JSON.stringify(object));
-			
-			$('#detalleContacto').empty();
-			$.mobile.changePage( "#detailContacts","slide");
-			
-        });
-		
-		$(document).on('pagebeforeshow', '#detailContacts', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('key'));
-			// La alerta mostrará 1 por pantalla
-			detailContact(valor.agent);
-		});
-		
-		//CLICK DETALLE DE CONTACTOS2
-		$('ul.page_contactAll').on('click','li', function () {
-           
-			var id= $(this).attr('agentid');
-			
-			// Creamos un objeto
-			var object = { 'agentid' : id };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('agentid', JSON.stringify(object));
-			
-			$('#detalleContactoAll').empty();
-			$.mobile.changePage( "#detailContactsAll","slide");
-			
-        });
-		
-		$(document).on('pagebeforeshow', '#detailContactsAll', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('agentid'));
-			// La alerta mostrará 1 por pantalla
-			detailContact(valor.agentid);
-		});
-		
-		//CLICK DETALLE DE CONTACTOS3
-		$('ul.page_contactList').on('click','li', function () {
-           
-			var id= $(this).attr('agentid');
-			
-			// Creamos un objeto
-			var object = { 'agentid' : id };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('agentid', JSON.stringify(object));
-			
-			$('#detalleContactoList').empty();
-			$.mobile.changePage( "#detailContactsList","slide");
-			
-        });
-		
-		$(document).on('pagebeforeshow', '#detailContactsList', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('agentid'));
-			// La alerta mostrará 1 por pantalla
-			detailContact(valor.agentid);
-		});
-		
-		//CLICK DETALLE DE EMAIL
-		$('ul.page_emailInbox').on('click','li', function () {
-           
-			var id= $(this).attr('idmail');
-			var idseen= $(this).attr('idseen');
-			
-			// Creamos un objeto
-			var object = { 'email' : id };
-			var seen = { 'seen' : idseen };
-			
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('email', JSON.stringify(object));
-			localStorage.setItem('seen', JSON.stringify(seen));
-			
-			$.mobile.changePage( "#detailEmail");
-			    
-        });
-	
-		
-		$(document).on('pagebeforeshow', '#detailEmail', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('email'));
-			var valor2 = JSON.parse(localStorage.getItem('seen'));
-			detailEmails(valor.email);
-			detailEmailsCab(valor.email);
-			propertyAssing(valor.email);
-			leerCorreos(valor.email,valor2.seen);
-			
-		});
-		
-		
-		//CLICK DETALLE DE EMAIL outbox
-		$('ul.page_emailOutbox').on('click','li', function () {
-            //alert('onclick email outbox');
-			//alert(url);
-			var id= $(this).attr('idmail');
-			var idseen= $(this).attr('idseen');
-			// Creamos un objeto
-			
-			var object = { 'email' : id };
-			var seen = { 'seen' : idseen };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('email', JSON.stringify(object));
-			localStorage.setItem('seen', JSON.stringify(seen));
-			
-			$.mobile.changePage( "#detailEmailOutbox");
-			
-        });
-		
-		
-		$(document).on('pagebeforeshow', '#detailEmailOutbox', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('email'));
-			//detailEmails(valor.email);
-			
-			var valor2 = JSON.parse(localStorage.getItem('seen'));
-			
-			//alert('no leido');
-			leerCorreos(valor.email,valor2.seen);
-			detailEmailsCabO(valor.email);
-		});
-		
-		//CLICK DETALLE PENDING TASK
-		$('ul.page_pending').on('click','li', function () {
-            //alert('onclick');
-			var id= $(this).attr('idfus');
-			
-			//alert(id);
-			// Creamos un objeto
-			var object = { 'idfus' : id };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('key', JSON.stringify(object));
-			$('#detallePendiente ul').empty();
-			//$("#detallePendiente").html('');
-			$.mobile.changePage("#detailPending","slide");
-			//window.location.href = "index.html#detailProperties";
-				
-        });
-		
-		$(document).on('pagebeforeshow', '#detailPending', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('key'));
-			// La alerta mostrará 1 por pantalla
-			//alert(valor.parcelid);
-			//alert(valor.agent);
-			$('#detallePendiente ul').empty();
-			detailPending(valor.idfus);
-		});
-		
-		//CLICK DETALLE COMPLETED TASK
-		$('ul.page_completed').on('click','li', function () {
-            //alert('onclick');
-			var id= $(this).attr('idfuh');
-			
-			var parcelid= $(this).attr('parcelid');
-			
-			var contr= $(this).attr('contr');
-			var object6 = { 'contr' : contr };
-			localStorage.setItem('key6', JSON.stringify(object6));
-			
-			var pof= $(this).attr('pof');
-			var object7 = { 'pof' : pof };
-			localStorage.setItem('key7', JSON.stringify(object7));	
-			
-			var emd= $(this).attr('emd');
-			var object8 = { 'emd' : emd };
-			localStorage.setItem('key8', JSON.stringify(object8));	
-			
-			var adde= $(this).attr('adde');
-			var object9 = { 'adde' : adde };
-			localStorage.setItem('key9', JSON.stringify(object9));
-			
-			var offre= $(this).attr('offre');
-			var object10 = { 'offre' : offre };
-			localStorage.setItem('key10', JSON.stringify(object10));	
-			//alert(parcelid);
-			//alert(id);
-			// Creamos un objeto
-			//var object = { 'idfuh' : id };
-			//var object2 = { 'parcelid' : parcelid };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			//localStorage.setItem('key', JSON.stringify(object));
-			//localStorage.setItem('key', JSON.stringify(object2));
-			var object = { 'idfuh' : id };
-			localStorage.setItem('key', JSON.stringify(object));
-
-			var object2 = { 'parcelid' : parcelid };
-			localStorage.setItem('key2', JSON.stringify(object2));
-			
-			$('#detalleCompletados ul').empty();
-			$.mobile.changePage("#detailCompleted","slide");
-			//window.location.href = "index.html#detailProperties";
-			
-				
-        });
-		
-		$(document).on('pagebeforeshow', '#detailCompleted', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('key'));
-			// La alerta mostrará 1 por pantalla
-			
-			//alert(valor.parcelid);
-			//alert(valor.agent);
-			$('#detalleCompletados ul').empty();
-			detailCompleted(valor.idfuh);
-		});
-		
-		//CLICK DETALLE HISTORY FOLLOW
-		$('ul.page_history2').on('click','li', function () {
-            //alert('onclick');
-			var id= $(this).attr('idhist');
-			var parcelid= $(this).attr('parcelid');
-			
-			var contr= $(this).attr('contr');
-			var object6 = { 'contr' : contr };
-			localStorage.setItem('key6', JSON.stringify(object6));
-			
-			var pof= $(this).attr('pof');
-			var object7 = { 'pof' : pof };
-			localStorage.setItem('key7', JSON.stringify(object7));	
-			
-			var emd= $(this).attr('emd');
-			var object8 = { 'emd' : emd };
-			localStorage.setItem('key8', JSON.stringify(object8));	
-			
-			var adde= $(this).attr('adde');
-			var object9 = { 'adde' : adde };
-			localStorage.setItem('key9', JSON.stringify(object9));
-			
-			var offre= $(this).attr('offre');
-			var object10 = { 'offre' : offre };
-			localStorage.setItem('key10', JSON.stringify(object10));					
-			
-			
-			// Creamos un objeto
-			var object = { 'idfuh' : id };
-			var object2 = { 'parcelid' : parcelid };
-			
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('key4', JSON.stringify(object));
-			localStorage.setItem('key2', JSON.stringify(object2));
-			
-			$('#detallehistorial ul').empty();
-			$.mobile.changePage("#detailHistory","slide");
-			
-        });
-		
-		$(document).on('pagebeforeshow', '#detailHistory', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('key4'));
-			var valor2 = JSON.parse(localStorage.getItem('key2'));
-			// La alerta mostrará 1 por pantalla
-			//alert(valor.parcelid);
-			//alert(valor.idfuh);
-			$('#detallehistorial ul').empty();
-			detailHistory(valor.idfuh,valor2.parcelid);
-		});
-		
-		//CLICK DETALLE SCHEDULE FOLLOW
-		$('ul.page_schedule').on('click','li', function () {
-            //alert('onclick');
-			var id= $(this).attr('idschedule');
-			var parcelid= $(this).attr('parcelid');
-
-			// Creamos un objeto
-			var object = { 'idfus' : id };
-			var object2 = { 'parcelid' : parcelid };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('key4', JSON.stringify(object));
-			localStorage.setItem('key2', JSON.stringify(object2));
-			$('#detalleschedule ul').empty();
-			$.mobile.changePage("#detailSchedule","slide");
-			
-        });
-		
-		$(document).on('pagebeforeshow', '#detailSchedule', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('key4'));
-			var valor2 = JSON.parse(localStorage.getItem('key2'));
-			// La alerta mostrará 1 por pantalla
-			//alert(valor.parcelid);
-			//alert(valor.idfus);
-			$('#detalleschedule ul').empty();
-			detailSchedule(valor.idfus,valor2.parcelid);
-		});
-		
-		
-		//CLICK DETALLE DE EMAIL FOLLOW
-		$('ul.page_correo').on('click','li', function () {
-           
-			var id= $(this).attr('idmail');
-			var idseen= $(this).attr('idseen');
-			// Creamos un objeto
-			var object = { 'email' : id };
-			var seen = { 'seen' : idseen };
-			// Lo guardamos en localStorage pasandolo a cadena con JSON
-			localStorage.setItem('email', JSON.stringify(object));
-			localStorage.setItem('seen', JSON.stringify(seen));
-			$('#detalleEmailFollow ul').empty();
-			$.mobile.changePage( "#detailEmailFollow");
-			
-        });
-		
-		
-		$(document).on('pagebeforeshow', '#detailEmailFollow', function(){  
-			//var valor = localStorage.getItem("key");
-			var valor = JSON.parse(localStorage.getItem('email'));
-			var valor2 = JSON.parse(localStorage.getItem('seen'));
-			$('#detalleEmailFollow ul').empty();
-			detailEmailFollow(valor.email);
-			
-			//readEmail(valor.email,valor2.seen);
-			leerCorreos(valor.email,valor2.seen);
-
-		});
-		
-		
-		$('#readEmailFollow,#readEmailFollow2').on('click',function(){			
-			var valor = JSON.parse(localStorage.getItem('key5'));
-			var valor2 = JSON.parse(localStorage.getItem('seen'));
-			
-			noleidoCorreo(valor.email,valor2.seen);
-		});
-		
-		$('#readEmail,#readEmail2').on('click',function(){			
-			var valor = JSON.parse(localStorage.getItem('email'));
-			var valor2 = JSON.parse(localStorage.getItem('seen'));
-			//alert('no leido');
-			noleidoCorreo(valor.email,valor2.seen);
-		});
-		
-		$('#unreadEmail,#unreadEmail2').on('click',function(){			
-			var valor = JSON.parse(localStorage.getItem('email'));
-			var valor2 = JSON.parse(localStorage.getItem('seen'));
-			//alert('no leido');
-			leerCorreos(valor.email,valor2.seen);
 		});	
+		}
+	});
 		
-		$('#unreadEmailFollow,#unreadEmailFollow2').on('click',function(){			
-			var valor = JSON.parse(localStorage.getItem('email'));
-			var valor2 = JSON.parse(localStorage.getItem('seen'));
-			//alert('no leido');
-			leerCorreos(valor.email,valor2.seen);
-		});									
-		
-		//LONG TOUCH PROPERTY
-		$('ul.page_result').on('taphold','li', function () {
-           // alert('long Touch properties');
-			
-			var id= $(this).attr('parcelid');
-			var typefollow= $(this).attr('type');
-			//alert(id);
-			
-			var pid = { 'pid' : id };
-			var typefollow = { 'typefollow' : typefollow };
-			
-			localStorage.setItem('pid', JSON.stringify(pid));
-			localStorage.setItem('typefollow', JSON.stringify(typefollow));
-			
-			longProperties(id);
-			
-        });
-		
-		
-		//LOGN TOUCH CONTACT
-		$('ul.page_contact').on('taphold','li', function () {
-           // alert('long Touch contact');
-			
-			var id= $(this).attr('agentid');
-			
-			//alert(id);
-			longContact(id);
+	$('#input_toforwardEmail').autoComplete({
+		minChars: 1,
+		source: function(term, suggest){
+		term = term.toLowerCase();
 				
-		});
-		
-		
-		//LONG TOUCH EMAIL INBOX
-		$('ul.page_emailInbox').on('taphold','li', function () {
-            //alert('long Touch email Inbox');
-			
-			var id= $(this).attr('idmail');
-			var idseen= $(this).attr('idseen');	
-			var email= $(this).attr('idemail');
-			var name= $(this).attr('idname');			
-			
-			//alert(id);
-			//alert(idseen);
-			
-			var object = { 'email' : email };
-			localStorage.setItem('key', JSON.stringify(object));
+		var data  = {
+			'userid': 3213,
+			'type': 'ContactEmailsList'
+		};
+				 
+		$.post("http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followagent.php", data, function(cont) {
+					
+			valor     = cont;
+			var obj = JSON.parse(valor);
+			var output ="";
+			var res ="";
+			var choice1=[];
+			var i=0;
+					
+			$.each(obj.records, function( key, value ) {
+				var datos = new Array();
+				var valores = new Array();						
+				choice1[i++]=value.email;				
+						
+			});
+			console.log(choice1);	
+			var choices=choice1;
+			//var choices=['jesi@gmail.com', 'angelaluna@gmail.com', 'luisdevies@gmail.com'];
+			//var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
+			var suggestions = [];
+			for (i=0;i<choices.length;i++)
+			if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+			suggest(suggestions);		
+		});		
+		}
+	});
 
-			var object2 = { 'name' : name };
-			localStorage.setItem('key2', JSON.stringify(object2));
+	//CLICK DETALLE DE PROPIEDADES
+	$('ul.page_result').on('click','li', function () {
+        //alert('onclick');
+		var id= $(this).attr('parcelid');
+		var type= $(this).attr('type');
+		var offer= $(this).attr('offer');
+		var owner= $(this).attr('owner');
+		var county= $(this).attr('county');
+		//alert(id);
+		// Creamos un objeto
+		var object = { 'parcelid' : id };
+		var object3 = { 'type' : type };
+		var object4 = { 'offer' : offer };
+		var object5 = { 'owner' : owner };
+		var object6 = { 'county' : county };
+		// Lo guardamos en localStorage pasandolo a cadena con JSON
+		localStorage.setItem('key', JSON.stringify(object));
+		localStorage.setItem('key3', JSON.stringify(object3));
+		localStorage.setItem('offer', JSON.stringify(object4));
+		localStorage.setItem('owner', JSON.stringify(object5));
+		localStorage.setItem('county', JSON.stringify(object6));
+		$('#detallePropiedades').empty();
+		$.mobile.changePage("#detailProperties","slide");
+		//window.location.href = "index.html#detailProperties";		
+    });
+		
+	$(document).on('pagebeforeshow', '#detailProperties', function(){  
+		//var valor = localStorage.getItem("key");
+		var valor = JSON.parse(localStorage.getItem('key'));
+		// La alerta mostrará 1 por pantalla
+		//alert(valor.parcelid);
+		//alert(valor.agent);
+		$('#detallePropiedades').empty();
+		detailProperty(valor.parcelid);
+	});
+		
+	//CLICK DETALLE DE CONTACTOS
+	$('ul.page_contact').on('click','li', function () { 
+		var id= $(this).attr('agentid');
+		// Creamos un objeto
+		var object = { 'agent' : id };
+		// Lo guardamos en localStorage pasandolo a cadena con JSON
+		localStorage.setItem('key', JSON.stringify(object));
 			
-			$(this).addClass ('mail_marked');
-			
-			longEmailInbox(id,idseen);
-				
-		});
-								
+		$('#detalleContacto').empty();
+		$.mobile.changePage( "#detailContacts","slide");	
+    });
 		
-		//LONG TOUCH EMAIL OUTBOX
-		$('ul.page_emailOutbox').on('taphold','li', function () {
-           // alert('long Touch email OUTbox');
-			
-			var id= $(this).attr('idmail');
-
-			longEmailOutbox(id);
+	$(document).on('pagebeforeshow', '#detailContacts', function(){  
+		//var valor = localStorage.getItem("key");
+		var valor = JSON.parse(localStorage.getItem('key'));
+		// La alerta mostrará 1 por pantalla
+		detailContact(valor.agent);
+	});
 		
-		});
+	//CLICK DETALLE DE CONTACTOS2
+	$('ul.page_contactAll').on('click','li', function () { 
+		var id= $(this).attr('agentid');
+		// Creamos un objeto
+		var object = { 'agentid' : id };
+		// Lo guardamos en localStorage pasandolo a cadena con JSON
+		localStorage.setItem('agentid', JSON.stringify(object));
+		$('#detalleContactoAll').empty();
+		$.mobile.changePage( "#detailContactsAll","slide");	
+    });
 		
-		//LOGN TOUCH HISTORY
-		/*$('ul.page_history').on('taphold','li', function () {
-           // alert('long Touch history');
-			
-			var id= $(this).attr('idhist');
-			
-			//alert(id);
-			longHistory(id);
-			
-		});*/
+	$(document).on('pagebeforeshow', '#detailContactsAll', function(){  
+		//var valor = localStorage.getItem("key");
+		var valor = JSON.parse(localStorage.getItem('agentid'));
+		// La alerta mostrará 1 por pantalla
+		detailContact(valor.agentid);
+	});
 		
-		//LOGN TOUCH SCHEDULE
-		/*$('ul.page_schedule').on('taphold','li', function () {
-            alert('long Touch schedule');
-			
-			var id= $(this).attr('idschedule');
-			
-			alert(id);
-			longSchedule(id);
-			
-		});*/
+	//CLICK DETALLE DE CONTACTOS3
+	$('ul.page_contactList').on('click','li', function () {  
+			var id= $(this).attr('agentid');	
+		// Creamos un objeto
+		var object = { 'agentid' : id };
+		// Lo guardamos en localStorage pasandolo a cadena con JSON
+		localStorage.setItem('agentid', JSON.stringify(object));
+		$('#detalleContactoList').empty();
+		$.mobile.changePage( "#detailContactsList","slide");	
+    });
 		
-		//LOGN TOUCH PENDING TASK
-		$('ul.page_pending').on('taphold','li', function () {
-            alert('long Touch pending task');
-			
-			var id= $(this).attr('idfus');
-			
-			alert(id);
-			longPending(id);
-			
-		});
+	$(document).on('pagebeforeshow', '#detailContactsList', function(){  
+		//var valor = localStorage.getItem("key");
+		var valor = JSON.parse(localStorage.getItem('agentid'));
+		// La alerta mostrará 1 por pantalla
+		detailContact(valor.agentid);
+	});
 		
-		//LOGN TOUCH COMPLETED TASK
-		$('ul.page_completed').on('taphold','li', function () {
-            alert('long Touch completed task');
-			
-			var id= $(this).attr('idfuh');
-			
-			alert(id);
-			longCompleted(id);
-			
-		});
-		
-		//CARGAR DATOS ASSIGNMENT CONTACT
-		$('#assCont,#assContIn').on('click',function(){			
-			var mail = JSON.parse(localStorage.getItem('key'));
-			var nam  = JSON.parse(localStorage.getItem('key2'));
-			//alert(mail.email);		
-			//alert(nam.name);	
-			getComposeInbox();
-			getAssignContact(mail.email,nam.name);
-		});
-		
-		
-		//CARGAR DATOS ASSIGNMENT PROPERTY
-		$('#assProp,#assPropIn').on('click',function(){			
-			//getAssignProperty();
-			getassignProperty();
-		});
-		
-		//ASSIGNMENT PROPERTY
-		$('#assignP').on('click',function(){			
-			//getAssignProperty();
-			assignProperty();
-		});
-		
-		//MAKE CALL
-		$('#makeCall,#makeCallDP').on('click', function () {
-			//alert('get');
-			//getAgentMakeCall(checkid);
-			getAgentCall(checkid);
-		});
-		
-		//SEND EMAIL
-		$('#sendE').on('click', function () {
-			//alert('sendemail');
-			sendemail();
-			
-		});
-		
-		//SEND COMPOSE EMAIL FOLLOW
-		$('#sendComposeEmailFollow,#sendComposeEF').on('click', function () {
-			//alert('sendemail');
-			var val = JSON.parse(localStorage.getItem('key5'));
-			var val2 = JSON.parse(localStorage.getItem('key'));
-			sendEmailFollow(val.mail,val2.parcelid);
-			
-		});
-		
-		//CARGAR EDITAR CONTACT
-		$("#editar,#editarCP").on('click', function () {
-			//alert('CARGAR FORM');
-			getEditContact();
-			
-		});
-		
-		//CARGAR INFO REPLY EMAIL INBOX
-		$("#replyEmail,#replyEmail2").on('click', function () {
-			//alert('CARGAR FORM');
-			var val = JSON.parse(localStorage.getItem('email'));
-			getReplyEmail(val.email);
-			//getReplyInbox(val.email);
-			//getReplyEmailFollow();
-			
-		});
-		
-		//CARGAR INFO REPLY EMAIL OutBOX
-		$("#replyEmailO").on('click', function () {
-			//alert('CARGAR FORM');
-			var val = JSON.parse(localStorage.getItem('email'));
-			getReplyEmailOutbox(val.email);
-			//getReplyInbox(val.email);
-			//getReplyEmailFollow();
-			
-		});
-		
-		//CARGAR INFO REPLY EMAIL FOLLOW
-		$("#replyEmailFollow,#replyEmailFollow2").on('click', function () {
-			//alert('reply ef');
-			var val = JSON.parse(localStorage.getItem('email'));
-			//getReplyEmailFollow();
-			getReplyEmailF(val.email);
-		});
-		
-		//BOTON EDITAR CONTACT
-		$("#updateCont,#updateCont2").on('click', function () {
-			//alert('editar');
-			editContact();
-			
-		});
-		
-		//BOTON EDITAR PENDING TASK
-		$("#saveEditPending,#updateEditPend").on('click', function () {
-			//alert('editar');
-			editPendingTask();
-			
-		});
-		
-		//BOTON EDITAR PENDING TASK
-		$("#saveEditCompleted,#updateEditCompleted").on('click', function () {
-			//alert('editar');
-			editCompletedTask();
-			
-		});
-		
-		//BOTON EDITAR HISTORY FOLLOW
-		$("#updateHist,#updateEditHistory").on('click', function () {
-			//alert('editar');
-			var id = JSON.parse(localStorage.getItem('key4'));
-			editHistory(id.idfuh);
-			
-		});
-		
-		//BOTON EDITAR SCHEDULE FOLLOW
-		$("#updateEditSche,#updateEditSchedule").on('click', function () {
-			//alert('editar');
-			var id = JSON.parse(localStorage.getItem('key4'));
-			editSchedule(id.idfus);
-			
-		});
-		
-		//BOTON DELETE HISTORY FOLLOW
-		$("#detailDelHist").on('click', function () {
-			var valor = JSON.parse(localStorage.getItem('key4'));
-			deleteHistory(valor.idfuh);
-			
-		});
-		
-		//BOTON DELETE SCHEDULE FOLLOW
-		$("#detailDelSche").on('click', function () {
-			var valor = JSON.parse(localStorage.getItem('key4'));
-			deleteSchedule(valor.idfus);
-			
-		});
-		
-		//BOTON DELETE EMAIL FOLLOW
-		$("#deleteEmailFollow,#deleteEmailFollow2").on('click', function () {
-			var valor = JSON.parse(localStorage.getItem('key5'));
-			deleteEmailFollow(valor.mail);
-		});
-		
-		//BOTON CARGAR EDITAR PENDING TASK
-		$("#editarPend").on('click', function () {
-			//alert('click boton editar');
-			var valor = JSON.parse(localStorage.getItem('key'));
-			geteditPending(valor.idfus);
-			
-		});
-		
-		//BOTON CARGAR EDITAR PENDING TASK
-		$("#editarCompleted").on('click', function () {
-			//alert('click boton editar');
-			var valor = JSON.parse(localStorage.getItem('key'));
-			var valor2 = JSON.parse(localStorage.getItem('key2'));
-			geteditCompleted(valor.idfuh,valor2.parcelid);
-			
-		});
-		
-		//BOTON CARGAR EDITAR SCHEDULE FOLLOW
-		$("#detailEditSche").on('click', function () {
-			//alert('click boton editar');
-			var valor = JSON.parse(localStorage.getItem('key4'));
-			var valor2 = JSON.parse(localStorage.getItem('key'));
-			geteditSchedule(valor.idfus,valor2.parcelid);
-			
-		});
-		
-		//BOTON CARGAR EDITAR HISTORY FOLLOW
-		$("#detailEditHist").on('click', function () {
-			//alert('click boton editar');
-			var valor = JSON.parse(localStorage.getItem('key4'));
-			var valor2 = JSON.parse(localStorage.getItem('key'));
-			geteditHistory(valor.idfuh,valor2.parcelid);
-			
-		});
-		
-		//BOTON CARGAR EDITAR EMAIL FOLLOW
-		$("#addEfollow").on('click', function () {
-			//alert('click boton editar');
-			//var valor = JSON.parse(localStorage.getItem('key4'));
-			//var valor2 = JSON.parse(localStorage.getItem('key'));
-			var valor2 = JSON.parse(localStorage.getItem('key'));
-			getComposeEmailFollow(valor2.parcelid);
-			
-		});
-		
-		
-		//BOTON SEARCH CONTACT CONTRACT
-		$("#imgbuyer,#imgseller").on('click', function () {
-			//alert('click boton editar');
-			getagentsearch();
-			
-		});
-		
-		
-		//BOTON CARGAR FORWARD EMAIL 
-		$("#forwardEmail,#forwardEmail2,#forwardEmailO").on('click', function () {
-			//alert('click boton editar');
-			//var valor = JSON.parse(localStorage.getItem('key4'));
-			
-			//detailEmails(valor.email);
-			//getComposeEmailFollow();
-			forwardEmailInbox();
-			
-		});
-		
-		//BOTON CARGAR FORWARD EMAIL FOLLOW
-		$("#forwardEmailFollow,#forwardEmailFollow2").on('click', function () {
-			//alert('click boton editar');
-			//var valor = JSON.parse(localStorage.getItem('key4'));
-			//var valor2 = JSON.parse(localStorage.getItem('key'));
-			//getComposeEmailFollow();
-			forwardEmailInbox();
-			
-		});
-		
-		//BOTON COMPLETED TASK PENDING
-		$("#taskComp").on('click', function () {
-			//alert('editar');
-			completedMultiTask();
-			
-		});
-		
-		//BOTON SEND EMAIL 
-		$("#btnSendEMAIL").on('click', function () {
-			//alert('editar');
-			sendEMAIL();
-			
-		});
-		
-		
-		//BOTON SEND SMS 
-		$("#btnSendSMS").on('click', function () {
-			//alert('editar');
-			sendSMS();
-			
-		});
-		
-		//BOTON SEND FAX
-		$("#btnSendFAX").on('click', function () {
-			//alert('editar');
-			sendFAX();
-			
-		});
-		
-		//BOTON SEND CONTRACT
-		$("#btnSendContr").on('click', function () {
-			//alert('editar');
-			sendContract();
-			
-		});
-		
-		//BOTON GET SEND CONTRACT
-		$("#sendContractDP").on('click', function () {
-			//alert('contract');
-			//getDocAdd();
-			
-		});
-		
-		//BOTON GET SEND CONTRACT
-		$("#btnLogin").on('click', function () {
-			//alert('login');
-			processLogin();
-			
-		});
-		
-		//BOTON USED CONTACT
-		$("#btnUsesThis").on('click', function () {
-			//alert('login');
-			usedContact();
-			
-		});
-		
-		//BOTON USED CONTACT
-		$("#btnUsesThisS").on('click', function () {
-			//alert('login');
-			usedContactS();
-			
-		});
-		
-		//BOTON INVESTOR OFFER
-		$("#getValue").on('click', function () {
-			//alert('login');
-			getInvestor();
-			
-		});
-		
-		//BOTON INVESTOR OFFER
-		$("#getValue2").on('click', function () {
-			//alert('login');
-			getInvestor2();
-			
-		});
-		
-		//BOTON SET PRINCIPAL
-		$("#btnSetPrincipal,#setPrincContList").on('click', function () {
-			//alert('login');
-			setAgentPrincipal();
-			
-		});
-		
-		//BOTON UPDATE MAKE CALL CONTACT
-		$("#btnUpdate,#updateContList").on('click', function () {
-			//alert('login');
-			var id = JSON.parse(localStorage.getItem('agentid'));
-			updateContact();
-			
-		});
-		
-		//BOTON ADD MAKE CALL CONTACT
-		$("#btnAdd").on('click', function () {
-			//alert('login');
-			getAgent();
-			addContact();
+	//CLICK DETALLE DE EMAIL
+	$('ul.page_emailInbox').on('click','li', function () {   
+		var id= $(this).attr('idmail');
+		var idseen= $(this).attr('idseen');
+		// Creamos un objeto
+		var object = { 'email' : id };
+		var seen = { 'seen' : idseen };
+		// Lo guardamos en localStorage pasandolo a cadena con JSON
+		localStorage.setItem('email', JSON.stringify(object));
+		localStorage.setItem('seen', JSON.stringify(seen));
+		$.mobile.changePage( "#detailEmail");	    
+    });
 	
-		});
+	$(document).on('pagebeforeshow', '#detailEmail', function(){  
+		//var valor = localStorage.getItem("key");
+		var valor = JSON.parse(localStorage.getItem('email'));
+		var valor2 = JSON.parse(localStorage.getItem('seen'));
+		detailEmails(valor.email);
+		detailEmailsCab(valor.email);
+		propertyAssing(valor.email);
+		leerCorreos(valor.email,valor2.seen);	
+	});
 		
-		//BOTON ADD NEW CONTACT
-		$("#addContAll").on('click', function () {
-			alert('addd');
-			addAgente();
-		});
+	//CLICK DETALLE DE EMAIL outbox
+	$('ul.page_emailOutbox').on('click','li', function () {
+           //alert('onclick email outbox');
+		//alert(url);
+		var id= $(this).attr('idmail');
+		var idseen= $(this).attr('idseen');
+		// Creamos un objeto
+		var object = { 'email' : id };
+		var seen = { 'seen' : idseen };
+		// Lo guardamos en localStorage pasandolo a cadena con JSON
+		localStorage.setItem('email', JSON.stringify(object));
+		localStorage.setItem('seen', JSON.stringify(seen));
+		$.mobile.changePage( "#detailEmailOutbox");	
+    });
 		
-		//BOTON SAVE NEW AGENT CONTACT
-		$("#saveCont,#saveCont2").on('click', function () {
-			//alert('login');
-			addAgente();		
-		});
+	$(document).on('pagebeforeshow', '#detailEmailOutbox', function(){  
+		//var valor = localStorage.getItem("key");
+		var valor = JSON.parse(localStorage.getItem('email'));
+		//detailEmails(valor.email);
+		var valor2 = JSON.parse(localStorage.getItem('seen'));
+		//alert('no leido');
+		leerCorreos(valor.email,valor2.seen);
+		detailEmailsCabO(valor.email);
+	});
 		
-		//BOTON REMOVE NEW AGENT CONTACT
-		$("#btnRemove,#removeContList").on('click', function () {
-			//alert('login');
-			removeAgente();		
-		});
+	//CLICK DETALLE PENDING TASK
+	$('ul.page_pending').on('click','li', function () {
+        //alert('onclick');
+		var id= $(this).attr('idfus');	
+		//alert(id);
+		// Creamos un objeto
+		var object = { 'idfus' : id };
+		// Lo guardamos en localStorage pasandolo a cadena con JSON
+		localStorage.setItem('key', JSON.stringify(object));
+		$('#detallePendiente ul').empty();
+		//$("#detallePendiente").html('');
+		$.mobile.changePage("#detailPending","slide");
+		//window.location.href = "index.html#detailProperties";			
+    });
 		
-		//BOTON ULTIMO AGENT CONTACT
-		$("#imgleft2").on('click', function () {
-			//alert('login');
-			position=-1; //ultima posicion
-			//alert(position);
-			getAgentCall(checkid);
+	$(document).on('pagebeforeshow', '#detailPending', function(){  
+		//var valor = localStorage.getItem("key");
+		var valor = JSON.parse(localStorage.getItem('key'));
+		// La alerta mostrará 1 por pantalla
+		//alert(valor.parcelid);
+		//alert(valor.agent);
+		$('#detallePendiente ul').empty();
+		detailPending(valor.idfus);
+	});
+		
+	//CLICK DETALLE COMPLETED TASK
+	$('ul.page_completed').on('click','li', function () {
+        //alert('onclick');
+		var id= $(this).attr('idfuh');
 			
-			//proxAgent();		
-		});
-		
-		//BOTON AFTER POSICION AGENT CONTACT
-		$("#imgleft").on('click', function () {
-			//alert('login');
-			position++;
-			//alert(position);
-			getAgentCall(checkid);
-			//proxAgent();		
-		});
-		
-		//BOTON PRIMERA POSICION AGENT CONTACT
-		$("#imgright").on('click', function () {
-			//alert('login');
-			position=-2; //primera posicion
-			//alert(position);
-			getAgentCall(checkid);
-			//proxAgent();		
-		});
-		
-		//BUTTON BEFORE AGENT CONTACT
-		$("#imgright2").on('click', function () {
-			//alert('decrementa');
-			position--; //primera posicion
-			//alert(position);
-			getAgentCall(checkid);
-			//proxAgent();		
-		});
-		
-		//CHEQUEA ALL Document
-		$('#all').click(function() {
-			alert('alll');
-			//$('.checkbox').find('span').addClass('checked');
-			$(".check").prop('checked', $(this).prop('checked'));
-		});
-		
-		//BOTON DELETE SEARCH CONTACT 
-		$("#xdel").on('click', function () {
-			//alert('editar');
-			xdelete();
+		var parcelid= $(this).attr('parcelid');
 			
-		});
-		
-		//BOTON DELETE SEARCH CONTACT 
-		$("#getContactD").on('click', function () {
-			//alert('editar');
-			var pid = JSON.parse(localStorage.getItem('key'));
-			getContact(pid.parcelid);
+		var contr= $(this).attr('contr');
+		var object6 = { 'contr' : contr };
+		localStorage.setItem('key6', JSON.stringify(object6));
 			
-		});
-		
-		//BOTON DELETE SEARCH CONTACT 
-		$("#addCP").on('click', function () {
-			//alert('editar');
-			var pid = JSON.parse(localStorage.getItem('key'));
-			pagSearchContact(pid.parcelid)
+		var pof= $(this).attr('pof');
+		var object7 = { 'pof' : pof };
+		localStorage.setItem('key7', JSON.stringify(object7));	
 			
-		});
-		
-		$("#backEmail").on('click', function () {
-			//alert('backContacts');
-			//document.getElementById("detalleEmailCab").innerHTML="";
-			$('#detalleCorreo').empty();
-			$('#detalleEmailCab ul').html('');
+		var emd= $(this).attr('emd');
+		var object8 = { 'emd' : emd };
+		localStorage.setItem('key8', JSON.stringify(object8));	
 			
-		});
-		
-		$("#backReplyEmail,#backForwardEmail").on('click', function () {
-			//alert('backContacts');
-			//document.getElementById("detalleEmailCab").innerHTML="";
-			$('#infoCorreo ul').html('');
-			$('#detalleCorreo').empty();
-			$('#detalleEmailCab ul').html('');
+		var adde= $(this).attr('adde');
+		var object9 = { 'adde' : adde };
+		localStorage.setItem('key9', JSON.stringify(object9));
 			
-			$('#detalleCorreoO').empty();
-			$('#detalleEmailCabO ul').html('');
+		var offre= $(this).attr('offre');
+		var object10 = { 'offre' : offre };
+		localStorage.setItem('key10', JSON.stringify(object10));	
+		
+		var object = { 'idfuh' : id };
+		localStorage.setItem('key', JSON.stringify(object));
+
+		var object2 = { 'parcelid' : parcelid };
+		localStorage.setItem('key2', JSON.stringify(object2));
 			
-		});
+		$('#detalleCompletados ul').empty();
+		$.mobile.changePage("#detailCompleted","slide");
+		//window.location.href = "index.html#detailProperties";		
+    });
 		
-		$("#backEmailO").on('click', function () {
-			//alert('backContacts');
-			//document.getElementById("detalleEmailCab").innerHTML="";
-			$('#detalleCorreoO').empty();
+	$(document).on('pagebeforeshow', '#detailCompleted', function(){  
+		//var valor = localStorage.getItem("key");
+		var valor = JSON.parse(localStorage.getItem('key'));
+		// La alerta mostrará 1 por pantalla
+		//alert(valor.parcelid);
+		//alert(valor.agent);
+		$('#detalleCompletados ul').empty();
+		detailCompleted(valor.idfuh);
+	});
+		
+	//CLICK DETALLE HISTORY FOLLOW
+	$('ul.page_history2').on('click','li', function () {
+           //alert('onclick');
+		var id= $(this).attr('idhist');
+		var parcelid= $(this).attr('parcelid');
 			
-			$('#detalleEmailCabO ul').html('');
+		var contr= $(this).attr('contr');
+		var object6 = { 'contr' : contr };
+		localStorage.setItem('key6', JSON.stringify(object6));
 			
-		});
+		var pof= $(this).attr('pof');
+		var object7 = { 'pof' : pof };
+		localStorage.setItem('key7', JSON.stringify(object7));	
+			
+		var emd= $(this).attr('emd');
+		var object8 = { 'emd' : emd };
+		localStorage.setItem('key8', JSON.stringify(object8));	
+			
+		var adde= $(this).attr('adde');
+		var object9 = { 'adde' : adde };
+		localStorage.setItem('key9', JSON.stringify(object9));
+			
+		var offre= $(this).attr('offre');
+		var object10 = { 'offre' : offre };
+		localStorage.setItem('key10', JSON.stringify(object10));						
+		// Creamos un objeto
+		var object = { 'idfuh' : id };
+		var object2 = { 'parcelid' : parcelid };
+		// Lo guardamos en localStorage pasandolo a cadena con JSON
+		localStorage.setItem('key4', JSON.stringify(object));
+		localStorage.setItem('key2', JSON.stringify(object2));
+		$('#detallehistorial ul').empty();
+		$.mobile.changePage("#detailHistory","slide");
+    });
 		
-		$("#backEdit").on('click', function () {			
-			$('#detalleContacto').empty();			
-		});
+	$(document).on('pagebeforeshow', '#detailHistory', function(){  
+		//var valor = localStorage.getItem("key");
+		var valor = JSON.parse(localStorage.getItem('key4'));
+		var valor2 = JSON.parse(localStorage.getItem('key2'));
+		// La alerta mostrará 1 por pantalla
+		//alert(valor.parcelid);
+		//alert(valor.idfuh);
+		$('#detallehistorial ul').empty();
+		detailHistory(valor.idfuh,valor2.parcelid);
+	});
 		
-		$("#backEditHistory").on('click', function () {
-			//alert('edit');
-			$('#detallehistorial ul').empty();			
-		});
+	//CLICK DETALLE SCHEDULE FOLLOW
+	$('ul.page_schedule').on('click','li', function () {
+        //alert('onclick');
+		var id= $(this).attr('idschedule');
+		var parcelid= $(this).attr('parcelid');
+		// Creamos un objeto
+		var object = { 'idfus' : id };
+		var object2 = { 'parcelid' : parcelid };
+		// Lo guardamos en localStorage pasandolo a cadena con JSON
+		localStorage.setItem('key4', JSON.stringify(object));
+		localStorage.setItem('key2', JSON.stringify(object2));
+		$('#detalleschedule ul').empty();
+		$.mobile.changePage("#detailSchedule","slide");	
+    });
 		
-		$("#backAdd,#backContract,#backSendE,#backSendS,#backSendF").on('click', function () {			
-			//$('#detalleContacto').empty();
-			document.getElementById('header_two').style.display = "none";			
-		});
+	$(document).on('pagebeforeshow', '#detailSchedule', function(){  
+		//var valor = localStorage.getItem("key");
+		var valor = JSON.parse(localStorage.getItem('key4'));
+		var valor2 = JSON.parse(localStorage.getItem('key2'));
+		// La alerta mostrará 1 por pantalla
+		//alert(valor.parcelid);
+		//alert(valor.idfus);
+		$('#detalleschedule ul').empty();
+		detailSchedule(valor.idfus,valor2.parcelid);
+	});
 		
-		$("#backFCall").on('click', function () {			
-			backMakeCall();		
-		});
+	//CLICK DETALLE DE EMAIL FOLLOW
+	$('ul.page_correo').on('click','li', function () { 
+		var id= $(this).attr('idmail');
+		var idseen= $(this).attr('idseen');
+		// Creamos un objeto
+		var object = { 'email' : id };
+		var seen = { 'seen' : idseen };
+		// Lo guardamos en localStorage pasandolo a cadena con JSON
+		localStorage.setItem('email', JSON.stringify(object));
+		localStorage.setItem('seen', JSON.stringify(seen));
+		$('#detalleEmailFollow ul').empty();
+		$.mobile.changePage( "#detailEmailFollow");
+    });
+		
+	$(document).on('pagebeforeshow', '#detailEmailFollow', function(){  
+		//var valor = localStorage.getItem("key");
+		var valor = JSON.parse(localStorage.getItem('email'));
+		var valor2 = JSON.parse(localStorage.getItem('seen'));
+		$('#detalleEmailFollow ul').empty();
+		detailEmailFollow(valor.email);
+		//readEmail(valor.email,valor2.seen);
+		leerCorreos(valor.email,valor2.seen);
+	});
+			
+	$('#readEmailFollow,#readEmailFollow2').on('click',function(){			
+		var valor = JSON.parse(localStorage.getItem('key5'));
+		var valor2 = JSON.parse(localStorage.getItem('seen'));
+		noleidoCorreo(valor.email,valor2.seen);
+	});
+		
+	$('#readEmail,#readEmail2').on('click',function(){			
+		var valor = JSON.parse(localStorage.getItem('email'));
+		var valor2 = JSON.parse(localStorage.getItem('seen'));
+		//alert('no leido');
+		noleidoCorreo(valor.email,valor2.seen);
+	});
+		
+	$('#unreadEmail,#unreadEmail2').on('click',function(){			
+		var valor = JSON.parse(localStorage.getItem('email'));
+		var valor2 = JSON.parse(localStorage.getItem('seen'));
+		//alert('no leido');
+		leerCorreos(valor.email,valor2.seen);
+	});	
+		
+	$('#unreadEmailFollow,#unreadEmailFollow2').on('click',function(){			
+		var valor = JSON.parse(localStorage.getItem('email'));
+		var valor2 = JSON.parse(localStorage.getItem('seen'));
+		//alert('no leido');
+		leerCorreos(valor.email,valor2.seen);
+	});									
+		
+	//LONG TOUCH PROPERTY
+	$('ul.page_result').on('taphold','li', function () {
+        // alert('long Touch properties');
+		var id= $(this).attr('parcelid');
+		var typefollow= $(this).attr('type');
+		//alert(id);
+		var pid = { 'pid' : id };
+		var typefollow = { 'typefollow' : typefollow };
+		localStorage.setItem('pid', JSON.stringify(pid));
+		localStorage.setItem('typefollow', JSON.stringify(typefollow));
+		longProperties(id);	
+	});
+		
+	//LOGN TOUCH CONTACT
+	$('ul.page_contact').on('taphold','li', function () {
+        // alert('long Touch contact');
+		var id= $(this).attr('agentid');
+		//alert(id);
+		longContact(id);		
+	});
+		
+	//LONG TOUCH EMAIL INBOX
+	$('ul.page_emailInbox').on('taphold','li', function () {
+        //alert('long Touch email Inbox');
+		var id= $(this).attr('idmail');
+		var idseen= $(this).attr('idseen');	
+		var email= $(this).attr('idemail');
+		var name= $(this).attr('idname');			
+		var object = { 'email' : email };
+		localStorage.setItem('key', JSON.stringify(object));
+		var object2 = { 'name' : name };
+		localStorage.setItem('key2', JSON.stringify(object2));
+		$(this).addClass ('mail_marked');
+		longEmailInbox(id,idseen);
+	});
+								
+	//LONG TOUCH EMAIL OUTBOX
+	$('ul.page_emailOutbox').on('taphold','li', function () {
+        // alert('long Touch email OUTbox');
+		var id= $(this).attr('idmail');
+		longEmailOutbox(id);
+	});
+
+	//LOGN TOUCH PENDING TASK
+	$('ul.page_pending').on('taphold','li', function () {
+        //alert('long Touch pending task');
+		var id= $(this).attr('idfus');
+		//alert(id);
+		longPending(id);	
+	});
+		
+	//LOGN TOUCH COMPLETED TASK
+	$('ul.page_completed').on('taphold','li', function () {
+        //alert('long Touch completed task');
+		var id= $(this).attr('idfuh');
+		//alert(id);
+		longCompleted(id);
+	});
+		
+	//CARGAR DATOS ASSIGNMENT CONTACT
+	$('#assCont,#assContIn').on('click',function(){			
+		var mail = JSON.parse(localStorage.getItem('key'));
+		var nam  = JSON.parse(localStorage.getItem('key2'));
+		//alert(mail.email);		
+		//alert(nam.name);	
+		getComposeInbox();
+		getAssignContact(mail.email,nam.name);
+	});
+	
+	//CARGAR DATOS ASSIGNMENT PROPERTY
+	$('#assProp,#assPropIn').on('click',function(){			
+		//getAssignProperty();
+		getassignProperty();
+	});
+		
+	//ASSIGNMENT PROPERTY
+	$('#assignP').on('click',function(){			
+		//getAssignProperty();
+		assignProperty();
+	});
+		
+	//MAKE CALL
+	$('#makeCall,#makeCallDP').on('click', function () {
+		//alert('get');
+		//getAgentMakeCall(checkid);
+		getAgentCall(checkid);
+	});
+		
+	//SEND EMAIL
+	$('#sendE').on('click', function () {
+		//alert('sendemail');
+		sendemail();	
+	});
+		
+	//SEND COMPOSE EMAIL FOLLOW
+	$('#sendComposeEmailFollow,#sendComposeEF').on('click', function () {
+		//alert('sendemail');
+		var val = JSON.parse(localStorage.getItem('key5'));
+		var val2 = JSON.parse(localStorage.getItem('key'));
+		sendEmailFollow(val.mail,val2.parcelid);	
+	});
+		
+	//CARGAR EDITAR CONTACT
+	$("#editar,#editarCP").on('click', function () {
+		//alert('CARGAR FORM');
+		getEditContact();
+	});
+		
+	//CARGAR INFO REPLY EMAIL INBOX
+	$("#replyEmail,#replyEmail2").on('click', function () {
+		//alert('CARGAR FORM');
+		var val = JSON.parse(localStorage.getItem('email'));
+		getReplyEmail(val.email);
+	});
+		
+	//CARGAR INFO REPLY EMAIL OutBOX
+	$("#replyEmailO").on('click', function () {
+		//alert('CARGAR FORM');
+		var val = JSON.parse(localStorage.getItem('email'));
+		getReplyEmailOutbox(val.email);
+	});
+		
+	//CARGAR INFO REPLY EMAIL FOLLOW
+	$("#replyEmailFollow,#replyEmailFollow2").on('click', function () {
+		//alert('reply ef');
+		var val = JSON.parse(localStorage.getItem('email'));
+		//getReplyEmailFollow();
+		getReplyEmailF(val.email);
+	});
+		
+	//BOTON EDITAR CONTACT
+	$("#updateCont,#updateCont2").on('click', function () {
+		//alert('editar');
+		editContact();
+	});
+		
+	//BOTON EDITAR PENDING TASK
+	$("#saveEditPending,#updateEditPend").on('click', function () {
+		//alert('editar');
+		editPendingTask();
+	});
+		
+	//BOTON EDITAR PENDING TASK
+	$("#saveEditCompleted,#updateEditCompleted").on('click', function () {
+		//alert('editar');
+		editCompletedTask();	
+	});
+		
+	//BOTON EDITAR HISTORY FOLLOW
+	$("#updateHist,#updateEditHistory").on('click', function () {
+		//alert('editar');
+		var id = JSON.parse(localStorage.getItem('key4'));
+		editHistory(id.idfuh);
+	});
+		
+	//BOTON EDITAR SCHEDULE FOLLOW
+	$("#updateEditSche,#updateEditSchedule").on('click', function () {
+		//alert('editar');
+		var id = JSON.parse(localStorage.getItem('key4'));
+		editSchedule(id.idfus);
+	});
+		
+	//BOTON DELETE HISTORY FOLLOW
+	$("#detailDelHist").on('click', function () {
+		var valor = JSON.parse(localStorage.getItem('key4'));
+		deleteHistory(valor.idfuh);
+	});
+		
+	//BOTON DELETE SCHEDULE FOLLOW
+	$("#detailDelSche").on('click', function () {
+		var valor = JSON.parse(localStorage.getItem('key4'));
+		deleteSchedule(valor.idfus);	
+	});
+		
+	//BOTON DELETE EMAIL FOLLOW
+	$("#deleteEmailFollow,#deleteEmailFollow2").on('click', function () {
+		var valor = JSON.parse(localStorage.getItem('key5'));
+		deleteEmailFollow(valor.mail);
+	});
+		
+	//BOTON CARGAR EDITAR PENDING TASK
+	$("#editarPend").on('click', function () {
+		//alert('click boton editar');
+		var valor = JSON.parse(localStorage.getItem('key'));
+		geteditPending(valor.idfus);
+	});
+		
+	//BOTON CARGAR EDITAR PENDING TASK
+	$("#editarCompleted").on('click', function () {
+		//alert('click boton editar');
+		var valor = JSON.parse(localStorage.getItem('key'));
+		var valor2 = JSON.parse(localStorage.getItem('key2'));
+		geteditCompleted(valor.idfuh,valor2.parcelid);
+	});
+		
+	//BOTON CARGAR EDITAR SCHEDULE FOLLOW
+	$("#detailEditSche").on('click', function () {
+		//alert('click boton editar');
+		var valor = JSON.parse(localStorage.getItem('key4'));
+		var valor2 = JSON.parse(localStorage.getItem('key'));
+		geteditSchedule(valor.idfus,valor2.parcelid);
+	});
+		
+	//BOTON CARGAR EDITAR HISTORY FOLLOW
+	$("#detailEditHist").on('click', function () {
+		//alert('click boton editar');
+		var valor = JSON.parse(localStorage.getItem('key4'));
+		var valor2 = JSON.parse(localStorage.getItem('key'));
+		geteditHistory(valor.idfuh,valor2.parcelid);
+	});
+		
+	//BOTON CARGAR EDITAR EMAIL FOLLOW
+	$("#addEfollow").on('click', function () {
+		//alert('click boton editar');
+		var valor2 = JSON.parse(localStorage.getItem('key'));
+		getComposeEmailFollow(valor2.parcelid);
+	});
+		
+	//BOTON SEARCH CONTACT CONTRACT
+	$("#imgbuyer,#imgseller").on('click', function () {
+		//alert('click boton editar');
+		getagentsearch();
+	});
+		
+	//BOTON CARGAR FORWARD EMAIL 
+	$("#forwardEmail,#forwardEmail2,#forwardEmailO").on('click', function () {
+		forwardEmailInbox();
+	});
+		
+	//BOTON CARGAR FORWARD EMAIL FOLLOW
+	$("#forwardEmailFollow,#forwardEmailFollow2").on('click', function () {
+		forwardEmailInbox();	
+	});
+		
+	//BOTON COMPLETED TASK PENDING
+	$("#taskComp").on('click', function () {
+		//alert('editar');
+		completedMultiTask();	
+	});
+		
+	//BOTON SEND EMAIL 
+	$("#btnSendEMAIL").on('click', function () {
+		//alert('editar');
+		sendEMAIL();	
+	});
+		
+		
+	//BOTON SEND SMS 
+	$("#btnSendSMS").on('click', function () {
+		//alert('editar');
+		sendSMS();	
+	});
+		
+	//BOTON SEND FAX
+	$("#btnSendFAX").on('click', function () {
+		//alert('editar');
+		sendFAX();
+	});
+		
+	//BOTON SEND CONTRACT
+	$("#btnSendContr").on('click', function () {
+		//alert('editar');
+		sendContract();	
+	});
+		
+	//BOTON GET SEND CONTRACT
+	$("#sendContractDP").on('click', function () {
+		//alert('contract');
+		//getDocAdd();	
+	});
+		
+	//BOTON LOGIN
+	$("#btnLogin").on('click', function () {
+		//alert('login');
+		processLogin();
+	});
+		
+	//BOTON USED CONTACT
+	$("#btnUsesThis").on('click', function () {
+		//alert('login');
+		usedContact();	
+	});
+		
+	//BOTON USED CONTACT
+	$("#btnUsesThisS").on('click', function () {
+		//alert('login');
+		usedContactS();	
+	});
+		
+	//BOTON INVESTOR OFFER
+	$("#getValue").on('click', function () {
+		//alert('login');
+		getInvestor();
+	});
+		
+	//BOTON INVESTOR OFFER
+	$("#getValue2").on('click', function () {
+		//alert('login');
+		getInvestor2();	
+	});
+		
+	//BOTON SET PRINCIPAL
+	$("#btnSetPrincipal,#setPrincContList").on('click', function () {
+		//alert('login');
+		setAgentPrincipal();	
+	});
+		
+	//BOTON UPDATE MAKE CALL CONTACT
+	$("#btnUpdate,#updateContList").on('click', function () {
+		//alert('login');
+		var id = JSON.parse(localStorage.getItem('agentid'));
+		updateContact();	
+	});
+		
+	//BOTON ADD MAKE CALL CONTACT
+	$("#btnAdd").on('click', function () {
+		//alert('login');
+		getAgent();
+		addContact();
+	});
+		
+	//BOTON ADD NEW CONTACT
+	$("#addContAll").on('click', function () {
+		alert('addd');
+		addAgente();
+	});
+		
+	//BOTON SAVE NEW AGENT CONTACT
+	$("#saveCont,#saveCont2").on('click', function () {
+		//alert('login');
+		addAgente();		
+	});
+		
+	//BOTON REMOVE NEW AGENT CONTACT
+	$("#btnRemove,#removeContList").on('click', function () {
+		//alert('login');
+		removeAgente();		
+	});
+		
+	//BOTON ULTIMO AGENT CONTACT
+	$("#imgleft2").on('click', function () {
+		//alert('login');
+		position=-1; //ultima posicion
+		//alert(position);
+		getAgentCall(checkid);		
+	});
+		
+	//BOTON AFTER POSICION AGENT CONTACT
+	$("#imgleft").on('click', function () {
+		//alert('login');
+		position++;
+		//alert(position);
+		getAgentCall(checkid);	
+	});
+		
+	//BOTON PRIMERA POSICION AGENT CONTACT
+	$("#imgright").on('click', function () {
+		//alert('login');
+		position=-2; //primera posicion
+		//alert(position);
+		getAgentCall(checkid);	
+	});
+		
+	//BUTTON BEFORE AGENT CONTACT
+	$("#imgright2").on('click', function () {
+		//alert('decrementa');
+		position--; //primera posicion
+		//alert(position);
+		getAgentCall(checkid);	
+	});
+		
+	//CHEQUEA ALL Document
+	$('#all').click(function() {
+		//alert('alll');
+		//$('.checkbox').find('span').addClass('checked');
+		$(".check").prop('checked', $(this).prop('checked'));
+	});
+		
+	//BOTON DELETE SEARCH CONTACT 
+	$("#xdel").on('click', function () {
+		//alert('editar');
+		xdelete();
+	});
+		
+	//BOTON DELETE SEARCH CONTACT 
+	$("#getContactD").on('click', function () {
+		//alert('editar');
+		var pid = JSON.parse(localStorage.getItem('key'));
+		getContact(pid.parcelid);
+	});
+		
+	//BOTON DELETE SEARCH CONTACT 
+	$("#addCP").on('click', function () {
+		//alert('editar');
+		var pid = JSON.parse(localStorage.getItem('key'));
+		pagSearchContact(pid.parcelid)	
+	});
+		
+	$("#backEmail").on('click', function () {
+		//alert('backContacts');
+		//document.getElementById("detalleEmailCab").innerHTML="";
+		$('#detalleCorreo').empty();
+		$('#detalleEmailCab ul').html('');
+	});
+		
+	$("#backReplyEmail,#backForwardEmail").on('click', function () {
+		//alert('backContacts');
+		//document.getElementById("detalleEmailCab").innerHTML="";
+		$('#infoCorreo ul').html('');
+		$('#detalleCorreo').empty();
+		$('#detalleEmailCab ul').html('');
+		$('#detalleCorreoO').empty();
+		$('#detalleEmailCabO ul').html('');
+			
+	});
+		
+	$("#backEmailO").on('click', function () {
+		//alert('backContacts');
+		//document.getElementById("detalleEmailCab").innerHTML="";
+		$('#detalleCorreoO').empty();
+			
+		$('#detalleEmailCabO ul').html('');
+			
+	});
+		
+	$("#backEdit").on('click', function () {			
+		$('#detalleContacto').empty();			
+	});
+		
+	$("#backEditHistory").on('click', function () {
+		//alert('edit');
+		$('#detallehistorial ul').empty();			
+	});
+		
+	$("#backAdd,#backContract,#backSendE,#backSendS,#backSendF").on('click', function () {			
+		//$('#detalleContacto').empty();
+		document.getElementById('header_two').style.display = "none";			
+	});
+		
+	$("#backFCall").on('click', function () {			
+		backMakeCall();		
+	});
 		
 		
 });
@@ -1965,7 +1662,6 @@ $(document).scroll(function () {
 	}
 });	
 
-
 /*$(document).on("pagecontainerhide", function (e, ui) {
 	if (WURFL.form_factor != "Tablet") {
 			window.plugins.orientationchanger.lockOrientation('portrait');
@@ -1973,194 +1669,181 @@ $(document).scroll(function () {
 	}
 				
 });*/
-
-
-	
 	
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
-		//alert('page contacts');
-		busy=true;
-		pagina = 4;
-		$("#contacts ul").empty();
-		start=0;
-		listadoContacts(start,settings.limit);
-		cantidadEmail();
-		$("#phoneContFil").intlTelInput({
-				//allowExtensions: true,
-				//autoFormat: false,
-				//autoHideDialCode: false,
-				//autoPlaceholder: false,
-				//defaultCountry: "auto",
-				//ipinfoToken: "yolo",
-				//nationalMode: false,
-				//numberType: "MOBILE",
-				onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
-				//preferredCountries: ['cn', 'jp'],
-				utilsScript: "http://reifax.com/FollowupReifax/resources/lib/libphonenumber/build/utils.js",
-		});
+	//alert('page contacts');
+	busy=true;
+	pagina = 4;
+	$("#contacts ul").empty();
+	start=0;
+	listadoContacts(start,settings.limit);
+	cantidadEmail();
+	$("#phoneContFil").intlTelInput({
+		//allowExtensions: true,
+		//autoFormat: false,
+		//autoHideDialCode: false,
+		//autoPlaceholder: false,
+		//defaultCountry: "auto",
+		//ipinfoToken: "yolo",
+		//nationalMode: false,
+		//numberType: "MOBILE",
+		onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+		//preferredCountries: ['cn', 'jp'],
+		utilsScript: "http://reifax.com/FollowupReifax/resources/lib/libphonenumber/build/utils.js",
+	});
 							
 });
 
 $(document).on("pagebeforeshow","#followingHtml",function(){	
-		//alert('page following');
-		busy=true;
-		pagina = 1;
-		$("#content ul").empty();
-		start=0;
-		listadoProperty(start,settings.limit);
+	//alert('page following');
+	busy=true;
+	pagina = 1;
+	$("#content ul").empty();
+	start=0;
+	listadoProperty(start,settings.limit);
 		
-		cantidadEmail();
+	cantidadEmail();
+	gettypecontract();
 		
-		gettypecontract();
+	$('#demo').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});
 		
-		$('#demo').mobipick({
-			dateFormat: "MM-dd-yyyy"
-		});
-		
-		$('#demo2').mobipick({
-			dateFormat: "MM-dd-yyyy"
-		});		
+	$('#demo2').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});		
 		
 							
 });
 
 $(document).on("pagebeforeshow","#emailHtml",function(){	
-			//alert('page email inbox');
-			busy=true;
-			pagina = 2;
-			$("#emails ul").empty();
-			start=0;
-			cantidadEmail();
-			listadoEmailsInbox(start,settings.limit);
+	//alert('page email inbox');
+	busy=true;
+	pagina = 2;
+	$("#emails ul").empty();
+	start=0;
+	cantidadEmail();
+	listadoEmailsInbox(start,settings.limit);
 							
 });
 
 $(document).on("pagebeforeshow","#outboxEmailHtml",function(){	
-			//alert('page email outbox');
-			busy=true;
-			pagina = 3;
-			$("#emailsOutbox ul").empty();
-			start=0;
-			cantidadEmail();
-			listadoEmailsOutbox(start,settings.limit);
+	//alert('page email outbox');
+	busy=true;
+	pagina = 3;
+	$("#emailsOutbox ul").empty();
+	start=0;
+	cantidadEmail();
+	listadoEmailsOutbox(start,settings.limit);
 							
 });
 
 $(document).on("pagebeforeshow","#historyFollow",function(){	
-			//alert('page history');
-			busy=true;
-			pagina = 5;
-			$("#historial ul").empty();
+	//alert('page history');
+	busy=true;
+	pagina = 5;
+	$("#historial ul").empty();
+	start=0;
+	var valor = JSON.parse(localStorage.getItem('key'));
 			
-			start=0;
-			var valor = JSON.parse(localStorage.getItem('key'));
-			
-			historyDetail(start,settings.limit,valor.parcelid);		
-
-			
-							
+	historyDetail(start,settings.limit,valor.parcelid);		
+						
 });
 
 $(document).on("pagebeforeshow","#scheduleFollow",function(){	
-			//alert('page shedule');
-			busy=true;
-			pagina = 6;
-			$("#schedule ul").empty();
-			start=0;
-			var valor = JSON.parse(localStorage.getItem('key'));
-			//alert(valor.parcelid);
-			scheduleDetail(start,settings.limit,valor.parcelid);	
-				
-			
-							
+	//alert('page shedule');
+	busy=true;
+	pagina = 6;
+	$("#schedule ul").empty();
+	start=0;
+	var valor = JSON.parse(localStorage.getItem('key'));
+	//alert(valor.parcelid);
+	scheduleDetail(start,settings.limit,valor.parcelid);	
+											
 });
 
 $(document).on("pagebeforeshow","#emailFollow",function(){	
-			//alert('page email follow');
-			busy=true;
-			pagina = 7;
-			$("#correofollow ul").empty();
-			start=0;
-			var valor = JSON.parse(localStorage.getItem('key'));
-			//alert(valor.parcelid);
-			emailDetail(start,settings.limit,valor.parcelid);
+	//alert('page email follow');
+	busy=true;
+	pagina = 7;
+	$("#correofollow ul").empty();
+	start=0;
+	var valor = JSON.parse(localStorage.getItem('key'));
+	//alert(valor.parcelid);
+	emailDetail(start,settings.limit,valor.parcelid);
 
-			$('#dateBetween').mobipick({
-				dateFormat: "MM-dd-yyyy"
-			});
+	$('#dateBetween').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});
 		
-			$('#dateTo').mobipick({
-				dateFormat: "MM-dd-yyyy"
-			});	
+	$('#dateTo').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});	
 			
-			$('#edateAddScheduleEmailFollow').mobipick({
-				dateFormat: "MM-dd-yyyy"
-			});	
+	$('#edateAddScheduleEmailFollow').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});	
 							
 });
 
 $(document).on("pagebeforeshow","#taskHtml",function(){	
-			//alert('page task Pendings');
-			busy=true;
-			pagina = 8;
-			$("#pendientes ul").empty();
-			start=0;
-			listadoPendings(start,settings.limit);
+	//alert('page task Pendings');
+	busy=true;
+	pagina = 8;
+	$("#pendientes ul").empty();
+	start=0;
+	listadoPendings(start,settings.limit);
 			
-		$('#schedateP').mobipick({
-			dateFormat: "MM-dd-yyyy"
-		});
+	$('#schedateP').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});
 		
-		$('#schedateP2').mobipick({
-			dateFormat: "MM-dd-yyyy"
-		});		
+	$('#schedateP2').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});		
 		
-		$('#execdateP').mobipick({
-			dateFormat: "MM-dd-yyyy"
-		});
+	$('#execdateP').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});
 		
-		$('#execdateP2').mobipick({
-			dateFormat: "MM-dd-yyyy"
-		});	
-				
-							
+	$('#execdateP2').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});	
+									
 });
 
 $(document).on("pagebeforeshow","#taskCompletedHtml",function(){	
-			//alert('page task complete');
-			busy=true;
-			pagina = 9;
-			$("#completados ul").empty();
-			start=0;
-			listadoCompleted(start,settings.limit);
+	//alert('page task complete');
+	busy=true;
+	pagina = 9;
+	$("#completados ul").empty();
+	start=0;
+	listadoCompleted(start,settings.limit);
 			
-			$('#compdateC').mobipick({
-				dateFormat: "MM-dd-yyyy"
-			});
+	$('#compdateC').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});
 		
-			$('#compdateC2').mobipick({
-				dateFormat: "MM-dd-yyyy"
-			});	
-			
+	$('#compdateC2').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});		
 							
 });
 
 $(document).on("pagebeforeshow","#listadoAllContacts",function(){	
-			//alert('page email outbox');
-			busy=true;
-			pagina = 10;
-			$("#listadoAllContacto ul").empty();
-			start=0;
+	//alert('page email outbox');
+	busy=true;
+	pagina = 10;
+	$("#listadoAllContacto ul").empty();
+	start=0;
 			
-			listadoAllContacts(start,settings.limit);
+	listadoAllContacts(start,settings.limit);
 							
 });
 
 $(document).on("pagebeforeshow","#pagAddContactoHtml",function(){	
 	
 	cantidadEmail();
-
-
 });
 
 $(document).on("pagebeforeshow","#formContract2",function(){	
@@ -2184,10 +1867,6 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 	$('#edateEditPend').mobipick({
 		dateFormat: "MM-dd-yyyy"
 	});	
-	
-	//$('#ehourEditPend').timepicker();	
-	//$('#timepicker1').timepicker();	
-	
 		 					
 });
 
@@ -3181,7 +2860,6 @@ var funciones={
 <div data-role="page" id="followingHtml">
 	<!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="menu" data-theme="b" href="#menuPrincFollow"></a-->
 		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
 		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
@@ -3208,22 +2886,15 @@ var funciones={
 	<!--FIN HEADER-->
 	
 	<!--content-->
-	
 	<div data-role="content">
 		<div style="background:#fff;" id="content">
 			<ul style="list-style: none;margin-left:-40px;" class="page_result">
 			
 			</ul>
 		</div>
-		
 		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
-		
-		
-				
-		
 	</div>
 	<!--content-->
-	
 	
 	<!--MENU PRINCIPAL PROPERTY-->
 	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuProperty" data-display="overlay" data-position="right">
@@ -3240,9 +2911,8 @@ var funciones={
 			<li class="margen"><a class="sendEmail"        id="sendEmail"      href="#formEmail" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
 			<li class="margen"><a class="sendSMS"          id="sendSMS"        href="#formSMS" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
 			<li class="margen"><a class="sendFax"          id="sendFax"        href="#formFax" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
-			<li class="margen"><a class="makeCall"         id="makeCall"       href="#formCall" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>
-						 
-			 </ul>
+			<li class="margen"><a class="makeCall"         id="makeCall"       href="#formCall" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>			 
+			</ul>
 		</div>	
 	</div>
 	<!--FIN MENU-->
@@ -3369,15 +3039,9 @@ var funciones={
 							<div id="between" class="col-xs-6 col-sm-3">
 								<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
 								<input style="line-height:25px;width: 100px !important;margin-left: 115px;" name="demo2" id="demo2" class="i-txt" />
-							</div>
-							
-						
-					</div>
-					
-					
-					
+							</div>			
+					</div>	
 				</div>
-            
 			</div>	
             <div class="modal-footer">
                 <!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button-->
@@ -5284,7 +4948,7 @@ var funciones={
 
 
 <div data-role="page" id="detailProperties" data-add-back-btn="true">         
-           <!--HEADER-->
+    <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-rel="back" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();" ></a>
@@ -5295,7 +4959,6 @@ var funciones={
 		</div>
 	
 	</div>
-	
 	<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
@@ -5305,29 +4968,18 @@ var funciones={
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
 			</ul>
 		</div>
-	
 	<!--FIN TABS-->
 	
 	<!--FIN HEADER--> 
 		
 	<!--CONTENT-->
-	
 	<div data-role="content" >	
-			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
-					class="ifra" id="webdetailHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetails.php">
-				<html>
-					<head></head>
-					<body></body>
-				</html>
-			</iframe-->
 		<div style="background:#fff;height:500px;" id="detallePropiedades">
 			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
 			
 			</ul>
-		</div>
-			
+		</div>	
 	</div>
-	
 	<!--FIN CONTENT-->	
 	
 	<!--MENU PRINCIPAL DETAIL PROPERTY-->
@@ -5345,9 +4997,8 @@ var funciones={
 			<li class="margen"><a class="sendEmail"        id="sendEmailDP"      href="#formEmail" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
 			<li class="margen"><a class="sendSMS"          id="sendSMSDP"        href="#formSMS" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
 			<li class="margen"><a class="sendFax"          id="sendFaxDP"        href="#formFax" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
-			<li class="margen"><a class="makeCall"         id="makeCallDP"       href="#formCall" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>
-						 
-			 </ul>
+			<li class="margen"><a class="makeCall"         id="makeCallDP"       href="#formCall" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>			 
+			</ul>
 		</div>	
 	</div>
 	<!--FIN MENU-->
@@ -5356,7 +5007,7 @@ var funciones={
 </div><!-- /page --> 
 
 <div data-role="page" id="detailContacts">         
-           <!--HEADER-->
+    <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
@@ -5369,29 +5020,19 @@ var funciones={
 	<!--FIN HEADER--> 
 		
 	<!--CONTENT-->
-	
-	<div data-role="content" >	
-			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
-					class="ifra2" id="webdetailContactHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetailsContacts.php">
-				<html>
-					<head></head>
-					<body></body>
-				</html>
-			</iframe-->
+	<div data-role="content" >
 		<div style="background:#fff;" id="detalleContacto">
 			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
 			
 			</ul>
-		</div>
-			
+		</div>	
 	</div>
-	
 	<!--FIN CONTENT-->	
 	
 </div><!-- /page -->
 
 <div data-role="page" id="detailContactsAll">         
-           <!--HEADER-->
+    <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
@@ -5404,29 +5045,19 @@ var funciones={
 	<!--FIN HEADER--> 
 		
 	<!--CONTENT-->
-	
 	<div data-role="content" >	
-			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
-					class="ifra2" id="webdetailContactHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetailsContacts.php">
-				<html>
-					<head></head>
-					<body></body>
-				</html>
-			</iframe-->
 		<div style="background:#fff;" id="detalleContactoAll">
 			<ul style="list-style: none;margin-left:-40px;" class="page_contactAll">
 			
 			</ul>
-		</div>
-			
+		</div>	
 	</div>
-	
 	<!--FIN CONTENT-->	
 	
 </div><!-- /page -->
 
 <div data-role="page" id="detailContactsList">         
-           <!--HEADER-->
+    <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
@@ -5441,45 +5072,33 @@ var funciones={
 	<!--FIN HEADER--> 
 		
 	<!--CONTENT-->
-	
 	<div data-role="content" >	
-			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
-					class="ifra2" id="webdetailContactHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetailsContacts.php">
-				<html>
-					<head></head>
-					<body></body>
-				</html>
-			</iframe-->
 		<div style="background:#fff;" id="detalleContactoList">
 			<ul style="list-style: none;margin-left:-40px;" class="page_contactList">
 			
 			</ul>
-		</div>
-			
+		</div>	
 	</div>
-	
 	<!--FIN CONTENT-->	
 	
 </div><!-- /page -->
 
 <div data-role="page" id="listadoContactsProperty">         
-           <!--HEADER-->
+    <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-32px"><img src="resources/image/contacts_follow.png" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
-			<a id="addCP" style="margin-right: 10px;height: 30px;background-image: url('img/add-user-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="add" role="button" data-theme="b" href="#"></a>
+			<a id="addCP" style="margin-right:10px;height: 30px;width:30px;background-image: url('img/add-user-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="add" role="button" data-theme="b" href="#"></a>
 			<!--a id="editarCP" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 20px 20px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditContactoHtml"></a-->
 		</div>
 	</div>
 	<!--FIN HEADER--> 
 		
 	<!--CONTENT-->
-	
-	<div data-role="content" >	
-
+	<div data-role="content" >
 		<div style="background:#fff;" id="listadoContactoProperty">
 			<ul style="list-style: none;margin-left:-40px;" class="page_contactList">
 			
@@ -5487,7 +5106,6 @@ var funciones={
 		</div>
 			
 	</div>
-	
 	<!--FIN CONTENT-->	
 	
 </div><!-- /page -->
@@ -5497,8 +5115,8 @@ var funciones={
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
-		
-		<div id='searchLisContact' style='margin-top:-37px;margin-left:65px;white-space:nowrap;width:80%;'>
+		<a id="xdel" style="margin-right:10px;height: 30px;width:30px;background-image: url('img/x-delete-48.png');background-repeat:no-repeat; background-size:20px 20px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="add" role="button" data-theme="b" href="#"></a>
+		<div id='searchLisContact' style='margin-top:-37px;margin-left:65px;white-space:nowrap;width:70%;'>
 			<input style="width:90%;" type="search" class="transparent-input searchContact" id="searchListadoContact" placeholder="Search" name="searchContact" autofocus>			
 		</div>
 	</div>
