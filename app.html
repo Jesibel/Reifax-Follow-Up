@@ -734,6 +734,16 @@
 			emailDetail(start, limit,id.parcelid);
 		 
 		 });
+		 
+		 $("#searchLisContact").on("keypress", function(e){       
+			//alert("The enter key was pressed");
+			if ($(".searchLisContact:focus")&& (e.keyCode === 13)) {
+				var start = 0; 
+				var limit = 25; 
+				listadoSearchContacts(start,limit);
+				
+			}
+		});
 		
 			
 	});
@@ -870,6 +880,48 @@ $(function(){
 			}
 		});
 		
+		/*$('#searchListadoContact').autoComplete({
+			minChars: 1,			
+			source: function(term, suggest){
+				term = term.toLowerCase();
+				alert('dentro source');
+				var data  = {
+					'userid': 3213,
+					'agent': $("input#searchListadoContact").val()
+				};
+				 
+				$.post("http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followagent.php", data, function(cont) {
+					
+					valor     = cont;
+					var obj = JSON.parse(valor);
+					var output ="";
+					var res ="";
+					var choice2=[];
+					var i=0;
+					
+					$.each(obj.records, function( key, value ) {
+						var datos = new Array();
+						var valores = new Array();
+											
+						choice1[i++]=value.agent;				
+						
+					});
+					console.log(choice2);
+					
+					
+					var choices=choice2;
+					//var choices=['jesi@gmail.com', 'angelaluna@gmail.com', 'luisdevies@gmail.com'];
+					//var choices = ['ActionScript', 'AppleScript', 'Asp', 'Assembly', 'BASIC', 'Batch', 'C', 'C++', 'CSS', 'Clojure', 'COBOL', 'ColdFusion', 'Erlang', 'Fortran', 'Groovy', 'Haskell', 'HTML', 'Java', 'JavaScript', 'Lisp', 'Perl', 'PHP', 'PowerShell', 'Python', 'Ruby', 'Scala', 'Scheme', 'SQL', 'TeX', 'XML'];
+					var suggestions = [];
+					for (i=0;i<choices.length;i++)
+						if (~choices[i].toLowerCase().indexOf(term)) suggestions.push(choices[i]);
+						suggest(suggestions);	
+				
+				});
+				
+			}
+		});*/
+		
 		
 		//CLICK DETALLE DE PROPIEDADES
 		$('ul.page_result').on('click','li', function () {
@@ -930,6 +982,50 @@ $(function(){
 			var valor = JSON.parse(localStorage.getItem('key'));
 			// La alerta mostrará 1 por pantalla
 			detailContact(valor.agent);
+		});
+		
+		//CLICK DETALLE DE CONTACTOS2
+		$('ul.page_contactAll').on('click','li', function () {
+           
+			var id= $(this).attr('agentid');
+			
+			// Creamos un objeto
+			var object = { 'agentid' : id };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('agentid', JSON.stringify(object));
+			
+			$('#detalleContactoAll').empty();
+			$.mobile.changePage( "#detailContactsAll","slide");
+			
+        });
+		
+		$(document).on('pagebeforeshow', '#detailContactsAll', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('agentid'));
+			// La alerta mostrará 1 por pantalla
+			detailContact(valor.agentid);
+		});
+		
+		//CLICK DETALLE DE CONTACTOS3
+		$('ul.page_contactList').on('click','li', function () {
+           
+			var id= $(this).attr('agentid');
+			
+			// Creamos un objeto
+			var object = { 'agentid' : id };
+			// Lo guardamos en localStorage pasandolo a cadena con JSON
+			localStorage.setItem('agentid', JSON.stringify(object));
+			
+			$('#detalleContactoList').empty();
+			$.mobile.changePage( "#detailContactsList","slide");
+			
+        });
+		
+		$(document).on('pagebeforeshow', '#detailContactsList', function(){  
+			//var valor = localStorage.getItem("key");
+			var valor = JSON.parse(localStorage.getItem('agentid'));
+			// La alerta mostrará 1 por pantalla
+			detailContact(valor.agentid);
 		});
 		
 		//CLICK DETALLE DE EMAIL
@@ -1374,7 +1470,7 @@ $(function(){
 		});
 		
 		//CARGAR EDITAR CONTACT
-		$("#editar").on('click', function () {
+		$("#editar,#editarCP").on('click', function () {
 			//alert('CARGAR FORM');
 			getEditContact();
 			
@@ -1505,7 +1601,8 @@ $(function(){
 			//alert('click boton editar');
 			//var valor = JSON.parse(localStorage.getItem('key4'));
 			//var valor2 = JSON.parse(localStorage.getItem('key'));
-			getComposeEmailFollow();
+			var valor2 = JSON.parse(localStorage.getItem('key'));
+			getComposeEmailFollow(valor2.parcelid);
 			
 		});
 		
@@ -1618,14 +1715,14 @@ $(function(){
 		});
 		
 		//BOTON SET PRINCIPAL
-		$("#btnSetPrincipal").on('click', function () {
+		$("#btnSetPrincipal,#setPrincContList").on('click', function () {
 			//alert('login');
 			setAgentPrincipal();
 			
 		});
 		
 		//BOTON UPDATE MAKE CALL CONTACT
-		$("#btnUpdate").on('click', function () {
+		$("#btnUpdate,#updateContList").on('click', function () {
 			//alert('login');
 			var id = JSON.parse(localStorage.getItem('agentid'));
 			updateContact();
@@ -1640,6 +1737,12 @@ $(function(){
 	
 		});
 		
+		//BOTON ADD NEW CONTACT
+		$("#addContAll").on('click', function () {
+			alert('addd');
+			addAgente();
+		});
+		
 		//BOTON SAVE NEW AGENT CONTACT
 		$("#saveCont,#saveCont2").on('click', function () {
 			//alert('login');
@@ -1647,7 +1750,7 @@ $(function(){
 		});
 		
 		//BOTON REMOVE NEW AGENT CONTACT
-		$("#btnRemove").on('click', function () {
+		$("#btnRemove,#removeContList").on('click', function () {
 			//alert('login');
 			removeAgente();		
 		});
@@ -1694,6 +1797,29 @@ $(function(){
 			alert('alll');
 			//$('.checkbox').find('span').addClass('checked');
 			$(".check").prop('checked', $(this).prop('checked'));
+		});
+		
+		//BOTON DELETE SEARCH CONTACT 
+		$("#xdel").on('click', function () {
+			//alert('editar');
+			xdelete();
+			
+		});
+		
+		//BOTON DELETE SEARCH CONTACT 
+		$("#getContactD").on('click', function () {
+			//alert('editar');
+			var pid = JSON.parse(localStorage.getItem('key'));
+			getContact(pid.parcelid);
+			
+		});
+		
+		//BOTON DELETE SEARCH CONTACT 
+		$("#addCP").on('click', function () {
+			//alert('editar');
+			var pid = JSON.parse(localStorage.getItem('key'));
+			pagSearchContact(pid.parcelid)
+			
 		});
 		
 		$("#backEmail").on('click', function () {
@@ -1823,6 +1949,13 @@ $(document).scroll(function () {
 			start = start+$settings.limit; 
 			listadoCompleted(start,settings.limit);
 			}
+            break;
+		case(10):
+			if (busy==false){
+            //alert('contacts');
+			start = start+$settings.limit; 
+			listadoAllContacts(start,settings.limit);
+			}
             break;		
         default:
             //alert('no coinciden con los anteriores');
@@ -1840,6 +1973,8 @@ $(document).scroll(function () {
 	}
 				
 });*/
+
+
 	
 	
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
@@ -2010,6 +2145,17 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 							
 });
 
+$(document).on("pagebeforeshow","#listadoAllContacts",function(){	
+			//alert('page email outbox');
+			busy=true;
+			pagina = 10;
+			$("#listadoAllContacto ul").empty();
+			start=0;
+			
+			listadoAllContacts(start,settings.limit);
+							
+});
+
 $(document).on("pagebeforeshow","#pagAddContactoHtml",function(){	
 	
 	cantidadEmail();
@@ -2023,13 +2169,13 @@ $(document).on("pagebeforeshow","#formContract2",function(){
 	getDocAdd(id.idtypec);
 	getCombo();
 	
-	$('#closingDate').mobipick({
+	/*$('#closingDate').mobipick({
 		dateFormat: "MM-dd-yyyy"
 	});	
 	
 	$('#accepDate').mobipick({
 		dateFormat: "MM-dd-yyyy"
-	});	
+	});*/	
 
 });
 
@@ -2622,6 +2768,22 @@ var funciones={
 			border-bottom: 2px solid #ccc;
 			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 		}
+		.page_contactAll li{
+			margin-bottom: 5px;
+			padding: 10px;
+			font-size: 15px;
+			list-style: none;
+			border-bottom: 2px solid #ccc;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
+		.page_contactList li{
+			margin-bottom: 5px;
+			padding: 10px;
+			font-size: 15px;
+			list-style: none;
+			border-bottom: 2px solid #ccc;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
 		.page_emailInbox li{
 			margin-bottom: 5px;
 			padding: 10px;
@@ -3028,12 +3190,10 @@ var funciones={
 		<a id="filtro_remove" style="height: 30px;background-image: url('img/filter-remove.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="filter" data-theme="b" href="#"></a-->
 		<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuSecunFollow"></a></div>
 		<!--a style="height: 30px;background-image: url('img/search-36.png');background-repeat:no-repeat; background-size: 30px 30px; background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child search" data-excecute="weekly" data-theme="b" href="javascript:void(0);"></a-->
-		<div id='searchInicio' style='position:absolute; left: -180px; top: -5px; display:none;white-space: nowrap'>
-			<input style="width:120px;" type="search" class="searchInicio" id="searchInicio" name="searchInicio" autofocus>			
-		</div>
 		<div style="background: #8ab420;border: #8ab420;margin-top: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_two">				
 	
 		</div>
+		
 		<!--TABS-->	
 		<div style="background: #ccc;height:40px;" data-role="navbar" >
 			<ul>
@@ -3073,8 +3233,8 @@ var funciones={
 			<li class="margen"><a class="filter"           id="filtro2"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
 			<li class="margen"><a class="filterRemove"     id="filtro_remove2" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
 			<li class="margen"><a class="deleteFollow"     id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
-			<li class="margen"><a class="newschedule"      id="nschedule"        href="#addscheduleEmailFollow" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>			 
-			<li class="margen"><a class="get-contact"      id="getContact"       href="#getContact" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Get Contact</a></li>			 			
+			<li class="margen"><a class="newschedule"      id="nschedule"      href="#pagAddScheduleHtml">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>			 
+			<li class="margen"><a class="get-contact"      id="getContactP"     href="#">&nbsp;&nbsp;&nbsp;&nbsp;Get Contact</a></li>			 			
 			<li class="margen"><a class="investor-factor"  id="investorFa"     href="#investor" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Investor Factor</a></li>			 
 			<li class="margen"><a class="sendContract"     id="sendContract"   href="#formContract1" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
 			<li class="margen"><a class="sendEmail"        id="sendEmail"      href="#formEmail" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
@@ -5160,7 +5320,7 @@ var funciones={
 					<body></body>
 				</html>
 			</iframe-->
-		<div style="background:#fff;" id="detallePropiedades">
+		<div style="background:#fff;height:500px;" id="detallePropiedades">
 			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
 			
 			</ul>
@@ -5178,8 +5338,8 @@ var funciones={
 			<li class="margen"><a class="filter"           id="filtro3"          href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
 			<li class="margen"><a class="filterRemove"     id="filtro_remove3"   href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
 			<li class="margen"><a class="deleteFollow"     id="deleteDP"         href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
-			<li class="margen"><a class="newschedule"      id="nschedule"        href="#addscheduleEmailFollow" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>			 
-			<li class="margen"><a class="get-contact"      id="getContact"       href="#getContact" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Get Contact</a></li>			 
+			<li class="margen"><a class="newschedule"      id="nschedule"        href="#pagAddScheduleHtml">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>			 
+			<li class="margen"><a class="get-contact"      id="getContactD"       href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Get Contact</a></li>			 
 			<li class="margen"><a class="investor-factor"  id="investorFa"       href="#investor" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Investor Factor</a></li>			 
 			<li class="margen"><a class="sendContract"     id="sendContractDP"   href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
 			<li class="margen"><a class="sendEmail"        id="sendEmailDP"      href="#formEmail" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
@@ -5220,6 +5380,136 @@ var funciones={
 			</iframe-->
 		<div style="background:#fff;" id="detalleContacto">
 			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
+</div><!-- /page -->
+
+<div data-role="page" id="detailContactsAll">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-32px"><img src="resources/image/detail_contact.png" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">
+			<a id="addContAll" style="margin-right: 10px;height: 30px;background-image: url('img/add-user-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#"></a>
+		</div>
+	</div>
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+					class="ifra2" id="webdetailContactHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetailsContacts.php">
+				<html>
+					<head></head>
+					<body></body>
+				</html>
+			</iframe-->
+		<div style="background:#fff;" id="detalleContactoAll">
+			<ul style="list-style: none;margin-left:-40px;" class="page_contactAll">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
+</div><!-- /page -->
+
+<div data-role="page" id="detailContactsList">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-32px"><img src="resources/image/detail_contact.png" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">
+			<a id="setPrincContList" style="margin-right:5px;height: 30px;background-image: url('img/settings-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#"></a>
+			<a id="updateContList" style="margin-right:5px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#"></a>
+			<a id="removeContList" style="margin-right:5px;height: 30px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#"></a>
+		</div>
+	</div>
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+			<!--iframe allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" frameborder = 0
+					class="ifra2" id="webdetailContactHtml" class="iframeRender" style="width:100%; border:0 solid white;" src="http://reifax.com/FollowupReifax/resources/php/ajaxDetailsContacts.php">
+				<html>
+					<head></head>
+					<body></body>
+				</html>
+			</iframe-->
+		<div style="background:#fff;" id="detalleContactoList">
+			<ul style="list-style: none;margin-left:-40px;" class="page_contactList">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
+</div><!-- /page -->
+
+<div data-role="page" id="listadoContactsProperty">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-32px"><img src="resources/image/contacts_follow.png" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">
+			<a id="addCP" style="margin-right: 10px;height: 30px;background-image: url('img/add-user-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="add" role="button" data-theme="b" href="#"></a>
+			<!--a id="editarCP" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 20px 20px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditContactoHtml"></a-->
+		</div>
+	</div>
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+
+		<div style="background:#fff;" id="listadoContactoProperty">
+			<ul style="list-style: none;margin-left:-40px;" class="page_contactList">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
+</div><!-- /page -->
+
+<div data-role="page" id="listadoAllContacts">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		
+		<div id='searchLisContact' style='margin-top:-37px;margin-left:65px;white-space:nowrap;width:80%;'>
+			<input style="width:90%;" type="search" class="transparent-input searchContact" id="searchListadoContact" placeholder="Search" name="searchContact" autofocus>			
+		</div>
+	</div>
+	<!--FIN HEADER--> 
+		
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+
+		<div style="background:#fff;" id="listadoAllContacto">
+			<ul style="list-style: none;margin-left:-40px;" class="page_contactAll">
 			
 			</ul>
 		</div>
@@ -5477,8 +5767,8 @@ var funciones={
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="/" id="backEditH" data-rel="back"></a>
-		<div style="text-align:left;margin-left:20px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
-		<!--div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/history-followup.png" width="120" height="40"></div-->
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/detail-history-follow.png" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 			<a id="detailEditHist" style="margin-right:10px;height:35px;width:35px;margin-top: 3px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagEditHistoryHtml"></a>
 			<a id="detailDelHist" style="margin-right:10px;height:35px;width:35px;margin-top: 3px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
@@ -5527,7 +5817,9 @@ var funciones={
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="/" id="backEditH" data-rel="back"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/detail_sche_follow.png" width="120" height="40"></div>		
+		
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 			<a id="detailEditSche" style="margin-right:10px;height:35px;width:35px;margin-top: 3px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagEditScheduleHtml"></a>
 			<a id="detailDelSche" style="margin-right:10px;height:35px;width:35px;margin-top: 3px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
@@ -6936,7 +7228,9 @@ var funciones={
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAddHist" data-rel="back"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/add-history.png" width="120" height="40"></div>		
+		
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<a id="resetHist" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		<a id="saveHist" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
@@ -7100,10 +7394,12 @@ var funciones={
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backAddSch" data-rel="back"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/add-shedule.png" width="120" height="40"></div>		
+		
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<!--a id="resetSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a-->
-		<a id="saveSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<a id="saveSchedule" style="margin-right:10px;height:35px;width:35px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
 		<!--TABS-->
@@ -7325,9 +7621,11 @@ var funciones={
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEditHistory" data-rel="back"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/edit_history_follow.png" width="120" height="40"></div>		
+		
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-		<a id="updateHist" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-as-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
+		<a id="updateHist" style="margin-right:10px;height:35px;width:35px;background-image: url('img/save-as-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
 		<!--TABS-->
@@ -7483,7 +7781,7 @@ var funciones={
 	</div>
 	<!--FIN CONTENT-->	
 	
-	
+	 
 </div>
 
 
@@ -7491,10 +7789,12 @@ var funciones={
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEditSch" data-rel="back"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/edit_sche_follow.png" width="120" height="40"></div>		
+		
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<!--a id="resetEditSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a-->
-		<a id="updateEditSchedule" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+		<a id="updateEditSchedule" style="margin-right:10px;height:35px;width:35px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
 		<!--TABS-->
@@ -9483,7 +9783,7 @@ var funciones={
 								Accetance Date
 							</div>
 							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="acceDate" class="col-xs-7 col-sm-10">
-								<input  id="accepDate" class="i-txt"/>								
+								<input  id="accepDate" class="span4"/>								
 							</div>
 						</div>
 						<div style="margin-bottom: 10px;" class="row">
@@ -9491,7 +9791,7 @@ var funciones={
 								Closing Date
 							</div>
 							<div style="padding-left:0px;margin-left:-25px;margin-top: -5px;" id="closeDate" class="col-xs-7 col-sm-10">
-								<input  id="closingDate" class="i-txt"/>								
+								<input  id="closingDate" class="span4"/>								
 							</div>
 						</div>
 					</div>
