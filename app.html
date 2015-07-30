@@ -659,7 +659,7 @@ $(document).ready(function(){
 		 
 	 $("#searchLisContact").on("keypress", function(e){       
 		//alert("The enter key was pressed");
-		if ($(".searchLisContact:focus")&& (e.keyCode === 13)) {
+		if ($("#searchLisContact:focus")&& (e.keyCode === 13)) {
 			var start = 0; 
 			var limit = 25; 
 			listadoSearchContacts(start,limit);
@@ -1650,8 +1650,8 @@ $(document).scroll(function () {
 		case(10):
 			if (busy==false){
             //alert('contacts');
-			start = start+$settings.limit; 
-			listadoAllContacts(start,settings.limit);
+			//start = start+$settings.limit; 
+			//listadoAllContacts(start,settings.limit);
 			}
             break;		
         default:
@@ -5115,9 +5115,11 @@ var funciones={
 	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
-		<a id="xdel" style="margin-right:10px;height: 30px;width:30px;background-image: url('img/x-delete-48.png');background-repeat:no-repeat; background-size:20px 20px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="add" role="button" data-theme="b" href="#"></a>
-		<div id='searchLisContact' style='margin-top:-37px;margin-left:65px;white-space:nowrap;width:70%;'>
-			<input style="width:90%;" type="search" class="transparent-input searchContact" id="searchListadoContact" placeholder="Search" name="searchContact" autofocus>			
+		<!--a id="xdel" style="margin-right:10px;height: 30px;width:30px;background-image: url('img/x-delete-48.png');background-repeat:no-repeat; background-size:20px 20px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="add" role="button" data-theme="b" href="#"></a-->
+		<div id='searchLisContact' style='margin-top:-37px;margin-left:65px;white-space:nowrap;width:70%;' placeholder="Search">
+			<form class="ui-filterable">
+				<input style="width:90%;" id="searchListContact" data-type="search">	
+			</form>		
 		</div>
 	</div>
 	<!--FIN HEADER--> 
@@ -5127,7 +5129,7 @@ var funciones={
 	<div data-role="content" >	
 
 		<div style="background:#fff;" id="listadoAllContacto">
-			<ul style="list-style: none;margin-left:-40px;" class="page_contactAll">
+			<ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchListContact" class="page_contactAll">
 			
 			</ul>
 		</div>
