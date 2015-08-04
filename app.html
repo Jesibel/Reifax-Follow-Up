@@ -817,7 +817,7 @@ $(function(){
 	});
 
 	//CLICK DETALLE DE PROPIEDADES
-	$('ul.page_result').on('click','li', function () {
+	$('ul.page_result').on('click','#info-detalle', function () {
         //alert('onclick');
 		var id= $(this).attr('parcelid');
 		var type= $(this).attr('type');
@@ -2924,9 +2924,11 @@ var funciones={
 	
 	<!--content-->
 	<div data-role="content">
+		
 		<div style="background:#fff;" id="content">
-			<ul style="list-style: none;margin-left:-40px;" class="page_result">
-			
+			<!--ul style="list-style: none;margin-left:-40px;" class="page_result"-->
+			<ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchPropiedad" class="page_result">
+				
 			</ul>
 		</div>
 		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
@@ -5890,7 +5892,7 @@ var funciones={
 			<a id="closeSearchContact" style="display:none;height:30px;margin-right:10px;background-image: url('img/x-delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#"></a>
 			<div id='sContact' style='margin-top:-45px;margin-left:65px;white-space:nowrap;width:70%;' placeholder="Search Contact">
 				<form class="ui-filterable">
-					<input style="width:90%;" id="searchContacto" data-type="search">	
+					<input style="width:90%;" id="searchConta" data-type="search">	
 				</form>		
 			</div>
 		</div>
@@ -5918,7 +5920,9 @@ var funciones={
 	<!--CONTENT-->
 	<div data-role="content">
 		<div style="background:#fff;" id="contacts">
-			<ul style="list-style: none;margin-left:-40px;" class="page_contact">
+			<!--ul style="list-style: none;margin-left:-40px;" class="page_contact"-->
+			
+			<ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchConta" class="page_contact">
 			
 			</ul>
 		</div>
