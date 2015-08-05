@@ -84,7 +84,8 @@ $(document).ready(function(){
 	document.getElementById("menuDE").style.display = "none";
 	document.getElementById("menuDE2").style.display = "none";
 	document.getElementById("sContact").style.display = "none";
-	document.getElementById("sProperty").style.display = "none";
+	//document.getElementById("sProperty").style.display = "none";
+	document.getElementById("searchLisContact").style.display = "none";
 	
 	$('#folldate').change(function(){
 		//alert($(this).val());
@@ -678,6 +679,19 @@ $(document).ready(function(){
 		$('#sContact').animate({width:'toggle'},1000);
 		$(this).fadeOut();
 		$('#openSearchContact').fadeIn();
+		//$( '#webGeneralHtml' ).attr( 'src', function ( i, val ) { return val; });
+	});
+	
+	$('#openSearchAllContact').click(function(){
+		$('#searchLisContact').animate({width:'toggle'},1000);
+		$(this).fadeOut();
+		$('#closeSearchAllContact').fadeIn();
+	});
+
+	$('#closeSearchAllContact').click(function(){
+		$('#searchLisContact').animate({width:'toggle'},1000);
+		$(this).fadeOut();
+		$('#openSearchAllContact').fadeIn();
 		//$( '#webGeneralHtml' ).attr( 'src', function ( i, val ) { return val; });
 	});
 	
@@ -2895,15 +2909,16 @@ var funciones={
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
 			<!--a id="filtro" style="height: 30px;background-image: url('img/filter.jpg');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="filter" data-toggle="modal" role="button"  data-theme="b" href="#filter"></a>
 			<a id="filtro_remove" style="height: 30px;background-image: url('img/filter-remove.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="filter" data-theme="b" href="#"></a-->
-			<!--a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuSecunFollow"></a-->
-			<a id="openSearchProperty"  style="height:30px;margin-right:10px;background-image: url('img/search-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#"></a>
-			<a id="closeSearchProperty" style="display:none;height:30px;margin-right:10px;background-image: url('img/x-delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#"></a>
-			<div id='sProperty' style='margin-top:-45px;margin-left:65px;white-space:nowrap;width:70%;' placeholder="Search Property">
-				<form class="ui-filterable">
-					<input style="width:90%;" id="searchPropiedad" data-type="search">	
-				</form>		
-			</div>
+			<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuSecunFollow"></a>
+			
 		</div>
+		<!--a id="openSearchProperty"  style="height:30px;margin-right:10px;background-image: url('img/search-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#"></a>
+			<a id="closeSearchProperty" style="display:none;height:30px;margin-right:10px;background-image: url('img/x-delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#"></a>
+			<div id='sProperty' style='margin-top:-45px;margin-left:65px;white-space:nowrap;width:70%;' >
+				<form class="ui-filterable">
+					<input style="width:90%;" id="searchPropiedad" data-type="search" placeholder="Search Property">	
+				</form>		
+			</div-->
 		<!--a style="height: 30px;background-image: url('img/search-36.png');background-repeat:no-repeat; background-size: 30px 30px; background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child search" data-excecute="weekly" data-theme="b" href="javascript:void(0);"></a-->
 		<div style="background: #8ab420;border: #8ab420;margin-top: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_two">				
 	
@@ -5155,9 +5170,11 @@ var funciones={
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<!--a id="xdel" style="margin-right:10px;height: 30px;width:30px;background-image: url('img/x-delete-48.png');background-repeat:no-repeat; background-size:20px 20px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="add" role="button" data-theme="b" href="#"></a-->
-		<div id='searchLisContact' style='margin-top:-37px;margin-left:65px;white-space:nowrap;width:70%;' placeholder="Search">
+		<a id="openSearchAllContact"  style="height:30px;margin-right:10px;background-image: url('img/search-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#"></a>
+		<a id="closeSearchAllContact" style="display:none;margin-top:-35px;height:30px;margin-right:10px;background-image: url('img/x-delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:320px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#"></a>	
+		<div id='searchLisContact' style='margin-top:-55px;margin-left:65px;white-space:nowrap;width:70%;' >
 			<form class="ui-filterable">
-				<input style="width:90%;" id="searchListContact" data-type="search">	
+				<input style="width:90%;" id="searchListContact" data-type="search" placeholder="Search Contact" >	
 			</form>		
 		</div>
 	</div>
@@ -5166,12 +5183,9 @@ var funciones={
 	<!--CONTENT-->
 	
 	<div data-role="content" >	
-		
-		<button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
-			 
-		</button>
+
 		<div style="background:#fff;" id="listadoAllContacto">
-			<ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchListContact" >
+			<ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchListContact" class="page_contactAll">
 			
 			</ul>
 		</div>
@@ -5890,9 +5904,9 @@ var funciones={
 			<!--a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuContacts"></a-->
 			<a id="openSearchContact"  style="height:30px;margin-right:10px;background-image: url('img/search-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#"></a>
 			<a id="closeSearchContact" style="display:none;height:30px;margin-right:10px;background-image: url('img/x-delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#"></a>
-			<div id='sContact' style='margin-top:-45px;margin-left:65px;white-space:nowrap;width:70%;' placeholder="Search Contact">
+			<div id='sContact' style='margin-top:-45px;margin-left:65px;white-space:nowrap;width:70%;' >
 				<form class="ui-filterable">
-					<input style="width:90%;" id="searchConta" data-type="search">	
+					<input style="width:90%;" id="searchConta" data-type="search" placeholder="Search Contact">	
 				</form>		
 			</div>
 		</div>
