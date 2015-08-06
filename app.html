@@ -1275,7 +1275,7 @@ $(function(){
 	});
 		
 	//CARGAR EDITAR CONTACT
-	$("#editar,#editarCP").on('click', function () {
+	$("#editar,#editarCP,#updateContList").on('click', function () {
 		//alert('CARGAR FORM');
 		getEditContact();
 	});
@@ -1480,7 +1480,7 @@ $(function(){
 	});
 		
 	//BOTON UPDATE MAKE CALL CONTACT
-	$("#btnUpdate,#updateContList").on('click', function () {
+	$("#btnUpdate").on('click', function () {
 		//alert('login');
 		var id = JSON.parse(localStorage.getItem('agentid'));
 		updateContact();	
@@ -5069,7 +5069,7 @@ var funciones={
 
 <div data-role="page" id="detailContacts">         
     <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
@@ -5119,14 +5119,14 @@ var funciones={
 
 <div data-role="page" id="detailContactsList">         
     <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-32px"><img src="resources/image/detail_contact.png" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
 			<a id="setPrincContList" style="margin-right:5px;height: 30px;background-image: url('img/settings-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#"></a>
-			<a id="updateContList" style="margin-right:5px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#"></a>
+			<a id="updateContList" style="margin-right:5px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditContactoHtml"></a>
 			<a id="removeContList" style="margin-right:5px;height: 30px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#"></a>
 		</div>
 	</div>
@@ -5146,7 +5146,7 @@ var funciones={
 
 <div data-role="page" id="listadoContactsProperty">         
     <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
@@ -5225,7 +5225,7 @@ var funciones={
 
 <div data-role="page" id="detailEmail">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
@@ -5309,7 +5309,7 @@ var funciones={
 
 <div data-role="page" id="detailEmailOutbox">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmailO" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
@@ -5362,7 +5362,7 @@ var funciones={
 
 <div data-role="page" id="detailCompleted">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
 		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
@@ -5373,7 +5373,7 @@ var funciones={
 	<!--FIN HEADER--> 
 	
 	<!--TABS-->
-		<div style="background: #ccc;height:40px;" data-role="navbar">
+		<div style="background: #ccc;height:45px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
@@ -5381,7 +5381,7 @@ var funciones={
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
 		</div>	
-		<div style="background: #fff;height:40px;" data-role="navbar">
+		<div style="background: #fff;height:45px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Pendings Task</a></li>
 				<li class="item active"><a href="#taskCompletedHtml">Completed Task</a></li>			
@@ -5413,7 +5413,7 @@ var funciones={
 
 <div data-role="page" id="detailPending">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
@@ -5426,7 +5426,7 @@ var funciones={
 	</div>
 	<!--FIN HEADER--> 
 	<!--TABS-->
-		<div style="background: #ccc;height:40px;" data-role="navbar">
+		<div style="background: #ccc;height:45px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
@@ -5434,7 +5434,7 @@ var funciones={
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
 		</div>	
-		<div style="background: #fff;height:40px;" data-role="navbar">
+		<div style="background: #fff;height:45px;" data-role="navbar">
 			<ul>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Pendings Task</a></li>
 				<li class="item"><a href="#taskCompletedHtml">Completed Task</a></li>			
@@ -5933,7 +5933,7 @@ var funciones={
 			<a id="closeSearchContact" style="display:none;height:30px;margin-right:10px;background-image: url('img/x-delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#"></a>
 			<div id='sContact' style='margin-top:-45px;margin-left:65px;white-space:nowrap;width:70%;' >
 				<form class="ui-filterable">
-					<input style="width:90%;" id="searchConta" data-type="search" placeholder="Search Contact">	
+					<input style="width:90%;" id="searchConta" data-type="search" placeholder="Search Contact" autofocus>	
 				</form>		
 			</div>
 		</div>
@@ -7929,7 +7929,7 @@ var funciones={
 
 <div data-role="page" id="pagReplyEmail">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backReplyEmail" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
@@ -8013,7 +8013,7 @@ var funciones={
 
 <div data-role="page" id="pagForwardEmail">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backForwardEmail" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
