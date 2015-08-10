@@ -1812,7 +1812,7 @@ $(document).on("pagebeforeshow","#scheduleFollow",function(){
 });
 
 $(document).on("pagebeforeshow","#emailFollow",function(){	
-	//alert('page email follow');
+	alert('page email follow');
 	busy=true;
 	pagina = 7;
 	$("#correofollow ul").empty();
@@ -2522,6 +2522,14 @@ var funciones={
 			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 		}
 		.page_emailOutbox li{
+			margin-bottom: 5px;
+			padding: 10px;
+			font-size: 15px;
+			list-style: none;
+			border-bottom: 2px solid #ccc;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
+		.page_correo li{
 			margin-bottom: 5px;
 			padding: 10px;
 			font-size: 15px;
@@ -6313,8 +6321,8 @@ var funciones={
 						<div class="row">
 						  <div class="col-xs-6 col-sm-4">
 								<select id="emai1ContEd"  class="form-control" data-style="btn-success">
-									<option value="Home">Home</option>
-									<option value="Office">Office</option>		
+									<option value="0">Home</option>
+									<option value="1">Office</option>		
 								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
@@ -6329,8 +6337,8 @@ var funciones={
 						<div class="row">
 						  <div class="col-xs-6 col-sm-4">
 								<select id="emai2ContEd"  class="form-control" data-style="btn-success">
-									<option value="Home">Home</option>
-									<option value="Office">Office</option>								
+									<option value="0">Home</option>
+									<option value="1">Office</option>								
 								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
@@ -6355,8 +6363,8 @@ var funciones={
 						<div class="row">
 						  <div class="col-xs-6 col-sm-4">
 								<select id="websit1ContEd"  class="form-control" data-style="btn-success">
-									<option value="Personal">Personal</option>
-									<option value="Office">Office</option>
+									<option value="0">Personal</option>
+									<option value="1">Office</option>
 								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
@@ -6371,8 +6379,8 @@ var funciones={
 						<div class="row">
 						  <div  class="col-xs-6 col-sm-4">
 								<select id="websit2ContEd"  class="form-control" data-style="btn-success">
-									<option value="Personal">Personal</option>
-									<option value="Office">Office</option>
+									<option value="0">Personal</option>
+									<option value="1">Office</option>
 								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
@@ -6388,8 +6396,14 @@ var funciones={
 						<div class="row">
 						  <div class="col-xs-6 col-sm-4">
 								<select id="phon1ContEd"  class="form-control" data-style="btn-success">
-									<option value="Home">Home</option>
-									<option value="Office">Office</option>
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+									<option value="2">Cell</option>
+									<option value="3">Homefax</option>
+									<option value="4">Officefax</option>
+									<option value="5">Tollfree</option>
+									<option value="6">Otollfree</option>
+									<option value="7">Skype</option>
 								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
@@ -6404,8 +6418,14 @@ var funciones={
 						<div class="row">
 						  <div  class="col-xs-6 col-sm-4">
 								<select id="phon2ContEd"  class="form-control" data-style="btn-success">
-									<option value="Home">Home</option>
-									<option value="Office">Office</option>
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+									<option value="2">Cell</option>
+									<option value="3">Homefax</option>
+									<option value="4">Officefax</option>
+									<option value="5">Tollfree</option>
+									<option value="6">Otollfree</option>
+									<option value="7">Skype</option>
 								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
@@ -6421,8 +6441,14 @@ var funciones={
 						<div class="row">
 						  <div  class="col-xs-6 col-sm-4">
 								<select id="phon3ContEd"  class="form-control" data-style="btn-success">
-									<option value="Home">Home</option>
-									<option value="Office">Office</option>
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+									<option value="2">Cell</option>
+									<option value="3">Homefax</option>
+									<option value="4">Officefax</option>
+									<option value="5">Tollfree</option>
+									<option value="6">Otollfree</option>
+									<option value="7">Skype</option>
 								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
@@ -6437,8 +6463,14 @@ var funciones={
 						<div class="row">
 						  <div  class="col-xs-6 col-sm-4">
 								<select id="phon4ContEd"  class="form-control" data-style="btn-success">
-									<option value="Home">Home</option>
-									<option value="Office">Office</option>
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+									<option value="2">Cell</option>
+									<option value="3">Homefax</option>
+									<option value="4">Officefax</option>
+									<option value="5">Tollfree</option>
+									<option value="6">Otollfree</option>
+									<option value="7">Skype</option>
 								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
@@ -6454,8 +6486,14 @@ var funciones={
 						<div class="row">
 						  <div class="col-xs-6 col-sm-4">
 								<select id="phon5ContEd"  class="form-control" data-style="btn-success">
-									<option value="Home">Home</option>
-									<option value="Office">Office</option>
+									<option value="0">Home</option>
+									<option value="1">Office</option>
+									<option value="2">Cell</option>
+									<option value="3">Homefax</option>
+									<option value="4">Officefax</option>
+									<option value="5">Tollfree</option>
+									<option value="6">Otollfree</option>
+									<option value="7">Skype</option>
 								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
@@ -6470,8 +6508,14 @@ var funciones={
 						<div class="row">
 						  <div class="col-xs-6 col-sm-4">
 								<select id="phon6ContEd"  class="form-control" data-style="btn-success">
-									<option value="Home">Home</option>
-									<option value="Office">Office</option>
+									<<option value="0">Home</option>
+									<option value="1">Office</option>
+									<option value="2">Cell</option>
+									<option value="3">Homefax</option>
+									<option value="4">Officefax</option>
+									<option value="5">Tollfree</option>
+									<option value="6">Otollfree</option>
+									<option value="7">Skype</option>
 								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
@@ -6488,8 +6532,8 @@ var funciones={
 						<div class="row">
 						  <div class="col-xs-6 col-sm-4">
 								<select id="addre1ContEd"  class="form-control" data-style="btn-success">
-									<option value="Home">Home</option>
-									<option value="Office">Office</option>
+									<option value="0">Home</option>
+									<option value="1">Office</option>
 								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
@@ -6504,8 +6548,8 @@ var funciones={
 						<div class="row">
 						  <div class="col-xs-6 col-sm-4">
 								<select id="addre2ContEd"  class="form-control" data-style="btn-success">
-									<option value="Home">Home</option>
-									<option value="Office">Office</option>
+									<option value="0">Home</option>
+									<option value="1">Office</option>
 								</select>
 						  </div>
 						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
@@ -6913,6 +6957,65 @@ var funciones={
 				</html>
 			</iframe-->
 		<div style="background:#fff;margin-top: 45px;" id="correofollow">
+			<ul style="list-style: none;margin-left:-40px;" class="page_correo">
+			
+			</ul>
+		</div>
+			
+	</div>
+	
+	<!--FIN CONTENT-->	
+	
+	<!--MENU-->
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuEmailFollow" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+				<a class="closeMenu" style="display:none;" href="#" data-rel="close">Close</a>
+				<li class="margen"><a class="filter"            id="filtroemailFollow"      href="#filterEmailFollow" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Filter Emails</a></li>
+				<li class="margen"><a class="filterRemove"      id="filtro_removeEmailFollow"        href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filters</a></li>					
+			</ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+	
+</div><!-- /page -->
+
+<div data-role="page" id="emailListFollow" data-add-back-btn="true">         
+           <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" ata-rel="back" data-theme="b" href="#menuEmail"></a-->
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();"></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/email-followup.png" width="120" height="40"></div>		
+		
+		<div style="width: 100%;margin-top:-39px;text-align: right;">
+			<a id="addELfollow" style="margin-top:-2px;margin-right: 10px;height:35px;width:35px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddComposeEFHtml"></a>
+			<a style="margin-top:-2px;height:30px;width:30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailFollow"></a>
+		</div>
+	
+		<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_emailfollow">				
+	
+		</div>
+	
+		<!--TABS-->
+		<div style="background: #ccc;height:40px;" data-role="navbar">
+			<ul>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+			</ul>
+		</div>
+	
+	<!--FIN TABS-->
+	
+	<!--FIN HEADER--> 
+	</div>	
+	<!--CONTENT-->
+	
+	<div data-role="content" >	
+
+		<div style="background:#fff;margin-top: 45px;" id="correolistfollow">
 			<ul style="list-style: none;margin-left:-40px;" class="page_correo">
 			
 			</ul>
