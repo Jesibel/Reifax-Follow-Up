@@ -870,9 +870,9 @@ $(function(){
 	$('ul.page_contact').on('click','li', function () { 
 		var id= $(this).attr('agentid');
 		// Creamos un objeto
-		var object = { 'agent' : id };
+		var object = { 'agentid' : id };
 		// Lo guardamos en localStorage pasandolo a cadena con JSON
-		localStorage.setItem('key', JSON.stringify(object));
+		localStorage.setItem('agentid', JSON.stringify(object));
 			
 		$('#detalleContacto').empty();
 		$.mobile.changePage( "#detailContacts","slide");	
@@ -1275,7 +1275,7 @@ $(function(){
 	});
 		
 	//CARGAR EDITAR CONTACT
-	$("#editar,#editarCP,#updateContList").on('click', function () {
+	$("#editar,#updateContList").on('click', function () {
 		//alert('CARGAR FORM');
 		getEditContact();
 	});
@@ -5212,7 +5212,7 @@ var funciones={
 	<div data-role="content" >	
 
 		<div style="background:#fff;" id="listadoAllContacto">
-			<ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchListContact">
+			<ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchListContact" class="page_contactAll">
 			
 			</ul>
 		</div>
