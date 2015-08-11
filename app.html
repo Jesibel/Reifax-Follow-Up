@@ -1740,9 +1740,9 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 	pagina = 4;
 	$("#contacts ul").empty();
 	start=0;
-	alert(mainloaded2);
+	//alert(mainloaded2);
 	if(!mainloaded2) {
-		alert('loading')
+		//alert('loading')
 		$.mobile.loading().show();
 	}
 	listadoContacts(start,settings.limit);
