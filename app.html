@@ -1899,7 +1899,7 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 							
 });
 
-$(document).on("pagebeforeshow","#listadoAllContacts",function(){	
+/*$(document).on("pagebeforeshow","#listadoAllContacts",function(){	
 	//alert('page email outbox');
 	$( ".autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {        
 		busy=true;
@@ -1908,10 +1908,10 @@ $(document).on("pagebeforeshow","#listadoAllContacts",function(){
 		//$("#listadoAllContacto ul").empty();
 		//start=0;
 			
-		//listadoAllContacts(start,settings.limit);
+		listadoAllContacts(start,settings.limit);
 	})
 							
-});
+});*/
 
 $(document).on("pagebeforeshow","#pagAddContactoHtml",function(){	
 	
@@ -6925,7 +6925,7 @@ var funciones={
 					<body></body>
 				</html>
 			</iframe-->
-		<div style="background:#fff;margin-top: 32px;" id="schedule">
+		<div style="background:#fff;margin-top:40px;" id="schedule">
 			<ul style="list-style: none;margin-left:-40px;" class="page_schedule">
 			
 			</ul>
@@ -6947,7 +6947,7 @@ var funciones={
 		
 		<div style="width: 100%;margin-top:-39px;text-align: right;">
 			<a id="addEfollow" style="margin-top:-2px;margin-right: 10px;height:35px;width:35px;background-image: url('img/add-email.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddComposeEFHtml"></a>
-			<a style="margin-top:-2px;height:30px;width:30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailFollow"></a>
+			<a style="margin-top:1px;height:30px;width:30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="contacts" data-theme="b" href="#menuEmailFollow"></a>
 		</div>
 	
 		<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_emailfollow">				
@@ -8246,7 +8246,7 @@ var funciones={
 	
 			
 		<div style="margin-left:30px;" class="row formC" id="formContr">
-			<form style="margin-top: 30px;" class="form-inline">
+			<form class="form-inline">
 				<div class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-4 col-sm-2">
 						<label style="float:left;" for="file">Email by:</label>						
@@ -8344,7 +8344,7 @@ var funciones={
 	<div data-role="content">
 	
 		<div style="margin-left:30px;" class="row formC" id="formContr">
-			<form style="margin-top: 30px;" class="form-inline">
+			<form class="form-inline">
 				
 				<!--div class="form-group">
 					<label style="width: 30%;float: left;" for="file">SMS by:</label>
@@ -8415,7 +8415,7 @@ var funciones={
 	<div data-role="content">
 	
 		<div style="margin-left:30px;" class="row formC" id="formContr">
-			<form style="margin-top: 30px;" class="form-inline">
+			<form class="form-inline">
 				<!--div class="form-group">
 					<label style="width: 30%;float: left;" for="file">Fax by:</label>
 					<input type='radio'  name='templateFax' id='templateFax' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
@@ -8517,7 +8517,7 @@ var funciones={
 	<div data-role="content">
 	
 		<div style="margin-left:30px;" class="row formC" id="formCal">
-			<form style="margin-top: 30px;" class="form-inline">
+			<form style="margin-top:10px;" class="form-inline">
 				<div class="row">
 						<div style="margin-bottom: 10px;" class="row">
 							<div style="padding-left:-5px;padding-top:5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
