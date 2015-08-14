@@ -83,9 +83,9 @@ $(document).ready(function(){
 		correcto=true;*/
 	<!--fin forgot guille-->
 		
-	document.getElementById('templa').style.display = "none";
-	document.getElementById('templaSms').style.display = "none";
-	document.getElementById('templaFAX').style.display = "none";
+	//document.getElementById('templa').style.display = "none";
+	//document.getElementById('templaSms').style.display = "none";
+	//document.getElementById('templaFAX').style.display = "none";
 	document.getElementById('between').style.display = "none";
 	document.getElementById('betweenExecPTask').style.display = "none";
 	document.getElementById('betweenSchePTask').style.display = "none";
@@ -363,7 +363,7 @@ $(document).ready(function(){
 	});
 
 	$('#new').on('click',function(){	
-		alert("radio new");
+		//alert("radio new");
 		//$('#2').dialog("close");
 		//$('#1').dialog("open");
 		document.getElementById("template").checked = false;
@@ -406,14 +406,41 @@ $(document).ready(function(){
 	});
 		
 	//UPLOAD SEND EMAIL
-	document.getElementById("fileToUploadEmail").onchange = function () {
+	/*document.getElementById("fileToUploadEmail").onchange = function () {
+		//document.getElementById('uuploadfileEmail').style.display = "block";
 		document.getElementById("uploadFileEmail").value = this.value;
-	};
+	};*/
+	$('#imageUpload').change(function(){
+		$('#imagePreview').show();
+		readImgUrlAndPreview(this);
+		function readImgUrlAndPreview(input){
+			if (input.files && input.files[0]) {
+			    var reader = new FileReader();
+			    reader.onload = function (e) {			            	
+					$('#imagePreview').attr('src', e.target.result);
+				}
+			};
+			reader.readAsDataURL(input.files[0]);
+		}	
+	});
 		
 	//UPLOAD SEND FAX 
-	document.getElementById("fileToUpload").onchange = function () {
+	/*document.getElementById("fileToUpload").onchange = function () {
 		document.getElementById("uploadFileFax").value = this.value;
-	};
+	};*/
+	$('#imageUploadFax').change(function(){
+		$('#imagePreviewFax').show();
+		readImgUrlAndPreview(this);
+		function readImgUrlAndPreview(input){
+			if (input.files && input.files[0]) {
+			    var reader = new FileReader();
+			    reader.onload = function (e) {			            	
+					$('#imagePreviewFax').attr('src', e.target.result);
+				}
+			};
+			reader.readAsDataURL(input.files[0]);
+		}	
+	});
 		
 	//UPLOAD FILE COMPOSE
 	document.getElementById("uploadBtnCompose").onchange = function () {
@@ -482,6 +509,25 @@ $(document).ready(function(){
 	$('#filtroTaskC').on('click',function(){				
 		//alert("getptask");
 		getfilterCompletedTask();
+	});
+		
+		
+	//GET TEMPLATE EMAIL
+	$('#sendEmailDP').on('click',function(){				
+		//alert("getptask");
+		getTemplateEmail();
+	});
+	
+	//GET TEMPLATE SMS
+	$('#sendSMSDP').on('click',function(){				
+		//alert("getptask");
+		getTemplateSMS();
+	});
+	
+	//GET TEMPLATE FAX
+	$('#sendFaxDP').on('click',function(){				
+		//alert("getptask");
+		getTemplateFAX();
 	});
 		
 	//COMPOSE SEND EMAIL INBOX
@@ -1271,7 +1317,8 @@ $(function(){
 	$('#makeCall,#makeCallDP').on('click', function () {
 		//alert('get');
 		//getAgentMakeCall(checkid);
-		getAgentCall(checkid);
+		//getAgentCall(checkid);
+		listadoContactsMakeCall();
 	});
 		
 	//SEND EMAIL
@@ -1429,7 +1476,45 @@ $(function(){
 	//BOTON SEND EMAIL 
 	$("#btnSendEMAIL").on('click', function () {
 		//alert('editar');
-		sendEMAIL();	
+		//sendEMAIL();	
+		var id = JSON.parse(localStorage.getItem('key'));
+		var type = JSON.parse(localStorage.getItem('key3'));
+
+		var imgVal = $('#imageUpload').val(); 
+				$("input#userid").val('3213');
+				$("input#pid").val(id.parcelid);
+				
+				$("input#typeFollow").val(type.type);
+				if(imgVal == '') { 
+					showEmpty("<span class='error' colspan='5'></span>");
+					$( "#choose_file" ).addClass( "error" );
+					$( "#uploaded_file" ).addClass( "error" );
+				}else{
+					var formData 		= new FormData($("#envioEmail")[0]);
+					$.ajax({
+						url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followsendmail.php',
+						type: 'POST',
+						data: formData,
+						cache: false,
+						contentType: false,
+						processData: false,
+						enctype: 'multipart/form-data',
+						beforeSend: function(){
+							
+						},
+						success: function(data){
+							console.log(data);
+							alert('Email successfully');
+							$.mobile.changePage('#followingHtml');
+
+						},
+						//si ha ocurrido un error
+						error: function(){
+							
+						}
+					}); // End ajax
+				} //End empty
+			
 	});
 		
 		
@@ -1622,6 +1707,8 @@ $(function(){
 		
 	$("#backAdd,#backContract,#backSendE,#backSendS,#backSendF").on('click', function () {			
 		//$('#detalleContacto').empty();
+		$("#temp select").empty();	
+		$("#tempFax select").empty();
 		document.getElementById('header_two').style.display = "none";			
 	});
 		
@@ -2607,6 +2694,15 @@ var funciones={
 			border-bottom: 2px solid #ccc;
 			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 		}
+		
+		.page_detalle_call li{
+			margin-bottom: 5px;
+			padding: 10px;
+			font-size: 15px;
+			list-style: none;
+			border-bottom: 2px solid #ccc;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		}
 		.foll{
 			height:50px;
 		}
@@ -2768,6 +2864,49 @@ var funciones={
 		}
 		.ui-selectmenu-button{
 			width:100% !important;
+		}
+		.ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a{
+			border-color:transparent;
+		}
+		
+		.texta1{
+			height:90px !important;
+		}
+		
+		.texta2{
+			height:180px !important;
+		}
+		
+		.hide{
+			display:none;
+		}
+		.btn2 {
+		display: inline-block;
+		margin-bottom: 0;
+		font-size: 14px;
+		line-height: 20px;
+		
+		vertical-align: middle;
+		cursor: pointer;
+		border: 1px solid #bbbbbb;
+		border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+		border-bottom-color: #a2a2a2;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+		}
+		.btn2 {
+		border-color: #c5c5c5;
+		/*border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);*/
+		border-color:transparent;
+		}
+		.btn-large2 {
+		/*padding: 11px 19px;*/
+		font-size: 17.5px;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
 		}
 	
 	<!--login-->
@@ -5456,7 +5595,7 @@ var funciones={
 	</div>
 	<!--FIN HEADER--> 
 	<!--TABS-->
-		<div style="background: #ccc;height:45px;" data-role="navbar">
+		<div style="background: #ccc;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
@@ -8242,66 +8381,37 @@ var funciones={
 	<!--FIN HEADER--> 	
 	
 	<!--CONTENT-->
-	<div data-role="content">
-	
-			
+	<div data-role="content" style="margin-top:10px;">			
 		<div style="margin-left:30px;" class="row formC" id="formContr">
-			<form class="form-inline">
-				<div class="row">
-					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-4 col-sm-2">
-						<label style="float:left;" for="file">Email by:</label>						
-					</div>
-					<div style="padding-left: 25px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-						<input type='radio'  name='template' id='template' value='Template'> </input>
-						<div style="margin-left:35px;margin-top: 12px;">Template</div>
-					</div>	
-					<div style="padding-left: 55px;" class="col-xs-3 col-sm-2">
-						
-						<input type='radio'  name='new' id='new' value='New' checked></input>	
-						<div style="margin-left:35px;margin-top: 12px;">New</div>
-					</div>					
-				</div>	
-				<br>
-				<div style="margin-top:20px;" class="row">
-					<div style="padding-left: 25px;margin-left:-30px;" class="col-xs-3 col-sm-2">
-						Attach
-					</div>
-					<div style="margin-left:-20px;" id="uuploadfileEmail" class="col-xs-6 col-sm-10">
-						<input type="text" style="width:75%;" id="uploadFileEmail" placeholder="Select a file"/>
-					</div>
-					
-				</div>
-			
-				<div class="row">
-					<div style="margin-left:25px;text-align:center;" class=" col-xs-10 col-sm-10">											
-							<label for="fileToUploadEmail">
-								<img style="float:left;margin-top:-32px;margin-left:200px;" src="http://reifax.com/FollowupReifax/img/upload-48.png" width="20px" height="20px"/>
-							</label>
-							<input style="display:none;" type="File" name="fileToUploadEmail" id="fileToUploadEmail">
-							<input style="display:none;" type="submit" value="Upload Image" name="submit">
-							<!--input type="file" class="upload" id="uploadBtnFax" /-->
-							<label>
-								<img style="margin-top:-97px;margin-left:235px;" onclick="addInput()" class="another" src="http://reifax.com/FollowupReifax/img/add-file-48.png" width="20px" height="20px" />
-							</label>							
-					</div>
-				</div>
-		
-				<div id="browser"></div>
+			<form class="form-inline" id="envioEmail" enctype="multipart/form-data">
+				
 			
 				<div  id="templa" style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						Template
 					</div>
-					<div style="margin-top:-10px;" id="temp" class="col-xs-9 col-sm-10">
-						<select id="tem" class="span4"></select>
+					<div style="margin-top:-10px;" id="temp" class="col-xs-8 col-sm-10">
+						<select id="tem" name="contracttemplate" onchange="comboemail();" class="span4">
+							
+						
+						</select>
 					</div>
+					<div  id="atta">	
+							<label for="imageUpload">							
+							<img src="http://reifax.com/FollowupReifax/img/clip-g-48.png" width="30px" height="30px"/></label>
+							<img style="margin-left: 120px;" src="" id="imagePreview" width="100px"/>
+							<input type="file" name="archivo1" id="imageUpload" class="hide"/> 
+					</div>	
 				</div>
-				<div style="margin-bottom: 10px;" class="row">
+				<div class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						Subject
-					</div>
-					<div style="margin-left:-20px;" class="col-xs-9 col-sm-10">
-						<textarea id="subjectEmail" type="text" placeholder="Subject" class="span4" ></textarea>
+					</div>					
+				</div>
+				
+				<div style="margin-bottom: 10px;" class="row">					
+					<div style="margin-left:-20px;" class="col-xs-12 col-sm-10">
+						<textarea style="height: 90px !important;"  name="subject" id="subjectEmail" type="text" placeholder="Subject" class="texta1" ></textarea>
 					</div>
 				</div>
 				<div style="margin-bottom: 10px;" class="row">
@@ -8309,23 +8419,32 @@ var funciones={
 						Body
 					</div-->
 					<div style="width:95%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
-						<textarea style="height:112px;" id="bodyEmail" class="form-control" placeholder="Body" data-placement="top" data-trigger="manual"></textarea>
+						<textarea style="height: 160px !important;" name="body" id="bodyEmail" class="texta2" placeholder="Body" data-placement="top" data-trigger="manual"></textarea>
+					</div>
+				</div>
+				
+				<input type='hidden' name='userid' id='userid'>
+				<input type='hidden' name='pid' id='pid'>
+				<input type='hidden' name='typeFollow' id='typeFollow'>
+				
+				<input type='hidden' name='rtemplateselect' id='rtemplateselect' value='T'>
+				<input type='hidden' name='action-upload' id='action-upload' value='upload'>
+				<input type='hidden' name='action-delete' id='action-delete' value='delete'>
+				<input type='hidden' name='cantidadupload' id='cantidadupload' value='1'>
+				<input type='hidden' name='sendmail' id='sendmail' value='on'>
+				<input type='hidden' name='sendme' id='sendme' value='off'>
+			
+				
+				<div class="row">
+					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="btnSendEMAIL" class="btn btn-success" type="button" value="Send">
+						<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
 					</div>
 				</div>
 			</form>
-			
-			<div class="row">
-				<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
-					<input id="btnSendEMAIL" class="btn btn-success" type="button" value="Send">
-					<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
-				</div>
-			</div>
-			
 		</div>
-			
-	
+		
 	</div>
-	
 
 </div><!--FIN FORM SEND EMAIL-->
 
@@ -8335,7 +8454,10 @@ var funciones={
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backSendS" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/send-sms.png" width="120" height="40"></div>
-	
+		<div  style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="new" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/new-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+			
+		</div>
 	</div>
 	
 	<!--FIN HEADER--> 	
@@ -8351,7 +8473,7 @@ var funciones={
 					<input type='radio'  name='templateSMS' id='templateSMS' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
 					<input type='radio'  name='newSMS' id='newSMS' value='New' checked>	New</input>			
 				</div-->	
-				<div class="row">
+				<!--div class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-4 col-sm-2">
 						<label style="float:left;" for="file">SMS by:</label>						
 					</div>
@@ -8364,22 +8486,25 @@ var funciones={
 						<input type='radio'  name='newSMS' id='newSMS' value='New' checked></input>	
 						<div style="margin-left:35px;margin-top: 12px;">New</div>
 					</div>					
-				</div>	
+				</div-->	
 				<br>
 				<div id="templaSms" style="margin-bottom: 10px;" class="row">
 					<div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 						Template
 					</div>
 					<div style="margin-left:-25px;margin-top:-10px;" id="tempSms" class="col-xs-9 col-sm-10">
-						<select id="temSms" class="span4"></select>
+						<select id="temSms" onchange="combosms();" class="span4">
+							<!--option value="new">New</option-->
+						</select>
 					</div>
+					
 				</div>
 				<div style="margin-bottom: 10px;" class="row">
 					<!--div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 						Text
 					</div-->
 					<div style="width:90%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-10 col-sm-10">
-						<textarea style="height:112px;" id="bodySms" class="form-control" placeholder="Text" data-placement="top" data-trigger="manual"></textarea>
+						<textarea id="bodySms" class="texta2" placeholder="Text" data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>
 			
@@ -8421,7 +8546,7 @@ var funciones={
 					<input type='radio'  name='templateFax' id='templateFax' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
 					<input type='radio'  name='newFax' id='newFax' value='New' checked>	New</input>			
 				</div-->	
-				<div class="row">
+				<!--div class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-4 col-sm-2">
 						<label style="float:left;" for="file">Fax by:</label>						
 					</div>
@@ -8452,7 +8577,7 @@ var funciones={
 							</label>
 							<input style="display:none;" type="File" name="fileToUpload" id="fileToUpload">
 							<input style="display:none;" type="submit" value="Upload Image" name="submit">
-							<!--input type="file" class="upload" id="uploadBtnFax" /-->
+							<input type="file" class="upload" id="uploadBtnFax" />
 							<label>
 								<img style="margin-top:-97px;margin-left:235px;" onclick="addInputFax()" class="another" src="http://reifax.com/FollowupReifax/img/add-file-48.png" width="20px" height="20px" />
 							</label>
@@ -8461,15 +8586,23 @@ var funciones={
 					</div>
 				</div>
 				
-				<div id="browserFax"></div>
-			
+				<div id="browserFax"></div-->
+				<br>
 				<div id="templaFAX" style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left:-30px;" class="col-xs-4 col-sm-2">
 						Template
 					</div>
-					<div style="margin-left:-30px;margin-top:-10px;" id="tempFax" class="col-xs-9 col-sm-10">
-						<select id="temFax" class="span4"></select>
+					<div style="margin-left:-30px;margin-top:-10px;" id="tempFax" class="col-xs-8 col-sm-10">
+						<select id="temFax" onchange="combofax();" class="span4">
+							
+						</select>
 					</div>
+					<div  id="attaFax" >	
+							<input type="file" name="imageUploadFax" id="imageUploadFax" class="hide"/> 
+							<label for="imageUploadFax" style="margin-top:-15px;">							
+							<img src="http://reifax.com/FollowupReifax/img/clip-g-48.png" width="30px" height="30px"/></label>
+							<div ><img style="margin-left: 120px;" src="" id="imagePreviewFax" width="100px"/></div>
+					</div>	
 				</div>
 								
 				<div style="margin-bottom: 10px;" class="row">
@@ -8477,7 +8610,7 @@ var funciones={
 						Text
 					</div-->
 					<div style="width:90%;padding-right:0px;padding-left: 0px;margin-left: -5px;" class="col-xs-10 col-sm-10">
-						<textarea style="height:112px;" id="bodyFax" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
+						<textarea style="height:112px;" id="bodyFax" class="texta2" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>
 			
@@ -8494,10 +8627,33 @@ var funciones={
 	
 	</div>
 
-</div><!--FIN FORM SEND FAX-->
-
+</div><!--FIN FORM SEND MakeCall-->
 
 <div data-role="page" id="formCall">
+    <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b"  id="backFCall" ></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/make-call.png" width="120" height="40"></div>
+		
+	</div>
+	
+	<!--FIN HEADER--> 	
+	
+	<!--CONTENT-->
+	<div data-role="content">
+		<div class="mailBody" style="background:#fff;" id="listadoContactoMakeCall">
+			<ul style="list-style: none;margin-left:-40px;" class="page_detalle_call">
+			
+			</ul>
+		</div>
+	
+	</div>
+
+</div><!--FIN FORM SEND MAKE CALL-->
+
+
+<div data-role="page" id="formCall2">
     <!--HEADER-->
 	<div style="background: #8ab420;border:#8ab420;height:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b"  id="backFCall" ></a>
