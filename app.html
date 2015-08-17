@@ -443,14 +443,14 @@ $(document).ready(function(){
 	});
 		
 	//UPLOAD FILE COMPOSE
-	document.getElementById("uploadBtnCompose").onchange = function () {
+	/*document.getElementById("uploadBtnCompose").onchange = function () {
 		document.getElementById("uploadFile").value = this.value;
 	};
 		
 	//UPLOAD FILE COMPOSE EMAIL FOLLOW
 	document.getElementById("uploadBtnComposeEF").onchange = function () {
 		document.getElementById("uploadFileEF").value = this.value;
-	};
+	};*/
 		
 	//UPLOAD FORWARD EMAIL FOLLOW
 	document.getElementById("uploadBtnForward").onchange = function () {
@@ -532,12 +532,81 @@ $(document).ready(function(){
 		
 	//COMPOSE SEND EMAIL INBOX
 	$('#sendCompose,#insertComp').on('click',function(){				
-		sendemailInbox();
+		//sendemailInbox();
+		//alert('editar');
+		//sendEMAIL();	
+		//var id = JSON.parse(localStorage.getItem('key'));
+		//var type = JSON.parse(localStorage.getItem('key3'));
+		
+		var imgVal = $('#imageUploadEI').val(); 
+		$("input#userid").val('3213');
+						
+		if(imgVal == '') { 
+			showEmpty("<span class='error' colspan='5'></span>");
+			$( "#choose_file" ).addClass( "error" );
+			$( "#uploaded_file" ).addClass( "error" );
+		}else{
+			var formData 		= new FormData($("#envioEmailEI")[0]);
+				$.ajax({
+					url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
+					type: 'POST',
+					data: formData,
+					cache: false,
+					contentType: false,
+					processData: false,
+					enctype: 'multipart/form-data',
+					beforeSend: function(){
+							
+					},
+					success: function(data){
+						console.log(data);
+						console.log(data);
+						alert('Email successfully');
+						$.mobile.changePage('#emailHtml');
+					},
+					//si ha ocurrido un error
+					error: function(){
+							
+					}
+				}); // End ajax
+		} //End else
 	});
 		
 	//COMPOSE SEND EMAIL OUTBOX
 	$('#sendComposeO,#insertCompO').on('click',function(){				
-		sendemailOutbox();
+		//sendemailOutbox();
+			var imgVal = $('#imageUploadEO').val(); 
+		$("input#userid").val('3213');
+						
+		if(imgVal == '') { 
+			showEmpty("<span class='error' colspan='5'></span>");
+			$( "#choose_file" ).addClass( "error" );
+			$( "#uploaded_file" ).addClass( "error" );
+		}else{
+			var formData 		= new FormData($("#envioEmailEO")[0]);
+				$.ajax({
+					url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
+					type: 'POST',
+					data: formData,
+					cache: false,
+					contentType: false,
+					processData: false,
+					enctype: 'multipart/form-data',
+					beforeSend: function(){
+							
+					},
+					success: function(data){
+						console.log(data);
+						console.log(data);
+						alert('Email successfully');
+						$.mobile.changePage('#emailHtml');
+					},
+					//si ha ocurrido un error
+					error: function(){
+							
+					}
+				}); // End ajax
+		} //End else
 	});
 		
 	//SEND REPLY EMAIL INBOX
@@ -1206,7 +1275,7 @@ $(function(){
 	});
 			
 	$('#readEmailFollow,#readEmailFollow2').on('click',function(){			
-		var valor = JSON.parse(localStorage.getItem('key5'));
+		var valor = JSON.parse(localStorage.getItem('email'));
 		var valor2 = JSON.parse(localStorage.getItem('seen'));
 		noleidoCorreo(valor.email,valor2.seen);
 	});
@@ -1479,7 +1548,7 @@ $(function(){
 		//sendEMAIL();	
 		var id = JSON.parse(localStorage.getItem('key'));
 		var type = JSON.parse(localStorage.getItem('key3'));
-
+		
 		var imgVal = $('#imageUpload').val(); 
 				$("input#userid").val('3213');
 				$("input#pid").val(id.parcelid);
@@ -1504,9 +1573,9 @@ $(function(){
 						},
 						success: function(data){
 							console.log(data);
+							console.log(data);
 							alert('Email successfully');
 							$.mobile.changePage('#followingHtml');
-
 						},
 						//si ha ocurrido un error
 						error: function(){
@@ -1697,12 +1766,15 @@ $(function(){
 	});
 		
 	$("#backEdit").on('click', function () {			
-		$('#detalleContacto').empty();			
+		$('#detalleContacto').empty();	
+		$('#detalleContactoList').empty();	
+	
 	});
 		
 	$("#backEditHistory").on('click', function () {
 		//alert('edit');
 		$('#detallehistorial ul').empty();			
+					
 	});
 		
 	$("#backAdd,#backContract,#backSendE,#backSendS,#backSendF").on('click', function () {			
@@ -6445,278 +6517,250 @@ var funciones={
 	<div data-role="content">
 		
 		<div style="margin-left: 1px;" class="row formC" id="formEditContacto">
-			<form style="margin-top: 30px;" class="form-inline">
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label for="inputEmail3" class="col-sm-12 control-label">Contact</label>
-						<div id="agentContEd" class="col-md-10">
-						  <input type="text" id="agenEd" placeholder="Contact"/>
-						</div>
+			<form style="margin-top:10px;margin-left:20px;" class="form-inline">
+				
+				<div style="margin-bottom: 5px;" class="row">
+					<div style="padding-left:-5px;padding-top:5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Contact
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;" id="agentContEd" class="col-xs-9 col-sm-10">
+						<input id="agenEd" class="span4" />
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label class="col-sm-12 control-label">Type</label>
-						<div class="col-md-10">
-						  <select id="typEd" class="form-control">
-							<option value="Agent">Agent</option>
-							<option value="Buyer">Buyer</option>
-							<option value="Seller">Seller</option>
-							<option value="Loan Officer" >Loan Officer</option>
-							<option value="Hard Money Lender">Hard Money Lender</option>
-							<option value="Title Company">Title Company</option>
-							<option value="Lawyer">Lawyer</option>
-							<option value="Client">Client</option>
-							<option value="Broker">Broker</option>
-							<option value="General Contractor">General Contractor</option>
-							<option value="Other">Other</option>
-							<option value="Coach">Coach</option>
-							<option value="Short Sale Negotiator">Short Sale Negotiator</option>
-						  </select>
-						</div>
+				<div style="margin-bottom: 5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Type
+					</div>
+					<div  style="padding-left:0px;margin-left:-10px;margin-top: -5px;" class="col-xs-9 col-sm-10">
+						<select id="typEd" class="span4">
+							<option value="1">agent</option>
+							<option value="2">buyer</option>
+							<option value="3">seller</option>
+							<option value="4">loan</option>
+							<option value="5">hard</option>
+							<option value="6">title</option>
+							<option value="7">lawyer</option>
+							<option value="8">client</option>
+							<option value="9">broker</option>
+							<option value="10">general</option>
+							<option value="11">other</option>
+							<option value="12">coach</option>
+							<option value="13">shortsale</option>
+						</select>
+					</div>
+				</div>	
+				
+				<div style="margin-bottom: 5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Email1
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;margin-top: -5px;" class="col-xs-4 col-sm-10">
+						<select style="float:left;margin-right:5px;margin-left:-10px;" id="emai1ContEd" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+						</select>								
+					</div>
+					<div style="padding-left:0px;" class="col-xs-5 col-sm-10">
+						<input id ="ema1ContEd" type="text" class="span4" />
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Email1</label>
-						<div class="row">
-						  <div class="col-xs-6 col-sm-4">
-								<select id="emai1ContEd"  class="form-control" data-style="btn-success">
-									<option value="0">Home</option>
-									<option value="1">Office</option>		
-								</select>
-						  </div>
-						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
-								<input id ="ema1ContEd" type="text" class="form-control" placeholder="Email1"/>
-						  </div>
-						</div>
+				<div style="margin-bottom: 5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Email2
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Email2</label>
-						<div class="row">
-						  <div class="col-xs-6 col-sm-4">
-								<select id="emai2ContEd"  class="form-control" data-style="btn-success">
-									<option value="0">Home</option>
-									<option value="1">Office</option>								
-								</select>
-						  </div>
-						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
-								<input id ="ema2ContEd" type="text" class="form-control" placeholder="Email2"/>
-						  </div>
-						</div>
+					<div style="padding-left:0px;margin-left:-10px;margin-top: -5px;" class="col-xs-4 col-sm-10">
+						<select style="float:left;margin-right:5px;margin-left:-10px;" id="emai2ContEd" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+						</select>								
+					</div>
+					<div style="padding-left:0px;" class="col-xs-5 col-sm-10">
+						<input id ="ema2ContEd" type="text" class="span4" />
 					</div>
 				</div>
 				
-				<div class="row">
-					<div class="col-xs-12 col-sm-6 col-md-10 formT">
-						<label  class="col-sm-12 control-label">Company</label>
-						<div id="companyCoEd" class="col-md-10">
-							<input id="companyContEd" type="text" class="form-control" placeholder="Company" />
-						</div>
+				<div style="margin-bottom: 5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Company
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;" style="margin-left:-10px;" id="companyCoEd" class="col-xs-9 col-sm-10">								
+						<input id ="companyContEd" class="span4" />
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Website1</label>
-						<div class="row">
-						  <div class="col-xs-6 col-sm-4">
-								<select id="websit1ContEd"  class="form-control" data-style="btn-success">
-									<option value="0">Personal</option>
-									<option value="1">Office</option>
-								</select>
-						  </div>
-						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
-								<input id ="web1ContEd" type="text" class="form-control" placeholder="Website1"/>
-						  </div>
-						</div>
+				<div style="margin-bottom: 5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Website1
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;margin-top: -5px;" class="col-xs-4 col-sm-10">
+						<select style="float:left;margin-right:5px;margin-left:-10px;" id="websit1ContEd" class="span4">
+							<option value="0">Personal</option>
+							<option value="1">Office</option>
+						</select>								
+					</div>
+					<div style="padding-left:0px;" class="col-xs-5 col-sm-10">								
+						<input id ="web1ContEd" type="text" class="span4" />
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Website2</label>
-						<div class="row">
-						  <div  class="col-xs-6 col-sm-4">
-								<select id="websit2ContEd"  class="form-control" data-style="btn-success">
-									<option value="0">Personal</option>
-									<option value="1">Office</option>
-								</select>
-						  </div>
-						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
-								<input id ="web2ContEd" type="text" class="form-control" placeholder="Website2"/>
-						  </div>
-						</div>
+				<div style="margin-bottom:5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Website2
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;margin-top: -5px;" class="col-xs-4 col-sm-10">
+						<select style="float:left;margin-right:5px;margin-left:-10px;" id="websit2ContEd" class="span4">
+							<option value="0">Personal</option>
+							<option value="1">Office</option>
+						</select>								
+					</div>
+					<div style="padding-left:0px;" class="col-xs-5 col-sm-10">								
+						<input id ="web2ContEd" type="text" class="span4" />
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Phone</label>
-						<div class="row">
-						  <div class="col-xs-6 col-sm-4">
-								<select id="phon1ContEd"  class="form-control" data-style="btn-success">
-									<option value="0">Home</option>
-									<option value="1">Office</option>
-									<option value="2">Cell</option>
-									<option value="3">Homefax</option>
-									<option value="4">Officefax</option>
-									<option value="5">Tollfree</option>
-									<option value="6">Otollfree</option>
-									<option value="7">Skype</option>
-								</select>
-						  </div>
-						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
-								<input id ="pho1ContEd" type="text" class="form-control" placeholder="Phone"/>
-						  </div>
-						</div>
+				<div style="margin-bottom:5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Phone
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;margin-top: -5px;" class="col-xs-4 col-sm-10">
+						<select style="float:left;margin-right:5px;margin-left:-10px;" id="phon1ContEd" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+							<option value="2">Cell</option>
+							<option value="3">Homefax</option>
+							<option value="4">Officefax</option>
+							<option value="5">Tollfree</option>
+							<option value="6">Otollfree</option>
+							<option value="7">Skype</option>
+						</select>
+					</div>
+					<div style="padding-left:0px;" id="phone1i" class="col-xs-5 col-sm-10">
+						<input id ="pho1ContEd" type="text" class="span4" />
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Phone2</label>
-						<div class="row">
-						  <div  class="col-xs-6 col-sm-4">
-								<select id="phon2ContEd"  class="form-control" data-style="btn-success">
-									<option value="0">Home</option>
-									<option value="1">Office</option>
-									<option value="2">Cell</option>
-									<option value="3">Homefax</option>
-									<option value="4">Officefax</option>
-									<option value="5">Tollfree</option>
-									<option value="6">Otollfree</option>
-									<option value="7">Skype</option>
-								</select>
-						  </div>
-						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
-								<input id ="pho2ContEd" type="text" class="form-control" placeholder="Phone2"/>
-						  </div>
-						</div>
+				<div style="margin-bottom:5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Phone2
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;margin-top: -5px;"  class="col-xs-4 col-sm-10">
+						<select style="float:left;margin-right:5px;margin-left:-10px;" id="phon2ContEd" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+							<option value="2">Cell</option>
+							<option value="3">Homefax</option>
+							<option value="4">Officefax</option>
+							<option value="5">Tollfree</option>
+							<option value="6">Otollfree</option>
+							<option value="7">Skype</option>
+						</select>
+					</div>
+					<div style="padding-left:0px;" id="phone1i" class="col-xs-5 col-sm-10">
+						<input id ="pho2ContEd" type="text" class="span4" />
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Phone3</label>
-						<div class="row">
-						  <div  class="col-xs-6 col-sm-4">
-								<select id="phon3ContEd"  class="form-control" data-style="btn-success">
-									<option value="0">Home</option>
-									<option value="1">Office</option>
-									<option value="2">Cell</option>
-									<option value="3">Homefax</option>
-									<option value="4">Officefax</option>
-									<option value="5">Tollfree</option>
-									<option value="6">Otollfree</option>
-									<option value="7">Skype</option>
-								</select>
-						  </div>
-						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
-								<input id ="pho3ContEd" type="text" class="form-control" placeholder="Phone3"/>
-						  </div>
-						</div>
+				<div style="margin-bottom:5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Phone3
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;margin-top: -5px;"  class="col-xs-4 col-sm-10">
+						<select style="float:left;margin-right:5px;margin-left:-10px;" id="phon3ContEd" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+							<option value="2">Cell</option>
+							<option value="3">Homefax</option>
+							<option value="4">Officefax</option>
+							<option value="5">Tollfree</option>
+							<option value="6">Otollfree</option>
+							<option value="7">Skype</option>
+						</select>
+					</div>
+					<div style="padding-left:0px;" id="phone1i" class="col-xs-5 col-sm-10">
+						<input id ="pho3ContEd" type="text" class="span4" />
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Phone4</label>
-						<div class="row">
-						  <div  class="col-xs-6 col-sm-4">
-								<select id="phon4ContEd"  class="form-control" data-style="btn-success">
-									<option value="0">Home</option>
-									<option value="1">Office</option>
-									<option value="2">Cell</option>
-									<option value="3">Homefax</option>
-									<option value="4">Officefax</option>
-									<option value="5">Tollfree</option>
-									<option value="6">Otollfree</option>
-									<option value="7">Skype</option>
-								</select>
-						  </div>
-						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
-								<input id ="pho4ContEd" type="text" class="form-control" placeholder="Phone4"/>
-						  </div>
-						</div>
+				<div style="margin-bottom:5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Phone4
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;margin-top: -5px;"  class="col-xs-4 col-sm-10">
+						<select style="float:left;margin-right:5px;margin-left:-10px;" id="phon4ContEd" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+							<option value="2">Cell</option>
+							<option value="3">Homefax</option>
+							<option value="4">Officefax</option>
+							<option value="5">Tollfree</option>
+							<option value="6">Otollfree</option>
+							<option value="7">Skype</option>
+						</select>
+					</div>
+					<div style="padding-left:0px;" id="phone1i" class="col-xs-5 col-sm-10">
+						<input id ="pho4ContEd" type="text" class="span4" />
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Phone5</label>
-						<div class="row">
-						  <div class="col-xs-6 col-sm-4">
-								<select id="phon5ContEd"  class="form-control" data-style="btn-success">
-									<option value="0">Home</option>
-									<option value="1">Office</option>
-									<option value="2">Cell</option>
-									<option value="3">Homefax</option>
-									<option value="4">Officefax</option>
-									<option value="5">Tollfree</option>
-									<option value="6">Otollfree</option>
-									<option value="7">Skype</option>
-								</select>
-						  </div>
-						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
-								<input id ="pho5ContEd" type="text" class="form-control" placeholder="Phone5"/>
-						  </div>
-						</div>
+				<div style="margin-bottom:5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Phone5
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;margin-top: -5px;"  class="col-xs-4 col-sm-10">
+						<select style="float:left;margin-right:5px;margin-left:-10px;" id="phon5ContEd" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+							<option value="2">Cell</option>
+							<option value="3">Homefax</option>
+							<option value="4">Officefax</option>
+							<option value="5">Tollfree</option>
+							<option value="6">Otollfree</option>
+							<option value="7">Skype</option>
+						</select>
+					</div>
+					<div style="padding-left:0px;" id="phone1i" class="col-xs-5 col-sm-10">
+						<input id ="pho5ContEd" type="text" class="span4" />
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Phone6</label>
-						<div class="row">
-						  <div class="col-xs-6 col-sm-4">
-								<select id="phon6ContEd"  class="form-control" data-style="btn-success">
-									<<option value="0">Home</option>
-									<option value="1">Office</option>
-									<option value="2">Cell</option>
-									<option value="3">Homefax</option>
-									<option value="4">Officefax</option>
-									<option value="5">Tollfree</option>
-									<option value="6">Otollfree</option>
-									<option value="7">Skype</option>
-								</select>
-						  </div>
-						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
-								<input id ="pho6ContEd" type="text" class="form-control" placeholder="Phone5"/>
-						  </div>
-						</div>
+				<div style="margin-bottom:5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Phone6
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;margin-top: -5px;"  class="col-xs-4 col-sm-10">
+						<select style="float:left;margin-right:5px;margin-left:-10px;" id="phon6ContEd" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>
+							<option value="2">Cell</option>
+							<option value="3">Homefax</option>
+							<option value="4">Officefax</option>
+							<option value="5">Tollfree</option>
+							<option value="6">Otollfree</option>
+							<option value="7">Skype</option>
+						</select>
+					</div>
+					<div style="padding-left:0px;" id="phone1i" class="col-xs-5 col-sm-10">
+						<input id ="pho6ContEd" type="text" class="span4" />
 					</div>
 				</div>
-				
-				
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Address1</label>
-						<div class="row">
-						  <div class="col-xs-6 col-sm-4">
-								<select id="addre1ContEd"  class="form-control" data-style="btn-success">
-									<option value="0">Home</option>
-									<option value="1">Office</option>
-								</select>
-						  </div>
-						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
-								<input id ="addr1ContEd" type="text" class="form-control" placeholder="Address1"/>
-						  </div>
-						</div>
+				<div style="margin-bottom:5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Address1
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;margin-top: -5px;" class="col-xs-4 col-sm-10">
+						<select style="float:left;margin-right:5px;margin-left:-10px;" id="addre1ContEd" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>									
+						</select>
+					</div>
+					<div style="padding-left:0px;" class="col-xs-5 col-sm-10">								
+						<input id ="addr1ContEd" type="text" class="span4" />								
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-9 formT">
-						<label  class="col-sm-12 control-label">Address2</label>
-						<div class="row">
-						  <div class="col-xs-6 col-sm-4">
-								<select id="addre2ContEd"  class="form-control" data-style="btn-success">
-									<option value="0">Home</option>
-									<option value="1">Office</option>
-								</select>
-						  </div>
-						  <div style="margin-top:10px;margin-left: -20px;" class="col-xs-6 col-sm-7">
-								<input id ="addr2ContEd" type="text" class="form-control" placeholder="Address2"/>
-						  </div>
-						</div>
+				<div style="margin-bottom:5px;" class="row">
+					<div style="padding-left: -5px;padding-top: 5px;margin-left: -15px;" class="col-xs-3 col-sm-2">
+						Address2
+					</div>
+					<div style="padding-left:0px;margin-left:-10px;margin-top: -5px;" class="col-xs-4 col-sm-10">
+						<select style="float:left;margin-right:5px;margin-left:-10px;" id="addre2ContEd" class="span4">
+							<option value="0">Home</option>
+							<option value="1">Office</option>									
+						</select>
+					</div>
+					<div style="padding-left:0px;" class="col-xs-5 col-sm-10">								
+						<input id ="addr2ContEd" type="text" class="span4" />								
 					</div>
 				</div>
 				
@@ -6774,33 +6818,43 @@ var funciones={
 	<div data-role="content">
 		
 		<div style="margin-left: 1px;" class="row formC" id="formCompose">
-			<form style="margin-top: 30px;" class="form-inline">
-								
+			<form style="margin-top: 30px;" id="envioEmailEI" enctype="multipart/form-data" class="form-inline">
+							
 				<div style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
 						To
 					</div>
-					<div style="margin-top:-20px;" id="toEmail" class="col-xs-8 col-sm-10">
-						<select id="toEma" class="span4"></select>
+					<div style="margin-top:-20px;" id="toEmail" class="col-xs-7 col-sm-10">
+						<select id="toEma" name="to" class="span4"></select>
 					</div>
+					<div  id="atta">	
+							<label for="imageUploadEI">							
+							<img src="http://reifax.com/FollowupReifax/img/clip-g-48.png" width="30px" height="30px"/></label>
+							<img style="margin-left: 120px;" src="" id="imagePreviewEI" width="100px"/>
+							<input type="file" name="file8" id="imageUploadEI" class="hide"/> 
+					</div>	
 				</div>
-				<div style="margin-bottom: 10px;" class="row">
-					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+				<div class="row">
+					<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 						Subject
-					</div>
-					<div style="margin-top:-10px;" id="ssubjectI" class="col-xs-8 col-sm-10">
-						<input id="subjectI"  type="text" class="span4" placeholder="Subject"/>
+					</div>					
+				</div>
+				
+				<div style="margin-bottom: 10px;" class="row">					
+					<div class="col-xs-12 col-sm-10">
+						<textarea style="height: 90px !important;"  name="subject" id="subjectI" type="text" placeholder="Subject" class="texta1" ></textarea>
 					</div>
 				</div>
+				
 				<div style="margin-bottom: 10px;" class="row">
-					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+					<!--div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
 						Text
-					</div>
-					<div style="margin-top:-10px;" id="email2Cont" class="col-xs-8 col-sm-10">
-						<textarea style="height:222px;" id="textemailInbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					</div-->
+					<div style="margin-top:-10px;" id="email2Cont" class="col-xs-12 col-sm-10">
+						<textarea style="height:222px;" name="msg" id="textemailInbox" class="texta2" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>	
-				<div style="margin-bottom: 10px;" class="row">
+				<!--div style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
 						Attach
 					</div>
@@ -6826,9 +6880,15 @@ var funciones={
 							<input onclick="addInputCompose()" class="another" />	
 						</div>
 					</div>
-				</div>
-													
+				</div-->
 				
+				<input type='hidden' name='userid' id='userid'>
+				<input type='hidden' name='typeFollow' id='typeFollow' value=''>
+				<input type='hidden' name='type' id='type' value='composeEmail'>
+				<input type='hidden' name='mailid' id='mailid' value='-1'>
+				<input type='hidden' name='pid' id='pid' value='-1'>
+				<input type='hidden' name='cc' id='cc' value=''>
+				<input type='hidden' name='bcc' id='bcc' value=''>				
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10">
 						<input id="sendCompose" class="btn btn-success" type="button" value="Send">
@@ -6884,33 +6944,43 @@ var funciones={
 	<div data-role="content">
 		
 		<div style="margin-left: 1px;" class="row formC" id="formComposeO">
-			<form style="margin-top: 30px;" class="form-inline">
+			<form style="margin-top: 30px;" id="envioEmailEO" enctype="multipart/form-data" class="form-inline">
 			
 				<div style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
 						To
 					</div>
-					<div style="margin-top:-20px;" id="toEmailO" class="col-xs-8 col-sm-10">
-						<select id="toEmaO" class="span4"></select>
+					<div style="margin-top:-20px;" id="toEmailO" class="col-xs-7 col-sm-10">
+						<select id="toEmaO" name="to" class="span4"></select>
 					</div>
-				</div>	
-				<div style="margin-bottom: 10px;" class="row">
-					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
-						Subject
-					</div>
-					<div style="margin-top:-10px;" id="ssubjectO" class="col-xs-8 col-sm-10">
-						<input id="subjectO"  type="text" class="span4" placeholder="Subject"/>
-					</div>
+					<div  id="atta">	
+							<label for="imageUploadEO">							
+							<img src="http://reifax.com/FollowupReifax/img/clip-g-48.png" width="30px" height="30px"/></label>
+							<img style="margin-left: 120px;" src="" id="imagePreviewEO" width="100px"/>
+							<input type="file" name="file8" id="imageUploadEO" class="hide"/> 
+					</div>	
 				</div>
-				<div style="margin-bottom: 10px;" class="row">
-					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
-						Text
-					</div>
-					<div style="margin-top:-10px;" id="email2ContO" class="col-xs-8 col-sm-10">
-						<textarea style="height:222px;" id="textemailOutbox" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+				<div class="row">
+					<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
+						Subject
+					</div>					
+				</div>
+				
+				<div style="margin-bottom: 10px;" class="row">					
+					<div class="col-xs-12 col-sm-10">
+						<textarea style="height: 90px !important;"  name="subject" id="subjectO" type="text" placeholder="Subject" class="texta1" ></textarea>
 					</div>
 				</div>	
+				
 				<div style="margin-bottom: 10px;" class="row">
+					<!--div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
+						Text
+					</div-->
+					<div style="margin-top:-10px;" id="email2ContO" class="col-xs-12 col-sm-10">
+						<textarea style="height:222px;" name="msg" id="textemailOutbox" class="texta2" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+					</div>
+				</div>	
+				<!--div style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;" class="col-xs-3 col-sm-2">
 						Attach
 					</div>
@@ -6935,8 +7005,14 @@ var funciones={
 							<input onclick="addInputComposeO()" class="another" />	
 						</div>
 					</div>
-				</div>											
-				
+				</div-->											
+				<input type='hidden' name='userid' id='userid'>
+				<input type='hidden' name='typeFollow' id='typeFollow' value=''>
+				<input type='hidden' name='type' id='type' value='composeEmail'>
+				<input type='hidden' name='mailid' id='mailid' value='-1'>
+				<input type='hidden' name='pid' id='pid' value='-1'>
+				<input type='hidden' name='cc' id='cc' value=''>
+				<input type='hidden' name='bcc' id='bcc' value=''>	
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10">
 						<input id="sendComposeO" class="btn btn-success" type="button" value="Send">
@@ -7078,7 +7154,7 @@ var funciones={
 
 <div data-role="page" id="emailFollow" data-add-back-btn="true">         
            <!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;height: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+	<div style="background: #8ab420;border: #8ab420;height: 45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" ata-rel="back" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
@@ -7519,23 +7595,40 @@ var funciones={
 	<div data-role="content">
 		
 		<div style="margin-left: 1px;" class="row formC" id="formCompose">
-			<form style="margin-top: 30px;" class="form-inline">
+			<form style="margin-top: 30px;" id="envioEmailEF" enctype="multipart/form-data" class="form-inline">
 				
 				<div class="row">				
 					<div style="padding-left: 25px; padding-top: 10px;" class="col-xs-3 col-sm-2">
 						To
 					</div>
-					<div style="margin-top:-10px;" id="toEmailEF" class="col-xs-8 col-sm-10">
-						  <select id="toEmaEF" class="form-control"></select>
+					<div style="margin-top:-10px;" id="toEmailEF" class="col-xs-7 col-sm-10">
+						  <select id="toEmaEF" name="to" class="form-control"></select>
 					</div>
+					<div  id="atta">	
+							<label for="imageUploadEF">							
+							<img src="http://reifax.com/FollowupReifax/img/clip-g-48.png" width="30px" height="30px"/></label>
+							<img style="margin-left: 120px;" src="" id="imagePreviewEF" width="100px"/>
+							<input type="file" name="file8" id="imageUploadEF" class="hide"/> 
+					</div>	
 				</div>
 				<div class="row">
+					<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
+						Subject
+					</div>					
+				</div>
+				
+				<div style="margin-bottom: 10px;" class="row">					
+					<div class="col-xs-12 col-sm-10">
+						<textarea style="height: 90px !important;" name="subject" id="subjectEF" type="text" placeholder="Subject" class="texta1" ></textarea>
+					</div>
+				</div>	
+				<!--div class="row">
 					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
 						Subject
 					</div>
 					<div id="ssubjectEF" class="col-xs-8 col-sm-10">
 						 <input type="text" id="subjectEF" placeholder="Subject"/>
-						 <textarea style="height:322px;  width: 100%;" id="detailsEF" class="form-control span4" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
+						 
 					</div>
 				</div>
 				<div class="row">
@@ -7566,15 +7659,16 @@ var funciones={
 						</div>
 					</div>
 				</div>
-				<br>
-				<!--div class="row">
-					<div style="padding-left: 25px; padding-top: 10px;" class="col-xs-3 col-sm-2">
+				<br-->
+				<div class="row">
+					<!--div style="padding-left: 25px; padding-top: 10px;" class="col-xs-3 col-sm-2">
 						Text
-					</div>
+					</div-->
 					<div id="email2Cont" class="col-xs-8 col-sm-10">
-						<textarea style="height:222px;" id="textemailEF" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
+						<textarea style="height:322px;  width: 100%;" name ="msg" id="detailsEF" class="texta1" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
+						<!--textarea style="height:222px;" id="textemailEF" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea-->
 					</div>
-				</div-->								
+				</div>								
 				
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10">
