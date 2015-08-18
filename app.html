@@ -513,19 +513,19 @@ $(document).ready(function(){
 		
 		
 	//GET TEMPLATE EMAIL
-	$('#sendEmailDP').on('click',function(){				
+	$('#sendEmailDP,#sendEmail').on('click',function(){				
 		//alert("getptask");
 		getTemplateEmail();
 	});
 	
 	//GET TEMPLATE SMS
-	$('#sendSMSDP').on('click',function(){				
+	$('#sendSMSDP,#sendSMS').on('click',function(){				
 		//alert("getptask");
 		getTemplateSMS();
 	});
 	
 	//GET TEMPLATE FAX
-	$('#sendFaxDP').on('click',function(){				
+	$('#sendFaxDP,#sendFax').on('click',function(){				
 		//alert("getptask");
 		getTemplateFAX();
 	});
@@ -1009,9 +1009,9 @@ $(function(){
 		
 	$(document).on('pagebeforeshow', '#detailContacts', function(){  
 		//var valor = localStorage.getItem("key");
-		var valor = JSON.parse(localStorage.getItem('key'));
+		var valor = JSON.parse(localStorage.getItem('agentid'));
 		// La alerta mostrará 1 por pantalla
-		detailContact(valor.agent);
+		detailContact(valor.agentid);
 	});
 		
 	//CLICK DETALLE DE CONTACTOS2
@@ -1608,7 +1608,8 @@ $(function(){
 	//BOTON GET SEND CONTRACT
 	$("#sendContractDP").on('click', function () {
 		//alert('contract');
-		//getDocAdd();	
+		//getDocAdd();
+		gettypecontract();		
 	});
 		
 	//BOTON LOGIN
@@ -1767,6 +1768,8 @@ $(function(){
 		
 	$("#backEdit").on('click', function () {			
 		$('#detalleContacto').empty();	
+		$('#detalleContacto ul').html('');
+		$('#detalleContactoList ul').html('');
 		$('#detalleContactoList').empty();	
 	
 	});
@@ -3189,8 +3192,8 @@ var funciones={
 	<div data-role="content">
 		
 		<div style="background:#fff;" id="content">
-			<!--ul style="list-style: none;margin-left:-40px;" class="page_result"-->
-			<ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchPropiedad" class="page_result">
+			<ul style="list-style: none;margin-left:-40px;" class="page_result">
+			<!--ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchPropiedad" class="page_result"-->
 				
 			</ul>
 		</div>
@@ -3209,7 +3212,7 @@ var funciones={
 			<li class="margen"><a class="newschedule"      id="nschedule"      href="#pagAddScheduleHtml">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>			 
 			<li class="margen"><a class="get-contact"      id="getContactP"     href="#">&nbsp;&nbsp;&nbsp;&nbsp;Get Contact</a></li>			 			
 			<li class="margen"><a class="investor-factor"  id="investorFa"     href="#investor" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Investor Factor</a></li>			 
-			<li class="margen"><a class="sendContract"     id="sendContract"   href="#formContract1" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
+			<li class="margen"><a class="sendContract"     id="sendContract"   href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
 			<li class="margen"><a class="sendEmail"        id="sendEmail"      href="#formEmail" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
 			<li class="margen"><a class="sendSMS"          id="sendSMS"        href="#formSMS" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
 			<li class="margen"><a class="sendFax"          id="sendFax"        href="#formFax" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
@@ -5515,18 +5518,18 @@ var funciones={
 	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuDetailEmailInbox" data-display="overlay" data-position="right">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
-				<a class="closeMenu" style="display:none;"                          href="#" data-rel="close">Close</a>
-				<!--li><a class="deleteEmailInbox"       id="deleteEI"              href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
-				<!--li class="margen"><a class="reply"         id="replyEF"         href="#" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Reply</a></li>
-				<li class="margen"><a class="forward"       id="forwardEF"          href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Forward</a></li-->					
-				<li class="margen"><a class="assignContEmailInbox"   id="assContIn"       href="#assignContacts" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
-				<li class="margen"><a class="assignProEmailInbox"    id="assPropIn"       href="#assignProperty" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li>							
-				<li class="margen"><a class="newschedule"   id="newscheduleEF"      href="#addscheduleEmailFollow" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>
-				<li class="margen"><a class="sendContract"  id="sendContractEF"     href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contract</a></li>				
-				<li class="margen"><a class="sendEmail"     id="sendEmailEF"        href="#formEmail" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>				
-				<li class="margen"><a class="sendFax"       id="sendFaxEF"          href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>				
-				<li class="margen"><a class="sendSMS"       id="sendSmsEF"          href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>				
-				<li class="margen"><a class="makeCall"      id="sendMakeCallEF"     href="#formCall" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>				
+				<a class="closeMenu" style="display:none;"                                  href="#" data-rel="close">Close</a>
+				<!--li><a class="deleteEmailInbox"                   id="deleteEI"          href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
+				<!--li class="margen"><a class="reply"               id="replyEF"           href="#" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Reply</a></li>
+				<li class="margen"><a class="forward"                id="forwardEF"         href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Forward</a></li-->					
+				<li class="margen"><a class="assignContEmailInbox"   id="assContIn"         href="#assignContacts" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
+				<li class="margen"><a class="assignProEmailInbox"    id="assPropIn"         href="#assignProperty" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li>							
+				<li class="margen"><a class="newschedule"            id="newscheduleEF"     href="#addscheduleEmailFollow" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>
+				<li class="margen"><a class="sendContract"           id="sendContractEF"    href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contract</a></li>				
+				<li class="margen"><a class="sendEmail"              id="sendEmailEF"       href="#formEmail" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>				
+				<li class="margen"><a class="sendFax"                id="sendFaxEF"         href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>				
+				<li class="margen"><a class="sendSMS"                id="sendSmsEF"         href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>				
+				<li class="margen"><a class="makeCall"               id="sendMakeCallEF"    href="#formCall" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>				
 			</ul>
 		</div>	
 	</div>
@@ -5720,7 +5723,7 @@ var funciones={
 	
 			
 	<!--TABS-->
-		<div style="background: #ccc;height:40px;" data-role="navbar">
+		<div style="background: #ccc;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
 				<li class="item active"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
@@ -5743,7 +5746,7 @@ var funciones={
 					<body></body>
 				</html>
 			</iframe-->
-		<div style="background:#fff;" id="detallehistorial">
+		<div style="background:#fff;margin-top:45px;" id="detallehistorial">
 			<ul style="list-style: none;margin-left:-40px;" class="page_history">
 			
 			</ul>
@@ -7070,7 +7073,7 @@ var funciones={
 					<body></body>
 				</html>
 			</iframe-->
-		<div style="background:#fff;" id="historial">
+		<div style="background:#fff;margin-top:40px;" id="historial">
 			<ul style="list-style: none;margin-left:-40px;" class="page_history2">
 			
 			</ul>
@@ -7193,7 +7196,7 @@ var funciones={
 					<body></body>
 				</html>
 			</iframe-->
-		<div style="background:#fff;margin-top: 45px;" id="correofollow">
+		<div style="background:#fff;margin-top: 40px;" id="correofollow">
 			<ul style="list-style: none;margin-left:-40px;" class="page_correo">
 			
 			</ul>
@@ -8548,10 +8551,10 @@ var funciones={
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backSendS" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/send-sms.png" width="120" height="40"></div>
-		<div  style="width: 100%;margin-top: -40px;text-align: right;">		
+		<!--div  style="width: 100%;margin-top: -40px;text-align: right;">		
 			<a id="new" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/new-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 			
-		</div>
+		</div-->
 	</div>
 	
 	<!--FIN HEADER--> 	
