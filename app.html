@@ -67,6 +67,17 @@
 	<script src="http://reifax.com/FollowupReifax/resources/js/moment.js"></script>
 	
 	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
+	<script src="http://reifax.com/FollowupReifax/resources/js/tinymce/js/tinymce/tinymce.min.js"></script>
+	<script type="text/javascript">
+	tinymce.init({
+		selector: "#bodyEmail,#bodySms,#bodyFax",
+		theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px",
+		font_size_style_values : "10px,12px,13px,14px,16px,18px,20px",
+		toolbar:false,
+		menubar:false,
+		statusbar:false
+	});
+</script>
 	
 	<!--script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"-->
@@ -96,6 +107,8 @@ $(document).ready(function(){
 	document.getElementById("sContact").style.display = "none";
 	//document.getElementById("sProperty").style.display = "none";
 	document.getElementById("searchLisContact").style.display = "none";
+	
+	
 	
 	$('#folldate').change(function(){
 		//alert($(this).val());
@@ -1605,6 +1618,24 @@ $(function(){
 		//alert('editar');
 		sendContract();	
 	});
+	
+	//BOTON NEW SEND EMAIL
+	$("#newEmail").on('click', function () {
+		//alert('editar');
+		newEmail();	
+	});
+	
+	//BOTON NEW SEND SMS
+	$("#newSms").on('click', function () {
+		//alert('editar');
+		newSms();	
+	});
+	
+	//BOTON NEW SEND FAX
+	$("#newFax").on('click', function () {
+		//alert('editar');
+		newFax();	
+	});
 		
 	//BOTON GET SEND CONTRACT
 	$("#sendContractDP").on('click', function () {
@@ -2401,14 +2432,14 @@ var funciones={
 			color:#a6a6a6;
 			font-weight:normal;
 			font-size:12px;
-			margin-left: 30px;
+			margin-left: 40px;
 		}
 		.detalle3{
 			
 			color:#000;
 			font-weight:bold;
 			font-size:18px;
-			margin-left: 30px;
+			margin-left: 40px;
 		}
 		.heightMenu.ui-panel{
 			min-height: 1% !important;
@@ -2983,6 +3014,10 @@ var funciones={
 		-webkit-border-radius: 4px;
 		-moz-border-radius: 4px;
 		border-radius: 4px;
+		}
+		#bodyEmail p {
+			font-size:14px;
+			font-family:Helvetica Neue",Helvetica,Arial,sans-serif;
 		}
 	
 	<!--login-->
@@ -8004,7 +8039,10 @@ var funciones={
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEditPen" data-rel="back"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<!--div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div-->
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/edit_pending.png" width="120" height="40"></div>		
+		
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<a id="resetEditPending" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		<a id="saveEditPending" style="margin-right:10px;height:30px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
@@ -8014,7 +8052,7 @@ var funciones={
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -8112,16 +8150,31 @@ var funciones={
 					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
 						Schedule Detail
 					</div>
-					<div id="detailEditPend" class="col-xs-6 col-sm-10">
+				</div>
+				<div class="row">
+	
+					<div id="detailEditPend" class="col-xs-12 col-sm-10">
 						 <textarea style="height:222px;  width: 100%;" id="detailEditPend" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>		
 					</div>
 				</div>
 				<div class="row">
 					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
-						Completed Detail
+						Title
+					</div>					
+				</div>
+				<div class="row">
+					<div  class="col-xs-12 col-sm-10">
+						 <textarea style="height:222px;  width: 100%;" id="titleEditPend" class="texta1" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
-					<div id="detailcompEditPend" class="col-xs-6 col-sm-10">
-						 <textarea style="height:222px;  width: 100%;" id="compdetailEditPend" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
+				</div>
+				<div class="row">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+						Detail
+					</div>					
+				</div>
+				<div class="row">				
+					<div  class="col-xs-12 col-sm-10">
+						 <textarea style="height:222px;  width: 100%;" id="compdetailEditPend" class="texta2" placeholder="Your Detail here.." data-placement="top" data-trigger="manual" ></textarea>
 					</div>
 				</div>
 							
@@ -8146,7 +8199,10 @@ var funciones={
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEditComp" data-rel="back"></a>
-		<div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<!--div style="text-align:left;margin-left:20px;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div-->
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/edit_complete_t.png" width="120" height="40"></div>		
+		
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
 		<a id="resetEditCompleted" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/reset-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		<a id="saveEditCompleted" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/save-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
@@ -8156,7 +8212,7 @@ var funciones={
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -8473,7 +8529,10 @@ var funciones={
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backSendE" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/send-email.png" width="120" height="40"></div>
-	
+		<div  style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="newEmail" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/new.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>			
+		</div>
+		
 	</div>
 	
 	<!--FIN HEADER--> 	
@@ -8482,8 +8541,6 @@ var funciones={
 	<div data-role="content" style="margin-top:10px;">			
 		<div style="margin-left:30px;" class="row formC" id="formContr">
 			<form class="form-inline" id="envioEmail" enctype="multipart/form-data">
-				
-			
 				<div  id="templa" style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						Template
@@ -8552,10 +8609,9 @@ var funciones={
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backSendS" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/send-sms.png" width="120" height="40"></div>
-		<!--div  style="width: 100%;margin-top: -40px;text-align: right;">		
-			<a id="new" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/new-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
-			
-		</div-->
+		<div  style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="newSms" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/new.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>			
+		</div>
 	</div>
 	
 	<!--FIN HEADER--> 	
@@ -8629,7 +8685,9 @@ var funciones={
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backSendF" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/send-fax.png" width="120" height="40"></div>
-	
+		<div  style="width: 100%;margin-top: -40px;text-align: right;">		
+			<a id="newFax" style="margin-right:10px;height:35px;width:35px;margin-bottom:5px;background-image: url('img/new.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>			
+		</div>
 	</div>
 	
 	<!--FIN HEADER--> 	
