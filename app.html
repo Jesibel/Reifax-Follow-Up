@@ -368,14 +368,14 @@ $(document).ready(function(){
 	$("#webdetailHtml,#webdetailcontactHtml#webMyaccountHtml").height($(window).height()-$("div.ui-page-active div[data-role='header']").height()-7-63);	
 
 	//RADIO BUTTOM SEND EMAIL
-	$('#template').on('click',function(){
+	/*$('#template').on('click',function(){
 		//alert("radio template");
 		document.getElementById("template").checked = true;
 		document.getElementById("new").checked = false;
 		getTemplateEmail();
-	});
+	});*/
 
-	$('#new').on('click',function(){	
+	/*$('#new').on('click',function(){	
 		//alert("radio new");
 		//$('#2').dialog("close");
 		//$('#1').dialog("open");
@@ -384,40 +384,32 @@ $(document).ready(function(){
 		document.getElementById('templa').style.display = "none";
 		$("textarea#bodyEmail").val("");
 		$("textarea#subjectEmail").val("");	
-	});
+	});*/
 			
 	//RADIO BUTTOM SEND SMS
-	$('#templateSMS').on('click',function(){
+	/*$('#templateSMS').on('click',function(){
 		//alert("radio templateSMS");
 		document.getElementById("templateSMS").checked = true;
 		document.getElementById("newSMS").checked = false;
 		getTemplateSMS();
-	});
+	});*/
 
-	$('#newSMS').on('click',function(){	
+	/*$('#newSMS').on('click',function(){	
 		//alert("radio new")
 		document.getElementById("templateSMS").checked = false;
 		document.getElementById("newSMS").checked = true;
 		document.getElementById('templaSms').style.display = "none";
 		$("textarea#bodySMS").val("");
-	});
+	});*/
 			
 	//RADIO BUTTOM SEND FAX
-	$('#templateFax').on('click',function(){
+	/*$('#templateFax').on('click',function(){
 		//alert("radio templateFax");
 		document.getElementById("templateFax").checked = true;
 		document.getElementById("newFax").checked = false;
 		getTemplateFAX();
-	});
+	});*/
 
-	$('#newFax').on('click',function(){
-		//alert("radio newFax");
-		document.getElementById("templateFax").checked = false;
-		document.getElementById("newFax").checked = true;
-		document.getElementById('templaFAX').style.display = "none";
-		$("textarea#bodyFax").val("");
-	});
-		
 	//UPLOAD SEND EMAIL
 	/*document.getElementById("fileToUploadEmail").onchange = function () {
 		//document.getElementById('uuploadfileEmail').style.display = "block";
@@ -8573,7 +8565,7 @@ var funciones={
 					<!--div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						Body
 					</div-->
-					<div style="width:95%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
+					<div style="width:95%;padding-left: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
 						<textarea style="height: 160px !important;" name="body" id="bodyEmail" class="texta2" placeholder="Body" data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>
