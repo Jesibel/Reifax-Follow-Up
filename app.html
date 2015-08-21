@@ -521,18 +521,23 @@ $(document).ready(function(){
 	$('#sendEmailDP,#sendEmail').on('click',function(){				
 		//alert("getptask");
 		getTemplateEmail();
+		getContactEmail();
 	});
+	
+
 	
 	//GET TEMPLATE SMS
 	$('#sendSMSDP,#sendSMS').on('click',function(){				
 		//alert("getptask");
 		getTemplateSMS();
+		getContactSms();
 	});
 	
 	//GET TEMPLATE FAX
 	$('#sendFaxDP,#sendFax').on('click',function(){				
 		//alert("getptask");
 		getTemplateFAX();
+		getContactFax();
 	});
 		
 	//COMPOSE SEND EMAIL INBOX
@@ -8557,7 +8562,7 @@ var funciones={
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						Contact
 					</div>
-					<div style="width:95%;padding-left: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
+					<div id="contactmail" style="width:95%;padding-left: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
 						<select id="contactemail" name="contactemail"  class="span4"></select>
 					</div>
 				</div>
@@ -8659,6 +8664,14 @@ var funciones={
 					</div>					
 				</div-->	
 				<br>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						Contact
+					</div>
+					<div id="contacttexto" style="width:95%;padding-left: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
+						<select id="contactsms" name="contactsms"  class="span4"></select>
+					</div>
+				</div>
 				<div id="templaSms" style="margin-bottom: 10px;" class="row">
 					<div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 						Template
@@ -8761,6 +8774,14 @@ var funciones={
 				
 				<div id="browserFax"></div-->
 				<br>
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						Contact
+					</div>
+					<div id="contactfaxx" style="width:95%;padding-left: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
+						<select id="contactfax" name="contactfax"  class="span4"></select>
+					</div>
+				</div>
 				<div id="templaFAX" style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left:-30px;" class="col-xs-4 col-sm-2">
 						Template
