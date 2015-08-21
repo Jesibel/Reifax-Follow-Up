@@ -66,7 +66,7 @@
 	<script src="http://reifax.com/FollowupReifax/resources/js/accounting.js"></script>
 	<script src="http://reifax.com/FollowupReifax/resources/js/moment.js"></script>
 	
-	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
+	<!--script type='text/javascript' src="http://wurfl.io/wurfl.js"></script-->
 	<script src="http://reifax.com/FollowupReifax/resources/js/tinymce/js/tinymce/tinymce.min.js"></script>
 	<script type="text/javascript">
 	tinymce.init({
@@ -1763,9 +1763,11 @@ $(function(){
 		pagSearchContact(pid.parcelid)	
 	});
 		
-	$("#backEmail").on('click', function () {
+	$("#backEmail,#backAddSch").on('click', function () {
 		//alert('backContacts');
 		//document.getElementById("detalleEmailCab").innerHTML="";
+		var id = JSON.parse(localStorage.getItem('seen'));
+		longEmailInbox(checkid,id.seen);
 		$('#detalleCorreo').empty();
 		$('#detalleEmailCab ul').html('');
 	});
@@ -1784,10 +1786,26 @@ $(function(){
 	$("#backEmailO").on('click', function () {
 		//alert('backContacts');
 		//document.getElementById("detalleEmailCab").innerHTML="";
+		var id = JSON.parse(localStorage.getItem('seen'));
+		longEmailOutbox(checkid,id.seen);
 		$('#detalleCorreoO').empty();
 			
 		$('#detalleEmailCabO ul').html('');
 			
+	});
+	
+	$("#backPending").on('click', function () {
+		//alert('backContacts');
+		//document.getElementById("detalleEmailCab").innerHTML="";
+		longPending(checkid);
+		
+	});
+	
+	$("#backCompleted").on('click', function () {
+		//alert('backContacts');
+		//document.getElementById("detalleEmailCab").innerHTML="";
+		longCompleted(checkid);
+		
 	});
 		
 	$("#backEdit").on('click', function () {			
@@ -1808,11 +1826,13 @@ $(function(){
 		//$('#detalleContacto').empty();
 		$("#temp select").empty();	
 		$("#tempFax select").empty();
-		document.getElementById('header_two').style.display = "none";			
+		document.getElementById('header_two').style.display = "none";	
+		longProperties(checkid);
 	});
 		
 	$("#backFCall").on('click', function () {			
 		backMakeCall();		
+		
 	});
 		
 		
@@ -5583,9 +5603,9 @@ var funciones={
            <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmailO" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
-		<div style="width: 100%;margin-top: -40px;text-align: right;">		
+		<div style="width: 100%;margin-top: -33px;text-align: right;">		
 			<a id="deleteEmailO" style="margin-right:5px;height:30px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="replyEmailO" style="margin-right:5px;height:30px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagReplyEmail"></a>
 			<a id="forwardEmailO" style="margin-right:5px;height:30px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagForwardEmail"></a>
@@ -5636,9 +5656,9 @@ var funciones={
            <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backCompleted" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
-		<div style="width: 100%;margin-top: -40px;text-align: right;">
+		<div style="width: 100%;margin-top: -33px;text-align: right;">
 		<a id="editarCompleted" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditCompletedHtml"></a>
 		</div>
 	</div>
@@ -5687,7 +5707,7 @@ var funciones={
            <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backPending" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-32px"><img src="resources/image/detail-pending.png" width="120" height="40"></div>
 		
@@ -8533,15 +8553,20 @@ var funciones={
 	<div data-role="content" style="margin-top:10px;">			
 		<div style="margin-left:30px;" class="row formC" id="formContr">
 			<form class="form-inline" id="envioEmail" enctype="multipart/form-data">
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						Contact
+					</div>
+					<div style="width:95%;padding-left: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
+						<select id="contactemail" name="contactemail"  class="span4"></select>
+					</div>
+				</div>
 				<div  id="templa" style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						Template
 					</div>
 					<div style="margin-top:-10px;" id="temp" class="col-xs-8 col-sm-10">
-						<select id="tem" name="contracttemplate" onchange="comboemail();" class="span4">
-							
-						
-						</select>
+						<select id="tem" name="contracttemplate" onchange="comboemail();" class="span4"></select>
 					</div>
 					<div  id="atta">	
 							<label for="imageUpload">							
