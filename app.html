@@ -516,28 +516,61 @@ $(document).ready(function(){
 		getfilterCompletedTask();
 	});
 		
-		
+	
 	//GET TEMPLATE EMAIL
-	$('#sendEmailDP,#sendEmail').on('click',function(){				
+	$('#sendEmailDP').on('click',function(){				
 		//alert("getptask");
+		var id = JSON.parse(localStorage.getItem('key'));
+		var detalle=1;
 		getTemplateEmail();
-		getContactEmail();
+		getContactEmail(id.parcelid,detalle);
+	});
+	
+	//GET TEMPLATE EMAIL
+	$('#sendEmail').on('click',function(){				
+		//alert("getptask");
+		var pid = JSON.parse(localStorage.getItem('pid'));
+		var detalle=2;
+		getTemplateEmail();
+		getContactEmail(pid.pid,detalle);
 	});
 	
 
 	
 	//GET TEMPLATE SMS
-	$('#sendSMSDP,#sendSMS').on('click',function(){				
+	$('#sendSMSDP').on('click',function(){				
 		//alert("getptask");
+		var id = JSON.parse(localStorage.getItem('key'));
+		var detalle=1;
 		getTemplateSMS();
-		getContactSms();
+		getContactSms(id.parcelid,detalle);
+	});
+	
+	//GET TEMPLATE SMS
+	$('#sendSMS').on('click',function(){				
+		//alert("getptask");
+		var pid = JSON.parse(localStorage.getItem('pid'));
+		var detalle=2;
+		getTemplateSMS();
+		getContactSms(pid.pid,detalle);
 	});
 	
 	//GET TEMPLATE FAX
-	$('#sendFaxDP,#sendFax').on('click',function(){				
+	$('#sendFaxDP').on('click',function(){				
 		//alert("getptask");
+		var id = JSON.parse(localStorage.getItem('key'));
+		var detalle=1;
 		getTemplateFAX();
-		getContactFax();
+		getContactFax(id.parcelid,detalle);
+	});
+	
+	//GET TEMPLATE FAX
+	$('#sendFax').on('click',function(){				
+		//alert("getptask");
+		var pid = JSON.parse(localStorage.getItem('pid'));
+		var detalle=2;
+		getTemplateFAX();
+		getContactFax(pid.pid,detalle);
 	});
 		
 	//COMPOSE SEND EMAIL INBOX
@@ -1770,16 +1803,18 @@ $(function(){
 		
 	$("#backEmail,#backAddSch").on('click', function () {
 		//alert('backContacts');
-		//document.getElementById("detalleEmailCab").innerHTML="";
 		var id = JSON.parse(localStorage.getItem('seen'));
+		
+		document.getElementById('header_two').style.display = "none";
 		longEmailInbox(checkid,id.seen);
+		
 		$('#detalleCorreo').empty();
 		$('#detalleEmailCab ul').html('');
 	});
 		
 	$("#backReplyEmail,#backForwardEmail").on('click', function () {
 		//alert('backContacts');
-		//document.getElementById("detalleEmailCab").innerHTML="";
+
 		$('#infoCorreo ul').html('');
 		$('#detalleCorreo').empty();
 		$('#detalleEmailCab ul').html('');
@@ -1790,8 +1825,9 @@ $(function(){
 		
 	$("#backEmailO").on('click', function () {
 		//alert('backContacts');
-		//document.getElementById("detalleEmailCab").innerHTML="";
 		var id = JSON.parse(localStorage.getItem('seen'));
+		
+		document.getElementById('header_two').style.display = "none";
 		longEmailOutbox(checkid,id.seen);
 		$('#detalleCorreoO').empty();
 			
@@ -1802,6 +1838,7 @@ $(function(){
 	$("#backPending").on('click', function () {
 		//alert('backContacts');
 		//document.getElementById("detalleEmailCab").innerHTML="";
+		document.getElementById('header_two').style.display = "none";	
 		longPending(checkid);
 		
 	});
@@ -1809,6 +1846,7 @@ $(function(){
 	$("#backCompleted").on('click', function () {
 		//alert('backContacts');
 		//document.getElementById("detalleEmailCab").innerHTML="";
+		document.getElementById('header_two').style.display = "none";	
 		longCompleted(checkid);
 		
 	});
@@ -5673,7 +5711,7 @@ var funciones={
 		<div style="background: #ccc;height:45px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -5726,7 +5764,7 @@ var funciones={
 		<div style="background: #ccc;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -7126,7 +7164,7 @@ var funciones={
 					<body></body>
 				</html>
 			</iframe-->
-		<div style="background:#fff;margin-top:40px;" id="historial">
+		<div style="background:#fff;margin-top:45px;" id="historial">
 			<ul style="list-style: none;margin-left:-40px;" class="page_history2">
 			
 			</ul>
@@ -7458,29 +7496,13 @@ var funciones={
 				<div class="row">
 					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-2 col-sm-2">
 						Detail
-					</div>
-					<div id="detaill" class="col-xs-9 col-sm-10">
-						<textarea style="height:222px;  width: 100%;" id="detail" class="form-control span4" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
-					</div>
+					</div>				
 				</div>
-				<!--div class="row">
-					
-					<div style="padding-left: 25px;padding-top: 20px;" class="col-xs-2 col-sm-2">
-						Document
+				<div class="row">					
+					<div id="detaill" class="col-xs-12 col-sm-10">
+						<textarea style="height:222px;  width: 90%;" id="detail" class="texta1 span4" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
-					<div style="margin-left: 10px;" id="detaill" class="col-xs-9 col-sm-10">
-						<input type="checkbox" name="checkbox-h-c" id="checkbox-h-c">
-						<label style="margin-left:45px;">Contract</label>
-						<input type="checkbox" name="checkbox-h-p" id="checkbox-h-p">
-						<label style="margin-left:45px;">Proof of Refunds</label>
-						<input type="checkbox" name="checkbox-h-e" id="checkbox-h-e">
-						<label style="margin-left:45px;">EMD</label>
-						<input type="checkbox" name="checkbox-h-a" id="checkbox-h-a">
-						<label style="margin-left:45px;">Addendums</label>
-						<input type="checkbox" name="checkbox-h-o" id="checkbox-h-o">
-						<label style="margin-left:45px;">Offer Received</label>
-					</div>
-				</div-->				
+				</div>				
 				<br>
 				<div class="row">
 					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
@@ -8558,7 +8580,7 @@ var funciones={
 	<div data-role="content" style="margin-top:10px;">			
 		<div style="margin-left:30px;" class="row formC" id="formContr">
 			<form class="form-inline" id="envioEmail" enctype="multipart/form-data">
-				<div style="margin-bottom: 10px;" class="row">
+				<div style="margin-bottom: 10px;" id="Cemail" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						Contact
 					</div>
@@ -8664,7 +8686,7 @@ var funciones={
 					</div>					
 				</div-->	
 				<br>
-				<div style="margin-bottom: 10px;" class="row">
+				<div style="margin-bottom: 10px;" id="Csms" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						Contact
 					</div>
@@ -8774,7 +8796,7 @@ var funciones={
 				
 				<div id="browserFax"></div-->
 				<br>
-				<div style="margin-bottom: 10px;" class="row">
+				<div style="margin-bottom: 10px;" id="Cfax" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						Contact
 					</div>
