@@ -66,7 +66,7 @@
 	<script src="http://reifax.com/FollowupReifax/resources/js/accounting.js"></script>
 	<script src="http://reifax.com/FollowupReifax/resources/js/moment.js"></script>
 	
-	<!--script type='text/javascript' src="http://wurfl.io/wurfl.js"></script-->
+	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
 	<script src="http://reifax.com/FollowupReifax/resources/js/tinymce/js/tinymce/tinymce.min.js"></script>
 	<script type="text/javascript">
 	tinymce.init({
@@ -1102,7 +1102,7 @@ $(function(){
 	});
 		
 	//CLICK DETALLE DE EMAIL
-	$('ul.page_emailInbox').on('click','li', function () {   
+	$('ul.page_emailInbox').on('click','#info-email0,#info-email1', function () {   
 		var id= $(this).attr('idmail');
 		var idseen= $(this).attr('idseen');
 		// Creamos un objeto
@@ -1111,6 +1111,8 @@ $(function(){
 		// Lo guardamos en localStorage pasandolo a cadena con JSON
 		localStorage.setItem('email', JSON.stringify(object));
 		localStorage.setItem('seen', JSON.stringify(seen));
+		$('#detalleEmailCab ul').empty();
+		$('#detalleCorreo').empty();
 		$.mobile.changePage( "#detailEmail");	    
     });
 	
@@ -1136,6 +1138,8 @@ $(function(){
 		// Lo guardamos en localStorage pasandolo a cadena con JSON
 		localStorage.setItem('email', JSON.stringify(object));
 		localStorage.setItem('seen', JSON.stringify(seen));
+		$('#detalleEmailCabO ul').empty();
+		$('#detalleCorreoO').empty();
 		$.mobile.changePage( "#detailEmailOutbox");	
     });
 		
@@ -1421,10 +1425,13 @@ $(function(){
 	});
 		
 	//ASSIGNMENT PROPERTY
-	$('#assignP').on('click',function(){			
-		//getAssignProperty();
-		assignProperty();
+	$('#assignP,#assignPHouse').on('click',function(){					
+		var agentid = JSON.parse(localStorage.getItem('agentid'));
+		var pid = JSON.parse(localStorage.getItem('key'));
+		var idemail = JSON.parse(localStorage.getItem('email'));
+		assignProperty(agentid.agentid,pid.parcelid,idemail.email);
 	});
+	
 		
 	//MAKE CALL
 	$('#makeCall,#makeCallDP').on('click', function () {
@@ -1801,14 +1808,16 @@ $(function(){
 		pagSearchContact(pid.parcelid)	
 	});
 		
-	$("#backEmail,#backAddSch").on('click', function () {
+	$("#backEmailI,#backAddSch").on('click', function () {
 		//alert('backContacts');
 		var id = JSON.parse(localStorage.getItem('seen'));
 		
-		document.getElementById('header_two').style.display = "none";
+		//document.getElementById('header_two').style.display = "none";
 		longEmailInbox(checkid,id.seen);
 		
-		$('#detalleCorreo').empty();
+		$('#detalleCorreo ul').empty();
+		$('#detalleCorreo ul').html('');
+		
 		$('#detalleEmailCab ul').html('');
 	});
 		
@@ -1816,7 +1825,7 @@ $(function(){
 		//alert('backContacts');
 
 		$('#infoCorreo ul').html('');
-		$('#detalleCorreo').empty();
+		$('#detalleCorreo ul').empty();
 		$('#detalleEmailCab ul').html('');
 		$('#detalleCorreoO').empty();
 		$('#detalleEmailCabO ul').html('');
@@ -1865,18 +1874,25 @@ $(function(){
 					
 	});
 		
-	$("#backAdd,#backContract,#backSendE,#backSendS,#backSendF").on('click', function () {			
+	$("#backAdd,#backContract,#backSendE,#backSendS,#backSendF,#backFCall").on('click', function () {			
 		//$('#detalleContacto').empty();
 		$("#temp select").empty();	
 		$("#tempFax select").empty();
-		document.getElementById('header_two').style.display = "none";	
-		longProperties(checkid);
+		//document.getElementById('header_two').style.display = "none";	
+		
+		var id = JSON.parse(localStorage.getItem('key'));
+		if(id.parcelid!=''){
+			longProperties(id.parcelid);
+		}else{
+			longProperties(checkid);
+		}
+		
 	});
 		
-	$("#backFCall").on('click', function () {			
+	/*$("#backFCall").on('click', function () {			
 		backMakeCall();		
 		
-	});
+	});*/
 		
 		
 });
@@ -4842,6 +4858,31 @@ var funciones={
 </div>
 <!--FIN ASSIG PROPERTY-->
 
+<!--ASSIGN PROPERTY HOUSE-->
+<div class="modal fade bs-example-modal-sm" id="assignPropertyHouse" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabelHouse">Assignment Property</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+					<div class="span6">
+						<p>Address<div id="toEmailHouse"><select id="addressAssignPropertyHouse" class="span12"></select></div>
+						  
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button id="assignPHouse" type="button" class="btn btn-primary" data-dismiss="modal">Assign</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--FIN ASSIG PROPERTY-->
+
 <!--FORMULARIO REPLY INBOX-->
 <!--div class="modal fade bs-example-modal-sm" id="formReplyInbox" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -5562,7 +5603,7 @@ var funciones={
            <!--HEADER-->
 	<div style="background:#8ab420;border:#8ab420;height:45px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmail" data-rel="back"></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backEmailI" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div  id="menuDE" style="width: 100%;margin-top: -33px;text-align: right;">		
 			<a id="deleteEmail" style="margin-right:5px;height:30px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
@@ -8848,7 +8889,7 @@ var funciones={
 <div data-role="page" id="formCall">
     <!--HEADER-->
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b"  id="backFCall" ></a>
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b"  href="/" id="backFCall" data-rel="back" ></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/make-call.png" width="120" height="40"></div>
 		
