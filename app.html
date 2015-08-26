@@ -585,7 +585,7 @@ $(document).ready(function(){
 		$("input#userid").val('3213');
 						
 		if(imgVal == '') { 
-			showEmpty("<span class='error' colspan='5'></span>");
+			//showEmpty("<span class='error' colspan='5'></span>");
 			$( "#choose_file" ).addClass( "error" );
 			$( "#uploaded_file" ).addClass( "error" );
 		}else{
@@ -622,7 +622,7 @@ $(document).ready(function(){
 		$("input#userid").val('3213');
 						
 		if(imgVal == '') { 
-			showEmpty("<span class='error' colspan='5'></span>");
+			//showEmpty("<span class='error' colspan='5'></span>");
 			$( "#choose_file" ).addClass( "error" );
 			$( "#uploaded_file" ).addClass( "error" );
 		}else{
@@ -1120,6 +1120,7 @@ $(function(){
 		//var valor = localStorage.getItem("key");
 		var valor = JSON.parse(localStorage.getItem('email'));
 		var valor2 = JSON.parse(localStorage.getItem('seen'));
+		
 		detailEmails(valor.email);
 		detailEmailsCab(valor.email);
 		propertyAssing(valor.email);
@@ -1127,7 +1128,7 @@ $(function(){
 	});
 		
 	//CLICK DETALLE DE EMAIL outbox
-	$('ul.page_emailOutbox').on('click','li', function () {
+	$('ul.page_emailOutbox').on('click','#info-outbox', function () {
            //alert('onclick email outbox');
 		//alert(url);
 		var id= $(this).attr('idmail');
@@ -1427,9 +1428,9 @@ $(function(){
 	//ASSIGNMENT PROPERTY
 	$('#assignP,#assignPHouse').on('click',function(){					
 		var agentid = JSON.parse(localStorage.getItem('agentid'));
-		var pid = JSON.parse(localStorage.getItem('key'));
+		
 		var idemail = JSON.parse(localStorage.getItem('email'));
-		assignProperty(agentid.agentid,pid.parcelid,idemail.email);
+		assignProperty(agentid.agentid,idemail.email);
 	});
 	
 		
@@ -1601,39 +1602,35 @@ $(function(){
 		var type = JSON.parse(localStorage.getItem('key3'));
 		
 		var imgVal = $('#imageUpload').val(); 
-				$("input#userid").val('3213');
-				$("input#pid").val(id.parcelid);
+		$("input#userid").val('3213');
+		$("input#pid").val(id.parcelid);
 				
-				$("input#typeFollow").val(type.type);
-				if(imgVal == '') { 
-					showEmpty("<span class='error' colspan='5'></span>");
-					$( "#choose_file" ).addClass( "error" );
-					$( "#uploaded_file" ).addClass( "error" );
-				}else{
-					var formData 		= new FormData($("#envioEmail")[0]);
-					$.ajax({
-						url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followsendmail.php',
-						type: 'POST',
-						data: formData,
-						cache: false,
-						contentType: false,
-						processData: false,
-						enctype: 'multipart/form-data',
-						beforeSend: function(){
+		$("input#typeFollow").val(type.type);
+
+		var formData 		= new FormData($("#envioEmail")[0]);
+		$.ajax({
+			url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followsendmail.php',
+			type: 'POST',
+			data: formData,
+			cache: false,
+			contentType: false,
+			processData: false,
+			enctype: 'multipart/form-data',
+			beforeSend: function(){
 							
-						},
-						success: function(data){
-							console.log(data);
-							console.log(data);
-							alert('Email successfully');
-							$.mobile.changePage('#followingHtml');
-						},
-						//si ha ocurrido un error
-						error: function(){
+			},
+			success: function(data){
+				console.log(data);
+				console.log(data);
+				alert('Email successfully');
+				$.mobile.changePage('#followingHtml');
+			},
+			//si ha ocurrido un error
+			error: function(){
 							
-						}
-					}); // End ajax
-				} //End empty
+			}
+		}); // End ajax
+
 			
 	});
 		
@@ -4869,7 +4866,7 @@ var funciones={
             <div class="modal-body">
 				<div class="row-fluid">
 					<div class="span6">
-						<p>Address<div id="toEmailHouse"><select id="addressAssignPropertyHouse" class="span12"></select></div>
+						<p>Address<div id="toEmailHouse"><select id="addressAssignPropertyHouse" onchange="comboproperty();" class="span12"></select></div>
 						  
 					</div>
 					<div class="modal-footer">
