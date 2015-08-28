@@ -238,9 +238,10 @@ $(document).ready(function(){
 		var day      = document.getElementById("edate").value;
 		var hour     = document.getElementById("ehour").value;
 		var exectype = document.getElementById("exectype").value;
-		var task = document.getElementById("taskksc").value;
+		var task     = document.getElementById("taskksc").value;
+		var detail	 = document.getElementById("detailsch").value;
 
-		saveSchedule(day,hour,exectype,task)
+		saveSchedule(day,hour,exectype,task,detail)
 	});
 		
 	//RESET HISTORY FOLLOW
@@ -521,7 +522,22 @@ $(document).ready(function(){
 		//alert("getptask");
 		getfilterCompletedTask();
 	});
-		
+	
+	//BOTON SEND CONTRACT
+	$("#sendContractDP").on('click', function () {
+		var detalle=1;
+		$('#btnscheduledoc').hide();
+		$('#btnsenddoc').show();
+		gettypecontract();		
+	});
+	
+	//BOTON SEND CONTRACT
+	$("#sendContract").on('click', function () {
+		var detalle=2;
+		$('#btnscheduledoc').show();
+		$('#btnsenddoc').hide();
+		gettypecontract();		
+	});
 	
 	//GET TEMPLATE EMAIL
 	$('#sendEmailDP').on('click',function(){				
@@ -557,6 +573,8 @@ $(document).ready(function(){
 		//alert("getptask");
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=1;
+		$('#btnschedulesms').hide();
+		$('#btnsendsms').show();
 		getTemplateSMS();
 		getContactSms(id.parcelid,detalle);
 	});
@@ -566,6 +584,8 @@ $(document).ready(function(){
 		//alert("getptask");
 		var pid = JSON.parse(localStorage.getItem('pid'));
 		var detalle=2;
+		$('#btnschedulesms').hide();
+		$('#btnsendsms').show();
 		getTemplateSMS();
 		getContactSms(pid.pid,detalle);
 	});
@@ -575,6 +595,8 @@ $(document).ready(function(){
 		//alert("getptask");
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=1;
+		$('#btnschedulefax').hide();
+		$('#btnsendfax').show();
 		getTemplateFAX();
 		getContactFax(id.parcelid,detalle);
 	});
@@ -584,6 +606,8 @@ $(document).ready(function(){
 		//alert("getptask");
 		var pid = JSON.parse(localStorage.getItem('pid'));
 		var detalle=2;
+		$('#btnschedulefax').hide();
+		$('#btnsendfax').show();
 		getTemplateFAX();
 		getContactFax(pid.pid,detalle);
 	});
@@ -1613,14 +1637,23 @@ $(function(){
 	$("#btnSendEMAIL").on('click', function () {
 		//alert('editar');
 		//sendEMAIL();	
-		var id = JSON.parse(localStorage.getItem('key'));
-		var type = JSON.parse(localStorage.getItem('key3'));
+		if (checkid==''){
+			var typeFollow = JSON.parse(localStorage.getItem('key3'));
+			var typeFollow = typeFollow.type;
+			var id = JSON.parse(localStorage.getItem('key'));
+			var parcelid =id.parcelid;
+		}else{
+			var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
+			var typeFollow = typeFollow.typefollow;
+			var pid = JSON.parse(localStorage.getItem('pid'));
+			var parcelid =pid.pid;
+		}
 		
 		var imgVal = $('#imageUpload').val(); 
 		$("input#userid").val('3213');
-		$("input#pid").val(id.parcelid);
+		$("input#pid").val(parcelid);
 				
-		$("input#typeFollow").val(type.type);
+		$("input#typeFollow").val(typeFollow);
 
 		var formData 		= new FormData($("#envioEmail")[0]);
 		$.ajax({
@@ -1635,8 +1668,6 @@ $(function(){
 							
 			},
 			success: function(data){
-				console.log(data);
-				console.log(data);
 				alert('Email successfully');
 				$.mobile.changePage('#followingHtml');
 			},
@@ -1649,17 +1680,27 @@ $(function(){
 			
 	});
 	
-	//BOTON SEND SCHEDULE TASK 
+	//BOTON SEND EMAIL SCHEDULE TASK 
 	$("#btnSendSCHEDULE").on('click', function () {
 		//alert('editar');
 		//sendEMAIL();	
-		var id = JSON.parse(localStorage.getItem('key'));
-		var type = JSON.parse(localStorage.getItem('key3'));
+		if (checkid==''){
+			var typeFollow = JSON.parse(localStorage.getItem('key3'));
+			var typeFollow = typeFollow.type;
+			var id = JSON.parse(localStorage.getItem('key'));
+			var parcelid =id.parcelid;
+		}else{
+			var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
+			var typeFollow = typeFollow.typefollow;
+			var pid = JSON.parse(localStorage.getItem('pid'));
+			var parcelid =pid.pid;
+		}
 		
 		var task = JSON.parse(localStorage.getItem('task'));
 		var day = JSON.parse(localStorage.getItem('day'));
 		var hour = JSON.parse(localStorage.getItem('hour'));
 		var exectype = JSON.parse(localStorage.getItem('exectype'));
+		var detail = JSON.parse(localStorage.getItem('detail'));
 		
 		var hora = hour.hour.split(':');
 		
@@ -1687,13 +1728,14 @@ $(function(){
 		
 		$("input#userid").val('3213');
 		$("input#type").val('insert');
-		$("input#pid").val(id.parcelid);	
-		$("input#parcelid").val(id.parcelid);	
-		$("input#typeFollow").val(type.type);
+		$("input#pid").val(parcelid);	
+		$("input#parcelid").val(parcelid);	
+		$("input#typeFollow").val(typeFollow);
 		$("input#task").val(task.task);
 		$("input#odate").val(day.day);
 		$("input#ohour").val(hour3);
 		$("input#typeExec").val(exectype.exectype);
+		$("input#detailsch").val(detail.detail);
 
 		var formData 		= new FormData($("#envioEmail")[0]);
 		$.ajax({
@@ -1708,10 +1750,94 @@ $(function(){
 							
 			},
 			success: function(data){
-				console.log(data);
-				console.log(data);
-				alert('Email successfully');
+				if (data){
+				alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+				document.getElementById('header_two').style.display = "none";
 				$.mobile.changePage('#followingHtml');
+				}
+			},
+			//si ha ocurrido un error
+			error: function(){
+							
+			}
+		}); // End ajax
+
+			
+	});
+	
+	//BOTON SEND FAX SCHEDULE TASK 
+	$("#btnSendSCHEDULEfax").on('click', function () {
+		//alert('editar');
+		//sendEMAIL();	
+		if (checkid==''){
+			var typeFollow = JSON.parse(localStorage.getItem('key3'));
+			var typeFollow = typeFollow.type;
+			var id = JSON.parse(localStorage.getItem('key'));
+			var parcelid =id.parcelid;
+		}else{
+			var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
+			var typeFollow = typeFollow.typefollow;
+			var pid = JSON.parse(localStorage.getItem('pid'));
+			var parcelid =pid.pid;
+		}
+		
+		var task = JSON.parse(localStorage.getItem('task'));
+		var day = JSON.parse(localStorage.getItem('day'));
+		var hour = JSON.parse(localStorage.getItem('hour'));
+		var exectype = JSON.parse(localStorage.getItem('exectype'));
+		var detail = JSON.parse(localStorage.getItem('detail'));
+		
+		var hora = hour.hour.split(':');
+		
+		if (hora[0]>12) { 
+			var hour2 = hora[0] - 12;
+			var hour3 = hour2+':'+hora[1]+' PM'
+		} else if (hora[0]==00) {
+			var hour2  = 12;
+			var hour3 = hour2+':'+hora[1]+' AM'
+		}else if (hora[0]==12) {
+			var hour2  = 12;
+			var hour3 = hour2+':'+hora[1]+' PM'
+		}else{
+			if(hora[0]!=10){
+				var res = hora[0].replace("0", "");
+				var hour3= res+':'+hora[1]+' AM';
+			}else{
+				var hour3= hour.hour+' AM'
+			}
+			
+		}
+		
+		var imgVal = $('#imageUpload').val(); 
+		
+		$("input#userid").val('3213');
+		$("input#type").val('insert');
+		$("input#pid").val(parcelid);	
+		$("input#parcelid").val(parcelid);	
+		$("input#typeFollow").val(typeFollow);
+		$("input#task").val(task.task);
+		$("input#odate").val(day.day);
+		$("input#ohour").val(hour3);
+		$("input#typeExec").val(exectype.exectype);
+		$("input#detailsch").val(detail.detail);
+
+		var formData 		= new FormData($("#envioEmail")[0]);
+		$.ajax({
+			url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
+			type: 'POST',
+			data: formData,
+			cache: false,
+			contentType: false,
+			processData: false,
+			enctype: 'multipart/form-data',
+			beforeSend: function(){
+							
+			},
+			success: function(data){
+				if (data){
+				alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+				$.mobile.changePage('#followingHtml');
+				}
 			},
 			//si ha ocurrido un error
 			error: function(){
@@ -1728,17 +1854,69 @@ $(function(){
 		//alert('editar');
 		sendSMS();	
 	});
+	
+	//BOTON SEND SMS SCHEDULE
+	$("#btnSendSCHEDULEsms").on('click', function () {
+		//alert('editar');
+		sendSMS_SCHEDULE();	
+	});
 		
 	//BOTON SEND FAX
 	$("#btnSendFAX").on('click', function () {
 		//alert('editar');
-		sendFAX();
+		//sendFAX();
+		if (checkid==''){
+			var typeFollow = JSON.parse(localStorage.getItem('key3'));
+			var typeFollow = typeFollow.type;
+			var id = JSON.parse(localStorage.getItem('key'));
+			var parcelid =id.parcelid;
+		}else{
+			var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
+			var typeFollow = typeFollow.typefollow;
+			var pid = JSON.parse(localStorage.getItem('pid'));
+			var parcelid =pid.pid;
+		}
+		
+		var imgVal = $('#imageUpload').val(); 
+		$("input#userid").val('3213');
+		$("input#pid").val(parcelid);
+				
+		$("input#typeFollow").val(typeFollow);
+
+		var formData 		= new FormData($("#envioEmail")[0]);
+		$.ajax({
+			url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followsendfax.php',
+			type: 'POST',
+			data: formData,
+			cache: false,
+			contentType: false,
+			processData: false,
+			enctype: 'multipart/form-data',
+			beforeSend: function(){
+							
+			},
+			success: function(data){
+				alert('Fax  successfully');
+				$.mobile.changePage('#followingHtml');
+			},
+			//si ha ocurrido un error
+			error: function(){
+							
+			}
+		}); // End ajax
+
 	});
 		
 	//BOTON SEND CONTRACT
 	$("#btnSendContr").on('click', function () {
 		//alert('editar');
 		sendContract();	
+	});
+	
+	//BOTON SEND CONTRACT
+	$("#btnScheduleDoc").on('click', function () {
+		//alert('editar');
+		sendContract_Schedule();	
 	});
 	
 	//BOTON NEW SEND EMAIL
@@ -1758,14 +1936,7 @@ $(function(){
 		//alert('editar');
 		newFax();	
 	});
-		
-	//BOTON GET SEND CONTRACT
-	$("#sendContractDP").on('click', function () {
-		//alert('contract');
-		//getDocAdd();
-		gettypecontract();		
-	});
-		
+	
 	//BOTON LOGIN
 	$("#btnLogin").on('click', function () {
 		//alert('login');
@@ -3559,438 +3730,6 @@ var funciones={
 </div>
 </div>
 <!--FIN FILTER-->
-
-<!-- FORMULARIO SEND EMAIL-->
-<!--div id="formEmail" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-       <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Email Panel</h4>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal col-sm-12">
-			<div class="form-group">
-				<label style="width: 30%;float: left;" for="file">Email by:</label>
-				<input type='radio'  name='template' id='template' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
-				<input type='radio'  name='new' id='new' value='New' checked>	New</input>			
-			</div>				
-			<div class="row">
-				<div style="padding-left: 25px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-					Attach
-				</div>
-				<div class="row">
-					<div id="uuploadfileEmail" class="col-xs-10 col-sm-10">
-						<input type="text" style="width:75%;" id="uploadFileEmail" placeholder="Select a file"/>
-					</div>
-				</div>
-			</div>
-			<!--div class="row">
-				<div style="margin-left:25px;text-align:center;" class=" col-xs-10 col-sm-10">
-					<div style="display: inline-flex;" class="fileUpload btn btn-primary">
-						<span>Browser</span>
-						<input type="file" class="upload" id="uploadBtnReply" />
-					</div>
-				</div>
-			</div-->
-			<!--div class="row">
-				<div style="margin-left:25px;text-align:center;" class=" col-xs-10 col-sm-10">
-					<div>						
-						<label for="fileToUploadEmail">
-							<img style="float:left;margin-top:-30px;margin-left:200px;" src="http://reifax.com/FollowupReifax/img/upload-48.png" width="20px" height="20px"/>
-						</label>
-						<input style="display:none;" type="File" name="fileToUploadEmail" id="fileToUploadEmail">
-						<input style="display:none;" type="submit" value="Upload Image" name="submit">
-						<!--input type="file" class="upload" id="uploadBtnFax" /-->
-						<!--label>
-							<img style="margin-top:-65px;margin-left:235px;" onclick="addInput()" class="another" src="http://reifax.com/FollowupReifax/img/add-file-48.png" width="20px" height="20px" />
-						</label>
-						
-					</div>
-				</div>
-			</div>
-		
-			<div id="browser"></div>
-			
-			<!--div class="row">		
-				<div style="text-align: left;margin-left:-20px;" class="col-xs-10 col-sm-10">
-					<div style="display: inline-flex;" class="fileUpload btn btn-primary">
-						<span>Another file</span>
-						<input onclick="addInput()" class="another" />	
-					</div>
-				</div>
-			</div>
-			<br-->
-			
-			
-			<!--div  id="templa" style="margin-bottom: 10px;" class="row">
-				<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-					Template
-				</div>
-				<div id="temp" class="col-xs-10 col-sm-10">
-					<select id="tem" class="span4"></select>
-				</div>
-			</div>
-			<div style="margin-bottom: 10px;" class="row">
-				<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-					Subject
-				</div>
-				<div class="col-xs-10 col-sm-10">
-					<textarea id="subjectEmail" type="text" placeholder="Subject" class="span4" ></textarea>
-				</div>
-			</div>
-			<div style="margin-bottom: 10px;" class="row">
-				<!--div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-					Body
-				</div-->
-				<!--div style="width:100%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
-					<textarea style="height:112px;" id="bodyEmail" class="form-control" placeholder="Body" data-placement="top" data-trigger="manual"></textarea>
-				</div>
-			</div>
-			<!--div id="templa" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
-			<div class="form-group"><label>Subject:</label><input id="subject" class="form-control required" placeholder="Your name" data-placement="top" data-trigger="manual" data-content="Must be at least 3 characters long, and must only contain letters." type="text"></div>
-			<div class="form-group"><label>Body:</label><textarea style="height:112px;" id="body" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea></div>
-			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
-			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
-			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
-        <!--/form>
-      </div>
-      <div class="modal-footer">       
-		<button id="btnSendEMAIL" type="submit" class="btn btn-success pull-right">Send</button>
-		 <!--button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button-->
-      <!--/div>
-    </div>
-  </div>
-</div-->
-
-<!-- FIN FORMULARIO SEND EMAIL-->
-
-<!-- FORMULARIO SEND SMS-->
-<!--div id="formSMS" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">SMS Panel</h4>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal col-sm-12">
-			<div class="form-group">
-				<label style="width: 30%;float: left;" for="file">SMS by:</label>
-				<input type='radio'  name='templateSMS' id='templateSMS' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
-				<input type='radio'  name='newSMS' id='newSMS' value='New' checked>	New</input>			
-			</div>	
-			<div id="templaSms" style="margin-bottom: 10px;" class="row">
-				<div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-					Template
-				</div>
-				<div id="tempSms" class="col-xs-9 col-sm-10">
-					<select id="temSms" class="span4"></select>
-				</div>
-			</div>
-			<div style="margin-bottom: 10px;" class="row">
-				<!--div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-					Text
-				</div-->
-				<!--div style="width:100%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
-					<textarea style="height:112px;" id="bodySms" class="form-control" placeholder="Text" data-placement="top" data-trigger="manual"></textarea>
-				</div>
-			</div>
-			<!--div id="templaSms" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
-			<div class="form-group"><label>Text:</label><textarea style="height:102px;" id="text" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
-			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
-			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
-			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
-        <!--/form>
-		
-      </div>
-      <div class="modal-footer">
-        <!--button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button-->
-		<!--button  id="btnSendSMS" type="submit" class="btn btn-success pull-right">Send</button>
-      </div>
-    </div>
-  </div>
-</div-->
-
-<!-- FIN FORMULARIO SEND SMS-->
-
-<!-- FORMULARIO SEND FAX-->
-<!--div id="formFax" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-       <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Fax Panel</h4>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal col-sm-12">
-			<div class="form-group">
-				<label style="width: 30%;float: left;" for="file">Fax by:</label>
-				<input type='radio'  name='templateFax' id='templateFax' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
-				<input type='radio'  name='newFax' id='newFax' value='New' checked>	New</input>			
-			</div>	
-			
-			<div class="row">
-				<div style="padding-left: 25px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-					Attach
-				</div>
-				<div class="row">
-					<div id="uuploadfileEF" class="col-xs-8 col-sm-10">
-						<input style="width:85%;margin-left:25px;" type="text" id="uploadFileFax" placeholder="Select a file"/>						
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div style="margin-left:25px;text-align:center;" class=" col-xs-10 col-sm-10">
-					<div>						
-						<label for="fileToUpload">
-							<img style="float:left;margin-top:-30px;margin-left:200px;" src="http://reifax.com/FollowupReifax/img/upload-48.png" width="20px" height="20px"/>
-						</label>
-						<input style="display:none;" type="File" name="fileToUpload" id="fileToUpload">
-						<input style="display:none;" type="submit" value="Upload Image" name="submit">
-						<!--input type="file" class="upload" id="uploadBtnFax" /-->
-						<!--label>
-							<img style="margin-top:-65px;margin-left:235px;" onclick="addInputFax()" class="another" src="http://reifax.com/FollowupReifax/img/add-file-48.png" width="20px" height="20px" />
-						</label>
-						
-					</div>
-				</div>
-			</div>
-			
-			<div id="browserFax"></div>
-			<!--div class="row">		
-				<div style="text-align: left;margin-left:-20px;" class="col-xs-10 col-sm-10">
-					<div style="display: inline-flex;" class="fileUpload btn btn-primary">
-						<span>Another file</span>
-						<input onclick="addInputFax()" class="another" />	
-					</div>
-				</div>
-			</div-->
-			
-			<!--div id="templaFAX" style="margin-bottom: 10px;" class="row">
-				<div style="padding-left: 25px;padding-top: 5px;margin-left:-30px;" class="col-xs-4 col-sm-2">
-					Template
-				</div>
-				<div id="tempFax" style="width:75%;padding-right:0px;" class="col-xs-8 col-sm-10">
-					<select id="temFax" type="text" class="span4"></select>
-				</div>
-			</div>
-			<div style="margin-bottom: 10px;" class="row">
-				<!--div style="padding-left: 25px;padding-top: 5px;margin-left:-30px;" class="col-xs-4 col-sm-2">
-					Text
-				</div-->
-				<!--div style="width:100%;padding-right:0px;padding-left: 0px;margin-left: -5px;" class="col-xs-12 col-sm-10">
-					<textarea style="height:112px;" id="bodyFax" class="form-control" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
-				</div>
-			</div>
-			<!--div id="templaFAX" class="form-group"><label>Template</label><div id="temp"><select id="tem" class="form-control"></select></div></div>
-			<div class="form-group"><label>Text:</label><textarea style="height:112px;" id="textFax" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea></div>
-			<!--div class="form-group"><label>E-Mail</label><input class="form-control email" placeholder="email@you.com (so that we can contact you)" data-placement="top" data-trigger="manual" data-content="Must be a valid e-mail address (user@gmail.com)" type="text"></div>
-			<div class="form-group"><label>Phone</label><input class="form-control phone" placeholder="999-999-9999" data-placement="top" data-trigger="manual" data-content="Must be a valid phone number (999-999-9999)" type="text"></div-->
-			<!--div class="form-group"> <p class="help-block pull-left text-danger hide" id="form-error">&nbsp; The form is not valid. </p></div-->
-        <!--/form>
-      </div>
-      <div class="modal-footer">
-        <!--button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button-->
-		<!--button id="btnSendFAX" type="submit" class="btn btn-success pull-right">Send</button>
-      </div>
-    </div>
-  </div>
-</div-->
-
-<!-- FIN FORMULARIO SEND FAX-->
-
-<!--FORMULARIO MAKE CALL-->
-<!--div class="modal fade bs-example-modal-sm" id="formCall" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Contact</h4>
-            </div>
-            <div class="modal-body">
-				<div class="row-fluid">
-					<div class="row">
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Contact
-							</div>
-							<div id="agent" class="col-xs-8 col-sm-10">
-								<input style="margin-left:-10px;" id="agen" type="text" class="span4" />
-							</div>
-						</div>
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Type
-							</div>
-							<div style="margin-left:-10px;" id="typeagent" class="col-xs-8 col-sm-10">
-								<select id="typ" class="span4"></select>
-							</div>
-						</div>
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Email1
-							</div>
-							<div id="email1" class="col-xs-9 col-sm-10">
-								<select style="width:25%;float:left;margin-right:5px;margin-left:-10px;" id="emai1" class="span4"></select>
-								<input id ="ema1" style="width:55%;" type="text" class="span4" />
-							</div>
-						</div>
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Email2
-							</div>
-							<div id="email2" class="col-xs-9 col-sm-10">
-								<select style="width:25%;float:left;margin-right:5px;margin-left:-10px;" id="emai2" class="span4"></select>
-								<input id ="ema2" style="width:55%;" type="text" class="span4" />
-							</div>
-						</div>
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Company
-							</div>
-							<div style="margin-left:-10px;" id="companyy" class="col-xs-8 col-sm-10">								
-								<input id ="company" type="text" class="span4" />
-							</div>
-						</div>
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Website1
-							</div>
-							<div id="website1" class="col-xs-9 col-sm-10">
-								<select style="width:25%;float:left;margin-right:5px;margin-left:-10px;" id="websit1" class="span4"></select>
-								<input id ="web1" style="width:55%;" type="text" class="span4" />
-							</div>
-						</div>
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Website2
-							</div>
-							<div id="website2" class="col-xs-9 col-sm-10">
-								<select style="width:25%;float:left;margin-right:5px;margin-left:-10px;" id="websit2" class="span4"></select>
-								<input id ="web2" style="width:55%;" type="text" class="span4" />
-							</div>
-						</div>	
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Phone
-							</div>
-							<div id="phone1" class="col-xs-9 col-sm-10">
-								<select style="width:25%;float:left;margin-right:5px;margin-left:-10px;" id="phon1" class="span4"></select>
-								<input id ="pho1" style="width:55%;" type="text" class="span4" />
-								<input 	name="submit" id="telf1" type="image" class="span4"
-										src="http://www.reifax.com/FollowupReifax/img/phone-68-48.png" 
-									    alt="Sign Me Up!" 
-										onclick="SignMeUp();"
-										tabindex="8"  />
-							</div>
-						</div>
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Phone2
-							</div>
-							<div id="phone2" class="col-xs-9 col-sm-10">
-								<select style="width:25%;float:left;margin-right:5px;margin-left:-10px;" id="phon2" class="span4"></select>
-								<input id ="pho2" style="width:55%;" type="text" class="span4" />
-								<input 	name="submit" id="telf2" type="image" class="span4"
-										src="http://www.reifax.com/FollowupReifax/img/phone-68-48.png" 
-									    alt="Sign Me Up!" 
-										onclick="SignMeUp();"
-										tabindex="8"  />
-							</div>
-						</div>	
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Phone3
-							</div>
-							<div id="phone3" class="col-xs-9 col-sm-10">
-								<select style="width:25%;float:left;margin-right:5px;margin-left:-10px;" id="phon3" class="span4"></select>
-								<input id ="pho3" style="width:55%;" type="text" class="span4" />
-								<input 	name="submit" id="telf3" type="image" class="span4"
-										src="http://www.reifax.com/FollowupReifax/img/phone-68-48.png" 
-									    alt="Sign Me Up!" 
-										onclick="SignMeUp();"
-										tabindex="8"  />
-							</div>
-						</div>
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Phone4
-							</div>
-							<div id="phone4" class="col-xs-9 col-sm-10">
-								<select style="width:25%;float:left;margin-right:5px;margin-left:-10px;" id="phon4" class="span4"></select>
-								<input id ="pho4" style="width:55%;" type="text" class="span4" />
-								<input 	name="submit" id="telf4" type="image" class="span4"
-										src="http://www.reifax.com/FollowupReifax/img/phone-68-48.png" 
-									    alt="Sign Me Up!" 
-										onclick="SignMeUp();"
-										tabindex="8"  />
-							</div>
-						</div>	
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Phone5
-							</div>
-							<div id="phone5" class="col-xs-9 col-sm-10">
-								<select style="width:25%;float:left;margin-right:5px;margin-left:-10px;" id="phon5" class="span4"></select>
-								<input id ="pho5" style="width:55%;" type="text" class="span4" />
-								<input 	name="submit" id="telf5" type="image" class="span4"
-										src="http://www.reifax.com/FollowupReifax/img/phone-68-48.png" 
-									    alt="Sign Me Up!" 
-										onclick="SignMeUp();"
-										tabindex="8"  />
-							</div>
-						</div>	
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: 25px;padding-top: 5px;margin-left:-10px;" class="col-xs-3 col-sm-2">
-								Phone6
-							</div>
-							<div id="phone6" class="col-xs-9 col-sm-10">
-								<select style="width:25%;float:left;margin-right:5px;" id="phon6" class="span4"></select>
-								<input id ="pho6" style="width:65%;" type="text" class="span4" />
-								<input 	name="submit" id="telf6" type="image" class="span4"
-										src="http://www.reifax.com/FollowupReifax/img/phone-68-48.png" 
-									    alt="Sign Me Up!" 
-										onclick="SignMeUp();"
-										tabindex="8"  />
-							</div>
-						</div>
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Address1
-							</div>
-							<div id="address1" class="col-xs-7 col-sm-10">
-								<select style="width:32%;float:left;margin-right:5px;margin-left:-10px;" id="addre1" class="span4"></select>
-								<input id ="addr1" style="width:65%;" type="text" class="span4" />								
-							</div>
-						</div>
-						<div style="margin-bottom: 10px;" class="row">
-							<div style="padding-left: -5px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-								Address2
-							</div>
-							<div id="address2" class="col-xs-7 col-sm-10">
-								<select style="width:32%;float:left;margin-right:5px;margin-left:-10px;" id="addre2" class="span4"></select>
-								<input id ="addr2" style="width:65%;" type="text" class="span4" />								
-							</div>
-						</div>						
-																																																						
-						
-					</div>				  
-            </div>
-			<button id="add" type="button" class="btn btn-primary" data-dismiss="modal">Add</button>
-			<button id="update" type="button" class="btn btn-primary" data-dismiss="modal">Update</button>
-			<button id="remove" type="button" class="btn btn-primary" data-dismiss="modal">Remove</button>
-			<button id="setPrincipal" type="button" class="btn btn-primary" data-dismiss="modal">Set Principal</button>
-            <br>
-			<div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                
-			</div>
-		</div>
-  </div>
-</div>
-</div-->
-<!--FIN FORMULARIO MAKE CALL-->
 
 <!--FILTER CONTACTS-->
 <div class="modal fade bs-example-modal-sm" id="formfilterContact" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
@@ -8807,27 +8546,7 @@ var funciones={
 	<div data-role="content">
 	
 		<div style="margin-left:30px;" class="row formC" id="formContr">
-			<form class="form-inline">
-				
-				<!--div class="form-group">
-					<label style="width: 30%;float: left;" for="file">SMS by:</label>
-					<input type='radio'  name='templateSMS' id='templateSMS' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
-					<input type='radio'  name='newSMS' id='newSMS' value='New' checked>	New</input>			
-				</div-->	
-				<!--div class="row">
-					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-4 col-sm-2">
-						<label style="float:left;" for="file">SMS by:</label>						
-					</div>
-					<div style="padding-left: 25px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-						<input type='radio'  name='templateSMS' id='templateSMS' value='Template'> </input>
-						<div style="margin-left:35px;margin-top: 12px;">Template</div>
-					</div>	
-					<div style="padding-left:55px;" class="col-xs-3 col-sm-2">
-						
-						<input type='radio'  name='newSMS' id='newSMS' value='New' checked></input>	
-						<div style="margin-left:35px;margin-top: 12px;">New</div>
-					</div>					
-				</div-->	
+			<form class="form-inline" enctype="multipart/form-data">	
 				<br>
 				<div style="margin-bottom: 10px;" id="Csms" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
@@ -8846,16 +8565,12 @@ var funciones={
 							<!--option value="new">New</option-->
 						</select>
 					</div>
-					
 				</div>
 				<div style="margin-bottom: 10px;" class="row">
 					<div style="width:90%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-10 col-sm-10">
 						<textarea id="bodySms" class="texta2" placeholder="Text" data-placement="top" data-trigger="manual"></textarea>
 					</div>
-					
 				</div>
-			
-			</form>
 			
 			<div class="row">
 				<div id="btnsendsms" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
@@ -8866,7 +8581,7 @@ var funciones={
 					<input id="btnSendSCHEDULEsms" class="btn btn-success" type="button" value="Schedule Task">
 				</div>
 			</div>
-			
+		</form>
 		</div>
 			
 	
@@ -8893,52 +8608,6 @@ var funciones={
 	
 		<div style="margin-left:30px;" class="row formC" id="formContr">
 			<form class="form-inline">
-				<!--div class="form-group">
-					<label style="width: 30%;float: left;" for="file">Fax by:</label>
-					<input type='radio'  name='templateFax' id='templateFax' value='Template'> Template &nbsp;&nbsp;&nbsp;</input>
-					<input type='radio'  name='newFax' id='newFax' value='New' checked>	New</input>			
-				</div-->	
-				<!--div class="row">
-					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-4 col-sm-2">
-						<label style="float:left;" for="file">Fax by:</label>						
-					</div>
-					<div style="padding-left: 25px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-						<input type='radio'  name='templateFax' id='templateFax' value='Template'> </input>
-						<div style="margin-left:35px;margin-top: 12px;">Template</div>
-					</div>	
-					<div style="padding-left:55px;" class="col-xs-3 col-sm-2">
-						
-						<input type='radio'  name='newFax' id='newFax' value='New' checked></input>	
-						<div style="margin-left:35px;margin-top: 12px;">New</div>
-					</div>					
-				</div>	
-				<br>
-				<div style="margin-top:20px;" class="row">
-					<div style="padding-left: 25px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-						Attach
-					</div>					
-					<div style="margin-top:-10px;" id="uuploadfileEF" class="col-xs-6 col-sm-10">
-						<input style="width:75%;" type="text" id="uploadFileFax" placeholder="Select a file"/>						
-					</div>
-				</div>
-				<div class="row">
-					<div style="margin-left:25px;text-align:center;" class=" col-xs-10 col-sm-10">
-						<div>						
-							<label for="fileToUpload">
-								<img style="float:left;margin-top:-39px;margin-left:200px;" src="http://reifax.com/FollowupReifax/img/upload-48.png" width="20px" height="20px"/>
-							</label>
-							<input style="display:none;" type="File" name="fileToUpload" id="fileToUpload">
-							<input style="display:none;" type="submit" value="Upload Image" name="submit">
-							<input type="file" class="upload" id="uploadBtnFax" />
-							<label>
-								<img style="margin-top:-97px;margin-left:235px;" onclick="addInputFax()" class="another" src="http://reifax.com/FollowupReifax/img/add-file-48.png" width="20px" height="20px" />
-							</label>
-							
-						</div>
-					</div>
-				</div>
-				
-				<div id="browserFax"></div-->
 				<br>
 				<div style="margin-bottom: 10px;" id="Cfax" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
@@ -8964,28 +8633,46 @@ var funciones={
 							<div ><img style="margin-left: 120px;" src="" id="imagePreviewFax" width="100px"/></div>
 					</div>	
 				</div>
-								
+							
 				<div style="margin-bottom: 10px;" class="row">
-					<!--div style="padding-left: 25px;padding-top: 5px;margin-left:-30px;" class="col-xs-4 col-sm-2">
-						Text
-					</div-->
 					<div style="width:90%;padding-right:0px;padding-left: 0px;margin-left: -5px;" class="col-xs-10 col-sm-10">
 						<textarea style="height:112px;" id="bodyFax" class="texta2" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>
 			
-			</form>
 			
+				<input type='hidden' name='userid' id='userid'>
+				<input type='hidden' name='pid' id='pid'>
+				<input type='hidden' name='parcelid' id='parcelid'>
+				<input type='hidden' name='typeFollow' id='typeFollow'>
+				
+				<input type='hidden' name='type' id='type' value='insert'>
+				<input type='hidden' name='rtemplateselect' id='rtemplateselect' value='T'>
+				<input type='hidden' name='action-upload' id='action-upload' value='upload'>
+				<input type='hidden' name='action-delete' id='action-delete' value='delete'>
+				<input type='hidden' name='cantidadupload' id='cantidadupload' value='1'>
+				<input type='hidden' name='sendmail' id='sendmail' value='on'>
+				<input type='hidden' name='sendme' id='sendme' value='off'>
+				<input type='hidden' name='completetask' id='completetask' value='false'>
+				<input type='hidden' name='nuevotemplate' id='nuevotemplate' value=''>
+				<input type='hidden' name='nuevotemplatesub' id='nuevotemplatesub' value=''>
+				<input type='hidden' name='status' id='status' value=''>
+				
+				<input type='hidden' name='task' id='task'>
+				<input type='hidden' name='odate' id='odate'>
+				<input type='hidden' name='ohour' id='ohour'>
+				<input type='hidden' name='typeExec' id='typeExec'>
+				
 			<div class="row">
 				<div id="btnschedulefax" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 					<input id="btnSendFAX" class="btn btn-success" type="button" value="Send">
 					<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
 				</div>
 				<div id="btnschedulefax" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
-					<input id="btnSendSCHEDULEsms" class="btn btn-success" type="button" value="Schedule Task">
+					<input id="btnSendSCHEDULEfax" class="btn btn-success" type="button" value="Schedule Task">
 				</div>
 			</div>
-			
+		</form>
 		</div>
 	
 	</div>
@@ -9942,21 +9629,6 @@ var funciones={
 				
 				<div style="margin-left:1px;padding-left:10px;" class="row formC" id="formforward">	
 					<div class="row">				  
-			
-						<!--div class="row">
-							<div style="padding-left: 25px;padding-top: 5px;font-size: 16px;font-weight: bold;" class="col-xs-12 col-sm-2">
-								Email Delivery
-							</div>
-						</div-->
-						
-						<!--div style="padding-left:25px;" class="row">
-							<div class="checkbox">
-								<input style="margin-left:-30px;margin-top:-1px;" checked type="checkbox" value=""/>
-								<label style="margin-left:10px;padding-top: 5px;">Send Document by Email:</label>
-								<input type="checkbox" value=""/>
-								<label style="margin-left: 40px;padding-top: 5px;">Send Document by Fax:</label>
-							</div>	
-						</div-->
 						<div class="row">
 							<div style="padding-top:10px;margin-top:15px;" class="col-xs-5 col-sm-2">
 								Template Email
@@ -10158,9 +9830,12 @@ var funciones={
 		  </div>
 		  <br>
 			<div class="row">
-					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+					<div id="btnsenddoc" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 						<input id="btnSendContr" class="btn btn-success" type="button" value="Send">
 						<input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel">
+					</div>
+					<div id="btnscheduledoc" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="btnScheduleDoc" class="btn btn-success" type="button" value="Schedule Task">
 					</div>
 			</div>
 		  
