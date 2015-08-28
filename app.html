@@ -107,6 +107,7 @@ $(document).ready(function(){
 	document.getElementById("sContact").style.display = "none";
 	//document.getElementById("sProperty").style.display = "none";
 	document.getElementById("searchLisContact").style.display = "none";
+	//document.getElementById("btnschedule").style.display = "none";
 	
 	
 	
@@ -234,7 +235,12 @@ $(document).ready(function(){
 	//INSERT SCHEDULE FOLLOW
 	$("#saveSche,#saveSchedule").on('click', function () {
 		//alert('insert');			
-		addSchedule();
+		var day      = document.getElementById("edate").value;
+		var hour     = document.getElementById("ehour").value;
+		var exectype = document.getElementById("exectype").value;
+		var task = document.getElementById("taskksc").value;
+
+		saveSchedule(day,hour,exectype,task)
 	});
 		
 	//RESET HISTORY FOLLOW
@@ -522,6 +528,8 @@ $(document).ready(function(){
 		//alert("getptask");
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=1;
+		$('#btnschedule').hide();
+		$('#btnsend').show();
 		getTemplateEmail();
 		getContactEmail(id.parcelid,detalle);
 	});
@@ -531,8 +539,15 @@ $(document).ready(function(){
 		//alert("getptask");
 		var pid = JSON.parse(localStorage.getItem('pid'));
 		var detalle=2;
+		$('#btnschedule').hide();
+		$('#btnsend').show();
 		getTemplateEmail();
 		getContactEmail(pid.pid,detalle);
+	});
+	
+	//OPEN NEW SCHEDULE
+	$('#nschedule').on('click',function(){				
+		$("#edate").val();
 	});
 	
 
@@ -1633,6 +1648,79 @@ $(function(){
 
 			
 	});
+	
+	//BOTON SEND SCHEDULE TASK 
+	$("#btnSendSCHEDULE").on('click', function () {
+		//alert('editar');
+		//sendEMAIL();	
+		var id = JSON.parse(localStorage.getItem('key'));
+		var type = JSON.parse(localStorage.getItem('key3'));
+		
+		var task = JSON.parse(localStorage.getItem('task'));
+		var day = JSON.parse(localStorage.getItem('day'));
+		var hour = JSON.parse(localStorage.getItem('hour'));
+		var exectype = JSON.parse(localStorage.getItem('exectype'));
+		
+		var hora = hour.hour.split(':');
+		
+		
+		if (hora[0]>12) { 
+			var hour2 = hora[0] - 12;
+			var hour3 = hour2+':'+hora[1]+' PM'
+		} else if (hora[0]==00) {
+			var hour2  = 12;
+			var hour3 = hour2+':'+hora[1]+' AM'
+		}else if (hora[0]==12) {
+			var hour2  = 12;
+			var hour3 = hour2+':'+hora[1]+' PM'
+		}else{
+			if(hora[0]!=10){
+				var res = hora[0].replace("0", "");
+				var hour3= res+':'+hora[1]+' AM';
+			}else{
+				var hour3= hour.hour+' AM'
+			}
+			
+		}
+		
+		var imgVal = $('#imageUpload').val(); 
+		
+		$("input#userid").val('3213');
+		$("input#type").val('insert');
+		$("input#pid").val(id.parcelid);	
+		$("input#parcelid").val(id.parcelid);	
+		$("input#typeFollow").val(type.type);
+		$("input#task").val(task.task);
+		$("input#odate").val(day.day);
+		$("input#ohour").val(hour3);
+		$("input#typeExec").val(exectype.exectype);
+
+		var formData 		= new FormData($("#envioEmail")[0]);
+		$.ajax({
+			url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
+			type: 'POST',
+			data: formData,
+			cache: false,
+			contentType: false,
+			processData: false,
+			enctype: 'multipart/form-data',
+			beforeSend: function(){
+							
+			},
+			success: function(data){
+				console.log(data);
+				console.log(data);
+				alert('Email successfully');
+				$.mobile.changePage('#followingHtml');
+			},
+			//si ha ocurrido un error
+			error: function(){
+							
+			}
+		}); // End ajax
+
+			
+	});
 		
 		
 	//BOTON SEND SMS 
@@ -1805,7 +1893,7 @@ $(function(){
 		pagSearchContact(pid.parcelid)	
 	});
 		
-	$("#backEmailI,#backAddSch").on('click', function () {
+	$("#backEmailI").on('click', function () {
 		//alert('backContacts');
 		var id = JSON.parse(localStorage.getItem('seen'));
 		
@@ -1814,8 +1902,16 @@ $(function(){
 		
 		$('#detalleCorreo ul').empty();
 		$('#detalleCorreo ul').html('');
-		
 		$('#detalleEmailCab ul').html('');
+	});
+	
+	$("#backAddSch").on('click', function () {
+		//alert('backContacts');
+		var id = JSON.parse(localStorage.getItem('seen'));
+		
+		//document.getElementById('header_two').style.display = "none";
+		longEmailInbox(checkid,id.seen);
+		
 	});
 		
 	$("#backReplyEmail,#backForwardEmail").on('click', function () {
@@ -7590,7 +7686,7 @@ var funciones={
 	<div data-role="content">
 		
 		<div style="margin-left: 1px;" class="row formC" id="formContacto">
-			<form style="margin-top: 30px;" class="form-inline">
+			<form style="margin-top: 30px;" class="form-inline" id="envioSchedule" enctype="multipart/form-data">
 				<div class="row">
 					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
 						Execute Date
@@ -8651,10 +8747,7 @@ var funciones={
 						<textarea style="height: 90px !important;"  name="subject" id="subjectEmail" type="text" placeholder="Subject" class="texta1" ></textarea>
 					</div>
 				</div>
-				<div style="margin-bottom: 10px;" class="row">
-					<!--div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-						Body
-					</div-->
+				<div style="margin-bottom: 10px;" class="row">					
 					<div style="width:95%;padding-left: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
 						<textarea style="height: 160px !important;" name="body" id="bodyEmail" class="texta2" placeholder="Body" data-placement="top" data-trigger="manual"></textarea>
 					</div>
@@ -8662,20 +8755,32 @@ var funciones={
 				
 				<input type='hidden' name='userid' id='userid'>
 				<input type='hidden' name='pid' id='pid'>
+				<input type='hidden' name='parcelid' id='parcelid'>
 				<input type='hidden' name='typeFollow' id='typeFollow'>
 				
+				<input type='hidden' name='type' id='type' value='insert'>
 				<input type='hidden' name='rtemplateselect' id='rtemplateselect' value='T'>
 				<input type='hidden' name='action-upload' id='action-upload' value='upload'>
 				<input type='hidden' name='action-delete' id='action-delete' value='delete'>
 				<input type='hidden' name='cantidadupload' id='cantidadupload' value='1'>
 				<input type='hidden' name='sendmail' id='sendmail' value='on'>
 				<input type='hidden' name='sendme' id='sendme' value='off'>
-			
+				<input type='hidden' name='completetask' id='completetask' value='false'>
+				<input type='hidden' name='nuevotemplate' id='nuevotemplate' value=''>
+				<input type='hidden' name='nuevotemplatesub' id='nuevotemplatesub' value=''>
+				<input type='hidden' name='status' id='status' value=''>
+				
+				<input type='hidden' name='task' id='task'>
+				<input type='hidden' name='odate' id='odate'>
+				<input type='hidden' name='ohour' id='ohour'>
+				<input type='hidden' name='typeExec' id='typeExec'>
 				
 				<div class="row">
-					<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+					<div id="btnsend" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 						<input id="btnSendEMAIL" class="btn btn-success" type="button" value="Send">
-						<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
+					</div>
+					<div id="btnschedule" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+						<input id="btnSendSCHEDULE" class="btn btn-success" type="button" value="Schedule Task">
 					</div>
 				</div>
 			</form>
@@ -8744,20 +8849,21 @@ var funciones={
 					
 				</div>
 				<div style="margin-bottom: 10px;" class="row">
-					<!--div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
-						Text
-					</div-->
 					<div style="width:90%;padding-left: 0px;padding-right: 0px;margin-left: -3px;" class="col-xs-10 col-sm-10">
 						<textarea id="bodySms" class="texta2" placeholder="Text" data-placement="top" data-trigger="manual"></textarea>
 					</div>
+					
 				</div>
 			
 			</form>
 			
 			<div class="row">
-				<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+				<div id="btnsendsms" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 					<input id="btnSendSMS" class="btn btn-success" type="button" value="Send">
 					<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
+				</div>
+				<div id="btnschedulesms" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+					<input id="btnSendSCHEDULEsms" class="btn btn-success" type="button" value="Schedule Task">
 				</div>
 			</div>
 			
@@ -8871,9 +8977,12 @@ var funciones={
 			</form>
 			
 			<div class="row">
-				<div style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+				<div id="btnschedulefax" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 					<input id="btnSendFAX" class="btn btn-success" type="button" value="Send">
 					<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
+				</div>
+				<div id="btnschedulefax" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+					<input id="btnSendSCHEDULEsms" class="btn btn-success" type="button" value="Schedule Task">
 				</div>
 			</div>
 			
