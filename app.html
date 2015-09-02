@@ -73,6 +73,7 @@
 		selector: "#bodyEmail,#bodySms,#bodyFax",
 		theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px",
 		font_size_style_values : "10px,12px,13px,14px,16px,18px,20px",
+		
 		toolbar:false,
 		menubar:false,
 		statusbar:false
@@ -3140,6 +3141,12 @@ var funciones={
 			top:-20px;
 			left:695px;
 		}
+		.modal.fade.in {
+			top: 5%;
+		}
+		.modal-dialog {
+			width:450px;
+		}
 		
 	
 	}
@@ -3533,85 +3540,78 @@ var funciones={
 		}
 		#bodyEmail p {
 			font-size:14px;
-			font-family:Helvetica Neue",Helvetica,Arial,sans-serif;
+			font-family:Helvetica Neue,Helvetica,Arial,sans-serif;
 		}
+		
 	
 	<!--login-->
-	.form-signin
-{
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-}
-.form-signin .form-signin-heading, .form-signin .checkbox
-{
-    margin-bottom: 10px;
-}
-.form-signin .checkbox
-{
-    font-weight: normal;
-}
-.form-signin .form-control
-{
-    position: relative;
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.form-signin .form-control:focus
-{
-    z-index: 2;
-}
-.form-signin input[type="text"]
-{
-    margin-bottom: -1px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-.form-signin input[type="password"]
-{
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-.account-wall
-{
-    margin-top: 20px;
-    padding: 40px 0px 20px 0px;
-    background-color: #f7f7f7;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-}
-.login-title
-{
-    color: #555;
-    font-size: 18px;
-    font-weight: 400;
-    display: block;
-}
-.profile-img
-{
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-.need-help
-{
-    margin-top: 10px;
-}
-.new-account
-{
-    display: block;
-    margin-top: 10px;
-}
+	.form-signin{
+		max-width: 330px;
+		padding: 15px;
+		margin: 0 auto;
+	}
+	.form-signin .form-signin-heading, .form-signin .checkbox{
+		margin-bottom: 10px;
+	}
+	.form-signin .checkbox{
+		font-weight: normal;
+	}
+	.form-signin .form-control{
+		position: relative;
+		font-size: 16px;
+		height: auto;
+		padding: 10px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	.form-signin .form-control:focus{
+		z-index: 2;
+	}
+	.form-signin input[type="text"]{
+		margin-bottom: -1px;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.form-signin input[type="password"]{
+		margin-bottom: 10px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+	.account-wall{
+		margin-top: 20px;
+		padding: 40px 0px 20px 0px;
+		background-color: #f7f7f7;
+		-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	}
+	.login-title{
+		color: #555;
+		font-size: 18px;
+		font-weight: 400;
+		display: block;
+	}
+	.profile-img{
+		width: 96px;
+		height: 96px;
+		margin: 0 auto 10px;
+		display: block;
+		-moz-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		border-radius: 50%;
+	}
+	.need-help{
+		margin-top: 10px;
+	}
+	.new-account{
+		display: block;
+		margin-top: 10px;
+	}
+	.span5{
+		width: 230px;
+		height: 30px;
+	}
 	</style>
   </head>
  <body>
@@ -3810,86 +3810,86 @@ var funciones={
 				<div class="row">
 				  
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-4">
 							Address
 						</div>
-						<div class="col-xs-7 col-sm-10">
+						<div class="col-xs-7 col-sm-6">
 							<input id="address" type="text" class="span4" />
 						</div>
 					</div>
 					
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-4">
 							County
 						</div>
-						<div  id="county" class="col-xs-7 col-sm-10">
+						<div  id="county" class="col-xs-7 col-sm-6">
 							<select id="coun" class="span4"></select>
 						</div>
 					</div>
 					
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-4">
 							City
 						</div>
-						<div  id="city" class="col-xs-7 col-sm-10">
+						<div  id="city" class="col-xs-7 col-sm-6">
 							<select id="cit" class="span4"></select>
 						</div>
 					</div>
 					
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-4">
 							Zip Code
 						</div>
-						<div  class="col-xs-7 col-sm-10">
+						<div  class="col-xs-7 col-sm-6">
 							<input id="zip" type="text" class="span4" />
 						</div>
 					</div>
 					
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-4">
 							Property Type
 						</div>
-						<div  id="xcode" class="col-xs-7 col-sm-10">
+						<div  id="xcode" class="col-xs-7 col-sm-6">
 							<select id="xcod" class="span4"></select>
 						</div>
 					</div>
 					
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-4">
 							Contact
 						</div>
-						<div class="col-xs-7 col-sm-10">
+						<div class="col-xs-7 col-sm-6">
 							<input id="contact" type="text" class="span4" />
 						</div>
 					</div>
 					
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-4">
 							Status
 						</div>
-						<div id="status" class="col-xs-7 col-sm-10">
+						<div id="status" class="col-xs-7 col-sm-6">
 							<select id="st" class="span4"></select>
 						</div>
 					</div>
 					
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-4">
 							Alt Status
 						</div>
-						<div id="altstatus" class="col-xs-7 col-sm-10">
+						<div id="altstatus" class="col-xs-7 col-sm-6">
 							<select id="altst" class="span4"></select>
 						</div>
 					</div>
 					
 					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-4">
 							Follow Date
 						</div>
 						
-						<div style="margin-bottom:10px;" id="followdate" class="col-xs-3 col-sm-3">
+						<div style="margin-bottom:10px;" id="followdate" class="col-xs-3 col-sm-4">
 							<select id="folldate" class="span4"></select>
 						</div>	
-							<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
+							<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-4">
 								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
 								<input style="line-height:25px;width: 100px !important;" name="demo" id="demo" class="i-txt" />
 							</div>		
@@ -8644,14 +8644,6 @@ var funciones={
 	<div data-role="content" style="margin-top:10px;">			
 		<div style="margin-left:30px;" class="row formC" id="formContr">
 			<form class="form-inline" id="envioEmail" enctype="multipart/form-data">
-				<div style="margin-bottom: 10px;" id="Cemail" class="row">
-					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-						Contact
-					</div>
-					<div id="contactmail" style="width:95%;padding-left: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
-						<select id="contactemail" name="contactemail"  class="span4"></select>
-					</div>
-				</div>
 				<div  id="templa" style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						Template
@@ -8665,6 +8657,14 @@ var funciones={
 							<img style="margin-left: 120px;" src="" id="imagePreview" width="100px"/>
 							<input type="file" name="archivo1" id="imageUpload" class="hide"/> 
 					</div>	
+				</div>
+				<div style="margin-bottom: 10px;" id="Cemail" class="row">
+					<div style="padding-left: 25px;padding-top: 15px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						To
+					</div>
+					<div id="contactmail" style="padding-left:0px;padding-right:0px;margin-left:20px;" class="col-xs-8 col-sm-10">
+						<select id="contactemail" name="contactemail"  class="span4"></select>
+					</div>
 				</div>
 				<div class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
@@ -8739,14 +8739,6 @@ var funciones={
 		<div style="margin-left:30px;" class="row formC" id="formContr">
 			<form class="form-inline" enctype="multipart/form-data">	
 				<br>
-				<div style="margin-bottom: 10px;" id="Csms" class="row">
-					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-						Contact
-					</div>
-					<div id="contacttexto" style="width:95%;padding-left: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
-						<select id="contactsms" name="contactsms"  class="span4"></select>
-					</div>
-				</div>
 				<div id="templaSms" style="margin-bottom: 10px;" class="row">
 					<div style="padding-left:0px;padding-right:0px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 						Template
@@ -8755,6 +8747,14 @@ var funciones={
 						<select id="temSms" onchange="combosms();" class="span4">
 							<!--option value="new">New</option-->
 						</select>
+					</div>
+				</div>
+				<div style="margin-bottom: 10px;" id="Csms" class="row">
+					<div style="padding-left: 25px;padding-top: 15px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						To
+					</div>
+					<div id="contacttexto" style="padding-left:0px;padding-right:0px;margin-left:20px;" class="col-xs-8 col-sm-10">
+						<select id="contactsms" name="contactsms"  class="span4"></select>
 					</div>
 				</div>
 				<div style="margin-bottom: 10px;" class="row">
@@ -8800,14 +8800,6 @@ var funciones={
 		<div style="margin-left:30px;" class="row formC" id="formContr">
 			<form class="form-inline">
 				<br>
-				<div style="margin-bottom: 10px;" id="Cfax" class="row">
-					<div style="padding-left: 25px;padding-top: 5px;margin-left: -30px;" class="col-xs-3 col-sm-2">
-						Contact
-					</div>
-					<div id="contactfaxx" style="width:95%;padding-left: 0px;margin-left: -3px;" class="col-xs-12 col-sm-10">
-						<select id="contactfax" name="contactfax"  class="span4"></select>
-					</div>
-				</div>
 				<div id="templaFAX" style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left:-30px;" class="col-xs-4 col-sm-2">
 						Template
@@ -8824,7 +8816,14 @@ var funciones={
 							<div ><img style="margin-left: 120px;" src="" id="imagePreviewFax" width="100px"/></div>
 					</div>	
 				</div>
-							
+				<div style="margin-bottom: 10px;" id="Cfax" class="row">
+					<div style="padding-left: 25px;padding-top: 15px;margin-left: -30px;" class="col-xs-3 col-sm-2">
+						To
+					</div> 
+					<div id="contactfaxx" style="padding-left:0px;padding-right:0px;margin-left:20px;" class="col-xs-8 col-sm-10">
+						<select id="contactfax" name="contactfax"  class="span4"></select>
+					</div>
+				</div>			
 				<div style="margin-bottom: 10px;" class="row">
 					<div style="width:90%;padding-right:0px;padding-left: 0px;margin-left: -5px;" class="col-xs-10 col-sm-10">
 						<textarea style="height:112px;" id="bodyFax" class="texta2" placeholder="Your message here.." data-placement="top" data-trigger="manual"></textarea>
