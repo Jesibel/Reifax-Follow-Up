@@ -1,685 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
-	<link href="resources/css/index.css" rel="stylesheet" type="text/css" />
-	<title>REIFAX FOLLOW UP</title>
-    
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-	<script type="text/javascript" src="jquerymobile/demos/js/jquery.js"></script>
-	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script> 
-		$(document).bind("mobileinit", function () { 
-		  
-			 $.mobile.defaultPageTransition =  'none' ; 
-			 $.mobile.defaultDialogTransition =  'none' ; 
-		   
-			 $.mobile.loader.prototype.defaultHtml = "<div class='ui-loader'>" +
-            "<span class='ui-icon ui-icon-loading'></span>" +
-            "<h1></h1>" +
-            "<div class='ui-loader-curtain'></div>" +
-            "</div>",
-			
-			 $.mobile.loader.prototype.options.disabled = true;
-
-		}); 
-	</script> 
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	
-	<script type="text/javascript" src="http://reifax.com/FollowupReifax/resources/js/jquery.mobile.listomatic.js"></script>
-	
-    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script-->  
-	
-	
-	<link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet" />
-	
-	<!--script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script-->
-	
-	<!--link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"-->	
-	<link href="http://reifax.com/FollowupReifax/resources/datetime/timedate1/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="http://reifax.com/FollowupReifax/bootstrap/css/bootstrap-modal.css" rel="stylesheet" />
-	
-	 <link rel="stylesheet" href="http://reifax.com/FollowupReifax/resources/css/jquery.auto-complete.css">
-	
-	<link href="http://reifax.com/FollowupReifax/resources/datetime/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-	
-	
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesProperties.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesContacts.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesEmails.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesTask.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesHistoryFollow.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesScheduleFollow.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesEmailFollow.js"></script>
-	
-	 
-	<link rel="stylesheet" href="http://mobipick.sustainablepace.net/css/mobipick.css" />   
-    <script src="http://mobipick.sustainablepace.net/external/xdate.js"></script>    
-    <script src="http://mobipick.sustainablepace.net/external/xdate.i18n.js"></script>        
-    <script src="http://mobipick.sustainablepace.net/js/mobipick.js"></script>
-	
-	<script src="http://reifax.com/FollowupReifax/resources/build/js/intlTelInput.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/build/css/intlTelInput.css"></script>
-	
-	<script src="http://reifax.com/FollowupReifax/resources/js/accounting.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/js/moment.js"></script>
-	
-	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/js/tinymce/js/tinymce/tinymce.min.js"></script>
-	<script type="text/javascript">
-	tinymce.init({
-		selector: "#bodyEmail,#bodySms,#bodyFax",
-		theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px",
-		font_size_style_values : "10px,12px,13px,14px,16px,18px,20px",
-		
-		toolbar:false,
-		menubar:false,
-		statusbar:false
-	});
-</script>
-	
-	<!--script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"-->
-	
-<script type="text/javascript">
-	
-	
-$(document).ready(function(){
-	
-	<!--forgot guille-->
-		/*$('#next').bind('click',funciones.proccess)
-		$('#go').bind('click',funciones.findUser);
-		$('input[name=txtEmail]').bind('focus',funciones.initAll);
-		correcto=true;*/
-	<!--fin forgot guille-->
-		
-	//document.getElementById('templa').style.display = "none";
-	//document.getElementById('templaSms').style.display = "none";
-	//document.getElementById('templaFAX').style.display = "none";
-	document.getElementById('between').style.display = "none";
-	document.getElementById('betweenExecPTask').style.display = "none";
-	document.getElementById('betweenSchePTask').style.display = "none";
-	document.getElementById('betweenCompTask').style.display = "none";
-	document.getElementById('regContact').style.display = "none";
-	document.getElementById("menuDE").style.display = "none";
-	document.getElementById("menuDE2").style.display = "none";
-	document.getElementById("sContact").style.display = "none";
-	//document.getElementById("sProperty").style.display = "none";
-	document.getElementById("searchLisContact").style.display = "none";
-	//document.getElementById("btnschedule").style.display = "none";
-	
-	
-	
-	$('#folldate').change(function(){
-		//alert($(this).val());
-		if ($(this).val()=='Between'){
-			document.getElementById('between').style.display = "block";
-		}else{
-			document.getElementById('between').style.display = "none";
-		}
-	});
-		
-	$('#edatePTask').change(function(){
-		alert($(this).val());
-		if ($(this).val()=='Between'){
-			document.getElementById('betweenExecPTask').style.display = "block";
-		}else{
-			document.getElementById('betweenExecPTask').style.display = "none";
-		}
-	});
-		
-	$('#cdateCTask').change(function(){
-		alert($(this).val());
-		if ($(this).val()=='Between'){
-			document.getElementById('betweenCompTask').style.display = "block";
-		}else{
-			document.getElementById('betweenCompTask').style.display = "none";
-		}
-	});
-		
-	$('#sdatePTask').change(function(){
-		alert($(this).val());
-		if ($(this).val()=='Between'){
-			document.getElementById('betweenSchePTask').style.display = "block";
-		}else{
-			document.getElementById('betweenSchePTask').style.display = "none";
-		}
-	});
-	
-	//FILTER PROPERTIES
-	$("#filtro,#filtro2").on('click', function () {
-		//alert('filtro');				
-		getfilterProperty();		
-	});
-		
-	//FILTER EMAIL FOLLOW
-	$("#filtroemailFollow").on('click', function () {
-		//alert('filtro');				
-		//getfilterEmailFollow();		
-	});
-		
-	//FILTER REMOVE PROPERTY
-	$("#filtro_remove,#filtro_remove2").on('click', function () {
-		//alert('remove filter CONTACTS');
-		$('#menuSecunFollow').panel("close");
-		removeFilterProperty();		
-	});
-		
-	//FILTER REMOVE CONTACTS
-	$("#filtro_removeCont").on('click', function () {
-		//alert('remove filter CONTACTS');
-		//$('#menuContacts').panel("close");
-		removeFilterContact();			
-	});
-		
-	//FILTER REMOVE EMAIL INBOX
-	$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
-		//alert('remove filter email inbox');
-		//$('#menuEmailInbox,#menuEmailInboxO').panel("close");
-		removeFilterEmailInbox();			
-	});
-		
-	//FILTER REMOVE EMAIL OUTBOX
-	$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
-		//alert('remove filter email outbox');
-		//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-		removeFilterEmailOutbox();			
-	});
-		
-	//FILTER REMOVE PENDING TASK
-	$("#RemovefiltroTask").on('click', function () {
-		//alert('remove filter email outbox');
-		//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-		removeFilterPendingTask();		
-	});
-		
-	//FILTER REMOVE COMPLETED TASK
-	$("#RemovefiltroTaskC").on('click', function () {
-		//alert('remove filter email outbox');
-		//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-		removeFilterCompletedTask();		
-	});
-		
-	//FILTER REMOVE EMAIL FOLLOW
-	$("#filtro_removeEmailFollow").on('click', function () {
-		//alert('remove filter email outbox');
-		//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
-		removeFilterEmailFollow();
-	});
-		
-	//INSERT CONTACTS
-	$("#insertCont,#insertCont2").on('click', function () {
-		//alert('insert');			
-		insertContact();
-	});
-		
-	//RESET CONTACTS
-	$("#resetAdd,#resetAdd2").on('click', function () {
-		//alert('insert');			
-		resetformCont();
-	});
-		
-	//INSERT HISTORY FOLLOW
-	$("#saveHist,#saveHistory").on('click', function () {
-		//alert('insert');			
-		addHistory();
-	});
-		
-	//RESET HISTORY FOLLOW
-	$("#resetHist,#resetHistory").on('click', function () {
-		//alert('insert');			
-		resetHistory();
-	});
-		
-	//INSERT SCHEDULE FOLLOW
-	$("#saveSche,#saveSchedule").on('click', function () {
-		//alert('insert');			
-		var day      = document.getElementById("edate").value;
-		var hour     = document.getElementById("ehour").value;
-		var exectype = document.getElementById("exectype").value;
-		var task     = document.getElementById("taskksc").value;
-		var detail	 = document.getElementById("detailsch").value;
-
-		saveSchedule(day,hour,exectype,task,detail)
-	});
-		
-	//RESET HISTORY FOLLOW
-	$("#resetSche").on('click', function () {
-		//alert('insert');			
-		resetSchedule();
-	});								
-		
-	//CANCEL ADD SCHEDULE FOLLOW
-	$("#cancelSche,#cancelEditSche").on('click', function () {
-		//alert('insert');			
-		//cancelSchedule();
-		$.mobile.changePage(
-		'#scheduleFollow',
-		{
-        allowSamePageTransition : true,
-        transition              : 'none',
-        showLoadMsg             : false,
-        reloadPage              : false
-		}
-		);
-	});	
-
-	//CANCEL EDIT SCHEDULE FOLLOW
-	$("#cancelEditSche").on('click', function () {
-		//alert('insert');			
-		//cancelSchedule();
-		$.mobile.changePage(
-		'#detailSchedule',
-		{
-			allowSamePageTransition : true,
-             transition              : 'none',
-             showLoadMsg             : false,
-             reloadPage              : false
-		}
-		);
-	});
-		
-	//CANCEL EDIT HISTORY FOLLOW
-	$("#cancelEditHistory").on('click', function () {
-		//alert('insert');			
-		//cancelSchedule();
-		$.mobile.changePage(
-		'#detailHistory',
-		{
-            allowSamePageTransition : true,
-            transition              : 'none',
-            showLoadMsg             : false,
-            reloadPage              : false
-		}
-		);
-	});
-		
-	//CANCEL EMAIL COMPOSE FOLLOW
-	$("#cancelComposeEF").on('click', function () {
-		//alert('insert');			
-		//cancelSchedule();
-		$.mobile.changePage(
-		'#emailFollow',
-		{
-            allowSamePageTransition : true,
-            transition              : 'none',
-            showLoadMsg             : false,
-            reloadPage              : false
-		}
-		);
-	});
-		
-	//CANCEL EDIT PENDING TASK
-	$("#cancelEditPend").on('click', function () {
-		//alert('insert');			
-		//cancelSchedule();
-		$.mobile.changePage(
-		'#detailPending',
-		{
-            allowSamePageTransition : true,
-            transition              : 'none',
-            showLoadMsg             : false,
-            reloadPage              : false
-		}
-		);
-	});
-		
-	//CANCEL EDIT COMPLETED TASK
-	$("#cancelEditCompleted").on('click', function () {
-		//alert('insert');			
-		//cancelSchedule();
-		$.mobile.changePage(
-		'#detailCompleted',
-		{
-            allowSamePageTransition : true,
-            transition              : 'none',
-            showLoadMsg             : false,
-            reloadPage              : false
-		}
-		);
-	});
-		
-	//REFRESH HISTORY FOLLOW
-	$("#refreshHist").on('click', function () {
-		//alert('REFRESH');		
-		//location.reload(true);			
-		//$.mobile.changePage('index.html#historyFollow');
-		$.mobile.changePage(
-        '#historyFollow',
-		{
-            allowSamePageTransition : true,
-            transition              : 'none',
-            showLoadMsg             : false,
-            reloadPage              : false
-		}
-		);
-	});
-		
-	//REFRESH HISTORY FOLLOW
-	$("#refreshSchedule").on('click', function () {
-		//alert('REFRESH');		
-		//location.reload(true);			
-		//$.mobile.changePage('index.html#historyFollow');
-		$.mobile.changePage(
-        '#scheduleFollow',
-		{
-            allowSamePageTransition : true,
-            transition              : 'none',
-            showLoadMsg             : false,
-            reloadPage              : false
-		}
-		);
-	});
-		
-	$("#webdetailHtml,#webdetailcontactHtml#webMyaccountHtml").height($(window).height()-$("div.ui-page-active div[data-role='header']").height()-7-63);	
-
-	//RADIO BUTTOM SEND EMAIL
-	/*$('#template').on('click',function(){
-		//alert("radio template");
-		document.getElementById("template").checked = true;
-		document.getElementById("new").checked = false;
-		getTemplateEmail();
-	});*/
-
-	/*$('#new').on('click',function(){	
-		//alert("radio new");
-		//$('#2').dialog("close");
-		//$('#1').dialog("open");
-		document.getElementById("template").checked = false;
-		document.getElementById("new").checked = true;
-		document.getElementById('templa').style.display = "none";
-		$("textarea#bodyEmail").val("");
-		$("textarea#subjectEmail").val("");	
-	});*/
-			
-	//RADIO BUTTOM SEND SMS
-	/*$('#templateSMS').on('click',function(){
-		//alert("radio templateSMS");
-		document.getElementById("templateSMS").checked = true;
-		document.getElementById("newSMS").checked = false;
-		getTemplateSMS();
-	});*/
-
-	/*$('#newSMS').on('click',function(){	
-		//alert("radio new")
-		document.getElementById("templateSMS").checked = false;
-		document.getElementById("newSMS").checked = true;
-		document.getElementById('templaSms').style.display = "none";
-		$("textarea#bodySMS").val("");
-	});*/
-			
-	//RADIO BUTTOM SEND FAX
-	/*$('#templateFax').on('click',function(){
-		//alert("radio templateFax");
-		document.getElementById("templateFax").checked = true;
-		document.getElementById("newFax").checked = false;
-		getTemplateFAX();
-	});*/
-
-	//UPLOAD SEND EMAIL
-	/*document.getElementById("fileToUploadEmail").onchange = function () {
-		//document.getElementById('uuploadfileEmail').style.display = "block";
-		document.getElementById("uploadFileEmail").value = this.value;
-	};*/
-	$('#imageUpload').change(function(){
-		$('#imagePreview').show();
-		readImgUrlAndPreview(this);
-		function readImgUrlAndPreview(input){
-			if (input.files && input.files[0]) {
-			    var reader = new FileReader();
-			    reader.onload = function (e) {			            	
-					$('#imagePreview').attr('src', e.target.result);
-				}
-			};
-			reader.readAsDataURL(input.files[0]);
-		}	
-	});
-		
-	//UPLOAD SEND FAX 
-	/*document.getElementById("fileToUpload").onchange = function () {
-		document.getElementById("uploadFileFax").value = this.value;
-	};*/
-	$('#imageUploadFax').change(function(){
-		$('#imagePreviewFax').show();
-		readImgUrlAndPreview(this);
-		function readImgUrlAndPreview(input){
-			if (input.files && input.files[0]) {
-			    var reader = new FileReader();
-			    reader.onload = function (e) {			            	
-					$('#imagePreviewFax').attr('src', e.target.result);
-				}
-			};
-			reader.readAsDataURL(input.files[0]);
-		}	
-	});
-		
-	//UPLOAD FILE COMPOSE
-	/*document.getElementById("uploadBtnCompose").onchange = function () {
-		document.getElementById("uploadFile").value = this.value;
-	};
-		
-	//UPLOAD FILE COMPOSE EMAIL FOLLOW
-	document.getElementById("uploadBtnComposeEF").onchange = function () {
-		document.getElementById("uploadFileEF").value = this.value;
-	};*/
-		
-	//UPLOAD FORWARD EMAIL FOLLOW
-	document.getElementById("uploadBtnForward").onchange = function () {
-		document.getElementById("uploadFileForward").value = this.value;
-	};
-						
-	//DELETE CONTACTS
-	$('#deleteCont').on('click',function(){				
-		//alert("delete");
-		alert("You must previously select(long touch) the contacts to be eliminated.");
-	});
-			
-	//EDIT CONTACTS
-	$('#editCont').on('click',function(){				
-		//alert("editc");
-		alert("You must previously select(long touch) the contacts to be edited.");
-	});
-			
-	//AGREGAR CONTACTS
-	$('#addCont,#addCont2').on('click',function(){				
-		//alert("addc");
-		getTypeContacts();	
-	});
-			
-	//FILTER CONTACTS
-	$('#filtrocontact').on('click',function(){				
-		//alert("filtro contact");
-		getagenttype();
-	});
-		
-	//FILTER EMAIL INBOX
-	$('#filtromaI,#filtromaIn').on('click',function(){				
-		//alert("filtro email inbox");
-		gettypemail();
-	});
-		
-	//FILTER EMAIL OutBOX
-	$('#filtromaO').on('click',function(){				
-		//alert("filtro email outbox");
-		gettypemailOutbox();
-	});
-		
-	//COMPOSE EMAIL INBOX
-	$('#addEInbox,#addEOutbox').on('click',function(){				
-		//alert("COMPOSE");
-		getComposeInbox();
-	});
-		
-	//GET FILTER PENDING TASK
-	$('#filtroTask').on('click',function(){				
-		//alert("getptask");
-		getfilterPendingTask();
-	});
-		
-	//GET FILTER COMPLETED TASK
-	$('#filtroTaskC').on('click',function(){				
-		//alert("getptask");
-		getfilterCompletedTask();
-	});
-
-	//COMPOSE SEND EMAIL INBOX
-	$('#sendCompose,#insertComp').on('click',function(){				
-		//sendemailInbox();
-		//alert('editar');
-		//sendEMAIL();	
-		//var id = JSON.parse(localStorage.getItem('key'));
-		//var type = JSON.parse(localStorage.getItem('key3'));
-		
-		var imgVal = $('#imageUploadEI').val(); 
-		$("input#userid").val('3213');
-						
-		if(imgVal == '') { 
-			//showEmpty("<span class='error' colspan='5'></span>");
-			$( "#choose_file" ).addClass( "error" );
-			$( "#uploaded_file" ).addClass( "error" );
-		}else{
-			var formData 		= new FormData($("#envioEmailEI")[0]);
-				$.ajax({
-					url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
-					type: 'POST',
-					data: formData,
-					cache: false,
-					contentType: false,
-					processData: false,
-					enctype: 'multipart/form-data',
-					beforeSend: function(){
-							
-					},
-					success: function(data){
-						console.log(data);
-						console.log(data);
-						alert('Email successfully');
-						$.mobile.changePage('#emailHtml');
-					},
-					//si ha ocurrido un error
-					error: function(){
-							
-					}
-				}); // End ajax
-		} //End else
-	});
-		
-	//COMPOSE SEND EMAIL OUTBOX
-	$('#sendComposeO,#insertCompO').on('click',function(){				
-		//sendemailOutbox();
-			var imgVal = $('#imageUploadEO').val(); 
-		$("input#userid").val('3213');
-						
-		if(imgVal == '') { 
-			//showEmpty("<span class='error' colspan='5'></span>");
-			$( "#choose_file" ).addClass( "error" );
-			$( "#uploaded_file" ).addClass( "error" );
-		}else{
-			var formData 		= new FormData($("#envioEmailEO")[0]);
-				$.ajax({
-					url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
-					type: 'POST',
-					data: formData,
-					cache: false,
-					contentType: false,
-					processData: false,
-					enctype: 'multipart/form-data',
-					beforeSend: function(){
-							
-					},
-					success: function(data){
-						console.log(data);
-						console.log(data);
-						alert('Email successfully');
-						$.mobile.changePage('#emailHtml');
-					},
-					//si ha ocurrido un error
-					error: function(){
-							
-					}
-				}); // End ajax
-		} //End else
-	});
-		
-	//SEND REPLY EMAIL INBOX
-	$('#sendReplyEmail').on('click',function(){				
-		sendemailReply();
-	});
-		
-	//SEND REPLY EMAIL INBOX
-	$('#sendForwardEmail').on('click',function(){				
-		sendemailForward();
-	});
-		
-	//RADIO BUTTOM ASSIGNMENT CONTACT
-	$('#newCont').on('click',function(){
-		//alert("radionew contact");									
-		document.getElementById('infoContact').style.display = "block";
-		document.getElementById('regContact').style.display = "none";
-		document.getElementById("newCont").checked = true;
-		document.getElementById("registerCont").checked = false;		
-	});
-
-	$('#registerCont').on('click',function(){
-		//alert("radio registerCont");
-		//$('#2').dialog("close");
-		//$('#1').dialog("open");
-		document.getElementById("newCont").checked = false;
-		document.getElementById("registerCont").checked = true;
-		document.getElementById('infoContact').style.display = "none";
-		document.getElementById('regContact').style.display = "block";
-	});
-		
-	//BOTON FILTRAR CONTACT
-	$("#searchFilterContacts").on('click', function () {
-		//alert('FILTRAR');
-		//filterContacts();
-		$("#contacts ul").empty();
-		var start = 0; 
-		var limit = 25; 
-		listadoContacts(start, limit);
-	});
-
-	$('#formularioFilterContact').submit(function(){
-		event.preventDefault();
-		$("#formfilterContact").modal('hide');
-		$('#menuContacts').panel("close");
-		$("#contacts ul").empty();
-		var start = 0; 
-		var limit = 25; 
-		listadoContacts(start, limit);
-	});
-		
-	//SEARCH FILTER PROPERTY WITH BOTON SEARCH
-	$("#searchFilter").on('click', function () {
-		//alert("search del filtro");						
-		$('#menuSecunFollow').panel("close");
-		$("#content ul").empty();
-		//searchFilterProperty();
-		var start = 0; 
-		var limit = 25; 
-		listadoProperty(start,limit);
-	});
-
-	
-	$('#formularioFilterProperty').submit(function(){
-		event.preventDefault();
-		//alert('enter property');
-		$("#filter").modal('hide');
-		$('#menuSecunFollow').panel("close");
-		$("#content ul").empty();
-		//searchFilterProperty();
-		var start = 0; 
-		var limit = 25; 
-		listadoProperty(start,limit);
-	});
-	
-	//SEARCH FILTER EMAIL INBOX
-	$("#searchFilterMailI").on('click', function () {
-		//alert("search del filtro mail inbox");
-		//searchFilterMailInbox();
 		$("#emails ul").empty();
 		var start = 0; 
 		var limit = 25; 
@@ -870,6 +188,9 @@ $(document).ready(function(){
 	var busy=false;
 	var booleam=false;
 	var booleam2=false;
+	var vacio=false;
+	var send=false;
+	
 	$this = $(this);
 	$settings = settings;	
 	var start = $settings.start;
@@ -1622,7 +943,7 @@ $(function(){
 									
 					},
 					success: function(data){
-						
+						send=true;
 						$.mobile.changePage('#followingHtml');
 					},
 					//si ha ocurrido un error
@@ -1658,7 +979,6 @@ $(function(){
 				},
 				success: function(data){
 					alert('Email successfully');
-					var send=true;
 					$.mobile.changePage('#followingHtml');
 				},
 				//si ha ocurrido un error
@@ -1668,10 +988,7 @@ $(function(){
 			}); // End ajax
 		
 		}
-		
-		
-
-			
+	
 	});
 	
 	//BOTON SEND EMAIL SCHEDULE TASK 
@@ -1754,7 +1071,7 @@ $(function(){
 					},
 					success: function(data){
 						if (data){
-						var send=true;
+						send=true;
 						document.getElementById('header_two').style.display = "none";
 						$.mobile.changePage('#followingHtml');
 						}
@@ -2043,6 +1360,7 @@ $(function(){
 	$('#nschedule,#nscheduleDP').on('click',function(){				
 		$("#edate").val();
 		getTemplateSchedule();
+		clearLocalStorageSchedule();
 	});
 	
 
@@ -3461,12 +2779,13 @@ var funciones={
 			font-weight:normal;
 		}
 		.badge{
-			border-radius: 5px 5px 5px 5px;
+			/*border-radius: 5px 5px 5px 5px;*/
 			font-family: Lucida Console", Monaco, monospace;
 			background-color: #a4a4a4;
 			font-size: 15px;
 			font-weight: normal;
 			margin-left:-6px;
+			margin-top:-5px;
 		}
 		.line{
 			border-right: 1px solid #777;
@@ -6650,7 +5969,7 @@ var funciones={
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -6944,7 +6263,7 @@ var funciones={
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge">3</span></a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
 				<li class="item "><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
@@ -7606,7 +6925,7 @@ var funciones={
 	<div data-role="content">
 		
 		<div style="margin-left: 1px;" class="row formC" id="formContacto">
-			<form style="margin-top: 30px;" class="form-inline" id="envioSchedule" enctype="multipart/form-data">
+			<form style="margin-top: 30px;" class="form-inline" id="envioSchedule" >
 				<div  id="templaschedule" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
 						Template
