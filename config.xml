@@ -91,6 +91,8 @@
   
   <gap:plugin name="com.phonegap.plugin.mobile-accessibility" version="0.1.1" />
   
+  <gap:plugin name="org.apache.cordova.contacts" version="0.2.13" />
+  
 
   <access origin="http://reifax.com" />       
   <access origin="http://reifax.com" subdomains="true" /> 
