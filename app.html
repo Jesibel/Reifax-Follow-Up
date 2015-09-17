@@ -88,12 +88,12 @@
 <script type="text/javascript">
 	
 	
-
 	
 </script>
 
 <script type="text/javascript">
 	var activePage;
+	var device=false;
 	function _onDeviceReady (){	
 		
 		activePage = $.mobile.activePage.attr('id');
@@ -101,9 +101,11 @@
 		//alert(WURFL.form_factor);
 		if (WURFL.form_factor == "Tablet") {
 			//alert('es una tablet');
+			device=true;
 			window.plugins.orientationchanger.lockOrientation('landscape');
 			 //setTimeout(function () {navigator.splashscreen.show()},1000);
 		}else{
+			device=false;
 			window.plugins.orientationchanger.lockOrientation('portrait');
 		}
 		
@@ -2173,7 +2175,7 @@ var funciones={
 
 </script>
 <style>
-	
+
 	.ui-tabs{
 		padding: 0em;
 	}
@@ -2795,7 +2797,7 @@ var funciones={
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button id="x-following" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Filters</h4>
             </div>
             <div class="modal-body">
@@ -3007,7 +3009,7 @@ var funciones={
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button id="x-emailIn" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Filters</h4>
             </div>
             <div class="modal-body">
@@ -3109,7 +3111,7 @@ var funciones={
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button id="x-emailOut" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Filters</h4>
             </div>
             <div class="modal-body">
@@ -3211,7 +3213,7 @@ var funciones={
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button id="x-taskPend" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Filters</h4>
             </div>
             <div class="modal-body">
@@ -3379,7 +3381,7 @@ var funciones={
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button id="x-taskComp" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="myModalLabel">Filters</h4>
             </div>
             <div class="modal-body">
@@ -4407,10 +4409,10 @@ var funciones={
 	<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
-				<li class="item "><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>				
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>				
+				<li class="item "><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
 			</ul>
 		</div>
 	<!--FIN TABS-->
@@ -4750,14 +4752,14 @@ var funciones={
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backCompleted" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
-		<div style="width: 100%;margin-top: -33px;text-align: right;">
-		<a id="editarCompleted" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditCompletedHtml"></a>
+		<div style="width: 100%;margin-top: -30px;text-align: right;">
+			<a id="editarCompleted" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditCompletedHtml"></a>
 		</div>
 	</div>
 	<!--FIN HEADER--> 
 	
 	<!--TABS-->
-		<div style="background: #ccc;height:45px;" data-role="navbar">
+		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
@@ -4765,7 +4767,7 @@ var funciones={
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
 			</ul>
 		</div>	
-		<div style="background: #fff;height:45px;" data-role="navbar">
+		<div style="background: #fff;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Pendings Task</a></li>
 				<li class="item active"><a href="#taskCompletedHtml">Completed Task</a></li>			
@@ -6195,9 +6197,9 @@ var funciones={
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
-				<li class="item active"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item active"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
 			</ul>
 		</div>
 		<div id="hist"  style="text-align:center;font-size:15px;font-weight:bold;padding-left:10px;;background-color:#FAFAFA;"></div>
@@ -6260,10 +6262,11 @@ var funciones={
 	<!--TABS-->
 		<div style="background: #ccc;height:40px;margin-top: 2px;" data-role="navbar">
 			<ul>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>				
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
+				
 			</ul>
 		</div>
 	<div id="sche"  style="text-align:center;font-size:15px;font-weight:bold;padding-left:10px;;background-color:#FAFAFA;"></div>
@@ -6310,9 +6313,9 @@ var funciones={
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
 			</ul>
 		</div>
 		<div id="mail"  style="text-align:center;font-size:15px;font-weight:bold;padding-left:10px;;background-color:#FAFAFA;"></div>
@@ -6377,9 +6380,9 @@ var funciones={
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>				
 			</ul>
 		</div>
 	
@@ -6431,9 +6434,9 @@ var funciones={
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
-				<li class="item active"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>				
+				<li class="item active"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>				
 			</ul>
 		</div>
 	
@@ -6581,9 +6584,9 @@ var funciones={
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
-				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
 			</ul>
 		</div>
 	
@@ -6721,9 +6724,9 @@ var funciones={
 		<div style="background: #ccc;height:40px;margin-top:-6px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
-				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
 				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
 			</ul>
 		</div>
 		<!--FIN TABS-->
@@ -6843,9 +6846,9 @@ var funciones={
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
-				<li class="item  active"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item  active"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
 			</ul>
 		</div>
 		<!--FIN TABS-->
@@ -7012,9 +7015,9 @@ var funciones={
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
-				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>				
+				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
 			</ul>
 		</div>
 	
