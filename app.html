@@ -70,6 +70,10 @@
 	
 	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
 	<script src="http://reifax.com/FollowupReifax/resources/js/tinymce/js/tinymce/tinymce.min.js"></script>
+	
+	<script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.0/jquery.scrollTo.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"></script>
+	
 	<script type="text/javascript">
 	tinymce.init({
 		selector: "#bodyEmail,#bodySms,#bodyFax",
@@ -137,6 +141,12 @@
 	var booleam2=false;
 	var vacio=false;
 	var send=false;
+	var load=false;
+	var loadmail=false;
+	var loadmailO=false;
+	var loadtask=false;
+	var loadtaskC=false;
+	var loadcontact=false;
 	
 	$this = $(this);
 	$settings = settings;	
@@ -1622,6 +1632,25 @@ $(function(){
 		backMakeCall();		
 		
 	});*/
+	$('#following-mobile,#following-mobile2,#following-mobile3').click(function(){
+		//alert('following');
+		$.mobile.changePage('#followingHtml');
+	});
+	
+	$('#email-mobile,#email-mobile2,#email-mobile3').click(function(){
+		//alert('email');
+		$.mobile.changePage('#emailHtml');		
+	});
+	
+	$('#task-mobile,#task-mobile2,#task-mobile3').click(function(){
+		//alert('task');
+		$.mobile.changePage('#taskHtml');
+	});
+	
+	$('#contact-mobile,#contact-mobile2,#contact-mobile3').click(function(){
+		//alert('contact');		
+		$.mobile.changePage('#contactsHtml');
+	});
 		
 		
 });
@@ -1731,16 +1760,20 @@ $(document).scroll(function () {
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
 	//alert('page contacts');
 	busy=true;
-	pagina = 4;
-	$("#contacts ul").empty();
-	start=0;
-	//alert(mainloaded2);
-	if(!mainloaded2) {
-		//alert('loading')
-		$.mobile.loading().show();
+	
+	if(loadcontact==false){
+		pagina = 4;
+		$("#contacts ul").empty();
+		start=0;
+		//alert(mainloaded2);
+		if(!mainloaded2) {
+			//alert('loading')
+			$.mobile.loading().show();
+		}
+		listadoContacts(start,settings.limit);
+		cantidadEmail();
 	}
-	listadoContacts(start,settings.limit);
-	cantidadEmail();
+	
 	$("#phoneContFil").intlTelInput({
 		//allowExtensions: true,
 		//autoFormat: false,
@@ -1759,15 +1792,38 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 
 $(document).on("pagebeforeshow","#followingHtml",function(){	
 	//alert('page following');
+	//alert(load);
 	busy=true;
-	pagina = 1;
-	$("#content ul").empty();
-	start=0;
-	listadoProperty(start,settings.limit);
+	
+	if (load==false){
+		pagina = 1;
+		$("#content ul").empty();
+		start=0;
+		listadoProperty(start,settings.limit);
+				
+		cantidadEmail();
+		gettypecontract();
+	}else{
 		
-	cantidadEmail();
-	gettypecontract();
+		//$(window).scrollTop(0);
+		//$( "div.content" ).scrollTop( 300 );
+
+		//$('#primero').animate({ scrollTop: $(window.location.hash).offset().top}, 1000);
 		
+		/*var chapters = $('#content').find('ul').children('li');
+		var chScrollPositions = new Array();
+	
+		// Cache Scroll Positions for Each Chapter
+		chapters.each(function(i){
+			chScrollPositions[i] = Math.round($(this).offset().top - $('#content').offset().top) - 10;
+		});
+		var last = chapters.parent().find('li.active').removeClass('active').index();
+		var next;
+		next = (last + 1 == chapters.length) ? 0 : last + 1; // Loop around to first chapter
+		alert(chScrollPositions[next]);
+		$(window).scrollTo(chScrollPositions[next]);*/
+		
+	}
 	$('#demo').mobipick({
 		dateFormat: "MM-dd-yyyy"
 	});
@@ -1781,23 +1837,29 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 
 $(document).on("pagebeforeshow","#emailHtml",function(){	
 	//alert('page email inbox');
+	//alert(loadmail)
 	busy=true;
-	pagina = 2;
-	$("#emails ul").empty();
-	start=0;
-	cantidadEmail();
-	listadoEmailsInbox(start,settings.limit);
-							
+	if(loadmail==false){
+		pagina = 2;
+		$("#emails ul").empty();
+		start=0;
+		cantidadEmail();
+		listadoEmailsInbox(start,settings.limit);
+	}						
 });
 
 $(document).on("pagebeforeshow","#outboxEmailHtml",function(){	
 	//alert('page email outbox');
+
 	busy=true;
-	pagina = 3;
-	$("#emailsOutbox ul").empty();
-	start=0;
-	cantidadEmail();
-	listadoEmailsOutbox(start,settings.limit);
+	
+	if(loadmailO==false){
+		pagina = 3;
+		$("#emailsOutbox ul").empty();
+		start=0;
+		cantidadEmail();
+		listadoEmailsOutbox(start,settings.limit);
+	}
 							
 });
 
@@ -1857,11 +1919,13 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 $(document).on("pagebeforeshow","#taskHtml",function(){	
 	//alert('page task Pendings');
 	busy=true;
-	pagina = 8;
-	$("#pendientes ul").empty();
-	start=0;
-	listadoPendings(start,settings.limit);
-			
+	
+	if(loadtask==false){
+		pagina = 8;
+		$("#pendientes ul").empty();
+		start=0;
+		listadoPendings(start,settings.limit);
+	}	
 	$('#schedateP').mobipick({
 		dateFormat: "MM-dd-yyyy"
 	});
@@ -1883,11 +1947,15 @@ $(document).on("pagebeforeshow","#taskHtml",function(){
 $(document).on("pagebeforeshow","#taskCompletedHtml",function(){	
 	//alert('page task complete');
 	busy=true;
-	pagina = 9;
-	$("#completados ul").empty();
-	start=0;
-	listadoCompleted(start,settings.limit);
-			
+	
+	if(loadtaskC==false){
+		pagina = 9;
+		$("#completados ul").empty();
+		start=0;
+		listadoCompleted(start,settings.limit);
+	}
+
+	
 	$('#compdateC').mobipick({
 		dateFormat: "MM-dd-yyyy"
 	});
@@ -1897,20 +1965,6 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 	});		
 							
 });
-
-/*$(document).on("pagebeforeshow","#listadoAllContacts",function(){	
-	//alert('page email outbox');
-	$( ".autocomplete" ).on( "listviewbeforefilter", function ( e, data ) {        
-		busy=true;
-		pagina = 10;
-		
-		//$("#listadoAllContacto ul").empty();
-		//start=0;
-			
-		listadoAllContacts(start,settings.limit);
-	})
-							
-});*/
 
 $(document).on("pagebeforeshow","#pagAddContactoHtml",function(){	
 	
@@ -1922,14 +1976,6 @@ $(document).on("pagebeforeshow","#formContract2",function(){
 	var id = JSON.parse(localStorage.getItem('idtypec'));
 	getDocAdd(id.idtypec);
 	getCombo();
-	
-	/*$('#closingDate').mobipick({
-		dateFormat: "MM-dd-yyyy"
-	});	
-	
-	$('#accepDate').mobipick({
-		dateFormat: "MM-dd-yyyy"
-	});*/	
 
 });
 
@@ -2725,10 +2771,10 @@ var funciones={
 		<!--TABS-->	
 		<div style="background: #ccc;height:40px;" data-role="navbar" >
 			<ul>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+				<li class="item active"><a id="following-mobile" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Following</a></li>
+				<li class="item"><a id="email-mobile" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
+				<li class="item"><a id="task-mobile" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Task</a></li>
+				<li class="item"><a id="contact-mobile" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Contacts</a></li>
 			</ul>
 		</div>	
 		<!--FIN TABS-->
@@ -5026,10 +5072,10 @@ var funciones={
 		<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+				<li class="item"><a id="following-mobile2" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Following</a></li>
+				<li class="item active"><a id="email-mobile2" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
+				<li class="item"><a id="task-mobile2" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Task</a></li>
+				<li class="item"><a id="contact-mobile2" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Contacts</a></li>
 			</ul>
 		</div>
 		<div style="background: #f6f6f6;height:40px;" data-role="navbar">
@@ -5179,10 +5225,10 @@ var funciones={
 		<!--TABS-->
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#followingHtml">Following</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Task</a></li>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#contactsHtml">Contacts</a></li>
+				<li class="item"><a id="following-mobile3" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Following</a></li>
+				<li class="item"><a id="email-mobile3" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
+				<li class="item active"><a id="task-mobile3" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Task</a></li>
+				<li class="item"><a id="contact-mobile3" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Contacts</a></li>
 			</ul>
 		</div>	
 		<div style="background: #fff;height:40px;" data-role="navbar">
