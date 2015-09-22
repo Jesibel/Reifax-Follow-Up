@@ -137,6 +137,9 @@
 	}
 		
 	var busy=false;
+	var busymail=false;
+	var busytask=false;
+	
 	var booleam=false;
 	var booleam2=false;
 	var vacio=false;
@@ -147,6 +150,9 @@
 	var loadtask=false;
 	var loadtaskC=false;
 	var loadcontact=false;
+	var loadhistory=false;
+	var loadschedule=false;
+	var loademail=false;
 	
 	$this = $(this);
 	$settings = settings;	
@@ -155,6 +161,20 @@
 	var mainloaded = false;
 	var mainloaded2 = false;
 	var push=false;
+	
+	var storePosition = {
+		topCoordinate : null
+	}
+	var storePositionEmail = {
+		topCoordinateEmail : null
+	}
+	var storePositionTask = {
+		topCoordinateTask : null
+	}
+	var storePositionContact = {
+		topCoordinateContact : null
+	}
+	
 
 		
 $(function(){
@@ -163,9 +183,10 @@ $(function(){
 		minChars: 1,
 		source: function(term, suggest){
 		term = term.toLowerCase();
+		var userid=3213;
 				
 		var data  = {
-			'userid': 3213,
+			'userid': userid,
 			'type': 'ContactEmailsList'
 		};
 				 
@@ -201,9 +222,10 @@ $(function(){
 		minChars: 1,
 		source: function(term, suggest){
 		term = term.toLowerCase();
+		var userid=3213;
 				
 		var data  = {
-			'userid': 3213,
+			'userid': userid,
 			'type': 'ContactEmailsList'
 		};
 				 
@@ -258,7 +280,8 @@ $(function(){
 		$('#detallePropiedades').empty();
 		
 		if (checkid==''){
-			$.mobile.changePage("#detailProperties","slide");
+			storePosition.topCoordinate =  $(this).offset().top-250;
+			$.mobile.changePage("#detailProperties");
 		}else{
 			longProperties(id,push);
 		}
@@ -274,7 +297,9 @@ $(function(){
 		//alert(valor.parcelid);
 		//alert(valor.agent);
 		$('#detallePropiedades').empty();
+		
 		detailProperty(valor.parcelid);
+		
 	});
 		
 	//CLICK DETALLE DE CONTACTOS
@@ -286,6 +311,7 @@ $(function(){
 		localStorage.setItem('agentid', JSON.stringify(object));
 		
 		$('#detalleContacto').empty();
+		storePositionContact.topCoordinateContact =  $(this).offset().top-250;
 		$.mobile.changePage( "#detailContacts","slide");	
     });
 		
@@ -353,6 +379,7 @@ $(function(){
 		$('#detalleCorreo').empty();
 		//alert(checkid);
 		if (checkid==''){
+			storePositionEmail.topCoordinateEmail =  $(this).offset().top-250;
 			$.mobile.changePage( "#detailEmail");
 		}else{
 			longEmailInbox(id,id.seen,push);
@@ -387,6 +414,7 @@ $(function(){
 		$('#detalleCorreoO').empty();
 		//$.mobile.changePage( "#detailEmailOutbox");	
 		if (checkid==''){
+			storePositionEmail.topCoordinateEmail =  $(this).offset().top-250;
 			$.mobile.changePage( "#detailEmailOutbox");
 		}else{
 			longEmailOutbox(id,push);
@@ -414,7 +442,8 @@ $(function(){
 		localStorage.setItem('key', JSON.stringify(object));
 		$('#detallePendiente ul').empty();
 		//$("#detallePendiente").html('');
-		$.mobile.changePage("#detailPending","slide");
+		storePositionTask.topCoordinateTask =  $(this).offset().top-250;
+		$.mobile.changePage("#detailPending");
 		//window.location.href = "index.html#detailProperties";			
     });
 		
@@ -462,7 +491,8 @@ $(function(){
 		localStorage.setItem('key2', JSON.stringify(object2));
 			
 		$('#detalleCompletados ul').empty();
-		$.mobile.changePage("#detailCompleted","slide");
+		storePositionTask.topCoordinateTask =  $(this).offset().top-250;
+		$.mobile.changePage("#detailCompleted");
 		//window.location.href = "index.html#detailProperties";		
     });
 		
@@ -478,7 +508,7 @@ $(function(){
 		
 	//CLICK DETALLE HISTORY FOLLOW
 	$('ul.page_history2').on('click','li', function () {
-           //alert('onclick');
+        //alert('onclick');
 		var id= $(this).attr('idhist');
 		var parcelid= $(this).attr('parcelid');
 			
@@ -889,13 +919,16 @@ $(function(){
 			//alert(parcelid);
 		}
 		
+		var userid=3213;
+		
 		if (ciclo=='multi'){
 			var idaux=0;
+			
 		
 			for(i=0;i<checkid.length;i++){
 				//alert(checkid[i]);
 				var imgVal = $('#imageUpload').val(); 
-				$("input#userid").val('3213');
+				$("input#userid").val(userid);
 				$("input#pid").val(checkid[i]);
 						
 				$("input#typeFollow").val(typeFollow);
@@ -930,7 +963,7 @@ $(function(){
 		}else{
 			
 			var imgVal = $('#imageUpload').val(); 
-			$("input#userid").val('3213');
+			$("input#userid").val(userid);
 			$("input#pid").val(parcelid);
 					
 			$("input#typeFollow").val(typeFollow);
@@ -982,6 +1015,8 @@ $(function(){
 			//alert(parcelid);
 		}
 		
+		var userid=3213;
+		
 		var task = JSON.parse(localStorage.getItem('task'));
 		var day = JSON.parse(localStorage.getItem('day'));
 		var hour = JSON.parse(localStorage.getItem('hour'));
@@ -1016,7 +1051,7 @@ $(function(){
 			for(i=0;i<checkid.length;i++){
 				//alert(checkid[i]);
 				var imgVal = $('#imageUpload').val(); 
-				$("input#userid").val('3213');
+				$("input#userid").val(userid);
 				$("input#type").val('insert');
 				$("input#pid").val(checkid[i]);	
 				$("input#parcelid").val(checkid[i]);	
@@ -1060,7 +1095,7 @@ $(function(){
 		}else{
 			var imgVal = $('#imageUpload').val(); 
 		
-			$("input#userid").val('3213');
+			$("input#userid").val(userid);
 			$("input#type").val('insert');
 			$("input#pid").val(parcelid);	
 			$("input#parcelid").val(parcelid);	
@@ -1098,11 +1133,6 @@ $(function(){
 		
 		}
 		
-		
-
-		
-
-			
 	});
 	
 	//BOTON SEND FAX SCHEDULE TASK 
@@ -1120,6 +1150,8 @@ $(function(){
 			var pid = JSON.parse(localStorage.getItem('pid'));
 			var parcelid =pid.pid;
 		}
+		
+		var userid=3213;
 		
 		var task = JSON.parse(localStorage.getItem('task'));
 		var day = JSON.parse(localStorage.getItem('day'));
@@ -1150,7 +1182,7 @@ $(function(){
 		
 		var imgVal = $('#imageUpload').val(); 
 		
-		$("input#userid").val('3213');
+		$("input#userid").val(userid);
 		$("input#type").val('insert');
 		$("input#pid").val(parcelid);	
 		$("input#parcelid").val(parcelid);	
@@ -1217,8 +1249,10 @@ $(function(){
 			var parcelid =pid.pid;
 		}
 		
+		var userid=3213;
+		
 		var imgVal = $('#imageUpload').val(); 
-		$("input#userid").val('3213');
+		$("input#userid").val(userid);
 		$("input#pid").val(parcelid);
 				
 		$("input#typeFollow").val(typeFollow);
@@ -1623,32 +1657,41 @@ $(function(){
 		}else{
 			longProperties(checkid,push);
 		}
-		
-	
-		
+
 	});
-		
-	/*$("#backFCall").on('click', function () {			
-		backMakeCall();		
-		
-	});*/
+	
+	
 	$('#following-mobile,#following-mobile2,#following-mobile3').click(function(){
 		//alert('following');
+		storePositionEmail.topCoordinateEmail =  $(this).offset().top;
+		storePositionTask.topCoordinateTask =  $(this).offset().top;
+		storePositionContact.topCoordinateContact =  $(this).offset().top;
+		busy=false;
 		$.mobile.changePage('#followingHtml');
 	});
 	
 	$('#email-mobile,#email-mobile2,#email-mobile3').click(function(){
 		//alert('email');
+		storePosition.topCoordinate =  $(this).offset().top;
+		storePositionTask.topCoordinateTask =  $(this).offset().top;
+		storePositionContact.topCoordinateContact =  $(this).offset().top;
+		busy=false;
 		$.mobile.changePage('#emailHtml');		
 	});
 	
 	$('#task-mobile,#task-mobile2,#task-mobile3').click(function(){
 		//alert('task');
+		storePosition.topCoordinate =  $(this).offset().top;
+		storePositionEmail.topCoordinateEmail =  $(this).offset().top;
+		storePositionContact.topCoordinateContact =  $(this).offset().top;
 		$.mobile.changePage('#taskHtml');
 	});
 	
 	$('#contact-mobile,#contact-mobile2,#contact-mobile3').click(function(){
-		//alert('contact');		
+		//alert('contact');	
+		storePosition.topCoordinate =  $(this).offset().top;
+		storePositionEmail.topCoordinateEmail =  $(this).offset().top;	
+		storePositionTask.topCoordinateTask =  $(this).offset().top;		
 		$.mobile.changePage('#contactsHtml');
 	});
 		
@@ -1657,13 +1700,14 @@ $(function(){
 
 	
 $(document).scroll(function () {
+	//console.log($(window).scrollTop(),$(document).height(),$(window).height(),$(document).height() - $(window).height());
 	
-	if ($(window).scrollTop() >= $(document).height() - $(window).height() - 100) {
+	if (($(document).height() - $(window).height()>0) && ($(window).scrollTop() >= $(document).height() - $(window).height())) {
 		//alert("End Of The Page");
 		//alert(start);
 		//$(".loading-bar").html('Loading...');
 		$.mobile.loading;
-		//alert(busy);
+		//console.log(busy,pagina);
 		
 		
 	switch (pagina){
@@ -1676,68 +1720,68 @@ $(document).scroll(function () {
             break;
         case(2):
 			if (busy==false){
-            //alert('emailI');
-			start = start+$settings.limit; 
-			listadoEmailsInbox(start,settings.limit);
+				//alert('emailI');
+				start = start+$settings.limit; 
+				listadoEmailsInbox(start,settings.limit);
 			}
             break;
         case(3):
 			if (busy==false){
-            //alert('emailO');
-			start = start+$settings.limit; 
-			listadoEmailsOutbox(start,settings.limit);
+				//alert('emailO');
+				start = start+$settings.limit; 
+				listadoEmailsOutbox(start,settings.limit);
 			}
             break;
 		case(4):
 			if (busy==false){
-            //alert('contacts');
-			start = start+$settings.limit; 
-			listadoContacts(start,settings.limit);
+				//alert('contacts');
+				start = start+$settings.limit; 
+				listadoContacts(start,settings.limit);
 			}
             break;
 		case(5):
 			if (busy==false){
-            //alert('hist');
-			start = start+$settings.limit; 
-			var valor = JSON.parse(localStorage.getItem('key'));
-			historyDetail(start,settings.limit,valor.parcelid);
+				//alert('hist');
+				start = start+$settings.limit; 
+				var valor = JSON.parse(localStorage.getItem('key'));
+				historyDetail(start,settings.limit,valor.parcelid);
 			}
             break;
 		case(6):
 			if (busy==false){
-            //alert('schedule');
-			start = start+$settings.limit; 
-			var valor = JSON.parse(localStorage.getItem('key'));
-			scheduleDetail(start,settings.limit,valor.parcelid);	
+				//alert('schedule');
+				start = start+$settings.limit; 
+				var valor = JSON.parse(localStorage.getItem('key'));
+				scheduleDetail(start,settings.limit,valor.parcelid);	
 			}
             break;
 		case(7):
 			if (busy==false){
-            //alert('email');
-			start = start+$settings.limit; 
-			var valor = JSON.parse(localStorage.getItem('key'));
-			emailDetail(start,settings.limit,valor.parcelid);						
+				//alert('email');
+				start = start+$settings.limit; 
+				var valor = JSON.parse(localStorage.getItem('key'));
+				emailDetail(start,settings.limit,valor.parcelid);						
 			}
             break;
 		case(8):
 			if (busy==false){
-            //alert('contacts');
-			start = start+$settings.limit; 
-			listadoPendings(start,settings.limit);						
+				//alert('contacts');
+				start = start+$settings.limit; 
+				listadoPendings(start,settings.limit);						
 			}
             break;
 		case(9):
 			if (busy==false){
-            //alert('contacts');
-			start = start+$settings.limit; 
-			listadoCompleted(start,settings.limit);
+				//alert('contacts');
+				start = start+$settings.limit; 
+				listadoCompleted(start,settings.limit);
 			}
             break;
 		case(10):
 			if (busy==false){
-            //alert('contacts');
-			start = start+$settings.limit; 
-			listadoAllContacts(start,settings.limit);
+				//alert('contacts');
+				start = start+$settings.limit; 
+				listadoAllContacts(start,settings.limit);
 			}
             break;		
         default:
@@ -1760,6 +1804,7 @@ $(document).scroll(function () {
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
 	//alert('page contacts');
 	busy=true;
+	$.mobile.silentScroll(storePositionContact.topCoordinateContact);
 	
 	if(loadcontact==false){
 		pagina = 4;
@@ -1793,10 +1838,12 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 $(document).on("pagebeforeshow","#followingHtml",function(){	
 	//alert('page following');
 	//alert(load);
-	busy=true;
+	pagina = 1;
+	$.mobile.silentScroll(storePosition.topCoordinate);
 	
 	if (load==false){
-		pagina = 1;
+		busy=true;
+		
 		$("#content ul").empty();
 		start=0;
 		listadoProperty(start,settings.limit);
@@ -1804,24 +1851,7 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 		cantidadEmail();
 		gettypecontract();
 	}else{
-		
-		//$(window).scrollTop(0);
-		//$( "div.content" ).scrollTop( 300 );
 
-		//$('#primero').animate({ scrollTop: $(window.location.hash).offset().top}, 1000);
-		
-		/*var chapters = $('#content').find('ul').children('li');
-		var chScrollPositions = new Array();
-	
-		// Cache Scroll Positions for Each Chapter
-		chapters.each(function(i){
-			chScrollPositions[i] = Math.round($(this).offset().top - $('#content').offset().top) - 10;
-		});
-		var last = chapters.parent().find('li.active').removeClass('active').index();
-		var next;
-		next = (last + 1 == chapters.length) ? 0 : last + 1; // Loop around to first chapter
-		alert(chScrollPositions[next]);
-		$(window).scrollTo(chScrollPositions[next]);*/
 		
 	}
 	$('#demo').mobipick({
@@ -1838,9 +1868,13 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 $(document).on("pagebeforeshow","#emailHtml",function(){	
 	//alert('page email inbox');
 	//alert(loadmail)
-	busy=true;
+	
+	pagina = 2;
+	$.mobile.silentScroll(storePositionEmail.topCoordinateEmail);
+	
 	if(loadmail==false){
-		pagina = 2;
+		busy=true;
+		
 		$("#emails ul").empty();
 		start=0;
 		cantidadEmail();
@@ -1852,7 +1886,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	//alert('page email outbox');
 
 	busy=true;
-	
+	$.mobile.silentScroll(storePositionEmail.topCoordinateEmail);
 	if(loadmailO==false){
 		pagina = 3;
 		$("#emailsOutbox ul").empty();
@@ -1865,43 +1899,50 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 
 $(document).on("pagebeforeshow","#historyFollow",function(){	
 	//alert('page history');
-	busy=true;
+	
 	pagina = 5;
-	$("#historial ul").empty();
-	start=0;
-	get='hist';
-	var valor = JSON.parse(localStorage.getItem('key'));
-	getAddress(valor.parcelid,get);		
-	historyDetail(start,settings.limit,valor.parcelid);		
+	if(loadhistory==false){
+		busy=true;
+		$("#historial ul").empty();
+		start=0;
+		get='hist';
+		var valor = JSON.parse(localStorage.getItem('key'));
+		getAddress(valor.parcelid,get);		
+		historyDetail(start,settings.limit,valor.parcelid);	
+	}
 						
 });
 
 $(document).on("pagebeforeshow","#scheduleFollow",function(){	
 	//alert('page shedule');
-	busy=true;
+	
 	pagina = 6;
-	$("#schedule ul").empty();
-	start=0;
-	var valor = JSON.parse(localStorage.getItem('key'));
-	//alert(valor.parcelid);
-	get='schedule';
-	getAddress(valor.parcelid,get);
-	scheduleDetail(start,settings.limit,valor.parcelid);	
-											
+	if(loadschedule==false){
+		busy=true;
+		$("#schedule ul").empty();
+		start=0;
+		var valor = JSON.parse(localStorage.getItem('key'));
+		//alert(valor.parcelid);
+		get='schedule';
+		getAddress(valor.parcelid,get);
+		scheduleDetail(start,settings.limit,valor.parcelid);	
+	}										
 });
 
 $(document).on("pagebeforeshow","#emailFollow",function(){	
 	//alert('page email follow');
-	busy=true;
-	pagina = 7;
-	$("#correofollow ul").empty();
-	start=0;
-	var valor = JSON.parse(localStorage.getItem('key'));
 	
-	get='email';
-	getAddress(valor.parcelid,get);
-	emailDetail(start,settings.limit,valor.parcelid);
-
+	pagina = 7;
+	if(loademail==false){
+		busy=true;
+		$("#correofollow ul").empty();
+		start=0;
+		var valor = JSON.parse(localStorage.getItem('key'));
+		
+		get='email';
+		getAddress(valor.parcelid,get);
+		emailDetail(start,settings.limit,valor.parcelid);
+	}
 	$('#dateBetween').mobipick({
 		dateFormat: "MM-dd-yyyy"
 	});
@@ -1918,10 +1959,12 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 
 $(document).on("pagebeforeshow","#taskHtml",function(){	
 	//alert('page task Pendings');
-	busy=true;
+	pagina = 8;
+	$.mobile.silentScroll(storePositionTask.topCoordinateTask);
 	
 	if(loadtask==false){
-		pagina = 8;
+		
+		busy=true;
 		$("#pendientes ul").empty();
 		start=0;
 		listadoPendings(start,settings.limit);
@@ -1946,10 +1989,12 @@ $(document).on("pagebeforeshow","#taskHtml",function(){
 
 $(document).on("pagebeforeshow","#taskCompletedHtml",function(){	
 	//alert('page task complete');
-	busy=true;
 	
+	$.mobile.silentScroll(storePositionTask.topCoordinateTask);
+	pagina = 9;
 	if(loadtaskC==false){
-		pagina = 9;
+		
+		busy=true;
 		$("#completados ul").empty();
 		start=0;
 		listadoCompleted(start,settings.limit);
@@ -5371,7 +5416,7 @@ var funciones={
 				</form>		
 			</div>
 		</div>
-		
+		 
 		<!--a style="height: 30px;background-image: url('img/search-36.png');background-repeat:no-repeat; background-size: 30px 30px; background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child search" data-excecute="weekly" data-theme="b" href="javascript:void(0);"></a-->
 		<div style="background: #8ab420;border: #8ab420;margin-top:40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_cont">				
 	
@@ -5397,7 +5442,7 @@ var funciones={
 		<div style="background:#fff;" id="contacts">
 			<!--ul style="list-style: none;margin-left:-40px;" class="page_contact"-->
 			
-			<ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchConta" class="page_contact">
+			<ul id="list-contacts" data-role="listview" data-filter="true" data-inset="true" data-input="#searchConta" class="page_contact">
 			
 			</ul>
 		</div>
