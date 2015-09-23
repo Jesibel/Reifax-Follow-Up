@@ -1884,10 +1884,11 @@ $(document).on("pagebeforeshow","#emailHtml",function(){
 $(document).on("pagebeforeshow","#outboxEmailHtml",function(){	
 	//alert('page email outbox');
 
-	busy=true;
+	pagina = 3;
 	$.mobile.silentScroll(storePositionEmail.topCoordinateEmail);
 	if(loadmailO==false){
-		pagina = 3;
+		
+		busy=true;
 		$("#emailsOutbox ul").empty();
 		start=0;
 		cantidadEmail();
