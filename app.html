@@ -114,6 +114,9 @@
 		}
 		
 	}
+	
+	var userid = JSON.parse(localStorage.getItem('userid'));
+		userid = userid.userid;
 		
 	var position=0;
 	var posi=0;
@@ -137,8 +140,6 @@
 	}
 		
 	var busy=false;
-	var busymail=false;
-	var busytask=false;
 	
 	var booleam=false;
 	var booleam2=false;
@@ -183,7 +184,10 @@ $(function(){
 		minChars: 1,
 		source: function(term, suggest){
 		term = term.toLowerCase();
-		var userid=3213;
+		
+		var userid = JSON.parse(localStorage.getItem('userid'));
+		userid=userid.userid;
+		//alert(userid);
 				
 		var data  = {
 			'userid': userid,
@@ -222,7 +226,10 @@ $(function(){
 		minChars: 1,
 		source: function(term, suggest){
 		term = term.toLowerCase();
-		var userid=3213;
+		
+		var userid = JSON.parse(localStorage.getItem('userid'));
+		userid=userid.userid;
+
 				
 		var data  = {
 			'userid': userid,
@@ -919,7 +926,9 @@ $(function(){
 			//alert(parcelid);
 		}
 		
-		var userid=3213;
+		//var userid=3213;
+		var userid = JSON.parse(localStorage.getItem('userid'));
+		userid=userid.userid;
 		
 		if (ciclo=='multi'){
 			var idaux=0;
@@ -1015,7 +1024,9 @@ $(function(){
 			//alert(parcelid);
 		}
 		
-		var userid=3213;
+		//var userid=3213;
+		var userid = JSON.parse(localStorage.getItem('userid'));
+		userid=userid.userid;
 		
 		var task = JSON.parse(localStorage.getItem('task'));
 		var day = JSON.parse(localStorage.getItem('day'));
@@ -1151,7 +1162,9 @@ $(function(){
 			var parcelid =pid.pid;
 		}
 		
-		var userid=3213;
+		//var userid=3213;
+		var userid = JSON.parse(localStorage.getItem('userid'));
+		userid=userid.userid;
 		
 		var task = JSON.parse(localStorage.getItem('task'));
 		var day = JSON.parse(localStorage.getItem('day'));
@@ -1249,7 +1262,9 @@ $(function(){
 			var parcelid =pid.pid;
 		}
 		
-		var userid=3213;
+		//var userid=3213;
+		var userid = JSON.parse(localStorage.getItem('userid'));
+		userid=userid.userid;
 		
 		var imgVal = $('#imageUpload').val(); 
 		$("input#userid").val(userid);
@@ -1575,18 +1590,7 @@ $(function(){
 		$('#detalleCorreo ul').html('');
 		$('#detalleEmailCab ul').html('');
 	});
-	
-	/*$("#backAddSch").on('click', function () {
-		//alert('backContacts');
-		var id = JSON.parse(localStorage.getItem('seen'));
-		
-		//document.getElementById('header_two').style.display = "none";
-		//longEmailInbox(checkid,id.seen);
-		
-		longProperties(checkid,push);
-		
-		
-	});*/
+
 		
 	$("#backReplyEmail,#backForwardEmail").on('click', function () {
 		//alert('backContacts');
@@ -1602,7 +1606,6 @@ $(function(){
 	$("#backEmailO").on('click', function () {
 		//alert('backContacts');
 		var id = JSON.parse(localStorage.getItem('seen'));
-		
 		//document.getElementById('header_two').style.display = "none";
 		//longEmailOutbox(checkid,id.seen);
 		$('#detalleCorreoO').empty();
@@ -1803,11 +1806,11 @@ $(document).scroll(function () {
 
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
 	//alert('page contacts');
-	busy=true;
-	$.mobile.silentScroll(storePositionContact.topCoordinateContact);
 	
+	$.mobile.silentScroll(storePositionContact.topCoordinateContact);
+	pagina = 4;
 	if(loadcontact==false){
-		pagina = 4;
+		busy=true;
 		$("#contacts ul").empty();
 		start=0;
 		//alert(mainloaded2);
@@ -1850,10 +1853,8 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 				
 		cantidadEmail();
 		gettypecontract();
-	}else{
-
-		
 	}
+	
 	$('#demo').mobipick({
 		dateFormat: "MM-dd-yyyy"
 	});
