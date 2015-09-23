@@ -115,7 +115,7 @@
 		
 	}
 	
-		
+	
 	var position=0;
 	var posi=0;
 	var pos=0;
@@ -167,8 +167,15 @@
 	var storePositionEmail = {
 		topCoordinateEmail : null
 	}
+	
+	var storePositionEmailO = {
+		topCoordinateEmailO : null
+	}
 	var storePositionTask = {
 		topCoordinateTask : null
+	}
+	var storePositionTaskC = {
+		topCoordinateTaskC : null
 	}
 	var storePositionContact = {
 		topCoordinateContact : null
@@ -385,7 +392,7 @@ $(function(){
 		//alert(checkid);
 		if (checkid==''){
 			storePositionEmail.topCoordinateEmail =  $(this).offset().top-250;
-			$.mobile.changePage( "#detailEmail");
+			$.mobile.changePage("#detailEmail");
 		}else{
 			longEmailInbox(id,id.seen,push);
 		}
@@ -1667,7 +1674,6 @@ $(function(){
 		storePositionEmail.topCoordinateEmail =  $(this).offset().top;
 		storePositionTask.topCoordinateTask =  $(this).offset().top;
 		storePositionContact.topCoordinateContact =  $(this).offset().top;
-		busy=false;
 		$.mobile.changePage('#followingHtml');
 	});
 	
@@ -1676,7 +1682,6 @@ $(function(){
 		storePosition.topCoordinate =  $(this).offset().top;
 		storePositionTask.topCoordinateTask =  $(this).offset().top;
 		storePositionContact.topCoordinateContact =  $(this).offset().top;
-		busy=false;
 		$.mobile.changePage('#emailHtml');		
 	});
 	
@@ -1695,6 +1700,18 @@ $(function(){
 		storePositionTask.topCoordinateTask =  $(this).offset().top;		
 		$.mobile.changePage('#contactsHtml');
 	});
+	
+	$('#inbox-mail,#inbox-mail2').click(function(){
+		//alert('contact');	
+		storePositionEmail.topCoordinateEmailO =  $(this).offset().top;	
+		$.mobile.changePage('#emailHtml');	
+	});
+	
+	$('#outbox-mail,#outbox-mail2').click(function(){
+		//alert('contact');	
+		storePositionEmail.topCoordinateEmail =  $(this).offset().top;	
+		$.mobile.changePage('#outboxEmailHtml');	
+	});
 		
 		
 });
@@ -1708,7 +1725,8 @@ $(document).scroll(function () {
 		//alert(start);
 		//$(".loading-bar").html('Loading...');
 		$.mobile.loading;
-		//console.log(busy,pagina);
+		console.log(busy,pagina,start);
+		start=0;
 		
 		
 	switch (pagina){
@@ -1721,8 +1739,7 @@ $(document).scroll(function () {
             break;
         case(2):
 			if (busy==false){
-				//alert('emailI');
-				start = start+$settings.limit; 
+				start = start+$settings.limit;
 				listadoEmailsInbox(start,settings.limit);
 			}
             break;
@@ -1885,7 +1902,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	//alert('page email outbox');
 
 	pagina = 3;
-	$.mobile.silentScroll(storePositionEmail.topCoordinateEmail);
+	$.mobile.silentScroll(storePositionEmailO.topCoordinateEmailO);
 	if(loadmailO==false){
 		
 		busy=true;
@@ -1990,7 +2007,7 @@ $(document).on("pagebeforeshow","#taskHtml",function(){
 $(document).on("pagebeforeshow","#taskCompletedHtml",function(){	
 	//alert('page task complete');
 	
-	$.mobile.silentScroll(storePositionTask.topCoordinateTask);
+	$.mobile.silentScroll(storePositionTaskC.topCoordinateTaskC);
 	pagina = 9;
 	if(loadtaskC==false){
 		
@@ -5125,15 +5142,14 @@ var funciones={
 		</div>
 		<div style="background: #f6f6f6;height:40px;" data-role="navbar">
 			<ul>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#inbox">Inbox</a></li>
-				<li class="item"><a  style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#outboxEmailHtml">Outbox</a></li>			
+				<li class="item active"><a id="inbox-mail" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Inbox</a></li>
+				<li class="item"><a  id="outbox-mail" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Outbox</a></li>			
 			</ul>
 		</div>
 		<!--FIN TABS-->
 		
 	</div>
-	
-	
+
 	<!--FIN HEADER--> 	
 	
 	<!--CONTENT-->
@@ -5145,13 +5161,7 @@ var funciones={
 		</div>
 		
 		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
-		
-		
-		<!--div style="background:#fff;" id="emailFilter">
-			<ul style="list-style: none;margin-left:-40px;" class="page_emailInbox">
-			
-			</ul>
-		</div-->
+
 	</div>
 	<!--FIN CONTENT-->	
 	
@@ -5210,8 +5220,8 @@ var funciones={
 		</div>
 		<div style="background: #fff;height:40px;" data-role="navbar">
 			<ul>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailHtml">Inbox</a></li>
-				<li class="item active"><a href="#outboxEmailHtml">Outbox</a></li>			
+				<li class="item"><a id="inbox-mail2" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Inbox</a></li>
+				<li class="item active"><a id="inbox-mail" href="#">Outbox</a></li>			
 			</ul>
 		</div>
 		<!--FIN TABS-->
