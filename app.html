@@ -1820,13 +1820,14 @@ $(document).scroll(function () {
 
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
 	//alert('page contacts');
-	
-	
+	//alert(storePositionContact.topCoordinateContact);
 	pagina = 4;
 	
 	if (storePositionContact.topCoordinateContact==null){
 		$.mobile.silentScroll(0);
 	}else if (storePositionContact.topCoordinateContact==47){
+		$.mobile.silentScroll(0);
+	}else if (storePositionContact.topCoordinateContact==49){
 		$.mobile.silentScroll(0);
 	}else{
 		$.mobile.silentScroll(storePositionContact.topCoordinateContact);
@@ -1870,6 +1871,8 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 		$.mobile.silentScroll(0);
 	}else if (storePosition.topCoordinate==47){
 		$.mobile.silentScroll(0);
+	}else if (storePosition.topCoordinate==49){
+		$.mobile.silentScroll(0);
 	}else{
 		$.mobile.silentScroll(storePosition.topCoordinate);
 	}
@@ -1898,12 +1901,14 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 
 $(document).on("pagebeforeshow","#emailHtml",function(){	
 	//alert('page email inbox');
-	//alert(storePositionEmail.topCoordinateEmail)
+	//alert(storePositionEmail.topCoordinateEmail);
 	
 	pagina = 2;
 	if (storePositionEmail.topCoordinateEmail==null){
 		$.mobile.silentScroll(0);
 	}else if (storePositionEmail.topCoordinateEmail==47){
+		$.mobile.silentScroll(0);
+	}else if (storePositionEmail.topCoordinateEmail==49){
 		$.mobile.silentScroll(0);
 	}else{
 		$.mobile.silentScroll(storePositionEmail.topCoordinateEmail);
@@ -1928,6 +1933,8 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	if (storePositionEmailO.topCoordinateEmailO==null){
 		$.mobile.silentScroll(0);
 	}else if (storePositionEmailO.topCoordinateEmailO==47){
+		$.mobile.silentScroll(0);
+	}else if (storePositionEmailO.topCoordinateEmailO==49){
 		$.mobile.silentScroll(0);
 	}else{
 		$.mobile.silentScroll(storePositionEmailO.topCoordinateEmailO);
@@ -2007,7 +2014,17 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 $(document).on("pagebeforeshow","#taskHtml",function(){	
 	//alert('page task Pendings');
 	pagina = 8;
-	$.mobile.silentScroll(storePositionTask.topCoordinateTask);
+	//alert(storePositionTask.topCoordinateTask);
+	
+	if (storePositionTask.topCoordinateTask==null){
+		$.mobile.silentScroll(0);
+	}else if (storePositionTask.topCoordinateTask==47){
+		$.mobile.silentScroll(0);
+	}else if (storePositionTask.topCoordinateTask==49){
+		$.mobile.silentScroll(0);
+	}else{
+		$.mobile.silentScroll(storePositionTask.topCoordinateTask);
+	}
 	
 	if(loadtask==false){
 		
@@ -2037,8 +2054,18 @@ $(document).on("pagebeforeshow","#taskHtml",function(){
 $(document).on("pagebeforeshow","#taskCompletedHtml",function(){	
 	//alert('page task complete');
 	
-	$.mobile.silentScroll(storePositionTaskC.topCoordinateTaskC);
 	pagina = 9;
+	
+	if (storePositionTaskC.topCoordinateTaskC==null){
+		$.mobile.silentScroll(0);
+	}else if (storePositionTaskC.topCoordinateTaskC==47){
+		$.mobile.silentScroll(0);
+	}else if (storePositionTaskC.topCoordinateTaskC==49){
+		$.mobile.silentScroll(0);
+	}else{
+		$.mobile.silentScroll(storePositionTaskC.topCoordinateTaskC);
+	}
+	
 	if(loadtaskC==false){
 		
 		busy=true;
