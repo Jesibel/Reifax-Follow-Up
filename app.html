@@ -1652,11 +1652,10 @@ $(function(){
 					
 	});
 		
-	$("#backAdd,#backContract,#backSendE,#backSendS,#backSendF,#backFCall,#backAddSch").on('click', function () {			
+	$("#backContract,#backSendE,#backSendS,#backSendF,#backFCall,#backAddSch").on('click', function () {			
 		//$('#detalleContacto').empty();
 		$("#temp select").empty();	
 		$("#tempFax select").empty();
-		$('#detalleContactoAll ul').empty();		
 		
 		if(checkid==''){
 			var id = JSON.parse(localStorage.getItem('key'));
@@ -1665,6 +1664,10 @@ $(function(){
 			longProperties(checkid,push);
 		}
 
+	});
+	
+	$("#backAdd").on('click', function () {
+		$('#detalleContactoAll ul').empty();
 	});
 	
 	
