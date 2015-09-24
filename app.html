@@ -323,7 +323,6 @@ $(function(){
 		localStorage.setItem('agentid', JSON.stringify(object));
 		
 		$('#detalleContacto').empty();
-		storePositionContact.topCoordinateContact =  $(this).offset().top-250;
 		$.mobile.changePage( "#detailContacts","slide");	
     });
 		
@@ -1822,8 +1821,17 @@ $(document).scroll(function () {
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
 	//alert('page contacts');
 	
-	$.mobile.silentScroll(storePositionContact.topCoordinateContact);
+	
 	pagina = 4;
+	
+	if (storePositionContact.topCoordinateContact==null){
+		$.mobile.silentScroll(0);
+	}else if (storePositionContact.topCoordinateContact==47){
+		$.mobile.silentScroll(0);
+	}else{
+		$.mobile.silentScroll(storePositionContact.topCoordinateContact);
+	}
+	
 	if(loadcontact==false){
 		busy=true;
 		$("#contacts ul").empty();
@@ -1855,9 +1863,16 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 
 $(document).on("pagebeforeshow","#followingHtml",function(){	
 	//alert('page following');
-	//alert(load);
+	//alert(storePosition.topCoordinate);
 	pagina = 1;
-	$.mobile.silentScroll(storePosition.topCoordinate);
+	
+	if (storePosition.topCoordinate==null){
+		$.mobile.silentScroll(0);
+	}else if (storePosition.topCoordinate==47){
+		$.mobile.silentScroll(0);
+	}else{
+		$.mobile.silentScroll(storePosition.topCoordinate);
+	}
 	
 	if (load==false){
 		busy=true;
@@ -1883,10 +1898,17 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 
 $(document).on("pagebeforeshow","#emailHtml",function(){	
 	//alert('page email inbox');
-	//alert(loadmail)
+	//alert(storePositionEmail.topCoordinateEmail)
 	
 	pagina = 2;
-	$.mobile.silentScroll(storePositionEmail.topCoordinateEmail);
+	if (storePositionEmail.topCoordinateEmail==null){
+		$.mobile.silentScroll(0);
+	}else if (storePositionEmail.topCoordinateEmail==47){
+		$.mobile.silentScroll(0);
+	}else{
+		$.mobile.silentScroll(storePositionEmail.topCoordinateEmail);
+	}
+	
 	
 	if(loadmail==false){
 		busy=true;
@@ -1902,7 +1924,15 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 	//alert('page email outbox');
 
 	pagina = 3;
-	$.mobile.silentScroll(storePositionEmailO.topCoordinateEmailO);
+	//$.mobile.silentScroll(storePositionEmailO.topCoordinateEmailO);
+	if (storePositionEmailO.topCoordinateEmailO==null){
+		$.mobile.silentScroll(0);
+	}else if (storePositionEmailO.topCoordinateEmailO==47){
+		$.mobile.silentScroll(0);
+	}else{
+		$.mobile.silentScroll(storePositionEmailO.topCoordinateEmailO);
+	}
+	
 	if(loadmailO==false){
 		
 		busy=true;
