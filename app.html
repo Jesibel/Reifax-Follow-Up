@@ -1823,8 +1823,9 @@ $(document).scroll(function () {
 
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
 	//alert('page contacts');
-	//alert(storePositionContact.topCoordinateContact);
+	alert(storePositionContact.topCoordinateContact);
 	pagina = 4;
+	
 	
 	if (storePositionContact.topCoordinateContact==null){
 		$.mobile.silentScroll(0);
@@ -1867,7 +1868,7 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 
 $(document).on("pagebeforeshow","#followingHtml",function(){	
 	//alert('page following');
-	//alert(storePosition.topCoordinate);
+	alert(storePosition.topCoordinate);
 	pagina = 1;
 	
 	if (storePosition.topCoordinate==null){
@@ -1904,7 +1905,7 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 
 $(document).on("pagebeforeshow","#emailHtml",function(){	
 	//alert('page email inbox');
-	//alert(storePositionEmail.topCoordinateEmail);
+	alert(storePositionEmail.topCoordinateEmail);
 	
 	pagina = 2;
 	if (storePositionEmail.topCoordinateEmail==null){
@@ -2017,7 +2018,7 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 $(document).on("pagebeforeshow","#taskHtml",function(){	
 	//alert('page task Pendings');
 	pagina = 8;
-	//alert(storePositionTask.topCoordinateTask);
+	alert(storePositionTask.topCoordinateTask);
 	
 	if (storePositionTask.topCoordinateTask==null){
 		$.mobile.silentScroll(0);
