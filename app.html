@@ -1672,46 +1672,49 @@ $(function(){
 	
 	
 	$('#following-mobile,#following-mobile2,#following-mobile3').click(function(){
-		//alert('following');
-		storePositionEmail.topCoordinateEmail =  $(this).offset().top;
-		storePositionTask.topCoordinateTask =  $(this).offset().top;
-		storePositionContact.topCoordinateContact =  $(this).offset().top;
+		alert(storePosition.topCoordinate);
+		storePositionEmail.topCoordinateEmail =  $(this).offset().top-47;
+		storePositionTask.topCoordinateTask =  $(this).offset().top-47;
+		storePositionContact.topCoordinateContact =  $(this).offset().top-47;
 		$.mobile.changePage('#followingHtml');
 	});
 	
 	$('#email-mobile,#email-mobile2,#email-mobile3').click(function(){
 		//alert('email');
-		storePosition.topCoordinate =  $(this).offset().top;
-		storePositionTask.topCoordinateTask =  $(this).offset().top;
-		storePositionContact.topCoordinateContact =  $(this).offset().top;
+		alert(storePositionEmail.topCoordinateEmail);
+		storePosition.topCoordinate =  $(this).offset().top-47;
+		storePositionTask.topCoordinateTask =  $(this).offset().top-47;
+		storePositionContact.topCoordinateContact =  $(this).offset().top-47;
 		$.mobile.changePage('#emailHtml');		
 	});
 	
 	$('#task-mobile,#task-mobile2,#task-mobile3').click(function(){
 		//alert('task');
-		storePosition.topCoordinate =  $(this).offset().top;
-		storePositionEmail.topCoordinateEmail =  $(this).offset().top;
-		storePositionContact.topCoordinateContact =  $(this).offset().top;
+		alert(storePositionTask.topCoordinateTask);
+		storePosition.topCoordinate =  $(this).offset().top-47;
+		storePositionEmail.topCoordinateEmail =  $(this).offset().top-47;
+		storePositionContact.topCoordinateContact =  $(this).offset().top-47;
 		$.mobile.changePage('#taskHtml');
 	});
 	
 	$('#contact-mobile,#contact-mobile2,#contact-mobile3').click(function(){
-		//alert('contact');	
-		storePosition.topCoordinate =  $(this).offset().top;
-		storePositionEmail.topCoordinateEmail =  $(this).offset().top;	
-		storePositionTask.topCoordinateTask =  $(this).offset().top;		
+		//alert('contact');
+		alert(storePositionContact.topCoordinateContact );		
+		storePosition.topCoordinate =  $(this).offset().top-47;
+		storePositionEmail.topCoordinateEmail =  $(this).offset().top-47;	
+		storePositionTask.topCoordinateTask =  $(this).offset().top-47;		
 		$.mobile.changePage('#contactsHtml');
 	});
 	
 	$('#inbox-mail,#inbox-mail2').click(function(){
 		//alert('contact');	
-		storePositionEmail.topCoordinateEmailO =  $(this).offset().top;	
+		storePositionEmail.topCoordinateEmailO =  $(this).offset().top-87;	
 		$.mobile.changePage('#emailHtml');	
 	});
 	
 	$('#outbox-mail,#outbox-mail2').click(function(){
 		//alert('contact');	
-		storePositionEmail.topCoordinateEmail =  $(this).offset().top;	
+		storePositionEmail.topCoordinateEmail =  $(this).offset().top-87;	
 		$.mobile.changePage('#outboxEmailHtml');	
 	});
 		
@@ -1823,19 +1826,11 @@ $(document).scroll(function () {
 
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
 	//alert('page contacts');
-	alert(storePositionContact.topCoordinateContact);
+	//alert(storePositionContact.topCoordinateContact);
 	pagina = 4;
+
+	$.mobile.silentScroll(storePositionContact.topCoordinateContact);
 	
-	
-	if (storePositionContact.topCoordinateContact==null){
-		$.mobile.silentScroll(0);
-	}else if (storePositionContact.topCoordinateContact==47){
-		$.mobile.silentScroll(0);
-	}else if (storePositionContact.topCoordinateContact==49){
-		$.mobile.silentScroll(0);
-	}else{
-		$.mobile.silentScroll(storePositionContact.topCoordinateContact);
-	}
 	
 	if(loadcontact==false){
 		busy=true;
@@ -1868,18 +1863,11 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 
 $(document).on("pagebeforeshow","#followingHtml",function(){	
 	//alert('page following');
-	alert(storePosition.topCoordinate);
+	//alert(storePosition.topCoordinate);
 	pagina = 1;
 	
-	if (storePosition.topCoordinate==null){
-		$.mobile.silentScroll(0);
-	}else if (storePosition.topCoordinate==47){
-		$.mobile.silentScroll(0);
-	}else if (storePosition.topCoordinate==49){
-		$.mobile.silentScroll(0);
-	}else{
-		$.mobile.silentScroll(storePosition.topCoordinate);
-	}
+	$.mobile.silentScroll(storePosition.topCoordinate);
+
 	
 	if (load==false){
 		busy=true;
@@ -1905,18 +1893,12 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 
 $(document).on("pagebeforeshow","#emailHtml",function(){	
 	//alert('page email inbox');
-	alert(storePositionEmail.topCoordinateEmail);
+	//alert(storePositionEmail.topCoordinateEmail);
 	
 	pagina = 2;
-	if (storePositionEmail.topCoordinateEmail==null){
-		$.mobile.silentScroll(0);
-	}else if (storePositionEmail.topCoordinateEmail==47){
-		$.mobile.silentScroll(0);
-	}else if (storePositionEmail.topCoordinateEmail==49){
-		$.mobile.silentScroll(0);
-	}else{
-		$.mobile.silentScroll(storePositionEmail.topCoordinateEmail);
-	}
+	
+	$.mobile.silentScroll(storePositionEmail.topCoordinateEmail);
+	
 	
 	
 	if(loadmail==false){
@@ -1934,15 +1916,9 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 
 	pagina = 3;
 	//$.mobile.silentScroll(storePositionEmailO.topCoordinateEmailO);
-	if (storePositionEmailO.topCoordinateEmailO==null){
-		$.mobile.silentScroll(0);
-	}else if (storePositionEmailO.topCoordinateEmailO==47){
-		$.mobile.silentScroll(0);
-	}else if (storePositionEmailO.topCoordinateEmailO==49){
-		$.mobile.silentScroll(0);
-	}else{
+	
 		$.mobile.silentScroll(storePositionEmailO.topCoordinateEmailO);
-	}
+	
 	
 	if(loadmailO==false){
 		
@@ -2018,17 +1994,11 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 $(document).on("pagebeforeshow","#taskHtml",function(){	
 	//alert('page task Pendings');
 	pagina = 8;
-	alert(storePositionTask.topCoordinateTask);
+	//alert(storePositionTask.topCoordinateTask);
 	
-	if (storePositionTask.topCoordinateTask==null){
-		$.mobile.silentScroll(0);
-	}else if (storePositionTask.topCoordinateTask==47){
-		$.mobile.silentScroll(0);
-	}else if (storePositionTask.topCoordinateTask==49){
-		$.mobile.silentScroll(0);
-	}else{
-		$.mobile.silentScroll(storePositionTask.topCoordinateTask);
-	}
+	
+	$.mobile.silentScroll(storePositionTask.topCoordinateTask);
+	
 	
 	if(loadtask==false){
 		
@@ -2060,15 +2030,8 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 	
 	pagina = 9;
 	
-	if (storePositionTaskC.topCoordinateTaskC==null){
-		$.mobile.silentScroll(0);
-	}else if (storePositionTaskC.topCoordinateTaskC==47){
-		$.mobile.silentScroll(0);
-	}else if (storePositionTaskC.topCoordinateTaskC==49){
-		$.mobile.silentScroll(0);
-	}else{
-		$.mobile.silentScroll(storePositionTaskC.topCoordinateTaskC);
-	}
+	$.mobile.silentScroll(storePositionTaskC.topCoordinateTaskC);
+	
 	
 	if(loadtaskC==false){
 		
