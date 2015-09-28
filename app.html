@@ -72,9 +72,7 @@
 	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
 	<script src="http://reifax.com/FollowupReifax/resources/js/tinymce/js/tinymce/tinymce.min.js"></script>
 	
-	<script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.0/jquery.scrollTo.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.0/jquery.scrollTo.min.js"></script>
-	
+		
 	<script type="text/javascript">
 	tinymce.init({
 		selector: "#bodyEmail,#bodySms,#bodyFax",
@@ -115,6 +113,57 @@
 		}
 		
 	}
+	
+function showConfirm() {
+	navigator.notification.confirm(
+		'There was an error connecting to the Internet. Would you like to retry?.',  // message
+		onConfirm,         // callback to invoke with index of button pressed
+		'No Internet connection',            // title
+		'No,Yes'        // buttonLabels
+	);
+}
+		
+function onConfirm(button) {
+	//console.log('You selected button ' + button);
+	if(button == 1){
+		//pressed "cancel"
+		console.log("User has cancelled");
+		//exitFromApp    
+		navigator.app.exitApp();
+	}
+	else if(button == 2){
+		//pressed "delete"
+		console.log("connecting");
+		detectInternet();
+	}
+}
+		
+		
+function detectInternet(){
+		
+	var url='http://reifax.com';
+	
+	$.ajax({
+		url: url,
+		type: 'GET',
+		cache : false,
+		contentType: "application/json;charset=utf-8",
+		success: function (data) {
+			// Yor success logic 
+			//alert('success bien');		
+		},
+		error: function (request) {
+			 //alert(request.responseText);
+			 //alert(request.status);
+			if(request.status==0){
+				//alert("Please connect to the internet");
+				showConfirm();
+			}
+		}
+	});
+			
+}
+
 	
 </script>
 <script type="text/javascript">
@@ -4443,6 +4492,7 @@
 					</div>
 					<div id="taskk" class="col-xs-9 col-sm-10">
 						<select id="task" class="form-control">
+							<option value="17" >Make Note</option>
 							<option value="1">Send SMS</option>
 							<option value="2">Receive SMS</option>
 							<option value="3">Send FAX</option>
@@ -4459,7 +4509,6 @@
 							<option value="14" >Receive Other</option>
 							<option value="15" >Send Voice Mail</option>
 							<option value="16" >Receive Voice Mail</option>
-							<option value="17" >Make Note</option>
 						 </select>
 					</div>
 					

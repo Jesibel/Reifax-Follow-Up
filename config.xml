@@ -22,6 +22,14 @@
    <feature name="http://api.phonegap.com/1.0/file"/>
    <feature name="http://api.phonegap.com/1.0/notification"/>
    
+   <feature name="PushPlugin">
+	 <param name="android-package" value="com.plugin.gcm.PushPlugin" />
+   </feature>
+   
+   <feature name="PushPlugin">
+	 <param name="ios-package" value="PushPlugin" />
+   </feature>
+   
  
   <content src="index.html" />
   
@@ -85,13 +93,17 @@
   
   <gap:plugin name="io.github.pwlin.cordova.plugins.fileopener" version="1.0.1" />
   
-  <gap:plugin name="org.apache.cordova.dialogs" version="0.2.6" />
+  <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
   
   <gap:plugin name="org.apache.cordova.splashscreen" />
   
   <gap:plugin name="com.phonegap.plugin.mobile-accessibility" version="0.1.1" />
   
   <gap:plugin name="org.apache.cordova.contacts" version="0.2.13" />
+  
+   
+  <plugin name="Notification" value="org.apache.cordova.Notification"/>
+  <plugin name="Notification" value="CDVNotification" />
   
 
   <access origin="http://reifax.com" />       
