@@ -1,0 +1,385 @@
+@media screen and (min-width:320px) and (max-width:480px) {
+		.col-md-4{
+			width:50% !important;
+			float:left !important;
+			text-align:center;
+			padding-right: 0px !important;
+			padding-left: 0px !important;
+		}
+		.foll{
+			height:55px !important;
+		}
+		.date{
+			/*left:250px !important;*/
+		}
+		.search{
+			margin-left:395px !important;
+			margin-top:-52px !important;
+		}
+		.ifra{
+			/*height:350px !important;*/
+		}
+		.ifra2{
+			height:550px !important;
+		}
+		.mobil{
+			height:50px !important;
+		}
+		.mobil2{
+			/*height:25px !important;*/
+			margin-top:5px !important;
+		}
+		.imgmobile{
+			margin-top: -35px;
+			margin-left: 35px;
+		}
+		.ui-panel{
+			min-height: 0% !important;
+		}
+		.contImg{
+			margin-bottom: 20px !Important;
+		}
+		.agent{			
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		.det{
+			/*margin-left:5px;*/
+		}
+		.col-md-3.col-md-4.col-md-2.col-md-6{
+			padding-right: 5px !important;
+			padding-left: 5px !important;
+		}
+		.detalle{
+			margin-left:20px !important;
+			color:#a6a6a6;
+			font-weight:bold;
+			font-size:18px;
+		}
+		.detalle2{
+			color:#a6a6a6;
+			font-weight:normal;
+			font-size:12px;
+			margin-left: 40px;
+		}
+		.detalle3{
+			
+			color:#000;
+			font-weight:bold;
+			/*font-size:18px;*/
+			margin-left: 40px;
+		}
+		.heightMenu.ui-panel{
+			min-height: 1% !important;
+		}
+		.margen{
+			border-bottom: 1px solid #ccc;
+		}
+		table{
+			width:100% !important;
+		}
+		
+		div#rootDiv{
+			margin-top:-100px!important;
+		}
+		.formT{
+			margin-left:-10px !important;
+		}
+		.dosMf{
+			font-weight: normal;
+			margin-left: -15px;
+		}
+		.dosMp{
+			font-weight: bold;
+			margin-left: -5px;
+		}
+		select{
+			width: 100%;
+		}
+		table{
+			width:100% !important;
+		}
+		
+	
+	}
+@media screen and (min-width:480px) and (max-width:599px){
+		.foll{
+			height:55px !important;
+		}
+		.date{
+			/*left:250px !important;*/
+		}
+		.search{
+			margin-left:385px !important;
+			margin-top:-52px !important;
+		}
+		.ifra{
+			height:350px !important;
+		}
+		.ui-panel{
+			min-height: 10% !important;
+		}
+		.agent{			
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		.col-md-3.col-md-4.col-md-2.col-md-6{
+			padding-right: 5px !important;
+			padding-left: 5px !important;
+		}
+		.detalle{
+			margin-left:20px !important;
+			color:#a6a6a6;
+			font-weight:bold;
+			font-size:18px;
+		}
+		.detalle2{
+			color:#a6a6a6;
+			font-weight:normal;
+			font-size:12px;
+			margin-left: 30px;
+		}
+		.detalle3{
+			
+			color:#000;
+			font-weight:bold;
+			/*font-size:18px;*/
+			margin-left: 30px;
+		}
+		.heightMenu.ui-panel{
+			min-height: 1% !important;
+		}
+		table{
+			width:100% !important;
+		}
+		.input-search{
+			margin-top:-45px;
+			margin-left:65px;
+			white-space:nowrap;
+			width:70%;
+		}
+		
+
+		
+	}
+@media screen and (min-width:600px) and (max-width:960px){
+		.foll{
+			height:55px !important;
+		}
+		.date{
+			/*left:250px !important;*/
+		}
+		.search{
+			margin-left:385px !important;
+			margin-top:-52px !important;
+		}
+		.ui-panel{
+			min-height: 20% !important;
+		}
+		.agent{
+			width: 15%;
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		.dateFil{
+			height: 25px;
+		}
+		.selec{
+			width:100%;
+			height:25px;
+		}
+		.name-tab{
+			text-align:center;
+			width:40%;
+			margin-left: 80px !important;
+		}
+		.tb-margin{
+			margin-left:50px !important;
+		}
+		.input-search{
+			margin-top:-45px;
+			margin-left:65px;
+			white-space:nowrap;
+			width:40%;
+		}
+	}
+@media screen and (min-width: 768px) and ( max-width:1440px){
+	
+		.foll{
+			height:50px ;
+		}
+		.date{
+			/*left:500px !important;*/
+		}
+		.search{
+			margin-left:265px !important;
+			margin-top:-52px !important;
+		}
+		.ifra {
+			height:354px !important;
+		}
+		.ui-panel{
+			min-height: 5% !important;
+		}
+		.agent{
+			width: 15%;
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		.ifra2{
+			height:550px;
+		}
+		.det{
+			margin-left:125px;
+		}
+		.detalle{
+			margin-left:160px;
+			color:#a6a6a6;
+			font-weight:bold;
+			font-size:18px;
+		}
+		.detalle2{
+			color:#a6a6a6;
+			font-weight:normal;
+			font-size:12px;
+			margin-left: 180px;
+		}
+		.detalle3{
+			color:#000;
+			font-weight:bold;
+			/*font-size:14px;*/
+			margin-left:180px;
+		}
+		.heightMenu.ui-panel{
+			min-height: 1% !important;
+		}
+		div#rootDiv{
+			margin-top:-100px;
+		}
+		.formC{
+			background: #eee;
+			border-radius: 5px;
+			border-left: 1px solid #d1d1d1;
+			width: 100%;
+		}
+		.formT{
+			margin-left:200px;
+		}
+		
+		.dosMf{
+			font-weight: normal;
+			
+		}
+		.dosMp{
+			font-weight: bold;
+			
+		}
+		.tablet{
+			margin-left:-300px;
+		}
+		.tabl{
+			padding-left:0px;
+		}
+		.tv{
+			/*left:-345px;*/
+		}
+		.tvt{
+			/*top:-20px;*/
+			/*left:695px;*/
+		}
+		.modal.fade.in {
+			top: 5% !important;
+		}
+		.modal-dialog {
+			width:450px;
+		}
+		[class^="column"]{
+			border: 1px solid;
+			height: 100%;
+			display: block !important;
+			position: relative !important;
+		}
+		.column-left{
+			top: 0;
+			position: absolute;
+			float: left;
+			width: 25%;
+		}
+		.following{
+			height: 90%;
+			position: absolute;
+			width: 100%;
+			overflow: hidden !important;
+		}
+		#following-tablet{
+            width: 25%;
+            /*height: 190px;*/
+            overflow: auto;
+            /*overflow-y: hidden;*/
+            margin: 0 auto;
+            white-space: nowrap
+        }
+		#email-tablet{
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            /*overflow-y: hidden;*/
+            margin: 0 auto;
+            white-space: nowrap
+        }
+		.dateFil{
+			margin-left: 30px;
+			height: 25px;
+		}
+		.selec{
+			width:255px !important;
+			height:25px;
+		}
+		.selecDate{
+			width: 100px !important;
+		}
+		.selecCompleted{
+			width: 80px !important;
+		}
+		.name-tab{
+			text-align:center;
+			width:40%;
+			margin-left: 105px;
+		}
+		.input-search{
+			margin-top:-45px;
+			margin-left:65px;
+			white-space:nowrap;
+			width:40%;
+		}
+	
+	}
+@media screen and (min-width:800px) and(max-width: 767px) { 
+		.foll{
+			height:50px ;
+		}
+		.date{
+			left:500px !important;
+		}
+		.search{
+			margin-left:265px !important;
+			margin-top:-52px !important;
+		}
+		.ui-panel{
+			min-height: 20% !important;
+		}
+		.agent{
+			width: 15%;
+			text-align: center;
+			margin-bottom: 40px;
+		}
+		.dateFil{
+			margin-left: 20px;
+			height: 25px;
+		}
+}
+	
+	
+	
+	
+		
