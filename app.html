@@ -619,11 +619,6 @@ $(document).ready(function(){
 		var imgVal = $('#imageUploadEO').val(); 
 		$("input#userid").val(userid);
 						
-		if(imgVal == '') { 
-			//showEmpty("<span class='error' colspan='5'></span>");
-			$( "#choose_file" ).addClass( "error" );
-			$( "#uploaded_file" ).addClass( "error" );
-		}else{
 			var formData 		= new FormData($("#envioEmailEO")[0]);
 				$.ajax({
 					url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
@@ -647,7 +642,7 @@ $(document).ready(function(){
 							
 					}
 				}); // End ajax
-		} //End else
+		
 	});
 		
 	//SEND REPLY EMAIL INBOX
@@ -888,6 +883,8 @@ $(document).ready(function(){
 	var get='';
 	
 	var filter='';
+	
+	var ciclo='';
 		
 	var arr = new Array();
 	var checkid = new Array();
