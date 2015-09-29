@@ -760,42 +760,37 @@ $(document).ready(function(){
 		emailDetail(start, limit,id.parcelid);
 	});
 		 
-	//$('#openSearchContact').click(function(){
+		//$('#openSearchContact').click(function(){
 	$("#openSearchContact").on('click', function () {
-		//$('#sContact').animate({width:'toggle'},100);
-		//$(this).fadeOut();
-		document.getElementById("sContact").style.display = "block";
-		//$("#sContact").show();
-		//$('#closeSearchContact').fadeIn();
+		$('#sContact').animate({width:'toggle'},100);
+		$(this).fadeOut();
+		$('#closeSearchContact').fadeIn();
 	});
 	
 	
 	//$('#closeSearchContact').click(function(){
 	$("#closeSearchContact").on('click', function () {
-		document.getElementById("sContact").style.display = "none";
-		//$('#sContact').animate({width:'toggle'},100);
-		//$(this).fadeOut();
-		//$('#openSearchContact').fadeIn();
-		//$( "#contacts ul" ).listview( "refresh" );
+		$('#sContact').animate({width:'toggle'},100);
+		$(this).fadeOut();
+		$('#openSearchContact').fadeIn();
+		$( "#contacts ul" ).listview( "refresh" );
 		//$( '#webGeneralHtml' ).attr( 'src', function ( i, val ) { return val; });
 	});
 	
 	//$('#openSearchAllContact').click(function(){
 	$("#openSearchAllContact").on('click', function () {
-		/*$('#searchLisContact').animate({width:'toggle'},100);
+		$('#searchLisContact').animate({width:'toggle'},100);
 		$(this).fadeOut();
-		$('#closeSearchAllContact').fadeIn();*/
-		document.getElementById("searchLisContact").style.display = "block";
-		
+		$('#closeSearchAllContact').fadeIn();
 		$( "#listadoAllContacto ul" ).listview( "refresh" );
 	});
 
 	//$('#closeSearchAllContact').click(function(){
 	$("#closeSearchAllContact").on('click', function () {
-		/*$('#searchLisContact').animate({width:'toggle'},100);
+		$('#searchLisContact').animate({width:'toggle'},100);
 		$(this).fadeOut();
-		$('#openSearchAllContact').fadeIn();*/
-		document.getElementById("searchLisContact").style.display = "none";
+		$('#openSearchAllContact').fadeIn();
+		
 		//$( '#webGeneralHtml' ).attr( 'src', function ( i, val ) { return val; });
 	});
 	
