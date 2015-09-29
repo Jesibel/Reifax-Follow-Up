@@ -617,7 +617,8 @@ $(document).ready(function(){
 		$("#contacts ul").empty();
 		var start = 0; 
 		var limit = 25; 
-		listadoContacts(start, limit);
+		filter='';
+		listadoContacts(start, limit,filter);
 	});
 
 	$('#formularioFilterContact').submit(function(){
@@ -627,7 +628,8 @@ $(document).ready(function(){
 		$("#contacts ul").empty();
 		var start = 0; 
 		var limit = 25; 
-		listadoContacts(start, limit);
+		filter='';
+		listadoContacts(start, limit,filter);
 	});
 		
 	//SEARCH FILTER PROPERTY WITH BOTON SEARCH
@@ -638,7 +640,8 @@ $(document).ready(function(){
 		//searchFilterProperty();
 		var start = 0; 
 		var limit = 25; 
-		listadoProperty(start,limit);
+		filter='';
+		listadoProperty(start,limit,filter);
 	});
 
 	
@@ -769,7 +772,7 @@ $(document).ready(function(){
 	
 	//$('#closeSearchContact').click(function(){
 	$("#closeSearchContact").on('click', function () {
-	document.getElementById("sContact").style.display = "none";
+		document.getElementById("sContact").style.display = "none";
 		//$('#sContact').animate({width:'toggle'},100);
 		//$(this).fadeOut();
 		//$('#openSearchContact').fadeIn();
@@ -779,18 +782,20 @@ $(document).ready(function(){
 	
 	//$('#openSearchAllContact').click(function(){
 	$("#openSearchAllContact").on('click', function () {
-		$('#searchLisContact').animate({width:'toggle'},100);
+		/*$('#searchLisContact').animate({width:'toggle'},100);
 		$(this).fadeOut();
-		$('#closeSearchAllContact').fadeIn();
+		$('#closeSearchAllContact').fadeIn();*/
+		document.getElementById("searchLisContact").style.display = "block";
+		
 		$( "#listadoAllContacto ul" ).listview( "refresh" );
 	});
 
 	//$('#closeSearchAllContact').click(function(){
 	$("#closeSearchAllContact").on('click', function () {
-		$('#searchLisContact').animate({width:'toggle'},100);
+		/*$('#searchLisContact').animate({width:'toggle'},100);
 		$(this).fadeOut();
-		$('#openSearchAllContact').fadeIn();
-		
+		$('#openSearchAllContact').fadeIn();*/
+		document.getElementById("searchLisContact").style.display = "none";
 		//$( '#webGeneralHtml' ).attr( 'src', function ( i, val ) { return val; });
 	});
 	
@@ -2483,8 +2488,9 @@ $(document).scroll(function () {
 		case(4):
 			if (busy==false){
 				//alert('contacts');
+				filter='';
 				start = start+$settings.limit; 
-				listadoContacts(start,settings.limit);
+				listadoContacts(start,settings.limit,filter);
 			}
             break;
 		case(5):
@@ -2527,9 +2533,10 @@ $(document).scroll(function () {
             break;
 		case(10):
 			if (busy==false){
-				//alert('contacts');
+				alert('contactsALL');
 				start = start+$settings.limit; 
-				listadoAllContacts(start,settings.limit);
+				filter='';
+				listadoAllContacts(start,settings.limit,filter);
 			}
             break;		
         default:
@@ -2550,6 +2557,7 @@ $(document).scroll(function () {
 
 
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
+	
 	$( "#list-contacts" ).on( "filterablebeforefilter", function ( e, data ) {
 		var $ul = $( this );
 		filter= $('#searchConta').val();
@@ -2558,6 +2566,8 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
         $ul.listview( "refresh" );
 		listadoContacts(start,settings.limit,filter);
 	});
+	
+	
 	detectInternet();
 	pagina = 4;
 	
@@ -2789,6 +2799,25 @@ $(document).on("pagebeforeshow","#taskCompletedHtml",function(){
 							
 });
 
+$(document).on("pagebeforeshow","#listadoAllContacts",function(){	
+
+	pagina = 10;
+	busy=true;
+	filter='';
+	
+	$( "#listContactAll" ).on( "filterablebeforefilter", function ( e, data ) {
+		var start=0;
+		var $ul = $( this );
+		filter= $('#searchListContact').val();
+		$ul.html( "" );
+		$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
+        $ul.listview( "refresh" );
+		listadoAllContacts(start,settings.limit,filter);
+	});
+
+	//listadoAllContacts(start,settings.limit,filter);
+});
+
 $(document).on("pagebeforeshow","#pagAddContactoHtml",function(){	
 	
 	cantidadEmail();
@@ -2930,6 +2959,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 		
 });
 
+
 //$("#loginHtml").on("pageinit", function(e) {
 $( document ).on( "pageinit", "#loginHtml", function( event ) {
 	detectInternet();
@@ -3067,12 +3097,12 @@ function pdf(){
 	}
 	
 function showConfirm() {
-	navigator.notification.confirm(
+	/*navigator.notification.confirm(
 		'There was an error connecting to the Internet. Would you like to retry?.',  // message
 		onConfirm,         // callback to invoke with index of button pressed
 		'No Internet connection',            // title
 		'No,Yes'        // buttonLabels
-	);
+	);*/
 }
 		
 function onConfirm(button) {
@@ -5546,7 +5576,7 @@ function detectInternet(){
 	<div data-role="content" >	
 
 		<div style="background:#fff;" id="listadoAllContacto" class="autocomplete">
-			<ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchListContact" class="page_contactAll">
+			<ul id="listContactAll" data-role="listview" data-filter="true" data-inset="true" data-input="#searchListContact" class="page_contactAll">
 			
 			</ul>
 		</div>
