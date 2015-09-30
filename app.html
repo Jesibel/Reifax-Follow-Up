@@ -72,7 +72,78 @@
 	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
 	<script src="http://reifax.com/FollowupReifax/resources/js/tinymce/js/tinymce/tinymce.min.js"></script>
 	
+	<script type="text/javascript">
+	var activePage;
+	var device=false;
+	function _onDeviceReady (){	
 		
+		activePage = $.mobile.activePage.attr('id');
+		MobileAccessibility.usePreferredTextZoom(false);
+		//alert(WURFL.form_factor);
+		if (WURFL.form_factor == "Tablet") {
+			//alert('es una tablet');
+			device=true;
+			window.plugins.orientationchanger.lockOrientation('landscape');
+			 //setTimeout(function () {navigator.splashscreen.show()},1000);
+		}else{
+			device=false;
+			window.plugins.orientationchanger.lockOrientation('portrait');
+		}
+		
+	}
+	
+function showConfirm() {
+	/*navigator.notification.confirm(
+		'There was an error connecting to the Internet. Would you like to retry?.',  // message
+		onConfirm,         // callback to invoke with index of button pressed
+		'No Internet connection',            // title
+		'No,Yes'        // buttonLabels
+	);*/
+}
+		
+function onConfirm(button) {
+	//console.log('You selected button ' + button);
+	if(button == 1){
+		//pressed "cancel"
+		console.log("User has cancelled");
+		//exitFromApp    
+		navigator.app.exitApp();
+	}
+	else if(button == 2){
+		//pressed "delete"
+		console.log("connecting");
+		detectInternet();
+	}
+}
+		
+		
+function detectInternet(){
+		
+	var url='http://reifax.com';
+	
+	$.ajax({
+		url: url,
+		type: 'GET',
+		cache : false,
+		contentType: "application/json;charset=utf-8",
+		success: function (data) {
+			// Yor success logic 
+			//alert('success bien');		
+		},
+		error: function (request) {
+			 //alert(request.responseText);
+			 //alert(request.status);
+			if(request.status==0){
+				//alert("Please connect to the internet");
+				showConfirm();
+			}
+		}
+	});
+			
+}
+
+	
+</script>	
 	<script type="text/javascript">
 	tinymce.init({
 		selector: "#bodyEmail,#bodySms,#bodyFax",
@@ -3076,78 +3147,7 @@ function pdf(){
 	
 </script>
 
-<script type="text/javascript">
-	var activePage;
-	var device=false;
-	function _onDeviceReady (){	
-		
-		activePage = $.mobile.activePage.attr('id');
-		MobileAccessibility.usePreferredTextZoom(false);
-		//alert(WURFL.form_factor);
-		if (WURFL.form_factor == "Tablet") {
-			//alert('es una tablet');
-			device=true;
-			window.plugins.orientationchanger.lockOrientation('landscape');
-			 //setTimeout(function () {navigator.splashscreen.show()},1000);
-		}else{
-			device=false;
-			window.plugins.orientationchanger.lockOrientation('portrait');
-		}
-		
-	}
-	
-function showConfirm() {
-	/*navigator.notification.confirm(
-		'There was an error connecting to the Internet. Would you like to retry?.',  // message
-		onConfirm,         // callback to invoke with index of button pressed
-		'No Internet connection',            // title
-		'No,Yes'        // buttonLabels
-	);*/
-}
-		
-function onConfirm(button) {
-	//console.log('You selected button ' + button);
-	if(button == 1){
-		//pressed "cancel"
-		console.log("User has cancelled");
-		//exitFromApp    
-		navigator.app.exitApp();
-	}
-	else if(button == 2){
-		//pressed "delete"
-		console.log("connecting");
-		detectInternet();
-	}
-}
-		
-		
-function detectInternet(){
-		
-	var url='http://reifax.com';
-	
-	$.ajax({
-		url: url,
-		type: 'GET',
-		cache : false,
-		contentType: "application/json;charset=utf-8",
-		success: function (data) {
-			// Yor success logic 
-			//alert('success bien');		
-		},
-		error: function (request) {
-			 //alert(request.responseText);
-			 //alert(request.status);
-			if(request.status==0){
-				//alert("Please connect to the internet");
-				showConfirm();
-			}
-		}
-	});
-			
-}
 
-	
-</script>
 <script type="text/javascript">
  
 
