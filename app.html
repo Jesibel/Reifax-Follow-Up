@@ -84,78 +84,9 @@
 		statusbar:false
 	});
 </script>
-<script type="text/javascript">
-	var activePage;
-	var device=false;
-	function _onDeviceReady (){	
-		
-		activePage = $.mobile.activePage.attr('id');
-		MobileAccessibility.usePreferredTextZoom(false);
-		//alert(WURFL.form_factor);
-		if (WURFL.form_factor == "Tablet") {
-			//alert('es una tablet');
-			device=true;
-			window.plugins.orientationchanger.lockOrientation('landscape');
-			 //setTimeout(function () {navigator.splashscreen.show()},1000);
-		}else{
-			device=false;
-			window.plugins.orientationchanger.lockOrientation('portrait');
-		}
-		
-	}
 	
-function showConfirm() {
-	navigator.notification.confirm(
-		'There was an error connecting to the Internet. Would you like to retry?.',  // message
-		onConfirm,         // callback to invoke with index of button pressed
-		'No Internet connection',            // title
-		'No,Yes'        // buttonLabels
-	);
-}
-		
-function onConfirm(button) {
-	//console.log('You selected button ' + button);
-	if(button == 1){
-		//pressed "cancel"
-		console.log("User has cancelled");
-		//exitFromApp    
-		navigator.app.exitApp();
-	}
-	else if(button == 2){
-		//pressed "delete"
-		console.log("connecting");
-		detectInternet();
-	}
-}
-		
-		
-function detectInternet(){
-		
-	var url='http://reifax.com';
-	
-	$.ajax({
-		url: url,
-		type: 'GET',
-		cache : false,
-		contentType: "application/json;charset=utf-8",
-		success: function (data) {
-			// Yor success logic 
-			//alert('success bien');		
-		},
-		error: function (request) {
-			 //alert(request.responseText);
-			 //alert(request.status);
-			if(request.status==0){
-				//alert("Please connect to the internet");
-				showConfirm();
-			}
-		}
-	});
-			
-}
-
-	
-</script>
+	<!--script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"-->
 	
 <script type="text/javascript">
 $(document).ready(function(){
@@ -2423,6 +2354,14 @@ $(function(){
 		$('#detallehistorial ul').empty();			
 					
 	});
+	
+	$("#backAddSch").on('click', function () {
+		$("#tschedule select").empty();	
+		$("#tempschedule select").empty();	
+		$("#edate").val("");			
+		$("#ehour").val("");			
+		storePosition.topCoordinate =  $(this).offset().top-47;			
+	});
 		
 	$("#backContract,#backSendE,#backSendS,#backSendF,#backFCall").on('click', function () {			
 		//$('#detalleContacto').empty();
@@ -3137,6 +3076,78 @@ function pdf(){
 	
 </script>
 
+<script type="text/javascript">
+	var activePage;
+	var device=false;
+	function _onDeviceReady (){	
+		
+		activePage = $.mobile.activePage.attr('id');
+		MobileAccessibility.usePreferredTextZoom(false);
+		//alert(WURFL.form_factor);
+		if (WURFL.form_factor == "Tablet") {
+			//alert('es una tablet');
+			device=true;
+			window.plugins.orientationchanger.lockOrientation('landscape');
+			 //setTimeout(function () {navigator.splashscreen.show()},1000);
+		}else{
+			device=false;
+			window.plugins.orientationchanger.lockOrientation('portrait');
+		}
+		
+	}
+	
+function showConfirm() {
+	/*navigator.notification.confirm(
+		'There was an error connecting to the Internet. Would you like to retry?.',  // message
+		onConfirm,         // callback to invoke with index of button pressed
+		'No Internet connection',            // title
+		'No,Yes'        // buttonLabels
+	);*/
+}
+		
+function onConfirm(button) {
+	//console.log('You selected button ' + button);
+	if(button == 1){
+		//pressed "cancel"
+		console.log("User has cancelled");
+		//exitFromApp    
+		navigator.app.exitApp();
+	}
+	else if(button == 2){
+		//pressed "delete"
+		console.log("connecting");
+		detectInternet();
+	}
+}
+		
+		
+function detectInternet(){
+		
+	var url='http://reifax.com';
+	
+	$.ajax({
+		url: url,
+		type: 'GET',
+		cache : false,
+		contentType: "application/json;charset=utf-8",
+		success: function (data) {
+			// Yor success logic 
+			//alert('success bien');		
+		},
+		error: function (request) {
+			 //alert(request.responseText);
+			 //alert(request.status);
+			if(request.status==0){
+				//alert("Please connect to the internet");
+				showConfirm();
+			}
+		}
+	});
+			
+}
+
+	
+</script>
 <script type="text/javascript">
  
 
@@ -8620,11 +8631,11 @@ function pdf(){
 							<input type="file" name="archivo1" id="imageUpload" class="hide"/> 
 					</div>	
 				</div>
-				<div style="margin-bottom: 10px;" id="Cemail" class="row">
+				<div style="margin-bottom: 10px;margin-top:-30px;" id="Cemail" class="row">
 					<div style="padding-left: 25px;padding-top: 15px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						To
 					</div>
-					<div id="contactmail" style="padding-left:0px;padding-right:0px;margin-left:20px;" class="col-xs-8 col-sm-10">
+					<div id="contactmail" style="padding-left:0px;padding-right:0px;margin-left:15px;" class="col-xs-8 col-sm-10">
 						<select id="contactemail" name="contactemail"  class="span4"></select>
 					</div>
 				</div>
@@ -8711,7 +8722,7 @@ function pdf(){
 						</select>
 					</div>
 				</div>
-				<div style="margin-bottom: 10px;" id="Csms" class="row">
+				<div style="margin-bottom: 10px;margin-top:-30px;" id="Csms" class="row">
 					<div style="padding-left: 25px;padding-top: 15px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						To
 					</div>
@@ -8778,11 +8789,11 @@ function pdf(){
 							<div ><img style="margin-left: 120px;" src="" id="imagePreviewFax" width="100px"/></div>
 					</div>	
 				</div>
-				<div style="margin-bottom: 10px;" id="Cfax" class="row">
+				<div style="margin-bottom: 10px;margin-top:-20px;" id="Cfax" class="row">
 					<div style="padding-left: 25px;padding-top: 15px;margin-left: -30px;" class="col-xs-3 col-sm-2">
 						To
 					</div> 
-					<div id="contactfaxx" style="padding-left:0px;padding-right:0px;margin-left:20px;" class="col-xs-8 col-sm-10">
+					<div id="contactfaxx" style="padding-left:0px;padding-right:0px;margin-left:15px;" class="col-xs-8 col-sm-10">
 						<select id="contactfax" name="contactfax"  class="span4"></select>
 					</div>
 				</div>			
