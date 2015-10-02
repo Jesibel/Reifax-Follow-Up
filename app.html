@@ -72,6 +72,9 @@
 	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
 	<script src="http://reifax.com/FollowupReifax/resources/js/tinymce/js/tinymce/tinymce.min.js"></script>
 	
+	
+<script src="http://reifax.com/FollowupReifax/resources/js/bootbox.js"></script>
+	
 	<script type="text/javascript">
 	var activePage;
 	var device=false;
@@ -93,12 +96,12 @@
 	}
 	
 function showConfirm() {
-	/*navigator.notification.confirm(
+	navigator.notification.confirm(
 		'There was an error connecting to the Internet. Would you like to retry?.',  // message
 		onConfirm,         // callback to invoke with index of button pressed
 		'No Internet connection',            // title
 		'No,Yes'        // buttonLabels
-	);*/
+	);
 }
 		
 function onConfirm(button) {
@@ -119,10 +122,10 @@ function onConfirm(button) {
 		
 function detectInternet(){
 		
-	var url='http://reifax.com';
+	//var url='http://reifax.com';
 	
 	$.ajax({
-		url: url,
+		url: 'http://reifax.com/FollowupReifax/index.html',
 		type: 'GET',
 		cache : false,
 		contentType: "application/json;charset=utf-8",
@@ -203,7 +206,7 @@ $(document).ready(function(){
 	});
 		
 	$('#edatePTask').change(function(){
-		alert($(this).val());
+		//alert($(this).val());
 		if ($(this).val()=='Between'){
 			document.getElementById('betweenExecPTask').style.display = "block";
 		}else{
@@ -212,7 +215,7 @@ $(document).ready(function(){
 	});
 		
 	$('#cdateCTask').change(function(){
-		alert($(this).val());
+		//alert($(this).val());
 		if ($(this).val()=='Between'){
 			document.getElementById('betweenCompTask').style.display = "block";
 		}else{
@@ -221,7 +224,7 @@ $(document).ready(function(){
 	});
 		
 	$('#sdatePTask').change(function(){
-		alert($(this).val());
+		//alert($(this).val());
 		if ($(this).val()=='Between'){
 			document.getElementById('betweenSchePTask').style.display = "block";
 		}else{
@@ -518,13 +521,21 @@ $(document).ready(function(){
 	//DELETE CONTACTS
 	$('#deleteCont').on('click',function(){				
 		//alert("delete");
-		alert("You must previously select(long touch) the contacts to be eliminated.");
+		//alert("You must previously select(long touch) the contacts to be eliminated.");
+		bootbox.alert({
+			title: 'Delete Agent',
+			message: 'You must previously select(long touch) the contacts to be eliminated.'
+		});
 	});
 			
 	//EDIT CONTACTS
 	$('#editCont').on('click',function(){				
 		//alert("editc");
-		alert("You must previously select(long touch) the contacts to be edited.");
+		//alert("You must previously select(long touch) the contacts to be edited.");
+		bootbox.alert({
+			title: 'Edit Agent',
+			message: 'You must previously select(long touch) the contacts to be edited.'
+		});
 	});
 			
 	//AGREGAR CONTACTS
@@ -601,7 +612,11 @@ $(document).ready(function(){
 					success: function(data){
 						console.log(data);
 						console.log(data);
-						alert('Email successfully');
+						//alert('Email successfully');
+						bootbox.alert({
+							title: 'Send Email',
+							message: 'Email successfully.'
+						});
 						$.mobile.changePage('#emailHtml');
 					},
 					//si ha ocurrido un error
@@ -636,7 +651,11 @@ $(document).ready(function(){
 					success: function(data){
 						console.log(data);
 						console.log(data);
-						alert('Email successfully');
+						//alert('Email successfully');
+						bootbox.alert({
+							title: 'Send Email',
+							message: 'Email successfully.'
+						});
 						$.mobile.changePage('#emailHtml');
 					},
 					//si ha ocurrido un error
@@ -887,6 +906,8 @@ $(document).ready(function(){
 	var filter='';
 	
 	var ciclo='';
+	
+	var loader='';
 		
 	var arr = new Array();
 	var checkid = new Array();
@@ -1156,7 +1177,7 @@ $(function(){
 		$('#detalleCorreo').empty();
 		//alert(checkid);
 		if (checkid==''){
-			storePositionEmail.topCoordinateEmail =  $(this).offset().top-250;
+			storePositionEmail.topCoordinateEmail =  $(this).offset().top-87;
 			$.mobile.changePage("#detailEmail");
 		}else{
 			longEmailInbox(id,id.seen,push);
@@ -1191,7 +1212,7 @@ $(function(){
 		$('#detalleCorreoO').empty();
 		//$.mobile.changePage( "#detailEmailOutbox");	
 		if (checkid==''){
-			storePositionEmail.topCoordinateEmail =  $(this).offset().top-250;
+			storePositionEmail.topCoordinateEmail =  $(this).offset().top-87;
 			$.mobile.changePage( "#detailEmailOutbox");
 		}else{
 			longEmailOutbox(id,push);
@@ -1736,7 +1757,11 @@ $(function(){
 				
 			}
 			if(send==true){
-				alert('Email successfully');
+				//alert('Email successfully');
+				bootbox.alert({
+					title: 'Send Email',
+					message: 'Email successfully.'
+				});
 			}
 		
 		}else{
@@ -1760,7 +1785,11 @@ $(function(){
 								
 				},
 				success: function(data){
-					alert('Email successfully');
+					//alert('Email successfully');
+					bootbox.alert({
+						title: 'Send Email',
+						message: 'Email successfully.'
+					});
 					$.mobile.changePage('#followingHtml');
 				},
 				//si ha ocurrido un error
@@ -1870,7 +1899,11 @@ $(function(){
 
 			}
 			if(send==true){
-				alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+				//alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+				bootbox.alert({
+					title: 'Schedule Task',
+					message: 'All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab.'
+				});
 			}
 		
 		}else{
@@ -1901,7 +1934,11 @@ $(function(){
 				},
 				success: function(data){
 					if (data){
-					alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+					//alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+					bootbox.alert({
+						title: 'Schedule Task',
+						message: 'All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab.'
+					});
 					document.getElementById('header_two').style.display = "none";
 					$.mobile.changePage('#followingHtml');
 					}
@@ -1990,7 +2027,11 @@ $(function(){
 			},
 			success: function(data){
 				if (data){
-				alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+				//alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+				bootbox.alert({
+					title: 'Schedule Task',
+					message: 'All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab.'
+				});
 				$.mobile.changePage('#followingHtml');
 				}
 			},
@@ -2055,7 +2096,11 @@ $(function(){
 							
 			},
 			success: function(data){
-				alert('Fax  successfully');
+				//alert('Fax  successfully');
+				bootbox.alert({
+					title: 'Send Fax',
+					message: 'Fax  successfully.'
+				});
 				$.mobile.changePage('#followingHtml');
 			},
 			//si ha ocurrido un error
@@ -2275,11 +2320,11 @@ $(function(){
 	$("#addContAll").on('click', function () {
 		//alert('addd');
 		if (booleam==true){
-			alert('booleam true');
+			//alert('booleam true');
 			usedContact();
 			
 		}else if (booleam2==true){
-			alert('booleam2 true');
+			//alert('booleam2 true');
 			usedContactS();
 		}else{
 			addAgente();
@@ -2431,7 +2476,8 @@ $(function(){
 		$("#tempschedule select").empty();	
 		$("#edate").val("");			
 		$("#ehour").val("");			
-		storePosition.topCoordinate =  $(this).offset().top-47;			
+		storePosition.topCoordinate =  $(this).offset().top-47;
+		goBack();
 	});
 		
 	$("#backContract,#backSendE,#backSendS,#backSendF,#backFCall").on('click', function () {			
@@ -2604,7 +2650,7 @@ $(document).scroll(function () {
             break;
 		case(10):
 			if (busy==false){
-				alert('contactsALL');
+				//alert('contactsALL');
 				start = start+$settings.limit; 
 				filter='';
 				listadoAllContacts(start,settings.limit,filter);
@@ -2680,6 +2726,14 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 	//alert(storePosition.topCoordinate);
 	detectInternet();
 	pagina = 1;
+	console.log(loader);
+	if (loader==1){
+		$.mobile.loading().show();
+		$("#content ul").empty();
+		start=0;
+		listadoProperty(start,settings.limit);
+	}
+	
 	
 	$.mobile.silentScroll(storePosition.topCoordinate);
 	
@@ -3033,7 +3087,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 
 //$("#loginHtml").on("pageinit", function(e) {
 $( document ).on( "pageinit", "#loginHtml", function( event ) {
-	detectInternet();
+	
 	checkPreAuth();
 });
 
@@ -3042,17 +3096,17 @@ function checkPreAuth() {
 	
 	var userid = JSON.parse(localStorage.getItem('userid'));
 	
-	detectInternet();
+	
 	//if(user.username != undefined && pass.password != undefined) {
 	if(window.localStorage["userid"] != undefined) {
 		//alert('existe user');
 		//$("#username", form).val(window.localStorage["username"]);
 		//$("#password", form).val(window.localStorage["password"]);
 		//handleLogin();
-		$.mobile.changePage("#followingHtml","slide");
+		$.mobile.changePage("#followingHtml");
 	}else{
 		//alert('no existe user');
-		$.mobile.changePage("#loginHtml","slide");
+		$.mobile.changePage("#loginHtml");
 	
 	}
 }
@@ -3143,7 +3197,6 @@ function pdf(){
 	window.open('http://www.reifax.com/login/pdf/REIFAX_TermsAndConditions.pdf', '_system', 'location=yes');
 	
  }
-
 	
 </script>
 
@@ -3591,10 +3644,20 @@ function pdf(){
 		width: 230px;
 		height: 30px;
 	}
+	.modal-header{
+		border-bottom: 2px solid #8ab420;
+	}
+	.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary{
+		color: #fff;
+		background-color: #8ab420;
+		border-color: #8ab420;
+	}
 </style>
 </head>
 
 <body>
+
+
  
  <div data-role="page" id="loginHtml">
         <!--HEADER-->
@@ -3769,6 +3832,7 @@ function pdf(){
 	<!--FIN MENU-->
 
 </div>
+
 
 <!--FILTER-->
 <div class="modal fade bs-example-modal-sm" id="filter" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
