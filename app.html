@@ -3,9 +3,9 @@
 <head>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link href="http://reifax.com/FollowupReifax/resources/css/style.css" rel="stylesheet" type="text/css" />
-	<link href="http://reifax.com/FollowupReifax/resources/css/index.css" rel="stylesheet" type="text/css" />
-	<link href="http://reifax.com/FollowupReifax/resources/css/init.css" rel="stylesheet" type="text/css" />
+    <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/index.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/init.css" rel="stylesheet" type="text/css" />
 	<title>REIFAX FOLLOW UP</title>
     
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
@@ -29,7 +29,7 @@
 	</script> 
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 	
-	<script type="text/javascript" src="http://reifax.com/FollowupReifax/resources/js/jquery.mobile.listomatic.js"></script>
+	<script type="text/javascript" src="resources/js/jquery.mobile.listomatic.js"></script>
 	
     <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script-->  
 	
@@ -39,12 +39,12 @@
 	<!--script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script-->
 	
 	<!--link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"-->	
-	<link href="http://reifax.com/FollowupReifax/resources/datetime/timedate1/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link href="http://reifax.com/FollowupReifax/bootstrap/css/bootstrap-modal.css" rel="stylesheet" />
+	<link href="resources/datetime/timedate1/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="bootstrap/css/bootstrap-modal.css" rel="stylesheet" />
 	
-	 <link rel="stylesheet" href="http://reifax.com/FollowupReifax/resources/css/jquery.auto-complete.css">
+	 <link rel="stylesheet" href="resources/css/jquery.auto-complete.css">
 	
-	<link href="http://reifax.com/FollowupReifax/resources/datetime/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+	<link href="resources/datetime/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 	
 	
 	<script src="http://reifax.com/FollowupReifax/resources/funcionesProperties.js"></script>
@@ -63,17 +63,17 @@
     <script src="http://mobipick.sustainablepace.net/external/xdate.i18n.js"></script>        
     <script src="http://mobipick.sustainablepace.net/js/mobipick.js"></script>
 	
-	<script src="http://reifax.com/FollowupReifax/resources/build/js/intlTelInput.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/build/css/intlTelInput.css"></script>
+	<script src="resources/build/js/intlTelInput.js"></script>
+	<script src="resources/build/css/intlTelInput.css"></script>
 	
-	<script src="http://reifax.com/FollowupReifax/resources/js/accounting.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/js/moment.js"></script>
+	<script src="resources/js/accounting.js"></script>
+	<script src="resources/js/moment.js"></script>
 	
 	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/js/tinymce/js/tinymce/tinymce.min.js"></script>
+	<script src="resources/js/tinymce/js/tinymce/tinymce.min.js"></script>
 	
 	
-<script src="http://reifax.com/FollowupReifax/resources/js/bootbox.js"></script>
+<script src="resources/js/bootbox.js"></script>
 	
 	<script type="text/javascript">
 	var activePage;
@@ -3112,13 +3112,13 @@ function checkPreAuth() {
 		$.mobile.changePage("#followingHtml");
 	}else{
 		alert('no existe user');
-		//$.mobile.changePage("#loginHtml");
+		$.mobile.changePage("#loginHtml");
 	
 	}
 }
 
 function processLogin(){
-	
+	alert('processLogin');
 	var user = $("input#userLogin").val();
 	var pass = $("input#passLogin").val();
 	alert(user);
@@ -3135,7 +3135,7 @@ function processLogin(){
 				
 			}
 		}).done(function (data){					
-			//alert(data);					
+			alert(data);					
 			var obj = JSON.parse(data);
 			console.log(obj.success);
 			if(obj.success) {			
