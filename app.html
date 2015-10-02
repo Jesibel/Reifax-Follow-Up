@@ -3112,9 +3112,52 @@ function checkPreAuth() {
 		$.mobile.changePage("#followingHtml");
 	}else{
 		alert('no existe user');
-		$.mobile.changePage("#loginHtml");
+		//$.mobile.changePage("#loginHtml");
 	
 	}
+}
+
+function processLogin(){
+	
+	var user = $("input#userLogin").val();
+	var pass = $("input#passLogin").val();
+	alert(user);
+	var userid="";
+	$.ajax({
+		//url: 'http://reifax.com/FollowupReifax/properties_validacion.php',   
+		url: 'http://reifax.com/resources/php/properties_validacion.php',    
+		type: 'POST',
+		data: { 			
+			'loginEmail': user,
+			'loginPass': pass,
+			'followupMobile': 'followupMobile',
+			'remember': true
+				
+			}
+		}).done(function (data){					
+			//alert(data);					
+			var obj = JSON.parse(data);
+			console.log(obj.success);
+			if(obj.success) {			
+					//alert('Welcome Reifax Follow');		
+					bootbox.alert({
+						title: 'Reifax Follow Up',
+						message: 'Welcome Reifax Follow'
+					});
+					var userid= obj.userid;
+					var object = { 'userid' : userid };
+					localStorage.setItem('userid', JSON.stringify(object));
+					$.mobile.changePage('#followingHtml');
+			
+					
+			}else{
+				alert('else obj');
+				$.mobile.changePage('#loginHtml');
+			}			
+			
+								
+		});
+		
 }
 
 
@@ -3203,6 +3246,8 @@ function pdf(){
 	window.open('http://www.reifax.com/login/pdf/REIFAX_TermsAndConditions.pdf', '_system', 'location=yes');
 	
  }
+ 
+
 	
 </script>
 
