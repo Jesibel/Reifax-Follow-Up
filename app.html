@@ -3101,10 +3101,11 @@ $( document ).on( "pageinit", "#loginHtml", function( event ) {
 function checkPreAuth() {
 	var form = $("#loginForm");
 	
-	//var userid = JSON.parse(localStorage.getItem('userid'));
+	var userid = JSON.parse(localStorage.getItem('userid'));
 	
 	//if(user.username != undefined && pass.password != undefined) {
-	if(window.localStorage["userid"] != undefined) {
+	//if(window.localStorage["userid"] != undefined) {
+	if(userid.userid != undefined) {
 		alert('existe user');
 		//$("#username", form).val(window.localStorage["username"]);
 		//$("#password", form).val(window.localStorage["password"]);
