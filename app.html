@@ -3087,7 +3087,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 
 //$("#loginHtml").on("pageinit", function(e) {
 $( document ).on( "pageinit", "#loginHtml", function( event ) {
-	
+	alert('entrando al loginn');
 	checkPreAuth();
 });
 
@@ -3099,13 +3099,13 @@ function checkPreAuth() {
 	
 	//if(user.username != undefined && pass.password != undefined) {
 	if(window.localStorage["userid"] != undefined) {
-		//alert('existe user');
+		alert('existe user');
 		//$("#username", form).val(window.localStorage["username"]);
 		//$("#password", form).val(window.localStorage["password"]);
 		//handleLogin();
 		$.mobile.changePage("#followingHtml");
 	}else{
-		//alert('no existe user');
+		alert('no existe user');
 		$.mobile.changePage("#loginHtml");
 	
 	}
