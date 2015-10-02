@@ -1606,6 +1606,12 @@ $(function(){
 		var valor = JSON.parse(localStorage.getItem('key4'));
 		deleteSchedule(valor.idfus);	
 	});
+	
+	//BOTON COMPLETED TASK SCHEDULE FOLLOW
+	$("#completedSchedule").on('click', function () {
+		var valor = JSON.parse(localStorage.getItem('key4'));
+		completedSchedule(valor.idfus);	
+	});
 		
 	//BOTON DELETE EMAIL FOLLOW
 	$("#deleteEmailFollow,#deleteEmailFollow2").on('click', function () {
@@ -3087,15 +3093,15 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 
 //$("#loginHtml").on("pageinit", function(e) {
 $( document ).on( "pageinit", "#loginHtml", function( event ) {
-	alert('entrando al loginn');
+	alert('entrando al login');
 	checkPreAuth();
+	
 });
 
 function checkPreAuth() {
 	var form = $("#loginForm");
 	
-	var userid = JSON.parse(localStorage.getItem('userid'));
-	
+	//var userid = JSON.parse(localStorage.getItem('userid'));
 	
 	//if(user.username != undefined && pass.password != undefined) {
 	if(window.localStorage["userid"] != undefined) {
@@ -5954,8 +5960,9 @@ function pdf(){
 		<div style="text-align:center;margin-left:20px;margin-top:-30px;"><img src="resources/image/detail_sche_follow.png" width="120" height="40"></div>		
 		
 		<div style="width: 100%;margin-top: -40px;text-align: right;">		
-			<a id="detailEditSche" style="margin-right:10px;height:35px;width:35px;margin-top: 3px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagEditScheduleHtml"></a>
-			<a id="detailDelSche" style="margin-right:10px;height:35px;width:35px;margin-top: 3px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+			<a id="detailDelSche" style="height:35px;width:35px;margin-top: 3px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+			<a id="detailEditSche" style="height:35px;width:35px;margin-top: 3px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagEditScheduleHtml"></a>			
+			<a id="completedSchedule" style="margin-top:-2px;margin-right:5px;height:30px;background-image: url('img/refresh-48.png');background-repeat:no-repeat; background-size: 25px 25px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
 		</div>
 	
 			
@@ -7286,7 +7293,7 @@ function pdf(){
 		
 		<div style="width: 100%;margin-top: -39px;text-align: right;">		
 			<a id="addSchedule" style="margin-top:-2px;margin-right:10px;height:35px;width:35px;background-image: url('img/add-hist-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagAddScheduleHtml"></a>
-			<a id="refreshSchedule" style="margin-top:-2px;margin-right:10px;height:30px;background-image: url('img/refresh-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+			
 		</div>
 	
 	
