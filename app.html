@@ -3131,10 +3131,12 @@ function processLogin(){
 		data: { 			
 			'loginEmail': user,
 			'loginPass': pass,
-			'followupMobile': 'followupMobile',
-			'remember': true
+			'followupMobile': 'followupMobile'
+			//'remember': true
 				
-			}
+			},error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                    alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+                }
 		}).done(function (data){					
 			//alert(data);					
 			var obj = JSON.parse(data);
