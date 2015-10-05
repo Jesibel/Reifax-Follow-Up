@@ -92,8 +92,8 @@
   
   
 
-  <access origin="http://reifax.com" />       
-  <access origin="http://reifax.com" subdomains="true" /> 
+  <access origin="http://www.reifax.com" />       
+  <access origin="http://www.reifax.com" subdomains="true" /> 
   <access origin="*"/>
   
   
