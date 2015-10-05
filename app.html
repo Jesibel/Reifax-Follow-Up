@@ -1754,6 +1754,10 @@ $(function(){
 					success: function(data){
 						send=true;
 						$.mobile.changePage('#followingHtml');
+						if (checkid!=''){
+							pushh=true;
+							longProperties(checkid,pushh);
+						}
 					},
 					//si ha ocurrido un error
 					error: function(){
@@ -1797,6 +1801,10 @@ $(function(){
 						message: 'Email successfully.'
 					});
 					$.mobile.changePage('#followingHtml');
+					if (checkid!=''){
+						pushh=true;
+						longProperties(checkid,pushh);
+					}
 				},
 				//si ha ocurrido un error
 				error: function(){
@@ -1892,9 +1900,13 @@ $(function(){
 					},
 					success: function(data){
 						if (data){
-						send=true;
-						document.getElementById('header_two').style.display = "none";
-						$.mobile.changePage('#followingHtml');
+							send=true;
+							document.getElementById('header_two').style.display = "none";
+							$.mobile.changePage('#followingHtml');
+							if (checkid!=''){
+								pushh=true;
+								longProperties(checkid,pushh);
+							}
 						}
 					},
 					//si ha ocurrido un error
@@ -1947,6 +1959,10 @@ $(function(){
 					});
 					document.getElementById('header_two').style.display = "none";
 					$.mobile.changePage('#followingHtml');
+						if (checkid!=''){
+							pushh=true;
+							longProperties(checkid,pushh);
+						}
 					}
 				},
 				//si ha ocurrido un error
@@ -2039,6 +2055,10 @@ $(function(){
 					message: 'All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab.'
 				});
 				$.mobile.changePage('#followingHtml');
+				if (checkid!=''){
+					pushh=true;
+					longProperties(checkid,pushh);
+				}
 				}
 			},
 			//si ha ocurrido un error
@@ -2108,6 +2128,10 @@ $(function(){
 					message: 'Fax  successfully.'
 				});
 				$.mobile.changePage('#followingHtml');
+				if (checkid!=''){
+					pushh=true;
+					longProperties(checkid,pushh);
+				}
 			},
 			//si ha ocurrido un error
 			error: function(){
@@ -2161,8 +2185,8 @@ $(function(){
 	$("#sendContract").on('click', function () {
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=2;
-		$('#btnscheduledoc').show();
-		$('#btnsenddoc').hide();
+		$('#btnscheduledoc').hide();
+		$('#btnsenddoc').show();
 		getContactContract(id.parcelid,detalle);	
 		gettypecontract();	
 	});
@@ -3099,9 +3123,9 @@ $( document ).on( "pageinit", "#loginHtml", function( event ) {
 });
 
 function checkPreAuth() {
-	var form = $("#loginForm");
+	//var form = $("#loginForm");
 	
-	var userid = JSON.parse(localStorage.getItem('userid'));
+	//var userid = JSON.parse(localStorage.getItem('userid'));
 	
 	//if(user.username != undefined && pass.password != undefined) {
 	if(window.localStorage["userid"] != undefined) {
@@ -8946,7 +8970,7 @@ function pdf(){
 				<input type='hidden' name='typeExec' id='typeExec'>
 				
 			<div class="row">
-				<div id="btnschedulefax" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+				<div id="btnsendfax" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 					<input id="btnSendFAX" class="btn btn-success" type="button" value="Send">
 					<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
 				</div>
