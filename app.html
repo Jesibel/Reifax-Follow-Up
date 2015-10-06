@@ -2183,11 +2183,11 @@ $(function(){
 	
 	//BOTON SEND CONTRACT
 	$("#sendContract").on('click', function () {
-		var id = JSON.parse(localStorage.getItem('key'));
+		var id = JSON.parse(localStorage.getItem('pid'));
 		var detalle=2;
 		$('#btnscheduledoc').hide();
 		$('#btnsenddoc').show();
-		getContactContract(id.parcelid,detalle);	
+		getContactContract(id.pid,detalle);	
 		gettypecontract();	
 	});
 	
@@ -5872,7 +5872,9 @@ function pdf(){
 		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:25px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="weekly" data-theme="b" href="#menuEmail"></a-->
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="/" id="backCompleted" data-rel="back"></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
-		<div style="width: 100%;margin-top: -30px;text-align: right;">
+		<div style="text-align:center;margin-left:20px;margin-top:-32px"><img src="resources/image/detail_complete_t.png" width="120" height="40"></div>
+		
+		<div style="width: 100%;margin-top: -38px;text-align: right;">
 			<a id="editarCompleted" style="margin-right: 10px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditCompletedHtml"></a>
 		</div>
 	</div>
