@@ -2594,6 +2594,18 @@ $(function(){
 		storePositionEmail.topCoordinateEmail =  $(this).offset().top-87;	
 		$.mobile.changePage('#outboxEmailHtml');	
 	});
+	
+	$('#taskpend,#taskpend2').click(function(){
+		//alert('contact');	
+		storePositionTaskC.topCoordinateTaskC =  $(this).offset().top-87;	
+		$.mobile.changePage('#taskHtml');	
+	});
+	
+	$('#taskcomp,#taskcomp2').click(function(){
+		//alert('contact');	
+		storePositionTask.topCoordinateTask =  $(this).offset().top-87;	
+		$.mobile.changePage('#taskCompletedHtml');	
+	});
 		
 		
 });
@@ -6303,8 +6315,8 @@ function pdf(){
 		</div>	
 		<div style="background: #fff;height:40px;" data-role="navbar">
 			<ul>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Pendings Task</a></li>
-				<li class="item"><a href="#taskCompletedHtml">Completed Task</a></li>			
+				<li class="item active"><a id="taskpend" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Pendings Task</a></li>
+				<li class="item"><a id="taskcomp" href="#">Completed Task</a></li>			
 			</ul>
 		</div>
 		<!--FIN TABS-->
@@ -6366,8 +6378,8 @@ function pdf(){
 		</div>	
 		<div style="background: #fff;height:40px;" data-role="navbar">
 			<ul>
-				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#taskHtml">Pendings Task</a></li>
-				<li class="item active"><a href="#taskCompletedHtml">Completed Task</a></li>			
+				<li class="item"><a id="taskpend2" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Pendings Task</a></li>
+				<li class="item active"><a id="comp2" href="#">Completed Task</a></li>			
 			</ul>
 		</div>
 		<!--FIN TABS-->
