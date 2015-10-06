@@ -2424,6 +2424,13 @@ $(function(){
 		var pid = JSON.parse(localStorage.getItem('key'));
 		getContact(pid.parcelid);
 	});
+	
+	//BOTON GET CONTACT LONG
+	$("#getContactP").on('click', function () {
+		//alert('editar');
+		var pid = JSON.parse(localStorage.getItem('pid'));
+		getContact(pid.pid);
+	});
 		
 	//BOTON DELETE SEARCH CONTACT 
 	$("#addCP").on('click', function () {
