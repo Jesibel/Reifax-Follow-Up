@@ -3181,8 +3181,8 @@ function processLogin(){
 					var userid= obj.userid;
 					var object = { 'userid' : userid };
 					localStorage.setItem('userid', JSON.stringify(object));
-					$.mobile.changePage('#followingHtml');
-			
+					//$.mobile.changePage('#followingHtml');
+					checkPreAuth();
 					
 			}else{
 				alert('else obj');
