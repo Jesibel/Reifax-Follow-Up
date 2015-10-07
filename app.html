@@ -948,6 +948,8 @@ $(document).ready(function(){
 	var mainloaded2 = false;
 	var push=false;
 	
+	var selec=true;
+	
 	var storePosition = {
 		topCoordinate : null
 	}
@@ -1240,7 +1242,7 @@ $(function(){
 		localStorage.setItem('key', JSON.stringify(object));
 		$('#detallePendiente ul').empty();
 		//$("#detallePendiente").html('');
-		storePositionTask.topCoordinateTask =  $(this).offset().top-250;
+		storePositionTask.topCoordinateTask =  $(this).offset().top-87;
 		$.mobile.changePage("#detailPending");
 		//window.location.href = "index.html#detailProperties";			
     });
@@ -1289,7 +1291,7 @@ $(function(){
 		localStorage.setItem('key2', JSON.stringify(object2));
 			
 		$('#detalleCompletados ul').empty();
-		storePositionTask.topCoordinateTask =  $(this).offset().top-250;
+		storePositionTask.topCoordinateTask =  $(this).offset().top-87;
 		$.mobile.changePage("#detailCompleted");
 		//window.location.href = "index.html#detailProperties";		
     });
@@ -1802,9 +1804,9 @@ $(function(){
 					});
 					$.mobile.changePage('#followingHtml');
 					if (checkid!=''){
-						pushh=true;
-						longProperties(checkid,pushh);
-					}
+							pushh=true;
+							longProperties(checkid,pushh);
+						}
 				},
 				//si ha ocurrido un error
 				error: function(){
@@ -1900,13 +1902,13 @@ $(function(){
 					},
 					success: function(data){
 						if (data){
-							send=true;
-							document.getElementById('header_two').style.display = "none";
-							$.mobile.changePage('#followingHtml');
-							if (checkid!=''){
-								pushh=true;
-								longProperties(checkid,pushh);
-							}
+						send=true;
+						document.getElementById('header_two').style.display = "none";
+						$.mobile.changePage('#followingHtml');
+						if (checkid!=''){
+							pushh=true;
+							longProperties(checkid,pushh);
+						}
 						}
 					},
 					//si ha ocurrido un error
@@ -1959,7 +1961,7 @@ $(function(){
 					});
 					document.getElementById('header_two').style.display = "none";
 					$.mobile.changePage('#followingHtml');
-						if (checkid!=''){
+					if (checkid!=''){
 							pushh=true;
 							longProperties(checkid,pushh);
 						}
@@ -2056,9 +2058,9 @@ $(function(){
 				});
 				$.mobile.changePage('#followingHtml');
 				if (checkid!=''){
-					pushh=true;
-					longProperties(checkid,pushh);
-				}
+							pushh=true;
+							longProperties(checkid,pushh);
+						}
 				}
 			},
 			//si ha ocurrido un error
@@ -2129,9 +2131,9 @@ $(function(){
 				});
 				$.mobile.changePage('#followingHtml');
 				if (checkid!=''){
-					pushh=true;
-					longProperties(checkid,pushh);
-				}
+							pushh=true;
+							longProperties(checkid,pushh);
+						}
 			},
 			//si ha ocurrido un error
 			error: function(){
@@ -2418,7 +2420,7 @@ $(function(){
 		xdelete();
 	});
 		
-	//BOTON DELETE SEARCH CONTACT 
+	//BOTON GET CONTACT DETAIL
 	$("#getContactD").on('click', function () {
 		//alert('editar');
 		var pid = JSON.parse(localStorage.getItem('key'));
@@ -2514,7 +2516,10 @@ $(function(){
 		$("#edate").val("");			
 		$("#ehour").val("");			
 		storePosition.topCoordinate =  $(this).offset().top-47;
-		goBack();
+		if (checkid!=''){
+			pushh=true;
+			longProperties(checkid,pushh);
+		}
 	});
 		
 	$("#backContract,#backSendE,#backSendS,#backSendF,#backFCall").on('click', function () {			
@@ -3136,16 +3141,14 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 
 //$("#loginHtml").on("pageinit", function(e) {
 $( document ).on( "pageinit", "#loginHtml", function( event ) {
-	//alert('entrando al login');
 	checkPreAuth();
-	
 });
 
 function checkPreAuth() {
 	//var form = $("#loginForm");
 	
 	//var userid = JSON.parse(localStorage.getItem('userid'));
-	
+	//alert(window.localStorage["userid"]);
 	//if(user.username != undefined && pass.password != undefined) {
 	if(window.localStorage["userid"] != undefined) {
 	//if(userid.userid != undefined) {
@@ -3162,24 +3165,22 @@ function checkPreAuth() {
 }
 
 function processLogin(){
-	//alert('processLogin');
+	
 	var user = $("input#userLogin").val();
 	var pass = $("input#passLogin").val();
 	//alert(user);
-	//var userid="";
+	var userid="";
 	$.ajax({
 		//url: 'http://reifax.com/FollowupReifax/properties_validacion.php',   
-		url: 'http://www.reifax.com/resources/php/properties_validacion.php',    
+		url: 'http://reifax.com/resources/php/properties_validacion.php',    
 		type: 'POST',
 		data: { 			
 			'loginEmail': user,
 			'loginPass': pass,
-			'followupMobile': 'followupMobile'
-			//'remember': true
+			'followupMobile': 'followupMobile',
+			'remember': true
 				
-			},error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                    alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-                }
+			}
 		}).done(function (data){					
 			//alert(data);					
 			var obj = JSON.parse(data);
@@ -3292,8 +3293,6 @@ function pdf(){
 	window.open('http://www.reifax.com/login/pdf/REIFAX_TermsAndConditions.pdf', '_system', 'location=yes');
 	
  }
- 
-
 	
 </script>
 
@@ -3897,7 +3896,7 @@ function pdf(){
 			<li class="margen"><a class="filterRemove"     id="filtro_remove2" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li-->	
 			<li class="margen"><a class="deleteFollow"     id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
 			<li class="margen"><a class="newschedule"      id="nschedule"      href="#pagAddScheduleHtml">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>			 
-			<li class="margen"><a class="get-contact"      id="getContactP"     href="#">&nbsp;&nbsp;&nbsp;&nbsp;Get Contact</a></li>			 			
+			<li class="margen"><a class="get-contact"      id="getContactP"    href="#">&nbsp;&nbsp;&nbsp;&nbsp;Get Contact</a></li>			 			
 			<li class="margen"><a class="investor-factor"  id="investorFa"     href="#investor" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Investor Factor</a></li>			 
 			<li class="margen"><a class="sendContract"     id="sendContract"   href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
 			<li class="margen"><a class="sendEmail"        id="sendEmail"      href="#formEmail" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
@@ -6386,7 +6385,7 @@ function pdf(){
 		<div style="background: #fff;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a id="taskpend2" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Pendings Task</a></li>
-				<li class="item active"><a id="comp2" href="#">Completed Task</a></li>			
+				<li class="item active"><a id="taskcomp2" href="#">Completed Task</a></li>			
 			</ul>
 		</div>
 		<!--FIN TABS-->
