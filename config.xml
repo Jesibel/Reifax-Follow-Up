@@ -10,7 +10,7 @@
   <name>Reifax Follow Up</name>
 
   <description>
-  Opportunity to follow up on the properties. 
+  Opportunity to follow up on the properties. The follow up is a tool that has several tabs that will allow you to maximize your Customer relationship management (CRM) so you can manage and analyze agent or owner interactions and data. Contact Manager: This features enables you to easily manage store and find contact information, such as names, addresses and telephone numbers of your contacts and leads
   </description> 
 
   <author href="http://reifax.com" email="jesibelaranguren@gmail.com">
@@ -31,12 +31,10 @@
 
   <preference name="orientation" value="default" />
   <preference name="show-splash-screen-spinner" value="false" />
-  <preference name="android-minSdkVersion" value="14" />       <!-- JB 4.0 -->
 
-  
 
   <preference name="SplashScreen" value="splash" />
-  <preference name="SplashScreenDelay" value="2000" /> <!-- ios: if set to false, the spinner won't appear on the splash screen during app loading -->
+  <!--preference name="SplashScreenDelay" value="2000" /--> <!-- ios: if set to false, the spinner won't appear on the splash screen during app loading -->
   
  
   <!-- Define app icon for each platform. -->
@@ -90,9 +88,8 @@
   <gap:plugin name="org.apache.cordova.splashscreen" />
 
   
-  
-  <access origin="*"/>
-  <access origin="http://www.reifax.com" subdomains="true" /> 
+  <access origin="*" />
+  <access origin="http://reifax.com/" subdomains="true" />
   
   
   
