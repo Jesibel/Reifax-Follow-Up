@@ -3128,6 +3128,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 
 //$("#loginHtml").on("pageinit", function(e) {
 $( document ).on( "pageinit", "#loginHtml", function( event ) {
+	alert('conectando');
 	checkPreAuth();
 });
 
@@ -3139,23 +3140,37 @@ function checkPreAuth() {
 	//if(user.username != undefined && pass.password != undefined) {
 	if(window.localStorage["userid"] != undefined) {
 	//if(userid.userid != undefined) {
-		//alert('existe user');
+		alert('existe user');
 		//$("#username", form).val(window.localStorage["username"]);
 		//$("#password", form).val(window.localStorage["password"]);
 		//handleLogin();
 		$.mobile.changePage("#followingHtml");
 	}else{
-		//alert('no existe user');
+		alert('no existe user');
 		$.mobile.changePage("#loginHtml");
 	
 	}
 }
 
+$( document ).ajaxError(function( event, request, settings ) {
+  $.each(event, function(index, value) { 
+	alert(index + ': ' + value); 
+ });
+ $.each(request, function(index, value) { 
+	alert(index + ': ' + value); 
+ });
+ $.each(settings, function(index, value) { 
+	alert(index + ': ' + value); 
+ });
+
+});
+
 function processLogin(){
 	
 	var user = $("input#userLogin").val();
 	var pass = $("input#passLogin").val();
-	//alert(user);
+	alert(user);
+	alert(pass);
 	var userid="";
 	$.ajax({
 		//url: 'http://reifax.com/FollowupReifax/properties_validacion.php',   
@@ -3167,8 +3182,17 @@ function processLogin(){
 			'followupMobile': 'followupMobile',
 			'remember': true
 				
-			}
-		}).done(function (data){					
+			},
+		success: function(data, textStatus, jqXHR){
+			alert(data);
+				
+		},
+		
+		error: function(jqXHR, textStatus, ex) {
+			alert(textStatus + "," + ex + "," + jqXHR.responseText);
+		}
+	});
+		/*}).done(function (data){					
 			//alert(data);					
 			var obj = JSON.parse(data);
 			console.log(obj.success);
@@ -3178,7 +3202,7 @@ function processLogin(){
 						title: 'Reifax Follow Up',
 						message: 'Welcome Reifax Follow'
 					});*/
-					var userid= obj.userid;
+		/*			var userid= obj.userid;
 					var object = { 'userid' : userid };
 					localStorage.setItem('userid', JSON.stringify(object));
 					//$.mobile.changePage('#followingHtml');
@@ -3190,7 +3214,7 @@ function processLogin(){
 			}			
 			
 								
-		});
+		});*/
 		
 }
 
