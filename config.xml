@@ -22,6 +22,13 @@
    <feature name="http://api.phonegap.com/1.0/file"/>
    <feature name="http://api.phonegap.com/1.0/notification"/>
    
+   <feature name="InAppBrowser">
+    <param name="android-package" value="org.apache.cordova.InAppBrowser" />
+   </feature>
+  
+  <feature name="InAppBrowser">
+    <param name="ios-package" value="CDVInAppBrowser" />
+  </feature>
  
   <content src="index.html" />
   
@@ -35,6 +42,7 @@
 
   <preference name="SplashScreen" value="splash" />
   <preference name="SplashScreenDelay" value="10000" /> <!-- ios: if set to false, the spinner won't appear on the splash screen during app loading -->
+  
   
  
   <!-- Define app icon for each platform. -->
@@ -79,7 +87,7 @@
 
   <gap:plugin name="com.boyvanderlaak.cordova.plugin.orientationchanger" version="0.1.1" />
   
-  <gap:plugin name="org.apache.cordova.inappbrowser" version="0.5.2" />
+  <!--gap:plugin name="org.apache.cordova.inappbrowser" version="0.5.2" /-->
   
   <gap:plugin name="io.github.pwlin.cordova.plugins.fileopener" version="1.0.1" />
   
