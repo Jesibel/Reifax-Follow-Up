@@ -74,24 +74,6 @@
 <script src="resources/js/bootbox.js"></script>
 	
 	<script type="text/javascript">
-	var activePage;
-	var device=false;
-	function _onDeviceReady (){	
-		
-		activePage = $.mobile.activePage.attr('id');
-		MobileAccessibility.usePreferredTextZoom(false);
-		//alert(WURFL.form_factor);
-		if (WURFL.form_factor == "Tablet") {
-			//alert('es una tablet');
-			device=true;
-			window.plugins.orientationchanger.lockOrientation('landscape');
-			 //setTimeout(function () {navigator.splashscreen.show()},1000);
-		}else{
-			device=false;
-			window.plugins.orientationchanger.lockOrientation('portrait');
-		}
-		
-	}
 	
 function showConfirm() {
 	navigator.notification.confirm(
@@ -2883,13 +2865,13 @@ $(document).scroll(function () {
 
 
 $(document).on("pagebeforeshow","#contactsHtml",function(){	
-	filter='';
+	
 	$( "#list-contacts" ).on( "filterablebeforefilter", function ( e, data ) {
-		var $ul = $(this);
+		var $ul = $( this );
 		filter= $('#searchConta').val();
-		/*$ul.html( "" );
+		$ul.html( "" );
 		$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-        $ul.listview( "refresh" );*/
+        $ul.listview( "refresh" );
 		listadoContacts(start,settings.limit,filter);
 	});
 	
@@ -3130,9 +3112,9 @@ $(document).on("pagebeforeshow","#listadoAllContacts",function(){
 		var start=0;
 		var $ul = $( this );
 		filter= $('#searchListContact').val();
-		/*$ul.html( "" );
+		$ul.html( "" );
 		$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-        $ul.listview( "refresh" );*/
+        $ul.listview( "refresh" );
 		listadoAllContacts(start,settings.limit,filter);
 	});
 
@@ -3650,8 +3632,7 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 		font-family:Helvetica Neue,Helvetica,Arial,sans-serif;
 	}
 		
-	
-	
+
 	.form-signin{
 		max-width: 330px;
 		padding: 15px;
@@ -10191,7 +10172,17 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 </script>
 
 
-
+<script type="text/javascript">
+    document.addEventListener("deviceReady",_onDeviceReady, false);
+	
+	document.addEventListener("backbutton", function(){
+			
+		if(activePage=='followingHtml'){
+			navigator.app.exitApp();//se sale de la aplicacion
+		}
+				
+	}, false);
+</script>
 </body>
   
 </html>
