@@ -8,24 +8,6 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <title>Wait...</title>
     <script>
-		var activePage;
-		var device=false;
-		function _onDeviceReady (){	
-			
-			activePage = $.mobile.activePage.attr('id');
-			MobileAccessibility.usePreferredTextZoom(false);
-			//alert(WURFL.form_factor);
-			if (WURFL.form_factor == "Tablet") {
-				//alert('es una tablet');
-				device=true;
-				window.plugins.orientationchanger.lockOrientation('landscape');
-				 //setTimeout(function () {navigator.splashscreen.show()},1000);
-			}else{
-				device=false;
-				window.plugins.orientationchanger.lockOrientation('portrait');
-			}
-			
-		}
 		function checkPreAuth() {
 			if(window.localStorage["userid"] != undefined) {
 				alert('existe user');
