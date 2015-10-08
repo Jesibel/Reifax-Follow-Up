@@ -169,7 +169,7 @@ $(document).ready(function(){
 	document.getElementById("menuDE").style.display = "none";
 	document.getElementById("menuDE2").style.display = "none";
 	document.getElementById("sContact").style.display = "none";
-	//document.getElementById("sProperty").style.display = "none";
+	
 	document.getElementById("searchLisContact").style.display = "none"; 
 	
 	$('#next').bind('click',funciones.proccess)
@@ -313,7 +313,7 @@ $(document).ready(function(){
 		var task     = document.getElementById("taskksc").value;
 		var detail	 = document.getElementById("detailsch").value;
 
-		saveSchedule(day,hour,exectype,task,detail)
+		saveSchedule(day,hour,exectype,task,detail);
 	});
 		
 	//RESET HISTORY FOLLOW
@@ -568,89 +568,7 @@ $(document).ready(function(){
 		getfilterCompletedTask();
 	});
 
-	//COMPOSE SEND EMAIL INBOX
-	$('#sendCompose,#insertComp').on('click',function(){				
-		//sendemailInbox();
-		//alert('editar');
-		//sendEMAIL();	
-		//var id = JSON.parse(localStorage.getItem('key'));
-		//var type = JSON.parse(localStorage.getItem('key3'));
-		
-		var userid = JSON.parse(localStorage.getItem('userid'));
-		userid = userid.userid;
-		
-		var imgVal = $('#imageUploadEI').val(); 
-		$("input#userid").val(userid);
-						
 	
-		var formData 		= new FormData($("#envioEmailEI")[0]);
-		$.ajax({
-			url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
-			type: 'POST',
-			data: formData,
-			cache: false,
-			contentType: false,
-			processData: false,
-			enctype: 'multipart/form-data',
-			beforeSend: function(){
-							
-			},
-			success: function(data){
-				console.log(data);
-				console.log(data);
-				//alert('Email successfully');
-				bootbox.alert({
-					title: 'Send Email',
-					message: 'Email successfully.'
-				});
-				$.mobile.changePage('#emailHtml');
-			},
-				//si ha ocurrido un error
-			error: function(){
-							
-			}
-		}); // End ajax
-		
-	});
-		
-	//COMPOSE SEND EMAIL OUTBOX
-	$('#sendComposeO,#insertCompO').on('click',function(){				
-		//sendemailOutbox();
-		var userid = JSON.parse(localStorage.getItem('userid'));
-		userid = userid.userid;
-		
-		var imgVal = $('#imageUploadEO').val(); 
-		$("input#userid").val(userid);
-						
-		var formData 		= new FormData($("#envioEmailEO")[0]);
-		$.ajax({
-			url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
-			type: 'POST',
-			data: formData,
-			cache: false,
-			contentType: false,
-			processData: false,
-			enctype: 'multipart/form-data',
-			beforeSend: function(){
-							
-			},
-			success: function(data){
-				console.log(data);
-				console.log(data);
-				//alert('Email successfully');
-				bootbox.alert({
-					title: 'Send Email',
-					message: 'Email successfully.'
-				});
-				$.mobile.changePage('#emailHtml');
-			},
-				//si ha ocurrido un error
-			error: function(){
-							
-			}
-		}); // End ajax
-		
-	});
 		
 	//SEND REPLY EMAIL INBOX
 	$('#sendReplyEmail').on('click',function(){				
