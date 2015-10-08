@@ -1,0 +1,436 @@
+	.ui-tabs{
+		padding: 0em;
+	}
+	ui-page-theme-a .ui-btn:hover.ui-page-theme-a .ui-btn:hover, html .ui-bar-a .ui-btn:hover, html .ui-body-a .ui-btn:hover, html body .ui-group-theme-a .ui-btn:hover, html head+body .ui-btn.ui-btn-a:hover{
+		background-color:#ededed;
+		border-color:#ddd;
+		color: #333;
+		text-shadow:0 1px 0 #f3f3f3;
+		font-size: 14px;
+	}
+	.ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head+body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on:after, html .ui-bar-a .ui-checkbox-on:after, html .ui-body-a .ui-checkbox-on:after, html body .ui-group-theme-a .ui-checkbox-on:after, .ui-btn.ui-checkbox-on.ui-btn-a:after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active{
+		background-color: transparent;
+		border-color: transparent;
+		color: #333; 
+		text-shadow: none;
+	}
+		
+	.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited{
+		background-color: transparent;
+		border-color: transparent;
+		color: #333;
+		text-shadow: 0 1px 0 #f3f3f3;
+		font-size: 14px;
+	}
+	.ui-page-theme-a a:visited, html .ui-bar-a a:visited, html .ui-body-a a:visited, html body .ui-group-theme-a a:visited{
+		color:transparent;
+	}
+	.ui-content{
+		padding: 0em;
+	}
+	.col-md-4{
+		width:15%;
+	}
+	h3, .h3{
+		font-size:18px;
+	}
+	.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper{
+		background-color: #fff;
+	}
+	menu:hover{
+		background:transparent;
+	}
+	.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn:hover{
+		background-color: transparent;
+		border:transparent;
+	}
+	.page_result li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_contact li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_contactAll li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_contactList li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_emailInbox li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_emailOutbox li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_correo li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_history li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_schedule li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_pending li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_completed li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_det_pending li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_infoCorreo li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+		
+	.page_detalle_call li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.foll{
+		height:50px;
+	}
+	.date{
+		/*left:1000px;*/
+	}
+	.search{
+		margin-left:1325px;
+		margin-top:-52px;
+	}
+	.row, .thumbnails{
+		margin-left:-10px;
+	}
+	.ui-mobile .ui-page{
+		min-height: 100px !important;
+	}
+	div.content {			
+		background-color: #fff;
+	}
+	div.content.taphold {
+		background-color: #7ACEF4;
+	}
+	.content.large {
+		-webkit-transform: scale(1.25);
+		transform: scale(1.25);
+	}
+	.box {			
+		background-image: url('http://reifax.com/FollowupReifax/img/menu-w.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+	.box2 {			
+		background-image: url('http://reifax.com/FollowupReifax/img/delete-w.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+	.box3 {			
+		background-image: url('http://reifax.com/FollowupReifax/img/aceptar-w.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+	.box4 {			
+		background-image: url('http://reifax.com/FollowupReifax/img/read_email-48.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+	.box5 {			
+		background-image: url('http://reifax.com/FollowupReifax/img/readed_email-48.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+	.box6 {			
+		background-image: url('http://reifax.com/FollowupReifax/img/edit-32.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+	.box7 {			
+		background-image: url('http://reifax.com/FollowupReifax/img/completed-48.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+		
+	.fileUpload {
+		position: relative;
+		overflow: hidden;
+		margin-top: 10px;
+	}
+	.fileUpload input.upload {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 0;
+		padding: 0;
+		font-size: 20px;
+		cursor: pointer;
+		opacity: 0;
+		filter: alpha(opacity=0);
+	}
+	.fileUpload input.another {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 0;
+		padding: 0;
+		font-size: 20px;
+		cursor: pointer;
+		opacity: 0;
+		filter: alpha(opacity=0);
+	}
+	.btn{
+		font-size: 13px;
+	}
+	.active{
+		border-bottom: 4px solid #8ab420;
+	}
+
+	body{
+		-webkit-user-select: none;	
+	}
+
+	.hidden { 
+		visibility: hidden; display: none;
+	}
+	.unhidden { 
+		visibility: visible; display: block;
+	}
+	.page_emailInbox li {
+		-webkit-transform: translateZ(0);
+	}
+	.page_emailOutbox li {
+		-webkit-transform: translateZ(0);
+	}
+	.seenB{
+		font-weight:bold;
+	}
+	.seenN{
+		font-weight:normal;
+	}
+	.badge{
+		/*border-radius: 5px 5px 5px 5px;*/
+		font-family: Lucida Console, Monaco, monospace;
+		background-color: #a4a4a4;
+		font-size: 15px;
+		font-weight: normal;
+		margin-left:-6px;
+		margin-top:-5px;
+	}
+	.line{
+		border-right: 1px solid #777;
+		margin-top: 3px;
+	}
+	.margen{
+		border-bottom: 1px solid #ccc;
+	}
+	.item{
+		height:40px;
+	}
+	table{
+		width:100%;
+	}
+	.mobipick-groups input {
+		height:30px;
+	}
+	.input-group-addon {
+		background-color:#fff;
+		border:1px solid #fff; 
+	}
+	input.transparent-input{
+		background-color:transparent !important;
+		border:none !important;
+	}
+	.ui-selectmenu-button{
+		width:100% !important;
+	}
+	.ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a{
+		border-color:transparent;
+	}
+		
+	.texta1{
+		height:90px !important;
+	}
+		
+	.texta2{
+		height:180px !important;
+	}
+		
+	.hide{
+		display:none;
+	}
+	.btn2 {
+		display: inline-block;
+		margin-bottom: 0;
+		font-size: 14px;
+		line-height: 20px;
+		
+		vertical-align: middle;
+		cursor: pointer;
+		border: 1px solid #bbbbbb;
+		border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+		border-bottom-color: #a2a2a2;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+	}
+	.btn2 {
+		border-color: #c5c5c5;
+		/*border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);*/
+		border-color:transparent;
+	}
+	.btn-large2 {
+		/*padding: 11px 19px;*/
+		font-size: 17.5px;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+	}
+	#bodyEmail p {
+		font-size:14px;
+		font-family:Helvetica Neue,Helvetica,Arial,sans-serif;
+	}
+		
+
+	.form-signin{
+		max-width: 330px;
+		padding: 15px;
+		margin: 0 auto;
+	}
+	.form-signin .form-signin-heading, .form-signin .checkbox{
+		margin-bottom: 10px;
+	}
+	.form-signin .checkbox{
+		font-weight: normal;
+	}
+	.form-signin .form-control{
+		position: relative;
+		font-size: 16px;
+		height: auto;
+		padding: 10px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	.form-signin .form-control:focus{
+		z-index: 2;
+	}
+	.form-signin input[type="text"]{
+		margin-bottom: -1px;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.form-signin input[type="password"]{
+		margin-bottom: 10px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+	.account-wall{
+		margin-top: 20px;
+		padding: 40px 0px 20px 0px;
+		background-color: #f7f7f7;
+		-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	}
+	.login-title{
+		color: #555;
+		font-size: 18px;
+		font-weight: 400;
+		display: block;
+	}
+	.profile-img{
+		width: 96px;
+		height: 96px;
+		margin: 0 auto 10px;
+		display: block;
+		-moz-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		border-radius: 50%;
+	}
+	.need-help{
+		margin-top: 10px;
+	}
+	.new-account{
+		display: block;
+		margin-top: 10px;
+	}
+	.span5{
+		width: 230px;
+		height: 30px;
+	}
