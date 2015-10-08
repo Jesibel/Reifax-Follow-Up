@@ -3127,10 +3127,10 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 
 
 //$("#loginHtml").on("pageinit", function(e) {
-$( document ).on( "pageinit", "#loginHtml", function( event ) {
+/*$( document ).on( "pageinit", "#loginHtml", function( event ) {
 	alert('conectando');
 	checkPreAuth();
-});
+});*/
 
 function checkPreAuth() {
 	//var form = $("#loginForm");
@@ -3179,13 +3179,17 @@ function processLogin(){
 		data: { 			
 			'loginEmail': user,
 			'loginPass': pass,
-			'followupMobile': 'followupMobile',
-			'remember': true
+			'followupMobile': 'followupMobile'
+			//'remember': true
 				
 			},
 		success: function(data, textStatus, jqXHR){
 			alert(data);
-				
+			var obj = JSON.parse(data);
+			var userid= obj.userid;
+			var object = { 'userid' : userid };
+			localStorage.setItem('userid', JSON.stringify(object));
+			$.mobile.changePage("#followingHtml");		
 		},
 		
 		error: function(jqXHR, textStatus, ex) {
