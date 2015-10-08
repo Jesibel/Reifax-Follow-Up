@@ -67,7 +67,7 @@ function getAgentMakeCall(id){
 			'pid': pid												
 			},
 			success: function(datas, textStatus, jqXHR){
-				alert(datas);
+				//alert(datas);
 				var objec = JSON.parse(datas);
 					//console.debug(obj2);
 					if(objec.success) {								 
@@ -1346,8 +1346,9 @@ function pagSearchContact(pid){
 		//alert('loading')
 		$.mobile.loading().show();	
 	}
-	
-	listadoAllContacts(start,settings.limit);
+	var start=0;
+	var filter='';
+	listadoAllContacts(start,settings.limit,filter);
 	$.mobile.changePage('#listadoAllContacts');
 	//listadoAllContacts(start,settings.limit);
 	
@@ -1365,8 +1366,9 @@ function pagSearchContact2(pid){
 		//alert('loading')
 		$.mobile.loading().show();	
 	}
-	
-	listadoAllContacts(start,settings.limit);
+	var start=0;
+	var filter='';
+	listadoAllContacts(start,settings.limit,filter);
 	$.mobile.changePage('#contact-tablet');
 	//listadoAllContacts(start,settings.limit);
 	
@@ -1376,7 +1378,8 @@ function pagSearchContact2(pid){
 function xdelete(){
 	//alert('delete search contact');
 	//$("#listadoAllContacto ul").empty();	
-	listadoAllContacts(start,settings.limit);
+	var filter='';
+	listadoAllContacts(start,settings.limit,filter);
 	$.mobile.changePage('#listadoAllContacts');
 	
 }
@@ -1404,7 +1407,7 @@ function sendemail(id){
 			'pid': pid 			
 			},
 			success: function(data, textStatus, jqXHR){
-				alert(data);
+				//alert(data);
 				
 				/*if(data){
 					alert('properties delete');
@@ -1438,7 +1441,11 @@ function deleteProperty(id){
 			success: function(data, textStatus, jqXHR){
 				//alert(data);
 				if(data){
-					alert('properties delete');
+					//alert('properties delete');
+					bootbox.alert({
+						title: 'Delete Contact',
+						message: 'Properties Sucessfully Deleted'
+					});
 					//location.reload(true);
 					$.mobile.changePage("#detailProperties");
 				}else{
@@ -1770,7 +1777,7 @@ function longProperties(id,pushh){
 					document.getElementById('header_two').style.display = "none";
 					document.getElementById('logo').style.display = "none";
 								
-					div2.removeChild(div);
+					//div2.removeChild(div);
 				   
 					//fin aki				  
 					//}
@@ -1885,13 +1892,42 @@ function longProperties(id,pushh){
 		}else{
 
 			if (pushh==true){
-				//alert('true none');
+				//alert('true pushh');
+		
+				if (selec==undefined){
+						//alert("encontrado2"); 
+						var checkid_old=""+checkid;
+						var myarray = checkid_old.split(",");
+								
+						//aki quiero borrar vector[i] 
+						function removeByIndex(checkid, id) {
+							checkid.splice(id, checkid[i]); //nro de elemento checkid[i]
+						}
+					  
+						//alert("Array before removing elements: "+checkid);
+						removeByIndex(checkid, i);
+						
+							
+						for (var f = 0, len = myarray.length; f<len;f++){
+							document.getElementById('primero'+myarray[f]).style.backgroundColor = 'transparent';
+		
+						}
+								
+						document.getElementById('header_two').style.display = "none";
+						document.getElementById('logo').style.display = "none";
+
+				}else{
+					document.getElementById('primero'+id).style.background = 'transparent';
+				}
+				
 				document.getElementById('header_two').style.display = "none";
 				document.getElementById('logo').style.display = "none";
+				//document.getElementById('primero'+id).style.background = 'transparent';
 				checkid=[];
 				var selec=true;
+				
 			}else{		
-				//alert('false block');
+				//alert('false pushh');
 				var ch =checkid.push(id);				
 				document.getElementById('primero'+id).style.background = '#A9D0F5';
 				document.getElementById('primero'+id).style.borderBottom = '2px solid #ccc;';
@@ -1916,6 +1952,7 @@ function listadoProperty(start, limit){
 		//var start = 0; 
 		//var limit = 25; 
 		//$("#content ul").empty();	
+		
 		
 		$("#coun").prop("selected", true);
 		 var county 	= $("#coun option:selected").val();
@@ -1966,7 +2003,7 @@ function listadoProperty(start, limit){
 			url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
 			type: 'POST',
 		   data: { 
-			'typeFollow': 'B', 
+			'typeFollow': 'BS', 
 			'userid': userid,
 			'address': address,
 			'zip': zip,
@@ -1993,6 +2030,8 @@ function listadoProperty(start, limit){
                 var output1 = "";
 				var no="NO";
 				var none="None";
+				$.mobile.loading().hide();
+				loader=0;
 				
                 //recorremos cada propiedad
 				//output += '<ul style="list-style-type: none;margin-left:-40px;" class="page_result">';
@@ -3051,6 +3090,9 @@ function scheduleDetail(start,limit,id){
 	var userid = JSON.parse(localStorage.getItem('userid'));
 		userid = userid.userid;
 	
+	/*var hour = JSON.parse(localStorage.getItem('hour'));
+	hour=hour.hour;*/
+	
 	busy=true;
 	$.ajax({
 		url: 'http://reifax.com//mreifax/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',  
@@ -3140,7 +3182,7 @@ function scheduleDetail(start,limit,id){
 							var res = hora[0].replace("0", "");
 							var hour3= res+':'+hora[1]+' AM';
 						}else{
-							var hour3= hour.hour+' AM'
+							var hour3= hora+' AM'
 						}
 							
 					}
@@ -3254,6 +3296,7 @@ function scheduleDetail(start,limit,id){
 					$("#schedule ul").html('No true! ');
 				}			
 		});
+		
 
 }
 
@@ -3435,7 +3478,7 @@ function emailDetail(start,limit,id){
 					}
 					else if(datos['seen']==1){
 					output += '<li  id="primero'+datos['idmail']+'" idmail='+datos['idmail']+' idseen='+datos['seen']+' idemail="'+datos['from_msg']+'" idname="'+datos['fromName_msg']+'" class="seenN" style="list-style: none;border-bottom: 2px solid #ccc;margin-top:5px;">';     
-					output +='<div style="height:20px;margin-bottom:15px;padding-left:5px;padding-right:5px;" class="col-xs-12 col-sm-6">';
+					output +='<div style="height:20px;margin-bottom:15px;" class="col-xs-12 col-sm-6">';
 									
 						if (datos['task']==2){
 							output +='<img  style="margin-right:10px;" src="http://www.reifax.com/FollowupReifax/img/notes/cell_az-80.png" width=30px height=30px>';	
@@ -3495,7 +3538,7 @@ function emailDetail(start,limit,id){
 							output +='<div class="row">';
 								
 								output +='<div class="col-xs-12 col-sm-12 col-md-12 ">';									
-									output +='<div style="font-size:16px;padding-left:5px;padding-right:5px;" class="col-md-12">';	
+									output +='<div style="font-size:16px;" class="col-md-12">';	
 
 										if (datos['to_msg']==null){
 											output +=''+datos['fromName_msg']+'';	
@@ -3536,11 +3579,11 @@ function emailDetail(start,limit,id){
 							//alert(obj.total+' >='+start);
 							if (obj.total!=''){
 								$("#correofollow ul").append(output);
-								//$("#correolistfollow ul").append(output);
+								$("#correolistfollow ul").append(output);
 								//$("#emailfollow-tablet ul").append(output);
 							}else{
 								$("#correofollow ul").html('No result! ');
-								//$("#correolistfollow ul").html('No result! ');
+								$("#correolistfollow ul").html('No result! ');
 								//$("#emailfollow-tablet ul").html('No result! ');
 								
 							}
@@ -3565,6 +3608,10 @@ function goBack(){
 	$("#contactfaxx select").empty();	
 	$("#tempschedule select").empty();	
 	$("#tschedule select").empty();	
+			
+	
+	$("#edate").val();			
+	$("#ehour").val("");	
 	
 	$('#detalleContactoAll ul').empty();
 	
@@ -3614,8 +3661,12 @@ function sendEmail(){
 			//alert(data);
 				
 			if(data){
-				alert('Email successfully');
-				$.mobile.changePage('index.html#detailEmail');
+				//alert('Email successfully');
+				bootbox.alert({
+						title: 'Email',
+						message: 'Email Sucessfully Inserted'
+					});
+				$.mobile.changePage('#detailEmail');
 			}else{
 				alert('error');
 			}
@@ -4026,6 +4077,7 @@ function getContactSchedule(id,det){
 function getContactSms(id,det){
 	
 	//var userid=3213;
+	//alert(id);
 	var userid = JSON.parse(localStorage.getItem('userid'));
 		userid = userid.userid;
 	
@@ -4817,10 +4869,18 @@ function sendEMAIL(){
 			//alert(data);
 				
 			if(data){
-				alert('Email successfully');
+				//alert('Email successfully');
+				bootbox.alert({
+					title: 'Email',
+					message: 'Email Sucessfully'
+				});
 				$("#formEmail").modal('hide');
 				$('#menuProperty').panel("close");
 				$.mobile.changePage('#followingHtml');
+				if (checkid!=''){
+						pushh=true;
+						longProperties(checkid,pushh);
+					}
 				
 			}else{
 				alert('error');
@@ -4849,11 +4909,11 @@ function sendSMS(){
 		var typeFollow = typeFollow.type;
 		var id = JSON.parse(localStorage.getItem('key'));
 		var parcelid =id.parcelid;
-	}else if (checkid==1){
+	}else if (checkid.length==1){
 		var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
 		var typeFollow = typeFollow.typefollow;
 		var pid = JSON.parse(localStorage.getItem('pid'));
-		var parcelid =pid.parcelid;
+		var parcelid =pid.pid;
 	}else{
 		var parcelid =checkid;
 		ciclo= 'multi';
@@ -4906,7 +4966,10 @@ function sendSMS(){
 				if(data){
 					send=true;
 					$.mobile.changePage('#followingHtml');
-					
+					if (checkid!=''){
+						pushh=true;
+						longProperties(checkid,pushh);
+					}
 				}else{
 					alert('error');
 				}
@@ -4919,7 +4982,11 @@ function sendSMS(){
 		}
 		
 		if(send==true){
-			alert('SMS successfully');
+			//alert('SMS successfully');
+			bootbox.alert({
+				title: 'Send SMS',
+				message: 'SMS Sucessfully send'
+			});
 		}
 	
 	}else{
@@ -4944,8 +5011,16 @@ function sendSMS(){
 				//alert(data);
 					
 				if(data){
-					alert('SMS successfully');
+					//alert('SMS successfully');
+					bootbox.alert({
+						title: 'Send SMS',
+						message: 'SMS Sucessfully send'
+					});
 					$.mobile.changePage('#followingHtml');
+					if (checkid!=''){
+						pushh=true;
+						longProperties(checkid,pushh);
+					}
 					
 				}else{
 					alert('error');
@@ -4973,11 +5048,11 @@ function sendSMS_SCHEDULE(id){
 		var typeFollow = typeFollow.type;
 		var id = JSON.parse(localStorage.getItem('key'));
 		var parcelid =id.parcelid;
-	}else if (checkid==1){
+	}else if (checkid.length==1){
 		var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
 		var typeFollow = typeFollow.typefollow;
 		var pid = JSON.parse(localStorage.getItem('pid'));
-		var parcelid =pid.parcelid;
+		var parcelid =pid.pid;
 	}else{
 		var parcelid =checkid;
 		ciclo= 'multi';
@@ -5065,6 +5140,10 @@ function sendSMS_SCHEDULE(id){
 					if(data){
 						send=true;
 						$.mobile.changePage('#followingHtml');
+						if (checkid!=''){
+							pushh=true;
+							longProperties(checkid,pushh);
+						}
 					}else{
 						alert('error');
 					}
@@ -5077,7 +5156,11 @@ function sendSMS_SCHEDULE(id){
 		}
 		
 		if(send==true){
-			alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+			//alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+			bootbox.alert({
+				title: 'Follow Schedule Task',
+				message: 'All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab'
+			});
 		}
 
 	}else{
@@ -5111,8 +5194,17 @@ function sendSMS_SCHEDULE(id){
 				//alert(data);
 					
 				if(data){
-					alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+					//alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+					bootbox.alert({
+						title: 'Follow Schedule Task',
+						message: 'All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab'
+					});
 					$.mobile.changePage('#followingHtml');
+					//alert(checkid);
+					if (checkid!=''){
+						pushh=true;
+						longProperties(checkid,pushh);
+					}
 					
 				}else{
 					alert('error');
@@ -5136,7 +5228,7 @@ function sendFAX(){
 		var typeFollow = typeFollow.type;
 		var id = JSON.parse(localStorage.getItem('key'));
 		var parcelid =id.parcelid;
-	}else if (checkid==1){
+	}else if (checkid.length==1){
 		var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
 		var typeFollow = typeFollow.typefollow;
 		var pid = JSON.parse(localStorage.getItem('pid'));
@@ -5191,6 +5283,10 @@ function sendFAX(){
 					if(data){
 						send=true;
 						$.mobile.changePage('#followingHtml');
+						if (checkid!=''){
+							pushh=true;
+							longProperties(checkid,pushh);
+						}
 					}else{
 						alert('error');
 					}
@@ -5202,7 +5298,11 @@ function sendFAX(){
 		}
 		
 		if(send==true){
-			alert('Send Fax successfully');
+			//alert('Send Fax successfully');
+			bootbox.alert({
+				title: 'Send Fax',
+				message: 'Send Fax successfully'
+			});
 			$("#formFax").modal('hide');
 			$('#menuProperty').panel("close");
 		}
@@ -5222,10 +5322,18 @@ function sendFAX(){
 				//alert(data);
 					
 				if(data){
-					alert('Send Fax successfully');
+					//alert('Send Fax successfully');
+					bootbox.alert({
+						title: 'Send Fax',
+						message: 'Send Fax successfully'
+					});
 					$("#formFax").modal('hide');
 					$('#menuProperty').panel("close");
 					$.mobile.changePage('#followingHtml');
+					if (checkid!=''){
+						pushh=true;
+						longProperties(checkid,pushh);
+					}
 					
 				}else{
 					alert('error');
@@ -5886,9 +5994,9 @@ function getComboSchedule(idtemp){
 		if (checkid==''){
 			var id = JSON.parse(localStorage.getItem('key'));
 			var parcelid =id.parcelid;
-		}else if (checkid==1){
+		}else if (checkid.length==1){
 			var pid = JSON.parse(localStorage.getItem('pid'));
-			var parcelid =pid.parcelid;
+			var parcelid =pid.pid;
 		}else{
 			var parcelid =checkid;
 			none= 'none';	
@@ -6357,7 +6465,7 @@ function usedContact(){
 			'agentid': agentid.agentid
 		}
 	}).done(function (data){
-		alert(data);
+		//alert(data);
 		
 		var obj = JSON.parse(data);
 		//alert(obj.success);
@@ -6555,8 +6663,23 @@ function getInvestor2(){
 	$("#roundto2").prop("selected", true);
 	var roundto = $("#roundto2 option:selected").val();
 	
-	var pid = JSON.parse(localStorage.getItem('key'));
-	//var userid=3213;
+	
+	if (checkid==''){
+		var typeFollow = JSON.parse(localStorage.getItem('key3'));
+		var typeFollow = typeFollow.type;
+		var id = JSON.parse(localStorage.getItem('key'));
+		var parcelid =id.parcelid;
+	}else if (checkid.length==1){
+		var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
+		var typeFollow = typeFollow.typefollow;
+		var pid = JSON.parse(localStorage.getItem('pid'));
+		var parcelid =pid.pid;
+	}else{
+		var parcelid =checkid;
+		ciclo= 'multi';
+		//alert(parcelid);
+	}
+	
 	var userid = JSON.parse(localStorage.getItem('userid'));
 		userid = userid.userid;
 	
@@ -6565,14 +6688,24 @@ function getInvestor2(){
 		type: 'POST',
 		data: { 
 			'userid':userid,
-			'pids':pid.parcelid
+			'pids':parcelid
 			
 		}
 	}).done(function (data){
-		alert('Investor Factor ');
-		$.mobile.changePage('#followingHtml');
-		//$("#offprice").val(data);
-			
+		var obj2 = JSON.parse(data);
+		//console.debug(obj2);
+		if(obj2.success) {	
+			bootbox.alert({
+				title: 'Investor Factor',
+				message: 'Investor Factor successfully'
+			});
+			$.mobile.changePage('#followingHtml');
+			$('#menuProperty').panel("close");
+			if (checkid!=''){
+				pushh=true;
+				longProperties(checkid,pushh);
+			}
+		}	
 	});
 
 }
@@ -6580,17 +6713,17 @@ function getInvestor2(){
 
 function sendContract(){
 	var ciclo='';
-	
+	console.log(checkid.length);
 	if (checkid==''){
 		var typeFollow = JSON.parse(localStorage.getItem('key3'));
 		var typeFollow = typeFollow.type;
 		var id = JSON.parse(localStorage.getItem('key'));
 		var parcelid =id.parcelid;
-	}else if (checkid==1){
+	}else if (checkid.length==1){
 		var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
 		var typeFollow = typeFollow.typefollow;
 		var pid = JSON.parse(localStorage.getItem('pid'));
-		var parcelid =pid.parcelid;
+		var parcelid =pid.pid;
 	}else{
 		var parcelid =checkid;
 		ciclo= 'multi';
@@ -6699,6 +6832,10 @@ function sendContract(){
 					if(data){
 						send=true;
 						$.mobile.changePage('#followingHtml');
+						if (checkid!=''){
+							pushh=true;
+							longProperties(checkid,pushh);
+						}
 							
 					}else{
 						alert('error data');
@@ -6710,7 +6847,11 @@ function sendContract(){
 			});
 		}
 		if(send==true){
-			alert('Send Contract successfully');
+			//alert('Send Contract successfully');
+			bootbox.alert({
+				title: 'Send Contract',
+				message: 'Send Contract Sucessfully'
+			});
 		}
 		
 	}else{
@@ -6759,8 +6900,16 @@ function sendContract(){
 					//alert(data);
 							
 					if(data){
-						alert('Send Contract successfully');
+						//alert('Send Contract successfully');
+						bootbox.alert({
+							title: 'Send Contract',
+							message: 'Send Contract Sucessfully'
+						});
 						$.mobile.changePage('#followingHtml');
+						if (checkid!=''){
+							pushh=true;
+							longProperties(checkid,pushh);
+						}
 							
 					}else{
 						alert('error data');
@@ -6780,16 +6929,21 @@ function sendContract(){
 
 function sendContract_Schedule(){
 	var ciclo ='';
+	console.log(checkid.length);
 	if (checkid==''){
 		var typeFollow = JSON.parse(localStorage.getItem('key3'));
 		var typeFollow = typeFollow.type;
 		var id = JSON.parse(localStorage.getItem('key'));
 		var parcelid =id.parcelid;
-	}else{
+	}else if (checkid.length==1){
 		var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
 		var typeFollow = typeFollow.typefollow;
 		var pid = JSON.parse(localStorage.getItem('pid'));
 		var parcelid =pid.pid;
+	}else{
+		var parcelid =checkid;
+		ciclo= 'multi';
+		//alert(parcelid);
 	}
 	
 	var task = JSON.parse(localStorage.getItem('task'));
@@ -6819,11 +6973,6 @@ function sendContract_Schedule(){
 			
 	}
 	
-	//alert(id.parcelid);
-	if (id.parcelid==''){
-		ciclo= 'multi';
-		alert('multi');
-	}
 	
 	var cadena="";
 	var check="";
@@ -6886,7 +7035,7 @@ function sendContract_Schedule(){
 			'ohour': hour3,
 			'parcelid': parcelid,
 			'typeExec': exectype.exectype,
-			'status': '',
+			'status': 'PENDING/PENDING',
 			'stype': 'insert',
 			'followUpReifax': 1,
 			'withContract': 'on',
@@ -6928,9 +7077,16 @@ function sendContract_Schedule(){
 			//alert(data);
 					
 			if(data){
-				alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+				//alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+				bootbox.alert({
+					title: 'Send Contract Task',
+					message: 'All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab'
+				});
 				$.mobile.changePage('#followingHtml');
-					
+				if (checkid!=''){
+					pushh=true;
+					longProperties(checkid,pushh);
+				}	
 			}else{
 				alert('error data');
 			}
@@ -6944,133 +7100,219 @@ function sendContract_Schedule(){
 }
 
 
-function processLogin(){
-	
-	var user = $("input#userLogin").val();
-	var pass = $("input#passLogin").val();
-	var userid="";
-	$.ajax({
-		//url: 'http://reifax.com/FollowupReifax/properties_validacion.php',   
-		url: 'http://reifax.com/resources/php/properties_validacion.php',    
-		type: 'POST',
-		data: { 			
-			'loginEmail': user,
-			'loginPass': pass,
-			'followupMobile': 'followupMobile',
-			'remember': true
-				
-			}
-		}).done(function (data){					
-			//alert(data);					
-			var obj = JSON.parse(data);
-			console.log(obj.success);
-			if(obj.success) {			
-					alert('Welcome Reifax Follow');		
-					var userid= obj.userid;
-					var object = { 'userid' : userid };
-					localStorage.setItem('userid', JSON.stringify(object));
-					$.mobile.changePage('#followingHtml');
-			
-					
-			}else{
-				alert('else obj');
-				$.mobile.changePage('#loginHtml');
-			}			
-			
-								
-		});
-		
-}
-
 
 function getContact(pid){
 	
+	var ciclo ='';
 	//var userid=3213;
 	var userid = JSON.parse(localStorage.getItem('userid'));
 		userid = userid.userid;
 	
-	$.ajax({
-		url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/checkParcelidMlsresidential.php',  
-		type: 'POST',
-	data: { 						
-		'userid': userid,
-		'pids': pid, 
-		'wheremls': true, 
-	}}).done(function (data){					
-			//alert(data);					
-			var obj2 = JSON.parse(data);
-			//console.debug(obj2);
-			if(obj2.success) {								 
-				var agent = "";                                                                                                                                                                   
-				var agentph = "";                                                                                                                                                                   
-				var agentcell = "";                                                                                                                                                                   
-				var agentfax = "";                                                                                                                                                                   
-				var agentemail = "";                                                                                                                                                                   
-				var agenttollfree = "";                                                                                                                                                                   
-				var office = "";                                                                                                                                                                   
-				var officeph = "";                                                                                                                                                                   
-				var officefax = "";                                                                                                                                                                   
-				var officeemail = "";                                                                                                                                                                   
-				var officetollfree = "";                                                                                                                                                                   
-				                                                                                                                                                                                                                                                                                                                                   
-				var no="no";
-				var yes="yes";
-				var NOSPone="NOSPone";
-				console.debug(obj2.agent);
-				
-				agent +=''+obj2.agent+'';
-				agentph +=''+obj2.agentph+'';
-				agentcell +=''+obj2.agentcell+'';
-				agentfax +=''+obj2.agentfax+'';
-				agentemail +=''+obj2.agentemail+'';
-				agenttollfree +=''+obj2.agenttollfree+'';
-				office +=''+obj2.office+'';
-				officeph +=''+obj2.officeph+'';
-				officefax +=''+obj2.officefax+'';
-				officeemail +=''+obj2.officeemail+'';
-				officetollfree +=''+obj2.officetollfree+'';
-				
-				
-				$.ajax({
-				url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_getcontacts.php?updatecontact='+no+'&blockproperties='+yes+'&sp='+NOSPone+'',  
-				type: 'POST',
-				data: { 						
-					'pids': pid, 
-					'agent':agent,
-					'agentph':agentph,
-					'agentcell':agentcell,
-					'agentfax':agentfax,
-					'agentemail':agentemail,
-					'agenttollfree':agenttollfree,
-					'office':office,
-					'officeph':officeph,
-					'officefax':officefax,
-					'officeemail':officeemail,
-					'officetollfree':officetollfree,
-					'runspider':true,
-					'mlsresidential':true,
-					'userid':3213 
-				}}).done(function (data){					
+	if (checkid==''){
+		var typeFollow = JSON.parse(localStorage.getItem('key3'));
+		var typeFollow = typeFollow.type;
+		var id = JSON.parse(localStorage.getItem('key'));
+		var parcelid =id.parcelid;
+	}else if (checkid.length==1){
+		var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
+		var typeFollow = typeFollow.typefollow;
+		var pid = JSON.parse(localStorage.getItem('pid'));
+		var parcelid =pid.pid;
+	}else{
+		var parcelid =checkid;
+		ciclo= 'multi';
+		//alert(parcelid);
+	}
+	
+	if (ciclo=='multi'){
+		var idaux=0;
+		
+		for(i=0;i<checkid.length;i++){
+			$.ajax({
+			url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/checkParcelidMlsresidential.php',  
+			type: 'POST',
+			data: { 						
+				'userid': userid,
+				'pids': checkid[i], 
+				'wheremls': true, 
+			}}).done(function (data){					
 					//alert(data);					
 					var obj2 = JSON.parse(data);
 					//console.debug(obj2);
 					if(obj2.success) {								 
-						alert('The System update the properties`s contact. '+obj2.blockproperties+' properties blocked');				
-						$.mobile.changePage('#followingHtml');
+						var agent = "";                                                                                                                                                                   
+						var agentph = "";                                                                                                                                                                   
+						var agentcell = "";                                                                                                                                                                   
+						var agentfax = "";                                                                                                                                                                   
+						var agentemail = "";                                                                                                                                                                   
+						var agenttollfree = "";                                                                                                                                                                   
+						var office = "";                                                                                                                                                                   
+						var officeph = "";                                                                                                                                                                   
+						var officefax = "";                                                                                                                                                                   
+						var officeemail = "";                                                                                                                                                                   
+						var officetollfree = "";                                                                                                                                                                   
+																																																																																						   
+						var no="no";
+						var yes="yes";
+						var NOSPone="NOSPone";
+						console.debug(obj2.agent);
+						
+						agent +=''+obj2.agent+'';
+						agentph +=''+obj2.agentph+'';
+						agentcell +=''+obj2.agentcell+'';
+						agentfax +=''+obj2.agentfax+'';
+						agentemail +=''+obj2.agentemail+'';
+						agenttollfree +=''+obj2.agenttollfree+'';
+						office +=''+obj2.office+'';
+						officeph +=''+obj2.officeph+'';
+						officefax +=''+obj2.officefax+'';
+						officeemail +=''+obj2.officeemail+'';
+						officetollfree +=''+obj2.officetollfree+'';
+						
+						
+						$.ajax({
+						url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_getcontacts.php?updatecontact='+no+'&blockproperties='+yes+'&sp='+NOSPone+'',  
+						type: 'POST',
+						data: { 						
+							'pids': checkid[i], 
+							'agent':agent,
+							'agentph':agentph,
+							'agentcell':agentcell,
+							'agentfax':agentfax,
+							'agentemail':agentemail,
+							'agenttollfree':agenttollfree,
+							'office':office,
+							'officeph':officeph,
+							'officefax':officefax,
+							'officeemail':officeemail,
+							'officetollfree':officetollfree,
+							'runspider':true,
+							'mlsresidential':true,
+							'userid':userid 
+						}}).done(function (data){					
+							//alert(data);					
+							var obj2 = JSON.parse(data);
+							//console.debug(obj2);
+							if(obj2.success) {								 
+								//alert('The System update the properties`s contact. '+obj2.blockproperties+' properties blocked');				
+								bootbox.alert({
+									title: 'Get Contact',
+									message: 'The System update the properties`s contact. '+obj2.blockproperties+' properties blocked'
+								});
+								$.mobile.changePage('#followingHtml');
+								$('#menuProperty').panel("close");
+								if (checkid!=''){
+									pushh=true;
+									longProperties(checkid,pushh);
+								}
+								
+							}else{
+								alert('else obj');
+							}					
+						});
+						
+						
+						
 						
 					}else{
 						alert('else obj');
 					}					
-				});
-				
-				
-				
-				
-			}else{
-				alert('else obj');
-			}					
-	});
+			});
+		}
+		
+	}else{
 	
+		$.ajax({
+			url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/checkParcelidMlsresidential.php',  
+			type: 'POST',
+		data: { 						
+			'userid': userid,
+			'pids': pid, 
+			'wheremls': true, 
+		}}).done(function (data){					
+				//alert(data);					
+				var obj2 = JSON.parse(data);
+				//console.debug(obj2);
+				if(obj2.success) {								 
+					var agent = "";                                                                                                                                                                   
+					var agentph = "";                                                                                                                                                                   
+					var agentcell = "";                                                                                                                                                                   
+					var agentfax = "";                                                                                                                                                                   
+					var agentemail = "";                                                                                                                                                                   
+					var agenttollfree = "";                                                                                                                                                                   
+					var office = "";                                                                                                                                                                   
+					var officeph = "";                                                                                                                                                                   
+					var officefax = "";                                                                                                                                                                   
+					var officeemail = "";                                                                                                                                                                   
+					var officetollfree = "";                                                                                                                                                                   
+																																																																																					   
+					var no="no";
+					var yes="yes";
+					var NOSPone="NOSPone";
+					console.debug(obj2.agent);
+					
+					agent +=''+obj2.agent+'';
+					agentph +=''+obj2.agentph+'';
+					agentcell +=''+obj2.agentcell+'';
+					agentfax +=''+obj2.agentfax+'';
+					agentemail +=''+obj2.agentemail+'';
+					agenttollfree +=''+obj2.agenttollfree+'';
+					office +=''+obj2.office+'';
+					officeph +=''+obj2.officeph+'';
+					officefax +=''+obj2.officefax+'';
+					officeemail +=''+obj2.officeemail+'';
+					officetollfree +=''+obj2.officetollfree+'';
+					
+					
+					$.ajax({
+					url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_getcontacts.php?updatecontact='+no+'&blockproperties='+yes+'&sp='+NOSPone+'',  
+					type: 'POST',
+					data: { 						
+						'pids': pid, 
+						'agent':agent,
+						'agentph':agentph,
+						'agentcell':agentcell,
+						'agentfax':agentfax,
+						'agentemail':agentemail,
+						'agenttollfree':agenttollfree,
+						'office':office,
+						'officeph':officeph,
+						'officefax':officefax,
+						'officeemail':officeemail,
+						'officetollfree':officetollfree,
+						'runspider':true,
+						'mlsresidential':true,
+						'userid':userid 
+					}}).done(function (data){					
+						//alert(data);					
+						var obj2 = JSON.parse(data);
+						//console.debug(obj2);
+						if(obj2.success) {								 
+							//alert('The System update the properties`s contact. '+obj2.blockproperties+' properties blocked');				
+							bootbox.alert({
+								title: 'Get Contact',
+								message: 'The System update the properties`s contact. '+obj2.blockproperties+' properties blocked'
+							});
+							$.mobile.changePage('#followingHtml');
+							$('#menuProperty').panel("close");
+							if (checkid!=''){
+								pushh=true;
+								longProperties(checkid,pushh);
+							}
+							
+						}else{
+							alert('else obj');
+						}					
+					});
+					
+					
+					
+					
+				}else{
+					alert('else obj');
+				}					
+		});
+	}
 		console.debug(output);
 }
 
@@ -7222,7 +7464,7 @@ function listadoContactsProperty(pid){
 	
 }
   
-function listadoAllContacts(start, limit){
+function listadoAllContacts(start, limit,filter){
 		
 		//var start = 0; 
         //var limit = 25; 
@@ -7239,7 +7481,10 @@ function listadoAllContacts(start, limit){
 				type: 'POST',
 			   data: { 
 				'userid': userid,
-				'sort':'agent ASC'
+				'sort':'agent ASC',
+				'start':start,
+				'limit':limit,
+				'filter':filter ? filter : ''
 				}
 			}).done(function (data){
 				//alert(data);
@@ -7707,7 +7952,7 @@ function listadoSearchContacts(start, limit){
 			'limit':limit
 			}
 		}).done(function (data){
-			alert(data);
+			//alert(data);
 			busy=false;
 			var obj = JSON.parse(data);
 			//alert(obj.success);

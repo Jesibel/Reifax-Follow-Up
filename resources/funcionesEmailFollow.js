@@ -514,7 +514,11 @@ function deleteEmailFollow(id){
 				//alert(data);
 				
 				if(data){
-					alert('Email Follow Deleted');
+					//alert('Email Follow Deleted');
+					bootbox.alert({
+						title: 'Delete Email Follow',
+						message: 'Email Follow Sucessfully Deleted'
+					});
 					$.mobile.changePage('#EmailFollow');
 				}else{
 					alert('error');

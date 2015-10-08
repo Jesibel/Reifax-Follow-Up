@@ -345,7 +345,12 @@ function listadoEmailsInbox(start, limit){
 						
 							//alert(obj.total+' >='+start);
 							
-							$("#emails ul").append(output);
+							console.log(obj.total)
+							if (obj.total!=0){
+								$("#emails ul").append(output);
+							}else{
+								$("#emails ul").html('No result! ');
+							}
 							
 							//settings.limit = settings.limit + start;
 							//console.log(settings.limit);
@@ -631,8 +636,11 @@ function listadoEmailsOutbox(start, limit){
 					//Actualizamos el HTML del elemento con id="#respuesta"
 						
 							//alert(obj.total+' >='+start);
-							
-							$("#emailsOutbox ul").append(output);
+							if (obj.total!=0){
+								$("#emailsOutbox ul").append(output);
+							}else{
+								$("#emailsOutbox ul").html('No result! ');
+							}
 							
 							//settings.limit = settings.limit + start;
 							//console.log(settings.limit);
@@ -847,7 +855,11 @@ function longEmailInbox(id,idseen,pushh){
 			a.style.height = "35px";
 			//a.setAttribute("href","#");
 			a.onclick = function(){
-				alert('delete email inbox');
+				//alert('delete email inbox');
+				bootbox.alert({
+					title: 'Delete Email Inbox',
+					message: 'Email Inbox Sucessfully Deleted'
+				});
 				deleteEmailInbox(checkid);
 			};
 			var src = document.getElementById("logoEmailInbox");
@@ -1250,7 +1262,11 @@ function deleteEmailInbox(id){
 			success: function(data, textStatus, jqXHR){
 				//alert(data);
 				if(data){
-					alert('email inbox delete');
+					//alert('email inbox delete');
+					bootbox.alert({
+						title: 'Delete Email Inbox',
+						message: 'Email Inbox Sucessfully Deleted'
+					});
 					location.reload(true);
 				}else{
 					alert('error');
@@ -2039,6 +2055,7 @@ function removeFilterEmailInbox(){
 	//$("#emailFilter ul").html('');
 	//document.getElementById('emails').style.display = "block";
 	$("#emails ul").empty();
+	$('#menuEmailInbox').panel("close");
 	var start = 0; 
 	var limit = 25; 	
 	listadoEmailsInbox(start, limit);
@@ -2061,6 +2078,7 @@ function removeFilterEmailOutbox(){
 	//$("#emailOutboxFilter ul").html("");				
 	//document.getElementById('emailsOutbox').style.display = "block";
 	$("#emailsOutbox ul").empty();
+	$('#menuEmailOutbox').panel("close");
 	var start = 0; 
 	var limit = 25; 	
 	listadoEmailsOutbox(start, limit);
@@ -2270,7 +2288,11 @@ function assignProperty(agentid,idemail){
 				//alert(data);
 				
 				if(data){
-					alert('Assignment Property successfully');
+					//alert('Assignment Property successfully');
+					bootbox.alert({
+						title: 'Assignment Property',
+						message: 'Assignment Property Sucessfully'
+					});
 					$.mobile.changePage('#outboxEmailHtml');
 					//location.reload(true);
 				}else{
@@ -2312,10 +2334,14 @@ function sendemailInbox(){
 			'msg': cuerpo 			
 			},
 			success: function(data, textStatus, jqXHR){
-				alert(data);
+				//alert(data);
 				
 				if(data){
-					alert('Email successfully');
+					//alert('Email successfully');
+					bootbox.alert({
+						title: 'Email Inbox',
+						message: 'Email Inbox Sucessfully Inserted'
+					});
 					$.mobile.changePage('#emailHtml');
 				}else{
 					alert('error');
@@ -2353,11 +2379,15 @@ function sendemailReply(){
 			'msg': cuerpo 			
 			},
 			success: function(data, textStatus, jqXHR){
-				alert(data);
+				//alert(data);
 				
 				if(data){
-					alert('Email successfully');
-					$.mobile.changePage('index.html#detailEmail');
+					//alert('Email successfully');
+					bootbox.alert({
+						title: 'Email Inbox',
+						message: 'Email Inbox Sucessfully Inserted'
+					});
+					$.mobile.changePage('#emailHtml');
 				}else{
 					alert('error');
 				}
@@ -2397,8 +2427,12 @@ function sendemailForward(){
 				alert(data);
 				
 				if(data){
-					alert('Email successfully');
-					$.mobile.changePage('index.html#detailEmail');
+					//alert('Email successfully');
+					bootbox.alert({
+						title: 'Email Inbox',
+						message: 'Email Inbox Sucessfully Inserted'
+					});
+					$.mobile.changePage('#emailHtml');
 				}else{
 					alert('error');
 				}
@@ -2439,8 +2473,12 @@ function sendemailOutbox(){
 				alert(data);
 				
 				if(data){
-					alert('Email successfully');
-					$.mobile.changePage('index.html#outboxEmailHtml');
+					//alert('Email successfully');
+					bootbox.alert({
+						title: 'Email Outbox',
+						message: 'Email Inbox Sucessfully Inserted'
+					});
+					$.mobile.changePage('#outboxEmailHtml');
 					//location.reload(true);
 				}else{
 					alert('error');

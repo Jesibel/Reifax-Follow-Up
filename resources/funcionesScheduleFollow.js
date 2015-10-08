@@ -417,12 +417,12 @@ function saveSchedule(day,hour,exectype,task,detail){
 		var parcelid =id.parcelid;
 	}else if (checkid.length==1){
 		var detalle=1;
-		var id = JSON.parse(localStorage.getItem('key'));
-		var parcelid =id.parcelid;
+		var id = JSON.parse(localStorage.getItem('pid'));
+		var parcelid =id.pid;
 	}else{
 		var detalle=2;
 		var pid = JSON.parse(localStorage.getItem('pid'));
-		var parcelid =pid.parcelid;
+		var parcelid =pid.pid;
 	}
 	
 	
@@ -448,14 +448,15 @@ function saveSchedule(day,hour,exectype,task,detail){
 		$('#btnscheduledoc').show();
 		$('#btnsenddoc').hide();
 		gettypecontract();
+		getContactContract(parcelid,detalle);
 		$.mobile.changePage('#formContract2');
 	}else{
 		//alert('sin task');
 		var day = JSON.parse(localStorage.getItem('day'));
 		var hour = JSON.parse(localStorage.getItem('hour'));
-		var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
+		var typeFollow = JSON.parse(localStorage.getItem('key3'));
 		var idtem = JSON.parse(localStorage.getItem('idtem'));
-		saveScheduleTemplate(parcelid,day.day,hour.hour,typeFollow.typefollow,idtem.idtem);
+		saveScheduleTemplate(parcelid,day.day,hour.hour,typeFollow.type,idtem.idtem);
 	
 	}
 			
@@ -474,16 +475,40 @@ function saveScheduleTemplate(parcelid,day,hour,typeFollow,idtem){
 		var typeFollow = typeFollow.type;
 		var id = JSON.parse(localStorage.getItem('key'));
 		var parcelid =id.parcelid;
-	}else if (checkid==1){
-		var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
+	}else if (checkid.length==1){
+		var typeFollow = JSON.parse(localStorage.getItem('key3'));
 		var typeFollow = typeFollow.typefollow;
 		var pid = JSON.parse(localStorage.getItem('pid'));
-		var parcelid =pid.parcelid;
+		var parcelid =pid.pid;
 	}else{
 		var parcelid =checkid;
 		ciclo= 'multi';
 		//alert(parcelid);
 	}
+	
+	//var hora = hour;
+	var hora = hour.split(':');
+	console.log(hora);
+	
+	if (hora[0]>12){ 
+		var hour2 = hora[0] - 12;
+		var hour3 = hour2+':'+hora[1]+' PM'
+	} else if (hora[0]==00) {
+		var hour2  = 12;
+		var hour3 = hour2+':'+hora[1]+' AM'
+	}else if (hora[0]==12) {
+		var hour2  = 12;
+		var hour3 = hour2+':'+hora[1]+' PM'
+	}else{
+		if(hora[0]!=10){
+			var res = hora[0].replace("0", "");
+			var hour3= res+':'+hora[1]+' AM';
+		}else{
+			var hour3= hour+' AM'
+		}
+	}
+	
+	console.log(hour3);
 	
 	if (ciclo=='multi'){
 		var idaux=0;
@@ -499,14 +524,18 @@ function saveScheduleTemplate(parcelid,day,hour,typeFollow,idtem){
 					'pid': checkid[i],
 					'typeFollow': typeFollow,
 					'tdate': day,
-					'ttime': hour
+					'ttime': hour3
 					
 				},
 				success: function(data, textStatus, jqXHR){
 					//alert(data);
 					if (data){
 						send=true;
-						$.mobile.changePage('#scheduleFollow');
+						$.mobile.changePage('#followingHtml');	
+						if (checkid!=''){
+							pushh=true;
+							longProperties(checkid,pushh);
+						}
 					}
 						
 				},
@@ -517,7 +546,11 @@ function saveScheduleTemplate(parcelid,day,hour,typeFollow,idtem){
 		}
 		
 		if(send==true){
-			alert('Schedule Follow Saved');
+			//alert('Schedule Follow Saved');
+			bootbox.alert({
+				title: 'Schedule Follow',
+				message: 'Schedule Follow Saved'
+			});
 		}
 		
 	}else{
@@ -531,15 +564,23 @@ function saveScheduleTemplate(parcelid,day,hour,typeFollow,idtem){
 				'mode': 'insert-template',
 				'pid': parcelid,
 				'typeFollow': typeFollow,
-				'odate': day,
-				'ohour': hour
+				'tdate': day,
+				'ttime': hour3
 				
 			},
 			success: function(data, textStatus, jqXHR){
 				//alert(data);
 				if (data){
-					alert('Schedule Follow Saved');
-					$.mobile.changePage('#scheduleFollow');	
+					//alert('Schedule Follow Saved');
+					bootbox.alert({
+						title: 'Schedule Follow',
+						message: 'Schedule Follow Saved'
+					});
+					$.mobile.changePage('#followingHtml');	
+					if (checkid!=''){
+						pushh=true;
+						longProperties(checkid,pushh);
+					}
 				}
 					
 			},
@@ -711,7 +752,11 @@ function editSchedule(id){
 		success: function(data, textStatus, jqXHR){
 			//alert(data);
 			if (data){
-				alert('Schedule Follow Editedddd');
+				//alert('Schedule Follow Editedddd');
+				bootbox.alert({
+					title: 'Schedule Follow',
+					message: 'Schedule Follow Edited'
+				});
 				$.mobile.changePage('#detailSchedule');
 			}
 					
@@ -720,6 +765,40 @@ function editSchedule(id){
 			alert('error');
 		}
 	});
+
+}
+
+function completedSchedule(id){
+//alert('borrando'+id);
+	var userid = JSON.parse(localStorage.getItem('userid'));
+	userid = userid.userid;
+	
+	$.ajax({
+		url : 'http://reifax.com//mreifax/mysetting_tabs/myfollowup_tabs/properties_followshedule_complete.php',  
+		type: "POST",
+		data: { 			
+			'userid': userid,
+			'idfus': id		
+		},
+		success: function(data, textStatus, jqXHR){
+			//alert(data);
+			if(data){
+				//alert('Schedule Follow completed');
+				bootbox.alert({
+					title: 'Schedule Follow',
+					message: 'Schedule Follow Completed'
+				});
+				//location.reload(true);
+				
+				$.mobile.changePage('#taskCompletedHtml');
+			}else{
+				alert('error');
+			}
+		},
+			error: function (jqXHR, textStatus, errorThrown){
+			     alert('error');
+			}
+		});
 
 }
 
@@ -739,7 +818,11 @@ function deleteSchedule(id){
 		success: function(data, textStatus, jqXHR){
 			//alert(data);
 			if(data){
-				alert('Schedule Follow deleted');
+				//alert('Schedule Follow deleted');
+				bootbox.alert({
+					title: 'Schedule Follow',
+					message: 'Schedule Follow Deleted'
+				});
 				//location.reload(true);
 				$.mobile.changePage('#scheduleFollow');
 			}else{

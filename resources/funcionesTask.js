@@ -806,7 +806,7 @@ function removeFilterPendingTask(){
 	
 	$("#pendientes ul").empty();
 	$("#task-tablet ul").empty();
-	
+	$('#menuTask').panel("close");
 	var start = 0; 
 	var limit = 25; 	
 	listadoPendings(start, limit);
@@ -1288,7 +1288,7 @@ function removeFilterCompletedTask(){
 	
 	$("#completados ul").empty();
 	$("#task-tablet2 ul").empty();
-	
+	$('#menuTaskCompleted').panel("close");
 	var start = 0; 
 	var limit = 25; 	
 	listadoCompleted(start, limit);
@@ -1424,7 +1424,7 @@ function longCompleted(id){
 				
 	}else{
 				var idaux=0;
-				alert("entre por else");
+				//alert("entre por else");
 				//alert(checkid.length);
 				for(i=0;i<checkid.length;i++){
 					//alert("test"+id);			 
@@ -1433,10 +1433,10 @@ function longCompleted(id){
 					}			 
 				}
 				if(idaux == id){ 
-					alert("si lo encontro2");
+					//alert("si lo encontro2");
 					for(i=0;i<checkid.length;i++){ 
 						if(checkid[i] == id){ 
-							alert("encontrado2"); 
+							//alert("encontrado2"); 
 							//alert(checkid[i]); 
 							var checkid_old=""+checkid;
 							var myarray = checkid_old.split(",");
@@ -1597,13 +1597,14 @@ function detailPending(id){
 							
 							
 							if (datos['status']=='A'){
-								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/active-40-gr.png" no-repeat scroll 0px -40px transparent title="Active">';
+								//output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/active-40-gr.png" no-repeat scroll 0px -40px transparent title="Active">';
+								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/b-verde-80.png" no-repeat scroll 0px -40px transparent title="Active">';
 							}else if (datos['status']=='NA'){
-								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/no-active-40-y.png" no-repeat scroll 0px -40px transparent title="No-Active">';
+								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/b-am-80.png" no-repeat scroll 0px -40px transparent title="No-Active">';
 							}else if (datos['status']=='S'){
-								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/sold-40-r.png" no-repeat scroll 0px -40px transparent title="Sold">';
+								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/b-red-80.png" no-repeat scroll 0px -40px transparent title="Sold">';
 							}else if (datos['status']=='NF'){
-								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/by-owner-40-b.png" no-repeat scroll 0px -40px transparent title="By Owner">';
+								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/b-az.png" no-repeat scroll 0px -40px transparent title="By Owner">';
 							}
 							
 							if (datos['typeExec']==2){
@@ -1821,13 +1822,14 @@ function detailCompleted(id){
 							}
 							
 							if (datos['status']=='A'){
-								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/active-40-gr.png" no-repeat scroll 0px -40px transparent title="Active">';
+								//output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/active-40-gr.png" no-repeat scroll 0px -40px transparent title="Active">';
+								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/b-verde-80.png" no-repeat scroll 0px -40px transparent title="Active">';
 							}else if (datos['status']=='NA'){
-								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/no-active-40-y.png" no-repeat scroll 0px -40px transparent title="No-Active">';
+								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/b-am-80.png" no-repeat scroll 0px -40px transparent title="No-Active">';
 							}else if (datos['status']=='S'){
-								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/sold-40-r.png" no-repeat scroll 0px -40px transparent title="Sold">';
+								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/b-red-80.png" no-repeat scroll 0px -40px transparent title="Sold">';
 							}else if (datos['status']=='NF'){
-								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/by-owner-40-b.png" no-repeat scroll 0px -40px transparent title="By Owner">';
+								output +='<img style="margin-right: 10px;" width="30" height="30" src="http://reifax.com/FollowupReifax/img/notes/b-az.png" no-repeat scroll 0px -40px transparent title="By Owner">';
 							}
 							
 							
@@ -2177,7 +2179,11 @@ function editPendingTask(){
 			success: function(data, textStatus, jqXHR){
 				//alert(data);
 				if (data){
-					alert('pending task editedddd');
+					//alert('pending task editedddd');
+					bootbox.alert({
+						title: 'Pending Task',
+						message: 'Pending Task Sucessfully Edited'
+					});
 					$.mobile.changePage('#detailPending');
 				}
 				/*if(data){
@@ -2282,7 +2288,11 @@ function editCompletedTask(){
 			success: function(data, textStatus, jqXHR){
 				//alert(data);
 				if (data){
-					alert('Completed Task Editedddd');
+					//alert('Completed Task Editedddd');
+					bootbox.alert({
+						title: 'Completed Task',
+						message: 'Completed Task Sucessfully Edited'
+					});
 					$.mobile.changePage('#detailCompleted');
 				}
 				
@@ -2326,10 +2336,14 @@ function completedMultiTask(){
 			},
 			success: function(data, textStatus, jqXHR){
 				alert(data);
-				/*if (data){
-					alert('Completed Task Editedddd');
-					$.mobile.changePage('index.html#detailCompleted');
-				}*/
+				if (data){
+					//alert('Completed Task Editedddd');
+					bootbox.alert({
+						title: 'Completed Task',
+						message: 'Completed Task Sucessfully'
+					});
+					$.mobile.changePage('#taskCompletedHtml');
+				}
 				
 			},
 			error: function (jqXHR, textStatus, errorThrown){

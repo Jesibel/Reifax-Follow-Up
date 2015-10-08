@@ -494,7 +494,11 @@ function addHistory(){
 			success: function(data, textStatus, jqXHR){
 				//alert(data);
 				if (data){
-					alert('History Follow Saved');
+					//alert('History Follow Saved');
+					bootbox.alert({
+						title: 'History Follow',
+						message: 'History Follow Sucessfully Saved'
+					});
 					//$.mobile.loadPage( "#historyFollow");
 					$.mobile.changePage('#historyFollow');
 					
@@ -732,7 +736,11 @@ function editHistory(id){
 		success: function(data, textStatus, jqXHR){
 			//alert(data);
 			if (data){
-				alert('History Follow Edited');
+				//alert('History Follow Edited');
+				bootbox.alert({
+					title: 'History Follow',
+					message: 'History Follow Sucessfully Saved'
+				});
 				location.reload(true);
 				//$.mobile.changePage('#detailHistory');
 				$.mobile.changePage( "#historyFollow");
@@ -762,7 +770,11 @@ function deleteHistory(id){
 		success: function(data, textStatus, jqXHR){
 			//alert(data);
 			if(data){
-				alert('History Follow Deleted');
+				//alert('History Follow Deleted');
+				bootbox.alert({
+					title: 'History Follow',
+					message: 'History Follow Sucessfully Deleted'
+				});
 				//location.reload(true);
 				$.mobile.changePage('#historyFollow');
 			}else{

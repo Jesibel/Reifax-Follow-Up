@@ -31,40 +31,28 @@
 	
 	<script type="text/javascript" src="resources/js/jquery.mobile.listomatic.js"></script>
 	
-    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script-->  
-	
-	
 	<link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet" />
-	
-	<!--script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script-->
-	
-	<!--link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"-->	
 	<link href="resources/datetime/timedate1/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="bootstrap/css/bootstrap-modal.css" rel="stylesheet" />
-	
-	 <link rel="stylesheet" href="resources/css/jquery.auto-complete.css">
-	
+	<link rel="stylesheet" href="resources/css/jquery.auto-complete.css">
 	<link href="resources/datetime/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 	
 	
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesProperties.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesContacts.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesEmails.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesTask.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesHistoryFollow.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesScheduleFollow.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/funcionesEmailFollow.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/init.js"></script>
-	<script src="http://reifax.com/FollowupReifax/resources/init-mobile.js"></script>
+	<script src="resources/funcionesProperties.js"></script>
+	<script src="resources/funcionesContacts.js"></script>
+	<script src="resources/funcionesEmails.js"></script>
+	<script src="resources/funcionesTask.js"></script>
+	<script src="resources/funcionesHistoryFollow.js"></script>
+	<script src="resources/funcionesScheduleFollow.js"></script>
+	<script src="resources/funcionesEmailFollow.js"></script>
+	<script src="resources/init.js"></script>
+	<script src="resources/init-mobile.js"></script>
 	
 	 
 	<link rel="stylesheet" href="http://mobipick.sustainablepace.net/css/mobipick.css" />   
     <script src="http://mobipick.sustainablepace.net/external/xdate.js"></script>    
     <script src="http://mobipick.sustainablepace.net/external/xdate.i18n.js"></script>        
     <script src="http://mobipick.sustainablepace.net/js/mobipick.js"></script>
-	
-	<!--script src="resources/build/js/intlTelInput.js"></script>
-	<script src="resources/build/css/intlTelInput.css"></script-->
 	
 	<script src="resources/js/accounting.js"></script>
 	<script src="resources/js/moment.js"></script>
@@ -79,6 +67,8 @@
 	var activePage;
 	var device=false;
 	function _onDeviceReady (){	
+		
+		$.ajaxSetup({cache: false,}); //evitar cache
 		
 		activePage = $.mobile.activePage.attr('id');
 		MobileAccessibility.usePreferredTextZoom(false);
@@ -800,7 +790,7 @@ function pdf(){
 				<div class="account-wall">
 					<!--img class="profile-img" src="http://reifax.com/FollowupReifax/resources/image/logo_login.jpg" alt=""-->
 					<div style="text-align:center;">
-					<img  style="width:250px;" src="http://reifax.com/FollowupReifax/resources/image/logo_login.jpg" alt="">
+					<img  style="width:250px;" src="resources/image/logo_login.jpg" alt="">
 					</div>
 					<form id="loginForm" class="form-signin">
 						<input id="userLogin" type="email" class="form-control" placeholder="Email" required autofocus>
@@ -829,7 +819,7 @@ function pdf(){
         <div class="container">
 				<div class="account-wall">
 					<div style="text-align:center;">
-						<img  style="width:250px;" style="color: #fff;background-color: #337ab7;border-color: #337ab7;" src="http://reifax.com/FollowupReifax/resources/image/logo_login.jpg" alt="">
+						<img  style="width:250px;" style="color: #fff;background-color: #337ab7;border-color: #337ab7;" src="resources/image/logo_login.jpg" alt="">
 					</div>	
 					<form class="form-signin" action="" method="post">
 						<input id="txtEmail" name="txtEmail" type="email" class="form-control" placeholder="Email address" required autofocus>

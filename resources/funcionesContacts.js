@@ -5,6 +5,8 @@ function back(){
 	$("<form id='formname' name='formname' action='http://booleam.com/<?php echo $lang ?>/app/previewpoll' method='post'><input name='id_question' id='id_question' value='"+url+"' type='hidden'/></form>").appendTo(scntDiv);
 	$('#formname').submit();*/
 }
+
+
 	
 
 	
@@ -26,7 +28,11 @@ function deleteContacts(id){
 			success: function(data, textStatus, jqXHR){
 				//alert(data);
 				if(data){
-					alert('contact delete');
+					//alert('contact deleted');
+					bootbox.alert({
+						title: 'Delete Contact',
+						message: 'Contact Sucessfully Deleted'
+					});
 					//location.reload(true);
 					$.mobile.changePage( "#contactsHtml");
 				}else{
@@ -524,7 +530,11 @@ function editContact(){
 			success: function(data, textStatus, jqXHR){
 				//alert(data);
 				if (data){
-					alert('contact edited');
+					//alert('contact edited');
+					bootbox.alert({
+						title: 'Update Contact',
+						message: 'Contact Sucessfully Updated'
+					});
 					$.mobile.changePage('#contactsHtml');
 				}
 			
@@ -1541,11 +1551,11 @@ function resetformCont(){
 }
 	 
 	
-function listadoContacts(start, limit){
+function listadoContacts(start, limit, filter){
 		
 		//var start = 0; 
         //limit = 150; 
-		
+				
 		var agent = $("input#contactcontFil").val();
 		
 		$("#tyContFil").prop("selected", true);
@@ -1587,7 +1597,7 @@ function listadoContacts(start, limit){
 		
 		//var userid=3213;
 		var userid = JSON.parse(localStorage.getItem('userid'));
-	userid = userid.userid;
+		userid = userid.userid;
 
 		busy=true;
 
@@ -1613,7 +1623,8 @@ function listadoContacts(start, limit){
 				'urlsend2' :website,
 				'sort':'agent ASC',
 				'start':start,
-				'limit':limit
+				'limit':limit,
+				'filter':filter ? filter : ''
 				}
 			}).done(function (data){
 				//alert(data);
@@ -1668,7 +1679,7 @@ function listadoContacts(start, limit){
 					if (datos['agent']!=""){
 						//alert(valor[0]);
 						//output += '<a style="color:#000;text-decoration:none;" href="#" onClick="detail(\''+datos['pid']+'\');" >';
-						output += '<li data-icon="false" data-filtertext="' + datos['agent'] + '" id="primero'+datos['agentid']+'" agentid='+datos['agentid']+' style="list-style: none;border-bottom: 2px solid #ccc;">';     
+						output += '<li data-icon="false" data-filtertext="' + datos['agent'] + '" id="primero'+datos['agentid']+'" agentid='+datos['agentid']+' style="list-style: none;border-bottom: 2px solid #ccc;padding-bottom:0px;">';     
 						
 						output +='<div class="row">';
 							output +='<div class="col-sm-12">';
@@ -2681,6 +2692,37 @@ function getAgente(id){
 
 }
 
+function confirmDialog(text, callback) {
+    var popupDialogId = 'popupDialog';
+    $('<div data-role="popup" id="' + popupDialogId + '" data-confirmed="no" data-transition="pop" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:500px;"> \
+                        <div data-role="header" data-theme="a">\
+                            <h1>Question</h1>\
+                        </div>\
+                        <div role="main" class="ui-content">\
+                            <h3 class="ui-title">' + text + '</h3>\
+                            <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b optionConfirm" data-rel="back">Yes</a>\
+                            <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b optionCancel" data-rel="back" data-transition="flow">No</a>\
+                        </div>\
+                    </div>')
+        .appendTo($.mobile.pageContainer);
+    var popupDialogObj = $('#' + popupDialogId);
+    popupDialogObj.trigger('create');
+    popupDialogObj.popup({
+        afterclose: function (event, ui) {
+            popupDialogObj.find(".optionConfirm").first().off('click');
+            var isConfirmed = popupDialogObj.attr('data-confirmed') === 'yes' ? true : false;
+            $(event.target).remove();
+            if (isConfirmed && callback) {
+                callback();
+            }
+        }
+    });
+    popupDialogObj.popup('open');
+    popupDialogObj.find(".optionConfirm").first().on('click', function () {
+        popupDialogObj.attr('data-confirmed', 'yes');
+    });
+}
+
 function setAgentPrincipal(){
 
 	//var userid=3213;
@@ -2703,8 +2745,19 @@ function setAgentPrincipal(){
 				//alert(data);
 				
 				if(data){
-					alert('Contact Sucessfully Updated');
+					//alert('Contact Sucessfully Updated');
+					//bootbox.alert("Contact Sucessfully Updated");
+					bootbox.alert({
+					   title: 'Assigment-Principal Agent',
+					   message: 'Contact Sucessfully Updated'
+					});
+					//location.reload(true);
+					//$.mobile.loading().show();
+					loader=1;
 					$.mobile.changePage('#followingHtml');
+					//$.mobile.loadPage("#followingHtml");
+					
+        
 				}else{
 					alert('error');
 				}
@@ -2737,8 +2790,13 @@ function addAgente(){
 			//alert(data);
 					
 			if(data){
-				alert('Contacts inserted');
-				location.reload(true);
+				//alert('Contacts inserted');
+				bootbox.alert({
+					title: 'Assigment-Add Agent',
+					message: 'Contact Sucessfully Inserted'
+				});
+				//location.reload(true);
+				loader=1;
 				$.mobile.changePage('#followingHtml');
 					
 			}else{
@@ -2773,7 +2831,12 @@ function removeAgente(){
 			//alert(data);
 					
 			if(data){
-				alert('Contacts deleted');
+				//alert('Contacts deleted');
+				bootbox.alert({
+					title: 'Assigment-Delete Agent',
+					message: 'Contact Sucessfully Deleted'
+				});
+				loader=1;
 				$.mobile.changePage('#followingHtml');
 					
 			}else{
@@ -2797,7 +2860,7 @@ function updateContact(){
 		//$("#typ").prop("selected", true);
 		//var agenttype 	= $("#typ option:selected").val();
 		var agenttype 	=1;
-		alert(agenttype);
+		//alert(agenttype);
 		
 		$("#emai1").prop("selected", true);
 		var typeemail1 	= $("#emai1 option:selected").val();
@@ -2994,7 +3057,11 @@ function updateContact(){
 			success: function(data, textStatus, jqXHR){
 				//alert(data);
 				if (data){
-					alert('Contact Sucessfully Updated');
+					//alert('Contact Sucessfully Updated');
+					bootbox.alert({
+						title: 'Update Agent',
+						message: 'Contact Sucessfully Updated'
+					});
 					$.mobile.changePage('#followingHtml');
 				}
 				/*if(data){
