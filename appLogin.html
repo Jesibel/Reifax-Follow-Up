@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link href="resources/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/index.css" rel="stylesheet" type="text/css" />
+	<link href="resources/css/init.css" rel="stylesheet" type="text/css" />
+	<title>REIFAX FOLLOW UP</title>
+    
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script type="text/javascript" src="jquerymobile/demos/js/jquery.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script> 
+		$(document).bind("mobileinit", function () { 
+		  
+			 $.mobile.defaultPageTransition =  'none' ; 
+			 $.mobile.defaultDialogTransition =  'none' ; 
+		   
+			 $.mobile.loader.prototype.defaultHtml = "<div class='ui-loader'>" +
+            "<span class='ui-icon ui-icon-loading'></span>" +
+            "<h1></h1>" +
+            "<div class='ui-loader-curtain'></div>" +
+            "</div>",
+			
+			 $.mobile.loader.prototype.options.disabled = true;
+
+		}); 
+	</script> 
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	
+	<script type="text/javascript" src="resources/js/jquery.mobile.listomatic.js"></script>
+	
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script-->  
+	
+	
+	<link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet" />
+	
+	<!--script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script-->
+	
+	<!--link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"-->	
+	<link href="resources/datetime/timedate1/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="bootstrap/css/bootstrap-modal.css" rel="stylesheet" />
+	
+	 <link rel="stylesheet" href="resources/css/jquery.auto-complete.css">
+	
+	<link href="resources/datetime/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+	
+	
+	<script src="http://reifax.com/FollowupReifax/resources/funcionesProperties.js"></script>
+	<script src="http://reifax.com/FollowupReifax/resources/funcionesContacts.js"></script>
+	<script src="http://reifax.com/FollowupReifax/resources/funcionesEmails.js"></script>
+	<script src="http://reifax.com/FollowupReifax/resources/funcionesTask.js"></script>
+	<script src="http://reifax.com/FollowupReifax/resources/funcionesHistoryFollow.js"></script>
+	<script src="http://reifax.com/FollowupReifax/resources/funcionesScheduleFollow.js"></script>
+	<script src="http://reifax.com/FollowupReifax/resources/funcionesEmailFollow.js"></script>
+	<script src="http://reifax.com/FollowupReifax/resources/init.js"></script>
+	<script src="http://reifax.com/FollowupReifax/resources/init-mobile.js"></script>
+	
+	 
+	<link rel="stylesheet" href="http://mobipick.sustainablepace.net/css/mobipick.css" />   
+    <script src="http://mobipick.sustainablepace.net/external/xdate.js"></script>    
+    <script src="http://mobipick.sustainablepace.net/external/xdate.i18n.js"></script>        
+    <script src="http://mobipick.sustainablepace.net/js/mobipick.js"></script>
+	
+	<!--script src="resources/build/js/intlTelInput.js"></script>
+	<script src="resources/build/css/intlTelInput.css"></script-->
+	
+	<script src="resources/js/accounting.js"></script>
+	<script src="resources/js/moment.js"></script>
+	
+	<script type='text/javascript' src="http://wurfl.io/wurfl.js"></script>
+	<script src="resources/js/tinymce/js/tinymce/tinymce.min.js"></script>
+	
+	
+<script src="resources/js/bootbox.js"></script>
+	
+	<script type="text/javascript">
+	var activePage;
+	var device=false;
+	function _onDeviceReady (){	
+		
+		activePage = $.mobile.activePage.attr('id');
+		MobileAccessibility.usePreferredTextZoom(false);
+		//alert(WURFL.form_factor);
+		if (WURFL.form_factor == "Tablet") {
+			//alert('es una tablet');
+			device=true;
+			window.plugins.orientationchanger.lockOrientation('landscape');
+			 //setTimeout(function () {navigator.splashscreen.show()},1000);
+		}else{
+			device=false;
+			window.plugins.orientationchanger.lockOrientation('portrait');
+		}
+		
+	}
+	
+function showConfirm() {
+	navigator.notification.confirm(
+		'There was an error connecting to the Internet. Would you like to retry?.',  // message
+		onConfirm,         // callback to invoke with index of button pressed
+		'No Internet connection',            // title
+		'No,Yes'        // buttonLabels
+	);
+}
+		
+function onConfirm(button) {
+	//console.log('You selected button ' + button);
+	if(button == 1){
+		//pressed "cancel"
+		console.log("User has cancelled");
+		//exitFromApp    
+		navigator.app.exitApp();
+	}
+	else if(button == 2){
+		//pressed "delete"
+		console.log("connecting");
+		detectInternet();
+	}
+}
+		
+		
+function detectInternet(){
+		
+	//var url='http://reifax.com';
+	
+	$.ajax({
+		url: 'http://reifax.com/FollowupReifax/index.html',
+		type: 'GET',
+		cache : false,
+		contentType: "application/json;charset=utf-8",
+		success: function (data) {
+			// Yor success logic 
+			//alert('success bien');		
+		},
+		error: function (request) {
+			 //alert(request.responseText);
+			 //alert(request.status);
+			if(request.status==0){
+				//alert("Please connect to the internet");
+				showConfirm();
+			}
+		}
+	});
+			
+}
+
+	
+</script>	
+	<script type="text/javascript">
+	tinymce.init({
+		selector: "#bodyEmail,#bodySms,#bodyFax",
+		theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px",
+		font_size_style_values : "10px,12px,13px,14px,16px,18px,20px",
+		
+		toolbar:false,
+		menubar:false,
+		statusbar:false
+	});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	
+	$('#next').bind('click',funciones.proccess)
+	$('#go').bind('click',funciones.findUser);
+	$('input[name=txtEmail]').bind('focus',funciones.initAll);
+	correcto=true;
+	
+	//BOTON LOGIN
+	$("#btnLogin").on('click', function () {
+		//alert('login');
+		processLogin();
+	});
+	
+});
+
+//$("#loginHtml").on("pageinit", function(e) {
+$( document ).on( "pageinit", "#loginHtml", function( event ) {
+	alert('conectando');
+	checkPreAuth();
+});
+
+function checkPreAuth() {
+	//var form = $("#loginForm");
+	
+	//var userid = JSON.parse(localStorage.getItem('userid'));
+	//alert(window.localStorage["userid"]);
+	//if(user.username != undefined && pass.password != undefined) {
+	if(window.localStorage["userid"] != undefined) {
+	//if(userid.userid != undefined) {
+		alert('existe user');
+		//$("#username", form).val(window.localStorage["username"]);
+		//$("#password", form).val(window.localStorage["password"]);
+		//handleLogin();
+		$.mobile.changePage("#followingHtml");
+	}else{
+		alert('no existe user');
+		$.mobile.changePage("#loginHtml");
+	
+	}
+}
+
+$( document ).ajaxError(function( event, request, settings ) {
+  $.each(event, function(index, value) { 
+	alert(index + ': ' + value); 
+ });
+ $.each(request, function(index, value) { 
+	alert(index + ': ' + value); 
+ });
+ $.each(settings, function(index, value) { 
+	alert(index + ': ' + value); 
+ });
+
+});
+
+function processLogin(){
+	
+	var user = $("input#userLogin").val();
+	var pass = $("input#passLogin").val();
+	alert(user);
+	alert(pass);
+	var userid="";
+	$.ajax({
+		//url: 'http://reifax.com/FollowupReifax/properties_validacion.php',   
+		url: 'http://reifax.com/resources/php/properties_validacion.php',    
+		type: 'POST',
+		data: { 			
+			'loginEmail': user,
+			'loginPass': pass,
+			'followupMobile': 'followupMobile',
+			'remember': true
+				
+			},
+		success: function(data, textStatus, jqXHR){
+			alert(data);
+			var obj = JSON.parse(data);
+			var userid= obj.userid;
+			var object = { 'userid' : userid };
+			localStorage.setItem('userid', JSON.stringify(object));
+				
+		},
+		
+		error: function(jqXHR, textStatus, ex) {
+			alert(textStatus + "," + ex + "," + jqXHR.responseText);
+		}
+	});
+		/*}).done(function (data){					
+			//alert(data);					
+			var obj = JSON.parse(data);
+			console.log(obj.success);
+			if(obj.success) {			
+					//alert('Welcome Reifax Follow');		
+					/*bootbox.alert({
+						title: 'Reifax Follow Up',
+						message: 'Welcome Reifax Follow'
+					});*/
+		/*			var userid= obj.userid;
+					var object = { 'userid' : userid };
+					localStorage.setItem('userid', JSON.stringify(object));
+					//$.mobile.changePage('#followingHtml');
+					checkPreAuth();
+					
+			}else{
+				alert('else obj');
+				$.mobile.changePage('#loginHtml');
+			}			
+			
+								
+		});*/
+		
+}
+
+
+var funciones={
+	initAll:function (){
+		$('#go').fadeIn(200);
+		$('#trPassword,#trquestion,#transwer,#trsupport').hide();
+		$("input").attr("required", false);
+	},
+	findUser:function (e)
+	{
+		e.preventDefault();
+		e.stopPropagation();
+		
+		if($('input[name=txtEmail]').val()=='')
+			return false;
+			
+		$('#go').fadeOut(200);
+		$.ajax({
+			type	:'GET',
+			data 	: {
+				option: 'findData',
+				email: $('input[name=txtEmail]').val()
+			},
+			url		:'http://www.reifax.com/resources/php/funcionesForgotPassword.php',
+			dataType:"jsonp",
+			
+			success	: function (respuesta)
+			{
+				//console.log(respuesta);
+				if(respuesta.success)
+				{
+					switch(respuesta.estado){
+						case (1):
+							$('#questionuser').html(respuesta.questionuser);
+							$('#trPassword,#trquestion,#transwer').show();
+							$("input").attr("required", true);
+						break;
+						case (8):
+							$('#trsupport').show();
+						break;
+						default:
+							$('#trPassword').show();
+							$("#trPassword input").attr("required", true);
+							
+						}
+				}
+			}
+	
+		})
+		//return false;
+	},
+	proccess:function (e)
+	{
+		e.preventDefault();
+		e.stopPropagation();
+
+		$('.MsglockScreen').fadeIn();
+		$.ajax({
+			type	:'GET',
+			data 	:'option=proccess&amp;email='+$('input[name=txtEmail]').val()+'&amp;answeruser='+$('input[name=answeruser]').val()+'&amp;pass='+$('input[name=txtPassword]').val(),
+			dataType:'jsonp',
+			url		:'http://www.reifax.com/resources/php/funcionesForgotPassword.php',
+			
+			success	: function (respuesta)
+						{
+							if(respuesta.success)
+							{
+								if(respuesta.estado==4){
+									$('.MsglockScreen').html('successfully processed request');
+								}
+								else{
+									$('.MsglockScreen').html('Email or password is incorrect..!!');
+								}
+								$('.MsglockScreen').delay(3000).fadeOut(250,function (){document.location = 'index.html'});
+								
+							}
+						}
+				})
+		}
+	}
+
+	
+function pdf(){
+ 
+	window.open('http://www.reifax.com/login/pdf/REIFAX_TermsAndConditions.pdf', '_system', 'location=yes');
+	
+ }
+</script>
+<style>
+
+	.ui-tabs{
+		padding: 0em;
+	}
+	ui-page-theme-a .ui-btn:hover.ui-page-theme-a .ui-btn:hover, html .ui-bar-a .ui-btn:hover, html .ui-body-a .ui-btn:hover, html body .ui-group-theme-a .ui-btn:hover, html head+body .ui-btn.ui-btn-a:hover{
+		background-color:#ededed;
+		border-color:#ddd;
+		color: #333;
+		text-shadow:0 1px 0 #f3f3f3;
+		font-size: 14px;
+	}
+	.ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head+body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on:after, html .ui-bar-a .ui-checkbox-on:after, html .ui-body-a .ui-checkbox-on:after, html body .ui-group-theme-a .ui-checkbox-on:after, .ui-btn.ui-checkbox-on.ui-btn-a:after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active{
+		background-color: transparent;
+		border-color: transparent;
+		color: #333; 
+		text-shadow: none;
+	}
+		
+	.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn, html .ui-body-a .ui-btn, html body .ui-group-theme-a .ui-btn, html head+body .ui-btn.ui-btn-a, .ui-page-theme-a .ui-btn:visited, html .ui-bar-a .ui-btn:visited, html .ui-body-a .ui-btn:visited, html body .ui-group-theme-a .ui-btn:visited, html head+body .ui-btn.ui-btn-a:visited{
+		background-color: transparent;
+		border-color: transparent;
+		color: #333;
+		text-shadow: 0 1px 0 #f3f3f3;
+		font-size: 14px;
+	}
+	.ui-page-theme-a a:visited, html .ui-bar-a a:visited, html .ui-body-a a:visited, html body .ui-group-theme-a a:visited{
+		color:transparent;
+	}
+	.ui-content{
+		padding: 0em;
+	}
+	.col-md-4{
+		width:15%;
+	}
+	h3, .h3{
+		font-size:18px;
+	}
+	.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper{
+		background-color: #fff;
+	}
+	menu:hover{
+		background:transparent;
+	}
+	.ui-page-theme-a .ui-btn, html .ui-bar-a .ui-btn:hover{
+		background-color: transparent;
+		border:transparent;
+	}
+	.page_result li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_contact li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_contactAll li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_contactList li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_emailInbox li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_emailOutbox li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_correo li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_history li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_schedule li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_pending li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_completed li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_det_pending li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.page_infoCorreo li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+		
+	.page_detalle_call li{
+		margin-bottom: 5px;
+		padding: 10px;
+		font-size: 15px;
+		list-style: none;
+		border-bottom: 2px solid #ccc;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	}
+	.foll{
+		height:50px;
+	}
+	.date{
+		/*left:1000px;*/
+	}
+	.search{
+		margin-left:1325px;
+		margin-top:-52px;
+	}
+	.row, .thumbnails{
+		margin-left:-10px;
+	}
+	.ui-mobile .ui-page{
+		min-height: 100px !important;
+	}
+	div.content {			
+		background-color: #fff;
+	}
+	div.content.taphold {
+		background-color: #7ACEF4;
+	}
+	.content.large {
+		-webkit-transform: scale(1.25);
+		transform: scale(1.25);
+	}
+	.box {			
+		background-image: url('http://reifax.com/FollowupReifax/img/menu-w.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+	.box2 {			
+		background-image: url('http://reifax.com/FollowupReifax/img/delete-w.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+	.box3 {			
+		background-image: url('http://reifax.com/FollowupReifax/img/aceptar-w.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+	.box4 {			
+		background-image: url('http://reifax.com/FollowupReifax/img/read_email-48.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+	.box5 {			
+		background-image: url('http://reifax.com/FollowupReifax/img/readed_email-48.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+	.box6 {			
+		background-image: url('http://reifax.com/FollowupReifax/img/edit-32.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+	.box7 {			
+		background-image: url('http://reifax.com/FollowupReifax/img/completed-48.png');
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: 20px 20px;			
+	} 
+		
+	.fileUpload {
+		position: relative;
+		overflow: hidden;
+		margin-top: 10px;
+	}
+	.fileUpload input.upload {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 0;
+		padding: 0;
+		font-size: 20px;
+		cursor: pointer;
+		opacity: 0;
+		filter: alpha(opacity=0);
+	}
+	.fileUpload input.another {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 0;
+		padding: 0;
+		font-size: 20px;
+		cursor: pointer;
+		opacity: 0;
+		filter: alpha(opacity=0);
+	}
+	.btn{
+		font-size: 13px;
+	}
+	.active{
+		border-bottom: 4px solid #8ab420;
+	}
+
+	body{
+		-webkit-user-select: none;	
+	}
+
+	.hidden { 
+		visibility: hidden; display: none;
+	}
+	.unhidden { 
+		visibility: visible; display: block;
+	}
+	.page_emailInbox li {
+		-webkit-transform: translateZ(0);
+	}
+	.page_emailOutbox li {
+		-webkit-transform: translateZ(0);
+	}
+	.seenB{
+		font-weight:bold;
+	}
+	.seenN{
+		font-weight:normal;
+	}
+	.badge{
+		/*border-radius: 5px 5px 5px 5px;*/
+		font-family: Lucida Console, Monaco, monospace;
+		background-color: #a4a4a4;
+		font-size: 15px;
+		font-weight: normal;
+		margin-left:-6px;
+		margin-top:-5px;
+	}
+	.line{
+		border-right: 1px solid #777;
+		margin-top: 3px;
+	}
+	.margen{
+		border-bottom: 1px solid #ccc;
+	}
+	.item{
+		height:40px;
+	}
+	table{
+		width:100%;
+	}
+	.mobipick-groups input {
+		height:30px;
+	}
+	.input-group-addon {
+		background-color:#fff;
+		border:1px solid #fff; 
+	}
+	input.transparent-input{
+		background-color:transparent !important;
+		border:none !important;
+	}
+	.ui-selectmenu-button{
+		width:100% !important;
+	}
+	.ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a{
+		border-color:transparent;
+	}
+		
+	.texta1{
+		height:90px !important;
+	}
+		
+	.texta2{
+		height:180px !important;
+	}
+		
+	.hide{
+		display:none;
+	}
+	.btn2 {
+		display: inline-block;
+		margin-bottom: 0;
+		font-size: 14px;
+		line-height: 20px;
+		
+		vertical-align: middle;
+		cursor: pointer;
+		border: 1px solid #bbbbbb;
+		border-color: #e6e6e6 #e6e6e6 #bfbfbf;
+		border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+		border-bottom-color: #a2a2a2;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+	}
+	.btn2 {
+		border-color: #c5c5c5;
+		/*border-color: rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.15) rgba(0, 0, 0, 0.25);*/
+		border-color:transparent;
+	}
+	.btn-large2 {
+		/*padding: 11px 19px;*/
+		font-size: 17.5px;
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+	}
+	#bodyEmail p {
+		font-size:14px;
+		font-family:Helvetica Neue,Helvetica,Arial,sans-serif;
+	}
+		
+	
+	<!--login-->
+	.form-signin{
+		max-width: 330px;
+		padding: 15px;
+		margin: 0 auto;
+	}
+	.form-signin .form-signin-heading, .form-signin .checkbox{
+		margin-bottom: 10px;
+	}
+	.form-signin .checkbox{
+		font-weight: normal;
+	}
+	.form-signin .form-control{
+		position: relative;
+		font-size: 16px;
+		height: auto;
+		padding: 10px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	.form-signin .form-control:focus{
+		z-index: 2;
+	}
+	.form-signin input[type="text"]{
+		margin-bottom: -1px;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.form-signin input[type="password"]{
+		margin-bottom: 10px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+	.account-wall{
+		margin-top: 20px;
+		padding: 40px 0px 20px 0px;
+		background-color: #f7f7f7;
+		-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+		box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	}
+	.login-title{
+		color: #555;
+		font-size: 18px;
+		font-weight: 400;
+		display: block;
+	}
+	.profile-img{
+		width: 96px;
+		height: 96px;
+		margin: 0 auto 10px;
+		display: block;
+		-moz-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		border-radius: 50%;
+	}
+	.need-help{
+		margin-top: 10px;
+	}
+	.new-account{
+		display: block;
+		margin-top: 10px;
+	}
+	.span5{
+		width: 230px;
+		height: 30px;
+	}
+	.modal-header{
+		border-bottom: 2px solid #8ab420;
+	}
+	.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary{
+		color: #fff;
+		background-color: #8ab420;
+		border-color: #8ab420;
+	}
+</style>
+</head>
+
+<body>
+
+
+ 
+ <div data-role="page" id="loginHtml">
+        <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="menu" data-theme="b" href="#menuPrincFollow"></a-->
+		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
+		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+
+	</div>
+	<!--FIN HEADER--><!-- /header -->
+        <div class="container">
+				<div class="account-wall">
+					<!--img class="profile-img" src="http://reifax.com/FollowupReifax/resources/image/logo_login.jpg" alt=""-->
+					<div style="text-align:center;">
+					<img  style="width:250px;" src="http://reifax.com/FollowupReifax/resources/image/logo_login.jpg" alt="">
+					</div>
+					<form id="loginForm" class="form-signin">
+						<input id="userLogin" type="email" class="form-control" placeholder="Email" required autofocus>
+						<input id="passLogin" type="password" class="form-control" placeholder="Password" required>
+						<button id="btnLogin" style="color: #fff;background-color: #5cb85c;border-color: #4cae4c;" class="btn btn-success" type="submit">Sign in</button>						
+							<!--input  type="checkbox" value="remember-me">
+							<label style="margin-left: 15px;margin-top:10px;" class="checkbox">Remember me</label-->
+						<a href="#forgotHtml" class="pull-right need-help">Forgot Password</a><span class="clearfix"></span>
+					</form>
+				</div>
+				<a onclick="pdf();" class="text-center new-account">Subscriber Terms and Conditions</a>
+			
+		</div><!-- /content -->
+ </div><!-- /page -->
+
+<div data-role="page" id="forgotHtml">
+        <!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child menu" data-excecute="main-Menu" data-theme="b" href="javascript:history.go(-1)" data-rel="back"></a>
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="menu" data-theme="b" href="#menuPrincFollow"></a-->
+		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
+		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+
+	</div>
+	<!--FIN HEADER--><!-- /header -->
+        <div class="container">
+				<div class="account-wall">
+					<div style="text-align:center;">
+						<img  style="width:250px;" style="color: #fff;background-color: #337ab7;border-color: #337ab7;" src="http://reifax.com/FollowupReifax/resources/image/logo_login.jpg" alt="">
+					</div>	
+					<form class="form-signin" action="" method="post">
+						<input id="txtEmail" name="txtEmail" type="email" class="form-control" placeholder="Email address" required autofocus>
+						<input id="option" type="hidden" name="version" value="tablet">
+						<button style="background-color:#337ab7;color:#fff;text-shadow:none;" id="go" class="btn btn-lg btn-primary btn-block">Go</button>	
+						
+						<div id="trquestion" style="display:none;">
+							<label style="font-weight: bold;" for="inputEmail" id="questionuser">For your enhanced security and privacy</label>
+						</div>
+						
+						<div id="transwer" style="display:none;">
+							<input type="text" id="txtEmail" name="answeruser" class="form-control fieldRequired" placeholder="Your answer">
+						</div>
+						
+						<div id="trsupport" style="display:none;">
+							<label style="font-weight: bold;" for="inputEmail">For your enhanced security and privacy, we have created a secret security question. Please call our customer service for help. Thank you</label>
+						</div>
+						
+						<div id="trPassword" style="display:none;">
+							<label style="font-weight: bold;" for="inputEmail">New Password</label>
+							<input type="password" id="password" name="txtPassword" class="form-control fieldRequired" placeholder="New Password" autofocus>
+							<span id="passwordNote" class="noteRegister">Must be at least 8 characters and contain a letter and a number</span>
+							<span id="passwordNoteError" class="errorRegister"></span>
+						
+							<label style="font-weight: bold;" for="inputEmail">Re-type Password</label>
+							<input type="password" id="re-password" name="txtPassword2" class="form-control fieldRequired" placeholder="Re-type Password" autofocus>
+							<span id="Re-passwordNoteError" class="errorRegister"></span>
+							
+							<button style="background-color:#337ab7;color:#fff;text-shadow:none;" id="next" class="btn btn-lg btn-primary btn-block">Next</button>
+						</div>
+					</form>
+				</div>	
+					
+			<div class="MsglockScreen bold">
+				<!--img src="img/ac.gif"> 
+				Processing...-->
+			</div>
+			
+		</div><!-- /content -->
+ </div><!-- /page --> 
+ 
+ 
+ 
+<div data-role="page" id="followingHtml">
+	<!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_one">				
+		<!--a style="background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:6px;background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="menu" data-theme="b" href="#menuPrincFollow"></a-->
+		<!--a style="background:#E98C40; border:1px solid #E98C40; background-color:#E98C40;background-image: url('resources/img/Save2.png');background-repeat:no-repeat;margin-left:-11px;background-position:center center;left:10%;" class="ui-btn ui-icon-save ui-btn-icon-notext excecute ui-first-child ui-last-child" data-excecute="main-Menu" data-theme="b" href="#save">No text</a-->		
+		<div style="text-align:center;"><img src="resources/image/reifax_Followup-w.jpg" width="120" height="40"></div>
+		<div style="width: 100%;margin-top: -40px;text-align: right;">
+			<!--a id="filtro" style="height: 30px;background-image: url('img/filter.jpg');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="filter" data-toggle="modal" role="button"  data-theme="b" href="#filter"></a>
+			<a id="filtro_remove" style="height: 30px;background-image: url('img/filter-remove.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="filter" data-theme="b" href="#"></a-->
+			<a style="height: 30px;margin-right:10px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuSecunFollow"></a>
+			
+		</div>
+		<!--a style="height: 30px;background-image: url('img/search-36.png');background-repeat:no-repeat; background-size: 30px 30px; background-position:center center;" class="ui-btn ui-btn-icon-notext excecute ui-first-child ui-last-child search" data-excecute="weekly" data-theme="b" href="javascript:void(0);"></a-->
+		<div style="background: #8ab420;border: #8ab420;margin-top: 40px;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false" id="header_two">				
+	
+		</div>
+		
+		<!--TABS-->	
+		<div style="background: #ccc;height:40px;" data-role="navbar" >
+			<ul>
+				<li class="item active"><a id="following-mobile" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Following</a></li>
+				<li class="item"><a id="email-mobile" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Email&nbsp;&nbsp;<span class="badge result"></span></a></li>
+				<li class="item"><a id="task-mobile" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Task</a></li>
+				<li class="item"><a id="contact-mobile" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#">Contacts</a></li>
+			</ul>
+		</div>	
+		<!--FIN TABS-->
+	</div>
+	<!--FIN HEADER-->
+	
+	<!--content-->
+	<div data-role="content">
+		
+		<div style="background:#fff;" id="content">
+			<ul style="list-style: none;margin-left:-40px;" class="page_result">
+			<!--ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchPropiedad" class="page_result"-->
+				
+			</ul>
+		</div>
+		<div style="text-align:center" class="loading-bar" id="loading-bar"></div>
+		
+		
+	</div>
+	<!--content-->
+	
+	<!--MENU PRINCIPAL PROPERTY-->
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuProperty" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+			<a class="closeMenu" style="display:none;"   href="#" data-rel="close">Close</a>
+			<!--li class="margen"><a class="filter"           id="filtro2"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
+			<li class="margen"><a class="filterRemove"     id="filtro_remove2" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li-->	
+			<li class="margen"><a class="deleteFollow"     id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
+			<li class="margen"><a class="newschedule"      id="nschedule"      href="#pagAddScheduleHtml">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>			 
+			<li class="margen"><a class="get-contact"      id="getContactP"    href="#">&nbsp;&nbsp;&nbsp;&nbsp;Get Contact</a></li>			 			
+			<li class="margen"><a class="investor-factor"  id="investorFa"     href="#investor" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Investor Factor</a></li>			 
+			<li class="margen"><a class="sendContract"     id="sendContract"   href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
+			<li class="margen"><a class="sendEmail"        id="sendEmail"      href="#formEmail" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
+			<li class="margen"><a class="sendSMS"          id="sendSMS"        href="#formSMS" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
+			<li class="margen"><a class="sendFax"          id="sendFax"        href="#formFax" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
+			<li class="margen"><a class="makeCall"         id="makeCall"       href="#formCall" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>			 
+			</ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+		
+	<!--MENU SECUNDARIO PROPERTY-->
+	<div style="margin-top:40px;" class="heightMenu" data-role="panel" id="menuSecunFollow" data-display="overlay" data-position="right">
+		<div id="menu" >
+			<ul data-role="listview" data-icon="false">	 
+			<a class="closeMenu" style="display:none;"   href="#" data-rel="close">Close</a>
+			<li class="margen"><a class="filter"        id="filtro"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
+			<li class="margen"><a class="filterRemove"  id="filtro_remove" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
+			<!--li><a class="deleteFollow"  id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
+			<li><a class="sendContract"  id="sendContract"   href="#sendContracts" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
+			<li><a class="sendEmail"     id="sendEmail"      href="#formEmail" role="button" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
+			<li><a class="sendSMS"       id="sendSMS"        href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>
+			<li><a class="sendFax"       id="sendFax"        href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>					
+			<li><a class="makeCall"      id="makeCall"       href="#formCall" role="button" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li-->
+						 
+			 </ul>
+		</div>	
+	</div>
+	<!--FIN MENU-->
+
+</div>
+<script type="text/javascript">
+    document.addEventListener("deviceReady",_onDeviceReady, false);
+	
+	document.addEventListener("backbutton", function(){
+			
+		if(activePage=='followingHtml'){
+			navigator.app.exitApp();//se sale de la aplicacion
+		}
+				
+	}, false);
+</script>
+</body>
+  
+</html>
