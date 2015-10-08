@@ -184,6 +184,47 @@ $(document).ready(function(){
 	//document.getElementById("sProperty").style.display = "none";
 	document.getElementById("searchLisContact").style.display = "none";
 	
+	$('#folldate').change(function(){
+		//alert($(this).val());
+		if ($(this).val()=='Between'){
+			document.getElementById('between').style.display = "block";
+		}else{
+			document.getElementById('between').style.display = "none";
+		}
+	});
+		
+	$('#edatePTask').change(function(){
+		//alert($(this).val());
+		if ($(this).val()=='Between'){
+			document.getElementById('betweenExecPTask').style.display = "block";
+		}else{
+			document.getElementById('betweenExecPTask').style.display = "none";
+		}
+	});
+		
+	$('#cdateCTask').change(function(){
+		//alert($(this).val());
+		if ($(this).val()=='Between'){
+			document.getElementById('betweenCompTask').style.display = "block";
+		}else{
+			document.getElementById('betweenCompTask').style.display = "none";
+		}
+	});
+		
+	$('#sdatePTask').change(function(){
+		//alert($(this).val());
+		if ($(this).val()=='Between'){
+			document.getElementById('betweenSchePTask').style.display = "block";
+		}else{
+			document.getElementById('betweenSchePTask').style.display = "none";
+		}
+	});
+	
+	
+	
+	
+	
+	
 });
 
 
