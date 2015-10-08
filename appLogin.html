@@ -149,179 +149,7 @@
 	});
 </script>
 
-<script type="text/javascript">
-	
-	$('#next').bind('click',funciones.proccess)
-	$('#go').bind('click',funciones.findUser);
-	$('input[name=txtEmail]').bind('focus',funciones.initAll);
-	correcto=true;
-	
-	//BOTON LOGIN
-	$("#btnLogin").on('click', function () {
-		//alert('login');
-		processLogin();
-	});
-	
-	//$("#loginHtml").on("pageinit", function(e) {
-	/*$( document ).on( "pageinit", "#loginHtml", function( event ) {
-		alert('conectando');
-		checkPreAuth();
-	});*/
 
-function checkPreAuth() {
-	//var form = $("#loginForm");
-	//var userid = JSON.parse(localStorage.getItem('userid'));
-	//alert(window.localStorage["userid"]);
-	//if(user.username != undefined && pass.password != undefined) {
-	if(window.localStorage["userid"] != undefined) {
-	//if(userid.userid != undefined) {
-		alert('existe user');
-		//$("#username", form).val(window.localStorage["username"]);
-		//$("#password", form).val(window.localStorage["password"]);
-		//handleLogin();
-		$.mobile.changePage("#followingHtml");
-	}else{
-		alert('no existe user');
-		$.mobile.changePage("#loginHtml");
-	
-	}
-}
-
-$( document ).ajaxError(function( event, request, settings ) {
-  $.each(event, function(index, value) { 
-	alert(index + ': ' + value); 
- });
- $.each(request, function(index, value) { 
-	alert(index + ': ' + value); 
- });
- $.each(settings, function(index, value) { 
-	alert(index + ': ' + value); 
- });
-
-});
-
-function processLogin(){
-	
-	var user = $("input#userLogin").val();
-	var pass = $("input#passLogin").val();
-	alert(user);
-	alert(pass);
-	var userid="";
-	$.ajax({
-		//url: 'http://reifax.com/FollowupReifax/properties_validacion.php',   
-		url: 'http://reifax.com/resources/php/properties_validacion.php',    
-		type: 'POST',
-		data: { 			
-			'loginEmail': user,
-			'loginPass': pass,
-			'followupMobile': 'followupMobile',
-			'remember': true
-				
-			},
-		success: function(data, textStatus, jqXHR){
-			alert(data);
-			var obj = JSON.parse(data);
-			var userid= obj.userid;
-			var object = { 'userid' : userid };
-			localStorage.setItem('userid', JSON.stringify(object));
-			$.mobile.changePage("#followingHtml");	
-		},
-		
-		error: function(jqXHR, textStatus, ex) {
-			alert(textStatus + "," + ex + "," + jqXHR.responseText);
-		}
-	});
-
-		
-}
-
-
-var funciones={
-	initAll:function (){
-		$('#go').fadeIn(200);
-		$('#trPassword,#trquestion,#transwer,#trsupport').hide();
-		$("input").attr("required", false);
-	},
-	findUser:function (e)
-	{
-		e.preventDefault();
-		e.stopPropagation();
-		
-		if($('input[name=txtEmail]').val()=='')
-			return false;
-			
-		$('#go').fadeOut(200);
-		$.ajax({
-			type	:'GET',
-			data 	: {
-				option: 'findData',
-				email: $('input[name=txtEmail]').val()
-			},
-			url		:'http://www.reifax.com/resources/php/funcionesForgotPassword.php',
-			dataType:"jsonp",
-			
-			success	: function (respuesta)
-			{
-				//console.log(respuesta);
-				if(respuesta.success)
-				{
-					switch(respuesta.estado){
-						case (1):
-							$('#questionuser').html(respuesta.questionuser);
-							$('#trPassword,#trquestion,#transwer').show();
-							$("input").attr("required", true);
-						break;
-						case (8):
-							$('#trsupport').show();
-						break;
-						default:
-							$('#trPassword').show();
-							$("#trPassword input").attr("required", true);
-							
-						}
-				}
-			}
-	
-		})
-		//return false;
-	},
-	proccess:function (e)
-	{
-		e.preventDefault();
-		e.stopPropagation();
-
-		$('.MsglockScreen').fadeIn();
-		$.ajax({
-			type	:'GET',
-			data 	:'option=proccess&amp;email='+$('input[name=txtEmail]').val()+'&amp;answeruser='+$('input[name=answeruser]').val()+'&amp;pass='+$('input[name=txtPassword]').val(),
-			dataType:'jsonp',
-			url		:'http://www.reifax.com/resources/php/funcionesForgotPassword.php',
-			
-			success	: function (respuesta)
-						{
-							if(respuesta.success)
-							{
-								if(respuesta.estado==4){
-									$('.MsglockScreen').html('successfully processed request');
-								}
-								else{
-									$('.MsglockScreen').html('Email or password is incorrect..!!');
-								}
-								$('.MsglockScreen').delay(3000).fadeOut(250,function (){document.location = 'index.html'});
-								
-							}
-						}
-				})
-		}
-	}
-
-	
-function pdf(){
- 
-	window.open('http://www.reifax.com/login/pdf/REIFAX_TermsAndConditions.pdf', '_system', 'location=yes');
-	
- }
-</script>
 <style>
 
 	.ui-tabs{
@@ -961,6 +789,166 @@ function pdf(){
 				
 	}, false);
 
+	
+	$('#next').bind('click',funciones.proccess)
+	$('#go').bind('click',funciones.findUser);
+	$('input[name=txtEmail]').bind('focus',funciones.initAll);
+	correcto=true;
+	
+	//BOTON LOGIN
+	$("#btnLogin").on('click', function () {
+		alert('login');
+		processLogin();
+	});
+	
+	//$("#loginHtml").on("pageinit", function(e) {
+	/*$( document ).on( "pageinit", "#loginHtml", function( event ) {
+		alert('conectando');
+		checkPreAuth();
+	});*/
+
+/*function checkPreAuth() {
+	//var form = $("#loginForm");
+	//var userid = JSON.parse(localStorage.getItem('userid'));
+	//alert(window.localStorage["userid"]);
+	//if(user.username != undefined && pass.password != undefined) {
+	if(window.localStorage["userid"] != undefined) {
+	//if(userid.userid != undefined) {
+		alert('existe user');
+		//$("#username", form).val(window.localStorage["username"]);
+		//$("#password", form).val(window.localStorage["password"]);
+		//handleLogin();
+		$.mobile.changePage("#followingHtml");
+	}else{
+		alert('no existe user');
+		$.mobile.changePage("#loginHtml");
+	
+	}
+}*/
+
+
+function processLogin(){
+	
+	var user = $("input#userLogin").val();
+	var pass = $("input#passLogin").val();
+	alert(user);
+	alert(pass);
+	var userid="";
+	$.ajax({
+		//url: 'http://reifax.com/FollowupReifax/properties_validacion.php',   
+		url: 'http://reifax.com/resources/php/properties_validacion.php',    
+		type: 'POST',
+		data: { 			
+			'loginEmail': user,
+			'loginPass': pass,
+			'followupMobile': 'followupMobile',
+			'remember': true
+				
+			},
+		success: function(data, textStatus, jqXHR){
+			alert(data);
+			var obj = JSON.parse(data);
+			var userid= obj.userid;
+			var object = { 'userid' : userid };
+			localStorage.setItem('userid', JSON.stringify(object));
+			$.mobile.changePage("#followingHtml");	
+		},
+		
+		error: function(jqXHR, textStatus, ex) {
+			alert(textStatus + "," + ex + "," + jqXHR.responseText);
+		}
+	});
+
+		
+}
+
+
+var funciones={
+	initAll:function (){
+		$('#go').fadeIn(200);
+		$('#trPassword,#trquestion,#transwer,#trsupport').hide();
+		$("input").attr("required", false);
+	},
+	findUser:function (e)
+	{
+		e.preventDefault();
+		e.stopPropagation();
+		
+		if($('input[name=txtEmail]').val()=='')
+			return false;
+			
+		$('#go').fadeOut(200);
+		$.ajax({
+			type	:'GET',
+			data 	: {
+				option: 'findData',
+				email: $('input[name=txtEmail]').val()
+			},
+			url		:'http://www.reifax.com/resources/php/funcionesForgotPassword.php',
+			dataType:"jsonp",
+			
+			success	: function (respuesta)
+			{
+				//console.log(respuesta);
+				if(respuesta.success)
+				{
+					switch(respuesta.estado){
+						case (1):
+							$('#questionuser').html(respuesta.questionuser);
+							$('#trPassword,#trquestion,#transwer').show();
+							$("input").attr("required", true);
+						break;
+						case (8):
+							$('#trsupport').show();
+						break;
+						default:
+							$('#trPassword').show();
+							$("#trPassword input").attr("required", true);
+							
+						}
+				}
+			}
+	
+		})
+		//return false;
+	},
+	proccess:function (e)
+	{
+		e.preventDefault();
+		e.stopPropagation();
+
+		$('.MsglockScreen').fadeIn();
+		$.ajax({
+			type	:'GET',
+			data 	:'option=proccess&amp;email='+$('input[name=txtEmail]').val()+'&amp;answeruser='+$('input[name=answeruser]').val()+'&amp;pass='+$('input[name=txtPassword]').val(),
+			dataType:'jsonp',
+			url		:'http://www.reifax.com/resources/php/funcionesForgotPassword.php',
+			
+			success	: function (respuesta)
+						{
+							if(respuesta.success)
+							{
+								if(respuesta.estado==4){
+									$('.MsglockScreen').html('successfully processed request');
+								}
+								else{
+									$('.MsglockScreen').html('Email or password is incorrect..!!');
+								}
+								$('.MsglockScreen').delay(3000).fadeOut(250,function (){document.location = 'index.html'});
+								
+							}
+						}
+				})
+		}
+	}
+
+	
+function pdf(){
+ 
+	window.open('http://www.reifax.com/login/pdf/REIFAX_TermsAndConditions.pdf', '_system', 'location=yes');
+	
+ }
+</script>
 </body>
   
 </html>
