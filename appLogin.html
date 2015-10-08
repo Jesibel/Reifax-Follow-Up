@@ -176,10 +176,10 @@ $(document).ready(function(){
 });
 
 //$("#loginHtml").on("pageinit", function(e) {
-$( document ).on( "pageinit", "#loginHtml", function( event ) {
+/*$( document ).on( "pageinit", "#loginHtml", function( event ) {
 	alert('conectando');
 	checkPreAuth();
-});
+});*/
 
 function checkPreAuth() {
 	//var form = $("#loginForm");
@@ -238,7 +238,7 @@ function processLogin(){
 			var userid= obj.userid;
 			var object = { 'userid' : userid };
 			localStorage.setItem('userid', JSON.stringify(object));
-				
+			$.mobile.changePage("#followingHtml");	
 		},
 		
 		error: function(jqXHR, textStatus, ex) {
