@@ -222,6 +222,285 @@ $(document).ready(function(){
 	
 	
 	
+	//FILTER PROPERTIES
+	$("#filtro,#filtro2").on('click', function () {
+		//alert('filtro');				
+		getfilterProperty();		
+	});
+		
+	//FILTER EMAIL FOLLOW
+	$("#filtroemailFollow").on('click', function () {
+		//alert('filtro');				
+		//getfilterEmailFollow();		
+	});
+		
+	//FILTER REMOVE PROPERTY
+	$("#filtro_remove,#filtro_remove2").on('click', function () {
+		//alert('remove filter CONTACTS');
+		$('#menuSecunFollow').panel("close");
+		removeFilterProperty();		
+	});
+		
+	//FILTER REMOVE CONTACTS
+	$("#filtro_removeCont").on('click', function () {
+		//alert('remove filter CONTACTS');
+		//$('#menuContacts').panel("close");
+		removeFilterContact();			
+	});
+		
+	//FILTER REMOVE EMAIL INBOX
+	$("#RemovefiltroIn,#RemovefiltroI").on('click', function () {
+		//alert('remove filter email inbox');
+		//$('#menuEmailInbox,#menuEmailInboxO').panel("close");
+		removeFilterEmailInbox();			
+	});
+		
+	//FILTER REMOVE EMAIL OUTBOX
+	$("#RemovefiltroOu,#RemovefiltroO").on('click', function () {
+		//alert('remove filter email outbox');
+		//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+		removeFilterEmailOutbox();			
+	});
+		
+	//FILTER REMOVE PENDING TASK
+	$("#RemovefiltroTask").on('click', function () {
+		//alert('remove filter email outbox');
+		//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+		removeFilterPendingTask();		
+	});
+		
+	//FILTER REMOVE COMPLETED TASK
+	$("#RemovefiltroTaskC").on('click', function () {
+		//alert('remove filter email outbox');
+		//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+		removeFilterCompletedTask();		
+	});
+		
+	//FILTER REMOVE EMAIL FOLLOW
+	$("#filtro_removeEmailFollow").on('click', function () {
+		//alert('remove filter email outbox');
+		//$('#menuEmailOutbox,#menuEmailOutboxO').panel("close");
+		removeFilterEmailFollow();
+	});
+		
+	//INSERT CONTACTS
+	$("#insertCont,#insertCont2").on('click', function () {
+		//alert('insert');			
+		insertContact();
+	});
+		
+	//RESET CONTACTS
+	$("#resetAdd,#resetAdd2").on('click', function () {
+		//alert('insert');			
+		resetformCont();
+	});
+		
+	//INSERT HISTORY FOLLOW
+	$("#saveHist,#saveHistory").on('click', function () {
+		//alert('insert');			
+		addHistory();
+	});
+		
+	//RESET HISTORY FOLLOW
+	$("#resetHist,#resetHistory").on('click', function () {
+		//alert('insert');			
+		resetHistory();
+	});
+		
+	//INSERT SCHEDULE FOLLOW
+	$("#saveSche,#saveSchedule").on('click', function () {
+		//alert('insert');			
+		var day      = document.getElementById("edate").value;
+		var hour     = document.getElementById("ehour").value;
+		var exectype = document.getElementById("exectype").value;
+		var task     = document.getElementById("taskksc").value;
+		var detail	 = document.getElementById("detailsch").value;
+
+		saveSchedule(day,hour,exectype,task,detail);
+	});
+		
+	//RESET HISTORY FOLLOW
+	$("#resetSche").on('click', function () {
+		//alert('insert');			
+		resetSchedule();
+	});								
+		
+	//CANCEL ADD SCHEDULE FOLLOW
+	$("#cancelSche,#cancelEditSche").on('click', function () {
+		//alert('insert');			
+		//cancelSchedule();
+		$.mobile.changePage(
+		'#scheduleFollow',
+		{
+        allowSamePageTransition : true,
+        transition              : 'none',
+        showLoadMsg             : false,
+        reloadPage              : false
+		}
+		);
+	});	
+
+	//CANCEL EDIT SCHEDULE FOLLOW
+	$("#cancelEditSche").on('click', function () {
+		//alert('insert');			
+		//cancelSchedule();
+		$.mobile.changePage(
+		'#detailSchedule',
+		{
+			allowSamePageTransition : true,
+             transition              : 'none',
+             showLoadMsg             : false,
+             reloadPage              : false
+		}
+		);
+	});
+		
+	//CANCEL EDIT HISTORY FOLLOW
+	$("#cancelEditHistory").on('click', function () {
+		//alert('insert');			
+		//cancelSchedule();
+		$.mobile.changePage(
+		'#detailHistory',
+		{
+            allowSamePageTransition : true,
+            transition              : 'none',
+            showLoadMsg             : false,
+            reloadPage              : false
+		}
+		);
+	});
+		
+	//CANCEL EMAIL COMPOSE FOLLOW
+	$("#cancelComposeEF").on('click', function () {
+		//alert('insert');			
+		//cancelSchedule();
+		$.mobile.changePage(
+		'#emailFollow',
+		{
+            allowSamePageTransition : true,
+            transition              : 'none',
+            showLoadMsg             : false,
+            reloadPage              : false
+		}
+		);
+	});
+		
+	//CANCEL EDIT PENDING TASK
+	$("#cancelEditPend").on('click', function () {
+		//alert('insert');			
+		//cancelSchedule();
+		$.mobile.changePage(
+		'#detailPending',
+		{
+            allowSamePageTransition : true,
+            transition              : 'none',
+            showLoadMsg             : false,
+            reloadPage              : false
+		}
+		);
+	});
+		
+	//CANCEL EDIT COMPLETED TASK
+	$("#cancelEditCompleted").on('click', function () {
+		//alert('insert');			
+		//cancelSchedule();
+		$.mobile.changePage(
+		'#detailCompleted',
+		{
+            allowSamePageTransition : true,
+            transition              : 'none',
+            showLoadMsg             : false,
+            reloadPage              : false
+		}
+		);
+	});
+	
+	$("#x-following").on('click', function () {
+		//alert('x-following');
+		$('#menuSecunFollow').panel("close");		
+	});
+	$("#x-emailIn").on('click', function () {
+		//alert('x-following');
+		$('#menuEmailInbox').panel("close");		
+	});
+	
+	$("#x-emailOut").on('click', function () {
+		//alert('x-following');
+		$('#menuEmailOutbox').panel("close");		
+	});
+	
+	$("#x-taskPend").on('click', function () {
+		//alert('x-following');
+		$('#menuTask').panel("close");		
+	});
+	
+	$("#x-taskComp").on('click', function () {
+		//alert('x-following');
+		$('#menuTaskCompleted').panel("close");		
+	});
+		
+	//REFRESH HISTORY FOLLOW
+	$("#refreshHist").on('click', function () {
+		//alert('REFRESH');		
+		//location.reload(true);			
+		//$.mobile.changePage('index.html#historyFollow');
+		$.mobile.changePage(
+        '#historyFollow',
+		{
+            allowSamePageTransition : true,
+            transition              : 'none',
+            showLoadMsg             : false,
+            reloadPage              : false
+		}
+		);
+	});
+		
+	//REFRESH HISTORY FOLLOW
+	$("#refreshSchedule").on('click', function () {
+		//alert('REFRESH');		
+		//location.reload(true);			
+		//$.mobile.changePage('index.html#historyFollow');
+		$.mobile.changePage(
+        '#scheduleFollow',
+		{
+            allowSamePageTransition : true,
+            transition              : 'none',
+            showLoadMsg             : false,
+            reloadPage              : false
+		}
+		);
+	});
+	
+	
+	$('#imageUpload').change(function(){
+		$('#imagePreview').show();
+		readImgUrlAndPreview(this);
+		function readImgUrlAndPreview(input){
+			if (input.files && input.files[0]) {
+			    var reader = new FileReader();
+			    reader.onload = function (e) {			            	
+					$('#imagePreview').attr('src', e.target.result);
+				}
+			};
+			reader.readAsDataURL(input.files[0]);
+		}	
+	});
+		
+	
+	$('#imageUploadFax').change(function(){
+		$('#imagePreviewFax').show();
+		readImgUrlAndPreview(this);
+		function readImgUrlAndPreview(input){
+			if (input.files && input.files[0]) {
+			    var reader = new FileReader();
+			    reader.onload = function (e) {			            	
+					$('#imagePreviewFax').attr('src', e.target.result);
+				}
+			};
+			reader.readAsDataURL(input.files[0]);
+		}	
+	});
+	
 	
 	
 	
