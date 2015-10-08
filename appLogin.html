@@ -74,24 +74,6 @@
 <script src="resources/js/bootbox.js"></script>
 	
 	<script type="text/javascript">
-	var activePage;
-	var device=false;
-	function _onDeviceReady (){	
-		
-		activePage = $.mobile.activePage.attr('id');
-		MobileAccessibility.usePreferredTextZoom(false);
-		//alert(WURFL.form_factor);
-		if (WURFL.form_factor == "Tablet") {
-			//alert('es una tablet');
-			device=true;
-			window.plugins.orientationchanger.lockOrientation('landscape');
-			 //setTimeout(function () {navigator.splashscreen.show()},1000);
-		}else{
-			device=false;
-			window.plugins.orientationchanger.lockOrientation('portrait');
-		}
-		
-	}
 	
 function showConfirm() {
 	navigator.notification.confirm(
@@ -10189,18 +10171,6 @@ $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){
 
 </script>
 
-
-<script type="text/javascript">
-    document.addEventListener("deviceReady",_onDeviceReady, false);
-	
-	document.addEventListener("backbutton", function(){
-			
-		if(activePage=='followingHtml'){
-			navigator.app.exitApp();//se sale de la aplicacion
-		}
-				
-	}, false);
-</script>
 </body>
   
 </html>
