@@ -166,10 +166,10 @@ function detectInternet(){
 $(document).ready(function(){
 	
 	
-		/*$('#next').bind('click',funciones.proccess)
+	$('#next').bind('click',funciones.proccess)
 		$('#go').bind('click',funciones.findUser);
 		$('input[name=txtEmail]').bind('focus',funciones.initAll);
-		correcto=true;*/
+		correcto=true;
 
 	
 	//document.getElementById('templa').style.display = "none";
@@ -2732,14 +2732,14 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 	$( "#list-contacts" ).on( "filterablebeforefilter", function ( e, data ) {
 		var $ul = $( this );
 		filter= $('#searchConta').val();
-		$ul.html( "" );
+		/*$ul.html( "" );
 		$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-        $ul.listview( "refresh" );
+        $ul.listview( "refresh" );*/
 		listadoContacts(start,settings.limit,filter);
 	});
 	
 	
-	detectInternet();
+	//detectInternet();
 	pagina = 4;
 	
 	$.mobile.silentScroll(storePositionContact.topCoordinateContact);
@@ -2765,7 +2765,7 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 $(document).on("pagebeforeshow","#followingHtml",function(){	
 	//alert('page following');
 	//alert(storePosition.topCoordinate);
-	detectInternet();
+	//detectInternet();
 	pagina = 1;
 	console.log(loader);
 	if (loader==1){
@@ -2804,7 +2804,7 @@ $(document).on("pagebeforeshow","#followingHtml",function(){
 $(document).on("pagebeforeshow","#emailHtml",function(){	
 	//alert('page email inbox');
 	//alert(storePositionEmail.topCoordinateEmail);
-	detectInternet();
+	//detectInternet();
 	pagina = 2;
 	
 	$.mobile.silentScroll(storePositionEmail.topCoordinateEmail);
@@ -2843,7 +2843,7 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 
 $(document).on("pagebeforeshow","#historyFollow",function(){	
 	//alert('page history');
-	detectInternet();
+	//detectInternet();
 	pagina = 5;
 	$("#historial ul").empty();
 	//if(loadhistory==false){
@@ -2906,7 +2906,7 @@ $(document).on("pagebeforeshow","#emailFollow",function(){
 
 $(document).on("pagebeforeshow","#taskHtml",function(){	
 	//alert('page task Pendings');
-	detectInternet();
+	//detectInternet();
 	pagina = 8;
 	//alert(storePositionTask.topCoordinateTask);
 	
@@ -2940,7 +2940,7 @@ $(document).on("pagebeforeshow","#taskHtml",function(){
 
 $(document).on("pagebeforeshow","#taskCompletedHtml",function(){	
 	//alert('page task complete');
-	detectInternet();
+	//detectInternet();
 	pagina = 9;
 	
 	$.mobile.silentScroll(storePositionTaskC.topCoordinateTaskC);
@@ -2975,9 +2975,9 @@ $(document).on("pagebeforeshow","#listadoAllContacts",function(){
 		var start=0;
 		var $ul = $( this );
 		filter= $('#searchListContact').val();
-		$ul.html( "" );
+		/*$ul.html( "" );
 		$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-        $ul.listview( "refresh" );
+        $ul.listview( "refresh" );*/
 		listadoAllContacts(start,settings.limit,filter);
 	});
 
@@ -2990,7 +2990,7 @@ $(document).on("pagebeforeshow","#pagAddContactoHtml",function(){
 });
 
 $(document).on("pagebeforeshow","#formContract2",function(){	
-	detectInternet();
+	//detectInternet();
 	var id = JSON.parse(localStorage.getItem('idtypec'));
 	getDocAdd(id.idtypec);
 	getCombo();
@@ -2998,7 +2998,7 @@ $(document).on("pagebeforeshow","#formContract2",function(){
 });
 
 $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){	
-	detectInternet();
+	//detectInternet();
 	$('#edateEditPend').mobipick({
 		dateFormat: "MM-dd-yyyy"
 	});	
@@ -3007,7 +3007,7 @@ $(document).on("pagebeforeshow","#pagEditPendingHtml",function(){
 
 
 $(document).on("pagebeforeshow","#pagAddScheduleHtml",function(){	
-	detectInternet();
+	//detectInternet();
 	var dateNow = new Date();
 	$('#edate').mobipick({
 		dateFormat: "yyyy-MM-dd",
@@ -3024,7 +3024,7 @@ $(document).on("pagebeforeshow","#pagEditScheduleHtml",function(){
 });
 
 $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){	
-	detectInternet();
+	//detectInternet();
 	var contr= JSON.parse(localStorage.getItem('key6'));
 	//alert(contr.contr);
 	if(contr.contr==0){
@@ -3075,7 +3075,7 @@ $(document).on("pagebeforeshow","#pagEditHistoryHtml",function(){
 });
 
 $(document).on("pagebeforeshow","#pagEditCompletedHtml",function(){	
-	detectInternet();
+	//detectInternet();
 	var contr= JSON.parse(localStorage.getItem('key6'));
 	//alert(contr.contr);
 	if(contr.contr==0){
@@ -3152,18 +3152,6 @@ function checkPreAuth() {
 	}
 }
 
-$( document ).ajaxError(function( event, request, settings ) {
-  $.each(event, function(index, value) { 
-	alert(index + ': ' + value); 
- });
- $.each(request, function(index, value) { 
-	alert(index + ': ' + value); 
- });
- $.each(settings, function(index, value) { 
-	alert(index + ': ' + value); 
- });
-
-});
 
 function processLogin(){
 	
