@@ -1733,7 +1733,7 @@ $(function(){
 		if (ciclo=='multi'){
 			var idaux=0;
 			
-			
+			$.mobile.loading().show();
 			for(i=0;i<checkid.length;i++){
 				//alert(checkid[i]);
 				var imgVal = $('#imageUpload').val(); 
@@ -1780,6 +1780,7 @@ $(function(){
 			}
 		
 		}else{
+			$.mobile.loading().show();
 			
 			var imgVal = $('#imageUpload').val(); 
 			$("input#userid").val(userid);
@@ -1788,7 +1789,7 @@ $(function(){
 			$("input#typeFollow").val(typeFollow);
 
 			var formData 		= new FormData($("#envioEmail")[0]);
-			$.mobile.loading().show();
+			
 			$.ajax({
 				url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followsendmail.php',
 				type: 'POST',
