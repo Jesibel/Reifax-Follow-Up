@@ -3157,8 +3157,8 @@ function processLogin(){
 	
 	var user = $("input#userLogin").val();
 	var pass = $("input#passLogin").val();
-	alert(user);
-	alert(pass);
+	//alert(user);
+	//alert(pass);
 	var userid="";
 	$.ajax({
 		//url: 'http://reifax.com/FollowupReifax/properties_validacion.php',   
@@ -3172,7 +3172,7 @@ function processLogin(){
 				
 			},
 		success: function(data, textStatus, jqXHR){
-			alert(data);
+			//alert(data);
 			var obj = JSON.parse(data);
 			var userid= obj.userid;
 			var object = { 'userid' : userid };
