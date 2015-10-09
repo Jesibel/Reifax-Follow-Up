@@ -596,7 +596,7 @@ $(document).ready(function(){
 		var imgVal = $('#imageUploadEI').val(); 
 		$("input#userid").val(userid);
 						
-	
+			tinyMCE.triggerSave(true,true);
 			var formData 		= new FormData($("#envioEmailEI")[0]);
 				$.ajax({
 					url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
@@ -635,7 +635,7 @@ $(document).ready(function(){
 		
 		var imgVal = $('#imageUploadEO').val(); 
 		$("input#userid").val(userid);
-						
+			tinyMCE.triggerSave(true,true);			
 			var formData 		= new FormData($("#envioEmailEO")[0]);
 				$.ajax({
 					url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
@@ -1725,6 +1725,7 @@ $(function(){
 			//alert(parcelid);
 		}
 		
+		tinyMCE.triggerSave(true,true);
 		//var userid=3213;
 		var userid = JSON.parse(localStorage.getItem('userid'));
 		userid=userid.userid;
@@ -1843,6 +1844,7 @@ $(function(){
 			//alert(parcelid);
 		}
 		
+		tinyMCE.triggerSave(true,true);
 		//var userid=3213;
 		var userid = JSON.parse(localStorage.getItem('userid'));
 		userid=userid.userid;
@@ -2002,6 +2004,7 @@ $(function(){
 			var parcelid =pid.pid;
 		}
 		
+		tinyMCE.triggerSave(true,true);
 		//var userid=3213;
 		var userid = JSON.parse(localStorage.getItem('userid'));
 		userid=userid.userid;
@@ -2113,6 +2116,7 @@ $(function(){
 			var parcelid =pid.pid;
 		}
 		
+		tinyMCE.triggerSave(true,true);
 		//var userid=3213;
 		var userid = JSON.parse(localStorage.getItem('userid'));
 		userid=userid.userid;
