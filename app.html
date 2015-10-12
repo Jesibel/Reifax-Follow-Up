@@ -179,7 +179,9 @@ $(document).ready(function(){
 	//document.getElementById('templaFAX').style.display = "none";
 	document.getElementById('between').style.display = "none";
 	document.getElementById('betweenExecPTask').style.display = "none";
+	document.getElementById('betweenExecPTask2').style.display = "none";
 	document.getElementById('betweenSchePTask').style.display = "none";
+	document.getElementById('betweenSchePTask2').style.display = "none";
 	document.getElementById('betweenCompTask').style.display = "none";
 	document.getElementById('regContact').style.display = "none";
 	document.getElementById("menuDE").style.display = "none";
@@ -211,8 +213,10 @@ $(document).ready(function(){
 		//alert($(this).val());
 		if ($(this).val()=='Between'){
 			document.getElementById('betweenExecPTask').style.display = "block";
+			document.getElementById('betweenExecPTask2').style.display = "block";
 		}else{
 			document.getElementById('betweenExecPTask').style.display = "none";
+			document.getElementById('betweenExecPTask2').style.display = "none";
 		}
 	});
 		
@@ -229,8 +233,10 @@ $(document).ready(function(){
 		//alert($(this).val());
 		if ($(this).val()=='Between'){
 			document.getElementById('betweenSchePTask').style.display = "block";
+			document.getElementById('betweenSchePTask2').style.display = "block";
 		}else{
 			document.getElementById('betweenSchePTask').style.display = "none";
+			document.getElementById('betweenSchePTask2').style.display = "none";
 		}
 	});
 	
@@ -2578,6 +2584,30 @@ $(function(){
 		
 	});
 	
+	$("#del-edate").on('click', function () {
+		$('#edate').val("");
+	});
+	
+	$("#del-execdateP").on('click', function () {
+		//alert('del fecha');
+		$('#execdateP').val("");
+	});
+	
+	$("#del-execdateP2").on('click', function () {
+		//alert('del fecha');
+		$('#execdateP2').val("");
+	});
+	
+	$("#del-schedateP").on('click', function () {
+		//alert('del fecha');
+		$('#schedateP').val("");
+	});
+	
+	$("#del-schedateP").on('click', function () {
+		//alert('del fecha');
+		$('#schedateP2').val("");
+	});
+	
 	
 	$('#following-mobile,#following-mobile2,#following-mobile3,#following-mobile4').click(function(){
 		//alert(storePosition.topCoordinate);
@@ -4071,7 +4101,7 @@ function pdf(){
 							</div>		
 							<div id="between" class="col-xs-6 col-sm-3">
 								<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
-								<input style="line-height:25px;width: 100px !important;margin-left: 115px;" name="demo2" id="demo2" class="i-txt" />
+								<input style="line-height:25px;width: 100px !important;margin-left: 70px;" name="demo2" id="demo2" class="i-txt" />
 							</div>			
 					</div>	
 				</div>
@@ -4493,10 +4523,16 @@ function pdf(){
 						<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
 								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
 								<input style="line-height:25px;width: 100px !important;" name="execdateP" id="execdateP" class="i-txt" />
-						</div>		
+						</div>
+						<div style="margin-top:3px;" class="col-xs-2 col-sm-3">
+							<button id="del-execdateP" type="button" >&times;</button>
+						</div>							
 						<div id="betweenExecPTask" class="col-xs-6 col-sm-3">
 								<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
 								<input style="line-height:25px;width: 100px !important;margin-left: 115px;" name="execdateP2" id="execdateP2" class="i-txt" />
+						</div>
+						<div id="betweenExecPTask2" style="margin-left: 47px; margin-top: 3px;" class="col-xs-2 col-sm-3">
+								<button id="del-execdateP2" type="button" >&times;</button>
 						</div>
 							
 					</div>
@@ -4519,12 +4555,17 @@ function pdf(){
 						<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
 								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
 								<input style="line-height:25px;width: 100px !important;" name="schedateP" id="schedateP" class="i-txt" />
-						</div>		
+						</div>	
+						<div style="margin-top:3px;" class="col-xs-2 col-sm-3">
+								<button id="del-schedateP" type="button" >&times;</button>
+						</div>
 						<div id="betweenSchePTask" class="col-xs-6 col-sm-3">
 								<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
 								<input style="line-height:25px;width: 100px !important;margin-left: 115px;" name="schedateP2" id="schedateP2" class="i-txt" />
 						</div>
-							
+						<div id="betweenSchePTask2" style="margin-left: 47px; margin-top: 3px;" class="col-xs-2 col-sm-3">
+								<button id="del-execdateP2" type="button" >&times;</button>
+						</div>	
 					</div>
 					
 					<div style="margin-bottom: 10px;" class="row">
@@ -7798,6 +7839,7 @@ function pdf(){
 					</div>
 					<div id="eedate" class="col-xs-7 col-sm-10">
 						<input id="edate" placeholder="E. Date" type="text" value="" class="span4" />
+						<a id="del-edate" style="margin-top:-35px;margin-left: 172px;" data-role="button" data-icon="delete" data-iconpos="notext"></a>
 						<!--a href="#" data-role="button" data-icon="delete" data-iconpos="notext"></a-->
 					</div>
 				</div>
