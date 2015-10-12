@@ -80,6 +80,8 @@
 	var device=false;
 	function _onDeviceReady (){	
 		
+		detectInternet()
+		
 		activePage = $.mobile.activePage.attr('id');
 		MobileAccessibility.usePreferredTextZoom(false);
 		//alert(WURFL.form_factor);
@@ -2243,7 +2245,10 @@ $(function(){
 	
 	//OPEN NEW SCHEDULE
 	$('#nschedule,#nscheduleDP').on('click',function(){				
-		$("#edate").val();
+		$("#tschedule select").empty();	
+		$("#tempschedule select").empty();	
+		$("#edate").val();			
+		$("#ehour").val();	
 		$("#tooschedule").hide();
 		getTemplateSchedule();
 		clearLocalStorageSchedule();
@@ -2251,7 +2256,10 @@ $(function(){
 	
 	//OPEN ADD SCHEDULE
 	$('#addSchedule').on('click',function(){				
-		$("#edate").val();
+		$("#tschedule select").empty();	
+		$("#tempschedule select").empty();	
+		$("#edate").val();			
+		$("#ehour").val();	
 		$("#tooschedule").hide();
 		getTemplateSchedule();
 		clearLocalStorageSchedule();
