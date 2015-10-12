@@ -525,7 +525,7 @@ $(document).ready(function(){
 		//alert("delete");
 		//alert("You must previously select(long touch) the contacts to be eliminated.");
 		bootbox.alert({
-			title: 'Delete Agent',
+			title: 'Delete Contact',
 			message: 'You must previously select(long touch) the contacts to be eliminated.'
 		});
 	});
@@ -535,7 +535,7 @@ $(document).ready(function(){
 		//alert("editc");
 		//alert("You must previously select(long touch) the contacts to be edited.");
 		bootbox.alert({
-			title: 'Edit Agent',
+			title: 'Edit Contact',
 			message: 'You must previously select(long touch) the contacts to be edited.'
 		});
 	});
@@ -617,7 +617,7 @@ $(document).ready(function(){
 						//alert('Email successfully');
 						bootbox.alert({
 							title: 'Send Email',
-							message: 'Email successfully.'
+							message: 'Email Sent'
 						});
 						$.mobile.changePage('#emailHtml');
 					},
@@ -656,7 +656,7 @@ $(document).ready(function(){
 						//alert('Email successfully');
 						bootbox.alert({
 							title: 'Send Email',
-							message: 'Email successfully.'
+							message: 'Email Sent'
 						});
 						$.mobile.changePage('#emailHtml');
 					},
@@ -1777,7 +1777,7 @@ $(function(){
 				//alert('Email successfully');
 				bootbox.alert({
 					title: 'Send Email',
-					message: 'Email successfully.'
+					message: 'Email Sent'
 				});
 			}
 		
@@ -1808,7 +1808,7 @@ $(function(){
 					$.mobile.loading().hide();
 					bootbox.alert({
 						title: 'Send Email',
-						message: 'Email successfully.'
+						message: 'Email Sent'
 					});
 					$.mobile.changePage('#followingHtml');
 					if (checkid!=''){
@@ -2148,7 +2148,7 @@ $(function(){
 				$.mobile.loading().hide();
 				bootbox.alert({
 					title: 'Send Fax',
-					message: 'Fax  successfully.'
+					message: 'Fax Sent'
 				});
 				$.mobile.changePage('#followingHtml');
 				if (checkid!=''){
