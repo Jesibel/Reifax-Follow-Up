@@ -178,11 +178,13 @@ $(document).ready(function(){
 	//document.getElementById('templaSms').style.display = "none";
 	//document.getElementById('templaFAX').style.display = "none";
 	document.getElementById('between').style.display = "none";
+	document.getElementById('between2').style.display = "none";
 	document.getElementById('betweenExecPTask').style.display = "none";
 	document.getElementById('betweenExecPTask2').style.display = "none";
 	document.getElementById('betweenSchePTask').style.display = "none";
 	document.getElementById('betweenSchePTask2').style.display = "none";
 	document.getElementById('betweenCompTask').style.display = "none";
+	document.getElementById('betweenCompTask2').style.display = "none";
 	document.getElementById('regContact').style.display = "none";
 	document.getElementById("menuDE").style.display = "none";
 	document.getElementById("menuDE2").style.display = "none";
@@ -204,8 +206,10 @@ $(document).ready(function(){
 		//alert($(this).val());
 		if ($(this).val()=='Between'){
 			document.getElementById('between').style.display = "block";
+			document.getElementById('between2').style.display = "block";
 		}else{
 			document.getElementById('between').style.display = "none";
+			document.getElementById('between2').style.display = "none";
 		}
 	});
 		
@@ -224,8 +228,10 @@ $(document).ready(function(){
 		//alert($(this).val());
 		if ($(this).val()=='Between'){
 			document.getElementById('betweenCompTask').style.display = "block";
+			document.getElementById('betweenCompTask2').style.display = "block";
 		}else{
 			document.getElementById('betweenCompTask').style.display = "none";
+			document.getElementById('betweenCompTask2').style.display = "none";
 		}
 	});
 		
@@ -2608,6 +2614,26 @@ $(function(){
 		$('#schedateP2').val("");
 	});
 	
+	$("#del-compdateC").on('click', function () {
+		//alert('del fecha');
+		$('#compdateC').val("");
+	});
+	
+	$("#del-compdateC2").on('click', function () {
+		//alert('del fecha');
+		$('#compdateC2').val("");
+	});
+	
+	$("#del-demo").on('click', function () {
+		//alert('del fecha');
+		$('#demo').val("");
+	});
+	
+	$("#del-demo2").on('click', function () {
+		//alert('del fecha');
+		$('#demo2').val("");
+	});
+	
 	
 	$('#following-mobile,#following-mobile2,#following-mobile3,#following-mobile4').click(function(){
 		//alert(storePosition.topCoordinate);
@@ -4098,11 +4124,17 @@ function pdf(){
 							<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-4">
 								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
 								<input style="line-height:25px;width: 100px !important;" name="demo" id="demo" class="i-txt" />
-							</div>		
+							</div>
+							<div style="margin-top:3px;" class="col-xs-2 col-sm-3">
+								<button id="del-demo" type="button" >&times;</button>
+							</div>	
 							<div id="between" class="col-xs-6 col-sm-3">
 								<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
 								<input style="line-height:25px;width: 100px !important;margin-left: 70px;" name="demo2" id="demo2" class="i-txt" />
-							</div>			
+							</div>	
+							<div id="between2" style="margin-left: 47px; margin-top: 3px;" class="col-xs-2 col-sm-3">
+								<button id="del-demo2" type="button" >&times;</button>
+							</div>	
 					</div>	
 				</div>
 			</div>	
@@ -4747,12 +4779,17 @@ function pdf(){
 						<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-3">
 								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
 								<input style="line-height:25px;width: 100px !important;" name="compdateC" id="compdateC" class="i-txt" />
-						</div>		
+						</div>	
+						<div style="margin-top:3px;" class="col-xs-2 col-sm-3">
+							<button id="del-compdateC" type="button" >&times;</button>
+						</div>	
 						<div id="betweenCompTask" class="col-xs-6 col-sm-3">
 								<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
 								<input style="line-height:25px;width: 100px !important;" name="compdateC2" id="compdateC2" class="i-txt" />
 						</div>
-							
+						<div id="betweenCompTask2" style="margin-left: 47px; margin-top: 3px;" class="col-xs-2 col-sm-3">
+							<button id="del-compdateC2" type="button" >&times;</button>
+						</div>	
 					</div>
 																						
 				</div>
