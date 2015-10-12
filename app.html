@@ -2649,7 +2649,8 @@ $(document).scroll(function () {
 		//alert("End Of The Page");
 		//alert(start);
 		//$(".loading-bar").html('Loading...');
-		$.mobile.loading;
+		//$.mobile.loading;
+		$.mobile.loading().hide();
 		console.log(busy,pagina,start);
 		
 		
@@ -2660,12 +2661,14 @@ $(document).scroll(function () {
 				//alert('following');
 				start = start+$settings.limit; 
 				listadoProperty(start,settings.limit);
+				$.mobile.loading().show();
 			}
             break;
         case(2):
 			if (busy==false){
 				start = start+$settings.limit;
 				listadoEmailsInbox(start,settings.limit);
+				$.mobile.loading().show();
 			}
             break;
         case(3):
@@ -2673,6 +2676,7 @@ $(document).scroll(function () {
 				//alert('emailO');
 				start = start+$settings.limit; 
 				listadoEmailsOutbox(start,settings.limit);
+				$.mobile.loading().show();
 			}
             break;
 		case(4):
@@ -2681,6 +2685,7 @@ $(document).scroll(function () {
 				filter='';
 				start = start+$settings.limit; 
 				listadoContacts(start,settings.limit,filter);
+				$.mobile.loading().show();
 			}
             break;
 		case(5):
@@ -2689,6 +2694,7 @@ $(document).scroll(function () {
 				start = start+$settings.limit; 
 				var valor = JSON.parse(localStorage.getItem('key'));
 				historyDetail(start,settings.limit,valor.parcelid);
+				$.mobile.loading().show();
 			}
             break;
 		case(6):
@@ -2696,7 +2702,8 @@ $(document).scroll(function () {
 				//alert('schedule');
 				start = start+$settings.limit; 
 				var valor = JSON.parse(localStorage.getItem('key'));
-				scheduleDetail(start,settings.limit,valor.parcelid);	
+				scheduleDetail(start,settings.limit,valor.parcelid);
+				$.mobile.loading().show();				
 			}
             break;
 		case(7):
@@ -2704,14 +2711,16 @@ $(document).scroll(function () {
 				//alert('email');
 				start = start+$settings.limit; 
 				var valor = JSON.parse(localStorage.getItem('key'));
-				emailDetail(start,settings.limit,valor.parcelid);						
+				emailDetail(start,settings.limit,valor.parcelid);	
+				$.mobile.loading().show();
 			}
             break;
 		case(8):
 			if (busy==false){
 				//alert('contacts');
 				start = start+$settings.limit; 
-				listadoPendings(start,settings.limit);						
+				listadoPendings(start,settings.limit);	
+				$.mobile.loading().show();				
 			}
             break;
 		case(9):
@@ -2719,6 +2728,7 @@ $(document).scroll(function () {
 				//alert('contacts');
 				start = start+$settings.limit; 
 				listadoCompleted(start,settings.limit);
+				$.mobile.loading().show();
 			}
             break;
 		case(10):
@@ -2727,6 +2737,7 @@ $(document).scroll(function () {
 				start = start+$settings.limit; 
 				filter='';
 				listadoAllContacts(start,settings.limit,filter);
+				$.mobile.loading().show();
 			}
             break;		
         default:
