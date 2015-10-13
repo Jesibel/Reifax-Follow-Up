@@ -2634,6 +2634,16 @@ $(function(){
 		$('#demo2').val("");
 	});
 	
+	$("#del-edateESche").on('click', function () {
+		//alert('del fecha');
+		$('#edateESche').val("");
+	});
+	
+	$("#del-edateEditPend").on('click', function () {
+		//alert('del fecha');
+		$('#edateEditPend').val("");
+	});
+	
 	
 	$('#following-mobile,#following-mobile2,#following-mobile3,#following-mobile4').click(function(){
 		//alert(storePosition.topCoordinate);
@@ -7874,10 +7884,12 @@ function pdf(){
 					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-4 col-sm-2">
 						Execute Date
 					</div>
-					<div id="eedate" class="col-xs-7 col-sm-10">
-						<input id="edate" placeholder="E. Date" type="text" value="" class="span4" />
-						<a id="del-edate" style="margin-top:-35px;margin-left: 172px;" data-role="button" data-icon="delete" data-iconpos="notext"></a>
-						<!--a href="#" data-role="button" data-icon="delete" data-iconpos="notext"></a-->
+					<div id="eedate" class="col-xs-6 col-sm-10">
+						<input id="edate" readonly="false" placeholder="E. Date" type="text" value="" class="span4" />
+					</div>
+					<div style="margin-top:10px;margin-left:-10px;padding-left: 0px;" class="col-xs-2 col-sm-10">
+						<a  id="del-edate" style="margin-right:10px;height:14px;width:14px;margin-bottom:5px;background-image: url('img/del-16.png');background-repeat:no-repeat; background-size: 10px 10px;margin-left:-3px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+						<!--a id="del-edate" style="margin-top:-35px;margin-left: 172px;" data-role="button" data-icon="delete" data-iconpos="notext"></a-->
 					</div>
 				</div>
 				<div class="row">									
@@ -8287,7 +8299,7 @@ function pdf(){
 		<div style="margin-left: 1px;" class="row formC" id="formEditSchedule">
 			<form style="margin-top: 30px;" class="form-inline">
 				<div class="row">					
-					<div style="padding-left: 25px;" class="col-xs-5 col-sm-2">
+					<div style="padding-left: 25px;" class="col-xs-4 col-sm-2">
 						Status
 					</div>
 					<div id="statussESche" class="col-xs-6 col-sm-10">
@@ -8295,15 +8307,19 @@ function pdf(){
 					</div>
 				</div>
 				<div class="row">				
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-4 col-sm-2">
 						Execute Date
 					</div>
 					<div id="ExdateESche" class="col-xs-6 col-sm-10">
 						<input name="edateESche" id="edateESche" class="i-txt">					
 					</div>
+					<div style="margin-top:10px;margin-left:-10px;padding-left: 0px;" class="col-xs-2 col-sm-10">
+						<a  id="del-edateESche" style="margin-right:10px;height:14px;width:14px;margin-bottom:5px;background-image: url('img/del-16.png');background-repeat:no-repeat; background-size: 10px 10px;margin-left:-3px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+						<!--a id="del-edate" style="margin-top:-35px;margin-left: 172px;" data-role="button" data-icon="delete" data-iconpos="notext"></a-->
+					</div>
 				</div>
 				<div class="row">			
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-4 col-sm-2">
 						Execute Hour
 					</div>
 					<div id="ExhourESche" style="height: 20px;margin-top: -1px;" class="input-group date form_datetime col-xs-6 col-sm-10 col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
@@ -8314,10 +8330,10 @@ function pdf(){
 					<input type="hidden" id="dtp_input3" value="" /><br/>	
 				</div>
 				<div class="row">
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-4 col-sm-2">
 						Execute Type
 					</div>
-					<div class="col-xs-6 col-sm-10">
+					<div class="col-xs-7 col-sm-10">
 						 <select onchange="test2();" id="etypeESche" class="form-control">
 							<option value="1">Manual</option>	
 							<option value="2">Automatic</option>												
@@ -8325,10 +8341,10 @@ function pdf(){
 					</div>
 				</div>
 				<div class="row">
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-4 col-sm-2">
 						Task
 					</div>
-					<div id="taskkESche" class="col-xs-6 col-sm-10">
+					<div id="taskkESche" class="col-xs-7 col-sm-10">
 						 <select id="taskESche" class="form-control">
 							<option value="1">Send SMS</option>
 							<option value="2">Receive SMS</option>
@@ -8349,7 +8365,7 @@ function pdf(){
 							<option value="17" >Make Note</option>
 						</select>		
 					</div>
-					<div style="display:none;" id="taskkESche2" class="col-xs-6 col-sm-10">
+					<div style="display:none;" id="taskkESche2" class="col-xs-7 col-sm-10">
 						 <select id="taskESch2e" class="form-control">
 							<option value="1">Send SMS</option>							
 							<option value="3">Send FAX</option>							
@@ -8362,7 +8378,10 @@ function pdf(){
 					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
 						Schedule Detail
 					</div>
-					<div id="detailESchee" class="col-xs-6 col-sm-10">
+				</div>
+				
+				<div class="row">
+					<div id="detailESchee" class="col-xs-10 col-sm-10">
 						 <textarea style="height:222px;  width: 100%;" id="detailESche" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>		
 					</div>
 				</div>
@@ -8371,7 +8390,10 @@ function pdf(){
 					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
 						Detail
 					</div>
-					<div id="detailcompESchee" class="col-xs-6 col-sm-10">
+				</div>
+				
+				<div class="row">
+					<div id="detailcompESchee" class="col-xs-10 col-sm-10">
 						 <textarea style="height:222px;  width: 100%;" id="compdetailESche" class="form-control" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
 					</div>
 				</div>
@@ -8434,7 +8456,7 @@ function pdf(){
 		<div style="margin-left: 1px;" class="row formC" id="formEditSchedule">
 			<form style="margin-top: 30px;" class="form-inline">
 				<div class="row">					
-					<div style="padding-left: 25px;" class="col-xs-5 col-sm-2">
+					<div style="padding-left: 25px;" class="col-xs-4 col-sm-2">
 						Status
 					</div>
 					<div id="statussEditPend" class="col-xs-6 col-sm-10">
@@ -8442,15 +8464,19 @@ function pdf(){
 					</div>
 				</div>
 				<div class="row">				
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-4 col-sm-2">
 						Execute Date
 					</div>
 					<div id="ExdateEditPend" class="col-xs-6 col-sm-10">
 						<input name="edateEditPend" id="edateEditPend" class="i-txt">		
 					</div>
+					<div style="margin-top:10px;margin-left:-10px;padding-left: 0px;" class="col-xs-2 col-sm-10">
+						<a  id="del-edateEditPend" style="margin-right:10px;height:14px;width:14px;margin-bottom:5px;background-image: url('img/del-16.png');background-repeat:no-repeat; background-size: 10px 10px;margin-left:-3px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#"></a>
+						<!--a id="del-edate" style="margin-top:-35px;margin-left: 172px;" data-role="button" data-icon="delete" data-iconpos="notext"></a-->
+					</div>
 				</div>
 				<div class="row">			
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-4 col-sm-2">
 						Execute Hour
 					</div>
 					<div id="ExhourEditPend" style="height: 20px;margin-top: -1px;" class="input-group date form_datetime col-xs-6 col-sm-10 col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
@@ -8461,10 +8487,10 @@ function pdf(){
 					<input type="hidden" id="dtp_input3" value="" /><br/>	
 				</div>
 				<div class="row">
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-4 col-sm-2">
 						Execute Type
 					</div>
-					<div class="col-xs-6 col-sm-10">
+					<div class="col-xs-7 col-sm-10">
 						 <select onchange="test3();" id="etypeEditPend" class="form-control">
 							<option value="1">Manual</option>	
 							<option value="2">Automatic</option>												
@@ -8472,10 +8498,10 @@ function pdf(){
 					</div>
 				</div>
 				<div class="row">
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-5 col-sm-2">
+					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-4 col-sm-2">
 						Task
 					</div>
-					<div id="taskkEditPend" class="col-xs-6 col-sm-10">
+					<div id="taskkEditPend" class="col-xs-7 col-sm-10">
 						 <select id="taskEditPend" class="form-control">
 							<option value="1">Send SMS</option>
 							<option value="2">Receive SMS</option>
