@@ -1546,9 +1546,9 @@ $(function(){
 	//SEND COMPOSE EMAIL FOLLOW
 	$('#sendComposeEmailFollow,#sendComposeEF').on('click', function () {
 		//alert('sendemail');
-		var val = JSON.parse(localStorage.getItem('key5'));
+		var val = JSON.parse(localStorage.getItem('email'));
 		var val2 = JSON.parse(localStorage.getItem('key'));
-		sendEmailFollow(val.mail,val2.parcelid);	
+		sendEmailFollow(val.email,val2.parcelid);	
 	});
 		
 	//CARGAR EDITAR CONTACT
@@ -1631,8 +1631,8 @@ $(function(){
 		
 	//BOTON DELETE EMAIL FOLLOW
 	$("#deleteEmailFollow,#deleteEmailFollow2").on('click', function () {
-		var valor = JSON.parse(localStorage.getItem('key5'));
-		deleteEmailFollow(valor.mail);
+		var valor = JSON.parse(localStorage.getItem('email'));
+		deleteEmailFollow(valor.email);
 	});
 		
 	//BOTON CARGAR EDITAR PENDING TASK
@@ -7244,7 +7244,7 @@ function pdf(){
 							<input type="file" name="file8" id="imageUploadEI" class="hide"/> 
 					</div>	
 				</div>
-				<div class="row">
+				<div style="margin-top:-35px;" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 						Subject
 					</div>					
@@ -7370,7 +7370,7 @@ function pdf(){
 							<input type="file" name="file8" id="imageUploadEO" class="hide"/> 
 					</div>	
 				</div>
-				<div class="row">
+				<div style="margin-top:-35px;" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 						Subject
 					</div>					
@@ -8021,7 +8021,7 @@ function pdf(){
 							<input type="file" name="file8" id="imageUploadEF" class="hide"/> 
 					</div>	
 				</div>
-				<div class="row">
+				<div style="margin-top:-35px;" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-3 col-sm-2">
 						Subject
 					</div>					
@@ -8032,49 +8032,12 @@ function pdf(){
 						<textarea style="height: 90px !important;" name="subject" id="subjectEF" type="text" placeholder="Subject" class="texta1" ></textarea>
 					</div>
 				</div>	
-				<!--div class="row">
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
-						Subject
-					</div>
-					<div id="ssubjectEF" class="col-xs-8 col-sm-10">
-						 <input type="text" id="subjectEF" placeholder="Subject"/>
-						 
-					</div>
-				</div>
-				<div class="row">
-					<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
-						Attach
-					</div>
-					<div class="row">
-					<div id="uuploadfileEF" class="col-xs-8 col-sm-10">
-						 <input type="text" id="uploadFileEF" placeholder="Select a file"/>
-					</div>
-					</div>
-				</div>
-				<div class="row">
-					<div style="margin-left:25px;text-align:center;" class=" col-xs-8 col-sm-10">
-						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
-							<span>Browser</span>
-							<input type="file" class="upload" id="uploadBtnComposeEF" />
-						</div>
-					</div>
-				</div>
-				<div id="browserCompEF"></div>
-				<br>
-				<div class="row">		
-					<div style="text-align:center;margin-left:65px;" class="col-xs-8 col-sm-10">
-						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
-							<span>Another file</span>
-							<input onclick="addInputComposeEF()" class="another" />	
-						</div>
-					</div>
-				</div>
-				<br-->
+				
 				<div class="row">
 					<!--div style="padding-left: 25px; padding-top: 10px;" class="col-xs-3 col-sm-2">
 						Text
 					</div-->
-					<div id="email2Cont" class="col-xs-8 col-sm-10">
+					<div id="email2Cont" class="col-xs-11 col-sm-10">
 						<textarea style="height:322px;  width: 100%;" name ="msg" id="detailsEF" class="texta1" placeholder="Your Detail here.." data-placement="top" data-trigger="manual"></textarea>
 						<!--textarea style="height:222px;" id="textemailEF" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea-->
 					</div>
