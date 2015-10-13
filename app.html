@@ -151,7 +151,7 @@
 </script>	
 	<script type="text/javascript">
 	tinymce.init({
-		selector: "#bodyEmail,#bodySms,#bodyFax",
+		selector: "#bodyEmail,#bodySms,#bodyFax,#textschdetailhist,#textcompdetailhist,#detailsEF",
 		theme_advanced_font_sizes: "10px,12px,13px,14px,16px,18px,20px",
 		font_size_style_values : "10px,12px,13px,14px,16px,18px,20px",
 		
@@ -1558,7 +1558,7 @@ $(function(){
 	
 		
 	//MAKE CALL
-	$('#makeCall,#makeCallDP').on('click', function () {
+	$('#makeCall,#makeCallDP,#makeCallEF,#makeCallEI').on('click', function () {
 		//alert('get');
 		//getAgentMakeCall(checkid);
 		//getAgentCall(checkid);
@@ -2235,7 +2235,7 @@ $(function(){
 	});
 	
 	//BOTON SEND CONTRACT
-	$("#sendContractDP").on('click', function () {
+	$("#sendContractDP,#sendContractEF,#sendContractEI").on('click', function () {
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=1;
 		$('#btnscheduledoc').hide();
@@ -2255,7 +2255,7 @@ $(function(){
 	});
 	
 	//GET TEMPLATE EMAIL
-	$('#sendEmailDP').on('click',function(){				
+	$('#sendEmailDP,sendEmailEF,sendEmailEI').on('click',function(){				
 		//alert("getptask");
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=1;
@@ -2284,7 +2284,7 @@ $(function(){
 	});
 	
 	//OPEN NEW SCHEDULE
-	$('#nschedule,#nscheduleDP').on('click',function(){				
+	$('#nschedule,#nscheduleDP,#nscheduleEF,#nscheduleEI').on('click',function(){				
 		$("#tschedule select").empty();	
 		$("#tempschedule select").empty();	
 		$("#edate").val();			
@@ -2308,7 +2308,7 @@ $(function(){
 
 	
 	//GET TEMPLATE SMS
-	$('#sendSMSDP').on('click',function(){				
+	$('#sendSMSDP,#sendSmsEF,#sendSmsEI').on('click',function(){				
 		//alert("getptask");
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=1;
@@ -2338,7 +2338,7 @@ $(function(){
 	});
 	
 	//GET TEMPLATE FAX
-	$('#sendFaxDP').on('click',function(){				
+	$('#sendFaxDP,#sendFaxEF,#sendFaxEI').on('click',function(){				
 		//alert("getptask");
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=1;
@@ -5959,14 +5959,14 @@ function pdf(){
 				<!--li><a class="deleteEmailInbox"                   id="deleteEI"          href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
 				<!--li class="margen"><a class="reply"               id="replyEF"           href="#" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Reply</a></li>
 				<li class="margen"><a class="forward"                id="forwardEF"         href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Forward</a></li-->					
-				<li class="margen"><a class="assignContEmailInbox"   id="assContIn"         href="#assignContacts" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
-				<li class="margen"><a class="assignProEmailInbox"    id="assPropIn"         href="#assignProperty" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li>							
-				<li class="margen"><a class="newschedule"            id="newscheduleEF"     href="#addscheduleEmailFollow" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>
-				<li class="margen"><a class="sendContract"           id="sendContractEF"    href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contract</a></li>				
-				<li class="margen"><a class="sendEmail"              id="sendEmailEF"       href="#formEmail" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>				
-				<li class="margen"><a class="sendFax"                id="sendFaxEF"         href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>				
-				<li class="margen"><a class="sendSMS"                id="sendSmsEF"         href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>				
-				<li class="margen"><a class="makeCall"               id="sendMakeCallEF"    href="#formCall" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>				
+				<li class="margen"><a class="assignContEmailInbox"   id="assContIn"         href="#assignContacts" class="btn btn-primary" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
+				<li class="margen"><a class="assignProEmailInbox"    id="assPropIn"         href="#assignProperty" class="btn btn-primary" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li>							
+				<li class="margen"><a class="newschedule"            id="nscheduleEI"       href="#addscheduleEmailFollow" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>
+				<li class="margen"><a class="sendContract"           id="sendContractEI"    href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contract</a></li>				
+				<li class="margen"><a class="sendEmail"              id="sendEmailEI"       href="#formEmail" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>				
+				<li class="margen"><a class="sendFax"                id="sendFaxEI"         href="#formFax" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>				
+				<li class="margen"><a class="sendSMS"                id="sendSmsEI"         href="#formSMS" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>				
+				<li class="margen"><a class="makeCall"               id="MakeCallEI"    href="#formCall" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>				
 			</ul>
 		</div>	
 	</div>
@@ -6292,12 +6292,12 @@ function pdf(){
 				<!--li><a class="deleteEmailInbox"       id="deleteEI"              href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
 				<!--li class="margen"><a class="reply"         id="replyEF"         href="#" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Reply</a></li>
 				<li class="margen"><a class="forward"       id="forwardEF"          href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Forward</a></li-->					
-				<li class="margen"><a class="newschedule"   id="newscheduleEF"      href="#addscheduleEmailFollow" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>
-				<li class="margen"><a class="sendContract"  id="sendContractEF"     href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contract</a></li>				
-				<li class="margen"><a class="sendEmail"     id="sendEmailEF"        href="#formEmail" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>				
-				<li class="margen"><a class="sendFax"       id="sendFaxEF"          href="#formFax" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>				
-				<li class="margen"><a class="sendSMS"       id="sendSmsEF"          href="#formSMS" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>				
-				<li class="margen"><a class="makeCall"      id="sendMakeCallEF"     href="#formCall" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>				
+				<li class="margen"><a class="newschedule"   id="nscheduleEF"        href="#addscheduleEmailFollow" class="btn btn-primary" >&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>
+				<li class="margen"><a class="sendContract"  id="sendContractEF"     href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contract</a></li>				
+				<li class="margen"><a class="sendEmail"     id="sendEmailEF"        href="#formEmail" class="btn btn-primary" >&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>				
+				<li class="margen"><a class="sendFax"       id="sendFaxEF"          href="#formFax" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>				
+				<li class="margen"><a class="sendSMS"       id="sendSmsEF"          href="#formSMS" class="btn btn-primary" >&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>				
+				<li class="margen"><a class="makeCall"      id="MakeCallEF"     href="#formCall" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>				
 			</ul>
 		</div>
 	</div>
