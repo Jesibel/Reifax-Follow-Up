@@ -1246,12 +1246,15 @@ $(function(){
 		//alert(url);
 		var id= $(this).attr('idmail');
 		var idseen= $(this).attr('idseen');
+		var parcelid = { 'parcelid' : pid };
 		// Creamos un objeto
 		var object = { 'email' : id };
 		var seen = { 'seen' : idseen };
+		var parcelid = { 'parcelid' : pid };
 		// Lo guardamos en localStorage pasandolo a cadena con JSON
 		localStorage.setItem('email', JSON.stringify(object));
 		localStorage.setItem('seen', JSON.stringify(seen));
+		localStorage.setItem('key', JSON.stringify(parcelid));
 		$('#detalleEmailCabO ul').empty();
 		$('#detalleCorreoO').empty();
 		//$.mobile.changePage( "#detailEmailOutbox");	
