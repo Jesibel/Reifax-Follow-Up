@@ -2235,7 +2235,7 @@ $(function(){
 	});
 	
 	//BOTON SEND CONTRACT
-	$("#sendContractDP,#sendContractEF,#sendContractEI").on('click', function () {
+	$("#sendContractDP,#sendContractEF,#sendContractEI,#sendContractEO").on('click', function () {
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=1;
 		$('#btnscheduledoc').hide();
@@ -2255,7 +2255,7 @@ $(function(){
 	});
 	
 	//GET TEMPLATE EMAIL
-	$('#sendEmailDP,sendEmailEF,sendEmailEI').on('click',function(){				
+	$('#sendEmailDP,sendEmailEF,sendEmailEI,sendEmailEO').on('click',function(){				
 		//alert("getptask");
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=1;
@@ -2284,7 +2284,7 @@ $(function(){
 	});
 	
 	//OPEN NEW SCHEDULE
-	$('#nschedule,#nscheduleDP,#nscheduleEF,#nscheduleEI').on('click',function(){				
+	$('#nschedule,#nscheduleDP,#nscheduleEF,#nscheduleEI,#nscheduleEO').on('click',function(){				
 		$("#tschedule select").empty();	
 		$("#tempschedule select").empty();	
 		$("#edate").val();			
@@ -2308,7 +2308,7 @@ $(function(){
 
 	
 	//GET TEMPLATE SMS
-	$('#sendSMSDP,#sendSmsEF,#sendSmsEI').on('click',function(){				
+	$('#sendSMSDP,#sendSmsEF,#sendSmsEI,#sendSmsEO').on('click',function(){				
 		//alert("getptask");
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=1;
@@ -2338,7 +2338,7 @@ $(function(){
 	});
 	
 	//GET TEMPLATE FAX
-	$('#sendFaxDP,#sendFaxEF,#sendFaxEI').on('click',function(){				
+	$('#sendFaxDP,#sendFaxEF,#sendFaxEI,#sendFaxEO').on('click',function(){				
 		//alert("getptask");
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=1;
@@ -5998,7 +5998,7 @@ function pdf(){
 			<a id="deleteEmailO" style="margin-right:5px;height:30px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary btn-lg" data-excecute="editar" data-toggle="modal" role="button"  data-theme="b" href="#"></a>
 			<a id="replyEmailO" style="margin-right:5px;height:30px;background-image: url('img/reply2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagReplyEmail"></a>
 			<a id="forwardEmailO" style="margin-right:5px;height:30px;background-image: url('img/forward2-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button"  data-theme="b" href="#pagForwardEmail"></a>
-			<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailInbox"></a>
+			<a style="height: 30px;margin-right:5px;background-image: url('img/menu-36.png');background-repeat:no-repeat; background-size: 30px 30px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child" data-excecute="weekly" data-theme="b" href="#menuDetailEmailOutbox"></a>
 		</div>
 		
 	</div>
@@ -6024,15 +6024,16 @@ function pdf(){
 	
 	<!--FIN CONTENT-->	
 	<!--MENU EMAIL DETALLE -->
-	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuDetailEmailOubox" data-display="overlay" data-position="right">
+	<div style="margin-top: 40px;" class="heightMenu" data-role="panel" id="menuDetailEmailOutbox" data-display="overlay" data-position="right">
 		<div id="menu" >
 			<ul data-role="listview" data-icon="false">	 
-				<a class="closeMenu" style="display:none;"               href="#" data-rel="close">Close</a>
-				<!--li><a class="deleteEmailInbox"       id="deleteEI"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Delete Emails</a></li-->
-				<li class="margen"><a class="reply"      id="replyO"      href="#" class="btn btn-primary btn-lg" data-toggle="modal">&nbsp;&nbsp;&nbsp;&nbsp;Reply</a></li>
-				<li class="margen"><a class="forward"    id="forwardO"    href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Forward</a></li>					
-				<!--li style="border-bottom: 2px solid #ccc;"><a class="assignContEmailInbox"   id="asscontEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Contacts</a></li>
-				<li style="border-bottom: 2px solid #ccc;"><a class="assignProEmailInbox"    id="assiproEIn"      href="#" >&nbsp;&nbsp;&nbsp;&nbsp;Assign Property</a></li-->				
+				<a class="closeMenu" style="display:none;"                                  href="#" data-rel="close">Close</a>
+				<li class="margen"><a class="newschedule"            id="nscheduleEO"       href="#addscheduleEmailFollow" class="btn btn-primary" >&nbsp;&nbsp;&nbsp;&nbsp;New Schedule</a></li>
+				<li class="margen"><a class="sendContract"           id="sendContractEO"    href="#formContract2" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contract</a></li>				
+				<li class="margen"><a class="sendEmail"              id="sendEmailEO"       href="#formEmail" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>				
+				<li class="margen"><a class="sendFax"                id="sendFaxEO"         href="#formFax" class="btn btn-primary" >&nbsp;&nbsp;&nbsp;&nbsp;Send Fax</a></li>				
+				<li class="margen"><a class="sendSMS"                id="sendSmsEO"         href="#formSMS" class="btn btn-primary" >&nbsp;&nbsp;&nbsp;&nbsp;Send SMS</a></li>				
+				<li class="margen"><a class="makeCall"               id="makeCallEO"        href="#formCall" class="btn btn-primary" >&nbsp;&nbsp;&nbsp;&nbsp;Make Call</a></li>				
 			</ul>
 		</div>	
 	</div>
