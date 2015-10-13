@@ -510,6 +510,34 @@ $(document).ready(function(){
 			reader.readAsDataURL(input.files[0]);
 		}	
 	});
+	
+	$('#imageUploadEI').change(function(){
+		$('#imagePreviewEI').show();
+		readImgUrlAndPreview(this);
+		function readImgUrlAndPreview(input){
+			if (input.files && input.files[0]) {
+			    var reader = new FileReader();
+			    reader.onload = function (e) {			            	
+					$('#imagePreviewEI').attr('src', e.target.result);
+				}
+			};
+			reader.readAsDataURL(input.files[0]);
+		}	
+	});
+	
+	$('#imageUploadEO').change(function(){
+		$('#imagePreviewEO').show();
+		readImgUrlAndPreview(this);
+		function readImgUrlAndPreview(input){
+			if (input.files && input.files[0]) {
+			    var reader = new FileReader();
+			    reader.onload = function (e) {			            	
+					$('#imagePreviewEO').attr('src', e.target.result);
+				}
+			};
+			reader.readAsDataURL(input.files[0]);
+		}	
+	});
 		
 	
 	$('#imageUploadFax').change(function(){
