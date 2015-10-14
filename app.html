@@ -179,6 +179,10 @@ $(document).ready(function(){
 	//document.getElementById('templaFAX').style.display = "none";
 	document.getElementById('between').style.display = "none";
 	document.getElementById('between2').style.display = "none";
+	document.getElementById('betweenMail').style.display = "none";
+	document.getElementById('betweenMail2').style.display = "none";
+	document.getElementById('betweenMailO').style.display = "none";
+	document.getElementById('betweenMailO2').style.display = "none";
 	document.getElementById('betweenExecPTask').style.display = "none";
 	document.getElementById('betweenExecPTask2').style.display = "none";
 	document.getElementById('betweenSchePTask').style.display = "none";
@@ -243,6 +247,28 @@ $(document).ready(function(){
 		}else{
 			document.getElementById('betweenSchePTask').style.display = "none";
 			document.getElementById('betweenSchePTask2').style.display = "none";
+		}
+	});
+	
+	$('#maildate').change(function(){
+		//alert($(this).val());
+		if ($(this).val()=='Between'){
+			document.getElementById('betweenMail').style.display = "block";
+			document.getElementById('betweenMail2').style.display = "block";
+		}else{
+			document.getElementById('betweenMail').style.display = "none";
+			document.getElementById('betweenMail2').style.display = "none";
+		}
+	});
+	
+	$('#maildateO').change(function(){
+		//alert($(this).val());
+		if ($(this).val()=='Between'){
+			document.getElementById('betweenMailO').style.display = "block";
+			document.getElementById('betweenMailO2').style.display = "block";
+		}else{
+			document.getElementById('betweenMailO').style.display = "none";
+			document.getElementById('betweenMailO2').style.display = "none";
 		}
 	});
 	
@@ -2675,6 +2701,26 @@ $(function(){
 		$('#edateEditPend').val("");
 	});
 	
+	$("#del-mailEI").on('click', function () {
+		//alert('del fecha');
+		$('#mailEI').val("");
+	});
+	
+	$("#del-mailEI2").on('click', function () {
+		//alert('del fecha');
+		$('#mailEI2').val("");
+	});
+	
+	$("#del-mailEO").on('click', function () {
+		//alert('del fecha');
+		$('#mailEO').val("");
+	});
+	
+	$("#del-mailEO2").on('click', function () {
+		//alert('del fecha');
+		$('#mailEO2').val("");
+	});
+	
 	
 	$('#following-mobile,#following-mobile2,#following-mobile3,#following-mobile4').click(function(){
 		//alert(storePosition.topCoordinate);
@@ -2953,7 +2999,16 @@ $(document).on("pagebeforeshow","#emailHtml",function(){
 		start=0;
 		cantidadEmail();
 		listadoEmailsInbox(start,settings.limit);
-	}						
+	}
+
+	$('#mailEI').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});	
+	
+	$('#mailEI2').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});	
+	
 });
 
 $(document).on("pagebeforeshow","#outboxEmailHtml",function(){	
@@ -2973,6 +3028,14 @@ $(document).on("pagebeforeshow","#outboxEmailHtml",function(){
 		cantidadEmail();
 		listadoEmailsOutbox(start,settings.limit);
 	}
+	
+	$('#mailEO').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});	
+	
+	$('#mailEO2').mobipick({
+		dateFormat: "MM-dd-yyyy"
+	});	
 							
 });
 
@@ -4301,7 +4364,7 @@ function pdf(){
             <div class="row">
               
 				<div style="margin-bottom: 10px;" class="row">
-					<div class="col-xs-5 col-sm-2">
+					<div class="col-xs-4 col-sm-2">
 						From Mail
 					</div>
 					<div class="col-xs-7 col-sm-10">
@@ -4310,7 +4373,7 @@ function pdf(){
 				</div>
 				
 				<div style="margin-bottom: 10px;" class="row">
-					<div class="col-xs-5 col-sm-2">
+					<div class="col-xs-4 col-sm-2">
 						From
 					</div>
 					<div class="col-xs-7 col-sm-10">
@@ -4319,7 +4382,7 @@ function pdf(){
 				</div>
 				
 				<div style="margin-bottom: 10px;" class="row">
-					<div class="col-xs-5 col-sm-2">
+					<div class="col-xs-4 col-sm-2">
 						Email Content
 					</div>
 					<div class="col-xs-7 col-sm-10">
@@ -4328,7 +4391,7 @@ function pdf(){
 				</div>
 				
 				<div style="margin-bottom: 10px;" class="row">
-					<div class="col-xs-5 col-sm-2">
+					<div class="col-xs-4 col-sm-2">
 						Email Type
 					</div>
 					<div id="emailtypeI" class="col-xs-7 col-sm-10">
@@ -4337,7 +4400,7 @@ function pdf(){
 				</div>
 				
 				<div style="margin-bottom: 10px;" class="row">
-					<div class="col-xs-5 col-sm-2">
+					<div class="col-xs-4 col-sm-2">
 						Attachment
 					</div>
 					<div id="attachmentI" class="col-xs-7 col-sm-10">
@@ -4346,8 +4409,8 @@ function pdf(){
 				</div>
 				
 				<div style="margin-bottom: 10px;" class="row">
-					<div class="col-xs-5 col-sm-2">
-						Pending Content
+					<div class="col-xs-4 col-sm-2">
+						Pending Contact
 					</div>
 					<div id="pendingcontI" class="col-xs-7 col-sm-10">
 						<select id="pencontI" class="span6"></select>
@@ -4355,7 +4418,7 @@ function pdf(){
 				</div>
 				
 				<div style="margin-bottom: 10px;" class="row">
-					<div class="col-xs-5 col-sm-2">
+					<div class="col-xs-4 col-sm-2">
 						Pending Property
 					</div>
 					<div id="pendingproI" class="col-xs-7 col-sm-10">
@@ -4364,14 +4427,44 @@ function pdf(){
 				</div>
 				
 				<div style="margin-bottom: 10px;" class="row">
-					<div class="col-xs-5 col-sm-2">
+					<div class="col-xs-4 col-sm-2">
 						Status
 					</div>
 					<div id="statusI" class="col-xs-7 col-sm-10">
 						<select id="staI" class="span6"></select>
 					</div>
 				</div>
-            
+				<div style="margin-bottom: 10px;" class="row">
+					<div style="padding-top: 5px;" class="col-xs-4 col-sm-4">
+						Email Date
+					</div>
+						<div style="margin-bottom:10px;" id="maildate" class="col-xs-3 col-sm-3">
+							<select id="emaildate" class="span4">
+								<option value="Equal">Equal</option>
+								<option value="Greater Than">Greater Than</option>
+								<option value="Less Than">Less Than</option>
+								<option value="Equal or Less" >Equal or Less</option>
+								<option value="Equal or Greater">Equal or Greater</option>
+								<option value="Between">Between</option>
+							</select>
+						</div>		
+							<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-4">
+								<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
+								<input style="line-height:25px;width: 100px !important;" name="mailEI" id="mailEI" class="i-txt" />
+							</div>	
+						<div style="margin-top:3px;" class="col-xs-2 col-sm-3">
+							<button id="del-mailEI" type="button" >&times;</button>
+						</div>		
+						<div id="betweenMail" class="col-xs-6 col-sm-3">
+							<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
+							<input style="line-height:25px;width: 100px !important;margin-left: 70px;" name="mailEI2" id="mailEI2" class="i-txt" />
+						</div>
+						<div id="betweenMail2" style="margin-top: 3px;" class="col-xs-2 col-sm-3">
+							<button id="del-mailEI2" type="button" >&times;</button>
+						</div>	
+
+							
+					</div>
 			
 			</div>
             
@@ -4403,7 +4496,7 @@ function pdf(){
 					<div class="row">
 					  
 						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-5 col-sm-2">
+							<div class="col-xs-4 col-sm-2">
 								From Mail
 							</div>
 							<div class="col-xs-7 col-sm-10">
@@ -4412,7 +4505,7 @@ function pdf(){
 						</div>
 						
 						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-5 col-sm-2">
+							<div class="col-xs-4 col-sm-2">
 								From
 							</div>
 							<div class="col-xs-7 col-sm-10">
@@ -4421,7 +4514,7 @@ function pdf(){
 						</div>
 						
 						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-5 col-sm-2">
+							<div class="col-xs-4 col-sm-2">
 								Email Content
 							</div>
 							<div class="col-xs-7 col-sm-10">
@@ -4430,7 +4523,7 @@ function pdf(){
 						</div>
 						
 						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-5 col-sm-2">
+							<div class="col-xs-4 col-sm-2">
 								Email Type
 							</div>
 							<div id="emailtypeO" class="col-xs-7 col-sm-10">
@@ -4439,7 +4532,7 @@ function pdf(){
 						</div>
 						
 						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-5 col-sm-2">
+							<div class="col-xs-4 col-sm-2">
 								Attachment
 							</div>
 							<div id="attachmentO" class="col-xs-7 col-sm-10">
@@ -4448,7 +4541,7 @@ function pdf(){
 						</div>
 						
 						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-5 col-sm-2">
+							<div class="col-xs-4 col-sm-2">
 								Pending Content
 							</div>
 							<div id="pendingcontO" class="col-xs-7 col-sm-10">
@@ -4457,22 +4550,43 @@ function pdf(){
 						</div>
 						
 						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-5 col-sm-2">
+							<div class="col-xs-4 col-sm-2">
 								Pending Property
 							</div>
 							<div id="pendingproO" class="col-xs-7 col-sm-10">
 								<select id="penproO" class="span6"></select>
 							</div>
 						</div>
-						
 						<div style="margin-bottom: 10px;" class="row">
-							<div class="col-xs-5 col-sm-2">
-								Status
-							</div>
-							<div id="statusI" class="col-xs-7 col-sm-10">
-								<select id="staO" class="span6"></select>
-							</div>
-						</div>
+					<div style="padding-top: 5px;" class="col-xs-4 col-sm-4">
+						Email Date
+					</div>
+					<div style="margin-bottom:10px;" id="maildateO" class="col-xs-3 col-sm-3">
+						<select id="emaildateO" class="span4">
+							<option value="Equal">Equal</option>
+							<option value="Greater Than">Greater Than</option>
+							<option value="Less Than">Less Than</option>
+							<option value="Equal or Less" >Equal or Less</option>
+							<option value="Equal or Greater">Equal or Greater</option>
+							<option value="Between">Between</option>
+						</select>
+					</div>		
+					<div style="margin-top:1px;padding-left:0px;margin-bottom:10px;" class="col-xs-3 col-sm-4">
+							<!--input style="line-height:25px;width: 100px !important;" type="date" value="" name="beet" id="beet"-->
+							<input style="line-height:25px;width: 100px !important;" name="mailEO" id="mailEO" class="i-txt" />
+						</div>	
+					<div style="margin-top:3px;" class="col-xs-2 col-sm-3">
+						<button id="del-mailEO" type="button" >&times;</button>
+					</div>		
+					<div id="betweenMailO" class="col-xs-6 col-sm-3">
+						<!--input style="line-height:25px;width: 100px !important;margin-left: 115px;" type="date" name="beet2" id="beet2"-->
+						<input style="line-height:25px;width: 100px !important;margin-left: 70px;" name="mailEO2" id="mailEI2" class="i-txt" />
+					</div>
+					<div id="betweenMailO2" style="margin-top: 3px;" class="col-xs-2 col-sm-3">
+						<button id="del-mailEO2" type="button" >&times;</button>
+					</div>	
+				</div>
+						
 					
 					
 					</div>
