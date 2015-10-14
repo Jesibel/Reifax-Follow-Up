@@ -2600,16 +2600,24 @@ $(function(){
 	$("#backPending").on('click', function () {
 		//alert('backContacts');
 		//document.getElementById("detalleEmailCab").innerHTML="";
-		document.getElementById('header_two').style.display = "none";	
-		longPending(checkid);
+		//document.getElementById('header_two').style.display = "none";	
+		//longPending(checkid);
+		if (checkid!=''){
+			pushh=true;
+			longPending(checkid,pushh);
+		}
 		
 	});
 	
 	$("#backCompleted").on('click', function () {
 		//alert('backContacts');
 		//document.getElementById("detalleEmailCab").innerHTML="";
-		document.getElementById('header_two').style.display = "none";	
-		longCompleted(checkid);
+		//document.getElementById('header_two').style.display = "none";	
+		//longCompleted(checkid);
+		if (checkid!=''){
+			pushh=true;
+			longCompleted(checkid,pushh);
+		}
 		
 	});
 		
