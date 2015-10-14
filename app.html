@@ -1569,6 +1569,9 @@ $(function(){
         //alert('long Touch completed task');
 		var id= $(this).attr('idfuh');
 		//alert(id);
+		var object = { 'idfuh' : id };
+		// Lo guardamos en localStorage pasandolo a cadena con JSON
+		localStorage.setItem('key', JSON.stringify(object));
 		longCompleted(id);
 	});
 		
