@@ -2563,7 +2563,11 @@ $(function(){
 		var id = JSON.parse(localStorage.getItem('seen'));
 		
 		//document.getElementById('header_two').style.display = "none";
-		longEmailInbox(checkid,id.seen);
+		if (checkid!=''){
+			pushh=true;
+			
+			longEmailInbox(checkid,id.seen,pushh);
+		}
 		
 		$('#detalleCorreo ul').empty();
 		$('#detalleCorreo ul').html('');
@@ -2602,10 +2606,13 @@ $(function(){
 		//document.getElementById("detalleEmailCab").innerHTML="";
 		//document.getElementById('header_two').style.display = "none";	
 		//longPending(checkid);
+		storePositionTask.topCoordinateTask =  $(this).offset().top-47;
+		//console.log(checkid);
 		if (checkid!=''){
 			pushh=true;
 			longPending(checkid,pushh);
 		}
+		$.mobile.changePage('#taskHtml');
 		
 	});
 	
