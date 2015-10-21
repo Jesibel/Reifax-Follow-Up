@@ -1722,6 +1722,18 @@ $(function(){
 		var valor = JSON.parse(localStorage.getItem('email'));
 		deleteEmailFollow(valor.email);
 	});
+	
+	//BOTON DELETE EMAIL INBOX
+	$("#deleteEmailO").on('click', function () {
+		var valor = JSON.parse(localStorage.getItem('email'));
+		deleteEmailOutbox(valor.email);
+	});
+	
+	//BOTON DELETE EMAIL FOLLOW
+	$("#deleteEmail,#deleteEmail2").on('click', function () {
+		var valor = JSON.parse(localStorage.getItem('email'));
+		deleteEmailInbox(valor.email);
+	});
 		
 	//BOTON CARGAR EDITAR PENDING TASK
 	$("#editarPend").on('click', function () {
