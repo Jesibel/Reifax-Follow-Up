@@ -1829,14 +1829,35 @@ $(function(){
 			var typeFollow = typeFollow.type;
 			var id = JSON.parse(localStorage.getItem('key'));
 			var parcelid =id.parcelid;
+			var contactname ='';
+			if (contactname==''){
+				contactname='Default';
+			}else{
+				contactname = JSON.parse(localStorage.getItem('contactname'));
+				contactname =contactname.contactname;
+			}
 		}else if (checkid.length==1){
 			var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
 			var typeFollow = typeFollow.typefollow;
 			var pid = JSON.parse(localStorage.getItem('pid'));
 			var parcelid =pid.pid;
+			var contactname ='';
+			if (contactname==''){
+				contactname='Default';
+			}else{
+				contactname = JSON.parse(localStorage.getItem('contactname'));
+				contactname =contactname.contactname;
+			}
 		}else{
 			var parcelid =checkid;
 			ciclo= 'multi';
+			var contactname ='';
+			if (contactname==''){
+				contactname='Default';
+			}else{
+				contactname = JSON.parse(localStorage.getItem('contactname'));
+				contactname =contactname.contactname;
+			}
 			//alert(parcelid);
 		}
 		
@@ -1853,6 +1874,7 @@ $(function(){
 				//alert(checkid[i]);
 				var imgVal = $('#imageUpload').val(); 
 				$("input#userid").val(userid);
+				$("input#contactname").val(contactname);
 				$("input#pid").val(checkid[i]);
 						
 				$("input#typeFollow").val(typeFollow);
@@ -1899,6 +1921,7 @@ $(function(){
 			
 			var imgVal = $('#imageUpload').val(); 
 			$("input#userid").val(userid);
+			$("input#contactname").val(contactname);
 			$("input#pid").val(parcelid);
 					
 			$("input#typeFollow").val(typeFollow);
@@ -1949,15 +1972,36 @@ $(function(){
 			var typeFollow = typeFollow.type;
 			var id = JSON.parse(localStorage.getItem('key'));
 			var parcelid =id.parcelid;
+			var contactname ='';
+			if (contactname==''){
+				contactname='Default';
+			}else{
+				contactname = JSON.parse(localStorage.getItem('contactname'));
+				contactname =contactname.contactname;
+			}
 		}else if (checkid==1){
 			var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
 			var typeFollow = typeFollow.typefollow;
 			var pid = JSON.parse(localStorage.getItem('pid'));
 			var parcelid =pid.pid;
+			var contactname ='';
+			if (contactname==''){
+				contactname='Default';
+			}else{
+				contactname = JSON.parse(localStorage.getItem('contactname'));
+				contactname =contactname.contactname;
+			}
 		}else{
 			var parcelid =checkid;
 			ciclo= 'multi';
 			//alert(parcelid);
+			var contactname ='';
+			if (contactname==''){
+				contactname='Default';
+			}else{
+				contactname = JSON.parse(localStorage.getItem('contactname'));
+				contactname =contactname.contactname;
+			}
 		}
 		
 		tinyMCE.triggerSave(true,true);
@@ -2000,6 +2044,7 @@ $(function(){
 				//alert(checkid[i]);
 				var imgVal = $('#imageUpload').val(); 
 				$("input#userid").val(userid);
+				$("input#contactname").val(contactname);
 				$("input#type").val('insert');
 				$("input#pid").val(checkid[i]);	
 				$("input#parcelid").val(checkid[i]);	
@@ -2054,6 +2099,7 @@ $(function(){
 			var imgVal = $('#imageUpload').val(); 
 		
 			$("input#userid").val(userid);
+			$("input#contactname").val(contactname);
 			$("input#type").val('insert');
 			$("input#pid").val(parcelid);	
 			$("input#parcelid").val(parcelid);	
@@ -2113,11 +2159,25 @@ $(function(){
 			var typeFollow = typeFollow.type;
 			var id = JSON.parse(localStorage.getItem('key'));
 			var parcelid =id.parcelid;
+			var contactname ='';
+			if (contactname==''){
+				contactname='Default';
+			}else{
+				contactname = JSON.parse(localStorage.getItem('contactname'));
+				contactname =contactname.contactname;
+			}
 		}else{
 			var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
 			var typeFollow = typeFollow.typefollow;
 			var pid = JSON.parse(localStorage.getItem('pid'));
 			var parcelid =pid.pid;
+			var contactname ='';
+			if (contactname==''){
+				contactname='Default';
+			}else{
+				contactname = JSON.parse(localStorage.getItem('contactname'));
+				contactname =contactname.contactname;
+			}
 		}
 		
 		tinyMCE.triggerSave(true,true);
@@ -2155,6 +2215,7 @@ $(function(){
 		var imgVal = $('#imageUpload').val(); 
 		
 		$("input#userid").val(userid);
+		$("input#contactname").val(contactname);
 		$("input#type").val('insert');
 		$("input#pid").val(parcelid);	
 		$("input#parcelid").val(parcelid);	
@@ -2225,11 +2286,25 @@ $(function(){
 			var typeFollow = typeFollow.type;
 			var id = JSON.parse(localStorage.getItem('key'));
 			var parcelid =id.parcelid;
+			var contactname ='';
+			if (contactname==''){
+				contactname='Default';
+			}else{
+				contactname = JSON.parse(localStorage.getItem('contactname'));
+				contactname =contactname.contactname;
+			}
 		}else{
 			var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
 			var typeFollow = typeFollow.typefollow;
 			var pid = JSON.parse(localStorage.getItem('pid'));
 			var parcelid =pid.pid;
+			var contactname ='';
+			if (contactname==''){
+				contactname='Default';
+			}else{
+				contactname = JSON.parse(localStorage.getItem('contactname'));
+				contactname =contactname.contactname;
+			}
 		}
 		
 		tinyMCE.triggerSave(true,true);
@@ -2239,6 +2314,7 @@ $(function(){
 		
 		var imgVal = $('#imageUpload').val(); 
 		$("input#userid").val(userid);
+		$("input#contactname").val(contactname);
 		$("input#pid").val(parcelid);
 				
 		$("input#typeFollow").val(typeFollow);
@@ -9134,7 +9210,7 @@ function pdf(){
 						To
 					</div>
 					<div id="contactmail" style="padding-left:0px;padding-right:0px;margin-left:15px;" class="col-xs-8 col-sm-10">
-						<select id="contactemail" name="contactemail"  class="span4"></select>
+						<select id="contactemail" name="contactemail" onchange="combocontactemail();" class="span4"></select>
 					</div>
 				</div>
 				<div class="row">
@@ -9155,6 +9231,7 @@ function pdf(){
 				</div>
 				
 				<input type='hidden' name='userid' id='userid'>
+				<input type='hidden' name='contactname' id='contactname'>
 				<input type='hidden' name='pid' id='pid'>
 				<input type='hidden' name='parcelid' id='parcelid'>
 				<input type='hidden' name='typeFollow' id='typeFollow'>
@@ -9225,7 +9302,7 @@ function pdf(){
 						To
 					</div>
 					<div id="contacttexto" style="padding-left:0px;padding-right:0px;margin-left:20px;" class="col-xs-8 col-sm-10">
-						<select id="contactsms" name="contactsms"  class="span4"></select>
+						<select id="contactsms" name="contactsms" onchange="combocontactsms();"  class="span4"></select>
 					</div>
 				</div>
 				<div style="margin-bottom: 10px;" class="row">
@@ -9292,7 +9369,7 @@ function pdf(){
 						To
 					</div> 
 					<div id="contactfaxx" style="padding-left:0px;padding-right:0px;margin-left:15px;" class="col-xs-8 col-sm-10">
-						<select id="contactfax" name="contactfax"  class="span4"></select>
+						<select id="contactfax" name="contactfax" onchange="combocontactfax();" class="span4"></select>
 					</div>
 				</div>			
 				<div style="margin-bottom: 10px;" class="row">
@@ -9303,6 +9380,7 @@ function pdf(){
 			
 			
 				<input type='hidden' name='userid' id='userid'>
+				<input type='hidden' name='contactname' id='contactname'>
 				<input type='hidden' name='pid' id='pid'>
 				<input type='hidden' name='parcelid' id='parcelid'>
 				<input type='hidden' name='typeFollow' id='typeFollow'>
