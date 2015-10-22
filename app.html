@@ -1829,11 +1829,11 @@ $(function(){
 			var typeFollow = typeFollow.type;
 			var id = JSON.parse(localStorage.getItem('key'));
 			var parcelid =id.parcelid;
-			var contactname ='';
+			var contactname = JSON.parse(localStorage.getItem('contactname'));
+			console.log(contactname);
 			if (contactname==''){
 				contactname='Default';
 			}else{
-				contactname = JSON.parse(localStorage.getItem('contactname'));
 				contactname =contactname.contactname;
 			}
 		}else if (checkid.length==1){
@@ -1841,21 +1841,22 @@ $(function(){
 			var typeFollow = typeFollow.typefollow;
 			var pid = JSON.parse(localStorage.getItem('pid'));
 			var parcelid =pid.pid;
-			var contactname ='';
+			var contactname = JSON.parse(localStorage.getItem('contactname'));
+			console.log(contactname);
 			if (contactname==''){
 				contactname='Default';
 			}else{
-				contactname = JSON.parse(localStorage.getItem('contactname'));
 				contactname =contactname.contactname;
 			}
 		}else{
 			var parcelid =checkid;
 			ciclo= 'multi';
 			var contactname ='';
+			var contactname = JSON.parse(localStorage.getItem('contactname'));
+			console.log(contactname);
 			if (contactname==''){
 				contactname='Default';
 			}else{
-				contactname = JSON.parse(localStorage.getItem('contactname'));
 				contactname =contactname.contactname;
 			}
 			//alert(parcelid);
@@ -1882,7 +1883,7 @@ $(function(){
 				var formData 		= new FormData($("#envioEmail")[0]);
 				$.mobile.loading().show();
 				$.ajax({
-					url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followsendmail.php',
+					url: 'http://reifax.com/FollowupReifax/developer/mysetting_tabs/myfollowup_tabs/properties_followsendmail.php',
 					type: 'POST',
 					data: formData,
 					cache: false,
@@ -1929,7 +1930,7 @@ $(function(){
 			var formData 		= new FormData($("#envioEmail")[0]);
 			
 			$.ajax({
-				url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followsendmail.php',
+				url: 'http://reifax.com/FollowupReifax/developer/myfollowup_tabs/properties_followsendmail.php',
 				type: 'POST',
 				data: formData,
 				cache: false,
@@ -1972,11 +1973,11 @@ $(function(){
 			var typeFollow = typeFollow.type;
 			var id = JSON.parse(localStorage.getItem('key'));
 			var parcelid =id.parcelid;
-			var contactname ='';
+			var contactname = JSON.parse(localStorage.getItem('contactname'));
+			console.log(contactname);
 			if (contactname==''){
 				contactname='Default';
 			}else{
-				contactname = JSON.parse(localStorage.getItem('contactname'));
 				contactname =contactname.contactname;
 			}
 		}else if (checkid==1){
@@ -1984,22 +1985,22 @@ $(function(){
 			var typeFollow = typeFollow.typefollow;
 			var pid = JSON.parse(localStorage.getItem('pid'));
 			var parcelid =pid.pid;
-			var contactname ='';
+			var contactname = JSON.parse(localStorage.getItem('contactname'));
+			console.log(contactname);
 			if (contactname==''){
 				contactname='Default';
 			}else{
-				contactname = JSON.parse(localStorage.getItem('contactname'));
 				contactname =contactname.contactname;
 			}
 		}else{
 			var parcelid =checkid;
 			ciclo= 'multi';
 			//alert(parcelid);
-			var contactname ='';
+			var contactname = JSON.parse(localStorage.getItem('contactname'));
+			console.log(contactname);
 			if (contactname==''){
 				contactname='Default';
 			}else{
-				contactname = JSON.parse(localStorage.getItem('contactname'));
 				contactname =contactname.contactname;
 			}
 		}
@@ -2058,7 +2059,7 @@ $(function(){
 				var formData 		= new FormData($("#envioEmail")[0]);
 				$.mobile.loading().show();
 				$.ajax({
-					url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
+					url: 'http://reifax.com/FollowupReifax/developer/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
 					type: 'POST',
 					data: formData,
 					cache: false,
@@ -2114,7 +2115,7 @@ $(function(){
 			
 			$.mobile.loading().show();
 			$.ajax({
-				url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
+				url: 'http://reifax.com/FollowupReifax/developer/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
 				type: 'POST',
 				data: formData,
 				cache: false,
@@ -2159,11 +2160,11 @@ $(function(){
 			var typeFollow = typeFollow.type;
 			var id = JSON.parse(localStorage.getItem('key'));
 			var parcelid =id.parcelid;
-			var contactname ='';
+			var contactname = JSON.parse(localStorage.getItem('contactname'));
+			console.log(contactname);
 			if (contactname==''){
 				contactname='Default';
 			}else{
-				contactname = JSON.parse(localStorage.getItem('contactname'));
 				contactname =contactname.contactname;
 			}
 		}else{
@@ -2171,11 +2172,11 @@ $(function(){
 			var typeFollow = typeFollow.typefollow;
 			var pid = JSON.parse(localStorage.getItem('pid'));
 			var parcelid =pid.pid;
-			var contactname ='';
+			var contactname = JSON.parse(localStorage.getItem('contactname'));
+			console.log(contactname);
 			if (contactname==''){
 				contactname='Default';
 			}else{
-				contactname = JSON.parse(localStorage.getItem('contactname'));
 				contactname =contactname.contactname;
 			}
 		}
@@ -2230,7 +2231,7 @@ $(function(){
 		
 		$.mobile.loading().show();
 		$.ajax({
-			url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
+			url: 'http://reifax.com/FollowupReifax/developer/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
 			type: 'POST',
 			data: formData,
 			cache: false,
@@ -2286,11 +2287,11 @@ $(function(){
 			var typeFollow = typeFollow.type;
 			var id = JSON.parse(localStorage.getItem('key'));
 			var parcelid =id.parcelid;
-			var contactname ='';
+			var contactname = JSON.parse(localStorage.getItem('contactname'));
+			console.log(contactname);
 			if (contactname==''){
 				contactname='Default';
 			}else{
-				contactname = JSON.parse(localStorage.getItem('contactname'));
 				contactname =contactname.contactname;
 			}
 		}else{
@@ -2298,11 +2299,11 @@ $(function(){
 			var typeFollow = typeFollow.typefollow;
 			var pid = JSON.parse(localStorage.getItem('pid'));
 			var parcelid =pid.pid;
-			var contactname ='';
+			var contactname = JSON.parse(localStorage.getItem('contactname'));
+			console.log(contactname);
 			if (contactname==''){
 				contactname='Default';
 			}else{
-				contactname = JSON.parse(localStorage.getItem('contactname'));
 				contactname =contactname.contactname;
 			}
 		}
@@ -2322,7 +2323,7 @@ $(function(){
 		var formData 		= new FormData($("#envioEmail")[0]);
 		$.mobile.loading().show();
 		$.ajax({
-			url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followsendfax.php',
+			url: 'http://reifax.com/FollowupReifax/developer/mysetting_tabs/myfollowup_tabs/properties_followsendfax.php',
 			type: 'POST',
 			data: formData,
 			cache: false,
