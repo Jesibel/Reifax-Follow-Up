@@ -1445,7 +1445,7 @@ $(function(){
 		// La alerta mostrará 1 por pantalla
 		//alert(valor.parcelid);
 		//alert(valor.idfuh);
-		get='detailHist'
+		get='detailHist';
 		$('#detallehistorial ul').empty();
 		getAddress(valor2.parcelid,get);
 		detailHistory(valor.idfuh,valor2.parcelid);
@@ -1473,7 +1473,9 @@ $(function(){
 		// La alerta mostrará 1 por pantalla
 		//alert(valor.parcelid);
 		//alert(valor.idfus);
+		get='detailSchedule';
 		$('#detalleschedule ul').empty();
+		getAddress(valor2.parcelid,get);
 		detailSchedule(valor.idfus,valor2.parcelid);
 	});
 		
@@ -6523,9 +6525,9 @@ function pdf(){
 		<div style="background: #ccc;height:40px;" data-role="navbar">
 			<ul>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#detailProperties">Detail</a></li>
-				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
-				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
 				<li class="item"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#emailFollow">Email</a></li>
+				<li class="item active"><a style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#scheduleFollow">Schedule</a></li>
+				<li class="item"><a id="history" style="border-right:1px solid #777;margin-top:3px;height: 30px;" href="#historyFollow">History</a></li>
 			</ul>
 		</div>
 	
