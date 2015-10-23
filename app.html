@@ -690,7 +690,7 @@ $(document).ready(function(){
 			tinyMCE.triggerSave(true,true);
 			var formData 		= new FormData($("#envioEmailEI")[0]);
 				$.ajax({
-					url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
+					url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
 					type: 'POST',
 					data: formData,
 					cache: false,
@@ -729,7 +729,7 @@ $(document).ready(function(){
 			tinyMCE.triggerSave(true,true);			
 			var formData 		= new FormData($("#envioEmailEO")[0]);
 				$.ajax({
-					url: 'http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
+					url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followupEmail.php',
 					type: 'POST',
 					data: formData,
 					cache: false,
@@ -987,7 +987,7 @@ $(document).ready(function(){
 });
 </script>
 <script type="text/javascript">
-	
+	var folder='developer';
 	var position=0;
 	var posi=0;
 	var pos=0;
@@ -1082,7 +1082,7 @@ $(function(){
 			'type': 'ContactEmailsList'
 		};
 				 
-		$.post("http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followagent.php", data, function(cont) {
+		$.post('http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followagent.php', data, function(cont) {
 					
 			valor     = cont;
 			var obj = JSON.parse(valor);
@@ -1124,7 +1124,7 @@ $(function(){
 			'type': 'ContactEmailsList'
 		};
 				 
-		$.post("http://reifax.com/mreifax/mysetting_tabs/myfollowup_tabs/properties_followagent.php", data, function(cont) {
+		$.post('http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followagent.php', data, function(cont) {
 					
 			valor     = cont;
 			var obj = JSON.parse(valor);
@@ -1833,7 +1833,7 @@ $(function(){
 			var parcelid =id.parcelid;
 			var contactname = JSON.parse(localStorage.getItem('contactname'));
 			console.log(contactname);
-			if (contactname==''){
+			if ((contactname=='') || (contactname==null)){
 				contactname='Default';
 			}else{
 				contactname =contactname.contactname;
@@ -1845,7 +1845,7 @@ $(function(){
 			var parcelid =pid.pid;
 			var contactname = JSON.parse(localStorage.getItem('contactname'));
 			console.log(contactname);
-			if (contactname==''){
+			if ((contactname=='') || (contactname==null)){
 				contactname='Default';
 			}else{
 				contactname =contactname.contactname;
@@ -1856,7 +1856,7 @@ $(function(){
 			var contactname ='';
 			var contactname = JSON.parse(localStorage.getItem('contactname'));
 			console.log(contactname);
-			if (contactname==''){
+			if ((contactname=='') || (contactname==null)){
 				contactname='Default';
 			}else{
 				contactname =contactname.contactname;
@@ -1885,7 +1885,7 @@ $(function(){
 				var formData 		= new FormData($("#envioEmail")[0]);
 				$.mobile.loading().show();
 				$.ajax({
-					url: 'http://reifax.com/FollowupReifax/developer/mysetting_tabs/myfollowup_tabs/properties_followsendmail.php',
+					url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followsendmail.php',
 					type: 'POST',
 					data: formData,
 					cache: false,
@@ -1903,6 +1903,9 @@ $(function(){
 							pushh=true;
 							longProperties(checkid,pushh);
 						}
+						$("#temp select").empty();	
+						$("#contactmail select").empty();	
+						localStorage.removeItem('contactname');
 					},
 					//si ha ocurrido un error
 					error: function(){
@@ -1932,7 +1935,7 @@ $(function(){
 			var formData 		= new FormData($("#envioEmail")[0]);
 			
 			$.ajax({
-				url: 'http://reifax.com/FollowupReifax/developer/myfollowup_tabs/properties_followsendmail.php',
+				url: 'http://reifax.com/FollowupReifax/'+folder+'/myfollowup_tabs/properties_followsendmail.php',
 				type: 'POST',
 				data: formData,
 				cache: false,
@@ -1951,9 +1954,12 @@ $(function(){
 					});
 					$.mobile.changePage('#followingHtml');
 					if (checkid!=''){
-							pushh=true;
-							longProperties(checkid,pushh);
-						}
+						pushh=true;
+						longProperties(checkid,pushh);
+					}
+					$("#temp select").empty();	
+					$("#contactmail select").empty();	
+					localStorage.removeItem('contactname');
 				},
 				//si ha ocurrido un error
 				error: function(){
@@ -1977,7 +1983,7 @@ $(function(){
 			var parcelid =id.parcelid;
 			var contactname = JSON.parse(localStorage.getItem('contactname'));
 			console.log(contactname);
-			if (contactname==''){
+			if ((contactname=='') || (contactname==null)){
 				contactname='Default';
 			}else{
 				contactname =contactname.contactname;
@@ -1989,7 +1995,7 @@ $(function(){
 			var parcelid =pid.pid;
 			var contactname = JSON.parse(localStorage.getItem('contactname'));
 			console.log(contactname);
-			if (contactname==''){
+			if ((contactname=='') || (contactname==null)){
 				contactname='Default';
 			}else{
 				contactname =contactname.contactname;
@@ -2000,7 +2006,7 @@ $(function(){
 			//alert(parcelid);
 			var contactname = JSON.parse(localStorage.getItem('contactname'));
 			console.log(contactname);
-			if (contactname==''){
+			if ((contactname=='') || (contactname==null)){
 				contactname='Default';
 			}else{
 				contactname =contactname.contactname;
@@ -2061,7 +2067,7 @@ $(function(){
 				var formData 		= new FormData($("#envioEmail")[0]);
 				$.mobile.loading().show();
 				$.ajax({
-					url: 'http://reifax.com/FollowupReifax/developer/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
+					url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
 					type: 'POST',
 					data: formData,
 					cache: false,
@@ -2073,14 +2079,17 @@ $(function(){
 					},
 					success: function(data){
 						if (data){
-						send=true;
-						$.mobile.loading().hide();
-						document.getElementById('header_two').style.display = "none";
-						$.mobile.changePage('#followingHtml');
-						if (checkid!=''){
-							pushh=true;
-							longProperties(checkid,pushh);
-						}
+							send=true;
+							$.mobile.loading().hide();
+							document.getElementById('header_two').style.display = "none";
+							$.mobile.changePage('#followingHtml');
+							if (checkid!=''){
+								pushh=true;
+								longProperties(checkid,pushh);
+							}
+							$("#temp select").empty();	
+							$("#contactmail select").empty();	
+							localStorage.removeItem('contactname');
 						}
 					},
 					//si ha ocurrido un error
@@ -2117,7 +2126,7 @@ $(function(){
 			
 			$.mobile.loading().show();
 			$.ajax({
-				url: 'http://reifax.com/FollowupReifax/developer/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
+				url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
 				type: 'POST',
 				data: formData,
 				cache: false,
@@ -2129,18 +2138,21 @@ $(function(){
 				},
 				success: function(data){
 					if (data){
-					//alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
-					$.mobile.loading().hide();
-					bootbox.alert({
-						title: 'Schedule Task',
-						message: 'All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab.'
-					});
-					document.getElementById('header_two').style.display = "none";
-					$.mobile.changePage('#followingHtml');
-					if (checkid!=''){
+						//alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+						$.mobile.loading().hide();
+						bootbox.alert({
+							title: 'Schedule Task',
+							message: 'All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab.'
+						});
+						document.getElementById('header_two').style.display = "none";
+						$.mobile.changePage('#followingHtml');
+						if (checkid!=''){
 							pushh=true;
 							longProperties(checkid,pushh);
 						}
+						$("#temp select").empty();	
+						$("#contactmail select").empty();	
+						localStorage.removeItem('contactname');
 					}
 				},
 				//si ha ocurrido un error
@@ -2164,7 +2176,7 @@ $(function(){
 			var parcelid =id.parcelid;
 			var contactname = JSON.parse(localStorage.getItem('contactname'));
 			console.log(contactname);
-			if (contactname==''){
+			if ((contactname=='') || (contactname==null)){
 				contactname='Default';
 			}else{
 				contactname =contactname.contactname;
@@ -2176,7 +2188,7 @@ $(function(){
 			var parcelid =pid.pid;
 			var contactname = JSON.parse(localStorage.getItem('contactname'));
 			console.log(contactname);
-			if (contactname==''){
+			if ((contactname=='') || (contactname==null)){
 				contactname='Default';
 			}else{
 				contactname =contactname.contactname;
@@ -2233,7 +2245,7 @@ $(function(){
 		
 		$.mobile.loading().show();
 		$.ajax({
-			url: 'http://reifax.com/FollowupReifax/developer/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
+			url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/myfollowhistory/properties_followshedule.php',
 			type: 'POST',
 			data: formData,
 			cache: false,
@@ -2291,7 +2303,20 @@ $(function(){
 			var parcelid =id.parcelid;
 			var contactname = JSON.parse(localStorage.getItem('contactname'));
 			console.log(contactname);
-			if (contactname==''){
+			if ((contactname=='') || (contactname==null)){
+				contactname='Default';
+			}else{
+				contactname =contactname.contactname;
+			}
+		}else if (checkid.length==1){
+			var typeFollow = JSON.parse(localStorage.getItem('typefollow'));
+			var typeFollow = typeFollow.typefollow;
+			var pid = JSON.parse(localStorage.getItem('pid'));
+			var parcelid =pid.pid;
+			//var contactname ='';
+			var contactname = JSON.parse(localStorage.getItem('contactname'));
+			console.log(contactname);
+			if ((contactname=='') || (contactname==null)){
 				contactname='Default';
 			}else{
 				contactname =contactname.contactname;
@@ -2303,7 +2328,7 @@ $(function(){
 			var parcelid =pid.pid;
 			var contactname = JSON.parse(localStorage.getItem('contactname'));
 			console.log(contactname);
-			if (contactname==''){
+			if ((contactname=='') || (contactname==null)){
 				contactname='Default';
 			}else{
 				contactname =contactname.contactname;
@@ -2325,7 +2350,7 @@ $(function(){
 		var formData 		= new FormData($("#envioEmail")[0]);
 		$.mobile.loading().show();
 		$.ajax({
-			url: 'http://reifax.com/FollowupReifax/developer/mysetting_tabs/myfollowup_tabs/properties_followsendfax.php',
+			url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followsendfax.php',
 			type: 'POST',
 			data: formData,
 			cache: false,
@@ -2344,9 +2369,9 @@ $(function(){
 				});
 				$.mobile.changePage('#followingHtml');
 				if (checkid!=''){
-							pushh=true;
-							longProperties(checkid,pushh);
-						}
+					pushh=true;
+					longProperties(checkid,pushh);
+				}
 			},
 			//si ha ocurrido un error
 			error: function(){
@@ -3828,43 +3853,43 @@ function pdf(){
 		transform: scale(1.25);
 	}
 	.box {			
-		background-image: url('http://reifax.com/FollowupReifax/img/menu-w.png');
+		background-image: url('img/menu-w.png');
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: 20px 20px;			
 	} 
 	.box2 {			
-		background-image: url('http://reifax.com/FollowupReifax/img/delete-w.png');
+		background-image: url('img/delete-w.png');
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: 20px 20px;			
 	} 
 	.box3 {			
-		background-image: url('http://reifax.com/FollowupReifax/img/aceptar-w.png');
+		background-image: url('img/aceptar-w.png');
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: 20px 20px;			
 	} 
 	.box4 {			
-		background-image: url('http://reifax.com/FollowupReifax/img/read_email-48.png');
+		background-image: url('img/read_email-48.png');
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: 20px 20px;			
 	} 
 	.box5 {			
-		background-image: url('http://reifax.com/FollowupReifax/img/readed_email-48.png');
+		background-image: url('img/readed_email-48.png');
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: 20px 20px;			
 	} 
 	.box6 {			
-		background-image: url('http://reifax.com/FollowupReifax/img/edit-32.png');
+		background-image: url('img/edit-32.png');
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: 20px 20px;			
 	} 
 	.box7 {			
-		background-image: url('http://reifax.com/FollowupReifax/img/completed-48.png');
+		background-image: url('img/completed-48.png');
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: 20px 20px;			
@@ -4111,7 +4136,7 @@ function pdf(){
 				<div class="account-wall">
 					<!--img class="profile-img" src="http://reifax.com/FollowupReifax/resources/image/logo_login.jpg" alt=""-->
 					<div style="text-align:center;">
-					<img  style="width:250px;" src="http://reifax.com/FollowupReifax/resources/image/logo_login.jpg" alt="">
+					<img  style="width:250px;" src="resources/image/logo_login.jpg" alt="">
 					</div>
 					<form id="loginForm" class="form-signin">
 						<input id="userLogin" type="email" class="form-control" placeholder="Email" required autofocus>
@@ -10587,11 +10612,11 @@ function pdf(){
 
 </div><!--FIN FORM SEND CONTRACT-->
  
- <script src="http://reifax.com/FollowupReifax/resources/js/jquery.auto-complete.js"></script>
+ <script src="resources/js/jquery.auto-complete.js"></script>
 
-<script type="text/javascript" src="http://reifax.com/FollowupReifax/resources/datetime/timedate1/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://reifax.com/FollowupReifax/resources/datetime/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-<script type="text/javascript" src="http://reifax.com/FollowupReifax/resources/datetime/js/locales/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
+<script type="text/javascript" src="resources/datetime/timedate1/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/datetime/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="resources/datetime/js/locales/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
 <script type="text/javascript">
     $('#ExhourEditPend').datetimepicker({
 		 language:  'es',
