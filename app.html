@@ -2243,7 +2243,7 @@ $(function(){
 		$("input#typeExec").val(exectype.exectype);
 		$("input#detailsch").val(detail.detail);
 
-		var formData 		= new FormData($("#envioEmail")[0]);
+		var formData 		= new FormData($("#envioFax")[0]);
 		
 		$.mobile.loading().show();
 		$.ajax({
@@ -2353,7 +2353,7 @@ $(function(){
 				
 		$("input#typeFollow").val(typeFollow);
 
-		var formData 		= new FormData($("#envioEmail")[0]);
+		var formData 		= new FormData($("#envioFax")[0]);
 		$.mobile.loading().show();
 		$.ajax({
 			url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followsendfax.php',
@@ -9397,7 +9397,7 @@ function pdf(){
 	<div data-role="content">
 	
 		<div style="margin-left:30px;" class="row formC" id="formContr">
-			<form class="form-inline">
+			<form class="form-inline" id="envioFax" enctype="multipart/form-data">
 				<br>
 				<div id="templaFAX" style="margin-bottom: 10px;" class="row">
 					<div style="padding-left: 25px;padding-top: 5px;margin-left:-30px;" class="col-xs-4 col-sm-2">
