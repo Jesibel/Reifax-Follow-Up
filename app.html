@@ -2530,7 +2530,7 @@ $(function(){
 		var id = JSON.parse(localStorage.getItem('key'));
 		var detalle=1;
 		$('#btnschedulefax').hide();
-		$('#btnsendfax').show();
+		$('#btnsendf').show();
 		getTemplateFAX();
 		getContactFax(id.parcelid,detalle);
 	});
@@ -2540,7 +2540,7 @@ $(function(){
 		//alert("getptask");
 		var pid = JSON.parse(localStorage.getItem('pid'));
 		$('#btnschedulefax').hide();
-		$('#btnsendfax').show();
+		$('#btnsendf').show();
 		if (checkid.length==1){
 			var detalle=1;
 			getTemplateFAX();
@@ -9409,7 +9409,7 @@ function pdf(){
 						</select>
 					</div>
 					<div  id="attaFax" >	
-							<input type="file" name="imageUploadFax" id="imageUploadFax" class="hide"/> 
+							<input type="file" name="archivo1" id="imageUploadFax" class="hide"/> 
 							<label for="imageUploadFax" style="margin-top:-15px;">							
 							<img src="http://reifax.com/FollowupReifax/img/clip-g-48.png" width="30px" height="30px"/></label>
 							<div ><img style="margin-left: 120px;" src="" id="imagePreviewFax" width="100px"/></div>
@@ -9454,7 +9454,7 @@ function pdf(){
 				<input type='hidden' name='typeExec' id='typeExec'>
 				
 			<div class="row">
-				<div id="btnsendfax" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
+				<div id="btnsendf" style="text-align:center;" class="col-xs-12 col-sm-6 col-md-10 formT">
 					<input id="btnSendFAX" class="btn btn-success" type="button" value="Send">
 					<!--input id="btnCancelContr" class="btn btn-default" type="button" value="Cancel"-->
 				</div>
