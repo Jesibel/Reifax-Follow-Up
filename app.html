@@ -2259,17 +2259,21 @@ $(function(){
 			},
 			success: function(data){
 				if (data){
-				//alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
-				$.mobile.loading().hide();
-				bootbox.alert({
-					title: 'Schedule Task',
-					message: 'All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab.'
-				});
-				$.mobile.changePage('#followingHtml');
-				if (checkid!=''){
-							pushh=true;
-							longProperties(checkid,pushh);
-						}
+					//alert('All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab' );
+					$.mobile.loading().hide();
+					bootbox.alert({
+						title: 'Schedule Task',
+						message: 'All Follow Schedule Task were created. 0 presented errors. Please, verify them on the Pending Task tab.'
+					});
+					$.mobile.changePage('#followingHtml');
+					if (checkid!=''){
+						pushh=true;
+						longProperties(checkid,pushh);
+					}
+					$("#tempFax select").empty();	
+					$("#contactfaxx select").empty();	
+					$("#contactmail select").empty();	
+					localStorage.removeItem('contactname');
 				}
 			},
 			//si ha ocurrido un error
@@ -2374,6 +2378,10 @@ $(function(){
 					pushh=true;
 					longProperties(checkid,pushh);
 				}
+				$("#tempFax select").empty();	
+				$("#contactfaxx select").empty();	
+				$("#contactmail select").empty();	
+				localStorage.removeItem('contactname');
 			},
 			//si ha ocurrido un error
 			error: function(){
