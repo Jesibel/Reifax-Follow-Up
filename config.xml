@@ -30,9 +30,6 @@
     <param name="ios-package" value="CDVInAppBrowser" />
   </feature>
   
-  <feature name="PushPlugin">
-	<param name="android-package" value="com.plugin.gcm.PushPlugin" />
-  </feature>
  
   <content src="index.html" />
   
@@ -98,6 +95,8 @@
   <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
   
   <gap:plugin name="org.apache.cordova.splashscreen" />
+  
+  <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.5.0" />
 
   
   <access origin="*" />
