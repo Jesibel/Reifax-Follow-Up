@@ -118,7 +118,7 @@
 	function onNotification(e) {
 		
 
-			switch( e.event )
+		switch( e.event )
 			{
 			case 'registered':
 				if ( e.regid.length > 0 )
@@ -128,7 +128,26 @@
 					// here is where you might want to send it the regID for later use.
 					var userid = JSON.parse(localStorage.getItem('userid'));
 					userid = userid.userid;
-					addDeviceId(e.regid,userid);
+					var dateDevice = new Date();
+					
+					alert(e.regid);
+					
+					$.ajax({
+						url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
+						type: 'POST',
+						data: { 
+							'userid': userid,
+							'deviceid':e.regid,
+							'type':'deviceID',
+							'date':dateDevice
+						}
+					}).done(function (data){
+						alert(data);
+						
+							
+					});
+					
+					//addDeviceId(e.regid,userid);
 					console.log("regID = " + e.regid);
 					console.log("userID = " + userid);
 				}
