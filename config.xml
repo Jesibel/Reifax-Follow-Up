@@ -97,6 +97,8 @@
   <gap:plugin name="org.apache.cordova.splashscreen" />
   
   <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.5.0" />
+  
+  <gap:plugin name="org.apache.cordova.device" version="0.2.12" />
 
   
   <access origin="*" />
