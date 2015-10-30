@@ -104,8 +104,11 @@
 		alert(device.platform);
 		
 		if ( device.platform == 'android' || device.platform == 'Android'){
+			alert('dentro if');
 			pushNotification.register(
-			successHandler,
+			function(token){
+				console.log('toke:'+token);
+			},
 			function (error){
 				alert(error)
 			},
@@ -121,7 +124,7 @@
 	
 	function onNotification(e) {
 		
-
+		alert(e.event);
 		switch( e.event )
 			{
 			case 'registered':
