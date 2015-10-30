@@ -79,29 +79,29 @@
 	
 	function _onDeviceReady (){	
 		
-		alert('dentro onDevice');
+		//alert('dentro onDevice');
 		detectInternet();
 		
 		activePage = $.mobile.activePage.attr('id');
 		//MobileAccessibility.usePreferredTextZoom(false);
-		alert(WURFL.form_factor);
-		/*if (WURFL.form_factor == "Tablet") {
+		//alert(WURFL.form_factor);
+		if (WURFL.form_factor == "Tablet") {
 			//alert('es una tablet');
 			
 			window.plugins.orientationchanger.lockOrientation('landscape');
 			 //setTimeout(function () {navigator.splashscreen.show()},1000);
 		}else{
-			alert('es una phone');
+			//alert('es una phone');
 			window.plugins.orientationchanger.lockOrientation('portrait');
-		}*/
-		alert(device.platform);
+		}
+		//alert(device.platform);
 		
 		pushNotification = window.plugins.pushNotification;
 		
-		alert(device.platform);
+		//alert(device.platform);
 		
 		if ( device.platform == 'android' || device.platform == 'Android'){
-			alert('dentro if');
+			//alert('dentro if');
 			pushNotification.register(
 			function(token){
 				console.log('toke:'+token);
@@ -134,7 +134,7 @@
 					userid = userid.userid;
 					var dateDevice = new Date();
 					
-					alert(e.regid);
+					//alert(e.regid);
 					
 					$.ajax({
 						url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
@@ -145,7 +145,7 @@
 							'type':'deviceID'
 						}
 					}).done(function (data){
-						alert(data);
+						//alert(data);
 						
 							
 					});
