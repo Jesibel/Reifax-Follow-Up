@@ -83,18 +83,18 @@
 	function _onDeviceReady (){	
 		
 		alert('dentro onDevice');
-		detectInternet();
+		//detectInternet();
 		
 		activePage = $.mobile.activePage.attr('id');
 		MobileAccessibility.usePreferredTextZoom(false);
-		//alert(WURFL.form_factor);
+		alert(WURFL.form_factor);
 		if (WURFL.form_factor == "Tablet") {
 			//alert('es una tablet');
 			
 			window.plugins.orientationchanger.lockOrientation('landscape');
 			 //setTimeout(function () {navigator.splashscreen.show()},1000);
 		}else{
-			
+			alert('es una phone');
 			window.plugins.orientationchanger.lockOrientation('portrait');
 		}
 		
