@@ -8,123 +8,6 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <title>Wait...</title>
     <script>
-		var pushNotification;
-	
-		function _onDeviceReady (){	
-			
-			alert('dentro onDevice');
-			detectInternet();
-			
-			activePage = $.mobile.activePage.attr('id');
-			MobileAccessibility.usePreferredTextZoom(false);
-			//alert(WURFL.form_factor);
-			if (WURFL.form_factor == "Tablet") {
-				//alert('es una tablet');
-				device=true;
-				window.plugins.orientationchanger.lockOrientation('landscape');
-				 //setTimeout(function () {navigator.splashscreen.show()},1000);
-			}else{
-				device=false;
-				window.plugins.orientationchanger.lockOrientation('portrait');
-			}
-			
-			pushNotification = window.plugins.pushNotification;
-			
-			if ( device.platform == 'android' || device.platform == 'Android'){
-				pushNotification.register(
-				successHandler,
-				function (error){
-					alert(error)
-				},
-				{
-					"senderID":"383643887005",
-					"ecb":"onNotification"
-				});
-			} 
-			
-			
-		}
-		
-		function onNotification(e) {
-		
-			switch( e.event )
-				{
-				case 'registered':
-					if ( e.regid.length > 0 )
-					{
-						//$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
-						// Your GCM push server needs to know the regID before it can push to this device
-						// here is where you might want to send it the regID for later use.
-						//var userid = JSON.parse(localStorage.getItem('userid'));
-						//userid = userid.userid;
-						var dateDevice = new Date();
-						
-						alert(e.regid);
-						
-						$.ajax({
-							url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
-							type: 'POST',
-							data: { 
-								'userid': 3213,
-								'deviceid':e.regid,
-								'type':'deviceID',
-								'date':dateDevice
-							}
-						}).done(function (data){
-							alert(data);
-							
-								
-						});
-						
-						//addDeviceId(e.regid,userid);
-						console.log("regID = " + e.regid);
-						console.log("userID = " + userid);
-					}
-				break;
-
-				case 'message':
-					// if this flag is set, this notification happened while we were in the foreground.
-					// you might want to play a sound to get the user's attention, throw up a dialog, etc.
-					if ( e.foreground )
-					{
-						//$("#app-status-ul").append('<li>--INLINE NOTIFICATION--' + '</li>');
-
-						// on Android soundname is outside the payload.
-						// On Amazon FireOS all custom attributes are contained within payload
-						var soundfile = e.soundname || e.payload.sound;
-						// if the notification contains a soundname, play it.
-						var my_media = new Media("/android_asset/www/"+ soundfile);
-						my_media.play();
-					}
-					else
-					{  // otherwise we were launched because the user touched a notification in the notification tray.
-						if ( e.coldstart )
-						{
-							//$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
-						}
-						else
-						{
-							//$("#app-status-ul").append('<li>--BACKGROUND NOTIFICATION--' + '</li>');
-						}
-					}
-
-				   //$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
-					   //Only works for GCM
-				   //$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
-				   //Only works on Amazon Fire OS
-				   $status.append('<li>MESSAGE -> TIME: ' + e.payload.timeStamp + '</li>');
-				break;
-
-				case 'error':
-					//$("#app-status-ul").append('<li>ERROR -> MSG:' + e.msg + '</li>');
-				break;
-
-				default:
-					//$("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
-				break;
-			  }
-		}
-		
 		function checkPreAuth() {
 			if(window.localStorage["userid"] != undefined) {
 				//alert('existe user');
@@ -142,18 +25,7 @@
 		checkPreAuth();
       
     </script>        
-	<script type="text/javascript" src="cordova.js"></script>
-	<script type="text/javascript">
-		document.addEventListener("deviceReady",_onDeviceReady, false);
-		
-		document.addEventListener("backbutton", function(){
-				
-			if(activePage=='followingHtml'){
-				navigator.app.exitApp();//se sale de la aplicacion
-			}
-					
-		}, false);
-	</script>
+	
     </head>
     <body>
     </body>
