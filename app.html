@@ -97,8 +97,11 @@
 			alert('es una phone');
 			window.plugins.orientationchanger.lockOrientation('portrait');
 		}
+		alert(device.platform);
 		
 		pushNotification = window.plugins.pushNotification;
+		
+		alert(device.platform);
 		
 		if ( device.platform == 'android' || device.platform == 'Android'){
 			pushNotification.register(
