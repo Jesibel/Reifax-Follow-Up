@@ -86,9 +86,9 @@
 		//detectInternet();
 		
 		activePage = $.mobile.activePage.attr('id');
-		MobileAccessibility.usePreferredTextZoom(false);
+		//MobileAccessibility.usePreferredTextZoom(false);
 		alert(WURFL.form_factor);
-		if (WURFL.form_factor == "Tablet") {
+		/*if (WURFL.form_factor == "Tablet") {
 			//alert('es una tablet');
 			
 			window.plugins.orientationchanger.lockOrientation('landscape');
@@ -96,7 +96,7 @@
 		}else{
 			alert('es una phone');
 			window.plugins.orientationchanger.lockOrientation('portrait');
-		}
+		}*/
 		alert(device.platform);
 		
 		pushNotification = window.plugins.pushNotification;
