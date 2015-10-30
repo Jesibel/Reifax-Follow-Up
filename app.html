@@ -63,9 +63,6 @@
     <script src="http://mobipick.sustainablepace.net/external/xdate.i18n.js"></script>        
     <script src="http://mobipick.sustainablepace.net/js/mobipick.js"></script>
 	
-	<!--script src="resources/build/js/intlTelInput.js"></script>
-	<script src="resources/build/css/intlTelInput.css"></script-->
-	
 	<script src="resources/js/accounting.js"></script>
 	<script src="resources/js/moment.js"></script>
 	
@@ -83,11 +80,11 @@
 	function _onDeviceReady (){	
 		
 		alert('dentro onDevice');
-		//detectInternet();
+		detectInternet();
 		
-		//activePage = $.mobile.activePage.attr('id');
+		activePage = $.mobile.activePage.attr('id');
 		//MobileAccessibility.usePreferredTextZoom(false);
-		//alert(WURFL.form_factor);
+		alert(WURFL.form_factor);
 		/*if (WURFL.form_factor == "Tablet") {
 			//alert('es una tablet');
 			
@@ -133,8 +130,8 @@
 					//$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
 					// Your GCM push server needs to know the regID before it can push to this device
 					// here is where you might want to send it the regID for later use.
-					//var userid = JSON.parse(localStorage.getItem('userid'));
-					//userid = userid.userid;
+					var userid = JSON.parse(localStorage.getItem('userid'));
+					userid = userid.userid;
 					var dateDevice = new Date();
 					
 					alert(e.regid);
@@ -143,10 +140,9 @@
 						url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
 						type: 'POST',
 						data: { 
-							'userid': 3213,
+							'userid': userid,
 							'deviceid':e.regid,
-							'type':'deviceID',
-							'date':dateDevice
+							'type':'deviceID'
 						}
 					}).done(function (data){
 						alert(data);
@@ -302,15 +298,6 @@ $(document).ready(function(){
 	document.getElementById("sContact").style.display = "none";
 	//document.getElementById("sProperty").style.display = "none";
 	document.getElementById("searchLisContact").style.display = "none";
-	/*document.getElementById("out").style.display = "none";
-	document.getElementById("comp").style.display = "none";
-	document.getElementById("email-tablet2").style.display = "none";
-	document.getElementById("email-princ").style.display = "none";
-	document.getElementById("task-princ").style.display = "none";
-	document.getElementById("contact-princ").style.display = "none";
-	document.getElementById("header_email").style.display = "none";
-	document.getElementById("header_task").style.display = "none";*/
-	
 	
 	
 	$('#folldate').change(function(){
@@ -2068,6 +2055,8 @@ $(function(){
 					}
 					$("#temp select").empty();	
 					$("#contactmail select").empty();	
+					$("#edate").val();			
+					$("#ehour").val();
 					localStorage.removeItem('contactname');
 				},
 				//si ha ocurrido un error
@@ -2379,7 +2368,9 @@ $(function(){
 					}
 					$("#tempFax select").empty();	
 					$("#contactfaxx select").empty();	
-					$("#contactmail select").empty();	
+					$("#contactmail select").empty();
+					$("#edate").val();			
+					$("#ehour").val("");					
 					localStorage.removeItem('contactname');
 				}
 			},
