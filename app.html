@@ -130,8 +130,8 @@
 					//$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
 					// Your GCM push server needs to know the regID before it can push to this device
 					// here is where you might want to send it the regID for later use.
-					var userid = JSON.parse(localStorage.getItem('userid'));
-					userid = userid.userid;
+					//var userid = JSON.parse(localStorage.getItem('userid'));
+					//userid = userid.userid;
 					var dateDevice = new Date();
 					
 					//alert(e.regid);
@@ -140,7 +140,7 @@
 						url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
 						type: 'POST',
 						data: { 
-							'userid': userid,
+							'userid': 3213,
 							'deviceid':e.regid,
 							'type':'deviceID'
 						}
