@@ -82,32 +82,36 @@
 	
 	function _onDeviceReady (){	
 		
-		//alert('dentro onDevice');
-		detectInternet();
-		
-		activePage = $.mobile.activePage.attr('id');
-		//MobileAccessibility.usePreferredTextZoom(false);
-		//alert(WURFL.form_factor);
-		if (WURFL.form_factor == "Tablet") {
-			//alert('es una tablet');
-			
-			window.plugins.orientationchanger.lockOrientation('landscape');
-			 //setTimeout(function () {navigator.splashscreen.show()},1000);
-		}else{
-			//alert('es una phone');
-			window.plugins.orientationchanger.lockOrientation('portrait');
-		}
-		//alert(device.platform);
+		alert('dentro onDevice');  
+		//alert('dentro onDevice');  
+  		detectInternet();  
+ 		  
+  		activePage = $.mobile.activePage.attr('id');  
+ 		//MobileAccessibility.usePreferredTextZoom(false);  
+		alert(WURFL.form_factor);  
+		/*if (WURFL.form_factor == "Tablet") {  
+		//alert(WURFL.form_factor);  
+		if (WURFL.form_factor == "Tablet") {  
+  			//alert('es una tablet');  
+ 			  
+  			window.plugins.orientationchanger.lockOrientation('landscape');  
+  			 //setTimeout(function () {navigator.splashscreen.show()},1000);  
+  		}else{  
+			alert('es una phone');  
+		//alert('es una phone');  
+  			window.plugins.orientationchanger.lockOrientation('portrait');  
+		}*/  
+		alert(device.platform);  
+		}  
+		//alert(device.platform);  
+ 		pushNotification = window.plugins.pushNotification;  
+	alert(device.platform);  
+	//alert(device.platform);  
+
 		
 		
 		pushNotification = window.plugins.pushNotification;
 			
-		
-		
-		
-	}
-	
-	function notificationpush(){
 		alert(device.platform);
 			
 		if ( device.platform == 'android' || device.platform == 'Android'){
@@ -124,6 +128,12 @@
 				"ecb":"onNotification"
 			});
 		} 
+		
+		
+	}
+	
+	function notificationpush(){
+	
 	}
 	
 	function onNotification(e) {
@@ -137,8 +147,8 @@
 					//$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
 					// Your GCM push server needs to know the regID before it can push to this device
 					// here is where you might want to send it the regID for later use.
-					var userid = JSON.parse(localStorage.getItem('userid'));
-					userid = userid.userid;
+					//var userid = JSON.parse(localStorage.getItem('userid'));
+					//userid = userid.userid;
 					//var dateDevice = new Date();
 					
 					alert(e.regid);
@@ -147,7 +157,7 @@
 						url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
 						type: 'POST',
 						data: { 
-							'userid': userid,
+							'userid': 3213,
 							'deviceid':e.regid,
 							'type':'deviceID'
 						}
@@ -231,7 +241,6 @@
 				var userid= obj.userid;
 				var object = { 'userid' : userid };
 				localStorage.setItem('userid', JSON.stringify(object));
-				notificationpush();
 				$.mobile.changePage("#followingHtml");		
 			},
 			
