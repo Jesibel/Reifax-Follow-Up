@@ -99,7 +99,7 @@
 		}
 		//alert(device.platform);
 		
-		if(window.localStorage["userid"] != undefined) {
+		
 			pushNotification = window.plugins.pushNotification;
 			
 			alert(device.platform);
@@ -118,14 +118,13 @@
 					"ecb":"onNotification"
 				});
 			} 
-		}
 		
 		
 	}
 	
 	function onNotification(e) {
 		
-		//alert(e.event);
+		alert(e.event);
 		switch( e.event )
 			{
 			case 'registered':
@@ -134,17 +133,17 @@
 					//$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
 					// Your GCM push server needs to know the regID before it can push to this device
 					// here is where you might want to send it the regID for later use.
-					var userid = JSON.parse(localStorage.getItem('userid'));
-					userid = userid.userid;
+					//var userid = JSON.parse(localStorage.getItem('userid'));
+					//userid = userid.userid;
 					//var dateDevice = new Date();
 					
-					//alert(e.regid);
+					alert(e.regid);
 					
 					$.ajax({
 						url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
 						type: 'POST',
 						data: { 
-							'userid': userid,
+							'userid': 3213,
 							'deviceid':e.regid,
 							'type':'deviceID'
 						}
@@ -202,6 +201,39 @@
 				//$("#app-status-ul").append('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
 			break;
 		  }
+	}
+	
+	function processLogin(){
+	
+		var user = $("input#userLogin").val();
+		var pass = $("input#passLogin").val();
+		//alert(user);
+		//alert(pass);
+		var userid="";
+		$.ajax({
+			//url: 'http://reifax.com/FollowupReifax/properties_validacion.php',   
+			url: 'http://reifax.com/resources/php/properties_validacion.php',    
+			type: 'POST',
+			data: { 			
+				'loginEmail': user,
+				'loginPass': pass,
+				'followupMobile': 'followupMobile'
+				//'remember': true
+					
+				},
+			success: function(data, textStatus, jqXHR){
+				//alert(data);
+				var obj = JSON.parse(data);
+				var userid= obj.userid;
+				var object = { 'userid' : userid };
+				localStorage.setItem('userid', JSON.stringify(object));
+				$.mobile.changePage("#followingHtml");		
+			},
+			
+			error: function(jqXHR, textStatus, ex) {
+				alert(textStatus + "," + ex + "," + jqXHR.responseText);
+			}
+		});
 	}
 
 	function showConfirm() {
@@ -3636,62 +3668,7 @@ function checkPreAuth() {
 }
 
 
-function processLogin(){
-	
-	var user = $("input#userLogin").val();
-	var pass = $("input#passLogin").val();
-	//alert(user);
-	//alert(pass);
-	var userid="";
-	$.ajax({
-		//url: 'http://reifax.com/FollowupReifax/properties_validacion.php',   
-		url: 'http://reifax.com/resources/php/properties_validacion.php',    
-		type: 'POST',
-		data: { 			
-			'loginEmail': user,
-			'loginPass': pass,
-			'followupMobile': 'followupMobile'
-			//'remember': true
-				
-			},
-		success: function(data, textStatus, jqXHR){
-			//alert(data);
-			var obj = JSON.parse(data);
-			var userid= obj.userid;
-			var object = { 'userid' : userid };
-			localStorage.setItem('userid', JSON.stringify(object));
-			$.mobile.changePage("#followingHtml");		
-		},
-		
-		error: function(jqXHR, textStatus, ex) {
-			alert(textStatus + "," + ex + "," + jqXHR.responseText);
-		}
-	});
-		/*}).done(function (data){					
-			//alert(data);					
-			var obj = JSON.parse(data);
-			console.log(obj.success);
-			if(obj.success) {			
-					//alert('Welcome Reifax Follow');		
-					/*bootbox.alert({
-						title: 'Reifax Follow Up',
-						message: 'Welcome Reifax Follow'
-					});*/
-		/*			var userid= obj.userid;
-					var object = { 'userid' : userid };
-					localStorage.setItem('userid', JSON.stringify(object));
-					//$.mobile.changePage('#followingHtml');
-					checkPreAuth();
-					
-			}else{
-				alert('else obj');
-				$.mobile.changePage('#loginHtml');
-			}			
-			
-								
-		});*/
-		
-}
+
 
 
 var funciones={
@@ -4452,27 +4429,7 @@ function pdf(){
 				</div>
 			</div>	
 			<hr>
-			<!--div style="margin-bottom: 10px;" class="row">
-				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-7 col-sm-4">
-					<div style="font-weight: bold;">Sound</div>
-					<div>Enable / Disable Sound Notification</div>
-				</div>
-				
-				<div  id="soun" class="col-xs-3 col-sm-6">
-					<input id="sound" type="checkbox" class="span4"/>
-				</div>
-			</div>
-			<hr>
-			<div style="margin-bottom: 10px;" class="row">
-				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-7 col-sm-4">
-					<div style="font-weight: bold;">Vibration</div>
-					<div>Enable / Disable Vibration Notification</div>
-				</div>
-				<div  id="vibra" class="col-xs-3 col-sm-6">
-					<input id="vibration" type="checkbox" class="span4"/>
-				</div>
-			</div>
-			<hr-->
+			
 		</div>
 		<br>
 		<br>
