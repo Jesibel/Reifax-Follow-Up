@@ -83,7 +83,7 @@
 	function _onDeviceReady (){	
 		
 		//alert('dentro onDevice');
-		//detectInternet();
+		detectInternet();
 		
 		activePage = $.mobile.activePage.attr('id');
 		//MobileAccessibility.usePreferredTextZoom(false);
@@ -99,25 +99,26 @@
 		}
 		//alert(device.platform);
 		
-		pushNotification = window.plugins.pushNotification;
-		
-		//alert(device.platform);
-		
-		if ( device.platform == 'android' || device.platform == 'Android'){
-			//alert('dentro if');
-			pushNotification.register(
-			function(token){
-				console.log('toke:'+token);
-			},
-			function (error){
-				alert(error)
-			},
-			{
-				"senderID":"383643887005",
-				"ecb":"onNotification"
-			});
-		} 
-		
+		if(window.localStorage["userid"] != undefined) {
+			pushNotification = window.plugins.pushNotification;
+			
+			alert(device.platform);
+			
+			if ( device.platform == 'android' || device.platform == 'Android'){
+				//alert('dentro if');
+				pushNotification.register(
+				function(token){
+					console.log('toke:'+token);
+				},
+				function (error){
+					alert(error)
+				},
+				{
+					"senderID":"383643887005",
+					"ecb":"onNotification"
+				});
+			} 
+		}
 		
 		
 	}
