@@ -146,8 +146,7 @@
 						}
 					}).done(function (data){
 						//alert(data);
-						
-							
+	
 					});
 					
 					//addDeviceId(e.regid,userid);
@@ -276,6 +275,26 @@ $(document).ready(function(){
 		$('input[name=txtEmail]').bind('focus',funciones.initAll);
 		correcto=true;
 
+	$('.probeProbe').on('switchChange.bootstrapSwitch click', function (event, state) {
+		//alert(this);
+		//alert(event);
+		//alert(state);
+		var settingNoti = state;
+		var object = { 'settingNoti' : settingNoti };
+		localStorage.setItem('settingNoti', JSON.stringify(object));
+		notification();
+	});
+	
+	
+	var settingNoti = JSON.parse(localStorage.getItem('settingNoti'));
+	console.log(settingNoti);
+	if ((settingNoti=='') || (settingNoti==null)){
+		settingNoti='';
+	}else{
+		settingNoti =settingNoti.settingNoti;
+	}
+	$('.probeProbe').bootstrapSwitch('state', settingNoti);
+	
 	
 	//document.getElementById('templa').style.display = "none";
 	//document.getElementById('templaSms').style.display = "none";
@@ -4390,6 +4409,7 @@ function pdf(){
 			<a class="closeMenu" style="display:none;"   href="#" data-rel="close">Close</a>
 			<li class="margen"><a class="filter"        id="filtro"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
 			<li class="margen"><a class="filterRemove"  id="filtro_remove" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
+			<li class="margen"><a class="setting"  id="setting" href="#settingHtml" >&nbsp;&nbsp;&nbsp;&nbsp;Setting</a></li>	
 			<!--li><a class="deleteFollow"  id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
 			<li><a class="sendContract"  id="sendContract"   href="#sendContracts" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
 			<li><a class="sendEmail"     id="sendEmail"      href="#formEmail" role="button" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
@@ -4402,6 +4422,69 @@ function pdf(){
 	</div>
 	<!--FIN MENU-->
 
+</div>
+
+<div data-role="page" id="settingHtml">
+	<!--HEADER-->
+	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
+		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();" ></a>
+		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
+		<div style="text-align:center;margin-top:-30px;"><img src="resources/image/detail-property.png" width="120" height="40"></div>
+	</div>
+	<!--FIN HEADER-->
+	
+	<!--content-->
+	<div data-role="content">
+		
+		<div style="margin-left: 1px;" class="row formC" id="formSetting">	  
+			<div style="margin-bottom: 10px;" class="row">
+				<div style="font-size:20px;padding-left: 25px;padding-top: 5px;border-bottom:1px solid #ccc;margin-bottom: 10px;" class="col-xs-12 col-sm-4">
+					Notification
+				</div>
+				
+			</div>
+			<div style="margin-bottom: 10px;" class="row">
+				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-7 col-sm-4">
+					<div style="font-weight: bold;">Notification</div>
+					<div>Enable / Disable Notification</div>
+				</div>
+				
+				<div  id="noti" class="col-xs-3 col-sm-6">
+					<!--input id="notificarion" type="checkbox" class="span4"/-->
+					<div class="make-switch">
+						<input type="checkbox" checked="true" class="probeProbe" />
+					</div>
+				</div>
+			</div>	
+			<hr>
+			<!--div style="margin-bottom: 10px;" class="row">
+				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-7 col-sm-4">
+					<div style="font-weight: bold;">Sound</div>
+					<div>Enable / Disable Sound Notification</div>
+				</div>
+				
+				<div  id="soun" class="col-xs-3 col-sm-6">
+					<input id="sound" type="checkbox" class="span4"/>
+				</div>
+			</div>
+			<hr>
+			<div style="margin-bottom: 10px;" class="row">
+				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-7 col-sm-4">
+					<div style="font-weight: bold;">Vibration</div>
+					<div>Enable / Disable Vibration Notification</div>
+				</div>
+				<div  id="vibra" class="col-xs-3 col-sm-6">
+					<input id="vibration" type="checkbox" class="span4"/>
+				</div>
+			</div>
+			<hr-->
+		</div>
+		<br>
+		<br>
+		<br>
+	</div>
+	<!--content-->
+	
 </div>
 
 
