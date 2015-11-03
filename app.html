@@ -41,11 +41,8 @@
 	<!--link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"-->	
 	<link href="resources/datetime/timedate1/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="bootstrap/css/bootstrap-modal.css" rel="stylesheet" />
-	<link   href="bootstrap/css/bootstrap-switch.css" rel="stylesheet" />
-	<script src="bootstrap/js/bootstrap-switch.js"></script>
 	
-	
-	<link rel="stylesheet" href="resources/css/jquery.auto-complete.css">
+	 <link rel="stylesheet" href="resources/css/jquery.auto-complete.css">
 	
 	<link href="resources/datetime/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 	
@@ -82,12 +79,12 @@
 	
 	function _onDeviceReady (){	
 		
-		alert('dentro onDevice');
+		//alert('dentro onDevice');
 		detectInternet();
 		
 		activePage = $.mobile.activePage.attr('id');
 		//MobileAccessibility.usePreferredTextZoom(false);
-		alert(WURFL.form_factor);
+		//alert(WURFL.form_factor);
 		if (WURFL.form_factor == "Tablet") {
 			//alert('es una tablet');
 			
@@ -101,10 +98,10 @@
 		
 		pushNotification = window.plugins.pushNotification;
 		
-		alert(device.platform);
+		//alert(device.platform);
 		
 		if ( device.platform == 'android' || device.platform == 'Android'){
-			alert('dentro if');
+			//alert('dentro if');
 			pushNotification.register(
 			function(token){
 				console.log('toke:'+token);
@@ -137,7 +134,7 @@
 					userid = userid.userid;
 					var dateDevice = new Date();
 					
-					alert(e.regid);
+					//alert(e.regid);
 					
 					$.ajax({
 						url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
@@ -279,16 +276,6 @@ $(document).ready(function(){
 		$('input[name=txtEmail]').bind('focus',funciones.initAll);
 		correcto=true;
 
-	$('.probeProbe').bootstrapSwitch('state', true);
-
-	$('.probeProbe').on('switchChange.bootstrapSwitch', function (event, state) {
-		//alert(this);
-		//alert(event);
-		//alert(state);
-		var settingNoti = state;
-		var object = { 'settingNoti' : settingNoti };
-		localStorage.setItem('settingNoti', JSON.stringify(object));
-	});
 	
 	//document.getElementById('templa').style.display = "none";
 	//document.getElementById('templaSms').style.display = "none";
@@ -3199,7 +3186,7 @@ $(document).on("pagebeforeshow","#contactsHtml",function(){
 		filter= $('#searchConta').val();
 		/*$ul.html( "" );
 		$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-        $ul.listview( "refresh" );*/
+        $ul.listview( "refresh" );*/
 		listadoContacts(start,settings.limit,filter);
 	});
 	
@@ -3459,7 +3446,7 @@ $(document).on("pagebeforeshow","#listadoAllContacts",function(){
 		filter= $('#searchListContact').val();
 		/*$ul.html( "" );
 		$ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
-        $ul.listview( "refresh" );*/
+        $ul.listview( "refresh" );*/
 		listadoAllContacts(start,settings.limit,filter);
 	});
 
@@ -4403,7 +4390,6 @@ function pdf(){
 			<a class="closeMenu" style="display:none;"   href="#" data-rel="close">Close</a>
 			<li class="margen"><a class="filter"        id="filtro"        href="#filter" data-toggle="modal" role="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;Filter</a></li>
 			<li class="margen"><a class="filterRemove"  id="filtro_remove" href="#remove" >&nbsp;&nbsp;&nbsp;&nbsp;Remove Filter</a></li>	
-			<li class="margen"><a class="setting"  id="setting" href="#settingHtml" >&nbsp;&nbsp;&nbsp;&nbsp;Setting</a></li>	
 			<!--li><a class="deleteFollow"  id="deleteFo"       href="#delete" >&nbsp;&nbsp;&nbsp;&nbsp;Delete</a></li>			 
 			<li><a class="sendContract"  id="sendContract"   href="#sendContracts" >&nbsp;&nbsp;&nbsp;&nbsp;Send Contracts</a></li>
 			<li><a class="sendEmail"     id="sendEmail"      href="#formEmail" role="button" class="btn btn-primary btn-lg" data-toggle="modal" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Send Email</a></li>
@@ -4418,68 +4404,6 @@ function pdf(){
 
 </div>
 
-<div data-role="page" id="settingHtml">
-	<!--HEADER-->
-	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
-		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();" ></a>
-		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
-		<div style="text-align:center;margin-top:-30px;"><img src="resources/image/detail-property.png" width="120" height="40"></div>
-	</div>
-	<!--FIN HEADER-->
-	
-	<!--content-->
-	<div data-role="content">
-		
-		<div style="margin-left: 1px;" class="row formC" id="formSetting">	  
-			<div style="margin-bottom: 10px;" class="row">
-				<div style="font-size:20px;padding-left: 25px;padding-top: 5px;border-bottom:1px solid #ccc;margin-bottom: 10px;" class="col-xs-12 col-sm-4">
-					Notification
-				</div>
-				
-			</div>
-			<div style="margin-bottom: 10px;" class="row">
-				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-7 col-sm-4">
-					<div style="font-weight: bold;">Notification</div>
-					<div>Enable / Disable Notification</div>
-				</div>
-				
-				<div  id="noti" class="col-xs-3 col-sm-6">
-					<!--input id="notificarion" type="checkbox" class="span4"/-->
-					<div class="make-switch">
-						<input type="checkbox" checked="true" class="probeProbe" />
-					</div>
-				</div>
-			</div>	
-			<hr>
-			<!--div style="margin-bottom: 10px;" class="row">
-				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-7 col-sm-4">
-					<div style="font-weight: bold;">Sound</div>
-					<div>Enable / Disable Sound Notification</div>
-				</div>
-				
-				<div  id="soun" class="col-xs-3 col-sm-6">
-					<input id="sound" type="checkbox" class="span4"/>
-				</div>
-			</div>
-			<hr>
-			<div style="margin-bottom: 10px;" class="row">
-				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-7 col-sm-4">
-					<div style="font-weight: bold;">Vibration</div>
-					<div>Enable / Disable Vibration Notification</div>
-				</div>
-				<div  id="vibra" class="col-xs-3 col-sm-6">
-					<input id="vibration" type="checkbox" class="span4"/>
-				</div>
-			</div>
-			<hr-->
-		</div>
-		<br>
-		<br>
-		<br>
-	</div>
-	<!--content-->
-	
-</div>
 
 <!--FILTER-->
 <div class="modal fade bs-example-modal-sm" id="filter" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
@@ -6288,8 +6212,8 @@ function pdf(){
 		<div style="text-align:left;margin-left:15px;margin-top:3px"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
 		<div style="text-align:center;margin-left:20px;margin-top:-32px"><img src="resources/image/detail_contact.png" width="120" height="40"></div>
 		<div style="width: 100%;margin-top: -40px;text-align: right;">
-			<a id="setPrincContList" style="height:30px;width:32px;background-image: url('img/star-w-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#"></a>
-			<a id="updateContList" style="height:30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditContactoHtml"></a>
+			<a id="setPrincContList" style="margin-right:5px;height: 30px;background-image: url('img/settings-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#"></a>
+			<a id="updateContList" style="margin-right:5px;height: 30px;background-image: url('img/edit-32.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#pagEditContactoHtml"></a>
 			<a id="removeContList" style="margin-right:5px;height: 30px;background-image: url('img/delete-48.png');background-repeat:no-repeat; background-size: 25px 25px; margin-left:5px;margin-top:2px;background-position:center center;" class="ui-btn excecute ui-first-child ui-last-child btn btn-primary" data-excecute="editar" role="button" data-theme="b" href="#"></a>
 		</div>
 	</div>
