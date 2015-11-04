@@ -106,12 +106,12 @@
 		if ( device.platform == 'android' || device.platform == 'Android'){
 			//alert('dentro if');
 			pushNotification.register(
-			function(token){
-				console.log('toke:'+token);
-			},
-			function (error){
-				alert(error)
-			},
+				function(token){
+					console.log('toke:'+token);
+				},
+				function (error){
+					alert(error)
+				},
 			{
 				"senderID":"383643887005",
 				"ecb":"onNotification"
@@ -283,7 +283,7 @@ $(document).ready(function(){
 		$('input[name=txtEmail]').bind('focus',funciones.initAll);
 		correcto=true;
 
-	$('.probeProbe').on('switchChange.bootstrapSwitch click', function (event, state) {
+	/*$('.notif').on('switchChange.bootstrapSwitch click', function (event, state) {
 		//alert(this);
 		//alert(event);
 		//alert(state);
@@ -301,7 +301,7 @@ $(document).ready(function(){
 	}else{
 		settingNoti =settingNoti.settingNoti;
 	}
-	$('.probeProbe').bootstrapSwitch('state', settingNoti);
+	$('.notif').bootstrapSwitch('state', settingNoti);*/
 	
 	
 	//document.getElementById('templa').style.display = "none";
@@ -3673,36 +3673,15 @@ function processLogin(){
 			var userid= obj.userid;
 			var object = { 'userid' : userid };
 			localStorage.setItem('userid', JSON.stringify(object));
-			$.mobile.changePage("#followingHtml");		
+			$.mobile.changePage("#followingHtml");
+			//deviceAdd(obj.userid);
+			onNotification();
 		},
 		
 		error: function(jqXHR, textStatus, ex) {
 			alert(textStatus + "," + ex + "," + jqXHR.responseText);
 		}
 	});
-		/*}).done(function (data){					
-			//alert(data);					
-			var obj = JSON.parse(data);
-			console.log(obj.success);
-			if(obj.success) {			
-					//alert('Welcome Reifax Follow');		
-					/*bootbox.alert({
-						title: 'Reifax Follow Up',
-						message: 'Welcome Reifax Follow'
-					});*/
-		/*			var userid= obj.userid;
-					var object = { 'userid' : userid };
-					localStorage.setItem('userid', JSON.stringify(object));
-					//$.mobile.changePage('#followingHtml');
-					checkPreAuth();
-					
-			}else{
-				alert('else obj');
-				$.mobile.changePage('#loginHtml');
-			}			
-			
-								
-		});*/
 		
 }
 
@@ -4460,32 +4439,12 @@ function pdf(){
 				<div  id="noti" class="col-xs-3 col-sm-6">
 					<!--input id="notificarion" type="checkbox" class="span4"/-->
 					<div class="make-switch">
-						<input type="checkbox" checked="true" class="probeProbe" />
+						<input type="checkbox" checked="true" class="Notif" />
 					</div>
 				</div>
 			</div>	
 			<hr>
-			<!--div style="margin-bottom: 10px;" class="row">
-				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-7 col-sm-4">
-					<div style="font-weight: bold;">Sound</div>
-					<div>Enable / Disable Sound Notification</div>
-				</div>
-				
-				<div  id="soun" class="col-xs-3 col-sm-6">
-					<input id="sound" type="checkbox" class="span4"/>
-				</div>
-			</div>
-			<hr>
-			<div style="margin-bottom: 10px;" class="row">
-				<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-7 col-sm-4">
-					<div style="font-weight: bold;">Vibration</div>
-					<div>Enable / Disable Vibration Notification</div>
-				</div>
-				<div  id="vibra" class="col-xs-3 col-sm-6">
-					<input id="vibration" type="checkbox" class="span4"/>
-				</div>
-			</div>
-			<hr-->
+			
 		</div>
 		<br>
 		<br>
