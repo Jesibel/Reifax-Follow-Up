@@ -105,17 +105,19 @@
 		
 		if ( device.platform == 'android' || device.platform == 'Android'){
 			//alert('dentro if');
-			pushNotification.register(
-				function(token){
-					console.log('toke:'+token);
-				},
-				function (error){
-					alert(error)
-				},
-			{
-				"senderID":"383643887005",
-				"ecb":"onNotification"
-			});
+			if(window.localStorage["userid"] != undefined) {
+				pushNotification.register(
+					function(token){
+						console.log('toke:'+token);
+					},
+					function (error){
+						alert(error)
+					},
+				{
+					"senderID":"383643887005",
+					"ecb":"onNotification"
+				});
+			}
 		} 
 		
 		
@@ -135,7 +137,7 @@
 					// here is where you might want to send it the regID for later use.
 					var userid = JSON.parse(localStorage.getItem('userid'));
 					console.log(userid);
-					if ((userid!='') || (userid!=null)){
+					
 						userid =userid.userid;
 						/*addDeviceId(e.regid,userid);
 						console.log("regID = " + e.regid);
@@ -153,7 +155,7 @@
 							//alert(data);
 		
 						});
-					}
+					
 					//addDeviceId(e.regid,userid);
 					console.log("regID = " + e.regid);
 					console.log("userID = " + userid);
@@ -3671,8 +3673,7 @@ function processLogin(){
 			var object = { 'userid' : userid };
 			localStorage.setItem('userid', JSON.stringify(object));
 			$.mobile.changePage("#followingHtml");
-			//deviceAdd(obj.userid);
-			onNotification();
+		
 		},
 		
 		error: function(jqXHR, textStatus, ex) {
@@ -10848,15 +10849,21 @@ function pdf(){
 </script-->
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript">
-    document.addEventListener("deviceReady",_onDeviceReady, false);
+	if(window.localStorage["userid"] != undefined) {
 	
-	document.addEventListener("backbutton", function(){
+		document.addEventListener("deviceReady",_onDeviceReady, false);
+	
+		document.addEventListener("backbutton", function(){
 			
 		if(activePage=='followingHtml'){
 			navigator.app.exitApp();//se sale de la aplicacion
 		}
 				
-	}, false);
+		}, false);
+		
+	}else{
+		document.addEventListener("deviceReady",_onDeviceReady, false);
+	}
 </script>
 </body>
   
