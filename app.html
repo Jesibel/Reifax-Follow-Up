@@ -142,6 +142,7 @@
 						/*addDeviceId(e.regid,userid);
 						console.log("regID = " + e.regid);
 						console.log("userID = " + userid);*/
+					alert(e.regid);
 					
 						$.ajax({
 							url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
@@ -3673,7 +3674,7 @@ function processLogin(){
 			var object = { 'userid' : userid };
 			localStorage.setItem('userid', JSON.stringify(object));
 			$.mobile.changePage("#followingHtml");
-			document.addEventListener("deviceReady",_onDeviceReady, false);
+			//document.addEventListener("deviceReady",_onDeviceReady, false);
 		},
 		
 		error: function(jqXHR, textStatus, ex) {
@@ -4414,7 +4415,7 @@ function pdf(){
 	<div style="background: #8ab420;border: #8ab420;" data-theme="a" data-role="header" data-position="fixed" data-tap-toggle="false">				
 		<a style="height:30px;width:30px;background-image: url('img/back-w2.png');background-repeat:no-repeat;margin-left:-10px;margin-top:3px;background-position:center center;" class="ui-btn ui-first-child ui-last-child showPrevPage" data-excecute="main-Menu" data-theme="b" href="#" onclick="goBack();" ></a>
 		<div style="text-align:left;margin-left:15px;margin-top:3px;"><img src="resources/image/casa_rf-40.png" width="30" height="30"></div>
-		<div style="text-align:center;margin-top:-30px;"><img src="resources/image/detail-property.png" width="120" height="40"></div>
+		<div style="text-align:center;margin-top:-30px;"><img src="resources/image/settings.png" width="120" height="40"></div>
 	</div>
 	<!--FIN HEADER-->
 	

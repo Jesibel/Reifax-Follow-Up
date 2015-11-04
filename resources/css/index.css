@@ -152,14 +152,14 @@
 	 background-size: 30px 30px;
 }
 .setting {
-	 background-image: url('http://www.reifax.com/FollowupReifax/img/settings-gr-48.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/settings-vrd.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 margin-top: 5px !important;
 }
 	 
 .setting:hover{
-	 background-image: url('http://www.reifax.com/FollowupReifax/img/settings-gr-48.png');
+	 background-image: url('http://www.reifax.com/FollowupReifax/img/settings-vrd.png');
 	 background-repeat:no-repeat;
 	 background-size: 30px 30px;
 	 margin-top: 5px !important;
