@@ -137,26 +137,23 @@
 					console.log(userid);
 					if ((userid!='') || (userid!=null)){
 						userid =userid.userid;
-						addDeviceId(e.regid,userid);
+						/*addDeviceId(e.regid,userid);
 						console.log("regID = " + e.regid);
-						console.log("userID = " + userid);
+						console.log("userID = " + userid);*/
+					
+						$.ajax({
+							url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
+							type: 'POST',
+							data: { 
+								'userid': userid,
+								'deviceid':e.regid,
+								'type':'deviceID'
+							}
+						}).done(function (data){
+							//alert(data);
+		
+						});
 					}
-					
-					alert(e.regid);
-					
-					$.ajax({
-						url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
-						type: 'POST',
-						data: { 
-							'userid': userid,
-							'deviceid':e.regid,
-							'type':'deviceID'
-						}
-					}).done(function (data){
-						//alert(data);
-	
-					});
-					
 					//addDeviceId(e.regid,userid);
 					console.log("regID = " + e.regid);
 					console.log("userID = " + userid);
