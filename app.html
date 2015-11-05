@@ -72,9 +72,6 @@
 	
 	<script src="resources/js/bootbox.js"></script>
 	
-	<link   href="bootstrap/css/bootstrap-switch.css" rel="stylesheet" />
-	<script src="bootstrap/js/bootstrap-switch.js"></script>
-	
 	<script type="text/javascript">
 	var activePage;
 	
@@ -126,7 +123,7 @@
 	
 	function onNotification(e) {
 		
-		alert(e.event);
+		//alert(e.event);
 		switch( e.event )
 			{
 			case 'registered':
@@ -141,7 +138,7 @@
 						/*addDeviceId(e.regid,userid);
 						console.log("regID = " + e.regid);
 						console.log("userID = " + userid);*/
-						alert(e.regid);
+						//alert(e.regid);
 						var device = e.regid;
 						var object = { 'device' : device };
 						localStorage.setItem('device', JSON.stringify(object));
@@ -281,21 +278,11 @@ $(document).ready(function(){
 	
 	
 	$('#next').bind('click',funciones.proccess)
-		$('#go').bind('click',funciones.findUser);
-		$('input[name=txtEmail]').bind('focus',funciones.initAll);
-		correcto=true;
-
-	$('.notif').on('switchChange.bootstrapSwitch click', function (event, state) {
-		//alert(this);
-		//alert(event);
-		//alert(state);
-		var settingNoti = state;
-		var object = { 'settingNoti' : settingNoti };
-		localStorage.setItem('settingNoti', JSON.stringify(object));
-		notification();
-	});
+	$('#go').bind('click',funciones.findUser);
+	$('input[name=txtEmail]').bind('focus',funciones.initAll);
+	correcto=true;
 	
-	
+	//check de las notificaciones
 	var settingNoti = JSON.parse(localStorage.getItem('settingNoti'));
 	console.log(settingNoti);
 	if ((settingNoti=='') || (settingNoti==null)){
@@ -304,12 +291,16 @@ $(document).ready(function(){
 		settingNoti =settingNoti.settingNoti;
 	}
 	
-	//$('.notif').bootstrapSwitch('state', settingNoti);
+	if(settingNoti==0){
+		var setting=true;
+		
+	}else{
+		var setting=false;
+		
+	}
+	$('#chk_notif').prop('checked', setting );
 	
 	
-	//document.getElementById('templa').style.display = "none";
-	//document.getElementById('templaSms').style.display = "none";
-	//document.getElementById('templaFAX').style.display = "none";
 	document.getElementById('between').style.display = "none";
 	document.getElementById('between2').style.display = "none";
 	document.getElementById('betweenMail').style.display = "none";
@@ -395,6 +386,25 @@ $(document).ready(function(){
 			document.getElementById('betweenMailO2').style.display = "none";
 		}
 	});
+	
+	//check notificacion change
+	$('#chk_notif').on('change',function(){
+		var YN = ( $(this).prop("checked")?'Y':'N' );
+		//alert(YN);
+		if(YN=='Y'){
+			var state=0;
+		}else{
+			var state=1;
+		}
+		//alert(state);
+		var settingNoti = state;
+		var object = { 'settingNoti' : settingNoti };
+		localStorage.setItem('settingNoti', JSON.stringify(object));
+		notification();
+		//app.settings().set('notif',  YN );
+		//app.enabled_noty(YN);
+    });
+	
 	
 	//FILTER PROPERTIES
 	$("#filtro,#filtro2").on('click', function () {
@@ -4440,8 +4450,12 @@ function pdf(){
 				
 				<div  id="noti" class="col-xs-3 col-sm-6">
 					<!--input id="notificarion" type="checkbox" class="span4"/-->
-					<div class="make-switch">
+					<!--div class="make-switch">
 						<input type="checkbox" checked="true" class="Notif" />
+					</div-->
+					<div data-role="fieldcontain">
+						<label for="chk_notif"></label>
+						<input type="checkbox" id="chk_notif" data-role="flipswitch" data-mini="true">
 					</div>
 				</div>
 			</div>	
