@@ -135,14 +135,16 @@
 					//$("#app-status-ul").append('<li>REGISTERED -> REGID:' + e.regid + "</li>");
 					// Your GCM push server needs to know the regID before it can push to this device
 					// here is where you might want to send it the regID for later use.
-					var userid = JSON.parse(localStorage.getItem('userid'));
-					console.log(userid);
-					
+						var userid = JSON.parse(localStorage.getItem('userid'));
+						console.log(userid);
 						userid =userid.userid;
 						/*addDeviceId(e.regid,userid);
 						console.log("regID = " + e.regid);
 						console.log("userID = " + userid);*/
-					alert(e.regid);
+						alert(e.regid);
+						var device = e.regid;
+						var object = { 'device' : device };
+						localStorage.setItem('device', JSON.stringify(object));
 					
 						$.ajax({
 							url: 'http://reifax.com/FollowupReifax/'+folder+'/mysetting_tabs/myfollowup_tabs/properties_followup.php',  
@@ -3674,7 +3676,7 @@ function processLogin(){
 			var object = { 'userid' : userid };
 			localStorage.setItem('userid', JSON.stringify(object));
 			$.mobile.changePage("#followingHtml");
-			document.addEventListener("deviceReady",_onDeviceReady, false);
+			//document.addEventListener("deviceReady",_onDeviceReady, false);
 		},
 		
 		error: function(jqXHR, textStatus, ex) {
