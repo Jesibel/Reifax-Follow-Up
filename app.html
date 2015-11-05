@@ -296,14 +296,15 @@ $(document).ready(function(){
 	});
 	
 	
-	/*var settingNoti = JSON.parse(localStorage.getItem('settingNoti'));
+	var settingNoti = JSON.parse(localStorage.getItem('settingNoti'));
 	console.log(settingNoti);
 	if ((settingNoti=='') || (settingNoti==null)){
 		settingNoti='';
 	}else{
 		settingNoti =settingNoti.settingNoti;
 	}
-	$('.notif').bootstrapSwitch('state', settingNoti);*/
+	
+	//$('.notif').bootstrapSwitch('state', settingNoti);
 	
 	
 	//document.getElementById('templa').style.display = "none";
@@ -3676,7 +3677,7 @@ function processLogin(){
 			var object = { 'userid' : userid };
 			localStorage.setItem('userid', JSON.stringify(object));
 			$.mobile.changePage("#followingHtml");
-			//document.addEventListener("deviceReady",_onDeviceReady, false);
+			document.addEventListener("deviceReady",_onDeviceReady, false);
 		},
 		
 		error: function(jqXHR, textStatus, ex) {
