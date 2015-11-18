@@ -484,6 +484,12 @@ $(document).ready(function(){
 		//alert('insert');			
 		addHistory();
 	});
+	
+	//APPLY FOLLOWING TYPE
+	$("#applyChange").on('click', function () {
+		//alert('insert');			
+		applyChangeFollowing();
+	});
 		
 	//RESET HISTORY FOLLOW
 	$("#resetHist,#resetHistory").on('click', function () {
@@ -4550,6 +4556,15 @@ function pdf(){
 					
 					<div style="margin-bottom: 10px;" class="row">
 						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-4">
+							Follow Type
+						</div>
+						<div  id="followtype" class="col-xs-7 col-sm-6">
+							<select id="folltype" class="span4"></select>
+						</div>
+					</div>
+					
+					<div style="margin-bottom: 10px;" class="row">
+						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-4">
 							Status
 						</div>
 						<div id="status" class="col-xs-7 col-sm-6">
@@ -5654,89 +5669,6 @@ function pdf(){
 </div>
 <!--FIN ASSIG PROPERTY-->
 
-<!--FORMULARIO REPLY INBOX-->
-<!--div class="modal fade bs-example-modal-sm" id="formReplyInbox" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Reply Email</h4>
-            </div>
-            <div class="modal-body">
-				<div class="row-fluid">				
-				<div class="row">				  
-					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
-							Template
-						</div>
-						<div id="templateReply" class="col-xs-7 col-sm-10">			
-							<select  id="templatereplyEmail" class="span4"></select>
-						</div>
-					</div>
-					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
-							To
-						</div>
-						<div id="toReply" class="col-xs-7 col-sm-10">
-							<select  id="toreplyEmail" class="span4"></select>
-						</div>
-					</div>
-					<div style="margin-bottom: 10px;" class="row">
-						<div style="padding-left: 25px;padding-top: 5px;" class="col-xs-4 col-sm-2">
-							Subject
-						</div>
-						<div id="subjReply" class="col-xs-7 col-sm-10">
-							<input id="subjectReply" type="text" class="span4" />							
-						</div>
-					</div>
-					<div style="margin-bottom: 10px;" class="row">
-						<div id="texttReply" class="col-xs-12 col-sm-10">							
-							<textarea style="height:122px;" id="textReply" class="form-control" placeholder="Your text here.." data-placement="top" data-trigger="manual"></textarea>
-						</div>
-					</div>
-					<div class="row">
-						<div style="padding-left: 25px;padding-top: 10px;" class="col-xs-3 col-sm-2">
-							Attach
-						</div>
-						<div class="row">
-						<div id="uuploadfileEF" class="col-xs-8 col-sm-10">
-							 <input type="text" id="uploadFileReply" placeholder="Select a file"/>
-						</div>
-						</div>
-					</div>
-				<div class="row">
-					<div style="margin-left:25px;text-align:center;" class=" col-xs-8 col-sm-10">
-						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
-							<span>Browser</span>
-							<input type="file" class="upload" id="uploadBtnReply" />
-						</div>
-					</div>
-				</div>
-				<br>
-				<div id="browserReply"></div>
-		
-				<div class="row">		
-					<div style="text-align:center;margin-left:65px;" class="col-xs-8 col-sm-10">
-						<div style="display: inline-flex;" class="fileUpload btn btn-primary">
-							<span>Another file</span>
-							<input onclick="addInputReply()" class="another" />	
-						</div>
-					</div>
-				</div>
-				<br>
-					
-				</div>	  
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button id="sendReplyI" type="button" class="btn btn-success" data-dismiss="modal">Send</button>
-			</div>
-		</div>
-  </div>
-</div>
-</div-->
-<!--FIN REPLY INBOX-->
-
 <!--FORMULARIO REPLY OUTBOX-->
 <div class="modal fade bs-example-modal-sm" id="formReplyOutbox" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -6153,6 +6085,36 @@ function pdf(){
 	</div>
 </div>
 <!--FIN INVESTOR FACTOR-->
+
+<!--FOLLOWING CHANGE TYPE-->
+<div class="modal fade bs-example-modal-sm" id="followingChangeType" tabindex="-1" role="dialog" data-target=".bs-example-modal-sm" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabelHouse">Following Change Type</h4>
+            </div>
+            <div class="modal-body">
+				<div class="row-fluid">
+					<div class="span6">
+						<p>Following Type<div id="followingType">
+						<select id="folloType" onchange="comboFollowing();" class="span12"></select>
+						</div>
+						  
+					</div>
+					<div class="modal-footer">
+						<button id="applyChange" type="button" class="btn btn-primary" data-dismiss="modal">Apply</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--FIN FOLLOWING CHANGE TYPE-->
+
+
 <!--PROCESS BAR-->
 
 <div class="modal js-loading-bar">
