@@ -97,7 +97,7 @@
   <gap:splash src="resources/image/reifax_FOLLOW_UP-2048x1536.png"  gap:platform="ios"     width="2048" height="1536" />
 
   <!--gap:plugin name="org.apache.cordova.media" /-->
-<plugin name="org.apache.cordova.media" spec="0.2.16" source="pgb" />  
+  <plugin name="org.apache.cordova.media" spec="0.2.16" source="pgb" />  
 
   <!--gap:plugin name="com.boyvanderlaak.cordova.plugin.orientationchanger" version="0.1.1" /-->
   <plugin name="com.boyvanderlaak.cordova.plugin.orientationchanger" spec="0.1.1" source="pgb" />
